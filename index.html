@@ -13,7 +13,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
@@ -49,16 +49,15 @@
         <svg class="nav__logo-mark" viewBox="0 0 48 48" aria-hidden="true">
           <defs>
             <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#178bff" />
-              <stop offset="100%" stop-color="#ffd43b" />
+              <stop offset="0%" stop-color="#f2cf6b" />
+              <stop offset="100%" stop-color="#c98f2e" />
             </linearGradient>
           </defs>
-          <rect x="2.5" y="2.5" width="43" height="43" rx="13" fill="#0e0e14" stroke="url(#logoGrad)" stroke-width="1.6" />
-          <path class="nav__logo-c" d="M32.7 16.7 A11.4 11.4 0 1 0 32.7 31.3" fill="none" stroke="url(#logoGrad)" stroke-width="4.4" stroke-linecap="round" />
-          <circle cx="32.7" cy="16.7" r="2.5" fill="#178bff" />
-          <circle cx="32.7" cy="31.3" r="2.5" fill="#ffd43b" />
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#0c0c10" stroke="url(#logoGrad)" stroke-width="1.6" />
+          <path class="nav__logo-c" d="M33 12 H19 L11 20 V28 L19 36 H33 V29.5 H21.8 L17.6 25.4 V22.6 L21.8 18.5 H33 Z" fill="url(#logoGrad)" />
+          <rect class="nav__logo-node" x="26.5" y="21" width="7" height="6" rx="1.3" fill="#ffd43b" />
         </svg>
-        <span class="nav__logo-text">Chester<em>Studio</em></span>
+        <span class="nav__logo-text"><strong>Chester</strong><small>Studio</small></span>
       </a>
       <ul class="nav__links" id="navLinks">
         <li><a href="#work" class="nav__link" data-magnetic>Work</a></li>
@@ -103,9 +102,24 @@
       </div>
 
       <div class="container hero__inner">
-        <p class="hero__kicker" data-intro style="--d:.1s">
-          <span class="hero__kicker-dot"></span> Chester Studio — Parañaque, PH · Working worldwide
-        </p>
+        <div class="hero__badges" data-intro style="--d:.1s">
+          <span class="badge badge--lead">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Hi, I'm Chester — I build revenue systems
+          </span>
+          <span class="badge">
+            <span class="badge__dot"></span>
+            5 client systems live &amp; running
+          </span>
+          <span class="badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            NDA-friendly · your data stays yours
+          </span>
+          <span class="badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Parañaque, PH · working worldwide
+          </span>
+        </div>
 
         <h1 class="hero__title">
           <span class="hero__line" data-intro style="--d:.2s"><span class="hero__word">I&nbsp;design&nbsp;&amp;</span></span>
@@ -312,6 +326,12 @@
           <p class="section__sub">Every build plugs into a single revenue system — each stage feeding the next, automatically.</p>
         </div>
 
+        <div class="system__console" data-reveal>
+          <span class="system__console-id">SYS: REVENUE_ENGINE_V2</span>
+          <span class="system__console-status"><i></i>All systems operational</span>
+          <span class="system__console-uptime">Running 24/7</span>
+        </div>
+
         <div class="system__flow" id="systemFlow">
           <div class="system__rail" aria-hidden="true">
             <span class="system__rail-fill" id="systemRailFill"></span>
@@ -322,30 +342,37 @@
           <div class="system-step" data-reveal style="--d:0s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <h4>Traffic</h4><p>Attract the right audience</p>
+            <span class="system-step__st"><i></i>Active</span>
           </div>
           <div class="system-step" data-reveal style="--d:.08s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
             <h4>Website</h4><p>Deliver value and build trust</p>
+            <span class="system-step__st"><i></i>Live</span>
           </div>
           <div class="system-step" data-reveal style="--d:.16s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h6M7 14h10"/></svg></div>
             <h4>Lead Capture</h4><p>Convert visitors into leads</p>
+            <span class="system-step__st"><i></i>Capturing</span>
           </div>
           <div class="system-step" data-reveal style="--d:.24s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
             <h4>Automation</h4><p>Nurture and follow up 24/7</p>
+            <span class="system-step__st"><i></i>Running</span>
           </div>
           <div class="system-step" data-reveal style="--d:.32s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
             <h4>CRM</h4><p>Organize relationships</p>
+            <span class="system-step__st"><i></i>Synced</span>
           </div>
           <div class="system-step" data-reveal style="--d:.4s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg></div>
             <h4>Sales</h4><p>Close more deals</p>
+            <span class="system-step__st"><i></i>Closing</span>
           </div>
           <div class="system-step system-step--growth" data-reveal style="--d:.48s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg></div>
             <h4>Growth</h4><p>Scale and optimize continuously</p>
+            <span class="system-step__st system-step__st--gold"><i></i>Scaling</span>
           </div>
         </div>
       </div>

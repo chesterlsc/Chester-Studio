@@ -142,12 +142,12 @@
       tags: ["UX Redesign", "Accessibility", "Gov"],
     },
     {
-      name: "Reign Models Manila",
-      type: "Modeling Agency Website",
+      name: "Nexus Creative House",
+      type: "Creative Agency Website",
       category: "Growth Work",
-      image: "public/projects/modeling-agency.jpg",
-      desc: "A striking portfolio site for a Manila modeling agency — editorial visuals paired with a booking funnel that grows the roster.",
-      tags: ["Branding", "Growth", "Portfolio"],
+      image: "public/projects/nexus-creative.jpg",
+      desc: "A black-and-gold creative agency site — talent management, campaign production, and brand strategy told with editorial confidence and world-class brand social proof.",
+      tags: ["Branding", "Agency", "Editorial", "Talent"],
     },
     {
       name: "PetMates Platform",
@@ -209,7 +209,7 @@
     "Mall Maps Website": "#38bdf8",
     "Greenfield Accounting": "#34d399",
     "LTO Site Improvement": "#60a5fa",
-    "Reign Models Manila": "#f472b6",
+    "Nexus Creative House": "#d4a24c",
     "PetMates Platform": "#fb923c",
     "PetMates Website": "#fb923c",
   };
