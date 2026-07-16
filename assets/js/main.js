@@ -14,6 +14,14 @@
      ========================================================== */
   const PROJECTS = [
     {
+      name: "Aegis & Co",
+      type: "Revenue Systems Website",
+      category: "Growth Work",
+      image: "public/projects/aegis-co.png",
+      desc: "The new Aegis & Co site — sharp positioning, a revenue-leak diagnostic, and a live workflow demo that shows service businesses exactly what gets fixed.",
+      tags: ["Positioning", "Systems", "Conversion"],
+    },
+    {
       name: "Aegis Systems",
       type: "Operational Clarity Platform",
       category: "AI Systems",
@@ -38,20 +46,28 @@
       tags: ["Mobile", "Marketplace", "UX"],
     },
     {
-      name: "FixIt Website",
-      type: "Repair Service Landing Page",
-      category: "Websites",
-      image: "public/projects/fixit.png",
-      desc: "A high-converting landing page for the FixIt platform — clear value proposition, social proof, and a frictionless path to booking.",
-      tags: ["Landing Page", "Conversion", "SEO"],
-    },
-    {
       name: "Mall Maps",
       type: "Mall Navigation App",
       category: "Digital Products",
       image: "public/projects/mall-maps-app-mockup.png",
       desc: "Indoor navigation for malls — searchable directories, turn-by-turn wayfinding, and store promos in a clean mobile experience.",
       tags: ["Mobile", "Maps", "Product"],
+    },
+    {
+      name: "NAMI Studio",
+      type: "Creative Studio Website",
+      category: "Websites",
+      image: "public/projects/nami-studio.png",
+      desc: "A creative studio website with personality — motion, typography, and a portfolio grid that lets the work speak.",
+      tags: ["Creative", "Motion", "Portfolio"],
+    },
+    {
+      name: "FixIt Website",
+      type: "Repair Service Landing Page",
+      category: "Websites",
+      image: "public/projects/fixit.png",
+      desc: "A high-converting landing page for the FixIt platform — clear value proposition, social proof, and a frictionless path to booking.",
+      tags: ["Landing Page", "Conversion", "SEO"],
     },
     {
       name: "Mall Maps Website",
@@ -86,30 +102,6 @@
       tags: ["Branding", "Growth", "Portfolio"],
     },
     {
-      name: "NAMI Studio",
-      type: "Creative Studio Website",
-      category: "Websites",
-      image: "public/projects/nami-studio.png",
-      desc: "A creative studio website with personality — motion, typography, and a portfolio grid that lets the work speak.",
-      tags: ["Creative", "Motion", "Portfolio"],
-    },
-    {
-      name: "Parea Collective",
-      type: "Operating Layer Website",
-      category: "Growth Work",
-      image: "public/projects/parea.png",
-      desc: "The operating layer for a business collective — positioning, systems story, and growth infrastructure in one coherent site.",
-      tags: ["Growth", "Systems", "Positioning"],
-    },
-    {
-      name: "Parea Systems",
-      type: "Business Ecosystem Website",
-      category: "Growth Work",
-      image: "public/projects/parea-v2.png",
-      desc: "Second-generation Parea — an ecosystem site mapping every service and system into a clear client journey.",
-      tags: ["Growth", "Ecosystem", "Web"],
-    },
-    {
       name: "PetMates Platform",
       type: "Pet Matching Product",
       category: "Digital Products",
@@ -128,33 +120,35 @@
   ];
 
   const TOOLS = [
-    { name: "n8n", color: "#EA4B71", short: "n8n" },
-    { name: "VS Code", color: "#007ACC", short: "VS" },
-    { name: "PostgreSQL", color: "#4a7fe8", short: "PG" },
-    { name: "MongoDB", color: "#47A248", short: "M" },
-    { name: "React", color: "#61DAFB", short: "Re" },
-    { name: "JavaScript", color: "#F7DF1E", short: "JS" },
-    { name: "Python", color: "#5c9fd6", short: "Py" },
-    { name: "Zapier", color: "#FF4F00", short: "Z" },
-    { name: "Railway", color: "#c9ccd4", short: "Rw" },
-    { name: "Supabase", color: "#3ECF8E", short: "Sb" },
-    { name: "OpenAI", color: "#10A37F", short: "AI" },
-    { name: "Claude", color: "#D97757", short: "CL" },
-    { name: "Codex", color: "#c9ccd4", short: "Cx" },
-    { name: "Figma", color: "#F24E1E", short: "F" },
-    { name: "Meta Ads", color: "#3b82f6", short: "M" },
-    { name: "Amazon", color: "#FF9900", short: "A" },
-    { name: "REST APIs", color: "#8B5CF6", short: "API" },
-    { name: "Next.js", color: "#c9ccd4", short: "N" },
-    { name: "Tailwind CSS", color: "#38BDF8", short: "TW" },
-    { name: "GitHub", color: "#c9ccd4", short: "GH" },
-    { name: "Vercel", color: "#c9ccd4", short: "▲" },
+    { name: "n8n", icon: "n8n", color: "#EA4B71" },
+    { name: "VS Code", icon: "vscode", color: "#007ACC" },
+    { name: "PostgreSQL", icon: "postgresql", color: "#4a7fe8" },
+    { name: "MongoDB", icon: "mongodb", color: "#47A248" },
+    { name: "React", icon: "react", color: "#61DAFB" },
+    { name: "JavaScript", icon: "javascript", color: "#F7DF1E" },
+    { name: "Python", icon: "python", color: "#5c9fd6" },
+    { name: "Zapier", icon: "zapier", color: "#FF4F00" },
+    { name: "Railway", icon: "railway", color: "#c9ccd4" },
+    { name: "Supabase", icon: "supabase", color: "#3ECF8E" },
+    { name: "OpenAI", icon: "openai", color: "#10A37F" },
+    { name: "Claude", icon: "claude", color: "#D97757" },
+    { name: "Codex", icon: "openai", color: "#c9ccd4" },
+    { name: "Figma", icon: "figma", color: "#F24E1E" },
+    { name: "Meta Ads", icon: "meta", color: "#3b82f6" },
+    { name: "Amazon", icon: "amazon", color: "#FF9900" },
+    { name: "REST APIs", short: "API", color: "#8B5CF6" },
+    { name: "Next.js", icon: "nextdotjs", color: "#c9ccd4" },
+    { name: "Tailwind CSS", icon: "tailwindcss", color: "#38BDF8" },
+    { name: "GitHub", icon: "github", color: "#c9ccd4" },
+    { name: "Vercel", icon: "vercel", color: "#c9ccd4" },
   ];
 
   const CAT_CLASS = {
     "AI Systems": "project__cat--ai",
     "Growth Work": "project__cat--growth",
   };
+
+  const DESKTOP_CAP = 6;
 
   /* ==========================================================
      RENDER: PROJECT GRID
@@ -185,7 +179,7 @@
   });
 
   /* ==========================================================
-     RENDER: TOOLS
+     RENDER: TOOLS (real brand icons, self-hosted SVGs)
      ========================================================== */
   const toolsGrid = document.getElementById("toolsGrid");
   TOOLS.forEach((t, i) => {
@@ -193,7 +187,10 @@
     el.className = "tool";
     el.style.setProperty("--tool", t.color);
     el.style.transitionDelay = `${(i % 7) * 0.05}s`;
-    el.innerHTML = `<span class="tool__mark">${t.short}</span>${t.name}`;
+    const mark = t.icon
+      ? `<img src="assets/icons/${t.icon}.svg" alt="" loading="lazy" />`
+      : t.short;
+    el.innerHTML = `<span class="tool__mark">${mark}</span>${t.name}`;
     toolsGrid.appendChild(el);
   });
 
@@ -231,25 +228,40 @@
   }
 
   /* ==========================================================
-     HERO STAT COUNTERS
+     COUNT-UP HELPERS
      ========================================================== */
+  function countUp(el, target, duration = 1400) {
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
   function startCounters() {
-    document.querySelectorAll("[data-count]").forEach((el) => {
-      const target = parseInt(el.dataset.count, 10);
-      const duration = 1400;
-      const start = performance.now();
-      const step = (now) => {
-        const t = Math.min(1, (now - start) / duration);
-        const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(eased * target);
-        if (t < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    });
+    document.querySelectorAll("[data-count]").forEach((el) =>
+      countUp(el, parseInt(el.dataset.count, 10))
+    );
+  }
+
+  // Mini-dashboard KPI counts up when it scrolls into view
+  const loopCounters = document.querySelectorAll("[data-count-loop]");
+  if (loopCounters.length) {
+    const kpiObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        countUp(entry.target, parseInt(entry.target.dataset.countLoop, 10), 1800);
+        kpiObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.4 });
+    loopCounters.forEach((el) => kpiObserver.observe(el));
   }
 
   /* ==========================================================
-     CUSTOM CURSOR
+     CUSTOM CURSOR — dot is 1:1 with the mouse, ring glides
      ========================================================== */
   if (isFinePointer && !prefersReducedMotion) {
     document.body.classList.add("has-cursor");
@@ -260,21 +272,26 @@
 
     let mx = innerWidth / 2, my = innerHeight / 2;
     let rx = mx, ry = my;
+    let ringScale = 1, targetScale = 1;
 
-    addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; });
-    addEventListener("mousedown", () => cursor.classList.add("is-down"));
-    addEventListener("mouseup", () => cursor.classList.remove("is-down"));
+    addEventListener("mousemove", (e) => {
+      mx = e.clientX; my = e.clientY;
+      // dot tracks the pointer with zero smoothing — feels native
+      dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+    }, { passive: true });
+
+    addEventListener("mousedown", () => { targetScale = 0.78; });
+    addEventListener("mouseup", () => { targetScale = 1; });
 
     const loop = () => {
-      rx += (mx - rx) * 0.16;
-      ry += (my - ry) * 0.16;
-      dot.style.transform = `translate(${mx}px, ${my}px)`;
-      ring.style.transform = `translate(${rx}px, ${ry}px) ${cursor.classList.contains("is-down") ? "scale(0.85)" : ""}`;
+      rx += (mx - rx) * 0.32;
+      ry += (my - ry) * 0.32;
+      ringScale += (targetScale - ringScale) * 0.25;
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) scale(${ringScale.toFixed(3)})`;
       requestAnimationFrame(loop);
     };
     loop();
 
-    // Hover states (delegated, works for injected cards)
     document.addEventListener("mouseover", (e) => {
       const view = e.target.closest("[data-cursor='view']");
       const interactive = e.target.closest("a, button, .filter, .tool");
@@ -410,7 +427,7 @@
     addEventListener("mousemove", (e) => {
       pmx = (e.clientX / innerWidth - 0.5) * 2;
       pmy = (e.clientY / innerHeight - 0.5) * 2;
-    });
+    }, { passive: true });
     const parallaxLoop = () => {
       cx += (pmx - cx) * 0.05;
       cy += (pmy - cy) * 0.05;
@@ -450,34 +467,85 @@
   });
 
   /* ==========================================================
-     FILTERS
+     WORK: filters + desktop cap + show-all + mobile carousel
      ========================================================== */
   const filters = document.querySelectorAll(".filter");
+  const workToggle = document.getElementById("workToggle");
+  const workMore = workToggle.parentElement;
+  let activeFilter = "All";
+  let expanded = false;
+
+  // Fill filter counts from the data
+  filters.forEach((btn) => {
+    const cat = btn.dataset.filter;
+    const n = cat === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
+    btn.querySelector("sup").textContent = n;
+  });
+
+  function applyWork(animate) {
+    let shown = 0;
+    let matches = 0;
+    grid.querySelectorAll(".project").forEach((card) => {
+      const match = activeFilter === "All" || card.dataset.category === activeFilter;
+      if (match) matches++;
+      card.classList.toggle("is-filtered", !match);
+      const collapsed = match && !expanded && shown >= DESKTOP_CAP;
+      card.classList.toggle("is-collapsed", collapsed);
+      card.classList.remove("is-entering");
+      if (match && !collapsed) {
+        if (animate) {
+          void card.offsetWidth;
+          card.style.animationDelay = `${shown * 0.06}s`;
+          card.classList.add("is-entering");
+        }
+        shown++;
+      }
+    });
+    workMore.classList.toggle("is-hidden", matches <= DESKTOP_CAP);
+    workToggle.querySelector(".btn__text").textContent = expanded
+      ? "Show less"
+      : `Show all ${matches} projects`;
+    workToggle.querySelector(".btn__arrow").textContent = expanded ? "↑" : "↓";
+  }
+  applyWork(false);
+
   filters.forEach((btn) => {
     btn.addEventListener("click", () => {
       filters.forEach((f) => f.classList.remove("is-active"));
       btn.classList.add("is-active");
-      const cat = btn.dataset.filter;
-      let shown = 0;
-      grid.querySelectorAll(".project").forEach((card) => {
-        const match = cat === "All" || card.dataset.category === cat;
-        card.classList.remove("is-entering");
-        if (match) {
-          card.classList.remove("is-filtered");
-          // restart the entrance animation, staggered
-          void card.offsetWidth;
-          card.style.animationDelay = `${shown * 0.06}s`;
-          card.classList.add("is-entering");
-          shown++;
-        } else {
-          card.classList.add("is-filtered");
-        }
-      });
+      activeFilter = btn.dataset.filter;
+      expanded = false;
+      applyWork(true);
+      grid.scrollTo({ left: 0, behavior: "smooth" });
     });
   });
 
+  workToggle.addEventListener("click", () => {
+    expanded = !expanded;
+    applyWork(true);
+    if (!expanded) document.getElementById("work").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // Mobile carousel arrows
+  const workPrev = document.getElementById("workPrev");
+  const workNext = document.getElementById("workNext");
+  const cardStep = () => {
+    const card = grid.querySelector(".project:not(.is-filtered)");
+    return card ? card.getBoundingClientRect().width + 16 : 300;
+  };
+  workPrev.addEventListener("click", () => grid.scrollBy({ left: -cardStep(), behavior: "smooth" }));
+  workNext.addEventListener("click", () => grid.scrollBy({ left: cardStep(), behavior: "smooth" }));
+  const updateArrows = () => {
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
+    workPrev.disabled = grid.scrollLeft <= 4;
+    workNext.disabled = grid.scrollLeft >= maxScroll - 4;
+  };
+  grid.addEventListener("scroll", updateArrows, { passive: true });
+  addEventListener("resize", updateArrows, { passive: true });
+  updateArrows();
+
   /* ==========================================================
-     MODAL
+     PROJECT MODAL
      ========================================================== */
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modalImg");
@@ -534,7 +602,303 @@
   document.getElementById("modalBackdrop").addEventListener("click", closeModal);
   document.getElementById("modalPrev").addEventListener("click", () => stepModal(-1));
   document.getElementById("modalNext").addEventListener("click", () => stepModal(1));
+
+  /* ==========================================================
+     INTAKE WIZARD
+     ========================================================== */
+  const ICONS = {
+    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    zap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+    chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21V10M11 21V6M16 21v-8M21 21V3"/></svg>',
+    blocks: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>',
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+    trend: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>',
+    star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>',
+    coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>',
+  };
+
+  const WIZARD_STEPS = [
+    {
+      key: "service",
+      q: "What are we building?",
+      hint: "Pick the closest fit — we refine it together later.",
+      options: [
+        { v: "Website", d: "Landing page or full site that converts", icon: "globe" },
+        { v: "AI Automation", d: "Workflows that run your busywork 24/7", icon: "zap" },
+        { v: "Business System", d: "CRM, dashboards, pipelines, reporting", icon: "chart" },
+        { v: "Digital Product", d: "Web or mobile app — MVP to launch", icon: "blocks" },
+      ],
+    },
+    {
+      key: "goal",
+      q: "What's the main goal?",
+      hint: "The outcome that would make this a win.",
+      options: [
+        { v: "More leads & sales", d: "Turn traffic into pipeline", icon: "trend" },
+        { v: "Save time with automation", d: "Kill the manual busywork", icon: "clock" },
+        { v: "Launch something new", d: "From idea to shipped", icon: "star" },
+        { v: "Level up the brand", d: "Look as premium as the work", icon: "target" },
+      ],
+    },
+    {
+      key: "budget",
+      q: "Ballpark budget?",
+      hint: "USD — a range is enough to scope the right solution.",
+      options: [
+        { v: "Under $1,000", d: "Lean and focused", icon: "coin" },
+        { v: "$1,000 – $3,000", d: "Solid single build", icon: "coin" },
+        { v: "$3,000 – $10,000", d: "Full system", icon: "coin" },
+        { v: "$10,000+", d: "End-to-end partner", icon: "coin" },
+      ],
+    },
+    {
+      key: "timeline",
+      q: "When do you need it?",
+      hint: "Honest timelines make better builds.",
+      options: [
+        { v: "ASAP — this month", d: "Fast-track it", icon: "zap" },
+        { v: "2–4 weeks", d: "Standard sprint", icon: "clock" },
+        { v: "1–3 months", d: "Room to go deep", icon: "clock" },
+        { v: "Flexible / exploring", d: "Just scoping for now", icon: "target" },
+      ],
+    },
+    { key: "details", q: "Tell me about you.", hint: "So I know who to reply to.", form: true },
+    { key: "review", q: "Your project brief.", hint: "Sending opens your email app with everything pre-filled.", review: true },
+  ];
+
+  const wizard = document.getElementById("wizard");
+  const wizardStep = document.getElementById("wizardStep");
+  const wizardBar = document.getElementById("wizardBar");
+  const wizardStepNum = document.getElementById("wizardStepNum");
+  const wizardBack = document.getElementById("wizardBack");
+  const wizardNext = document.getElementById("wizardNext");
+  const wizardDots = document.getElementById("wizardDots");
+  const answers = {};
+  let stepIdx = 0;
+  let sent = false;
+
+  WIZARD_STEPS.forEach(() => {
+    const dot = document.createElement("i");
+    wizardDots.appendChild(dot);
+  });
+
+  function renderStep(dir) {
+    const step = WIZARD_STEPS[stepIdx];
+    let html = `<h3 class="wizard__q">${step.q}</h3><p class="wizard__hint">${step.hint}</p>`;
+
+    if (step.options) {
+      html += `<div class="wizard__options">${step.options
+        .map(
+          (o) => `
+        <button type="button" class="wizard-option ${answers[step.key] === o.v ? "is-selected" : ""}" data-value="${o.v}">
+          <span class="wizard-option__icon">${ICONS[o.icon]}</span>
+          <span><strong>${o.v}</strong><small>${o.d}</small></span>
+          <span class="wizard-option__check">✓</span>
+        </button>`
+        )
+        .join("")}</div>`;
+    } else if (step.form) {
+      html += `<div class="wizard__fields">
+        <div class="wizard-field"><label>Name <em>*</em></label><input type="text" id="wzName" placeholder="Your name" value="${answers.name || ""}" /></div>
+        <div class="wizard-field"><label>Email <em>*</em></label><input type="email" id="wzEmail" placeholder="you@company.com" value="${answers.email || ""}" /></div>
+        <div class="wizard-field"><label>Company / brand</label><input type="text" id="wzCompany" placeholder="Optional" value="${answers.company || ""}" /></div>
+        <div class="wizard-field"><label>Anything else?</label><textarea id="wzNotes" placeholder="Links, context, the problem in your own words…">${answers.notes || ""}</textarea></div>
+      </div>`;
+    } else if (step.review) {
+      if (sent) {
+        html = `<div class="wizard__sent">
+          <div class="wizard__sent-icon">✓</div>
+          <h4>Brief on its way.</h4>
+          <p>Your email app should be open with everything pre-filled — just hit send. If it didn't open, use the copy button below and email it to <b>hello@chester.studio</b>.</p>
+        </div>`;
+      } else {
+        const rows = [
+          ["Building", answers.service],
+          ["Goal", answers.goal],
+          ["Budget", answers.budget],
+          ["Timeline", answers.timeline],
+          ["Name", answers.name],
+          ["Email", answers.email],
+        ]
+          .filter((r) => r[1])
+          .map((r) => `<div class="wizard__summary-row"><span>${r[0]}</span><b>${r[1]}</b></div>`)
+          .join("");
+        html += `<div class="wizard__summary">${rows}</div>`;
+      }
+    }
+
+    wizardStep.classList.remove("is-enter-left", "is-enter-right", "is-exit-left", "is-exit-right");
+    wizardStep.innerHTML = html;
+    if (dir) wizardStep.classList.add(dir > 0 ? "is-enter-right" : "is-enter-left");
+
+    // wire options: select + auto-advance
+    wizardStep.querySelectorAll(".wizard-option").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        wizardStep.querySelectorAll(".wizard-option").forEach((b) => b.classList.remove("is-selected"));
+        btn.classList.add("is-selected");
+        answers[WIZARD_STEPS[stepIdx].key] = btn.dataset.value;
+        syncFooter();
+        setTimeout(() => goTo(stepIdx + 1), 420);
+      });
+    });
+
+    syncFooter();
+    const firstInput = wizardStep.querySelector("input");
+    if (firstInput) setTimeout(() => firstInput.focus(), 350);
+  }
+
+  function stepValid() {
+    const step = WIZARD_STEPS[stepIdx];
+    if (step.options) return !!answers[step.key];
+    if (step.form) {
+      const name = document.getElementById("wzName");
+      const email = document.getElementById("wzEmail");
+      return name && name.value.trim() && email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
+    }
+    return true;
+  }
+
+  function collectForm() {
+    const step = WIZARD_STEPS[stepIdx];
+    if (!step.form) return;
+    answers.name = document.getElementById("wzName").value.trim();
+    answers.email = document.getElementById("wzEmail").value.trim();
+    answers.company = document.getElementById("wzCompany").value.trim();
+    answers.notes = document.getElementById("wzNotes").value.trim();
+  }
+
+  function syncFooter() {
+    const step = WIZARD_STEPS[stepIdx];
+    const pct = (stepIdx / (WIZARD_STEPS.length - 1)) * 100;
+    wizardBar.style.width = `${Math.max(8, pct)}%`;
+    wizardStepNum.textContent = `${String(stepIdx + 1).padStart(2, "0")} / ${String(WIZARD_STEPS.length).padStart(2, "0")}`;
+    wizardBack.classList.toggle("is-hidden", stepIdx === 0 || sent);
+    [...wizardDots.children].forEach((d, i) => {
+      d.classList.toggle("is-active", i === stepIdx);
+      d.classList.toggle("is-done", i < stepIdx);
+    });
+    const nextText = wizardNext.querySelector(".btn__text");
+    const nextArrow = wizardNext.querySelector(".btn__arrow");
+    if (sent) {
+      nextText.textContent = "Copy brief";
+      nextArrow.textContent = "⧉";
+      wizardNext.disabled = false;
+    } else if (step.review) {
+      nextText.textContent = "Send brief";
+      nextArrow.textContent = "→";
+      wizardNext.disabled = false;
+    } else {
+      nextText.textContent = "Continue";
+      nextArrow.textContent = "→";
+      wizardNext.disabled = step.options ? !answers[step.key] : false;
+    }
+  }
+
+  function goTo(idx, dirOverride) {
+    if (idx < 0 || idx >= WIZARD_STEPS.length) return;
+    const dir = dirOverride !== undefined ? dirOverride : idx > stepIdx ? 1 : -1;
+    wizardStep.classList.add(dir > 0 ? "is-exit-left" : "is-exit-right");
+    setTimeout(() => {
+      stepIdx = idx;
+      renderStep(dir);
+    }, 230);
+  }
+
+  function briefText() {
+    return [
+      `New project inquiry — Chester Studio`,
+      ``,
+      `Building:  ${answers.service || "—"}`,
+      `Goal:      ${answers.goal || "—"}`,
+      `Budget:    ${answers.budget || "—"}`,
+      `Timeline:  ${answers.timeline || "—"}`,
+      ``,
+      `Name:      ${answers.name || "—"}`,
+      `Email:     ${answers.email || "—"}`,
+      `Company:   ${answers.company || "—"}`,
+      ``,
+      `Notes:`,
+      answers.notes || "—",
+    ].join("\n");
+  }
+
+  function submitWizard() {
+    const subject = `Project inquiry — ${answers.service || "New build"} · ${answers.name || ""}`;
+    const href = `mailto:hello@chester.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(briefText())}`;
+    sent = true;
+    renderStep(1);
+    window.location.href = href;
+  }
+
+  function openWizard(preService) {
+    sent = false;
+    if (preService) {
+      answers.service = preService;
+      stepIdx = 1;
+    } else {
+      stepIdx = 0;
+    }
+    renderStep(0);
+    wizard.classList.add("is-open");
+    wizard.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeWizard() {
+    wizard.classList.remove("is-open");
+    wizard.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-wizard-open]").forEach((btn) => {
+    btn.addEventListener("click", () => openWizard(btn.dataset.wizardService));
+  });
+  document.getElementById("wizardClose").addEventListener("click", closeWizard);
+  document.getElementById("wizardBackdrop").addEventListener("click", closeWizard);
+  wizardBack.addEventListener("click", () => goTo(stepIdx - 1));
+
+  wizardNext.addEventListener("click", () => {
+    const step = WIZARD_STEPS[stepIdx];
+    if (sent) {
+      navigator.clipboard && navigator.clipboard.writeText(briefText());
+      wizardNext.querySelector(".btn__text").textContent = "Copied ✓";
+      return;
+    }
+    if (step.form) {
+      if (!stepValid()) {
+        const email = document.getElementById("wzEmail");
+        const name = document.getElementById("wzName");
+        if (name && !name.value.trim()) name.classList.add("is-invalid");
+        if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) email.classList.add("is-invalid");
+        wizardStep.querySelectorAll("input").forEach((inp) =>
+          inp.addEventListener("input", () => inp.classList.remove("is-invalid"), { once: true })
+        );
+        return;
+      }
+      collectForm();
+      goTo(stepIdx + 1);
+      return;
+    }
+    if (step.review) {
+      submitWizard();
+      return;
+    }
+    if (stepValid()) goTo(stepIdx + 1);
+  });
+
+  /* ==========================================================
+     GLOBAL KEYBOARD
+     ========================================================== */
   addEventListener("keydown", (e) => {
+    if (wizard.classList.contains("is-open")) {
+      if (e.key === "Escape") closeWizard();
+      if (e.key === "Enter" && !e.shiftKey && e.target.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        if (!wizardNext.disabled) wizardNext.click();
+      }
+      return;
+    }
     if (!modal.classList.contains("is-open")) return;
     if (e.key === "Escape") closeModal();
     if (e.key === "ArrowRight") stepModal(1);
