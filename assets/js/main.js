@@ -17,7 +17,7 @@
       name: "Revenue Systems Firm",
       type: "Revenue Systems Website",
       category: "Growth Work",
-      image: "public/projects/aegis-co.png",
+      image: "public/projects/aegis-co.jpg",
       desc: "The new Revenue Systems Firm site — sharp positioning, a revenue-leak diagnostic, and a live workflow demo that shows service businesses exactly what gets fixed.",
       tags: ["Positioning", "Systems", "Conversion"],
     },
@@ -65,7 +65,7 @@
       name: "Personal AI Assistant",
       type: "Personal AI Assistant Dashboard",
       category: "AI Systems",
-      image: "public/projects/jarvis.png",
+      image: "public/projects/jarvis.jpg",
       desc: "A assistant-style personal AI assistant with a cinematic HUD — wake-word voice control, live system stats, weather, camera feed, and a conversational interface running locally.",
       tags: ["AI", "Voice", "Dashboard", "Python"],
     },
@@ -81,7 +81,7 @@
       name: "AI Garage Diagnostics",
       type: "AI Vehicle Diagnostics",
       category: "AI Systems",
-      image: "public/projects/garage-ai.png",
+      image: "public/projects/garage-ai.jpg",
       desc: "AI-powered vehicle diagnostics that helps garages triage issues faster — symptoms in, ranked causes and repair guidance out.",
       tags: ["AI", "Diagnostics", "Product"],
     },
@@ -89,7 +89,7 @@
       name: "On-Demand Mechanic App App",
       type: "On Demand Service Platform",
       category: "Digital Products",
-      image: "public/projects/fixit-app-mockup.png",
+      image: "public/projects/fixit-app-mockup.jpg",
       desc: "An on-demand home service platform connecting customers with vetted repair pros — booking, tracking, and payments end to end.",
       tags: ["Mobile", "Marketplace", "UX"],
     },
@@ -97,7 +97,7 @@
       name: "Indoor Mall Navigation",
       type: "Mall Navigation App",
       category: "Digital Products",
-      image: "public/projects/mall-maps-app-mockup.png",
+      image: "public/projects/mall-maps-app-mockup.jpg",
       desc: "Indoor navigation for malls — searchable directories, turn-by-turn wayfinding, and store promos in a clean mobile experience.",
       tags: ["Mobile", "Maps", "Product"],
     },
@@ -105,7 +105,7 @@
       name: "Creative Studio",
       type: "Creative Studio Website",
       category: "Websites",
-      image: "public/projects/Creative Studio.png",
+      image: "public/projects/Creative Studio.jpg",
       desc: "A creative studio website with personality — motion, typography, and a portfolio grid that lets the work speak.",
       tags: ["Creative", "Motion", "Portfolio"],
     },
@@ -113,7 +113,7 @@
       name: "On-Demand Mechanic App Website",
       type: "Repair Service Landing Page",
       category: "Websites",
-      image: "public/projects/fixit.png",
+      image: "public/projects/fixit.jpg",
       desc: "A high-converting landing page for the On-Demand Mechanic App platform — clear value proposition, social proof, and a frictionless path to booking.",
       tags: ["Landing Page", "Conversion", "SEO"],
     },
@@ -121,7 +121,7 @@
       name: "Indoor Mall Navigation Website",
       type: "Navigation App Landing Page",
       category: "Websites",
-      image: "public/projects/mall-maps.png",
+      image: "public/projects/mall-maps.jpg",
       desc: "The marketing site for Indoor Mall Navigation — communicating the product story and driving app installs with a bold, visual layout.",
       tags: ["Landing Page", "Branding"],
     },
@@ -129,7 +129,7 @@
       name: "Local Accounting Firm",
       type: "Accounting Firm Website",
       category: "Websites",
-      image: "public/projects/Local Accounting Firm-accounting.png",
+      image: "public/projects/Local Accounting Firm-accounting.jpg",
       desc: "A trust-first website for an accounting firm — services, credentials, and lead capture designed to convert serious clients.",
       tags: ["Corporate", "Lead Gen", "SEO"],
     },
@@ -137,7 +137,7 @@
       name: "LTO Site Improvement",
       type: "Government Service Redesign",
       category: "Websites",
-      image: "public/projects/lto-govt-site-improvement.png",
+      image: "public/projects/lto-govt-site-improvement.jpg",
       desc: "A redesign concept for a government service portal — cutting through bureaucratic UX so citizens find what they need in seconds.",
       tags: ["UX Redesign", "Accessibility", "Gov"],
     },
@@ -145,7 +145,7 @@
       name: "Reign Models Manila",
       type: "Modeling Agency Website",
       category: "Growth Work",
-      image: "public/projects/modeling-agency.png",
+      image: "public/projects/modeling-agency.jpg",
       desc: "A striking portfolio site for a Manila modeling agency — editorial visuals paired with a booking funnel that grows the roster.",
       tags: ["Branding", "Growth", "Portfolio"],
     },
@@ -153,7 +153,7 @@
       name: "Pet Matching App Platform",
       type: "Pet Matching Product",
       category: "Digital Products",
-      image: "public/projects/Pet Matching App-v1.png",
+      image: "public/projects/Pet Matching App-v1.jpg",
       desc: "A pet matching product connecting owners for playdates, breeding, and adoption — profiles, matching, and chat built in.",
       tags: ["Product", "Matching", "Community"],
     },
@@ -161,7 +161,7 @@
       name: "Pet Matching App Website",
       type: "Pet Social App Website",
       category: "Websites",
-      image: "public/projects/Pet Matching App-v2.png",
+      image: "public/projects/Pet Matching App-v2.jpg",
       desc: "The public face of Pet Matching App — playful branding and a clear story that turns visitors into early adopters.",
       tags: ["Landing Page", "Branding"],
     },
@@ -191,10 +191,32 @@
     { name: "Vercel", icon: "vercel", color: "#c9ccd4" },
   ];
 
-  const CAT_CLASS = {
-    "AI Systems": "project__cat--ai",
-    "Growth Work": "project__cat--growth",
+  // per-project accent — pulled from each build's own artwork
+  const ACCENTS = {
+    "Revenue Systems Firm": "#2f7dff",
+    "Live Blackjack Platform": "#52e0a4",
+    "Business Ecosystem Hub": "#d8b45a",
+    "Real Estate Automation": "#4aa8ff",
+    "Home-Service Quoting AI": "#ff8a3d",
+    "Motorcycle Dealership": "#ff4d4d",
+    "Personal AI Assistant": "#3fd8f0",
+    "Guided Intake Flow": "#d8b45a",
+    "AI Garage Diagnostics": "#4ade80",
+    "On-Demand Mechanic App App": "#22c55e",
+    "Indoor Mall Navigation": "#38bdf8",
+    "Creative Studio": "#a78bfa",
+    "On-Demand Mechanic App Website": "#22c55e",
+    "Indoor Mall Navigation Website": "#38bdf8",
+    "Local Accounting Firm": "#34d399",
+    "LTO Site Improvement": "#60a5fa",
+    "Reign Models Manila": "#f472b6",
+    "Pet Matching App Platform": "#fb923c",
+    "Pet Matching App Website": "#fb923c",
   };
+  PROJECTS.forEach((p) => {
+    p.accent = ACCENTS[p.name] || "#178bff";
+    p.slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  });
 
   const DESKTOP_CAP = 6;
 
@@ -210,10 +232,19 @@
     card.dataset.cursor = "view";
     card.setAttribute("data-reveal", "");
     card.style.setProperty("--d", `${(i % 3) * 0.08}s`);
+    card.style.setProperty("--accent", p.accent);
     card.innerHTML = `
       <div class="project__media">
-        <span class="project__cat ${CAT_CLASS[p.category] || ""}">${p.category}</span>
-        <img src="${p.image}" alt="${p.name} — ${p.type}" loading="lazy" />
+        <div class="project__chrome" aria-hidden="true">
+          <i></i><i></i><i></i>
+          <span class="project__url"><b></b>/${p.slug}</span>
+        </div>
+        <div class="project__shot">
+          <img src="${p.image}" alt="${p.name} — ${p.type}" loading="lazy" />
+          <span class="project__shine" aria-hidden="true"></span>
+          <span class="project__spot" aria-hidden="true"></span>
+        </div>
+        <span class="project__cat">${p.category}</span>
       </div>
       <div class="project__body">
         <div>
@@ -223,6 +254,12 @@
         <span class="project__arrow" aria-hidden="true">↗</span>
       </div>`;
     card.addEventListener("click", () => openModal(i));
+    // tall screenshots slow-pan top→bottom on hover instead of cropping forever
+    const im = card.querySelector("img");
+    const markTall = () => {
+      if (im.naturalWidth && im.naturalHeight / im.naturalWidth > 0.85) card.classList.add("is-tall");
+    };
+    im.complete ? markTall() : im.addEventListener("load", markTall, { once: true });
     grid.appendChild(card);
   });
 
@@ -508,7 +545,7 @@
   /* ==========================================================
      SPOTLIGHT on build cards
      ========================================================== */
-  document.querySelectorAll(".build-card").forEach((card) => {
+  document.querySelectorAll(".build-card, .project").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${e.clientX - r.left}px`);
@@ -610,6 +647,7 @@
   function renderModal(i) {
     const p = PROJECTS[i];
     currentIdx = i;
+    document.getElementById("modalPanel").style.setProperty("--accent", p.accent);
     modalImg.src = p.image;
     modalImg.alt = `${p.name} — ${p.type}`;
     modalName.textContent = p.name;
