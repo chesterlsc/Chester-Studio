@@ -378,7 +378,20 @@ body.is-loaded [data-intro] { opacity: 1; transform: none; }
 @keyframes roleOut { to { opacity: 0; transform: translateY(-110%) skewY(-6deg); } }
 @keyframes roleIn { from { opacity: 0; transform: translateY(110%) skewY(6deg); } }
 
-.hero__sub { max-width: 560px; color: var(--text-2); font-size: 1.05rem; }
+.hero__sub { max-width: 600px; color: var(--text-2); font-size: 1.05rem; }
+
+/* marker-highlight sweeps on the client outcomes */
+.hl {
+  font-style: normal; font-weight: 600; color: var(--text);
+  padding: 0 2px; border-radius: 3px;
+  background-repeat: no-repeat; background-position: 0 0;
+  background-size: 0% 100%;
+  transition: background-size 0.7s var(--ease-out);
+  transition-delay: var(--hd, 0s);
+}
+.hl--blue { background-image: linear-gradient(0deg, rgba(23, 139, 255, 0.32) 42%, transparent 42%); }
+.hl--yellow { background-image: linear-gradient(0deg, rgba(255, 212, 59, 0.34) 42%, transparent 42%); }
+body.is-loaded .hl { background-size: 100% 100%; }
 
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
 
