@@ -1,40 +1,29 @@
-# Chester Studio
+# Chester Studio — Portfolio
 
-Premium single-page portfolio and systems studio website for Chester Studio. Built with Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, React Icons, and lucide-react.
+Static portfolio for Chester Studio: premium websites, AI workflows, and business systems.
 
-## Getting Started
+**Live site:** https://chesterlsc.github.io/Chester-Studio/
 
-Install dependencies and run the development server:
+## Stack
 
-```bash
-npm install
-npm run dev
+Pure HTML, CSS, and vanilla JavaScript — no frameworks, no build step. GitHub Pages serves the repo as-is.
+
+```
+index.html           → the whole page
+assets/css/style.css → design system + animations
+assets/js/main.js    → cursor, preloader, filters, modal, scroll effects
+public/              → project screenshots and logos
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+## Run locally
 
-## Structure
-
-- `app/page.tsx` composes the single-page landing experience.
-- `components/` contains the header, animated hero, sections, contact form, footer, and UI primitives.
-- `lib/data.ts` stores navigation, role text, project data, service cards, system steps, tools, and links.
-- `public/projects/` stores portfolio images.
-
-## Replacing Project Images
-
-Project cards are driven by `lib/data.ts`. To replace an image:
-
-1. Add the new image to `public/projects/`.
-2. Keep the original image colors intact.
-3. Update the matching project `image` value in `lib/data.ts`.
-4. Prefer landscape screenshots for cards. If using portrait app screens, the card will crop with `object-cover`.
-
-## Checks
+Open `index.html` in a browser, or:
 
 ```bash
-npm run lint
-npm run build
+python3 -m http.server 8000
+# → http://localhost:8000
 ```
 
-The contact form is UI-only. Connect a form backend or email service before using it for production inquiries.
-# Chester-Studio
+## Editing content
+
+Projects and tools are plain data arrays at the top of `assets/js/main.js`. Add an image to `public/projects/`, add an entry to the `PROJECTS` array, done.
