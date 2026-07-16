@@ -142,12 +142,12 @@
       tags: ["UX Redesign", "Accessibility", "Gov"],
     },
     {
-      name: "Reign Models Manila",
-      type: "Modeling Agency Website",
+      name: "Talent & Creative Agency",
+      type: "Creative Agency Website",
       category: "Growth Work",
-      image: "public/projects/modeling-agency.jpg",
-      desc: "A striking portfolio site for a Manila modeling agency — editorial visuals paired with a booking funnel that grows the roster.",
-      tags: ["Branding", "Growth", "Portfolio"],
+      image: "public/projects/agency-creative.jpg",
+      desc: "A black-and-gold creative agency site — talent management, campaign production, and brand strategy told with editorial confidence and world-class brand social proof.",
+      tags: ["Branding", "Agency", "Editorial", "Talent"],
     },
     {
       name: "Pet Matching App Platform",
@@ -209,7 +209,7 @@
     "Indoor Mall Navigation Website": "#38bdf8",
     "Local Accounting Firm": "#34d399",
     "LTO Site Improvement": "#60a5fa",
-    "Reign Models Manila": "#f472b6",
+    "Talent & Creative Agency": "#d4a24c",
     "Pet Matching App Platform": "#fb923c",
     "Pet Matching App Website": "#fb923c",
   };
