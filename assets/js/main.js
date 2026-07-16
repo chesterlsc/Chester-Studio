@@ -440,7 +440,7 @@
   /* ==========================================================
      ACTIVE NAV LINK
      ========================================================== */
-  const sections = ["work", "build", "system", "tools", "contact"];
+  const sections = ["work", "proof", "build", "system", "tools", "contact"];
   const navLinks = document.querySelectorAll(".nav__link");
   const bottomLinks = document.querySelectorAll(".bottomnav [data-bn]");
   const sectionObserver = new IntersectionObserver((entries) => {
