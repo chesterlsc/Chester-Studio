@@ -22,6 +22,22 @@
       tags: ["Positioning", "Systems", "Conversion"],
     },
     {
+      name: "Live Blackjack Platform",
+      type: "Live Blackjack Platform",
+      category: "Digital Products",
+      image: "public/projects/Live Blackjack Platform-casino.jpg",
+      desc: "A full live blackjack platform — solo and multi-seat tables, Hot 3 / 21+3 / Perfect Pairs / Bust It side bets, drag-and-drop chips, free-bet mode, bet history, and real-time dealer logic under a polished Live Blackjack Platform brand.",
+      tags: ["Game", "Real-time", "Product", "UI"],
+    },
+    {
+      name: "Business Ecosystem Hub",
+      type: "Business Ecosystem Platform",
+      category: "Growth Work",
+      image: "public/projects/ecosystem-collective.jpg",
+      desc: "The operating layer of modern business — an ecosystem site mapping how Revenue Systems Firm, Creative Studio, PCAA, and acquisitions feed one system, with a live input-to-output diagram.",
+      tags: ["Ecosystem", "Positioning", "Systems"],
+    },
+    {
       name: "Real Estate Automation",
       type: "Real Estate Lead Automation",
       category: "AI Systems",
@@ -52,6 +68,14 @@
       image: "public/projects/jarvis.png",
       desc: "A assistant-style personal AI assistant with a cinematic HUD — wake-word voice control, live system stats, weather, camera feed, and a conversational interface running locally.",
       tags: ["AI", "Voice", "Dashboard", "Python"],
+    },
+    {
+      name: "Guided Intake Flow",
+      type: "Guided Contact Experience",
+      category: "Websites",
+      image: "public/projects/ecosystem-intake.jpg",
+      desc: "An 8-step guided intake that replaces the contact form — one question at a time, editorial typography, and routing that sends every inquiry to the right part of the ecosystem ecosystem.",
+      tags: ["UX", "Wizard", "Forms", "Conversion"],
     },
     {
       name: "AI Garage Diagnostics",
