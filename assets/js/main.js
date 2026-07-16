@@ -22,12 +22,36 @@
       tags: ["Positioning", "Systems", "Conversion"],
     },
     {
-      name: "Aegis Systems",
-      type: "Operational Clarity Platform",
+      name: "EstateOps AI",
+      type: "Real Estate Lead Automation",
       category: "AI Systems",
-      image: "public/projects/aegis-systems.png",
-      desc: "An operational clarity platform that turns scattered business data into a single source of truth — dashboards, alerts, and AI-assisted decisions in one place.",
-      tags: ["AI", "Dashboards", "Automation", "Next.js"],
+      image: "public/projects/estateops-ai.jpg",
+      desc: "A mobile-first automation system for real estate agents — every lead captured, qualified by AI, followed up instantly, and booked on autopilot, with a live pipeline dashboard.",
+      tags: ["AI", "Automation", "Real Estate", "Mobile"],
+    },
+    {
+      name: "QuoteFlow AI",
+      type: "Home Service Quote Automation",
+      category: "AI Systems",
+      image: "public/projects/quoteflow-ai.jpg",
+      desc: "A SaaS platform for HVAC, plumbing, and roofing teams — estimate requests turn into booked jobs through instant SMS and email follow-ups, smart scheduling, and a real-time growth dashboard.",
+      tags: ["AI", "SaaS", "Follow-ups", "Dashboard"],
+    },
+    {
+      name: "PukPok Workz",
+      type: "Motorcycle Dealership Website",
+      category: "Websites",
+      image: "public/projects/pukpok-workz.jpg",
+      desc: "A gritty, trust-first mobile site for a Parañaque motorcycle dealership — live inventory, sold-unit proof, walkaround reels, and a Messenger-first buying flow with nationwide delivery.",
+      tags: ["Branding", "Inventory", "Mobile", "Conversion"],
+    },
+    {
+      name: "J.A.R.V.I.S",
+      type: "Personal AI Assistant Dashboard",
+      category: "AI Systems",
+      image: "public/projects/jarvis.png",
+      desc: "A JARVIS-style personal AI assistant with a cinematic HUD — wake-word voice control, live system stats, weather, camera feed, and a conversational interface running locally.",
+      tags: ["AI", "Voice", "Dashboard", "Python"],
     },
     {
       name: "GarageAI",
@@ -179,20 +203,20 @@
   });
 
   /* ==========================================================
-     RENDER: TOOLS (real brand icons, self-hosted SVGs)
+     RENDER: TOOLS — dual marquee belt with real brand icons
      ========================================================== */
-  const toolsGrid = document.getElementById("toolsGrid");
-  TOOLS.forEach((t, i) => {
-    const el = document.createElement("div");
-    el.className = "tool";
-    el.style.setProperty("--tool", t.color);
-    el.style.transitionDelay = `${(i % 7) * 0.05}s`;
+  const toolChip = (t) => {
     const mark = t.icon
       ? `<img src="assets/icons/${t.icon}.svg" alt="" loading="lazy" />`
       : t.short;
-    el.innerHTML = `<span class="tool__mark">${mark}</span>${t.name}`;
-    toolsGrid.appendChild(el);
-  });
+    return `<div class="tool" style="--tool:${t.color}"><span class="tool__mark">${mark}</span>${t.name}</div>`;
+  };
+  const half = Math.ceil(TOOLS.length / 2);
+  const rowA = TOOLS.slice(0, half).map(toolChip).join("");
+  const rowB = TOOLS.slice(half).map(toolChip).join("");
+  // each track holds the set twice for a seamless -50% loop
+  document.getElementById("toolsTrackA").innerHTML = rowA + rowA;
+  document.getElementById("toolsTrackB").innerHTML = rowB + rowB;
 
   /* ==========================================================
      PRELOADER
@@ -357,10 +381,12 @@
      ========================================================== */
   const sections = ["work", "build", "system", "tools", "contact"];
   const navLinks = document.querySelectorAll(".nav__link");
+  const bottomLinks = document.querySelectorAll(".bottomnav [data-bn]");
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       navLinks.forEach((l) => l.classList.toggle("is-active", l.getAttribute("href") === `#${entry.target.id}`));
+      bottomLinks.forEach((l) => l.classList.toggle("is-active", l.dataset.bn === entry.target.id));
     });
   }, { rootMargin: "-40% 0px -55% 0px" });
   sections.forEach((id) => {
@@ -380,7 +406,7 @@
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
-  document.querySelectorAll("[data-reveal], .tool").forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
 
   // System flow rail
   const flow = document.getElementById("systemFlow");
