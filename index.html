@@ -135,7 +135,7 @@
 
         <div class="hero__stats" data-intro style="--d:.95s">
           <div class="hero__stat">
-            <span class="hero__stat-num"><span data-count="13">0</span>+</span>
+            <span class="hero__stat-num"><span data-count="16">0</span>+</span>
             <span class="hero__stat-label">Projects shipped</span>
           </div>
           <div class="hero__stat">
@@ -179,7 +179,7 @@
         <div class="section__head" data-reveal>
           <p class="section__kicker"><span></span>Selected Work</p>
           <h2 class="section__title">Projects that <em>perform</em>.</h2>
-          <p class="section__sub">Thirteen builds across websites, AI systems, products, and growth. Click any card for the full picture.</p>
+          <p class="section__sub">Sixteen builds across websites, AI systems, products, and growth. Click any card for the full picture.</p>
         </div>
 
         <div class="work__toolbar" data-reveal>
@@ -310,7 +310,11 @@
         </div>
 
         <div class="system__flow" id="systemFlow">
-          <div class="system__rail" aria-hidden="true"><span id="systemRailFill"></span></div>
+          <div class="system__rail" aria-hidden="true">
+            <span class="system__rail-fill" id="systemRailFill"></span>
+            <i class="system__rail-pulse system__rail-pulse--1"></i>
+            <i class="system__rail-pulse system__rail-pulse--2"></i>
+          </div>
 
           <div class="system-step" data-reveal style="--d:0s">
             <div class="system-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -351,7 +355,16 @@
           <p class="section__kicker"><span></span>Tool Ecosystem</p>
           <h2 class="section__title">The stack behind <em>the systems</em>.</h2>
         </div>
-        <div class="tools__grid" id="toolsGrid"><!-- injected by JS --></div>
+      </div>
+      <div class="tools__belt" aria-label="Tool stack">
+        <div class="tools__row">
+          <div class="tools__track" id="toolsTrackA"></div>
+        </div>
+        <div class="tools__row tools__row--reverse">
+          <div class="tools__track" id="toolsTrackB"></div>
+        </div>
+      </div>
+      <div class="container">
       </div>
     </section>
 
@@ -406,6 +419,29 @@
       <button class="footer__top" id="toTop" aria-label="Back to top" data-magnetic>↑</button>
     </div>
   </footer>
+
+  <!-- ==================== MOBILE BOTTOM NAV ==================== -->
+  <nav class="bottomnav" id="bottomNav" aria-label="Quick navigation">
+    <a href="#work" data-bn="work">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Work</span>
+    </a>
+    <a href="#build" data-bn="build">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <span>Build</span>
+    </a>
+    <button type="button" class="bottomnav__cta" data-wizard-open aria-label="Start a project">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <a href="#system" data-bn="system">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <span>System</span>
+    </a>
+    <a href="#contact" data-bn="contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
 
   <!-- ==================== PROJECT MODAL ==================== -->
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
