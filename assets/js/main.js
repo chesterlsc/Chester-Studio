@@ -229,7 +229,6 @@
     card.className = "project";
     card.dataset.category = p.category;
     card.dataset.index = i;
-    card.dataset.cursor = "view";
     card.setAttribute("data-reveal", "");
     card.style.setProperty("--d", `${(i % 3) * 0.08}s`);
     card.style.setProperty("--accent", p.accent);
@@ -343,47 +342,6 @@
       });
     }, { threshold: 0.4 });
     loopCounters.forEach((el) => kpiObserver.observe(el));
-  }
-
-  /* ==========================================================
-     CUSTOM CURSOR — dot is 1:1 with the mouse, ring glides
-     ========================================================== */
-  if (isFinePointer && !prefersReducedMotion) {
-    document.body.classList.add("has-cursor");
-    const cursor = document.getElementById("cursor");
-    const dot = document.getElementById("cursorDot");
-    const ring = document.getElementById("cursorRing");
-    const label = document.getElementById("cursorLabel");
-
-    let mx = innerWidth / 2, my = innerHeight / 2;
-    let rx = mx, ry = my;
-    let ringScale = 1, targetScale = 1;
-
-    addEventListener("mousemove", (e) => {
-      mx = e.clientX; my = e.clientY;
-      // dot tracks the pointer with zero smoothing — feels native
-      dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
-    }, { passive: true });
-
-    addEventListener("mousedown", () => { targetScale = 0.78; });
-    addEventListener("mouseup", () => { targetScale = 1; });
-
-    const loop = () => {
-      rx += (mx - rx) * 0.32;
-      ry += (my - ry) * 0.32;
-      ringScale += (targetScale - ringScale) * 0.25;
-      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) scale(${ringScale.toFixed(3)})`;
-      requestAnimationFrame(loop);
-    };
-    loop();
-
-    document.addEventListener("mouseover", (e) => {
-      const view = e.target.closest("[data-cursor='view']");
-      const interactive = e.target.closest("a, button, .filter, .tool");
-      cursor.classList.toggle("is-view", !!view);
-      cursor.classList.toggle("is-hover", !!interactive && !view);
-      if (view) label.textContent = "View";
-    });
   }
 
   /* ==========================================================
