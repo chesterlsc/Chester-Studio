@@ -486,9 +486,6 @@
   const roles = [
     "Full Stack Developer",
     "AI Automation Engineer",
-    "Digital Systems Builder",
-    "Ecommerce Operator",
-    "Media Buyer",
   ];
   const roleEl = document.getElementById("roleSwap");
   let roleIdx = 0;
@@ -506,7 +503,59 @@
   }
 
   /* ==========================================================
-     HERO PARALLAX (orbs + orbit chips)
+     HERO LIVE FEED — the revenue engine, visibly working
+     ========================================================== */
+  const feedBody = document.getElementById("heroFeed");
+  if (feedBody) {
+    const FEED_ICONS = {
+      lead: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+      ai: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>',
+      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>',
+      book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>',
+      deal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>',
+    };
+    const FEED_EVENTS = [
+      { t: "lead", text: "New lead captured", tag: "Website form" },
+      { t: "ai", text: "AI qualified · score 92", tag: "Auto-routed" },
+      { t: "mail", text: "Follow-up sent", tag: "4s response" },
+      { t: "book", text: "Call booked", tag: "Tue · 10:00 AM" },
+      { t: "lead", text: "New lead captured", tag: "Google Ads" },
+      { t: "ai", text: "AI qualified · score 87", tag: "Auto-routed" },
+      { t: "mail", text: "SMS follow-up sent", tag: "3s response" },
+      { t: "deal", text: "Deal moved to won", tag: "CRM synced" },
+      { t: "lead", text: "New lead captured", tag: "Messenger" },
+      { t: "book", text: "Estimate booked", tag: "Fri · 2:30 PM" },
+    ];
+    const leadsEl = document.getElementById("feedLeads");
+    const bookedEl = document.getElementById("feedBooked");
+    let feedIdx = 0, leads = 47, booked = 12;
+
+    const pushEvent = () => {
+      const e = FEED_EVENTS[feedIdx % FEED_EVENTS.length];
+      feedIdx++;
+      const row = document.createElement("div");
+      row.className = `feed-row feed-row--${e.t}`;
+      row.innerHTML = `
+        <span class="feed-row__icon">${FEED_ICONS[e.t]}</span>
+        <span class="feed-row__text">${e.text}<small>${e.tag}</small></span>
+        <span class="feed-row__time">now</span>`;
+      feedBody.prepend(row);
+      [...feedBody.querySelectorAll(".feed-row__time")].forEach((el, i) => {
+        if (i > 0) el.textContent = "";
+      });
+      while (feedBody.children.length > 5) feedBody.lastElementChild.remove();
+      if (e.t === "lead") leadsEl.textContent = ++leads;
+      if (e.t === "book" || e.t === "deal") bookedEl.textContent = ++booked;
+    };
+
+    for (let i = 0; i < 4; i++) pushEvent();
+    leadsEl.textContent = leads;
+    bookedEl.textContent = booked;
+    if (!prefersReducedMotion) setInterval(pushEvent, 2600);
+  }
+
+  /* ==========================================================
+     HERO PARALLAX (orbs + feed panel)
      ========================================================== */
   if (isFinePointer && !prefersReducedMotion) {
     const parallaxEls = document.querySelectorAll("[data-parallax]");
