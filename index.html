@@ -99,6 +99,7 @@
         <div class="hero__grid"></div>
         <div class="hero__orb hero__orb--blue" data-parallax="30"></div>
         <div class="hero__orb hero__orb--yellow" data-parallax="-20"></div>
+        <div class="hero__beam"></div>
         <div class="hero__noise"></div>
       </div>
 
@@ -158,14 +159,19 @@
         </div>
       </div>
 
-      <!-- Floating orbit chips -->
-      <div class="hero__orbit" aria-hidden="true">
-        <div class="orbit-chip orbit-chip--1" data-parallax="14"><img src="public/logos/aegis-logo.png" alt="" /><span>Aegis<em>Systems</em></span></div>
-        <div class="orbit-chip orbit-chip--2" data-parallax="-10"><img src="public/logos/garageai-logo.png" alt="" /><span>GarageAI<em>Diagnostics</em></span></div>
-        <div class="orbit-chip orbit-chip--3" data-parallax="18"><img src="public/logos/fixit-logo.png" alt="" /><span>FixIt<em>Service App</em></span></div>
-        <div class="orbit-chip orbit-chip--4" data-parallax="-16"><img src="public/logos/mall-maps-logo.png" alt="" /><span>Mall Maps<em>Navigation</em></span></div>
-        <div class="orbit-chip orbit-chip--5" data-parallax="12"><img src="public/logos/greenfield-logo.png" alt="" /><span>Greenfield<em>Accounting</em></span></div>
-        <div class="orbit-chip orbit-chip--6" data-parallax="-22"><img src="public/logos/nami-logo.png" alt="" /><span>NAMI<em>Studio</em></span></div>
+      <!-- Live revenue-engine feed -->
+      <div class="hero__feed" data-parallax="8" aria-hidden="true">
+        <div class="hero__feed-head">
+          <i></i><i></i><i></i>
+          <span class="hero__feed-title">Revenue Engine</span>
+          <span class="hero__feed-live"><b></b>Live</span>
+        </div>
+        <div class="hero__feed-body" id="heroFeed"></div>
+        <div class="hero__feed-stats">
+          <div><em id="feedLeads">47</em><span>Leads today</span></div>
+          <div><em>4s</em><span>Avg response</span></div>
+          <div><em id="feedBooked">12</em><span>Booked</span></div>
+        </div>
       </div>
 
       <a href="#work" class="hero__scroll" aria-label="Scroll to work">
