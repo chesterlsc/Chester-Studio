@@ -427,6 +427,26 @@
 
   document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
 
+  // Proof cards: terminal lines type themselves on scroll
+  const typeEls = document.querySelectorAll(".proof-card__type");
+  if (typeEls.length) {
+    const typeObs = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        typeObs.unobserve(en.target);
+        const text = en.target.dataset.type;
+        if (prefersReducedMotion) { en.target.textContent = text; return; }
+        let i = 0;
+        const tick = () => {
+          en.target.textContent = text.slice(0, ++i);
+          if (i < text.length) setTimeout(tick, 30);
+        };
+        setTimeout(tick, 500);
+      });
+    }, { threshold: 0.5 });
+    typeEls.forEach((el) => typeObs.observe(el));
+  }
+
   // System flow rail
   const flow = document.getElementById("systemFlow");
   if (flow) {
