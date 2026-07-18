@@ -566,7 +566,7 @@
   /* ==========================================================
      SPOTLIGHT on build cards
      ========================================================== */
-  document.querySelectorAll(".build-card, .project").forEach((card) => {
+  document.querySelectorAll(".build-card, .project, .hstat").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${e.clientX - r.left}px`);
