@@ -574,19 +574,6 @@
     });
   });
 
-  // Hero stat tiles: 3D tilt toward the cursor
-  if (isFinePointer && !prefersReducedMotion) {
-    document.querySelectorAll(".hstat").forEach((tile) => {
-      tile.addEventListener("mousemove", (e) => {
-        const r = tile.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        tile.style.transform = `perspective(800px) rotateY(${px * 11}deg) rotateX(${-py * 11}deg) translateY(-4px)`;
-      });
-      tile.addEventListener("mouseleave", () => { tile.style.transform = ""; });
-    });
-  }
-
   /* ==========================================================
      WORK: filters + desktop cap + show-all + mobile carousel
      ========================================================== */
