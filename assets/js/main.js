@@ -14,6 +14,17 @@
      ========================================================== */
   const PROJECTS = [
     {
+      name: "AegisLeadOS",
+      type: "Native macOS Operator Console",
+      category: "AI Systems",
+      image: "public/projects/aegis-leados.jpg",
+      flagship: true,
+      audience: "Agencies and operators selling to local businesses",
+      proves: "A shipped native product: evidence-first AI with a human gate on every send",
+      desc: "A Mac-native operator console for lead generation. AEGIS walks a business's website the way a customer would, records observed evidence, diagnoses revenue leaks, scores every lead 0–6, and drafts outreach that ships only after human approval — then tracks the replies. Swift shell, local Node core, React front end, deck.gl territorial atlas, voice-commandable AI console. 1,231 passing tests.",
+      tags: ["macOS", "AI", "Lead Gen", "deck.gl", "Voice"],
+    },
+    {
       name: "PukPok Workz",
       type: "Dealership Sales Website",
       category: "Websites",
@@ -191,6 +202,7 @@
 
   // per-project accent — pulled from each build's own artwork
   const ACCENTS = {
+    "AegisLeadOS": "#33d6e2",
     "PukPok Workz": "#ff4d4d",
     "NAMI Studio": "#a78bfa",
     "EstateOps AI": "#4aa8ff",
@@ -212,25 +224,80 @@
     p.slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   });
 
-  const DESKTOP_CAP = 6;
+  const DESKTOP_CAP = 7; // flagship + two clean rows of 3
 
   /* ==========================================================
      RENDER: PROJECT GRID
      ========================================================== */
   const grid = document.getElementById("workGrid");
+
+  // FEED 001 — the flagship card is the console: rail, standfirst, live footage stage, telemetry
+  const flagshipHTML = (p) => `
+      <div class="fs__rail" aria-hidden="true">
+        <span class="fs__id"><i></i>AEGIS//OPS · FLAGSHIP 001</span>
+        <span class="fs__status" title="Client identity redacted under NDA">CLIENT // ████████ · NDA</span>
+        <span class="fs__clock" id="fsClock">--:--:--Z</span>
+      </div>
+      <p class="fs__standfirst">One order — <em>“capture 10 med spas in New York”</em> — and AEGIS sweeps the market, walks each prospect's site like a customer, diagnoses the revenue leak, and drafts outreach a human approves before anything sends.</p>
+      <div class="fs__stage">
+        <figure class="fs__main">
+          <video class="fs__video" muted playsinline loop preload="none" disablepictureinpicture
+            poster="${p.image}" aria-label="AegisLeadOS screen capture, client details blurred">
+            <source src="public/projects/aegis-feed-01.webm" type="video/webm" />
+            <source src="public/projects/aegis-feed-01.mp4" type="video/mp4" />
+          </video>
+          <span class="fs__scan" aria-hidden="true"></span>
+          <span class="project__shine" aria-hidden="true"></span>
+          <span class="project__spot" aria-hidden="true"></span>
+          <div class="fs__hud" aria-hidden="true">
+            <span class="fs__pill fs__rec"><i></i>REC · FIELD CAPTURE</span>
+            <span class="fs__pill fs__tc" id="fsTc">TC 00:00 · LOOP</span>
+          </div>
+          <div class="fs__hud fs__hud--bottom" aria-hidden="true">
+            <span class="fs__pill fs__cap" id="fsCap">CAP 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”</span>
+            <span class="fs__pill fs__redact">DETAILS BLURRED IN-APP</span>
+          </div>
+        </figure>
+        <aside class="fs__feeds">
+          <button class="fs__feed is-live" type="button" data-feed="0" aria-label="Show feed 1: live capture run on the territorial atlas">
+            <img src="public/projects/aegis-leados-capture.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 01 // CAPTURE.RUN</span>
+          </button>
+          <button class="fs__feed" type="button" data-feed="1" aria-label="Show feed 2: live capture workflow">
+            <img src="public/projects/aegis-leados-workflow.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 02 // WORKFLOW.LIVE</span>
+          </button>
+          <button class="fs__feed" type="button" data-feed="2" aria-label="Show feed 3: operations and captured pipeline">
+            <img src="public/projects/aegis-leados-pipeline.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 03 // OPS.PIPELINE</span>
+          </button>
+        </aside>
+      </div>
+      <div class="fs__telemetry" aria-hidden="true">
+        <span style="--i:0">1,231 TESTS PASSING</span>
+        <span style="--i:1">LEADS SCORED 0–6</span>
+        <span style="--i:2">EVERY SEND HUMAN-GATED</span>
+        <span style="--i:3">VOICE-COMMANDABLE</span>
+      </div>
+      <div class="project__body">
+        <div>
+          <h3 class="project__name">${p.name}</h3>
+          <p class="project__type">${p.type}<span class="fs__typeextra"> · Swift shell · local Node core · deck.gl atlas</span></p>
+        </div>
+        <span class="fs__cta">OPEN CASE FILE <b>↗</b></span>
+      </div>`;
+
   PROJECTS.forEach((p, i) => {
     const card = document.createElement("article");
-    card.className = "project";
+    card.className = p.flagship ? "project project--flagship" : "project";
     card.dataset.category = p.category;
     card.dataset.index = i;
     card.setAttribute("data-reveal", "");
     card.style.setProperty("--d", `${(i % 3) * 0.08}s`);
     card.style.setProperty("--accent", p.accent);
-    card.innerHTML = `
+    card.innerHTML = p.flagship ? flagshipHTML(p) : `
       <div class="project__media">
         <div class="project__chrome" aria-hidden="true">
           <i></i><i></i><i></i>
           <span class="project__url"><b></b>/${p.slug}</span>
+          <span class="project__num">${String(i + 1).padStart(2, "0")}</span>
         </div>
         <div class="project__shot">
           <img src="${p.image}" alt="${p.name} — ${p.type}" loading="lazy" />
@@ -248,13 +315,114 @@
       </div>`;
     card.addEventListener("click", () => openModal(i));
     // tall screenshots slow-pan top→bottom on hover instead of cropping forever
-    const im = card.querySelector("img");
-    const markTall = () => {
-      if (im.naturalWidth && im.naturalHeight / im.naturalWidth > 0.85) card.classList.add("is-tall");
-    };
-    im.complete ? markTall() : im.addEventListener("load", markTall, { once: true });
+    if (!p.flagship) {
+      const im = card.querySelector("img");
+      const markTall = () => {
+        if (im.naturalWidth && im.naturalHeight / im.naturalWidth > 0.85) card.classList.add("is-tall");
+      };
+      im.complete ? markTall() : im.addEventListener("load", markTall, { once: true });
+    }
     grid.appendChild(card);
   });
+
+  // flagship rail clock — real time, UTC, always ticking (it's content, not motion)
+  const fsClock = document.getElementById("fsClock");
+  if (fsClock) {
+    const tickClock = () => { fsClock.textContent = new Date().toISOString().slice(11, 19) + "Z"; };
+    tickClock();
+    setInterval(tickClock, 1000);
+  }
+
+  /* ==========================================================
+     FLAGSHIP LIVE FOOTAGE — one video, src-swap on signal-drop cut
+     ========================================================== */
+  const FEEDS = [
+    { cap: "CAP 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
+    { cap: "CAP 02 // WORKFLOW.LIVE · LEADS IN MOTION", poster: "public/projects/aegis-leados-workflow.jpg", webm: "public/projects/aegis-feed-02.webm", mp4: "public/projects/aegis-feed-02.mp4" },
+    { cap: "CAP 03 // OPS.PIPELINE · MID-SWEEP", poster: "public/projects/aegis-leados-pipeline.jpg", webm: "public/projects/aegis-feed-03.webm", mp4: "public/projects/aegis-feed-03.mp4" },
+  ];
+  const fsVideo = document.querySelector(".fs__video");
+  if (fsVideo) {
+    const fsCard = fsVideo.closest(".project--flagship");
+    const fsMain = fsVideo.parentElement;
+    const fsTc = document.getElementById("fsTc");
+    const fsCap = document.getElementById("fsCap");
+    const feedBtns = [...fsCard.querySelectorAll(".fs__feed")];
+    let currentFeed = 0;
+    let cycleTimer = null;
+    let userTookOver = false;
+    let fsInView = false;
+    let playPill = null;
+
+    const wantsPlay = () => (prefersReducedMotion ? playPill && playPill.classList.contains("is-playing") : fsInView);
+
+    const setFeed = (idx, cut) => {
+      currentFeed = idx;
+      const f = FEEDS[idx];
+      feedBtns.forEach((b, i) => b.classList.toggle("is-live", i === idx));
+      if (fsCap) fsCap.textContent = f.cap;
+      fsVideo.poster = f.poster; // poster first: a slow load shows the right still, never black
+      fsVideo.innerHTML = `<source src="${f.webm}" type="video/webm" /><source src="${f.mp4}" type="video/mp4" />`;
+      fsVideo.load();
+      if (cut && !prefersReducedMotion) {
+        fsMain.classList.remove("is-cutting");
+        void fsMain.offsetWidth;
+        fsMain.classList.add("is-cutting");
+        fsMain.addEventListener("animationend", () => fsMain.classList.remove("is-cutting"), { once: true });
+      }
+      if (wantsPlay()) fsVideo.play().catch(() => {});
+    };
+
+    const stopCycle = () => { clearInterval(cycleTimer); cycleTimer = null; };
+    const startCycle = () => {
+      if (userTookOver || prefersReducedMotion || cycleTimer) return;
+      cycleTimer = setInterval(() => setFeed((currentFeed + 1) % FEEDS.length, true), 10000);
+    };
+
+    feedBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // feed switching is navigation, not a modal open
+        userTookOver = true;
+        stopCycle();
+        setFeed(parseInt(btn.dataset.feed, 10), true);
+      });
+    });
+
+    fsVideo.addEventListener("timeupdate", () => {
+      if (!fsTc) return;
+      const t = Math.floor(fsVideo.currentTime);
+      fsTc.textContent = `TC ${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")} · LOOP`;
+    });
+
+    if (prefersReducedMotion) {
+      playPill = document.createElement("button");
+      playPill.className = "fs__play";
+      playPill.type = "button";
+      playPill.textContent = "▶ PLAY FOOTAGE";
+      fsMain.appendChild(playPill);
+      playPill.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (fsVideo.paused) {
+          fsVideo.play().catch(() => {});
+          playPill.textContent = "❚❚";
+          playPill.classList.add("is-playing");
+        } else {
+          fsVideo.pause();
+          playPill.textContent = "▶ PLAY FOOTAGE";
+          playPill.classList.remove("is-playing");
+        }
+      });
+    } else {
+      const fsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          fsInView = en.isIntersecting;
+          if (fsInView) { fsVideo.play().catch(() => {}); startCycle(); }
+          else { fsVideo.pause(); stopCycle(); }
+        });
+      }, { threshold: 0.35 });
+      fsObserver.observe(fsCard);
+    }
+  }
 
   /* ==========================================================
      RENDER: TOOLS — dual marquee belt with real brand icons
@@ -553,11 +721,13 @@
      ========================================================== */
   if (isFinePointer && !prefersReducedMotion) {
     grid.querySelectorAll(".project").forEach((card) => {
+      // full-width flagship gets a dampened tilt — 7° on that span reads as broken
+      const k = card.classList.contains("project--flagship") ? 2 : 7;
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(900px) rotateY(${px * 7}deg) rotateX(${-py * 7}deg) translateY(-4px)`;
+        card.style.transform = `perspective(900px) rotateY(${px * k}deg) rotateX(${-py * k}deg) translateY(-4px)`;
       });
       card.addEventListener("mouseleave", () => { card.style.transform = ""; });
     });
@@ -567,10 +737,17 @@
      SPOTLIGHT on build cards
      ========================================================== */
   document.querySelectorAll(".build-card, .project, .hstat").forEach((card) => {
+    // flagship: the spot lives inside the feed stage, so track coords relative to it
+    const fsMain = card.querySelector(".fs__main");
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${e.clientX - r.left}px`);
       card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      if (fsMain) {
+        const fr = fsMain.getBoundingClientRect();
+        fsMain.style.setProperty("--mx", `${e.clientX - fr.left}px`);
+        fsMain.style.setProperty("--my", `${e.clientY - fr.top}px`);
+      }
     });
   });
 
@@ -614,6 +791,8 @@
       ? "Show less"
       : `Show all ${matches} projects`;
     workToggle.querySelector(".btn__arrow").textContent = expanded ? "↑" : "↓";
+    const readout = document.getElementById("workReadout");
+    if (readout) readout.textContent = `INDEX // ${String(matches).padStart(2, "0")} BUILDS ON RECORD`;
   }
   applyWork(false);
 
