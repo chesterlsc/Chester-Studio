@@ -601,12 +601,16 @@ body.is-loaded .hero__scroll { opacity: 1; }
 .work__grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
 }
-@media (max-width: 980px) { .work__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 980px) {
+  .work__grid { grid-template-columns: repeat(2, 1fr); }
+  .work__toolbar { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
 
 /* Mobile: horizontal snap carousel */
 @media (max-width: 700px) {
-  .work__toolbar { flex-direction: column; align-items: stretch; }
-  .work__arrows { display: flex; justify-content: flex-end; }
+  .work__toolbar { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .work__filters { flex: 1 1 100%; }
+  .work__arrows { display: flex; }
   .work__viewport {
     margin-inline: calc(50% - 50vw); padding-inline: 4vw;
     mask-image: linear-gradient(90deg, transparent, black 4%, black 96%, transparent);
@@ -733,6 +737,7 @@ body.is-loaded .hero__scroll { opacity: 1; }
   padding: 18px 20px;
 }
 .project__name { font-family: var(--font-display); font-weight: 600; font-size: 1.04rem; transition: color 0.3s; }
+.project--flagship .project__name { font-size: 1.3rem; }
 .project:hover .project__name { color: color-mix(in srgb, var(--accent) 70%, var(--text)); }
 .project__type { font-size: 0.82rem; color: var(--text-3); margin-top: 2px; }
 .project__arrow {
@@ -754,6 +759,12 @@ body.is-loaded .hero__scroll { opacity: 1; }
   color: var(--text-3); transition: color 0.3s;
 }
 .project:hover .project__num { color: var(--accent); }
+
+/* unified focus ring */
+.filter:focus-visible, .work__arrow:focus-visible, .btn:focus-visible,
+.project:focus-visible, .fs__cta:focus-visible, .fs__play:focus-visible {
+  outline: 2px solid var(--blue); outline-offset: 2px;
+}
 
 /* toolbar mono readout */
 .work__readout {
@@ -855,6 +866,7 @@ body.is-loaded .hero__scroll { opacity: 1; }
   animation: fsPulse 2.4s ease-in-out infinite;
 }
 .fs__tc { font-variant-numeric: tabular-nums; }
+.fs__cap { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 62%; }
 .fs__redact { color: color-mix(in srgb, var(--blue) 70%, transparent); }
 /* reduced-motion play pill */
 .fs__play {
@@ -875,7 +887,7 @@ body.is-loaded .hero__scroll { opacity: 1; }
 @keyframes fsScan { to { transform: translateY(110%); } }
 
 .fs__feeds { display: grid; grid-template-rows: repeat(3, 1fr); gap: 1px; }
-.fs__feed { display: block; width: 100%; padding: 0; border: 0; background: var(--bg-2); cursor: pointer; }
+.fs__feed { display: block; width: 100%; min-height: 0; padding: 0; border: 0; background: var(--bg-2); cursor: pointer; }
 .fs__feeds img { filter: saturate(0.35) brightness(0.82); transition: filter 0.5s; }
 .fs__feed:hover img, .fs__feed:focus-visible img, .fs__feed.is-live img { filter: none; }
 .fs__feed.is-live { box-shadow: inset 0 0 0 1px var(--accent); }
@@ -886,6 +898,46 @@ body.is-loaded .hero__scroll { opacity: 1; }
   color: var(--text-2);
 }
 .fs__feed.is-live .fs__feedcap::before { content: "● "; color: var(--accent); }
+
+/* HOW IT WORKS — plain-English steps, synced to the footage */
+.fs__how { padding: 18px 20px 0; }
+.fs__howlabel {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
+  font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em;
+  color: var(--accent);
+}
+.fs__howlabel em { font-style: normal; color: var(--text-3); letter-spacing: 0.06em; }
+.fs__howsteps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden;
+}
+.fs__howsteps li { background: var(--surface); transition: background 0.35s; }
+.fs__howsteps button {
+  display: flex; gap: 10px; align-items: flex-start; width: 100%; height: 100%;
+  padding: 12px 14px; text-align: left; cursor: pointer;
+  opacity: 0.62; transition: opacity 0.35s;
+}
+.fs__howsteps li:hover button, .fs__howsteps li.is-now button { opacity: 1; }
+.fs__howsteps b {
+  font-family: var(--font-mono); font-weight: 400; font-size: 0.66rem;
+  letter-spacing: 0.08em; color: var(--text-3); padding-top: 2px;
+  transition: color 0.35s;
+}
+.fs__howsteps strong { display: block; font-family: var(--font-display); font-weight: 600; font-size: 0.86rem; }
+.fs__howsteps small { display: block; margin-top: 3px; font-size: 0.74rem; line-height: 1.45; color: var(--text-3); }
+.fs__howsteps li.is-now { background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.fs__howsteps li.is-now b { color: var(--accent); }
+.fs__howsteps li.is-now strong { color: color-mix(in srgb, var(--accent) 55%, var(--text)); }
+/* live progress tick under the active step */
+.fs__howsteps li { position: relative; }
+.fs__howsteps li.is-now::after {
+  content: ""; position: absolute; left: 14px; right: 14px; bottom: 0; height: 2px;
+  background: var(--accent); border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.fs__howsteps button:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
 
 .fs__telemetry { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px 0; }
 .fs__telemetry span {
@@ -916,20 +968,50 @@ body.is-loaded .hero__scroll { opacity: 1; }
 
 @media (max-width: 980px) {
   .fs__stage { grid-template-columns: 1fr 200px; }
+  /* steps go vertical; only the live step shows its detail line */
+  .fs__howsteps { grid-template-columns: 1fr; }
+  .fs__howsteps button { padding: 10px 14px; }
+  .fs__howsteps small { display: none; }
+  .fs__howsteps li.is-now small { display: block; }
+  .fs__howsteps li.is-now::after { left: 0; right: auto; top: 0; bottom: 0; width: 2px; height: auto; border-radius: 0 2px 2px 0; }
 }
 @media (max-width: 700px) {
-  .work__readout { display: none; }
-  .work__grid .project--flagship { flex: 0 0 92%; max-width: 420px; }
+  .work__readout { margin: 0 auto 0 0; font-size: 0.62rem; }
+  .work__grid { align-items: flex-start; }
+  .work__grid .project--flagship { flex: 0 0 92%; max-width: 440px; }
   .fs__stage { grid-template-columns: 1fr; }
-  .fs__feeds { display: none; }
+  /* feed switcher survives on mobile: 3-across seam grid with number chips */
+  .fs__feeds { grid-template-rows: none; grid-template-columns: repeat(3, 1fr); }
+  .fs__feed { aspect-ratio: 16 / 10; }
+  .fs__feedcap { display: none; }
+  .fs__feed::after {
+    position: absolute; right: 6px; top: 5px; z-index: 2;
+    font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.08em;
+    color: var(--text-2); background: rgba(5, 5, 7, 0.72);
+    padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border);
+  }
+  .fs__feed:nth-child(1)::after { content: "01"; }
+  .fs__feed:nth-child(2)::after { content: "02"; }
+  .fs__feed:nth-child(3)::after { content: "03"; }
+  .fs__feed.is-live { box-shadow: inset 0 0 0 2px var(--accent); }
+  .fs__feed.is-live::after { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 40%, transparent); }
+  /* rail: the NDA line earns the space; the clock and long id don't.
+     The blocks shrink before "· NDA" ever truncates. */
   .fs__standfirst { font-size: 0.9rem; }
-  .fs__rail { gap: 10px; }
-  .fs__status { display: none; }
-  .fs__clock { margin-left: auto; }
+  .fs__rail { gap: 10px; font-size: 0.58rem; }
+  .fs__idextra { display: none; }
+  .fs__status { margin-left: auto; display: inline-flex; min-width: 0; }
+  .fs__blocks { overflow: hidden; min-width: 2ch; flex: 1; }
+  .fs__clock { display: none; }
   .fs__typeextra { display: none; }
-  .fs__hud { font-size: 0.55rem; }
+  .fs__hud { font-size: 0.64rem; }
   .fs__pill { white-space: nowrap; }
-  .fs__cap { display: none; }
+  .fs__redact { display: none; }
+  .fs__cap { max-width: 100%; }
+  .fs__telemetry { gap: 6px; }
+  .fs__telemetry span { font-size: 0.66rem; }
+  .project--flagship .project__body { flex-wrap: wrap; }
+  .project--flagship .fs__cta { width: 100%; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fs__id i, .fs__scan, .fs__rec i { animation: none !important; }
@@ -1640,9 +1722,10 @@ a.contact__channel:hover { border-color: var(--blue); color: var(--text); transf
    MOBILE BOTTOM NAV
    ============================================================ */
 .bottomnav {
-  position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 130;
+  position: fixed; left: 14px; right: 14px; z-index: 130;
+  bottom: calc(14px + env(safe-area-inset-bottom));
   display: none; align-items: center; justify-content: space-around;
-  padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  padding: 8px;
   border-radius: 24px;
   background: rgba(10, 10, 15, 0.82);
   border: 1px solid var(--border-strong);

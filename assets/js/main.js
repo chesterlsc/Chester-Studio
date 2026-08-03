@@ -234,14 +234,14 @@
   // FEED 001 — the flagship card is the console: rail, standfirst, live footage stage, telemetry
   const flagshipHTML = (p) => `
       <div class="fs__rail" aria-hidden="true">
-        <span class="fs__id"><i></i>AEGIS//OPS · FLAGSHIP 001</span>
-        <span class="fs__status" title="Client identity redacted under NDA">CLIENT // ████████ · NDA</span>
+        <span class="fs__id"><i></i>AEGIS//OPS<span class="fs__idextra"> · FLAGSHIP 001</span></span>
+        <span class="fs__status" title="Client identity redacted under NDA">CLIENT // <span class="fs__blocks">████████</span> · NDA</span>
         <span class="fs__clock" id="fsClock">--:--:--Z</span>
       </div>
-      <p class="fs__standfirst">One order — <em>“capture 10 med spas in New York”</em> — and AEGIS sweeps the market, walks each prospect's site like a customer, diagnoses the revenue leak, and drafts outreach a human approves before anything sends.</p>
+      <p class="fs__standfirst">AegisLeadOS: one order — <em>“capture 10 med spas in New York”</em> — and it sweeps the market, walks each prospect's site like a customer, diagnoses the revenue leak, and drafts outreach a human approves before anything sends. Same play for HVAC, roofing, dental — any local service market.</p>
       <div class="fs__stage">
         <figure class="fs__main">
-          <video class="fs__video" muted playsinline loop preload="none" disablepictureinpicture
+          <video class="fs__video" muted playsinline preload="none" disablepictureinpicture
             poster="${p.image}" aria-label="AegisLeadOS screen capture, client details blurred">
             <source src="public/projects/aegis-feed-01.webm" type="video/webm" />
             <source src="public/projects/aegis-feed-01.mp4" type="video/mp4" />
@@ -254,7 +254,7 @@
             <span class="fs__pill fs__tc" id="fsTc">TC 00:00 · LOOP</span>
           </div>
           <div class="fs__hud fs__hud--bottom" aria-hidden="true">
-            <span class="fs__pill fs__cap" id="fsCap">CAP 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”</span>
+            <span class="fs__pill fs__cap" id="fsCap">FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”</span>
             <span class="fs__pill fs__redact">DETAILS BLURRED IN-APP</span>
           </div>
         </figure>
@@ -269,6 +269,16 @@
             <img src="public/projects/aegis-leados-pipeline.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 03 // OPS.PIPELINE</span>
           </button>
         </aside>
+      </div>
+      <div class="fs__how" id="fsHow" aria-label="How AegisLeadOS works, synced to the footage">
+        <span class="fs__howlabel">HOW IT WORKS<em>follows the footage — tap a step to jump</em></span>
+        <ol class="fs__howsteps">
+          <li><button type="button" data-step="0" aria-label="Step 1: pick a market — jump footage to this step"><b>01</b><span><strong>Pick a market</strong><small>HVAC, roofing, med spa, dental — any local service, any US city.</small></span></button></li>
+          <li><button type="button" data-step="1" aria-label="Step 2: AI sweeps the map — jump footage to this step"><b>02</b><span><strong>AI sweeps the map</strong><small>Finds real businesses, then walks each website like a customer would.</small></span></button></li>
+          <li><button type="button" data-step="2" aria-label="Step 3: workflow qualifies every lead — jump footage to this step"><b>03</b><span><strong>Workflow qualifies</strong><small>Evidence, demand checks, and a revenue-leak diagnosis — live.</small></span></button></li>
+          <li><button type="button" data-step="3" aria-label="Step 4: you approve every send — jump footage to this step"><b>04</b><span><strong>You approve</strong><small>Human verification gates every send. Nothing goes out on its own.</small></span></button></li>
+          <li><button type="button" data-step="4" aria-label="Step 5: leads land in your pipeline — jump footage to this step"><b>05</b><span><strong>Leads in your pipeline</strong><small>Scored, diagnosed, sample dossiers ready — start the conversation.</small></span></button></li>
+        </ol>
       </div>
       <div class="fs__telemetry" aria-hidden="true">
         <span style="--i:0">1,231 TESTS PASSING</span>
@@ -337,9 +347,9 @@
      FLAGSHIP LIVE FOOTAGE — one video, src-swap on signal-drop cut
      ========================================================== */
   const FEEDS = [
-    { cap: "CAP 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
-    { cap: "CAP 02 // WORKFLOW.LIVE · LEADS IN MOTION", poster: "public/projects/aegis-leados-workflow.jpg", webm: "public/projects/aegis-feed-02.webm", mp4: "public/projects/aegis-feed-02.mp4" },
-    { cap: "CAP 03 // OPS.PIPELINE · MID-SWEEP", poster: "public/projects/aegis-leados-pipeline.jpg", webm: "public/projects/aegis-feed-03.webm", mp4: "public/projects/aegis-feed-03.mp4" },
+    { cap: "FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
+    { cap: "FEED 02 // WORKFLOW.LIVE · LEADS IN MOTION", poster: "public/projects/aegis-leados-workflow.jpg", webm: "public/projects/aegis-feed-02.webm", mp4: "public/projects/aegis-feed-02.mp4" },
+    { cap: "FEED 03 // OPS.PIPELINE · MID-SWEEP", poster: "public/projects/aegis-leados-pipeline.jpg", webm: "public/projects/aegis-feed-03.webm", mp4: "public/projects/aegis-feed-03.mp4" },
   ];
   const fsVideo = document.querySelector(".fs__video");
   if (fsVideo) {
@@ -349,7 +359,6 @@
     const fsCap = document.getElementById("fsCap");
     const feedBtns = [...fsCard.querySelectorAll(".fs__feed")];
     let currentFeed = 0;
-    let cycleTimer = null;
     let userTookOver = false;
     let fsInView = false;
     let playPill = null;
@@ -371,28 +380,64 @@
         fsMain.addEventListener("animationend", () => fsMain.classList.remove("is-cutting"), { once: true });
       }
       if (wantsPlay()) fsVideo.play().catch(() => {});
+      if (typeof syncHow === "function") syncHow();
     };
 
-    const stopCycle = () => { clearInterval(cycleTimer); cycleTimer = null; };
-    const startCycle = () => {
-      if (userTookOver || prefersReducedMotion || cycleTimer) return;
-      cycleTimer = setInterval(() => setFeed((currentFeed + 1) % FEEDS.length, true), 10000);
-    };
+    // broadcast rotation: each feed plays to the end, then the next feed cuts in.
+    // A manually chosen feed loops itself instead of rotating on.
+    fsVideo.addEventListener("ended", () => {
+      if (userTookOver) {
+        fsVideo.currentTime = 0;
+        fsVideo.play().catch(() => {});
+        return;
+      }
+      setFeed((currentFeed + 1) % FEEDS.length, true);
+    });
 
     feedBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         e.stopPropagation(); // feed switching is navigation, not a modal open
         userTookOver = true;
-        stopCycle();
         setFeed(parseInt(btn.dataset.feed, 10), true);
       });
     });
 
+    /* HOW IT WORKS — steps follow the master cut's scenes; clicking seeks.
+       Feed 0 syncs by timecode; feeds 1/2 pin their matching step. */
+    const HOW_AT = [0, 6, 21.3, 33.5, 42]; // master-cut scene entry points (s)
+    const FEED_STEP = [null, 2, 4]; // static step per non-master feed
+    const howSteps = [...fsCard.querySelectorAll(".fs__howsteps button")];
+    let howIdx = -1;
+    const setHowStep = (idx) => {
+      if (idx === howIdx) return;
+      howIdx = idx;
+      howSteps.forEach((b, i) => b.parentElement.classList.toggle("is-now", i === idx));
+    };
+    const syncHow = () => {
+      if (currentFeed !== 0) { setHowStep(FEED_STEP[currentFeed] ?? -1); return; }
+      const t = fsVideo.currentTime;
+      let idx = 0;
+      for (let i = 0; i < HOW_AT.length; i++) if (t >= HOW_AT[i]) idx = i;
+      setHowStep(idx);
+    };
+    howSteps.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // a how-step tap is navigation, not a modal open
+        userTookOver = true;
+        const idx = parseInt(btn.dataset.step, 10);
+        if (currentFeed !== 0) setFeed(0, true);
+        const seek = () => { fsVideo.currentTime = HOW_AT[idx]; fsVideo.play().catch(() => {}); setHowStep(idx); };
+        fsVideo.readyState >= 1 ? seek() : fsVideo.addEventListener("loadedmetadata", seek, { once: true });
+      });
+    });
+
     fsVideo.addEventListener("timeupdate", () => {
+      syncHow();
       if (!fsTc) return;
       const t = Math.floor(fsVideo.currentTime);
       fsTc.textContent = `TC ${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")} · LOOP`;
     });
+    syncHow();
 
     if (prefersReducedMotion) {
       playPill = document.createElement("button");
@@ -413,14 +458,16 @@
         }
       });
     } else {
+      // observe the stage, not the whole card — 35% of the tall card never
+      // enters short viewports (landscape phones, small windows)
       const fsObserver = new IntersectionObserver((entries) => {
         entries.forEach((en) => {
           fsInView = en.isIntersecting;
-          if (fsInView) { fsVideo.play().catch(() => {}); startCycle(); }
-          else { fsVideo.pause(); stopCycle(); }
+          if (fsInView) { fsVideo.play().catch(() => {}); }
+          else { fsVideo.pause(); }
         });
       }, { threshold: 0.35 });
-      fsObserver.observe(fsCard);
+      fsObserver.observe(fsMain);
     }
   }
 
