@@ -3,18 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chester Studio — Digital Systems, Websites & AI Automation</title>
-  <meta name="description" content="Chester Studio designs and engineers premium websites, AI workflows, and business systems that convert. Based in the Philippines, building worldwide." />
-  <meta property="og:title" content="Chester Studio — Digital Systems, Websites & AI Automation" />
-  <meta property="og:description" content="Premium websites, AI workflows, and business systems that convert." />
+  <title>Chester Studio | Websites, Workflow Automation and AI Systems</title>
+  <meta name="description" content="I'm Chester. I design and build websites, automated workflows, and AI systems for growing businesses, then make sure they keep running. Based in the Philippines, building worldwide." />
+  <meta name="author" content="Chester Studio" />
+  <link rel="canonical" href="https://chesterstudio.space/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Chester Studio" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://chesterstudio.space/" />
+  <meta property="og:title" content="Chester Studio | Websites, Workflow Automation and AI Systems" />
+  <meta property="og:description" content="I design and build websites, automated workflows, and AI systems for growing businesses, then make sure they keep running." />
   <meta property="og:image" content="https://chesterstudio.space/public/projects/aegis-leados.jpg" />
+  <meta property="og:image:alt" content="AegisLeadOS, a lead generation console designed and built by Chester Studio" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chester Studio | Websites, Workflow Automation and AI Systems" />
+  <meta name="twitter:description" content="I design and build websites, automated workflows, and AI systems for growing businesses, then make sure they keep running." />
+  <meta name="twitter:image" content="https://chesterstudio.space/public/projects/aegis-leados.jpg" />
+
   <meta name="theme-color" content="#050507" />
   <link rel="icon" href="favicon.ico?v=3" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg?v=3" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=4" />
+  <link rel="stylesheet" href="assets/css/style.css?v=5" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://chesterstudio.space/#studio",
+        "name": "Chester Studio",
+        "url": "https://chesterstudio.space/",
+        "email": "hello@chester.studio",
+        "description": "Chester Studio designs and builds websites, automated workflows, and AI systems for growing businesses, then keeps them running.",
+        "image": "https://chesterstudio.space/public/projects/aegis-leados.jpg",
+        "priceRange": "$$",
+        "areaServed": "Worldwide",
+        "address": { "@type": "PostalAddress", "addressCountry": "PH" },
+        "founder": { "@id": "https://chesterstudio.space/#chester" },
+        "knowsAbout": [
+          "Web design and development",
+          "Workflow automation",
+          "AI automation systems",
+          "Lead generation systems",
+          "Conversion optimization"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "What I build",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Website design and build", "description": "Landing pages and full sites built to convert visitors into booked work." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Workflow automation", "description": "Automations that handle follow-ups, quoting, scheduling, and reporting so the busywork runs itself." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI systems", "description": "AI that captures, qualifies, and drafts outreach with a human approving every send." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital products", "description": "Web, mobile, and native products taken from idea to shipped." } }
+          ]
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://chesterstudio.space/#chester",
+        "name": "Chester",
+        "jobTitle": "Full Stack Developer and AI Automation Engineer",
+        "worksFor": { "@id": "https://chesterstudio.space/#studio" },
+        "url": "https://chesterstudio.space/"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://chesterstudio.space/#website",
+        "url": "https://chesterstudio.space/",
+        "name": "Chester Studio",
+        "publisher": { "@id": "https://chesterstudio.space/#studio" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "AegisLeadOS",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "macOS",
+        "description": "A lead generation operator console designed and engineered in-house at Chester Studio. It researches a local service market, walks each prospect website like a customer, diagnoses the revenue leak, and drafts outreach that a human approves before anything sends.",
+        "author": { "@id": "https://chesterstudio.space/#studio" },
+        "image": "https://chesterstudio.space/public/projects/aegis-leados.jpg"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -161,26 +239,45 @@
         </div>
       </div>
 
-      <!-- Live revenue-engine feed -->
-      <div class="hero__feed" data-parallax="8" aria-hidden="true">
-        <div class="hero__feed-head">
-          <i></i><i></i><i></i>
-          <span class="hero__feed-title">Revenue Engine</span>
-          <span class="hero__feed-live"><b></b>Live</span>
-        </div>
-        <div class="hero__feed-body" id="heroFeed"></div>
-        <div class="hero__feed-stats">
-          <div><em id="feedLeads">47</em><span>Leads today</span></div>
-          <div><em>4s</em><span>Avg response</span></div>
-          <div><em id="feedBooked">12</em><span>Booked</span></div>
-        </div>
-      </div>
-
       <a href="#work" class="hero__scroll" aria-label="Scroll to work">
         <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
         Scroll
       </a>
     </section>
+
+    <!-- ==================== BUILD LINE ====================
+         What I turn an idea or a mess into. Sits inside the hero on
+         desktop, becomes its own band on tablet and phone. -->
+    <div class="buildband">
+      <div class="hero__feed buildline" data-parallax="8">
+        <div class="hero__feed-head">
+          <i></i><i></i><i></i>
+          <span class="hero__feed-title">Build Line</span>
+          <span class="hero__feed-live"><b></b>Shipping</span>
+        </div>
+
+        <div class="buildline__body">
+          <p class="buildline__label">What you have now</p>
+          <p class="buildline__in" id="blIn">Leads pile up in my inbox and go cold.</p>
+
+          <div class="buildline__stages" id="blStages" aria-hidden="true">
+            <span class="buildline__stage"><i></i>Design</span>
+            <span class="buildline__wire"></span>
+            <span class="buildline__stage"><i></i>Build</span>
+            <span class="buildline__wire"></span>
+            <span class="buildline__stage"><i></i>Automate</span>
+          </div>
+
+          <p class="buildline__label buildline__label--out">What you run after</p>
+          <p class="buildline__out" id="blOut">Every lead captured, qualified, and booked while you run the business.</p>
+        </div>
+
+        <div class="buildline__foot">
+          <span id="blKind">Lead capture system</span>
+          <span class="buildline__dots" id="blDots" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
 
     <!-- ==================== MARQUEE ==================== -->
     <div class="marquee" aria-hidden="true">
@@ -429,7 +526,7 @@
         <div class="section__head" data-reveal>
           <p class="section__kicker"><span></span>The System</p>
           <h2 class="section__title">One pipeline, from <em>traffic to growth</em>.</h2>
-          <p class="section__sub">Every build plugs into a single revenue system — each stage feeding the next, automatically.</p>
+          <p class="section__sub">Every build plugs into a single revenue system, each stage feeding the next, automatically.</p>
         </div>
 
         <div class="system__console" data-reveal>
@@ -513,7 +610,7 @@
           <span class="contact__title-line">Let's build</span>
           <span class="contact__title-line contact__title-line--accent">something great.</span>
         </h2>
-        <p class="contact__sub" data-reveal>Have a project in mind? Tell me what you're trying to grow — I'll design the system that gets you there.</p>
+        <p class="contact__sub" data-reveal>Have a project in mind? Tell me what you're trying to grow and I'll design the system that gets you there.</p>
 
         <div class="contact__cta" data-reveal>
           <button type="button" class="btn btn--primary btn--xl" data-wizard-open data-magnetic>
@@ -626,6 +723,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=4"></script>
+  <script src="assets/js/main.js?v=5"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 /* ============================================================
-   CHESTER STUDIO — interactions
+   CHESTER STUDIO :: interactions
    Vanilla JS. No dependencies, no build step.
    ============================================================ */
 
@@ -20,8 +20,8 @@
       image: "public/projects/aegis-leados.jpg",
       flagship: true,
       audience: "Agencies and operators selling to local businesses",
-      proves: "A shipped native product: evidence-first AI with a human gate on every send",
-      desc: "A Mac-native operator console for lead generation. AEGIS walks a business's website the way a customer would, records observed evidence, diagnoses revenue leaks, scores every lead 0–6, and drafts outreach that ships only after human approval — then tracks the replies. Swift shell, local Node core, React front end, deck.gl territorial atlas, voice-commandable AI console. 1,231 passing tests.",
+      proves: "I ship real products, not just sites: evidence-first AI with a human gate on every send",
+      desc: "My own product, designed and engineered end to end at Chester Studio. A Mac-native operator console for lead generation: AEGIS walks a business's website the way a customer would, records what it actually sees, diagnoses the revenue leak, scores every lead 0 to 6, and drafts outreach that ships only after human approval, then tracks the replies. Swift shell, local Node core, React front end, deck.gl territorial atlas, and a voice-commandable AI console. 1,231 passing tests.",
       tags: ["macOS", "AI", "Lead Gen", "deck.gl", "Voice"],
     },
     {
@@ -200,7 +200,7 @@
     { name: "Vercel", icon: "vercel", color: "#c9ccd4" },
   ];
 
-  // per-project accent — pulled from each build's own artwork
+  // per-project accent, pulled from each build's own artwork
   const ACCENTS = {
     "AegisLeadOS": "#33d6e2",
     "PukPok Workz": "#ff4d4d",
@@ -231,14 +231,14 @@
      ========================================================== */
   const grid = document.getElementById("workGrid");
 
-  // FEED 001 — the flagship card is the console: rail, standfirst, live footage stage, telemetry
+  // FEED 001: the flagship card is the console: rail, standfirst, live footage stage, telemetry
   const flagshipHTML = (p) => `
       <div class="fs__rail" aria-hidden="true">
         <span class="fs__id"><i></i>AEGIS//OPS<span class="fs__idextra"> · FLAGSHIP 001</span></span>
-        <span class="fs__status" title="Client identity redacted under NDA">CLIENT // <span class="fs__blocks">████████</span> · NDA</span>
+        <span class="fs__status" title="Built in-house by Chester Studio">CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT</span></span>
         <span class="fs__clock" id="fsClock">--:--:--Z</span>
       </div>
-      <p class="fs__standfirst">AegisLeadOS: one order — <em>“capture 10 med spas in New York”</em> — and it sweeps the market, walks each prospect's site like a customer, diagnoses the revenue leak, and drafts outreach a human approves before anything sends. Same play for HVAC, roofing, dental — any local service market.</p>
+      <p class="fs__standfirst">AegisLeadOS is my own product, designed and engineered end to end at Chester Studio. You give it one order, <em>“capture 10 med spas in New York”</em>, and it sweeps the market, walks each prospect's site the way a customer would, diagnoses the revenue leak, and drafts the outreach for a human to approve before anything sends. Same play for HVAC, roofing, dental, or any local service market.</p>
       <div class="fs__stage">
         <figure class="fs__main">
           <video class="fs__video" muted playsinline preload="none" disablepictureinpicture
@@ -255,7 +255,7 @@
           </div>
           <div class="fs__hud fs__hud--bottom" aria-hidden="true">
             <span class="fs__pill fs__cap" id="fsCap">FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”</span>
-            <span class="fs__pill fs__redact">DETAILS BLURRED IN-APP</span>
+            <span class="fs__pill fs__redact">DEMO RECORDS BLURRED</span>
           </div>
         </figure>
         <aside class="fs__feeds">
@@ -271,13 +271,13 @@
         </aside>
       </div>
       <div class="fs__how" id="fsHow" aria-label="How AegisLeadOS works, synced to the footage">
-        <span class="fs__howlabel">HOW IT WORKS<em>follows the footage — tap a step to jump</em></span>
+        <span class="fs__howlabel">HOW IT WORKS<em>follows the footage, tap a step to jump</em></span>
         <ol class="fs__howsteps">
-          <li><button type="button" data-step="0" aria-label="Step 1: pick a market — jump footage to this step"><b>01</b><span><strong>Pick a market</strong><small>HVAC, roofing, med spa, dental — any local service, any US city.</small></span></button></li>
-          <li><button type="button" data-step="1" aria-label="Step 2: AI sweeps the map — jump footage to this step"><b>02</b><span><strong>AI sweeps the map</strong><small>Finds real businesses, then walks each website like a customer would.</small></span></button></li>
-          <li><button type="button" data-step="2" aria-label="Step 3: workflow qualifies every lead — jump footage to this step"><b>03</b><span><strong>Workflow qualifies</strong><small>Evidence, demand checks, and a revenue-leak diagnosis — live.</small></span></button></li>
-          <li><button type="button" data-step="3" aria-label="Step 4: you approve every send — jump footage to this step"><b>04</b><span><strong>You approve</strong><small>Human verification gates every send. Nothing goes out on its own.</small></span></button></li>
-          <li><button type="button" data-step="4" aria-label="Step 5: leads land in your pipeline — jump footage to this step"><b>05</b><span><strong>Leads in your pipeline</strong><small>Scored, diagnosed, sample dossiers ready — start the conversation.</small></span></button></li>
+          <li><button type="button" data-step="0" aria-label="Step 1: pick a market. Jump footage to this step"><b>01</b><span><strong>Pick a market</strong><small>HVAC, roofing, med spa, dental. Any local service, any US city.</small></span></button></li>
+          <li><button type="button" data-step="1" aria-label="Step 2: AI sweeps the map. Jump footage to this step"><b>02</b><span><strong>AI sweeps the map</strong><small>Finds real businesses, then walks each website like a customer would.</small></span></button></li>
+          <li><button type="button" data-step="2" aria-label="Step 3: the workflow qualifies every lead. Jump footage to this step"><b>03</b><span><strong>Workflow qualifies</strong><small>Evidence, demand checks, and a live revenue leak diagnosis.</small></span></button></li>
+          <li><button type="button" data-step="3" aria-label="Step 4: you approve every send. Jump footage to this step"><b>04</b><span><strong>You approve</strong><small>Human verification gates every send. Nothing goes out on its own.</small></span></button></li>
+          <li><button type="button" data-step="4" aria-label="Step 5: start the outreach. Jump footage to this step"><b>05</b><span><strong>Start the outreach</strong><small>Scored, diagnosed, and drafted in your pipeline. You send when ready.</small></span></button></li>
         </ol>
       </div>
       <div class="fs__telemetry" aria-hidden="true">
@@ -310,7 +310,7 @@
           <span class="project__num">${String(i + 1).padStart(2, "0")}</span>
         </div>
         <div class="project__shot">
-          <img src="${p.image}" alt="${p.name} — ${p.type}" loading="lazy" />
+          <img src="${p.image}" alt="${p.name}, ${p.type}" loading="lazy" />
           <span class="project__shine" aria-hidden="true"></span>
           <span class="project__spot" aria-hidden="true"></span>
         </div>
@@ -335,7 +335,7 @@
     grid.appendChild(card);
   });
 
-  // flagship rail clock — real time, UTC, always ticking (it's content, not motion)
+  // flagship rail clock: real time, UTC, always ticking (it's content, not motion)
   const fsClock = document.getElementById("fsClock");
   if (fsClock) {
     const tickClock = () => { fsClock.textContent = new Date().toISOString().slice(11, 19) + "Z"; };
@@ -344,7 +344,7 @@
   }
 
   /* ==========================================================
-     FLAGSHIP LIVE FOOTAGE — one video, src-swap on signal-drop cut
+     FLAGSHIP LIVE FOOTAGE: one video, src-swap on signal-drop cut
      ========================================================== */
   const FEEDS = [
     { cap: "FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
@@ -402,7 +402,7 @@
       });
     });
 
-    /* HOW IT WORKS — steps follow the master cut's scenes; clicking seeks.
+    /* HOW IT WORKS: steps follow the master cut's scenes; clicking seeks.
        Feed 0 syncs by timecode; feeds 1/2 pin their matching step. */
     const HOW_AT = [0, 6, 21.3, 33.5, 42]; // master-cut scene entry points (s)
     const FEED_STEP = [null, 2, 4]; // static step per non-master feed
@@ -458,7 +458,7 @@
         }
       });
     } else {
-      // observe the stage, not the whole card — 35% of the tall card never
+      // observe the stage, not the whole card. 35% of the tall card never
       // enters short viewports (landscape phones, small windows)
       const fsObserver = new IntersectionObserver((entries) => {
         entries.forEach((en) => {
@@ -472,7 +472,7 @@
   }
 
   /* ==========================================================
-     RENDER: TOOLS — dual marquee belt with real brand icons
+     RENDER: TOOLS, dual marquee belt with real brand icons
      ========================================================== */
   const toolChip = (t) => {
     const mark = t.icon
@@ -690,55 +690,86 @@
   }
 
   /* ==========================================================
-     HERO LIVE FEED — the revenue engine, visibly working
+     HERO BUILD LINE
+     What I actually do: an idea or a mess goes in, a running
+     system comes out. Four real scenarios, not fake telemetry.
      ========================================================== */
-  const feedBody = document.getElementById("heroFeed");
-  if (feedBody) {
-    const FEED_ICONS = {
-      lead: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
-      ai: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>',
-      mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>',
-      book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>',
-      deal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>',
-    };
-    const FEED_EVENTS = [
-      { t: "lead", text: "New lead captured", tag: "Website form" },
-      { t: "ai", text: "AI qualified · score 92", tag: "Auto-routed" },
-      { t: "mail", text: "Follow-up sent", tag: "4s response" },
-      { t: "book", text: "Call booked", tag: "Tue · 10:00 AM" },
-      { t: "lead", text: "New lead captured", tag: "Google Ads" },
-      { t: "ai", text: "AI qualified · score 87", tag: "Auto-routed" },
-      { t: "mail", text: "SMS follow-up sent", tag: "3s response" },
-      { t: "deal", text: "Deal moved to won", tag: "CRM synced" },
-      { t: "lead", text: "New lead captured", tag: "Messenger" },
-      { t: "book", text: "Estimate booked", tag: "Fri · 2:30 PM" },
+  const blIn = document.getElementById("blIn");
+  if (blIn) {
+    const BUILDS = [
+      {
+        in: "Leads pile up in my inbox and go cold.",
+        out: "Every lead captured, qualified, and booked while you run the business.",
+        kind: "Lead capture system",
+      },
+      {
+        in: "My site looks fine but nobody ever finds it.",
+        out: "Fast, findable, and built so visits turn into booked calls.",
+        kind: "Website build",
+      },
+      {
+        in: "Quotes and follow-ups eat my whole week.",
+        out: "Quotes go out in seconds, follow-ups run themselves, you stay in control.",
+        kind: "Workflow automation",
+      },
+      {
+        in: "I have an idea but no way to build it.",
+        out: "A working product, shipped and live, with real users on it.",
+        kind: "Digital product",
+      },
     ];
-    const leadsEl = document.getElementById("feedLeads");
-    const bookedEl = document.getElementById("feedBooked");
-    let feedIdx = 0, leads = 47, booked = 12;
+    const blOut = document.getElementById("blOut");
+    const blKind = document.getElementById("blKind");
+    const blDots = document.getElementById("blDots");
+    const stages = [...document.querySelectorAll(".buildline__stage")];
+    const wires = [...document.querySelectorAll(".buildline__wire")];
+    let blIdx = 0;
+    let blTimers = [];
 
-    const pushEvent = () => {
-      const e = FEED_EVENTS[feedIdx % FEED_EVENTS.length];
-      feedIdx++;
-      const row = document.createElement("div");
-      row.className = `feed-row feed-row--${e.t}`;
-      row.innerHTML = `
-        <span class="feed-row__icon">${FEED_ICONS[e.t]}</span>
-        <span class="feed-row__text">${e.text}<small>${e.tag}</small></span>
-        <span class="feed-row__time">now</span>`;
-      feedBody.prepend(row);
-      [...feedBody.querySelectorAll(".feed-row__time")].forEach((el, i) => {
-        if (i > 0) el.textContent = "";
-      });
-      while (feedBody.children.length > 5) feedBody.lastElementChild.remove();
-      if (e.t === "lead") leadsEl.textContent = ++leads;
-      if (e.t === "book" || e.t === "deal") bookedEl.textContent = ++booked;
+    blDots.innerHTML = BUILDS.map(() => "<b></b>").join("");
+    const dots = [...blDots.children];
+
+    const swap = (el, text) => {
+      el.textContent = text;
+      el.classList.remove("is-swap");
+      void el.offsetWidth;
+      el.classList.add("is-swap");
     };
 
-    for (let i = 0; i < 4; i++) pushEvent();
-    leadsEl.textContent = leads;
-    bookedEl.textContent = booked;
-    if (!prefersReducedMotion) setInterval(pushEvent, 2600);
+    const runBuild = (i) => {
+      const b = BUILDS[i];
+      blTimers.forEach(clearTimeout);
+      blTimers = [];
+      stages.forEach((s) => s.classList.remove("is-on"));
+      wires.forEach((w) => w.classList.remove("is-on"));
+      dots.forEach((d, n) => d.classList.toggle("is-on", n === i));
+      swap(blIn, b.in);
+      blKind.textContent = b.kind;
+      blOut.textContent = "";
+
+      if (prefersReducedMotion) {
+        stages.forEach((s) => s.classList.add("is-on"));
+        wires.forEach((w) => w.classList.add("is-on"));
+        blOut.textContent = b.out;
+        return;
+      }
+      // design, build, automate light in order, then the outcome lands
+      const at = (ms, fn) => blTimers.push(setTimeout(fn, ms));
+      at(500, () => stages[0].classList.add("is-on"));
+      at(1000, () => wires[0].classList.add("is-on"));
+      at(1550, () => stages[1].classList.add("is-on"));
+      at(2050, () => wires[1].classList.add("is-on"));
+      at(2600, () => stages[2].classList.add("is-on"));
+      at(3150, () => swap(blOut, b.out));
+    };
+
+    runBuild(0);
+    if (!prefersReducedMotion) {
+      setInterval(() => {
+        blIdx = (blIdx + 1) % BUILDS.length;
+        runBuild(blIdx);
+      }, 6400);
+    }
   }
 
   /* ==========================================================
@@ -768,7 +799,7 @@
      ========================================================== */
   if (isFinePointer && !prefersReducedMotion) {
     grid.querySelectorAll(".project").forEach((card) => {
-      // full-width flagship gets a dampened tilt — 7° on that span reads as broken
+      // full-width flagship gets a dampened tilt. 7 degrees on that span reads as broken
       const k = card.classList.contains("project--flagship") ? 2 : 7;
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
@@ -896,7 +927,7 @@
     currentIdx = i;
     document.getElementById("modalPanel").style.setProperty("--accent", p.accent);
     modalImg.src = p.image;
-    modalImg.alt = `${p.name} — ${p.type}`;
+    modalImg.alt = `${p.name}, ${p.type}`;
     modalName.textContent = p.name;
     modalType.textContent = p.type;
     modalDesc.textContent = p.desc;
@@ -972,12 +1003,12 @@
     {
       key: "service",
       q: "What are we building?",
-      hint: "Pick the closest fit — we refine it together later.",
+      hint: "Pick the closest fit. We refine it together later.",
       options: [
         { v: "Website", d: "Landing page or full site that converts", icon: "globe" },
         { v: "AI Automation", d: "Workflows that run your busywork 24/7", icon: "zap" },
         { v: "Business System", d: "CRM, dashboards, pipelines, reporting", icon: "chart" },
-        { v: "Digital Product", d: "Web or mobile app — MVP to launch", icon: "blocks" },
+        { v: "Digital Product", d: "Web or mobile app, MVP to launch", icon: "blocks" },
       ],
     },
     {
@@ -994,7 +1025,7 @@
     {
       key: "budget",
       q: "Ballpark budget?",
-      hint: "USD — a range is enough to scope the right solution.",
+      hint: "USD. A range is enough to scope the right solution.",
       options: [
         { v: "Under $1,000", d: "Lean and focused", icon: "coin" },
         { v: "$1,000 – $3,000", d: "Solid single build", icon: "coin" },
@@ -1007,7 +1038,7 @@
       q: "When do you need it?",
       hint: "Honest timelines make better builds.",
       options: [
-        { v: "ASAP — this month", d: "Fast-track it", icon: "zap" },
+        { v: "ASAP, this month", d: "Fast-track it", icon: "zap" },
         { v: "2–4 weeks", d: "Standard sprint", icon: "clock" },
         { v: "1–3 months", d: "Room to go deep", icon: "clock" },
         { v: "Flexible / exploring", d: "Just scoping for now", icon: "target" },
@@ -1060,7 +1091,7 @@
         html = `<div class="wizard__sent">
           <div class="wizard__sent-icon">✓</div>
           <h4>Brief on its way.</h4>
-          <p>Your email app should be open with everything pre-filled — just hit send. If it didn't open, use the copy button below and email it to <b>hello@chester.studio</b>.</p>
+          <p>Your email app should be open with everything pre-filled, so just hit send. If it didn't open, use the copy button below and email it to <b>hello@chester.studio</b>.</p>
         </div>`;
       } else {
         const rows = [
@@ -1157,24 +1188,24 @@
 
   function briefText() {
     return [
-      `New project inquiry — Chester Studio`,
+      `New project inquiry for Chester Studio`,
       ``,
-      `Building:  ${answers.service || "—"}`,
-      `Goal:      ${answers.goal || "—"}`,
-      `Budget:    ${answers.budget || "—"}`,
-      `Timeline:  ${answers.timeline || "—"}`,
+      `Building:  ${answers.service || "not specified"}`,
+      `Goal:      ${answers.goal || "not specified"}`,
+      `Budget:    ${answers.budget || "not specified"}`,
+      `Timeline:  ${answers.timeline || "not specified"}`,
       ``,
-      `Name:      ${answers.name || "—"}`,
-      `Email:     ${answers.email || "—"}`,
-      `Company:   ${answers.company || "—"}`,
+      `Name:      ${answers.name || "not specified"}`,
+      `Email:     ${answers.email || "not specified"}`,
+      `Company:   ${answers.company || "not specified"}`,
       ``,
       `Notes:`,
-      answers.notes || "—",
+      answers.notes || "not specified",
     ].join("\n");
   }
 
   function submitWizard() {
-    const subject = `Project inquiry — ${answers.service || "New build"} · ${answers.name || ""}`;
+    const subject = `Project inquiry: ${answers.service || "New build"} · ${answers.name || ""}`;
     const href = `mailto:hello@chester.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(briefText())}`;
     sent = true;
     renderStep(1);

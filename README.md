@@ -1,4 +1,4 @@
-# Chester Studio — Portfolio
+# Chester Studio Portfolio
 
 Static portfolio for Chester Studio: premium websites, AI workflows, and business systems.
 
@@ -6,7 +6,7 @@ Static portfolio for Chester Studio: premium websites, AI workflows, and busines
 
 ## Stack
 
-Pure HTML, CSS, and vanilla JavaScript — no frameworks, no build step. GitHub Pages serves the repo as-is.
+Pure HTML, CSS, and vanilla JavaScript with no frameworks and no build step. GitHub Pages serves the repo as-is.
 
 ```
 index.html           → the whole page
