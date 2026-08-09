@@ -1,5 +1,5 @@
 /* ============================================================
-   CHESTER STUDIO — static portfolio
+   CHESTER STUDIO :: static portfolio
    Pure CSS. No frameworks, no build step.
    ============================================================ */
 
@@ -46,6 +46,9 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
 .container { width: min(1180px, 92vw); margin-inline: auto; }
+
+/* the build line band is absolutely placed into the hero on desktop */
+main { position: relative; }
 
 
 /* ============================================================
@@ -416,20 +419,27 @@ body.is-loaded .hl { background-size: 100% 100%; }
 @keyframes beamPan { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
 
 /* Live revenue-engine feed panel */
+/* the band: parked in the hero on desktop, its own strip below it on smaller screens */
+.buildband { position: relative; z-index: 3; }
+@media (min-width: 1341px) {
+  .buildband {
+    position: absolute; top: max(50svh, 340px); right: 3.5vw;
+    width: 352px; transform: translateY(-50%);
+  }
+}
 .hero__feed {
-  position: absolute; top: 50%; right: 3.5vw; z-index: 1;
-  width: 352px; border-radius: 20px; overflow: visible;
+  position: relative; z-index: 1;
+  width: 100%; border-radius: 20px; overflow: visible;
   background: rgba(9, 9, 13, 0.74);
   border: 1px solid rgba(233, 180, 76, 0.28);
   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6), 0 0 60px rgba(233, 180, 76, 0.08);
-  transform: translateY(-50%);
-  opacity: 0; pointer-events: none;
+  opacity: 0;
 }
 body.is-loaded .hero__feed { animation: feedPanelIn 1s var(--ease-out) 1s forwards; }
 @keyframes feedPanelIn {
-  from { opacity: 0; transform: translateY(-46%) scale(0.95); }
-  to { opacity: 1; transform: translateY(-50%) scale(1); }
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to { opacity: 1; transform: none; }
 }
 /* rotating halo behind the panel */
 .hero__feed::before {
@@ -492,7 +502,98 @@ body.is-loaded .hero__feed { animation: feedPanelIn 1s var(--ease-out) 1s forwar
 .hero__feed-stats span {
   font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3);
 }
-@media (max-width: 1340px) { .hero__feed { display: none; } }
+/* ---- BUILD LINE: an idea in, a running system out ---- */
+.buildline .hero__feed-live {
+  color: #2fd66f; background: rgba(47, 214, 111, 0.1); border-color: rgba(47, 214, 111, 0.3);
+}
+.buildline__body { padding: 20px 18px 16px; min-height: 268px; display: flex; flex-direction: column; }
+.buildline__label {
+  font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--text-3);
+}
+.buildline__label--out { margin-top: auto; color: color-mix(in srgb, var(--blue) 65%, var(--text-3)); }
+.buildline__in {
+  margin-top: 8px; font-size: 0.92rem; line-height: 1.45; color: var(--text-3);
+  min-height: 2.9em;
+}
+.buildline__in::before { content: "“"; }
+.buildline__in::after { content: "”"; }
+.buildline__out {
+  margin-top: 8px; padding-left: 12px; font-size: 0.98rem; line-height: 1.45; font-weight: 600;
+  color: color-mix(in srgb, var(--blue) 22%, var(--text));
+  border-left: 2px solid var(--blue); min-height: 2.9em;
+}
+.buildline__in.is-swap, .buildline__out.is-swap { animation: blSwap 0.5s var(--ease-out); }
+@keyframes blSwap { from { opacity: 0; transform: translateY(6px); } }
+
+/* the three stages, lighting left to right */
+.buildline__stages {
+  display: flex; align-items: center; gap: 8px;
+  margin: 22px 0; padding: 14px 4px;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.buildline__stage {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font-display); font-size: 0.64rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3);
+  transition: color 0.45s ease;
+}
+.buildline__stage i {
+  width: 8px; height: 8px; border-radius: 50%; flex: none;
+  background: #2a2a33; transition: background 0.45s ease, box-shadow 0.45s ease;
+}
+.buildline__stage.is-on { color: var(--text); }
+.buildline__stage.is-on i { background: var(--blue); box-shadow: 0 0 10px rgba(233, 180, 76, 0.75); }
+.buildline__wire {
+  flex: 1; height: 1.5px; border-radius: 2px; background: #23232c; position: relative; overflow: hidden;
+}
+.buildline__wire::after {
+  content: ""; position: absolute; inset: 0; transform-origin: left;
+  transform: scaleX(0); background: var(--blue);
+  box-shadow: 0 0 8px rgba(233, 180, 76, 0.6);
+  transition: transform 0.5s var(--ease-out);
+}
+.buildline__wire.is-on::after { transform: scaleX(1); }
+
+.buildline__foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  border-top: 1px solid var(--border); padding: 12px 18px;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue);
+}
+.buildline__dots { display: inline-flex; gap: 5px; }
+.buildline__dots b {
+  width: 5px; height: 5px; border-radius: 50%; background: #2a2a33;
+  transition: background 0.4s ease, width 0.4s ease;
+}
+.buildline__dots b.is-on { background: var(--blue); width: 14px; border-radius: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .buildline__in.is-swap, .buildline__out.is-swap { animation: none; }
+  .buildline__wire::after { transition: none; }
+}
+
+/* below the two-column hero it becomes its own band, so the piece that
+   explains the service still reaches phone and tablet clients */
+@media (max-width: 1340px) {
+  .buildband { padding: 34px 4vw 8px; }
+  .hero__feed {
+    max-width: 620px; margin-inline: auto; border-radius: 16px;
+    backdrop-filter: none; -webkit-backdrop-filter: none;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+  .hero__feed::before { display: none; }
+  .buildline .hero__feed-head { padding: 11px 15px; }
+  .buildline__body { padding: 16px 18px 14px; min-height: 0; }
+  .buildline__in, .buildline__out { min-height: 0; font-size: 0.92rem; }
+  .buildline__stages { margin: 15px 0; padding: 12px 2px; }
+  .buildline__label--out { margin-top: 0; }
+  .buildline__foot { padding: 11px 18px; }
+}
+@media (max-width: 560px) {
+  .buildline__stage { font-size: 0.56rem; letter-spacing: 0.09em; gap: 5px; }
+  .buildline__stages { gap: 6px; }
+}
 
 /* Scroll hint */
 .hero__scroll {
@@ -774,7 +875,7 @@ body.is-loaded .hero__scroll { opacity: 1; }
 }
 
 /* ============================================================
-   FEED 001 — flagship spotlight (AegisLeadOS)
+   FEED 001 :: flagship spotlight (AegisLeadOS)
    The card IS the console: rail, standfirst, feed stage, telemetry.
    ============================================================ */
 .project--flagship {
@@ -899,7 +1000,7 @@ body.is-loaded .hero__scroll { opacity: 1; }
 }
 .fs__feed.is-live .fs__feedcap::before { content: "● "; color: var(--accent); }
 
-/* HOW IT WORKS — plain-English steps, synced to the footage */
+/* HOW IT WORKS :: plain-English steps, synced to the footage */
 .fs__how { padding: 18px 20px 0; }
 .fs__howlabel {
   display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px;
@@ -1001,7 +1102,7 @@ body.is-loaded .hero__scroll { opacity: 1; }
   .fs__rail { gap: 10px; font-size: 0.58rem; }
   .fs__idextra { display: none; }
   .fs__status { margin-left: auto; display: inline-flex; min-width: 0; }
-  .fs__blocks { overflow: hidden; min-width: 2ch; flex: 1; }
+  .fs__statusextra { display: none; }
   .fs__clock { display: none; }
   .fs__typeextra { display: none; }
   .fs__hud { font-size: 0.64rem; }
@@ -1901,7 +2002,7 @@ a.contact__channel:hover { border-color: var(--blue); color: var(--text); transf
 .proof__verify-text p { font-size: 0.9rem; color: var(--text-2); max-width: 560px; }
 
 /* ============================================================
-   CLIENT PROOF v2 — case files
+   CLIENT PROOF v2 :: case files
    ============================================================ */
 .proof-card { padding: 26px 24px 22px; overflow: hidden; display: flex; flex-direction: column; }
 /* HUD corner brackets */
@@ -1997,7 +2098,7 @@ a.contact__channel:hover { border-color: var(--blue); color: var(--text); transf
 }
 
 /* ============================================================
-   HERO — exactly one viewport
+   HERO :: exactly one viewport
    ============================================================ */
 .hero {
   height: 100svh; min-height: 680px;
@@ -2037,7 +2138,7 @@ a.contact__channel:hover { border-color: var(--blue); color: var(--text); transf
 }
 
 /* ============================================================
-   HERO STAT TILES v2 — living proof, doorways to each section
+   HERO STAT TILES v2 :: living proof, doorways to each section
    ============================================================ */
 .hero__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .hstat {
@@ -2068,7 +2169,7 @@ a.contact__channel:hover { border-color: var(--blue); color: var(--text); transf
 .hstat:hover .hstat__label { color: var(--text); }
 .hstat__viz { display: flex; align-items: flex-end; gap: 10px; min-height: 34px; }
 
-/* tile 1 — momentum: number + spark bars → Work */
+/* tile 1 :: momentum: number + spark bars → Work */
 .hstat__num { font-family: var(--font-display); font-weight: 700; font-size: 1.95rem; line-height: 1; color: var(--text); }
 .hstat__num > span { color: var(--blue); }
 .hstat__num i { font-style: normal; color: var(--blue); font-size: 1.1rem; }
@@ -2081,7 +2182,7 @@ a.contact__channel:hover { border-color: var(--blue); color: var(--text); transf
 body.is-loaded .hstat__spark b { height: var(--h); }
 .hstat__spark b:last-child { box-shadow: 0 0 10px rgba(233, 180, 76, .55); }
 
-/* tile 2 — flow: idea → build → ship pipeline → System */
+/* tile 2 :: flow: idea → build → ship pipeline → System */
 .hstat__pipe { align-items: center; gap: 5px; position: relative; }
 .hstat__dot {
   font-family: var(--font-display); font-size: .55rem; font-weight: 600; letter-spacing: .1em;
@@ -2111,7 +2212,7 @@ body.is-loaded .hstat--flow .hstat__pipe .hstat__dot:nth-child(5) { animation-de
   15% { box-shadow: 0 0 11px rgba(233, 180, 76, .45); }
 }
 
-/* tile 3 — people: proof faces → Proof (the emphasis tile) */
+/* tile 3 :: people: proof faces → Proof (the emphasis tile) */
 .hstat--proof { border-color: rgba(233, 180, 76, .28); }
 .hstat__faces { align-items: center; }
 .hstat__faces b {
@@ -2134,7 +2235,7 @@ body.is-loaded .hstat--flow .hstat__pipe .hstat__dot:nth-child(5) { animation-de
 }
 .hstat__live s { width: 5px; height: 5px; border-radius: 50%; background: currentColor; text-decoration: none; animation: stBlink 1.6s ease-in-out infinite; }
 
-/* mobile — compact, keeps hero to one viewport */
+/* mobile :: compact, keeps hero to one viewport */
 @media (max-width: 700px) {
   .hero__stats { gap: 8px; }
   .hstat { padding: 12px 8px; min-height: 76px; align-items: center; text-align: center; gap: 7px; }
