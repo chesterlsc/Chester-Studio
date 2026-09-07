@@ -23,6 +23,97 @@
       proves: "I ship real products, not just sites: evidence-first AI with a human gate on every send",
       desc: "My own product, designed and engineered end to end at Chester Studio. A Mac-native operator console for lead generation: AEGIS walks a business's website the way a customer would, records what it actually sees, diagnoses the revenue leak, scores every lead 0 to 6, and drafts outreach that ships only after human approval, then tracks the replies. Swift shell, local Node core, React front end, deck.gl territorial atlas, and a voice-commandable AI console. 1,231 passing tests.",
       tags: ["macOS", "AI", "Lead Gen", "deck.gl", "Voice"],
+      spotlight: {
+        railId: "AEGIS//OPS",
+        railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT</span>',
+        standfirst: "AegisLeadOS is my own product, designed and engineered end to end at Chester Studio. You give it one order, <em>“capture 10 med spas in New York”</em>, and it sweeps the market, walks each prospect's site the way a customer would, diagnoses the revenue leak, and drafts the outreach for a human to approve before anything sends. Same play for HVAC, roofing, dental, or any local service market.",
+        redact: "DEMO RECORDS BLURRED",
+        feeds: [
+          { label: "FEED 01 // CAPTURE.RUN", cap: "FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", aria: "live capture run on the territorial atlas", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
+          { label: "FEED 02 // WORKFLOW.LIVE", cap: "FEED 02 // WORKFLOW.LIVE · LEADS IN MOTION", aria: "live capture workflow", poster: "public/projects/aegis-leados-workflow.jpg", webm: "public/projects/aegis-feed-02.webm", mp4: "public/projects/aegis-feed-02.mp4" },
+          { label: "FEED 03 // OPS.PIPELINE", cap: "FEED 03 // OPS.PIPELINE · MID-SWEEP", aria: "operations and captured pipeline", poster: "public/projects/aegis-leados-pipeline.jpg", webm: "public/projects/aegis-feed-03.webm", mp4: "public/projects/aegis-feed-03.mp4" },
+        ],
+        how: [
+          { t: "Pick a market", d: "HVAC, roofing, med spa, dental. Any local service, any US city." },
+          { t: "AI sweeps the map", d: "Finds real businesses, then walks each website like a customer would." },
+          { t: "Workflow qualifies", d: "Evidence, demand checks, and a live revenue leak diagnosis." },
+          { t: "You approve", d: "Human verification gates every send. Nothing goes out on its own." },
+          { t: "Start the outreach", d: "Scored, diagnosed, and drafted in your pipeline. You send when ready." },
+        ],
+        howAt: [0, 6, 21.3, 33.5, 42],
+        feedStep: [null, 2, 4],
+        telemetry: ["1,231 TESTS PASSING", "LEADS SCORED 0–6", "EVERY SEND HUMAN-GATED", "VOICE-COMMANDABLE"],
+        typeExtra: " · Swift shell · local Node core · deck.gl atlas",
+        cta: "OPEN CASE FILE",
+      },
+    },
+    {
+      name: "Trader Journal",
+      type: "Trading Journal Platform",
+      category: "Digital Products",
+      image: "public/projects/trader-journal.jpg",
+      flagship: true,
+      audience: "Retail and funded traders",
+      proves: "I trade through my own tools, and the analytics never overclaim",
+      desc: "My own product, at 2.0, designed and engineered end to end at Chester Studio. Log a trade in seconds or drop in a TopstepX, Vantage, or Binance CSV, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac that maps your edge by weekday and hour. Any cell without enough trades behind it stays withheld, never estimated. Vanilla JS with no build step, Node 22 on Vercel, PostgreSQL underneath.",
+      tags: ["Trading", "Analytics", "Vanilla JS", "PostgreSQL", "CSV Import"],
+      spotlight: {
+        railId: "TJ//DESK",
+        railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT · V2.0</span>',
+        standfirst: "Trader Journal is my own product, at 2.0, designed and engineered end to end at Chester Studio. Log a trade in seconds, or drop in a <em>TopstepX, Vantage, or Binance CSV</em>, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac that maps your edge by weekday and hour and stays silent on any cell until enough trades back it up. Numbers you can act on, never numbers it made up.",
+        redact: "SAMPLE TRADES · DEMO MODE",
+        feeds: [
+          { label: "FEED 01 // LOG.TRADE", cap: "FEED 01 // LOG.TRADE · “ONE TRADE IN, EVERY NUMBER MOVES”", aria: "logging a trade and watching the desk react", poster: "public/projects/trader-journal-log.jpg", webm: "public/projects/trader-feed-01.webm", mp4: "public/projects/trader-feed-01.mp4" },
+          { label: "FEED 02 // CALENDAR.DRILL", cap: "FEED 02 // CALENDAR.DRILL · GREEN DAY, FILTERED JOURNAL, CSV IMPORT", aria: "calendar drill-down and broker CSV import", poster: "public/projects/trader-journal-calendar.jpg", webm: "public/projects/trader-feed-02.webm", mp4: "public/projects/trader-feed-02.mp4" },
+          { label: "FEED 03 // TIMING.ALMANAC", cap: "FEED 03 // TIMING.ALMANAC · WITHHELD UNTIL PROVEN", aria: "the timing almanac", poster: "public/projects/trader-journal-timing.jpg", webm: "public/projects/trader-feed-03.webm", mp4: "public/projects/trader-feed-03.mp4" },
+        ],
+        how: [
+          { t: "Log the trade", d: "Symbol, long or short, entry, stop. Pick 0.5, 1 or 2 percent risk and it sizes the position." },
+          { t: "Close and grade it", d: "Exit price, mood, execution grade, one note. Screenshots attach as evidence." },
+          { t: "The desk reacts", d: "Net P&L, today, the equity curve and the calendar day update the moment you save." },
+          { t: "Drill any day", d: "Click a calendar day to land in the journal filtered to it. Broker CSVs import beside it, with undo." },
+          { t: "Read the almanac", d: "Expectancy by weekday and hour. A cell stays withheld until enough trades prove it." },
+        ],
+        howAt: [0, 18.1, 32.6, 36, 40.8],
+        feedStep: [null, 3, 4],
+        telemetry: ["TOPSTEPX · VANTAGE · BINANCE CSV IMPORT", "LIVE PRICES · BINANCE / COINGECKO / GOLD-API", "THIN CELLS WITHHELD, NEVER ESTIMATED", "NO BUILD STEP · ZERO DEPENDENCIES"],
+        typeExtra: " · Vanilla JS · Node 22 on Vercel · PostgreSQL",
+        cta: "OPEN THE LEDGER",
+      },
+    },
+    {
+      name: "The Little Bookshop",
+      type: "Custom Ecommerce Storefront",
+      category: "Websites",
+      image: "public/projects/little-bookshop.jpg",
+      flagship: true,
+      audience: "Small makers who have outgrown marketplace templates",
+      proves: "Storybook charm on the surface, a strict money path underneath",
+      desc: "A client storefront for miniature bookshelves and tiny books sold in sets of six, built from scratch in Next.js instead of bending a Shopify theme. Customers pick a shelf, type six titles and watch a hand-drawn shelf fill spine by spine, then the bundle lands in a basket that remembers it. Every cart is repriced on the server, every order gets a number the customer can quote, the shop is paid the way it already sells on Instagram, by GCash or MariBank transfer, and both order emails go out exactly once. A 36-check Playwright smoke suite guards the whole path.",
+      tags: ["Ecommerce", "Next.js", "Illustration", "Postgres", "Playwright"],
+      spotlight: {
+        railId: "BOOKSHOP//STORE",
+        railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // CLIENT BUILD</span>',
+        standfirst: "The Little Bookshop sells miniature bookshelves and tiny books in sets of six, so its store had to feel handmade too. I built it from scratch in Next.js rather than bending a Shopify theme: a customer picks a shelf, <em>types six titles and watches a hand-drawn shelf fill spine by spine</em>, then the bundle lands in a basket that remembers it. Underneath the charm the money path is strict. Every cart is repriced on the server, every order gets a number the customer can quote, and the shop is paid the way it already sells on Instagram, by GCash or MariBank transfer, with no gateway fees and no card ever collected.",
+        redact: "DEV MAIL OUTBOX · NO LIVE ORDERS",
+        feeds: [
+          { label: "FEED 01 // BUILD.SHELF", cap: "FEED 01 // BUILD.SHELF · “SIX TITLES, ONE TINY SHELF”", aria: "building a little shelf from six titles", poster: "public/projects/little-bookshop-build.jpg", webm: "public/projects/bookshop-feed-01.webm", mp4: "public/projects/bookshop-feed-01.mp4" },
+          { label: "FEED 02 // MONEY.PATH", cap: "FEED 02 // MONEY.PATH · BASKET TO PAYMENT SCREEN", aria: "checkout to the payment instructions screen", poster: "public/projects/little-bookshop-money.jpg", webm: "public/projects/bookshop-feed-02.webm", mp4: "public/projects/bookshop-feed-02.mp4" },
+          { label: "FEED 03 // CATALOG.LIVE", cap: "FEED 03 // CATALOG.LIVE · NINE COLORS, SIX LITTLE BOOKS", aria: "the catalog and product pages", poster: "public/projects/little-bookshop-catalog.jpg", webm: "public/projects/bookshop-feed-03.webm", mp4: "public/projects/bookshop-feed-03.mp4" },
+        ],
+        how: [
+          { t: "Pick a shelf", d: "Classic, Arched or Scalloped. Two sizes, nine colors, every one printed to order." },
+          { t: "Type six titles", d: "A hand-drawn shelf fills spine by spine as the customer types. Six, always: UI, cart and server agree." },
+          { t: "Dress the shelf", d: "A plant, a ladder, shelf letters, a theme, a note. Progress saves itself if they wander off." },
+          { t: "Into the basket", d: "One bundle, six titles and all. The basket persists, and the browser never decides a price." },
+          { t: "Pay by transfer", d: "GCash or MariBank with one-tap copy and an order number to quote on Instagram. The shop confirms by hand." },
+        ],
+        howAt: [0, 18.4, 35.1, 46.8, 50.4],
+        feedStep: [null, 4, 0],
+        telemetry: ["GCASH · MARIBANK MANUAL TRANSFER", "EVERY CART REPRICED SERVER-SIDE", "GMAIL SMTP · RESEND, SENT ONCE", "36-CHECK PLAYWRIGHT SMOKE"],
+        typeExtra: " · Next.js 16 · Tailwind 4 · Postgres on Neon",
+        cta: "OPEN CASE FILE",
+      },
     },
     {
       name: "PukPok Workz",
@@ -33,26 +124,6 @@
       proves: "Trust-first design sells high-ticket inventory",
       desc: "A trust-first site for a Parañaque motorcycle dealership. Live inventory, sold-unit proof, walkaround reels, and a Messenger-first buying flow with nationwide delivery.",
       tags: ["Branding", "Inventory", "Mobile", "Conversion"],
-    },
-    {
-      name: "Trader Journal",
-      type: "Trading Journal Platform",
-      category: "Digital Products",
-      image: "public/projects/trader-journal.jpg",
-      audience: "Retail and funded traders",
-      proves: "I trade through my own tools, and the analytics never overclaim",
-      desc: "My own trading journal, now at 2.0. Every logged trade feeds an equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac mapping expectancy by weekday and hour, with every cell withheld until enough trades back it up. TopstepX, Vantage, and Binance CSVs import with strict trade reconstruction and one-click undo. Vanilla JS with no build step, Node serverless functions on Postgres, plus a passcode-locked native Mac app.",
-      tags: ["Trading", "Analytics", "Vanilla JS", "PostgreSQL", "macOS"],
-    },
-    {
-      name: "The Little Bookshop",
-      type: "Custom Ecommerce Storefront",
-      category: "Websites",
-      image: "public/projects/little-bookshop.jpg",
-      audience: "Small makers who have outgrown marketplace templates",
-      proves: "Storybook charm on the surface, a hardened checkout underneath",
-      desc: "A storefront for a maker of miniature bookshelves and tiny books, built in Next.js instead of a Shopify theme. Every product is a hand-drawn illustration that repaints as you pick colors, and the Build Your Little Shelf flow fills a live mini-shelf as the customer types in six titles. The money path is strict: the browser never decides prices, every cart is repriced on the server, and no order is marked paid until the payment provider confirms it. A 15-check end-to-end suite covers the flow, tampered carts included.",
-      tags: ["Ecommerce", "Next.js", "Illustration", "Payments"],
     },
     {
       name: "NAMI Studio",
@@ -246,85 +317,81 @@
     p.slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   });
 
-  const DESKTOP_CAP = 7; // flagship + two clean rows of 3
+  const DESKTOP_CAP = 9; // three flagships + two clean rows of 3
 
   /* ==========================================================
      RENDER: PROJECT GRID
      ========================================================== */
   const grid = document.getElementById("workGrid");
 
-  // FEED 001: the flagship card is the console: rail, standfirst, live footage stage, telemetry
-  const flagshipHTML = (p) => `
+  // Flagship spotlight: rail, standfirst, live footage stage, HOW IT WORKS, telemetry.
+  // Everything comes from p.spotlight so any project can carry the treatment.
+  const flagshipHTML = (p, seq) => {
+    const sp = p.spotlight;
+    const feeds = sp.feeds.map((f, i) => `
+          <button class="fs__feed${i === 0 ? " is-live" : ""}" type="button" data-feed="${i}" aria-label="Show feed ${i + 1}: ${f.aria}">
+            <img src="${f.poster}" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">${f.label}</span>
+          </button>`).join("");
+    const how = sp.how.map((h, i) => `
+          <li><button type="button" data-step="${i}" aria-label="Step ${i + 1}: ${h.t}. Jump footage to this step"><b>0${i + 1}</b><span><strong>${h.t}</strong><small>${h.d}</small></span></button></li>`).join("");
+    const chips = sp.telemetry.map((c, i) => `<span style="--i:${i}">${c}</span>`).join("\n        ");
+    return `
       <div class="fs__rail" aria-hidden="true">
-        <span class="fs__id"><i></i>AEGIS//OPS<span class="fs__idextra"> · FLAGSHIP 001</span></span>
-        <span class="fs__status" title="Built in-house by Chester Studio">CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT</span></span>
-        <span class="fs__clock" id="fsClock">--:--:--Z</span>
+        <span class="fs__id"><i></i>${sp.railId}<span class="fs__idextra"> · FLAGSHIP ${seq}</span></span>
+        <span class="fs__status" title="Built in-house by Chester Studio">${sp.railStatus}</span>
+        <span class="fs__clock">--:--:--Z</span>
       </div>
-      <p class="fs__standfirst">AegisLeadOS is my own product, designed and engineered end to end at Chester Studio. You give it one order, <em>“capture 10 med spas in New York”</em>, and it sweeps the market, walks each prospect's site the way a customer would, diagnoses the revenue leak, and drafts the outreach for a human to approve before anything sends. Same play for HVAC, roofing, dental, or any local service market.</p>
+      <p class="fs__standfirst">${sp.standfirst}</p>
       <div class="fs__stage">
         <figure class="fs__main">
           <video class="fs__video" muted playsinline preload="none" disablepictureinpicture
-            poster="${p.image}" aria-label="AegisLeadOS screen capture, client details blurred">
-            <source src="public/projects/aegis-feed-01.webm" type="video/webm" />
-            <source src="public/projects/aegis-feed-01.mp4" type="video/mp4" />
+            poster="${sp.feeds[0].poster}" aria-label="${p.name} screen capture">
+            <source src="${sp.feeds[0].webm}" type="video/webm" />
+            <source src="${sp.feeds[0].mp4}" type="video/mp4" />
           </video>
           <span class="fs__scan" aria-hidden="true"></span>
           <span class="project__shine" aria-hidden="true"></span>
           <span class="project__spot" aria-hidden="true"></span>
           <div class="fs__hud" aria-hidden="true">
             <span class="fs__pill fs__rec"><i></i>REC · FIELD CAPTURE</span>
-            <span class="fs__pill fs__tc" id="fsTc">TC 00:00 · LOOP</span>
+            <span class="fs__pill fs__tc">TC 00:00 · LOOP</span>
           </div>
           <div class="fs__hud fs__hud--bottom" aria-hidden="true">
-            <span class="fs__pill fs__cap" id="fsCap">FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”</span>
-            <span class="fs__pill fs__redact">DEMO RECORDS BLURRED</span>
+            <span class="fs__pill fs__cap">${sp.feeds[0].cap}</span>
+            <span class="fs__pill fs__redact">${sp.redact}</span>
           </div>
         </figure>
-        <aside class="fs__feeds">
-          <button class="fs__feed is-live" type="button" data-feed="0" aria-label="Show feed 1: live capture run on the territorial atlas">
-            <img src="public/projects/aegis-leados-capture.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 01 // CAPTURE.RUN</span>
-          </button>
-          <button class="fs__feed" type="button" data-feed="1" aria-label="Show feed 2: live capture workflow">
-            <img src="public/projects/aegis-leados-workflow.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 02 // WORKFLOW.LIVE</span>
-          </button>
-          <button class="fs__feed" type="button" data-feed="2" aria-label="Show feed 3: operations and captured pipeline">
-            <img src="public/projects/aegis-leados-pipeline.jpg" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">FEED 03 // OPS.PIPELINE</span>
-          </button>
+        <aside class="fs__feeds">${feeds}
         </aside>
       </div>
-      <div class="fs__how" id="fsHow" aria-label="How AegisLeadOS works, synced to the footage">
+      <div class="fs__how" aria-label="How ${p.name} works, synced to the footage">
         <span class="fs__howlabel">HOW IT WORKS<em>follows the footage, tap a step to jump</em></span>
-        <ol class="fs__howsteps">
-          <li><button type="button" data-step="0" aria-label="Step 1: pick a market. Jump footage to this step"><b>01</b><span><strong>Pick a market</strong><small>HVAC, roofing, med spa, dental. Any local service, any US city.</small></span></button></li>
-          <li><button type="button" data-step="1" aria-label="Step 2: AI sweeps the map. Jump footage to this step"><b>02</b><span><strong>AI sweeps the map</strong><small>Finds real businesses, then walks each website like a customer would.</small></span></button></li>
-          <li><button type="button" data-step="2" aria-label="Step 3: the workflow qualifies every lead. Jump footage to this step"><b>03</b><span><strong>Workflow qualifies</strong><small>Evidence, demand checks, and a live revenue leak diagnosis.</small></span></button></li>
-          <li><button type="button" data-step="3" aria-label="Step 4: you approve every send. Jump footage to this step"><b>04</b><span><strong>You approve</strong><small>Human verification gates every send. Nothing goes out on its own.</small></span></button></li>
-          <li><button type="button" data-step="4" aria-label="Step 5: start the outreach. Jump footage to this step"><b>05</b><span><strong>Start the outreach</strong><small>Scored, diagnosed, and drafted in your pipeline. You send when ready.</small></span></button></li>
+        <ol class="fs__howsteps">${how}
         </ol>
       </div>
       <div class="fs__telemetry" aria-hidden="true">
-        <span style="--i:0">1,231 TESTS PASSING</span>
-        <span style="--i:1">LEADS SCORED 0–6</span>
-        <span style="--i:2">EVERY SEND HUMAN-GATED</span>
-        <span style="--i:3">VOICE-COMMANDABLE</span>
+        ${chips}
       </div>
       <div class="project__body">
         <div>
           <h3 class="project__name">${p.name}</h3>
-          <p class="project__type">${p.type}<span class="fs__typeextra"> · Swift shell · local Node core · deck.gl atlas</span></p>
+          <p class="project__type">${p.type}<span class="fs__typeextra">${sp.typeExtra}</span></p>
         </div>
-        <span class="fs__cta">OPEN CASE FILE <b>↗</b></span>
+        <span class="fs__cta">${sp.cta} <b>↗</b></span>
       </div>`;
+  };
 
+  let flagshipSeq = 0;
   PROJECTS.forEach((p, i) => {
     const card = document.createElement("article");
     card.className = p.flagship ? "project project--flagship" : "project";
+    const seq = p.flagship ? String(++flagshipSeq).padStart(3, "0") : null;
     card.dataset.category = p.category;
     card.dataset.index = i;
     card.setAttribute("data-reveal", "");
     card.style.setProperty("--d", `${(i % 3) * 0.08}s`);
     card.style.setProperty("--accent", p.accent);
-    card.innerHTML = p.flagship ? flagshipHTML(p) : `
+    card.innerHTML = p.flagship ? flagshipHTML(p, seq) : `
       <div class="project__media">
         <div class="project__chrome" aria-hidden="true">
           <i></i><i></i><i></i>
@@ -357,39 +424,55 @@
     grid.appendChild(card);
   });
 
-  // flagship rail clock: real time, UTC, always ticking (it's content, not motion)
-  const fsClock = document.getElementById("fsClock");
-  if (fsClock) {
-    const tickClock = () => { fsClock.textContent = new Date().toISOString().slice(11, 19) + "Z"; };
+  // flagship rail clocks: real time, UTC, always ticking (content, not motion)
+  const fsClocks = document.querySelectorAll(".fs__clock");
+  if (fsClocks.length) {
+    const tickClock = () => {
+      const t = new Date().toISOString().slice(11, 19) + "Z";
+      fsClocks.forEach((c) => { c.textContent = t; });
+    };
     tickClock();
     setInterval(tickClock, 1000);
   }
 
   /* ==========================================================
-     FLAGSHIP LIVE FOOTAGE: one video, src-swap on signal-drop cut
+     FLAGSHIP LIVE FOOTAGE: one video per card, src-swap on a
+     signal-drop cut, broadcast rotation, HOW steps synced to time
      ========================================================== */
-  const FEEDS = [
-    { cap: "FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
-    { cap: "FEED 02 // WORKFLOW.LIVE · LEADS IN MOTION", poster: "public/projects/aegis-leados-workflow.jpg", webm: "public/projects/aegis-feed-02.webm", mp4: "public/projects/aegis-feed-02.mp4" },
-    { cap: "FEED 03 // OPS.PIPELINE · MID-SWEEP", poster: "public/projects/aegis-leados-pipeline.jpg", webm: "public/projects/aegis-feed-03.webm", mp4: "public/projects/aegis-feed-03.mp4" },
-  ];
-  const fsVideo = document.querySelector(".fs__video");
-  if (fsVideo) {
-    const fsCard = fsVideo.closest(".project--flagship");
+  const initSpotlight = (fsCard, p) => {
+    const sp = p.spotlight;
+    const fsVideo = fsCard.querySelector(".fs__video");
+    if (!fsVideo) return;
     const fsMain = fsVideo.parentElement;
-    const fsTc = document.getElementById("fsTc");
-    const fsCap = document.getElementById("fsCap");
+    const fsTc = fsCard.querySelector(".fs__tc");
+    const fsCap = fsCard.querySelector(".fs__cap");
     const feedBtns = [...fsCard.querySelectorAll(".fs__feed")];
+    const howSteps = [...fsCard.querySelectorAll(".fs__howsteps button")];
     let currentFeed = 0;
     let userTookOver = false;
     let fsInView = false;
     let playPill = null;
+    let howIdx = -1;
 
     const wantsPlay = () => (prefersReducedMotion ? playPill && playPill.classList.contains("is-playing") : fsInView);
 
+    const setHowStep = (idx) => {
+      if (idx === howIdx) return;
+      howIdx = idx;
+      howSteps.forEach((b, i) => b.parentElement.classList.toggle("is-now", i === idx));
+    };
+    // feed 0 syncs by timecode; other feeds pin the step they demonstrate
+    const syncHow = () => {
+      if (currentFeed !== 0) { setHowStep(sp.feedStep[currentFeed] ?? -1); return; }
+      const t = fsVideo.currentTime;
+      let idx = 0;
+      for (let i = 0; i < sp.howAt.length; i++) if (t >= sp.howAt[i]) idx = i;
+      setHowStep(idx);
+    };
+
     const setFeed = (idx, cut) => {
       currentFeed = idx;
-      const f = FEEDS[idx];
+      const f = sp.feeds[idx];
       feedBtns.forEach((b, i) => b.classList.toggle("is-live", i === idx));
       if (fsCap) fsCap.textContent = f.cap;
       fsVideo.poster = f.poster; // poster first: a slow load shows the right still, never black
@@ -402,10 +485,10 @@
         fsMain.addEventListener("animationend", () => fsMain.classList.remove("is-cutting"), { once: true });
       }
       if (wantsPlay()) fsVideo.play().catch(() => {});
-      if (typeof syncHow === "function") syncHow();
+      syncHow();
     };
 
-    // broadcast rotation: each feed plays to the end, then the next feed cuts in.
+    // broadcast rotation: each feed plays to the end, then the next cuts in.
     // A manually chosen feed loops itself instead of rotating on.
     fsVideo.addEventListener("ended", () => {
       if (userTookOver) {
@@ -413,7 +496,7 @@
         fsVideo.play().catch(() => {});
         return;
       }
-      setFeed((currentFeed + 1) % FEEDS.length, true);
+      setFeed((currentFeed + 1) % sp.feeds.length, true);
     });
 
     feedBtns.forEach((btn) => {
@@ -424,31 +507,13 @@
       });
     });
 
-    /* HOW IT WORKS: steps follow the master cut's scenes; clicking seeks.
-       Feed 0 syncs by timecode; feeds 1/2 pin their matching step. */
-    const HOW_AT = [0, 6, 21.3, 33.5, 42]; // master-cut scene entry points (s)
-    const FEED_STEP = [null, 2, 4]; // static step per non-master feed
-    const howSteps = [...fsCard.querySelectorAll(".fs__howsteps button")];
-    let howIdx = -1;
-    const setHowStep = (idx) => {
-      if (idx === howIdx) return;
-      howIdx = idx;
-      howSteps.forEach((b, i) => b.parentElement.classList.toggle("is-now", i === idx));
-    };
-    const syncHow = () => {
-      if (currentFeed !== 0) { setHowStep(FEED_STEP[currentFeed] ?? -1); return; }
-      const t = fsVideo.currentTime;
-      let idx = 0;
-      for (let i = 0; i < HOW_AT.length; i++) if (t >= HOW_AT[i]) idx = i;
-      setHowStep(idx);
-    };
     howSteps.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        e.stopPropagation(); // a how-step tap is navigation, not a modal open
+        e.stopPropagation();
         userTookOver = true;
         const idx = parseInt(btn.dataset.step, 10);
         if (currentFeed !== 0) setFeed(0, true);
-        const seek = () => { fsVideo.currentTime = HOW_AT[idx]; fsVideo.play().catch(() => {}); setHowStep(idx); };
+        const seek = () => { fsVideo.currentTime = sp.howAt[idx]; fsVideo.play().catch(() => {}); setHowStep(idx); };
         fsVideo.readyState >= 1 ? seek() : fsVideo.addEventListener("loadedmetadata", seek, { once: true });
       });
     });
@@ -480,18 +545,19 @@
         }
       });
     } else {
-      // observe the stage, not the whole card. 35% of the tall card never
+      // observe the stage, not the whole card: 35% of a tall card never
       // enters short viewports (landscape phones, small windows)
       const fsObserver = new IntersectionObserver((entries) => {
         entries.forEach((en) => {
           fsInView = en.isIntersecting;
-          if (fsInView) { fsVideo.play().catch(() => {}); }
-          else { fsVideo.pause(); }
+          if (fsInView) fsVideo.play().catch(() => {});
+          else fsVideo.pause();
         });
       }, { threshold: 0.35 });
       fsObserver.observe(fsMain);
     }
-  }
+  };
+  grid.querySelectorAll(".project--flagship").forEach((card) => initSpotlight(card, PROJECTS[card.dataset.index]));
 
   /* ==========================================================
      RENDER: TOOLS, dual marquee belt with real brand icons
