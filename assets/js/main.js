@@ -26,6 +26,7 @@
       spotlight: {
         railId: "AEGIS//OPS",
         railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT</span>',
+        statusTitle: "Designed and engineered in-house at Chester Studio",
         standfirst: "AegisLeadOS is my own product, designed and engineered end to end at Chester Studio. You give it one order, <em>“capture 10 med spas in New York”</em>, and it sweeps the market, walks each prospect's site the way a customer would, diagnoses the revenue leak, and drafts the outreach for a human to approve before anything sends. Same play for HVAC, roofing, dental, or any local service market.",
         redact: "DEMO RECORDS BLURRED",
         feeds: [
@@ -55,16 +56,17 @@
       flagship: true,
       audience: "Retail and funded traders",
       proves: "I trade through my own tools, and the analytics never overclaim",
-      desc: "My own product, at 2.0, designed and engineered end to end at Chester Studio. Log a trade in seconds or drop in a TopstepX, Vantage, or Binance CSV, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac that maps your edge by weekday and hour. Any cell without enough trades behind it stays withheld, never estimated. Vanilla JS with no build step, Node 22 on Vercel, PostgreSQL underneath.",
+      desc: "The journal I keep my own trading in, now at 2.0. Log a trade in seconds or drop in a TopstepX, Vantage, or Binance CSV, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac that maps your edge by weekday and hour. Any cell without enough trades behind it stays withheld, never estimated. Vanilla JS with no build step, Node 22 on Vercel, PostgreSQL underneath.",
       tags: ["Trading", "Analytics", "Vanilla JS", "PostgreSQL", "CSV Import"],
       spotlight: {
         railId: "TJ//DESK",
         railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT · V2.0</span>',
-        standfirst: "Trader Journal is my own product, at 2.0, designed and engineered end to end at Chester Studio. Log a trade in seconds, or drop in a <em>TopstepX, Vantage, or Binance CSV</em>, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac that maps your edge by weekday and hour and stays silent on any cell until enough trades back it up. Numbers you can act on, never numbers it made up.",
+        statusTitle: "Designed and engineered in-house at Chester Studio",
+        standfirst: "This is the journal I keep my own trading in, now at its second version. Log a trade in seconds, or drop in a <em>TopstepX, Vantage, or Binance CSV</em>, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days, and a timing almanac that maps your edge by weekday and hour and stays silent on any cell until enough trades back it up. Numbers you can act on, never numbers it made up.",
         redact: "SAMPLE TRADES · DEMO MODE",
         feeds: [
           { label: "FEED 01 // LOG.TRADE", cap: "FEED 01 // LOG.TRADE · “ONE TRADE IN, EVERY NUMBER MOVES”", aria: "logging a trade and watching the desk react", poster: "public/projects/trader-journal-log.jpg", webm: "public/projects/trader-feed-01.webm", mp4: "public/projects/trader-feed-01.mp4" },
-          { label: "FEED 02 // CALENDAR.DRILL", cap: "FEED 02 // CALENDAR.DRILL · GREEN DAY, FILTERED JOURNAL, CSV IMPORT", aria: "calendar drill-down and broker CSV import", poster: "public/projects/trader-journal-calendar.jpg", webm: "public/projects/trader-feed-02.webm", mp4: "public/projects/trader-feed-02.mp4" },
+          { label: "FEED 02 // CALENDAR.DRILL", cap: "FEED 02 // CALENDAR.DRILL · GREEN DAY, THEN CSV IMPORT", aria: "calendar drill-down and broker CSV import", poster: "public/projects/trader-journal-calendar.jpg", webm: "public/projects/trader-feed-02.webm", mp4: "public/projects/trader-feed-02.mp4" },
           { label: "FEED 03 // TIMING.ALMANAC", cap: "FEED 03 // TIMING.ALMANAC · WITHHELD UNTIL PROVEN", aria: "the timing almanac", poster: "public/projects/trader-journal-timing.jpg", webm: "public/projects/trader-feed-03.webm", mp4: "public/projects/trader-feed-03.mp4" },
         ],
         how: [
@@ -74,9 +76,9 @@
           { t: "Drill any day", d: "Click a calendar day to land in the journal filtered to it. Broker CSVs import beside it, with undo." },
           { t: "Read the almanac", d: "Expectancy by weekday and hour. A cell stays withheld until enough trades prove it." },
         ],
-        howAt: [0, 18.1, 32.6, 36, 40.8],
+        howAt: [0, 17.4, 31.7, 35.2, 39.9],
         feedStep: [null, 3, 4],
-        telemetry: ["TOPSTEPX · VANTAGE · BINANCE CSV IMPORT", "LIVE PRICES · BINANCE / COINGECKO / GOLD-API", "THIN CELLS WITHHELD, NEVER ESTIMATED", "NO BUILD STEP · ZERO DEPENDENCIES"],
+        telemetry: ["TOPSTEPX · VANTAGE · BINANCE CSV IMPORT", "LIVE PRICES · BINANCE / COINGECKO / GOLD-API", "THIN CELLS WITHHELD, NEVER ESTIMATED", "NO BUILD STEP · NO FRONT-END DEPS"],
         typeExtra: " · Vanilla JS · Node 22 on Vercel · PostgreSQL",
         cta: "OPEN THE LEDGER",
       },
@@ -94,7 +96,8 @@
       spotlight: {
         railId: "BOOKSHOP//STORE",
         railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // CLIENT BUILD</span>',
-        standfirst: "The Little Bookshop sells miniature bookshelves and tiny books in sets of six, so its store had to feel handmade too. I built it from scratch in Next.js rather than bending a Shopify theme: a customer picks a shelf, <em>types six titles and watches a hand-drawn shelf fill spine by spine</em>, then the bundle lands in a basket that remembers it. Underneath the charm the money path is strict. Every cart is repriced on the server, every order gets a number the customer can quote, and the shop is paid the way it already sells on Instagram, by GCash or MariBank transfer, with no gateway fees and no card ever collected.",
+        statusTitle: "Built for a client by Chester Studio",
+        standfirst: "The Little Bookshop sells miniature bookshelves and tiny books in sets of six, so its store had to feel handmade too. I built it from scratch in Next.js rather than bending a Shopify theme: a customer picks a shelf, <em>types six titles and watches a hand-drawn shelf fill spine by spine</em>, then the bundle lands in a basket that remembers it. Underneath the charm the money path is strict. Every cart is repriced on the server, and the shop is paid the way it already sells on Instagram, by GCash or MariBank transfer, with no gateway fees and no card ever collected.",
         redact: "DEV MAIL OUTBOX · NO LIVE ORDERS",
         feeds: [
           { label: "FEED 01 // BUILD.SHELF", cap: "FEED 01 // BUILD.SHELF · “SIX TITLES, ONE TINY SHELF”", aria: "building a little shelf from six titles", poster: "public/projects/little-bookshop-build.jpg", webm: "public/projects/bookshop-feed-01.webm", mp4: "public/projects/bookshop-feed-01.mp4" },
@@ -110,9 +113,9 @@
         ],
         howAt: [0, 18.4, 35.1, 46.8, 50.4],
         feedStep: [null, 4, 0],
-        telemetry: ["GCASH · MARIBANK MANUAL TRANSFER", "EVERY CART REPRICED SERVER-SIDE", "GMAIL SMTP · RESEND, SENT ONCE", "36-CHECK PLAYWRIGHT SMOKE"],
+        telemetry: ["GCASH · MARIBANK MANUAL TRANSFER", "EVERY CART REPRICED SERVER-SIDE", "ORDER EMAILS SENT EXACTLY ONCE", "36-CHECK PLAYWRIGHT SMOKE"],
         typeExtra: " · Next.js 16 · Tailwind 4 · Postgres on Neon",
-        cta: "OPEN CASE FILE",
+        cta: "OPEN THE STOREFRONT",
       },
     },
     {
@@ -338,7 +341,7 @@
     return `
       <div class="fs__rail" aria-hidden="true">
         <span class="fs__id"><i></i>${sp.railId}<span class="fs__idextra"> · FLAGSHIP ${seq}</span></span>
-        <span class="fs__status" title="Built in-house by Chester Studio">${sp.railStatus}</span>
+        <span class="fs__status" title="${sp.statusTitle}">${sp.railStatus}</span>
         <span class="fs__clock">--:--:--Z</span>
       </div>
       <p class="fs__standfirst">${sp.standfirst}</p>
