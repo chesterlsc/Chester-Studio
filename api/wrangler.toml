@@ -1,0 +1,6 @@
+name = "chester-studio-contact"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Serves the endpoint the site posts to (assets/js/main.js → FORM_ENDPOINT).
+routes = [{ pattern = "api.chesterstudio.space", custom_domain = true }]
