@@ -1149,7 +1149,7 @@
   const answers = {};
   let stepIdx = 0;
   // Cloudflare Worker in api/ that forwards the brief through Resend
-  const FORM_ENDPOINT = "https://api.chesterstudio.space";
+  const FORM_ENDPOINT = "https://chester-studio-contact.chesterlsc.workers.dev";
   let sent = false; // false | "sending" | "ok" | "error"
 
   WIZARD_STEPS.forEach(() => {
