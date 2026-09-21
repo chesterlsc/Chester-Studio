@@ -2249,3 +2249,6 @@ body.is-loaded .hstat--flow .hstat__pipe .hstat__dot:nth-child(5) { animation-de
   .hstat__faces b { width: 23px; height: 23px; font-size: .56rem; margin-left: -7px; }
   .hstat__live { display: none; }
 }
+
+/* honeypot: bots fill it, humans never see it */
+.wizard-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

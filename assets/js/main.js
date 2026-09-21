@@ -1148,7 +1148,9 @@
   const wizardDots = document.getElementById("wizardDots");
   const answers = {};
   let stepIdx = 0;
-  let sent = false;
+  // Cloudflare Worker in api/ that forwards the brief through Resend
+  const FORM_ENDPOINT = "https://api.chesterstudio.space";
+  let sent = false; // false | "sending" | "ok" | "error"
 
   WIZARD_STEPS.forEach(() => {
     const dot = document.createElement("i");
@@ -1176,13 +1178,19 @@
         <div class="wizard-field"><label>Email <em>*</em></label><input type="email" id="wzEmail" placeholder="you@company.com" value="${answers.email || ""}" /></div>
         <div class="wizard-field"><label>Company / brand</label><input type="text" id="wzCompany" placeholder="Optional" value="${answers.company || ""}" /></div>
         <div class="wizard-field"><label>Anything else?</label><textarea id="wzNotes" placeholder="Links, context, the problem in your own words…">${answers.notes || ""}</textarea></div>
+        <input type="text" id="wzWebsite" class="wizard-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
       </div>`;
     } else if (step.review) {
       if (sent) {
+        const panel = {
+          sending: ["…", "Sending your brief…", "One moment."],
+          ok: ["✓", "Brief received.", `It landed in my inbox — I'll reply to <b>${answers.email}</b> within one business day.`],
+          error: ["!", "That didn't go through.", "Copy the brief below and email it to <b>chestercatapia08@gmail.com</b> and I'll pick it up from there."],
+        }[sent];
         html = `<div class="wizard__sent">
-          <div class="wizard__sent-icon">✓</div>
-          <h4>Brief on its way.</h4>
-          <p>Your email app should be open with everything pre-filled, so just hit send. If it didn't open, use the copy button below and email it to <b>hello@chester.studio</b>.</p>
+          <div class="wizard__sent-icon">${panel[0]}</div>
+          <h4>${panel[1]}</h4>
+          <p>${panel[2]}</p>
         </div>`;
       } else {
         const rows = [
@@ -1238,6 +1246,7 @@
     answers.email = document.getElementById("wzEmail").value.trim();
     answers.company = document.getElementById("wzCompany").value.trim();
     answers.notes = document.getElementById("wzNotes").value.trim();
+    answers.website = document.getElementById("wzWebsite").value;
   }
 
   function syncFooter() {
@@ -1253,9 +1262,9 @@
     const nextText = wizardNext.querySelector(".btn__text");
     const nextArrow = wizardNext.querySelector(".btn__arrow");
     if (sent) {
-      nextText.textContent = "Copy brief";
+      nextText.textContent = sent === "sending" ? "Sending…" : "Copy brief";
       nextArrow.textContent = "⧉";
-      wizardNext.disabled = false;
+      wizardNext.disabled = sent === "sending";
     } else if (step.review) {
       nextText.textContent = "Send brief";
       nextArrow.textContent = "→";
@@ -1295,12 +1304,20 @@
     ].join("\n");
   }
 
-  function submitWizard() {
-    const subject = `Project inquiry: ${answers.service || "New build"} · ${answers.name || ""}`;
-    const href = `mailto:hello@chester.studio?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(briefText())}`;
-    sent = true;
+  async function submitWizard() {
+    sent = "sending";
     renderStep(1);
-    window.location.href = href;
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ ...answers, brief: briefText() }),
+      });
+      sent = res.ok ? "ok" : "error";
+    } catch {
+      sent = "error";
+    }
+    renderStep(0);
   }
 
   function openWizard(preService) {
