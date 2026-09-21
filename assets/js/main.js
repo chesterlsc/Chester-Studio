@@ -1136,7 +1136,7 @@
       ],
     },
     { key: "details", q: "Tell me about you.", hint: "So I know who to reply to.", form: true },
-    { key: "review", q: "Your project brief.", hint: "Sending opens your email app with everything pre-filled.", review: true },
+    { key: "review", q: "Your project brief.", hint: "One tap and this lands straight in my inbox.", review: true },
   ];
 
   const wizard = document.getElementById("wizard");
