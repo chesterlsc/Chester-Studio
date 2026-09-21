@@ -2,5 +2,8 @@ name = "chester-studio-contact"
 main = "worker.js"
 compatibility_date = "2026-01-01"
 
-# Serves the endpoint the site posts to (assets/js/main.js → FORM_ENDPOINT).
-routes = [{ pattern = "api.chesterstudio.space", custom_domain = true }]
+# Served from <name>.<your-subdomain>.workers.dev — the site posts to this URL
+# (FORM_ENDPOINT in ../assets/js/main.js). To move it to api.chesterstudio.space
+# later, put the domain on Cloudflare DNS and swap this for:
+#   routes = [{ pattern = "api.chesterstudio.space", custom_domain = true }]
+workers_dev = true
