@@ -320,7 +320,22 @@
     p.slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   });
 
-  const DESKTOP_CAP = 9; // three flagships + two clean rows of 3
+  // Interleave: flagship, then a clean row of three, repeat. Stacking all three
+  // flagships first meant ~3,200px of case study before any sense of range.
+  (() => {
+    const flags = PROJECTS.filter((p) => p.flagship);
+    const rest = PROJECTS.filter((p) => !p.flagship);
+    const ordered = [];
+    flags.forEach((f) => {
+      ordered.push(f);
+      ordered.push(...rest.splice(0, 3));
+    });
+    ordered.push(...rest);
+    PROJECTS.length = 0;
+    PROJECTS.push(...ordered);
+  })();
+
+  const DESKTOP_CAP = 12; // flagship + row of 3, three times over
 
   /* ==========================================================
      RENDER: PROJECT GRID
@@ -379,15 +394,22 @@
         <div>
           <h3 class="project__name">${p.name}</h3>
           <p class="project__type">${p.type}<span class="fs__typeextra">${sp.typeExtra}</span></p>
+          <p class="project__proves">${p.proves}</p>
+          <p class="project__for"><span>For</span>${p.audience}</p>
         </div>
-        <span class="fs__cta">${sp.cta} <b>↗</b></span>
+        <span class="fs__actions">
+          <button type="button" class="fs__expand" aria-expanded="false">
+            <span class="fs__expand-text">Watch it run</span><b>↓</b>
+          </button>
+          <span class="fs__cta">${sp.cta} <b>↗</b></span>
+        </span>
       </div>`;
   };
 
   let flagshipSeq = 0;
   PROJECTS.forEach((p, i) => {
     const card = document.createElement("article");
-    card.className = p.flagship ? "project project--flagship" : "project";
+    card.className = p.flagship ? "project project--flagship is-peek" : "project";
     const seq = p.flagship ? String(++flagshipSeq).padStart(3, "0") : null;
     card.dataset.category = p.category;
     card.dataset.index = i;
@@ -409,13 +431,29 @@
         <span class="project__cat">${p.category}</span>
       </div>
       <div class="project__body">
-        <div>
-          <h3 class="project__name">${p.name}</h3>
-          <p class="project__type">${p.type}</p>
+        <div class="project__head">
+          <div>
+            <h3 class="project__name">${p.name}</h3>
+            <p class="project__type">${p.type}</p>
+          </div>
+          <span class="project__arrow" aria-hidden="true">↗</span>
         </div>
-        <span class="project__arrow" aria-hidden="true">↗</span>
+        <p class="project__proves">${p.proves}</p>
+        <p class="project__for"><span>For</span>${p.audience}</p>
       </div>`;
     card.addEventListener("click", () => openModal(i));
+
+    const expand = card.querySelector(".fs__expand");
+    if (expand) {
+      expand.addEventListener("click", (e) => {
+        e.stopPropagation(); // expanding is not opening the case file
+        const peeking = card.classList.toggle("is-peek");
+        expand.setAttribute("aria-expanded", String(!peeking));
+        expand.querySelector(".fs__expand-text").textContent = peeking ? "Watch it run" : "Collapse";
+        expand.querySelector("b").textContent = peeking ? "↓" : "↑";
+        if (peeking) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    }
     // tall screenshots slow-pan top→bottom on hover instead of cropping forever
     if (!p.flagship) {
       const im = card.querySelector("img");
