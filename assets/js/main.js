@@ -399,7 +399,7 @@
         </div>
         <span class="fs__actions">
           <button type="button" class="fs__expand" aria-expanded="false">
-            <span class="fs__expand-text">Watch it run</span><b>↓</b>
+            <span class="fs__expand-text">How it works</span><b>↓</b>
           </button>
           <span class="fs__cta">${sp.cta} <b>↗</b></span>
         </span>
@@ -449,7 +449,7 @@
         e.stopPropagation(); // expanding is not opening the case file
         const peeking = card.classList.toggle("is-peek");
         expand.setAttribute("aria-expanded", String(!peeking));
-        expand.querySelector(".fs__expand-text").textContent = peeking ? "Watch it run" : "Collapse";
+        expand.querySelector(".fs__expand-text").textContent = peeking ? "How it works" : "Collapse";
         expand.querySelector("b").textContent = peeking ? "↓" : "↑";
         if (peeking) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
       });

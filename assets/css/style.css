@@ -944,7 +944,9 @@ body.is-loaded .hero__scroll { opacity: 1; }
 @media (max-width: 700px) {
   /* two controls plus a proof line will not sit on one phone row */
   .project--flagship .project__body { flex-direction: column; align-items: stretch; }
-  .fs__actions { justify-content: space-between; }
+  /* two pills do not fit one 317px card row; let them stack rather than clip */
+  .fs__actions { flex-wrap: wrap; gap: 8px; }
+  .fs__actions > * { flex: 1 1 auto; justify-content: center; text-align: center; }
 }
 
 .fs__rail {
