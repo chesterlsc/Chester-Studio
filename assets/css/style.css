@@ -834,8 +834,26 @@ body.is-loaded .hero__scroll { opacity: 1; }
 }
 .project:hover .project__cat { transform: none; opacity: 1; }
 .project__body {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  display: flex; flex-direction: column; gap: 10px;
   padding: 18px 20px;
+}
+.project__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+/* the client-facing line: what this build proved, not what it was */
+.project__proves {
+  font-size: 0.9rem; line-height: 1.45; color: var(--text-2);
+  border-left: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  padding-left: 10px;
+}
+.project__for {
+  display: flex; align-items: baseline; gap: 7px;
+  font-size: 0.74rem; color: var(--text-3);
+}
+.project__for span {
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--accent) 75%, transparent);
+  flex: none;
 }
 .project__name { font-family: var(--font-display); font-weight: 600; font-size: 1.04rem; transition: color 0.3s; }
 .project--flagship .project__name { font-size: 1.3rem; }
@@ -896,6 +914,38 @@ body.is-loaded .hero__scroll { opacity: 1; }
 .project--flagship::after { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
 .project--flagship:hover::before,
 .project--flagship:hover::after { border-color: var(--accent); }
+
+/* ---------- flagship: peek by default, full treatment on request ---------- */
+.project--flagship .project__body { flex-direction: row; align-items: flex-end; }
+.fs__actions { display: flex; align-items: center; gap: 10px; flex: none; }
+.fs__expand {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 15px; border-radius: 999px; cursor: pointer;
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent; color: var(--text-2);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.fs__expand:hover {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border-color: var(--accent); color: var(--text);
+}
+.fs__expand b { font-size: 0.8rem; line-height: 1; }
+/* collapsed: one cinematic still, no strip, no steps, no chips */
+.project--flagship.is-peek .fs__stage { grid-template-columns: 1fr; }
+.project--flagship.is-peek .fs__feeds,
+.project--flagship.is-peek .fs__how,
+.project--flagship.is-peek .fs__telemetry { display: none; }
+.project--flagship.is-peek .fs__main { aspect-ratio: 21 / 9; }
+.project--flagship:not(.is-peek) .fs__how,
+.project--flagship:not(.is-peek) .fs__telemetry { animation: fsReveal 0.5s var(--ease-out) backwards; }
+@keyframes fsReveal { from { opacity: 0; transform: translateY(12px); } }
+@media (max-width: 700px) {
+  /* two controls plus a proof line will not sit on one phone row */
+  .project--flagship .project__body { flex-direction: column; align-items: stretch; }
+  .fs__actions { justify-content: space-between; }
+}
 
 .fs__rail {
   display: flex; align-items: center; gap: 18px;
