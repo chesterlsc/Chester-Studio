@@ -1041,12 +1041,13 @@
   // Same approach as the idea card: one rAF loop, DOM touched only when a state changes.
   const HOW_MS = 4000, HOW_BRIEF = "Booking site for my clinic. Patients get a reminder the day before.";
   const HOW = { el: null, s: -1, t0: 0, n: -1, built: -1, shown: -1, toast: null, manual: false, manualStep: 3 };
+  // the mock is laid out at 464px wide; rescale it whenever its frame changes width
+  const howRO = new ResizeObserver((ents) => ents.forEach((en) => {
+    if (en.contentRect.width) en.target.style.setProperty("--k", en.contentRect.width / 464);
+  }));
   function fitHow() {
-    const el = deckEl.querySelector("#qvHow");
-    if (!el) return;
-    const view = el.querySelector(".hw-view");
-    if (view.clientWidth) view.style.setProperty("--k", view.clientWidth / 464);
-    else requestAnimationFrame(fitHow); // still hidden: measure once it is on screen
+    const view = deckEl.querySelector("#qvHow .hw-view");
+    if (view) howRO.observe(view);
   }
   function tickHow() {
     const el = deckEl.querySelector("#qvHow");
@@ -1186,7 +1187,7 @@
   });
   addEventListener("resize", () => {
     if (!D.on) return;
-    if (deckMob() !== lastMob) { lastMob = deckMob(); renderDeck(); } else { scaleDeck(); fitHow(); }
+    if (deckMob() !== lastMob) { lastMob = deckMob(); renderDeck(); } else scaleDeck();
   }, { passive: true });
 
   // ?view=quick opens straight into the quick view
