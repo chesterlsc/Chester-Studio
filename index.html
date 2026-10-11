@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=11" />
+  <link rel="stylesheet" href="assets/css/style.css?v=15" />
 
   <script type="application/ld+json">
   {
@@ -96,6 +96,45 @@
   </script>
 </head>
 <body>
+  <!-- ==================== ENTRY :: pick your pace ====================
+       First visit only. Quick look opens the one-screen Control Deck,
+       Full site drops into the page below. ?view=quick|full skips it. -->
+  <div class="entry" id="entry" hidden>
+    <div class="entry__head" aria-hidden="true">
+      <span class="entry__brand"><b>Chester</b><small>STUDIO</small></span>
+      <span class="entry__ask">PICK YOUR PACE</span>
+    </div>
+    <button type="button" class="entry__door entry__door--quick" data-pick="deck" aria-label="Quick look, about 1 minute">
+      <span class="entry__in">
+        <span class="entry__pv entry__pv--deck" aria-hidden="true">
+          <span class="epv__bar"><i></i><s></s></span>
+          <span class="epv__grid">
+            <span class="epv__col"><i></i><i></i><i class="is-acc"></i><em class="epv__idea"></em><em class="epv__box"></em><em class="epv__btn"></em></span>
+            <span class="epv__col epv__col--work"><span class="epv__shot"><img src="public/projects/tapfour-dash-home.jpg" alt="" /></span><b class="is-on"></b><b></b><b></b><b></b></span>
+            <span class="epv__col epv__col--list"><b></b><b></b><b></b><b></b><b></b><u></u><u></u><u></u></span>
+          </span>
+          <span class="epv__ask"><i></i><i class="is-on"></i><i></i><i></i><i></i></span>
+        </span>
+        <span class="entry__label"><small>1 MIN</small><b>Quick look<em>→</em></b><span>One screen: the work, the services, a way to reach me.</span></span>
+      </span>
+    </button>
+    <span class="entry__div" aria-hidden="true"></span>
+    <button type="button" class="entry__door entry__door--full" data-pick="site" aria-label="Full site, about 5 minutes">
+      <span class="entry__in">
+        <span class="entry__pv entry__pv--page" aria-hidden="true">
+          <span class="epv__nav"><b></b><i></i><i></i><i></i></span>
+          <span class="epv__scroll">
+            <span class="epv__h"></span><span class="epv__h epv__h--acc"></span><span class="epv__p"></span>
+            <img src="public/projects/tapfour-site.jpg" alt="" /><img src="public/projects/aegis-leados.jpg" alt="" /><img src="public/projects/tapfour-dash-reports.jpg" alt="" /><img src="public/projects/trader-journal.jpg?v=2" alt="" /><img src="public/projects/Motorcycle Dealership.jpg" alt="" /><img src="public/projects/little-bookshop.jpg" alt="" /><img src="public/projects/Real Estate Automation-ai.jpg" alt="" /><img src="public/projects/Local Accounting Firm-accounting.jpg" alt="" />
+          </span>
+        </span>
+        <span class="entry__label"><small>5 MIN</small><b>Full site<em>→</em></b><span>Every product, how I build, and the whole system.</span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- ==================== CONTROL DECK :: the 1-minute view ==================== -->
+  <div class="deck" id="deck" data-theme="dark" role="dialog" aria-modal="true" aria-label="Chester Studio quick view" hidden></div>
 
   <!-- ==================== PRELOADER ==================== -->
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -138,6 +177,7 @@
         <li><a href="#system" class="nav__link" data-magnetic>System</a></li>
         <li><a href="#tools" class="nav__link" data-magnetic>Tools</a></li>
         <li><a href="#contact" class="nav__link" data-magnetic>Contact</a></li>
+        <li><button type="button" class="nav__link nav__quick" data-quick-view data-magnetic><i></i>Quick view</button></li>
       </ul>
       <button type="button" class="btn btn--primary nav__cta" data-wizard-open data-magnetic>
         <span class="btn__text">Start a project</span>
@@ -157,6 +197,7 @@
       <li style="--i:2"><a href="#system">System</a></li>
       <li style="--i:3"><a href="#tools">Tools</a></li>
       <li style="--i:4"><a href="#contact">Contact</a></li>
+      <li style="--i:5"><button type="button" data-quick-view>Quick view</button></li>
     </ul>
     <div class="mobile-menu__footer">
       <a href="mailto:chestercatapia08@gmail.com">chestercatapia08@gmail.com</a>
@@ -324,7 +365,7 @@
           <div class="ops__panel" id="opsPanel" role="tabpanel">
             <div class="ops__screen">
               <span class="ops__chrome" aria-hidden="true"><i></i><i></i><i></i><b id="opsUrl"></b></span>
-              <div class="ops__shot"><img id="opsImg" src="" alt="" /><span class="ops__scan" aria-hidden="true"></span></div>
+              <div class="ops__shot fit"><img id="opsImg" src="" alt="" /><span class="ops__scan" aria-hidden="true"></span></div>
               <span class="ops__timer" aria-hidden="true"><i id="opsTimer"></i></span>
             </div>
             <div class="ops__fix">
@@ -645,7 +686,7 @@
     <div class="modal__backdrop" id="modalBackdrop"></div>
     <div class="modal__panel" id="modalPanel">
       <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
-      <div class="modal__media">
+      <div class="modal__media fit">
         <img id="modalImg" src="" alt="" />
         <span class="modal__category" id="modalCategory"></span>
       </div>
@@ -687,6 +728,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=11"></script>
+  <script src="assets/js/main.js?v=15"></script>
 </body>
 </html>

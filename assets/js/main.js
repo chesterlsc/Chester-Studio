@@ -232,7 +232,7 @@
       poster: P + "tapfour-dash-home.jpg",
       cover: P + "tapfour.jpg",
       feeds: [
-        { label: "FEED 01", tag: "TAP.FILM", start: 4, pos: "30% 50%", poster: P + "tapfour.jpg", webm: P + "tapfour-feed-01.webm", mp4: P + "tapfour-feed-01.mp4" },
+        { label: "FEED 01", tag: "TAP.FILM", start: 4, poster: P + "tapfour.jpg", webm: P + "tapfour-feed-01.webm", mp4: P + "tapfour-feed-01.mp4" },
         { label: "FEED 02", tag: "DASHBOARD.TAP4.PH", poster: P + "tapfour-dash-home.jpg" },
         { label: "FEED 03", tag: "ADMIN.TAP4.PH", poster: P + "tapfour-admin-home.jpg" },
       ],
@@ -248,29 +248,29 @@
       heads: ["home", "board", "connect"],
       groups: [
         { label: "What customers see", feats: [
-          { id: "connect", t: "Tapfour Connect", b: "Tap for a Google review, scan for the menu. One glossy stand.", v: { type: "photo", src: P + "tapfour-connect-black-menu.jpg", y: 48 } },
-          { id: "finish", t: "Glossy Black or White", b: "Review, Review + QR menu, or Socials 4-in-1 designs.", v: { type: "photo", src: P + "tapfour-connect-white-review.jpg", y: 46 } },
-          { id: "bar", t: "4-Tap Bar", b: "Four tap zones, each straight to its own app.", v: { type: "photo", src: P + "tapfour-bar.jpg", y: 50 } },
-          { id: "links", t: "A 4-in-1 links page", b: "Review, menu and socials on one page in the shop’s colour.", v: { type: "shot", src: P + "tapfour-page-links.jpg", x: 50, y: 26, z: 1, tall: true } },
-          { id: "menu", t: "A live QR menu", b: "Sold-out items show the moment the owner marks them.", v: { type: "shot", src: P + "tapfour-page-menu.jpg", x: 50, y: 22, z: 1, tall: true } },
+          { id: "connect", t: "Tapfour Connect", b: "Tap for a Google review, scan for the menu. One glossy stand.", v: { type: "photo", src: P + "tapfour-connect-black-menu.jpg" } },
+          { id: "finish", t: "Glossy Black or White", b: "Review, Review + QR menu, or Socials 4-in-1 designs.", v: { type: "photo", src: P + "tapfour-connect-white-review.jpg" } },
+          { id: "bar", t: "4-Tap Bar", b: "Four tap zones, each straight to its own app.", v: { type: "photo", src: P + "tapfour-bar.jpg" } },
+          { id: "links", t: "A 4-in-1 links page", b: "Review, menu and socials on one page in the shop’s colour.", v: { type: "shot", src: P + "tapfour-page-links.jpg" } },
+          { id: "menu", t: "A live QR menu", b: "Sold-out items show the moment the owner marks them.", v: { type: "shot", src: P + "tapfour-page-menu.jpg" } },
         ] },
         { label: "The owner dashboard", feats: [
-          { id: "home", t: "Today, at a glance", b: "Taps, QR scans, reviews opened and menu views, live.", v: { type: "shot", src: P + "tapfour-dash-home.jpg", x: 57, y: 18, z: 1.7 } },
-          { id: "needs", t: "“Needs you” first", b: "Late bills and low stock sit beside the busiest hours.", v: { type: "shot", src: P + "tapfour-dash-home.jpg", x: 78, y: 40, z: 2 } },
-          { id: "dest", t: "Change where taps go", b: "Edit a link and every stand follows on the next tap.", v: { type: "shot", src: P + "tapfour-dash-links.jpg", x: 70, y: 40, z: 1.6 } },
-          { id: "menuedit", t: "Menu editor", b: "Change a price or mark it sold out. No reprint.", v: { type: "shot", src: P + "tapfour-dash-menu.jpg", x: 62, y: 70, z: 1.6 } },
-          { id: "billing", t: "Bills to pay", b: "Late, this week, unpaid. Paid ✓ books next month’s.", v: { type: "shot", src: P + "tapfour-dash-billing.jpg", x: 40, y: 34, z: 1.7 } },
-          { id: "stock", t: "Stock with low warnings", b: "Tap − and + as you use it. Low items reach Home.", v: { type: "shot", src: P + "tapfour-dash-stock.jpg", x: 40, y: 40, z: 1.7 } },
-          { id: "staff", t: "Who’s working", b: "Shifts by branch; status updates itself from the clock.", v: { type: "shot", src: P + "tapfour-dash-staff.jpg", x: 42, y: 40, z: 1.7 } },
-          { id: "branches", t: "Branches", b: "Taps per branch, up to 20 on the Empire plan.", v: { type: "shot", src: P + "tapfour-dash-branches.jpg", x: 60, y: 28, z: 1.6 } },
-          { id: "report", t: "Monthly report", b: "What people opened and when. Print or save as PDF.", v: { type: "shot", src: P + "tapfour-dash-reports.jpg", x: 58, y: 40, z: 1.45 } },
+          { id: "home", t: "Today, at a glance", b: "Taps, QR scans, reviews opened and menu views, live.", v: { type: "shot", src: P + "tapfour-dash-home.jpg" } },
+          { id: "needs", t: "“Needs you” first", b: "Late bills and low stock sit beside the busiest hours.", v: { type: "shot", src: P + "tapfour-dash-home.jpg" } },
+          { id: "dest", t: "Change where taps go", b: "Edit a link and every stand follows on the next tap.", v: { type: "shot", src: P + "tapfour-dash-links.jpg" } },
+          { id: "menuedit", t: "Menu editor", b: "Change a price or mark it sold out. No reprint.", v: { type: "shot", src: P + "tapfour-dash-menu.jpg" } },
+          { id: "billing", t: "Bills to pay", b: "Late, this week, unpaid. Paid ✓ books next month’s.", v: { type: "shot", src: P + "tapfour-dash-billing.jpg" } },
+          { id: "stock", t: "Stock with low warnings", b: "Tap − and + as you use it. Low items reach Home.", v: { type: "shot", src: P + "tapfour-dash-stock.jpg" } },
+          { id: "staff", t: "Who’s working", b: "Shifts by branch; status updates itself from the clock.", v: { type: "shot", src: P + "tapfour-dash-staff.jpg" } },
+          { id: "branches", t: "Branches", b: "Taps per branch, up to 20 on the Empire plan.", v: { type: "shot", src: P + "tapfour-dash-branches.jpg" } },
+          { id: "report", t: "Monthly report", b: "What people opened and when. Print or save as PDF.", v: { type: "shot", src: P + "tapfour-dash-reports.jpg" } },
         ] },
         { label: "The admin console", feats: [
-          { id: "overview", t: "Every tap, every stand", b: "All clients’ taps, scans and setup work on one screen.", v: { type: "shot", src: P + "tapfour-admin-home.jpg", x: 45, y: 40, z: 1.35 } },
-          { id: "clients", t: "Clients and plans", b: "Each business, its plan, its stands and its taps.", v: { type: "shot", src: P + "tapfour-admin-clients.jpg", x: 45, y: 62, z: 1.6 } },
-          { id: "board", t: "Stand setup board", b: "Write the chip, tap to test, quality check, go live.", v: { type: "shot", src: P + "tapfour-admin-board.jpg", x: 50, y: 74, z: 1.55 } },
-          { id: "device", t: "Device page + QR export", b: "Every stand’s links, with the QR as SVG or PNG.", v: { type: "shot", src: P + "tapfour-admin-device.jpg", x: 70, y: 66, z: 1.6 } },
-          { id: "history", t: "Who changed what", b: "Every link change, check and login, with who did it.", v: { type: "shot", src: P + "tapfour-admin-history.jpg", x: 40, y: 45, z: 1.5 } },
+          { id: "overview", t: "Every tap, every stand", b: "All clients’ taps, scans and setup work on one screen.", v: { type: "shot", src: P + "tapfour-admin-home.jpg" } },
+          { id: "clients", t: "Clients and plans", b: "Each business, its plan, its stands and its taps.", v: { type: "shot", src: P + "tapfour-admin-clients.jpg" } },
+          { id: "board", t: "Stand setup board", b: "Write the chip, tap to test, quality check, go live.", v: { type: "shot", src: P + "tapfour-admin-board.jpg" } },
+          { id: "device", t: "Device page + QR export", b: "Every stand’s links, with the QR as SVG or PNG.", v: { type: "shot", src: P + "tapfour-admin-device.jpg" } },
+          { id: "history", t: "Who changed what", b: "Every link change, check and login, with who did it.", v: { type: "shot", src: P + "tapfour-admin-history.jpg" } },
           { id: "edge", t: "Redirects at the edge", b: "Bot taps flagged; a double read within 10 s counts once.", v: { type: "flow", steps: ["Tap", "Edge 302", "Your page"] } },
         ] },
       ],
@@ -299,11 +299,11 @@
       heads: ["capture", "score", "drafted"],
       groups: [
         { label: "What the operator sees", feats: [
-          { id: "atlas", t: "Territorial atlas", b: "Watch the whole market light up on a live map.", v: { type: "shot", src: P + "aegis-leados-capture.jpg", x: 45, y: 50, z: 1.5 } },
+          { id: "atlas", t: "Territorial atlas", b: "Watch the whole market light up on a live map.", v: { type: "shot", src: P + "aegis-leados-capture.jpg" } },
           { id: "capture", t: "One order starts a run", b: "Type or say “10 med spas in New York” and it goes.", v: { type: "cmd", prompt: "▸", line: "capture 10 med spas in New York", out: ["SWEEPING", "12 FOUND", "10 TO QUALIFY"] } },
           { id: "score", t: "Lead scores 0–6, with receipts", b: "See why a lead is worth a call, not just a number.", v: { type: "score", n: 5, of: 6, ev: ["No online booking", "Form unanswered 9 days", "4.6★ · 167 reviews"] } },
           { id: "leak", t: "Revenue-leak diagnosis", b: "Know exactly where each business is losing customers.", v: { type: "rows", rows: [{ a: "Contact form never answered", b: "SEVERE", tone: "bad" }, { a: "No tap-to-call on mobile", b: "VISIBLE", tone: "warn" }, { a: "Booking hidden 3 clicks deep", b: "CLEAR", tone: "acc" }] } },
-          { id: "crm", t: "CRM pipeline with replies", b: "Every lead and every reply on one board.", v: { type: "shot", src: P + "aegis-leados-pipeline.jpg", x: 62, y: 30, z: 1.9 } },
+          { id: "crm", t: "CRM pipeline with replies", b: "Every lead and every reply on one board.", v: { type: "shot", src: P + "aegis-leados-pipeline.jpg" } },
         ] },
         { label: "The safety net", feats: [
           { id: "drafted", t: "Drafted, never auto-sent", b: "Nothing reaches a prospect until you’ve read it.", v: { type: "gate", steps: ["Drafted", "You review", "Send"], lock: 2 } },
@@ -344,9 +344,9 @@
           { id: "cmdbar", t: "One-line trade logging", b: "Type the trade; see the risk before you press Enter.", v: { type: "cmd", prompt: "›", line: "usdjpy long 148.10 sl 147.80 0.5 lots", out: ["RISK $100", "R:R 2.4", "ENTER ↵"] } },
           { id: "live", t: "Live prices on open trades", b: "Watch every open position move as it happens.", v: { type: "rows", rows: [{ a: "XAUUSD · long", b: "+0.21%", tone: "ok" }, { a: "USDJPY · long", b: "+$86", tone: "ok" }, { a: "BTCUSD · short", b: "−$24", tone: "bad" }] } },
           { id: "close", t: "One-tap close and journal", b: "Mood, grade, mistakes, a note: done in seconds.", v: { type: "chips", items: ["A+", "A", "B", "C", "D", "F"], hi: 1, sub: ["Calm", "Late entry", "Voice note"] } },
-          { id: "dash", t: "The desk at a glance", b: "P&L, streak, next event and risk state on one screen.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2", x: 0, y: 4, z: 2.1 } },
+          { id: "dash", t: "The desk at a glance", b: "P&L, streak, next event and risk state on one screen.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2" } },
           { id: "cal", t: "Green and red days", b: "Click any day to see the trades behind it.", v: { type: "cal", days: "..g.grr.g....rg.gr.r...g...gr.." } },
-          { id: "review", t: "Trade review with filters", b: "Find every Friday breakout loss in two clicks.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2", x: 62, y: 88, z: 2 } },
+          { id: "review", t: "Trade review with filters", b: "Find every Friday breakout loss in two clicks.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2" } },
         ] },
         { label: "Insight", feats: [
           { id: "session", t: "Session intelligence", b: "Your best hours to trade, labelled developing or reliable.", v: { type: "heat", vals: [1, 0, 2, 9, 6, 2, 1, 0, 3, 1, 0, 2, 4, 5, 3, 1, 0, 1, 2, 3, 1, 0, 0, 1], hi: 3, tag: "3–4 AM · DEVELOPING · n=3" } },
@@ -366,7 +366,7 @@
       id: "bookshop", name: "Miniature Bookshop", kind: "Custom ecommerce storefront", label: "CLIENT BUILD",
       accent: "#ffab98", railId: "BOOKSHOP//STORE", service: "Website",
       logo: { img: "public/logos/bookshop-icon.png" },
-      oneLine: "Miniature bookshelves and tiny books sold in sets of six, with storybook charm on the surface and a strict money path underneath.",
+      oneLine: "Miniature bookshelves and tiny books sold in sets of six. Storybook charm on the surface; underneath, a strict money path: every cart repriced on the server, branded order and gift card emails sent exactly once, and a shop that runs from its inbox.",
       short: "Build a tiny shelf of six books, pay by GCash. Charm on top, a strict money path below.",
       poster: P + "little-bookshop.jpg",
       feeds: [
@@ -381,25 +381,30 @@
         { t: "Into the basket", d: "One bundle, six titles. The basket persists; the browser never sets a price." },
         { t: "Pay by transfer", d: "GCash or MariBank with one-tap copy and an order number to quote." },
       ],
-      proof: ["EVERY CART REPRICED SERVER-SIDE", "ORDER EMAILS SENT EXACTLY ONCE", "36-CHECK PLAYWRIGHT SMOKE"],
+      proof: ["EVERY CART REPRICED SERVER-SIDE", "BRANDED EMAILS, SENT EXACTLY ONCE", "92-CHECK PLAYWRIGHT SMOKE"],
       stack: "Next.js 16 · Tailwind 4 · Postgres on Neon",
-      heads: ["six", "transfer", "reprice"],
+      heads: ["six", "giftmail", "mailpay"],
       groups: [
         { label: "What shoppers see", feats: [
           { id: "builder", t: "Shelf builder", b: "Classic, Arched or Scalloped; two sizes; nine colours.", v: { type: "swatches", colors: ["#f2a593", "#efece6", "#5b4134", "#b9a3db", "#a9c79e", "#c9a46e", "#f0d77a", "#2c3e70", "#3a3a3e"], labels: ["Classic", "Arched", "Scalloped"], hi: 2 } },
           { id: "six", t: "Six titles, spine by spine", b: "Type a title and watch the little shelf fill.", v: { type: "shelf", n: 5, typing: "The Secret Garden" } },
-          { id: "dress", t: "Dress the shelf", b: "Plant, ladder, letters, theme, note. Progress saves itself.", v: { type: "chips", items: ["Plant", "Ladder", "Letters", "Theme", "Note"], hi: 0, sub: ["AUTOSAVED"] } },
           { id: "basket", t: "A basket that remembers", b: "Come back tomorrow; the shelf is still waiting.", v: { type: "rows", rows: [{ a: "Scalloped shelf · Sage", b: "₱645", tone: "mute" }, { a: "Six little books", b: "₱519", tone: "mute" }, { a: "Bundle", b: "₱1,164", tone: "acc" }] } },
-          { id: "gift", t: "Gift cards, balance check", b: "Give a shelf; check what’s left in one tap.", v: { type: "kpi", n: "₱500", sub: "GIFT CARD BALANCE", tone: "acc" } },
+          { id: "mailpay", t: "An order email that says how to pay", b: "Order number, the tiny things, the exact total and where to send it.", v: { type: "shot", src: P + "bookshop-mail-shopper-how-to-pay.jpg", full: P + "bookshop-mail-shopper-how-to-pay-full.jpg", phone: P + "bookshop-mail-shopper-how-to-pay-phone.jpg" } },
+          { id: "giftmail", t: "A gift card worth opening", b: "The friend gets an illustrated card, the code and how to use it.", v: { type: "shot", src: P + "bookshop-mail-gift-friend.jpg", full: P + "bookshop-mail-gift-friend-full.jpg", phone: P + "bookshop-mail-gift-friend-phone.jpg" } },
+          { id: "promo", t: "A promo email that sells", b: "10.10: ₱100 off and free shipping, with the code already in the link.", v: { type: "shot", src: P + "bookshop-mail-promo.jpg", full: P + "bookshop-mail-promo-full.jpg", phone: P + "bookshop-mail-promo-phone.jpg" } },
         ] },
-        { label: "How the shop gets paid", feats: [
-          { id: "transfer", t: "GCash or MariBank transfer", b: "Paid the way the shop already sells. No gateway fees, no cards.", v: { type: "shot", src: P + "little-bookshop-money.jpg", x: 50, y: 66, z: 1.9 } },
-          { id: "order", t: "An order number to quote", b: "Shoppers quote it on Instagram; the shop confirms by hand.", v: { type: "kpi", n: "#LB-2048", sub: "QUOTE THIS ON INSTAGRAM", tone: "acc" } },
+        { label: "What the shop gets", feats: [
+          { id: "transfer", t: "Paid by GCash or MariBank", b: "Paid the way the shop already sells. No gateway fees, no cards.", v: { type: "shot", src: P + "little-bookshop-money.jpg" } },
+          { id: "mailshop", t: "A new-order alert in the inbox", b: "Customer, address, items and the total to expect, the moment it lands.", v: { type: "shot", src: P + "bookshop-mail-shop-new-order.jpg", full: P + "bookshop-mail-shop-new-order-full.jpg", phone: P + "bookshop-mail-shop-new-order-phone.jpg" } },
+          { id: "mailproof", t: "Payment screenshots, straight to the shop", b: "The shopper uploads the transfer; the shop gets it attached to the order.", v: { type: "shot", src: P + "bookshop-mail-shop-payment-proof.jpg", full: P + "bookshop-mail-shop-payment-proof-full.jpg", phone: P + "bookshop-mail-shop-payment-proof-phone.jpg" } },
+          { id: "digest", t: "New readers, 25 at a time", b: "One tidy digest of sign-ups and where they found the shop.", v: { type: "shot", src: P + "bookshop-mail-subscriber-digest.jpg", full: P + "bookshop-mail-subscriber-digest-full.jpg" } },
+          { id: "cli", t: "The shop runs from one command", b: "Orders, shipping, subscribers and promos from the owner’s terminal.", v: { type: "term", lines: ["npm run shop orders", "npm run shop ship LB1812 …", "npm run shop promo send"], plain: true } },
         ] },
         { label: "Under the hood", feats: [
           { id: "reprice", t: "Every cart repriced on the server", b: "The browser never decides a price.", v: { type: "flow", steps: ["Basket", "Server reprice", "₱1,164"] } },
-          { id: "emails", t: "Order emails sent exactly once", b: "No double emails, no missing ones.", v: { type: "rows", rows: [{ a: "To the shopper", b: "SENT ×1", tone: "ok" }, { a: "To the shop", b: "SENT ×1", tone: "ok" }] } },
-          { id: "smoke", t: "36-check purchase test", b: "The money path is tested before every release.", v: { type: "term", lines: ["build a shelf", "basket persists", "server reprice"], total: "36 / 36 passing" } },
+          { id: "emails", t: "Order emails sent exactly once", b: "Each order claims its send; a failed send gives the claim back.", v: { type: "rows", rows: [{ a: "To the shopper", b: "SENT ×1", tone: "ok" }, { a: "To the shop", b: "SENT ×1", tone: "ok" }, { a: "Send failed", b: "CLAIM RELEASED", tone: "warn" }] } },
+          { id: "status", t: "An order that knows where it is", b: "Awaiting payment, submitted, confirmed, preparing, shipped, completed.", v: { type: "flow", steps: ["Awaiting", "Paid", "Shipped"] } },
+          { id: "smoke", t: "92-check purchase test", b: "Playwright walks the whole money path on a phone-sized screen.", v: { type: "term", lines: ["build a shelf", "basket persists", "server reprice", "emails sent ×1"], total: "92 checks" } },
           { id: "stackb", t: "A stack it won’t outgrow", b: "Next.js 16, Tailwind 4 and Postgres on Neon.", v: { type: "chips", items: ["NEXT.JS 16", "TAILWIND 4", "NEON POSTGRES"], hi: -1 } },
         ] },
       ],
@@ -413,6 +418,11 @@
      builds open over it.
      ========================================================== */
   const isPhone = () => innerWidth < 1000;
+  // every screenshot is shown whole: contained, over a blurred copy of itself
+  // url() in a custom property resolves against the stylesheet, so hand it absolute URLs
+  const bgUrl = (u) => `url('${new URL(u, document.baseURI).href}')`;
+  const fit = (src, alt = "") => `<span class="fit" style="--src:${bgUrl(src)}"><img src="${src}" alt="${alt}" loading="lazy" /></span>`;
+
   const WHO = ["CUSTOMER", "OWNER", "BEHIND IT"];
   const VERBS = ["TAPS INTO", "REPORTS TO", "RUNS ON"];
   WORK.forEach((p) => {
@@ -423,15 +433,14 @@
   // ---- feature visuals: one small, honest picture per feature
   const TONE = { ok: "#34d399", bad: "#f87171", warn: "#e9b44c", mute: "#9ba0ab" };
   const tone = (t) => (t === "acc" ? "var(--acc)" : TONE[t] || "#9ba0ab");
-  const viz = (v, big) => {
+  // big: the opened-up view; long: a tall slot (phone card), where a full email reads better than a crop
+  const viz = (v, big, long) => {
     const t = v.type;
     const st = (i) => `style="--i:${i}"`;
     let h = "";
     if (t === "shot" || t === "photo") {
-      const fit = big ? "contain" : "cover";
-      const pos = big ? "50% 50%" : `${v.x ?? 50}% ${v.y ?? 50}%`;
-      const z = big ? 1 : v.z || 1;
-      h = `<img src="${v.src}" alt="" loading="lazy" style="object-fit:${fit};object-position:${pos};--z:${z};transform-origin:${pos}" />`;
+      const tall = big ? v.full : long ? v.phone || v.full : null;
+      h = tall ? `<span class="vz-scroll"><img src="${tall}" alt="" loading="lazy" /><em>SCROLL TO READ ↓</em></span>` : fit(v.src);
     } else if (t === "cmd") {
       h = `<div class="vz-cmd"><div class="vz-cmd__bar"><b>${v.prompt}</b><span class="vz-cmd__line" style="--n:${v.line.length}">${v.line}</span><i></i></div>
         <div class="vz-cmd__out">${v.out.map((o, i) => `<span ${st(i)}>${o}</span>`).join("")}</div></div>`;
@@ -491,7 +500,7 @@
   wall.innerHTML = WORK.map((p, i) => `
     <article class="wtile" role="listitem" style="--acc:${p.accent}">
       <button type="button" class="wtile__btn" data-open="${i}" aria-label="Open ${p.name}: ${p.kind}">
-        <span class="wtile__media"><img src="${p.poster}" alt="" loading="lazy" /></span>
+        <span class="wtile__media">${fit(p.poster)}</span>
         <span class="wtile__shade" aria-hidden="true"></span>
         <span class="wtile__corner" aria-hidden="true"></span>
         <span class="wtile__rail" aria-hidden="true">
@@ -511,7 +520,7 @@
     </article>`).join("") + `
     <button type="button" class="wmore" id="wmore" aria-label="Open the index of ${PROJECTS.length} more builds">
       <span class="wmore__title"><b>+${PROJECTS.length} more builds</b><small>SITES · AI SYSTEMS · PRODUCTS</small></span>
-      <span class="wmore__strip" aria-hidden="true">${PROJECTS.map((b) => `<img src="${b.image}" alt="" loading="lazy" />`).join("")}</span>
+      <span class="wmore__strip" aria-hidden="true">${PROJECTS.map((b) => fit(b.image)).join("")}</span>
       <span class="wmore__arrow" aria-hidden="true">↗</span>
     </button>`;
   armViz(wall);
@@ -564,12 +573,12 @@
   const hubMedia = (p) => {
     const f = p.feeds[S.feed];
     return f.mp4
-      ? `<video class="fm-hub__video" muted playsinline loop preload="metadata" poster="${f.poster}"${f.pos ? ` style="object-position:${f.pos}"` : ""} aria-label="${p.name} screen capture">${sources(f)}</video>`
-      : `<img src="${f.poster}" alt="${p.name}, ${f.tag.toLowerCase()}" />`;
+      ? `<span class="fit" style="--src:${bgUrl(f.poster)}"><video class="fm-hub__video" muted playsinline loop preload="metadata" poster="${f.poster}" aria-label="${p.name} screen capture">${sources(f)}</video></span>`
+      : fit(f.poster, `${p.name}, ${f.tag.toLowerCase()}`);
   };
   const feedsHTML = (p) => `<div class="fm-feeds" role="tablist" aria-label="${p.name} footage">${p.feeds.map((f, i) => `
       <button type="button" role="tab" aria-selected="${i === S.feed}" class="fm-feed${i === S.feed ? " is-on" : ""}" data-feed="${i}">
-        <img src="${f.poster}" alt="" loading="lazy" /><span>${f.label}</span>
+        ${fit(f.poster)}<span>${f.label}</span>
       </button>`).join("")}</div>`;
 
   const deckOf = (p) => {
@@ -597,7 +606,7 @@
     let body;
     if (!isPhone()) {
       const group = (g, gi) => `
-        <section class="fm-col" style="--n:${Math.max(g.feats.length, 3)}">
+        <section class="fm-col" style="--n:${g.feats.length}">
           <header><p>0${gi + 1} · ${WHO[gi]}</p><h4>${g.label}</h4></header>
           <div class="fm-nodes">${g.feats.map((f, k) => `
             <button type="button" class="fm-node${S.node === f.id ? " is-sel" : ""}" data-node="${f.id}" style="--k:${k}" aria-pressed="${S.node === f.id}">
@@ -615,6 +624,7 @@
             ${feedsHTML(p)}
             <p class="fm-hub__line">${p.oneLine}</p>
             <div class="fm-chips">${p.proof.map((c, i) => `<span style="--i:${i}">${c}</span>`).join("")}</div>
+            <ol class="fm-how" aria-label="How ${p.name} works">${p.how.map((h, k) => `<li style="--k:${k}"><b>0${k + 1}</b><span><strong>${h.t}.</strong> ${h.d}</span></li>`).join("")}</ol>
           </section>
           ${wire(1)}${group(p.groups[1], 1)}${wire(2)}${group(p.groups[2], 2)}
         </div>`;
@@ -629,7 +639,7 @@
             <button type="button" role="tab" aria-selected="${c.stage === si}" class="${c.stage === si ? "is-on" : ""}" data-stage="${si}"><small>${si ? p.groups[si - 1].feats.length + " FEATURES" : "OVERVIEW"}</small>${t}</button>`).join("")}
           </div>
           <div class="fm-card" role="group" aria-roledescription="card" aria-label="${c.t}, card ${S.card + 1} of ${deck.length}">
-            <div class="fm-card__media">${c.hub ? hubMedia(p) : viz(c.f.v)}</div>
+            <div class="fm-card__media">${c.hub ? hubMedia(p) : viz(c.f.v, false, true)}</div>
             ${c.hub ? feedsHTML(p) : ""}
             <div class="fm-card__txt"><p>${c.kick}</p><h3>${c.t}</h3><span>${c.b}</span></div>
           </div>
@@ -752,7 +762,7 @@
     casefile.style.setProperty("--acc", p.accent);
     casefile.innerHTML = `
       <div class="cf-panel" role="document">
-        <div class="cf-media"><img src="${p.cover || p.poster}" alt="${p.name}" /><span class="cf-corner" aria-hidden="true"></span></div>
+        <div class="cf-media">${fit(p.cover || p.poster, p.name)}<span class="cf-corner" aria-hidden="true"></span></div>
         <div class="cf-body">
           <p class="cf-rail"><i></i>${p.railId} · CASE FILE<span>${p.label}</span></p>
           <div class="cf-head">${logoHTML(p)}<div><h3>${p.name}</h3><p>${p.kind} · ${p.stack}</p></div></div>
@@ -786,7 +796,7 @@
     </div>
     <div class="mi-grid">${PROJECTS.map((b, i) => `
       <button type="button" class="mi-card" data-build="${i}" style="--acc:${b.accent}" aria-label="${b.name}, ${b.type}">
-        <span class="mi-card__img"><img src="${b.image}" alt="" loading="lazy" /></span>
+        <span class="mi-card__img">${fit(b.image)}</span>
         <span class="mi-card__cap"><b><i></i>${b.name}</b><small>${b.type}</small></span>
       </button>`).join("")}
     </div>`;
@@ -802,7 +812,7 @@
   // ---- keys: 1–4 open, ← → step, Esc backs out one layer
   addEventListener("keydown", (e) => {
     if (document.getElementById("wizard").classList.contains("is-open") || modal.classList.contains("is-open")) return;
-    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey || D.on) return;
     if (e.key === "Escape") {
       if (!casefile.hidden) closeCase();
       else if (!moreidx.hidden) closeMore();
@@ -827,12 +837,12 @@
      WHAT I BUILD :: friction → fix, shown on real product screens
      ========================================================== */
   const OPS = [
-    { q: "Bills and supplier dues live in a notebook.", kind: "INTERNAL TOOL", t: "A bills tracker that never forgets", b: "Late, due this week, unpaid. Tick Paid and next month’s bill books itself, and anything late waits for you on the home screen.", img: "tapfour-dash-billing.jpg", pos: "30% 20%", url: "dashboard.tap4.ph/billing", p: 0, node: "billing" },
-    { q: "We find out stock is gone when a customer asks.", kind: "DASHBOARD", t: "Stock that warns you first", b: "Tap − and + as you use it. Anything running low is flagged before the shift that needs it.", img: "tapfour-dash-stock.jpg", pos: "30% 22%", url: "dashboard.tap4.ph/inventory", p: 0, node: "stock" },
-    { q: "Leads come in, then nobody follows up.", kind: "AI AUTOMATION", t: "Leads captured, scored and drafted", b: "One order finds the businesses, scores each one 0–6 with the evidence, and drafts the outreach. A person approves every send.", img: "aegis-leados-pipeline.jpg", pos: "50% 30%", url: "aegisleados · ops.pipeline", p: 1, node: "crm" },
-    { q: "I can’t tell which branch is doing well.", kind: "DASHBOARD", t: "Every branch on one screen", b: "Taps, reviews and visits per branch, the busiest hours, and a monthly report that saves as a PDF.", img: "tapfour-dash-reports.jpg", pos: "40% 25%", url: "dashboard.tap4.ph/reports", p: 0, node: "report" },
-    { q: "My numbers live in five spreadsheets.", kind: "CUSTOM SOFTWARE", t: "One place your numbers add up", b: "Log it in one line and every chart, calendar and report updates itself. No copying between tabs.", img: "trader-journal.jpg?v=2", pos: "50% 0%", url: "trader journal · desk", p: 2, node: "dash" },
-    { q: "Our website looks fine but doesn’t sell.", kind: "WEBSITE", t: "A site built around how people buy", b: "A storefront shaped to the product, with a checkout that can’t get the price wrong and emails that go out exactly once.", img: "little-bookshop.jpg", pos: "50% 20%", url: "Miniature Bookshop · store", p: 3, node: "transfer" },
+    { q: "Bills and supplier dues live in a notebook.", kind: "INTERNAL TOOL", t: "A bills tracker that never forgets", b: "Late, due this week, unpaid. Tick Paid and next month’s bill books itself, and anything late waits for you on the home screen.", img: "tapfour-dash-billing.jpg", url: "dashboard.tap4.ph/billing", p: 0, node: "billing" },
+    { q: "We find out stock is gone when a customer asks.", kind: "DASHBOARD", t: "Stock that warns you first", b: "Tap − and + as you use it. Anything running low is flagged before the shift that needs it.", img: "tapfour-dash-stock.jpg", url: "dashboard.tap4.ph/inventory", p: 0, node: "stock" },
+    { q: "Leads come in, then nobody follows up.", kind: "AI AUTOMATION", t: "Leads captured, scored and drafted", b: "One order finds the businesses, scores each one 0–6 with the evidence, and drafts the outreach. A person approves every send.", img: "aegis-leados-pipeline.jpg", url: "aegisleados · ops.pipeline", p: 1, node: "crm" },
+    { q: "I can’t tell which branch is doing well.", kind: "DASHBOARD", t: "Every branch on one screen", b: "Taps, reviews and visits per branch, the busiest hours, and a monthly report that saves as a PDF.", img: "tapfour-dash-reports.jpg", url: "dashboard.tap4.ph/reports", p: 0, node: "report" },
+    { q: "My numbers live in five spreadsheets.", kind: "CUSTOM SOFTWARE", t: "One place your numbers add up", b: "Log it in one line and every chart, calendar and report updates itself. No copying between tabs.", img: "trader-journal.jpg?v=2", url: "trader journal · desk", p: 2, node: "dash" },
+    { q: "Our website looks fine but doesn’t sell.", kind: "WEBSITE", t: "A site built around how people buy", b: "A storefront shaped to the product, with a checkout that can’t get the price wrong and emails that go out exactly once.", img: "little-bookshop.jpg", url: "Miniature Bookshop · store", p: 3, node: "transfer" },
   ];
   const opsEl = document.getElementById("ops");
   if (opsEl) {
@@ -854,9 +864,8 @@
       panel.style.setProperty("--acc", p.accent);
       panel.classList.remove("is-swap"); void panel.offsetWidth; panel.classList.add("is-swap");
       $("opsImg").src = P + o.img;
+      $("opsImg").parentElement.style.setProperty("--src", bgUrl(P + o.img));
       $("opsImg").alt = `${p.name}: ${o.t}`;
-      $("opsImg").style.objectPosition = o.pos;
-      $("opsImg").style.setProperty("--o", o.pos);
       $("opsUrl").textContent = o.url;
       $("opsKind").textContent = o.kind;
       $("opsTitle").textContent = o.t;
@@ -883,6 +892,233 @@
     new IntersectionObserver(([en]) => { inView = en.isIntersecting; tick(); }, { threshold: 0.35 }).observe(opsEl);
     show(0);
   }
+
+  /* ==========================================================
+     QUICK VIEW :: the whole studio on one calm screen ("The Brief")
+     Desktop is laid out at 1280×800 and scaled to fit the window,
+     so nothing is ever cut; phones get a single scrolling column.
+     ========================================================== */
+  const QV_POSTER = { tapfour: "tapfour-dash-home.jpg", bookshop: "little-bookshop-catalog.jpg" };
+  const QV_BUILD = [
+    ["Websites", "Sell and take bookings online", "Website"],
+    ["Custom software", "Apps made for your business", "Digital Product"],
+    ["Dashboards", "Your numbers, live", "Business System"],
+    ["Internal tools", "Run your team in one place", "Business System"],
+    ["Automation & AI", "Repeat work, done for you", "AI Automation"],
+  ];
+  const QV_STEPS = [["Brief", "You tell me what you need."], ["Plan", "I send back the plan."], ["Build", "You see it come together."], ["Launch", "It goes live. I look after it."]];
+  const QV_ASK = [
+    ["What can you build?", "Websites, custom software, dashboards, internal tools and automations."],
+    ["Done this before?", "19+ systems shipped. Four are live products you can click through right now."],
+    ["How does it work?", "Four steps: you send a short brief, I come back with a plan, I build it, then I keep it running."],
+    ["Cost and timing?", "Send a short brief and you get the scope, the price and a date back. Nothing starts until you agree."],
+    ["After launch?", "I stay on it: fixes, updates and new features as the business grows."],
+  ];
+  const QV_IDEAS = [
+    ["WEBSITE + PAYMENTS", "A website that takes payment, emails the customer a receipt and alerts me the moment it lands.", "Website"],
+    ["BOOKINGS", "A booking page that sends reminders, so clients stop missing appointments.", "Website"],
+    ["DASHBOARD", "One screen with sales from all three branches, updated live.", "Business System"],
+    ["AUTOMATION", "Every enquiry saved as a lead and followed up automatically.", "AI Automation"],
+    ["INTERNAL TOOL", "A stock tracker that warns me before anything runs out.", "Business System"],
+    ["WEBSITE", "An online menu I can update from my phone in seconds.", "Website"],
+    ["STAFF PORTAL", "One place for schedules, leave requests and payslips.", "Business System"],
+    ["REPORTING", "A weekly report that writes itself and lands in my inbox every Monday.", "AI Automation"],
+  ];
+  const IDEA_MS = 10000, TYPE_MS = 2400;
+
+  const deckEl = document.getElementById("deck");
+  const D = { p: 0, q: 0, brief: "", briefSvc: undefined, on: false, t0: 0, idea: -1 };
+  const deckMob = () => innerWidth < 760 || innerWidth < innerHeight * 0.8;
+  const kick = (n, t) => `<p class="qv-kick"><b>${n}</b><i></i>${t}</p>`;
+
+  function renderDeck() {
+    const cur = WORK[D.p];
+    deckEl.innerHTML = `
+      <div class="qv-stage">
+        <header class="qv-head">
+          <span class="qv-brand"><b>Chester</b><small>STUDIO</small></span>
+          <a class="qv-mail" href="mailto:chestercatapia08@gmail.com">chestercatapia08@gmail.com</a>
+          <button type="button" class="qv-full" data-qv="site">FULL SITE <span>→</span></button>
+        </header>
+        <div class="qv-cols">
+          <section class="qv-col qv-profile">
+            ${kick("01", "PROFILE")}
+            <h1>I build the systems <span>your business runs on.</span></h1>
+            <p class="qv-lead">Websites, software, dashboards and automations. Designed, built and looked after.</p>
+            <div class="qv-idea" role="button" tabindex="0" data-qv="nextidea" aria-label="Show another idea">
+              <div class="qv-idea__top"><span class="qv-idea__tag"></span><span class="qv-idea__num"></span><button type="button" class="qv-idea__use" data-qv="useidea">Use this →</button></div>
+              <p class="qv-idea__txt" aria-live="polite">“<span></span><i></i>”</p>
+              <span class="qv-idea__bar"></span>
+            </div>
+            <div class="qv-brief">
+              <textarea id="qvBrief" rows="3" aria-label="What do you need built?" placeholder="What do you need built?">${D.brief.replace(/</g, "&lt;")}</textarea>
+              <div class="qv-brief__go"><button type="button" class="qv-send" data-qv="send">Send brief →</button><a class="qv-direct" href="mailto:chestercatapia08@gmail.com">or email directly</a></div>
+            </div>
+          </section>
+          <section class="qv-col qv-work">
+            ${kick("02", "SELECTED WORK")}
+            <button type="button" class="qv-shot" data-qv="openp" aria-label="Open ${cur.name} on the full site">${fit(QV_POSTER[cur.id] ? P + QV_POSTER[cur.id] : cur.poster, cur.name)}<span class="qv-shot__hint">Open ${cur.name} ↗</span></button>
+            <div class="qv-list">${WORK.map((x, i) => `
+              <button type="button" class="qv-row${i === D.p ? " is-on" : ""}" data-qv-p="${i}" aria-pressed="${i === D.p}">
+                <small>0${i + 1}</small>
+                <span><b>${x.name}</b><em>${x.kind}</em></span>
+                <small class="qv-row__cat">${x.service.toUpperCase()}</small>
+                <i>→</i>
+              </button>`).join("")}
+            </div>
+            <button type="button" class="qv-more" data-qv="more">+${PROJECTS.length} more builds on the full site →</button>
+          </section>
+          <section class="qv-col qv-side">
+            ${kick("03", "WHAT I BUILD")}
+            <div class="qv-build">${QV_BUILD.map(([t, o], i) => `
+              <button type="button" data-qv-b="${i}"><span><b>${t}</b><em>${o}</em></span><i>→</i></button>`).join("")}
+            </div>
+            ${kick("04", "HOW IT WORKS")}
+            <ol class="qv-steps">${QV_STEPS.map(([t, d]) => `<li><i></i><span><b>${t}</b><em>${d}</em></span></li>`).join("")}</ol>
+          </section>
+        </div>
+        <div class="qv-ask">
+          ${kick("05", "CLIENTS ASK")}
+          <div class="qv-chips" role="tablist" aria-label="Questions clients ask">${QV_ASK.map(([s], i) => `<button type="button" role="tab" aria-selected="${i === D.q}" class="${i === D.q ? "is-on" : ""}" data-qv-q="${i}">${s}</button>`).join("")}</div>
+          <p class="qv-answer" aria-live="polite">${QV_ASK[D.q][1]}</p>
+        </div>
+      </div>`;
+    deckEl.classList.toggle("is-mob", deckMob());
+    D.idea = -1;
+    tickIdea();
+    scaleDeck();
+  }
+
+  // desktop: a 1280×800 page, scaled to fit and centred; phones scroll instead
+  function scaleDeck() {
+    const st = deckEl.querySelector(".qv-stage");
+    if (!st) return;
+    if (deckMob()) { st.style.transform = ""; return; }
+    const k = Math.min(innerWidth / 1280, innerHeight / 800);
+    st.style.transform = `translate(${(innerWidth - 1280 * k) / 2}px, ${(innerHeight - 800 * k) / 2}px) scale(${k})`;
+  }
+
+  // the idea card types itself out, holds, then moves on
+  function tickIdea() {
+    if (!D.on) return;
+    const el = deckEl.querySelector(".qv-idea");
+    if (!el) return;
+    const it = performance.now() - D.t0;
+    const i = Math.floor(it / IDEA_MS) % QV_IDEAS.length, t = it % IDEA_MS;
+    const [tag, full] = QV_IDEAS[i];
+    const n = prefersReducedMotion ? full.length : Math.min(full.length, Math.floor((t / TYPE_MS) * full.length));
+    if (i !== D.idea) {
+      D.idea = i;
+      el.querySelector(".qv-idea__tag").textContent = tag;
+      el.querySelector(".qv-idea__num").textContent = `0${i + 1} / 0${QV_IDEAS.length}`;
+    }
+    el.querySelector(".qv-idea__txt span").textContent = full.slice(0, n);
+    el.classList.toggle("is-typing", n < full.length);
+    el.classList.toggle("is-out", !prefersReducedMotion && t > IDEA_MS - 600);
+    el.style.setProperty("--pct", (t / IDEA_MS) * 100 + "%");
+  }
+  setInterval(tickIdea, 60);
+
+  // ---- switching between the quick view and the full site
+  let lastMob = deckMob();
+  function showDeck() {
+    if (D.on) return;
+    D.on = true;
+    D.t0 = performance.now();
+    lastMob = deckMob();
+    renderDeck();
+    deckEl.hidden = false;
+    deckEl.scrollTop = 0;
+    lock(true);
+    requestAnimationFrame(() => requestAnimationFrame(() => deckEl.classList.add("is-on")));
+    try { sessionStorage.setItem("cs-view", "deck"); } catch (e) {}
+  }
+  function showSite(then) {
+    try { sessionStorage.setItem("cs-view", "site"); } catch (e) {}
+    if (!D.on) return;
+    D.on = false;
+    deckEl.classList.remove("is-on");
+    lock(false);
+    if (then) then();
+    setTimeout(() => { if (!D.on) { deckEl.hidden = true; deckEl.innerHTML = ""; } }, prefersReducedMotion ? 0 : 520);
+  }
+  // land on the wall first, so the tile grows from where it really is
+  const seeTile = (i) => { wall.scrollIntoView({ block: "center", behavior: "instant" }); openTile(i); };
+  document.querySelectorAll("[data-quick-view]").forEach((b) => b.addEventListener("click", showDeck));
+
+  deckEl.addEventListener("input", (e) => { if (e.target.id === "qvBrief") { D.brief = e.target.value; D.briefSvc = undefined; } });
+  deckEl.addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches(".qv-idea")) { e.preventDefault(); e.target.click(); }
+  });
+  deckEl.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-qv],[data-qv-p],[data-qv-q],[data-qv-b]");
+    if (!t || !deckEl.contains(t)) return;
+    const ds = t.dataset;
+    if (ds.qvP) {
+      const i = +ds.qvP;
+      if (i === D.p) { showSite(() => seeTile(i)); return; } // second tap on the open row: see it in full
+      D.p = i;
+    } else if (ds.qvQ) {
+      D.q = +ds.qvQ;
+      deckEl.querySelectorAll(".qv-chips button").forEach((b, k) => { b.classList.toggle("is-on", k === D.q); b.setAttribute("aria-selected", String(k === D.q)); });
+      deckEl.querySelector(".qv-answer").textContent = QV_ASK[D.q][1];
+      return;
+    } else if (ds.qvB) { openWizard(QV_BUILD[+ds.qvB][2]); return; }
+    else {
+      const act = ds.qv;
+      if (act === "site") { showSite(); return; }
+      if (act === "openp") { const i = D.p; showSite(() => seeTile(i)); return; }
+      if (act === "more") { showSite(() => { wall.scrollIntoView({ block: "center", behavior: "instant" }); openMore(); }); return; }
+      if (act === "send") { openWizard(D.briefSvc, D.brief.trim()); return; }
+      if (act === "useidea") {
+        const [, full, svc] = QV_IDEAS[Math.max(0, D.idea)];
+        Object.assign(D, { brief: full, briefSvc: svc });
+        const ta = deckEl.querySelector("#qvBrief");
+        ta.value = full;
+        ta.focus();
+        return;
+      }
+      if (act === "nextidea") {
+        const it = performance.now() - D.t0;
+        D.t0 -= IDEA_MS - (it % IDEA_MS);
+        tickIdea();
+        return;
+      }
+      return;
+    }
+    renderDeck();
+  });
+  addEventListener("resize", () => {
+    if (!D.on) return;
+    if (deckMob() !== lastMob) { lastMob = deckMob(); renderDeck(); } else scaleDeck();
+  }, { passive: true });
+
+  // ---- the entry: pick your pace (first visit of a session only)
+  const entry = document.getElementById("entry");
+  (() => {
+    const q = new URLSearchParams(location.search);
+    let saved = null;
+    try { saved = sessionStorage.getItem("cs-view"); } catch (e) {}
+    const want = q.get("view") || (location.hash.length > 1 ? "site" : saved);
+    if (want === "quick" || want === "deck") { showDeck(); return; }
+    if (want === "full" || want === "site") return;
+    entry.hidden = false;
+    lock(true);
+    requestAnimationFrame(() => entry.classList.add("is-in"));
+    let picked = false;
+    entry.querySelectorAll("[data-pick]").forEach((door) => door.addEventListener("click", () => {
+      if (picked) return;
+      picked = true;
+      const to = door.dataset.pick;
+      entry.classList.add("is-picking", "is-pick-" + to);
+      if (to === "deck") showDeck(); // renders underneath, revealed as the entry fades
+      setTimeout(() => {
+        entry.classList.add("is-out");
+        if (to === "site") { lock(false); try { sessionStorage.setItem("cs-view", "site"); } catch (e) {} }
+        setTimeout(() => { entry.hidden = true; if (to === "deck") lock(false); }, 600);
+      }, prefersReducedMotion ? 0 : 850);
+    }));
+  })();
 
   // the release-edge countdown really counts down
   setInterval(() => {
@@ -1025,7 +1261,7 @@
     document.body.style.overflow = open ? "hidden" : "";
   };
   burger.addEventListener("click", () => setMenu(!mobileMenu.classList.contains("is-open")));
-  mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+  mobileMenu.querySelectorAll("a, button").forEach((a) => a.addEventListener("click", () => setMenu(false)));
 
   /* ==========================================================
      ACTIVE NAV LINK
@@ -1226,6 +1462,7 @@
     currentIdx = i;
     document.getElementById("modalPanel").style.setProperty("--accent", p.accent);
     modalImg.src = p.image;
+    modalImg.parentElement.style.setProperty("--src", `url('${new URL(p.image, document.baseURI).href}')`);
     modalImg.alt = `${p.name}, ${p.type}`;
     modalName.textContent = p.name;
     modalType.textContent = p.type;
@@ -1528,8 +1765,9 @@
     renderStep(0);
   }
 
-  function openWizard(preService) {
+  function openWizard(preService, notes) {
     sent = false;
+    if (notes) answers.notes = notes;
     if (preService) {
       answers.service = preService;
       stepIdx = 1;
