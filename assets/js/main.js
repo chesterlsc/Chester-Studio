@@ -14,20 +14,32 @@
      ========================================================== */
   const PROJECTS = [
     {
+      name: "Ulap Coffee Roasters",
+      type: "WooCommerce Store + Custom Plugins",
+      category: "Websites",
+      image: "public/projects/ulap-coffee.webp",
+      audience: "Shops that sell on WordPress",
+      proves: "Hand-built WordPress: a block theme, two plugins and GCash checkout",
+      desc: "A complete WooCommerce store for a Philippine coffee roaster. A custom block theme, a GCash, Maya and bank transfer plugin with receipt upload and one-click verify, and a brew calculator on the Interactivity API.",
+      tags: ["WordPress", "WooCommerce", "PHP", "Plugins"],
+      page: "wordpress/",
+      service: "WordPress / WooCommerce",
+    },
+    {
       name: "Motorcycle Dealership",
       type: "Dealership Sales Website",
       category: "Websites",
-      image: "public/projects/Motorcycle Dealership.jpg",
+      image: "public/projects/build-dealership.webp",
       audience: "Local dealerships and resellers",
       proves: "Trust-first design sells high-ticket inventory",
-      desc: "A trust-first site for a Parañaque motorcycle dealership. Live inventory, sold-unit proof, walkaround reels, and a Messenger-first buying flow with nationwide delivery.",
+      desc: "A trust-first site for a motorcycle dealership. Live inventory, sold-unit proof, walkaround reels, and a Messenger-first buying flow with nationwide delivery.",
       tags: ["Branding", "Inventory", "Mobile", "Conversion"],
     },
     {
       name: "Creative Studio",
       type: "Creative Studio Brand Site",
       category: "Websites",
-      image: "public/projects/Creative Studio.jpg",
+      image: "public/projects/build-studio.jpg",
       audience: "Studios and personal brands",
       proves: "Design taste that makes a brand feel premium",
       desc: "A creative studio site with personality. Motion, typography, and a portfolio grid that lets the work speak for itself.",
@@ -37,7 +49,7 @@
       name: "Real Estate Automation",
       type: "Lead-to-Booking Automation",
       category: "AI Systems",
-      image: "public/projects/Real Estate Automation-ai.jpg",
+      image: "public/projects/build-realestate.jpg",
       audience: "Real estate agents and teams",
       proves: "Leads captured, qualified, and booked with no manual chase",
       desc: "A mobile-first automation system for real estate agents. Every lead captured, qualified by AI, followed up instantly, and booked on autopilot, with a live pipeline dashboard.",
@@ -47,7 +59,7 @@
       name: "Home-Service Quoting AI",
       type: "Quote Follow-up Automation",
       category: "AI Systems",
-      image: "public/projects/Home-Service Quoting AI-ai.jpg",
+      image: "public/projects/build-quoting.jpg",
       audience: "HVAC, plumbing, and roofing teams",
       proves: "Instant follow-ups turn estimates into booked jobs",
       desc: "A SaaS platform for home service companies. Estimate requests become booked jobs through instant SMS and email follow-ups, smart scheduling, and a real-time growth dashboard.",
@@ -57,7 +69,7 @@
       name: "Talent & Creative Agency",
       type: "Agency Brand Site",
       category: "Growth Work",
-      image: "public/projects/agency-creative.jpg",
+      image: "public/projects/build-agency.jpg",
       audience: "Agencies and talent brands",
       proves: "Editorial positioning that commands premium rates",
       desc: "A black-and-gold creative agency site. Talent management, campaign production, and brand strategy told with editorial confidence and world-class social proof.",
@@ -67,37 +79,37 @@
       name: "Business Ecosystem Hub",
       type: "Business Ecosystem Hub",
       category: "Growth Work",
-      image: "public/projects/ecosystem-collective.jpg",
+      image: "public/projects/build-ecosystem.jpg",
       audience: "Multi-brand operators",
       proves: "Complex ecosystems made clear enough to sell",
-      desc: "The operating layer of modern business. An ecosystem site mapping how Revenue Systems Firm, Creative Studio, PCAA, and acquisitions feed one system, with a live input-to-output diagram.",
+      desc: "The operating layer of modern business. An ecosystem site mapping how a systems firm, a creative studio, an education arm and acquisitions feed one system, with a live input-to-output diagram.",
       tags: ["Ecosystem", "Positioning", "Systems"],
     },
     {
       name: "Revenue Systems Firm",
       type: "Revenue Systems Site",
       category: "Growth Work",
-      image: "public/projects/aegis-co.jpg",
+      image: "public/projects/build-revenue.webp",
       audience: "Service businesses with messy operations",
       proves: "Positioning plus a diagnostic that turns visitors into intake",
-      desc: "The Revenue Systems Firm site. Sharp positioning, a revenue-leak diagnostic, and a live workflow demo that shows service businesses exactly what gets fixed.",
+      desc: "A revenue systems firm’s site. Sharp positioning, a revenue-leak diagnostic, and a live workflow demo that shows service businesses exactly what gets fixed.",
       tags: ["Positioning", "Systems", "Conversion"],
     },
     {
       name: "Personal AI Assistant",
       type: "Personal AI Assistant",
       category: "AI Systems",
-      image: "public/projects/jarvis.jpg",
+      image: "public/projects/build-assistant.webp",
       audience: "Anyone who wants AI beyond a chatbot",
       proves: "Voice, vision, and local control built from scratch",
-      desc: "A assistant-style personal AI assistant with a cinematic HUD. Wake-word voice control, live system stats, weather, camera feed, and a conversational interface running locally.",
+      desc: "A personal AI assistant with a cinematic HUD. Wake-word voice control, live system stats, weather, camera feed, and a conversational interface running locally.",
       tags: ["AI", "Voice", "Dashboard", "Python"],
     },
     {
       name: "AI Garage Diagnostics",
       type: "AI Diagnostics Tool",
       category: "AI Systems",
-      image: "public/projects/garage-ai.jpg",
+      image: "public/projects/build-diagnostics.webp",
       audience: "Auto shops and garages",
       proves: "AI applied to a messy real-world trade",
       desc: "AI-powered vehicle diagnostics that helps garages triage faster. Symptoms in, ranked causes and repair guidance out.",
@@ -107,7 +119,7 @@
       name: "Live Blackjack Platform",
       type: "Live Gaming Platform",
       category: "Digital Products",
-      image: "public/projects/Live Blackjack Platform-casino.jpg",
+      image: "public/projects/build-blackjack.webp",
       audience: "Product founders who need real-time logic",
       proves: "Live state, money math, and polish under pressure",
       desc: "A full live blackjack platform. Solo and multi-seat tables, four side bets, drag-and-drop chips, free-bet mode, bet history, and real-time dealer logic under a polished brand.",
@@ -117,7 +129,7 @@
       name: "Guided Intake Flow",
       type: "Guided Intake Experience",
       category: "Websites",
-      image: "public/projects/ecosystem-intake.jpg",
+      image: "public/projects/build-intake.jpg",
       audience: "Anyone replacing a dead contact form",
       proves: "Forms convert when they feel like a conversation",
       desc: "An 8-step guided intake that replaces the contact form. One question at a time, editorial typography, and routing that sends every inquiry to the right place.",
@@ -127,7 +139,7 @@
       name: "Local Accounting Firm",
       type: "Professional Services Site",
       category: "Websites",
-      image: "public/projects/Local Accounting Firm-accounting.jpg",
+      image: "public/projects/build-accounting.webp",
       audience: "Accountants, lawyers, and consultants",
       proves: "Credibility design that wins serious clients",
       desc: "A trust-first website for an accounting firm. Services, credentials, and lead capture designed to convert serious clients.",
@@ -137,7 +149,7 @@
       name: "On-Demand Mechanic App",
       type: "On-demand Service Product",
       category: "Digital Products",
-      image: "public/projects/fixit-app-mockup.jpg",
+      image: "public/projects/build-mechanic.webp",
       audience: "Service marketplace founders",
       proves: "Booking, tracking, and payments in one flow",
       desc: "An on-demand home service platform connecting customers with vetted repair pros. Booking, tracking, and payments end to end, with a landing page built to convert.",
@@ -147,7 +159,7 @@
       name: "Indoor Mall Navigation",
       type: "Indoor Navigation Product",
       category: "Digital Products",
-      image: "public/projects/mall-maps-app-mockup.jpg",
+      image: "public/projects/build-mallnav.webp",
       audience: "Malls and large venues",
       proves: "Complex wayfinding made simple on mobile",
       desc: "Indoor navigation for malls. Searchable directories, turn-by-turn wayfinding, and store promos in a clean mobile experience, backed by a marketing site that drives installs.",
@@ -157,7 +169,7 @@
       name: "Pet Matching App",
       type: "Community Matching Product",
       category: "Digital Products",
-      image: "public/projects/Pet Matching App-v1.jpg",
+      image: "public/projects/build-petmatch.webp",
       audience: "Community and social founders",
       proves: "Matching, profiles, and chat people enjoy using",
       desc: "A pet matching product connecting owners for playdates, breeding, and adoption. Profiles, matching, and chat built in, with a playful public site that recruits early adopters.",
@@ -172,6 +184,9 @@
     { name: "MongoDB", icon: "mongodb", color: "#47A248" },
     { name: "React", icon: "react", color: "#61DAFB" },
     { name: "JavaScript", icon: "javascript", color: "#F7DF1E" },
+    { name: "WordPress", icon: "wordpress", color: "#3c96d0" },
+    { name: "WooCommerce", icon: "woocommerce", color: "#9d74d0" },
+    { name: "PHP", icon: "php", color: "#8892BF" },
     { name: "Python", icon: "python", color: "#5c9fd6" },
     { name: "Zapier", icon: "zapier", color: "#FF4F00" },
     { name: "Railway", icon: "railway", color: "#c9ccd4" },
@@ -192,6 +207,7 @@
   // per-project accent, pulled from each build's own artwork
   const ACCENTS = {
     "AegisLeadOS": "#33d6e2",
+    "Ulap Coffee Roasters": "#e08a5b",
     "Motorcycle Dealership": "#ff4d4d",
     "Trader Journal": "#ff6a2b",
     "Miniature Bookshop": "#ffab98",
@@ -229,12 +245,12 @@
       logo: { svg: TF_MARK },
       oneLine: "A tap on a Tapfour Connect stand opens a shop’s Google review page, its menu or its socials, with no app to install. Behind the stand runs the software I built for it: an owner dashboard for taps, menu, bills, stock, staff and branches, and an admin console that takes every stand from blank chip to live.",
       short: "One tap opens your review page, menu or socials. Behind it, an owner dashboard and an admin console I built end to end.",
-      poster: P + "tapfour-dash-home.jpg",
-      cover: P + "tapfour.jpg",
+      poster: P + "tapfour-dash-home.webp",
+      cover: P + "tapfour.webp",
       feeds: [
-        { label: "FEED 01", tag: "TAP.FILM", start: 4, poster: P + "tapfour.jpg", webm: P + "tapfour-feed-01.webm", mp4: P + "tapfour-feed-01.mp4" },
-        { label: "FEED 02", tag: "DASHBOARD.TAP4.PH", poster: P + "tapfour-dash-home.jpg" },
-        { label: "FEED 03", tag: "ADMIN.TAP4.PH", poster: P + "tapfour-admin-home.jpg" },
+        { label: "FEED 01", tag: "TAP.FILM", start: 4, poster: P + "tapfour.webp", webm: P + "tapfour-feed-01.webm", mp4: P + "tapfour-feed-01.mp4" },
+        { label: "FEED 02", tag: "DASHBOARD.TAP4.PH", poster: P + "tapfour-dash-home.webp" },
+        { label: "FEED 03", tag: "ADMIN.TAP4.PH", poster: P + "tapfour-admin-home.webp" },
       ],
       how: [
         { t: "Pick the stand", d: "Tapfour Connect in Glossy Black or White, or the 4-Tap Bar." },
@@ -249,28 +265,28 @@
       groups: [
         { label: "What customers see", feats: [
           { id: "connect", t: "Tapfour Connect", b: "Tap for a Google review, scan for the menu. One glossy stand.", v: { type: "photo", src: P + "tapfour-connect-black-menu.jpg" } },
-          { id: "finish", t: "Glossy Black or White", b: "Review, Review + QR menu, or Socials 4-in-1 designs.", v: { type: "photo", src: P + "tapfour-connect-white-review.jpg" } },
+          { id: "finish", t: "Glossy Black or White", b: "Review, Review + QR menu, or Socials 4-in-1 designs.", v: { type: "photo", src: P + "tapfour-connect-white-review.webp" } },
           { id: "bar", t: "4-Tap Bar", b: "Four tap zones, each straight to its own app.", v: { type: "photo", src: P + "tapfour-bar.jpg" } },
-          { id: "links", t: "A 4-in-1 links page", b: "Review, menu and socials on one page in the shop’s colour.", v: { type: "shot", src: P + "tapfour-page-links.jpg" } },
-          { id: "menu", t: "A live QR menu", b: "Sold-out items show the moment the owner marks them.", v: { type: "shot", src: P + "tapfour-page-menu.jpg" } },
+          { id: "links", t: "A 4-in-1 links page", b: "Review, menu and socials on one page in the shop’s colour.", v: { type: "shot", src: P + "tapfour-page-links.webp" } },
+          { id: "menu", t: "A live QR menu", b: "Sold-out items show the moment the owner marks them.", v: { type: "shot", src: P + "tapfour-page-menu.webp" } },
         ] },
         { label: "The owner dashboard", feats: [
-          { id: "home", t: "Today, at a glance", b: "Taps, QR scans, reviews opened and menu views, live.", v: { type: "shot", src: P + "tapfour-dash-home.jpg" } },
-          { id: "needs", t: "“Needs you” first", b: "Late bills and low stock sit beside the busiest hours.", v: { type: "shot", src: P + "tapfour-dash-home.jpg" } },
-          { id: "dest", t: "Change where taps go", b: "Edit a link and every stand follows on the next tap.", v: { type: "shot", src: P + "tapfour-dash-links.jpg" } },
-          { id: "menuedit", t: "Menu editor", b: "Change a price or mark it sold out. No reprint.", v: { type: "shot", src: P + "tapfour-dash-menu.jpg" } },
-          { id: "billing", t: "Bills to pay", b: "Late, this week, unpaid. Paid ✓ books next month’s.", v: { type: "shot", src: P + "tapfour-dash-billing.jpg" } },
-          { id: "stock", t: "Stock with low warnings", b: "Tap − and + as you use it. Low items reach Home.", v: { type: "shot", src: P + "tapfour-dash-stock.jpg" } },
-          { id: "staff", t: "Who’s working", b: "Shifts by branch; status updates itself from the clock.", v: { type: "shot", src: P + "tapfour-dash-staff.jpg" } },
-          { id: "branches", t: "Branches", b: "Taps per branch, up to 20 on the Empire plan.", v: { type: "shot", src: P + "tapfour-dash-branches.jpg" } },
-          { id: "report", t: "Monthly report", b: "What people opened and when. Print or save as PDF.", v: { type: "shot", src: P + "tapfour-dash-reports.jpg" } },
+          { id: "home", t: "Today, at a glance", b: "Taps, QR scans, reviews opened and menu views, live.", v: { type: "shot", src: P + "tapfour-dash-home.webp" } },
+          { id: "needs", t: "“Needs you” first", b: "Late bills and low stock sit beside the busiest hours.", v: { type: "shot", src: P + "tapfour-dash-home.webp" } },
+          { id: "dest", t: "Change where taps go", b: "Edit a link and every stand follows on the next tap.", v: { type: "shot", src: P + "tapfour-dash-links.webp" } },
+          { id: "menuedit", t: "Menu editor", b: "Change a price or mark it sold out. No reprint.", v: { type: "shot", src: P + "tapfour-dash-menu.webp" } },
+          { id: "billing", t: "Bills to pay", b: "Late, this week, unpaid. Paid ✓ books next month’s.", v: { type: "shot", src: P + "tapfour-dash-billing.webp" } },
+          { id: "stock", t: "Stock with low warnings", b: "Tap − and + as you use it. Low items reach Home.", v: { type: "shot", src: P + "tapfour-dash-stock.webp" } },
+          { id: "staff", t: "Who’s working", b: "Shifts by branch; status updates itself from the clock.", v: { type: "shot", src: P + "tapfour-dash-staff.webp" } },
+          { id: "branches", t: "Branches", b: "Taps per branch, up to 20 on the Empire plan.", v: { type: "shot", src: P + "tapfour-dash-branches.webp" } },
+          { id: "report", t: "Monthly report", b: "What people opened and when. Print or save as PDF.", v: { type: "shot", src: P + "tapfour-dash-reports.webp" } },
         ] },
         { label: "The admin console", feats: [
-          { id: "overview", t: "Every tap, every stand", b: "All clients’ taps, scans and setup work on one screen.", v: { type: "shot", src: P + "tapfour-admin-home.jpg" } },
-          { id: "clients", t: "Clients and plans", b: "Each business, its plan, its stands and its taps.", v: { type: "shot", src: P + "tapfour-admin-clients.jpg" } },
-          { id: "board", t: "Stand setup board", b: "Write the chip, tap to test, quality check, go live.", v: { type: "shot", src: P + "tapfour-admin-board.jpg" } },
-          { id: "device", t: "Device page + QR export", b: "Every stand’s links, with the QR as SVG or PNG.", v: { type: "shot", src: P + "tapfour-admin-device.jpg" } },
-          { id: "history", t: "Who changed what", b: "Every link change, check and login, with who did it.", v: { type: "shot", src: P + "tapfour-admin-history.jpg" } },
+          { id: "overview", t: "Every tap, every stand", b: "All clients’ taps, scans and setup work on one screen.", v: { type: "shot", src: P + "tapfour-admin-home.webp" } },
+          { id: "clients", t: "Clients and plans", b: "Each business, its plan, its stands and its taps.", v: { type: "shot", src: P + "tapfour-admin-clients.webp" } },
+          { id: "board", t: "Stand setup board", b: "Write the chip, tap to test, quality check, go live.", v: { type: "shot", src: P + "tapfour-admin-board.webp" } },
+          { id: "device", t: "Device page + QR export", b: "Every stand’s links, with the QR as SVG or PNG.", v: { type: "shot", src: P + "tapfour-admin-device.webp" } },
+          { id: "history", t: "Who changed what", b: "Every link change, check and login, with who did it.", v: { type: "shot", src: P + "tapfour-admin-history.webp" } },
           { id: "edge", t: "Redirects at the edge", b: "Bot taps flagged; a double read within 10 s counts once.", v: { type: "flow", steps: ["Tap", "Edge 302", "Your page"] } },
         ] },
       ],
@@ -281,11 +297,11 @@
       logo: { img: "public/logos/aegis-logo.png" },
       oneLine: "Give it one order, like “capture 10 med spas in New York”, and it finds the businesses, walks each website the way a customer would, diagnoses the revenue leak and drafts the outreach. A human approves every send.",
       short: "One typed order finds, scores and drafts outreach to local businesses. You approve every send.",
-      poster: P + "aegis-leados.jpg",
+      poster: P + "aegis-leados.webp",
       feeds: [
-        { label: "FEED 01", tag: "CAPTURE.RUN", poster: P + "aegis-leados-capture.jpg", webm: P + "aegis-feed-01.webm", mp4: P + "aegis-feed-01.mp4" },
-        { label: "FEED 02", tag: "WORKFLOW.LIVE", poster: P + "aegis-leados-workflow.jpg", webm: P + "aegis-feed-02.webm", mp4: P + "aegis-feed-02.mp4" },
-        { label: "FEED 03", tag: "OPS.PIPELINE", poster: P + "aegis-leados-pipeline.jpg", webm: P + "aegis-feed-03.webm", mp4: P + "aegis-feed-03.mp4" },
+        { label: "FEED 01", tag: "CAPTURE.RUN", poster: P + "aegis-leados-capture.webp", webm: P + "aegis-feed-01.webm", mp4: P + "aegis-feed-01.mp4" },
+        { label: "FEED 02", tag: "WORKFLOW.LIVE", poster: P + "aegis-leados-workflow.webp", webm: P + "aegis-feed-02.webm", mp4: P + "aegis-feed-02.mp4" },
+        { label: "FEED 03", tag: "OPS.PIPELINE", poster: P + "aegis-leados-pipeline.webp", webm: P + "aegis-feed-03.webm", mp4: P + "aegis-feed-03.mp4" },
       ],
       how: [
         { t: "Pick a market", d: "HVAC, roofing, med spa, dental. Any local service, any US city." },
@@ -299,11 +315,11 @@
       heads: ["capture", "score", "drafted"],
       groups: [
         { label: "What the operator sees", feats: [
-          { id: "atlas", t: "Territorial atlas", b: "Watch the whole market light up on a live map.", v: { type: "shot", src: P + "aegis-leados-capture.jpg" } },
+          { id: "atlas", t: "Territorial atlas", b: "Watch the whole market light up on a live map.", v: { type: "shot", src: P + "aegis-leados-capture.webp" } },
           { id: "capture", t: "One order starts a run", b: "Type or say “10 med spas in New York” and it goes.", v: { type: "cmd", prompt: "▸", line: "capture 10 med spas in New York", out: ["SWEEPING", "12 FOUND", "10 TO QUALIFY"] } },
           { id: "score", t: "Lead scores 0–6, with receipts", b: "See why a lead is worth a call, not just a number.", v: { type: "score", n: 5, of: 6, ev: ["No online booking", "Form unanswered 9 days", "4.6★ · 167 reviews"] } },
           { id: "leak", t: "Revenue-leak diagnosis", b: "Know exactly where each business is losing customers.", v: { type: "rows", rows: [{ a: "Contact form never answered", b: "SEVERE", tone: "bad" }, { a: "No tap-to-call on mobile", b: "VISIBLE", tone: "warn" }, { a: "Booking hidden 3 clicks deep", b: "CLEAR", tone: "acc" }] } },
-          { id: "crm", t: "CRM pipeline with replies", b: "Every lead and every reply on one board.", v: { type: "shot", src: P + "aegis-leados-pipeline.jpg" } },
+          { id: "crm", t: "CRM pipeline with replies", b: "Every lead and every reply on one board.", v: { type: "shot", src: P + "aegis-leados-pipeline.webp" } },
         ] },
         { label: "The safety net", feats: [
           { id: "drafted", t: "Drafted, never auto-sent", b: "Nothing reaches a prospect until you’ve read it.", v: { type: "gate", steps: ["Drafted", "You review", "Send"], lock: 2 } },
@@ -323,11 +339,11 @@
       logo: { img: "public/logos/trader-journal.svg" },
       oneLine: "The journal I keep my own trading in. Type one line, close the trade, grade it in one tap, and the whole desk updates. It never shows a number it made up.",
       short: "Log a trade in one line, grade it in one tap, and see your real edge.",
-      poster: P + "trader-journal.jpg?v=2",
+      poster: P + "trader-journal.webp",
       feeds: [
-        { label: "FEED 01", tag: "LOG.TRADE", poster: P + "trader-journal-log.jpg?v=2", webm: P + "trader-feed-01.webm?v=2", mp4: P + "trader-feed-01.mp4?v=2" },
-        { label: "FEED 02", tag: "CALENDAR.DRILL", poster: P + "trader-journal-calendar.jpg?v=2", webm: P + "trader-feed-02.webm?v=2", mp4: P + "trader-feed-02.mp4?v=2" },
-        { label: "FEED 03", tag: "SESSION.INTEL", poster: P + "trader-journal-timing.jpg?v=2", webm: P + "trader-feed-03.webm?v=2", mp4: P + "trader-feed-03.mp4?v=2" },
+        { label: "FEED 01", tag: "LOG.TRADE", poster: P + "trader-journal-log.webp", webm: P + "trader-feed-01.webm?v=2", mp4: P + "trader-feed-01.mp4?v=2" },
+        { label: "FEED 02", tag: "CALENDAR.DRILL", poster: P + "trader-journal-calendar.webp", webm: P + "trader-feed-02.webm?v=2", mp4: P + "trader-feed-02.mp4?v=2" },
+        { label: "FEED 03", tag: "SESSION.INTEL", poster: P + "trader-journal-timing.webp", webm: P + "trader-feed-03.webm?v=2", mp4: P + "trader-feed-03.mp4?v=2" },
       ],
       how: [
         { t: "Log the trade", d: "One line: symbol, side, entry, stop, size. Risk and R:R show before Enter." },
@@ -344,9 +360,9 @@
           { id: "cmdbar", t: "One-line trade logging", b: "Type the trade; see the risk before you press Enter.", v: { type: "cmd", prompt: "›", line: "usdjpy long 148.10 sl 147.80 0.5 lots", out: ["RISK $100", "R:R 2.4", "ENTER ↵"] } },
           { id: "live", t: "Live prices on open trades", b: "Watch every open position move as it happens.", v: { type: "rows", rows: [{ a: "XAUUSD · long", b: "+0.21%", tone: "ok" }, { a: "USDJPY · long", b: "+$86", tone: "ok" }, { a: "BTCUSD · short", b: "−$24", tone: "bad" }] } },
           { id: "close", t: "One-tap close and journal", b: "Mood, grade, mistakes, a note: done in seconds.", v: { type: "chips", items: ["A+", "A", "B", "C", "D", "F"], hi: 1, sub: ["Calm", "Late entry", "Voice note"] } },
-          { id: "dash", t: "The desk at a glance", b: "P&L, streak, next event and risk state on one screen.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2" } },
+          { id: "dash", t: "The desk at a glance", b: "P&L, streak, next event and risk state on one screen.", v: { type: "shot", src: P + "trader-journal-log.webp" } },
           { id: "cal", t: "Green and red days", b: "Click any day to see the trades behind it.", v: { type: "cal", days: "..g.grr.g....rg.gr.r...g...gr.." } },
-          { id: "review", t: "Trade review with filters", b: "Find every Friday breakout loss in two clicks.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2" } },
+          { id: "review", t: "Trade review with filters", b: "Find every Friday breakout loss in two clicks.", v: { type: "shot", src: P + "trader-journal-log.webp" } },
         ] },
         { label: "Insight", feats: [
           { id: "session", t: "Session intelligence", b: "Your best hours to trade, labelled developing or reliable.", v: { type: "heat", vals: [1, 0, 2, 9, 6, 2, 1, 0, 3, 1, 0, 2, 4, 5, 3, 1, 0, 1, 2, 3, 1, 0, 0, 1], hi: 3, tag: "3–4 AM · DEVELOPING · n=3" } },
@@ -365,14 +381,14 @@
     {
       id: "bookshop", name: "Miniature Bookshop", kind: "Custom ecommerce storefront", label: "CLIENT BUILD",
       accent: "#ffab98", railId: "BOOKSHOP//STORE", service: "Website",
-      logo: { img: "public/logos/bookshop-icon.png" },
+      logo: { img: "public/logos/shop-mark.svg" },
       oneLine: "Miniature bookshelves and tiny books sold in sets of six. Storybook charm on the surface; underneath, a strict money path: every cart repriced on the server, branded order and gift card emails sent exactly once, and a shop that runs from its inbox.",
       short: "Build a tiny shelf of six books, pay by GCash. Charm on top, a strict money path below.",
-      poster: P + "little-bookshop.jpg",
+      poster: P + "shop-hero.webp",
       feeds: [
-        { label: "FEED 01", tag: "BUILD.SHELF", poster: P + "little-bookshop-build.jpg", webm: P + "bookshop-feed-01.webm", mp4: P + "bookshop-feed-01.mp4" },
-        { label: "FEED 02", tag: "MONEY.PATH", poster: P + "little-bookshop-money.jpg", webm: P + "bookshop-feed-02.webm", mp4: P + "bookshop-feed-02.mp4" },
-        { label: "FEED 03", tag: "CATALOG.LIVE", poster: P + "little-bookshop-catalog.jpg", webm: P + "bookshop-feed-03.webm", mp4: P + "bookshop-feed-03.mp4" },
+        { label: "FEED 01", tag: "BUILD.SHELF", poster: P + "shop-build.webp", webm: P + "shop-feed-01.webm", mp4: P + "shop-feed-01.mp4" },
+        { label: "FEED 02", tag: "MONEY.PATH", poster: P + "shop-money.webp", webm: P + "shop-feed-02.webm", mp4: P + "shop-feed-02.mp4" },
+        { label: "FEED 03", tag: "CATALOG.LIVE", poster: P + "shop-catalog.webp", webm: P + "shop-feed-03.webm", mp4: P + "shop-feed-03.mp4" },
       ],
       how: [
         { t: "Pick a shelf", d: "Classic, Arched or Scalloped. Two sizes, nine colours." },
@@ -389,15 +405,15 @@
           { id: "builder", t: "Shelf builder", b: "Classic, Arched or Scalloped; two sizes; nine colours.", v: { type: "swatches", colors: ["#f2a593", "#efece6", "#5b4134", "#b9a3db", "#a9c79e", "#c9a46e", "#f0d77a", "#2c3e70", "#3a3a3e"], labels: ["Classic", "Arched", "Scalloped"], hi: 2 } },
           { id: "six", t: "Six titles, spine by spine", b: "Type a title and watch the little shelf fill.", v: { type: "shelf", n: 5, typing: "The Secret Garden" } },
           { id: "basket", t: "A basket that remembers", b: "Come back tomorrow; the shelf is still waiting.", v: { type: "rows", rows: [{ a: "Scalloped shelf · Sage", b: "₱645", tone: "mute" }, { a: "Six little books", b: "₱519", tone: "mute" }, { a: "Bundle", b: "₱1,164", tone: "acc" }] } },
-          { id: "mailpay", t: "An order email that says how to pay", b: "Order number, the tiny things, the exact total and where to send it.", v: { type: "shot", src: P + "bookshop-mail-shopper-how-to-pay.jpg", full: P + "bookshop-mail-shopper-how-to-pay-full.jpg", phone: P + "bookshop-mail-shopper-how-to-pay-phone.jpg" } },
-          { id: "giftmail", t: "A gift card worth opening", b: "The friend gets an illustrated card, the code and how to use it.", v: { type: "shot", src: P + "bookshop-mail-gift-friend.jpg", full: P + "bookshop-mail-gift-friend-full.jpg", phone: P + "bookshop-mail-gift-friend-phone.jpg" } },
-          { id: "promo", t: "A promo email that sells", b: "10.10: ₱100 off and free shipping, with the code already in the link.", v: { type: "shot", src: P + "bookshop-mail-promo.jpg", full: P + "bookshop-mail-promo-full.jpg", phone: P + "bookshop-mail-promo-phone.jpg" } },
+          { id: "mailpay", t: "An order email that says how to pay", b: "Order number, the tiny things, the exact total and where to send it.", v: { type: "shot", src: P + "shop-mail-shopper-how-to-pay.webp", full: P + "shop-mail-shopper-how-to-pay-full.webp", phone: P + "shop-mail-shopper-how-to-pay-phone.webp" } },
+          { id: "giftmail", t: "A gift card worth opening", b: "The friend gets an illustrated card, the code and how to use it.", v: { type: "shot", src: P + "shop-mail-gift-friend.webp", full: P + "shop-mail-gift-friend-full.webp", phone: P + "shop-mail-gift-friend-phone.webp" } },
+          { id: "promo", t: "A promo email that sells", b: "10.10: ₱100 off and free shipping, with the code already in the link.", v: { type: "shot", src: P + "shop-mail-promo.webp", full: P + "shop-mail-promo-full.webp", phone: P + "shop-mail-promo-phone.webp" } },
         ] },
         { label: "What the shop gets", feats: [
-          { id: "transfer", t: "Paid by GCash or MariBank", b: "Paid the way the shop already sells. No gateway fees, no cards.", v: { type: "shot", src: P + "little-bookshop-money.jpg" } },
-          { id: "mailshop", t: "A new-order alert in the inbox", b: "Customer, address, items and the total to expect, the moment it lands.", v: { type: "shot", src: P + "bookshop-mail-shop-new-order.jpg", full: P + "bookshop-mail-shop-new-order-full.jpg", phone: P + "bookshop-mail-shop-new-order-phone.jpg" } },
-          { id: "mailproof", t: "Payment screenshots, straight to the shop", b: "The shopper uploads the transfer; the shop gets it attached to the order.", v: { type: "shot", src: P + "bookshop-mail-shop-payment-proof.jpg", full: P + "bookshop-mail-shop-payment-proof-full.jpg", phone: P + "bookshop-mail-shop-payment-proof-phone.jpg" } },
-          { id: "digest", t: "New readers, 25 at a time", b: "One tidy digest of sign-ups and where they found the shop.", v: { type: "shot", src: P + "bookshop-mail-subscriber-digest.jpg", full: P + "bookshop-mail-subscriber-digest-full.jpg" } },
+          { id: "transfer", t: "Paid by GCash or MariBank", b: "Paid the way the shop already sells. No gateway fees, no cards.", v: { type: "shot", src: P + "shop-money.webp" } },
+          { id: "mailshop", t: "A new-order alert in the inbox", b: "Customer, address, items and the total to expect, the moment it lands.", v: { type: "shot", src: P + "shop-mail-shop-new-order.webp", full: P + "shop-mail-shop-new-order-full.webp", phone: P + "shop-mail-shop-new-order-phone.webp" } },
+          { id: "mailproof", t: "Payment screenshots, straight to the shop", b: "The shopper uploads the transfer; the shop gets it attached to the order.", v: { type: "shot", src: P + "shop-mail-shop-payment-proof.webp", full: P + "shop-mail-shop-payment-proof-full.webp", phone: P + "shop-mail-shop-payment-proof-phone.webp" } },
+          { id: "digest", t: "New readers, 25 at a time", b: "One tidy digest of sign-ups and where they found the shop.", v: { type: "shot", src: P + "shop-mail-subscriber-digest.webp", full: P + "shop-mail-subscriber-digest-full.webp" } },
           { id: "cli", t: "The shop runs from one command", b: "Orders, shipping, subscribers and promos from the owner’s terminal.", v: { type: "term", lines: ["npm run shop orders", "npm run shop ship LB1812 …", "npm run shop promo send"], plain: true } },
         ] },
         { label: "Under the hood", feats: [
@@ -421,7 +437,9 @@
   // every screenshot is shown whole: contained, over a blurred copy of itself
   // url() in a custom property resolves against the stylesheet, so hand it absolute URLs
   const bgUrl = (u) => `url('${new URL(u, document.baseURI).href}')`;
-  const fit = (src, alt = "") => `<span class="fit" style="--src:${bgUrl(src)}"><img src="${src}" alt="${alt}" loading="lazy" /></span>`;
+  // every image has a 640px WebP twin in thumb/: small frames show it, and the blurred backdrop always uses it
+  const thumb = (u) => u.replace("public/projects/", "public/projects/thumb/").replace(/\.(jpe?g|webp)(\?.*)?$/, ".webp");
+  const fit = (src, alt = "", small = false) => `<span class="fit" style="--src:${bgUrl(thumb(src))}"><img src="${small ? thumb(src) : src}" alt="${alt}" loading="lazy" decoding="async" /></span>`;
 
   const WHO = ["CUSTOMER", "OWNER", "BEHIND IT"];
   const VERBS = ["TAPS INTO", "REPORTS TO", "RUNS ON"];
@@ -440,7 +458,7 @@
     let h = "";
     if (t === "shot" || t === "photo") {
       const tall = big ? v.full : long ? v.phone || v.full : null;
-      h = tall ? `<span class="vz-scroll"><img src="${tall}" alt="" loading="lazy" /><em>SCROLL TO READ ↓</em></span>` : fit(v.src);
+      h = tall ? `<span class="vz-scroll"><img src="${tall}" alt="" loading="lazy" /><em>SCROLL TO READ ↓</em></span>` : fit(v.src, "", !big && !long);
     } else if (t === "cmd") {
       h = `<div class="vz-cmd"><div class="vz-cmd__bar"><b>${v.prompt}</b><span class="vz-cmd__line" style="--n:${v.line.length}">${v.line}</span><i></i></div>
         <div class="vz-cmd__out">${v.out.map((o, i) => `<span ${st(i)}>${o}</span>`).join("")}</div></div>`;
@@ -520,7 +538,7 @@
     </article>`).join("") + `
     <button type="button" class="wmore" id="wmore" aria-label="Open the index of ${PROJECTS.length} more builds">
       <span class="wmore__title"><b>+${PROJECTS.length} more builds</b><small>SITES · AI SYSTEMS · PRODUCTS</small></span>
-      <span class="wmore__strip" aria-hidden="true">${PROJECTS.map((b) => fit(b.image)).join("")}</span>
+      <span class="wmore__strip" aria-hidden="true">${PROJECTS.map((b) => fit(b.image, "", true)).join("")}</span>
       <span class="wmore__arrow" aria-hidden="true">↗</span>
     </button>`;
   armViz(wall);
@@ -578,7 +596,7 @@
   };
   const feedsHTML = (p) => `<div class="fm-feeds" role="tablist" aria-label="${p.name} footage">${p.feeds.map((f, i) => `
       <button type="button" role="tab" aria-selected="${i === S.feed}" class="fm-feed${i === S.feed ? " is-on" : ""}" data-feed="${i}">
-        ${fit(f.poster)}<span>${f.label}</span>
+        ${fit(f.poster, "", true)}<span>${f.label}</span>
       </button>`).join("")}</div>`;
 
   const deckOf = (p) => {
@@ -799,7 +817,7 @@
     </div>
     <div class="mi-grid">${PROJECTS.map((b, i) => `
       <button type="button" class="mi-card" data-build="${i}" style="--acc:${b.accent}" aria-label="${b.name}, ${b.type}">
-        <span class="mi-card__img">${fit(b.image)}</span>
+        <span class="mi-card__img">${fit(b.image, "", true)}</span>
         <span class="mi-card__cap"><b><i></i>${b.name}</b><small>${b.type}</small></span>
       </button>`).join("")}
     </div>`;
@@ -845,12 +863,12 @@
      WHAT I BUILD :: friction → fix, shown on real product screens
      ========================================================== */
   const OPS = [
-    { q: "Bills and supplier dues live in a notebook.", kind: "INTERNAL TOOL", t: "A bills tracker that never forgets", b: "Late, due this week, unpaid. Tick Paid and next month’s bill books itself, and anything late waits for you on the home screen.", img: "tapfour-dash-billing.jpg", url: "dashboard.tap4.ph/billing", p: 0, node: "billing" },
-    { q: "We find out stock is gone when a customer asks.", kind: "DASHBOARD", t: "Stock that warns you first", b: "Tap − and + as you use it. Anything running low is flagged before the shift that needs it.", img: "tapfour-dash-stock.jpg", url: "dashboard.tap4.ph/inventory", p: 0, node: "stock" },
-    { q: "Leads come in, then nobody follows up.", kind: "AI AUTOMATION", t: "Leads captured, scored and drafted", b: "One order finds the businesses, scores each one 0–6 with the evidence, and drafts the outreach. A person approves every send.", img: "aegis-leados-pipeline.jpg", url: "aegisleados · ops.pipeline", p: 1, node: "crm" },
-    { q: "I can’t tell which branch is doing well.", kind: "DASHBOARD", t: "Every branch on one screen", b: "Taps, reviews and visits per branch, the busiest hours, and a monthly report that saves as a PDF.", img: "tapfour-dash-reports.jpg", url: "dashboard.tap4.ph/reports", p: 0, node: "report" },
-    { q: "My numbers live in five spreadsheets.", kind: "CUSTOM SOFTWARE", t: "One place your numbers add up", b: "Log it in one line and every chart, calendar and report updates itself. No copying between tabs.", img: "trader-journal.jpg?v=2", url: "trader journal · desk", p: 2, node: "dash" },
-    { q: "Our website looks fine but doesn’t sell.", kind: "WEBSITE", t: "A site built around how people buy", b: "A storefront shaped to the product, with a checkout that can’t get the price wrong and emails that go out exactly once.", img: "little-bookshop.jpg", url: "Miniature Bookshop · store", p: 3, node: "transfer" },
+    { q: "Bills and supplier dues live in a notebook.", kind: "INTERNAL TOOL", t: "A bills tracker that never forgets", b: "Late, due this week, unpaid. Tick Paid and next month’s bill books itself, and anything late waits for you on the home screen.", img: "tapfour-dash-billing.webp", url: "dashboard.tap4.ph/billing", p: 0, node: "billing" },
+    { q: "We find out stock is gone when a customer asks.", kind: "DASHBOARD", t: "Stock that warns you first", b: "Tap − and + as you use it. Anything running low is flagged before the shift that needs it.", img: "tapfour-dash-stock.webp", url: "dashboard.tap4.ph/inventory", p: 0, node: "stock" },
+    { q: "Leads come in, then nobody follows up.", kind: "AI AUTOMATION", t: "Leads captured, scored and drafted", b: "One order finds the businesses, scores each one 0–6 with the evidence, and drafts the outreach. A person approves every send.", img: "aegis-leados-pipeline.webp", url: "aegisleados · ops.pipeline", p: 1, node: "crm" },
+    { q: "I can’t tell which branch is doing well.", kind: "DASHBOARD", t: "Every branch on one screen", b: "Taps, reviews and visits per branch, the busiest hours, and a monthly report that saves as a PDF.", img: "tapfour-dash-reports.webp", url: "dashboard.tap4.ph/reports", p: 0, node: "report" },
+    { q: "My numbers live in five spreadsheets.", kind: "CUSTOM SOFTWARE", t: "One place your numbers add up", b: "Log it in one line and every chart, calendar and report updates itself. No copying between tabs.", img: "trader-journal.webp", url: "trader journal · desk", p: 2, node: "dash" },
+    { q: "Our website looks fine but doesn’t sell.", kind: "WEBSITE", t: "A site built around how people buy", b: "A storefront shaped to the product, with a checkout that can’t get the price wrong and emails that go out exactly once.", img: "shop-hero.webp", url: "bookshop storefront", p: 3, node: "transfer" },
   ];
   const opsEl = document.getElementById("ops");
   if (opsEl) {
@@ -872,7 +890,7 @@
       panel.style.setProperty("--acc", p.accent);
       panel.classList.remove("is-swap"); void panel.offsetWidth; panel.classList.add("is-swap");
       $("opsImg").src = P + o.img;
-      $("opsImg").parentElement.style.setProperty("--src", bgUrl(P + o.img));
+      $("opsImg").parentElement.style.setProperty("--src", bgUrl(thumb(P + o.img)));
       $("opsImg").alt = `${p.name}: ${o.t}`;
       $("opsUrl").textContent = o.url;
       $("opsKind").textContent = o.kind;
@@ -906,7 +924,7 @@
      Desktop is laid out at 1280×800 and scaled to fit the window,
      so nothing is ever cut; phones get a single scrolling column.
      ========================================================== */
-  const QV_POSTER = { tapfour: "tapfour-dash-home.jpg", aegis: "aegis-leados-pipeline.jpg", bookshop: "little-bookshop-catalog.jpg" };
+  const QV_POSTER = { tapfour: "tapfour-dash-home.webp", aegis: "aegis-leados-pipeline.webp", bookshop: "shop-catalog.webp" };
   const QV_BUILD = [
     ["Websites", "Sell and take bookings online", "Website"],
     ["Custom software", "Apps made for your business", "Digital Product"],
@@ -917,7 +935,7 @@
   const QV_STEPS = [["Brief", "You tell me what you need."], ["Plan", "I send back the plan."], ["Build", "You see it come together."], ["Launch", "It goes live. I look after it."]];
   const QV_ASK = [
     ["What can you build?", "Websites, custom software, dashboards, internal tools and automations."],
-    ["Done this before?", "19+ systems shipped. Four are live products you can click through right now."],
+    ["Done this before?", "20+ systems shipped. Four are live products you can click through right now."],
     ["How does it work?", "Four steps: you send a short brief, I come back with a plan, I build it, then I keep it running."],
     ["Cost and timing?", "Send a short brief and you get the scope, the price and a date back. Nothing starts until you agree."],
     ["After launch?", "I stay on it: fixes, updates and new features as the business grows."],
@@ -982,7 +1000,18 @@
               <button type="button" data-qv-b="${i}"><span><b>${t}</b><em>${o}</em></span><i>→</i></button>`).join("")}
             </div>
             ${kick("04", "HOW IT WORKS")}
-            <ol class="qv-steps">${QV_STEPS.map(([t, d]) => `<li><i></i><span><b>${t}</b><em>${d}</em></span></li>`).join("")}</ol>
+            <div class="hw" id="qvHow">
+              <div class="hw-win">
+                <div class="hw-bar"><span class="hw-lights"><i></i><i></i><i></i></span><span class="hw-addr"><i class="hw-dot"></i><span class="hw-urls"><em>new message</em><em>plan · draft 1</em><em>preview link</em><em>yourclinic.com</em></span></span></div>
+                <div class="hw-view"><div class="hw-canvas">
+                  <div class="hw-note"><small>YOUR BRIEF</small><p><span class="hw-typed"></span><i></i></p></div>
+                  <span class="hw-w hw-w--nav" style="left:16px;top:14px;width:432px;height:26px;--k:0"><em>NAV</em><span class="hw-c"><span class="hw-navc"><b>Your Clinic</b><i></i><i></i><i></i></span></span></span><span class="hw-w" style="left:16px;top:52px;width:220px;height:32px;--k:1"><em>HEADLINE</em><span class="hw-c"><b class="hw-h1">Book your visit</b></span></span><span class="hw-w" style="left:16px;top:90px;width:180px;height:20px;--k:2"><em>INTRO</em><span class="hw-c"><span class="hw-p">Same-week appointments.</span></span></span><span class="hw-w hw-w--btn" style="left:16px;top:118px;width:110px;height:30px;--k:3"><em>BUTTON</em><span class="hw-c"><b class="hw-btn">Book a time</b></span></span><span class="hw-w hw-w--cal" style="left:262px;top:52px;width:186px;height:112px;--k:4"><em>BOOKING CALENDAR</em><span class="hw-c"><span class="hw-cal"><small>OCTOBER</small><span>${Array.from({ length: 15 }, (_, i) => `<i class="${i === 8 ? "pick" : i === 2 || i === 11 ? "taken" : ""}"></i>`).join("")}</span></span></span></span><span class="hw-w" style="left:16px;top:176px;width:136px;height:40px;--k:5"><em>SERVICE</em><span class="hw-c"><span class="hw-svc"><b>Check-up</b><small>30 min</small></span></span></span><span class="hw-w" style="left:164px;top:176px;width:136px;height:40px;--k:6"><em>SERVICE</em><span class="hw-c"><span class="hw-svc"><b>Cleaning</b><small>45 min</small></span></span></span><span class="hw-w" style="left:312px;top:176px;width:136px;height:40px;--k:7"><em>SERVICE</em><span class="hw-c"><span class="hw-svc"><b>Consult</b><small>20 min</small></span></span></span>
+                  <span class="hw-toast"><i></i><span><b>New booking</b><small>Tue · 10:30 · Check-up</small></span></span>
+                </div></div>
+              </div>
+              <div class="hw-tabs">${QV_STEPS.map(([t], i) => `<button type="button" data-hw="${i}" aria-label="Show step ${i + 1}: ${t}"><span><i></i></span>0${i + 1} ${t.toUpperCase()}</button>`).join("")}</div>
+              <div class="hw-caps" aria-live="polite">${QV_STEPS.map(([t, d]) => `<p><b>${t}</b><span>${d}</span></p>`).join("")}</div>
+            </div>
           </section>
         </div>
         <div class="qv-ask">
@@ -994,6 +1023,8 @@
     deckEl.classList.toggle("is-mob", deckMob());
     D.idea = -1;
     tickIdea();
+    fitHow();
+    tickHow();
     scaleDeck();
   }
 
@@ -1006,6 +1037,39 @@
     st.style.transform = `translate(${(innerWidth - 1280 * k) / 2}px, ${(innerHeight - 800 * k) / 2}px) scale(${k})`;
   }
 
+  // how it works: a brief becomes a plan, gets built block by block, then goes live with a booking.
+  // Same approach as the idea card: one rAF loop, DOM touched only when a state changes.
+  const HOW_MS = 4000, HOW_BRIEF = "Booking site for my clinic. Patients get a reminder the day before.";
+  const HOW = { el: null, s: -1, t0: 0, n: -1, built: -1, shown: -1, toast: null, manual: false, manualStep: 3 };
+  function fitHow() {
+    const el = deckEl.querySelector("#qvHow");
+    if (!el) return;
+    const view = el.querySelector(".hw-view");
+    if (view.clientWidth) view.style.setProperty("--k", view.clientWidth / 464);
+    else requestAnimationFrame(fitHow); // still hidden: measure once it is on screen
+  }
+  function tickHow() {
+    const el = deckEl.querySelector("#qvHow");
+    if (!el) return;
+    if (el !== HOW.el) Object.assign(HOW, { el, s: -1, n: -1, built: -1, shown: -1, toast: null, bars: [...el.querySelectorAll(".hw-tabs i")], blocks: [...el.querySelectorAll(".hw-w")], typed: el.querySelector(".hw-typed") });
+    const auto = !prefersReducedMotion && !HOW.manual;
+    const e = auto ? ((performance.now() - HOW.t0) / HOW_MS) % 4 : HOW.manualStep;
+    const s = Math.floor(e), p = auto ? e - s : 1;
+    if (s !== HOW.s) { HOW.s = s; el.dataset.step = s; HOW.n = -1; HOW.built = -1; HOW.shown = -1; HOW.toast = null; }
+    // the brief types itself in step 1
+    const n = s === 0 ? Math.floor(Math.min(1, p / 0.7) * HOW_BRIEF.length) : HOW_BRIEF.length;
+    if (n !== HOW.n) { HOW.n = n; HOW.typed.textContent = HOW_BRIEF.slice(0, n); el.classList.toggle("is-typing", s === 0 && n < HOW_BRIEF.length); }
+    // plan: dashed outlines appear one by one; build: each fills in; launch: all live
+    const shown = s === 1 ? Math.min(8, Math.floor(p / 0.7 * 8) + 1) : s > 1 ? 8 : 0;
+    const built = s === 2 ? Math.max(0, Math.min(8, Math.floor((p - 0.08) / 0.75 * 8) + 1)) : s === 3 ? 8 : 0;
+    if (shown !== HOW.shown || built !== HOW.built) {
+      HOW.shown = shown; HOW.built = built;
+      HOW.blocks.forEach((b, k) => { b.classList.toggle("is-shown", k < shown); b.classList.toggle("is-built", k < built); });
+    }
+    const toast = s === 3 && p > 0.3;
+    if (toast !== HOW.toast) { HOW.toast = toast; el.classList.toggle("is-booked", toast); }
+    HOW.bars.forEach((b, k) => { b.style.transform = `scaleX(${k < s ? 1 : k === s ? p.toFixed(3) : 0})`; });
+  }
   // the idea card types itself out, holds, then moves on
   // runs every display frame (60/90/120 Hz): the bar moves on the GPU (transform only),
   // and the DOM is touched only when a letter or a state actually changes
@@ -1041,7 +1105,7 @@
     IDEA.bar.style.transform = `scaleX(${(t / IDEA_MS).toFixed(4)})`;
   }
   let ideaRaf = 0;
-  const ideaLoop = () => { tickIdea(); ideaRaf = D.on ? requestAnimationFrame(ideaLoop) : 0; };
+  const ideaLoop = () => { tickIdea(); tickHow(); ideaRaf = D.on ? requestAnimationFrame(ideaLoop) : 0; };
 
   // ---- switching between the quick view and the full site
   let lastMob = deckMob();
@@ -1049,6 +1113,7 @@
     if (D.on) return;
     D.on = true;
     D.t0 = performance.now();
+    HOW.t0 = performance.now(); HOW.manual = false;
     if (!ideaRaf) ideaRaf = requestAnimationFrame(ideaLoop);
     lastMob = deckMob();
     renderDeck();
@@ -1074,6 +1139,14 @@
     if ((e.key === "Enter" || e.key === " ") && e.target.matches(".qv-idea")) { e.preventDefault(); e.target.click(); }
   });
   deckEl.addEventListener("click", (e) => {
+    const hw = e.target.closest("[data-hw]");
+    if (hw) {
+      // jump to a step; the loop carries on from there (or holds it when motion is reduced)
+      const k = +hw.dataset.hw;
+      HOW.t0 = performance.now() - k * HOW_MS; HOW.manualStep = k; HOW.manual = prefersReducedMotion;
+      tickHow();
+      return;
+    }
     const t = e.target.closest("[data-qv],[data-qv-p],[data-qv-q],[data-qv-b]");
     if (!t || !deckEl.contains(t)) return;
     const ds = t.dataset;
@@ -1113,7 +1186,7 @@
   });
   addEventListener("resize", () => {
     if (!D.on) return;
-    if (deckMob() !== lastMob) { lastMob = deckMob(); renderDeck(); } else scaleDeck();
+    if (deckMob() !== lastMob) { lastMob = deckMob(); renderDeck(); } else { scaleDeck(); fitHow(); }
   }, { passive: true });
 
   // ?view=quick opens straight into the quick view
@@ -1310,6 +1383,7 @@
      ========================================================== */
   const roles = [
     "Full Stack Developer",
+    "WordPress Developer",
     "AI Automation Engineer",
   ];
   const roleEl = document.getElementById("roleSwap");
@@ -1461,7 +1535,7 @@
     currentIdx = i;
     document.getElementById("modalPanel").style.setProperty("--accent", p.accent);
     modalImg.src = p.image;
-    modalImg.parentElement.style.setProperty("--src", `url('${new URL(p.image, document.baseURI).href}')`);
+    modalImg.parentElement.style.setProperty("--src", bgUrl(thumb(p.image)));
     modalImg.alt = `${p.name}, ${p.type}`;
     modalName.textContent = p.name;
     modalType.textContent = p.type;
@@ -1471,6 +1545,9 @@
     modalCategory.textContent = p.category;
     modalCounter.textContent = `${String(i + 1).padStart(2, "0")} / ${String(PROJECTS.length).padStart(2, "0")}`;
     modalTags.innerHTML = p.tags.map((t) => `<span>${t}</span>`).join("");
+    const pageLink = document.getElementById("modalPage");
+    pageLink.hidden = !p.page;
+    if (p.page) pageLink.href = p.page;
   }
 
   function openModal(i) {
@@ -1516,7 +1593,7 @@
   document.getElementById("modalCta").addEventListener("click", () => {
     const p = PROJECTS[currentIdx];
     closeModal();
-    openWizard(CATEGORY_SERVICE[p.category]);
+    openWizard(p.service || CATEGORY_SERVICE[p.category]);
   });
 
   /* ==========================================================
@@ -1532,6 +1609,7 @@
     trend: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>',
     star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>',
     coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>',
+    cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.1a1 1 0 0 0 1-.76L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>',
   };
 
   const WIZARD_STEPS = [
@@ -1541,6 +1619,7 @@
       hint: "Pick the closest fit. We refine it together later.",
       options: [
         { v: "Website", d: "Landing page or full site that converts", icon: "globe" },
+        { v: "WordPress / WooCommerce", d: "Custom theme, store, plugin or a fix", icon: "cart" },
         { v: "AI Automation", d: "Workflows that run your busywork 24/7", icon: "zap" },
         { v: "Business System", d: "Dashboards, internal tools, CRM, reporting", icon: "chart" },
         { v: "Digital Product", d: "Web or mobile app, MVP to launch", icon: "blocks" },

@@ -1,0 +1,21 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Ulap Coffee Roasters",
+		"description": "A WooCommerce store on a custom block theme, with GCash, Maya and bank transfer checkout. Built by Chester Studio.",
+		"author": "chesterlsc",
+		"categories": [ "Woocommerce", "Theme" ]
+	},
+	"landingPage": "/",
+	"preferredVersions": { "php": "8.3", "wp": "latest" },
+	"features": { "networking": true },
+	"login": true,
+	"steps": [
+		{ "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" }, "options": { "activate": true } },
+		{ "step": "installPlugin", "pluginData": { "resource": "url", "url": "https://chesterstudio.space/wordpress/demo/transfer-pay.zip" }, "options": { "activate": true } },
+		{ "step": "installPlugin", "pluginData": { "resource": "url", "url": "https://chesterstudio.space/wordpress/demo/ulap-blocks.zip" }, "options": { "activate": true } },
+		{ "step": "installTheme", "themeData": { "resource": "url", "url": "https://chesterstudio.space/wordpress/demo/ulap.zip" }, "options": { "activate": true } },
+		{ "step": "unzip", "zipFile": { "resource": "url", "url": "https://chesterstudio.space/wordpress/demo/ulap-content.zip" }, "extractToPath": "/wordpress/wp-content/ulap-content" },
+		{ "step": "runPHP", "code": "<?php require '/wordpress/wp-load.php'; require '/wordpress/wp-content/ulap-content/setup.php';" }
+	]
+}

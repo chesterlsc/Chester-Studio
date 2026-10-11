@@ -33,6 +33,17 @@ Content lives in plain data arrays in `assets/js/main.js`:
 - `OPS`: the friction → fix examples in What I Build, each pointing at a flagship feature.
 - `TOOLS`: the tool belt.
 
+## Adding images
+
+Images in `public/projects/` are WebP (a few photo-heavy shots stay JPG), and every one needs a 640px twin in `public/projects/thumb/`. Small frames and the blurred backdrops load the twin; only large views load the full file.
+
+```bash
+cwebp -q 88 -sharp_yuv -m 6 shot.png -o public/projects/shot.webp
+cwebp -q 80 -sharp_yuv -m 6 -resize 640 0 shot.png -o public/projects/thumb/shot.webp
+```
+
+`public/projects/aegis-leados.jpg` stays a JPG: it is the social share image in `index.html`.
+
 ## Contact form
 
 The intake wizard POSTs the brief to a Cloudflare Worker in `api/`, which sends it
