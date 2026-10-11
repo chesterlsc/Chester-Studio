@@ -26,7 +26,12 @@ python3 -m http.server 8000
 
 ## Editing content
 
-Projects and tools are plain data arrays at the top of `assets/js/main.js`. Add an image to `public/projects/`, add an entry to the `PROJECTS` array, done.
+Content lives in plain data arrays in `assets/js/main.js`:
+
+- `WORK`: the four flagships on the Selected Work wall. Each feature sits in a group (customer, owner, behind it) and carries a `v` visual; `shot` crops a real screenshot from `public/projects/`.
+- `PROJECTS`: every other build, shown in the “+15 more builds” index and the project modal.
+- `OPS`: the friction → fix examples in What I Build, each pointing at a flagship feature.
+- `TOOLS`: the tool belt.
 
 ## Contact form
 

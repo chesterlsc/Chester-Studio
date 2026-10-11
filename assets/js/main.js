@@ -14,112 +14,6 @@
      ========================================================== */
   const PROJECTS = [
     {
-      name: "AegisLeadOS",
-      type: "Native macOS Operator Console",
-      category: "AI Systems",
-      image: "public/projects/aegis-leados.jpg",
-      flagship: true,
-      audience: "Agencies and operators selling to local businesses",
-      proves: "I ship real products, not just sites: evidence-first AI with a human gate on every send",
-      desc: "My own product, designed and engineered end to end at Chester Studio. A Mac-native operator console for lead generation: AEGIS walks a business's website the way a customer would, records what it actually sees, diagnoses the revenue leak, scores every lead 0 to 6, and drafts outreach that ships only after human approval, then tracks the replies. Swift shell, local Node core, React front end, deck.gl territorial atlas, and a voice-commandable AI console. 1,231 passing tests.",
-      tags: ["macOS", "AI", "Lead Gen", "deck.gl", "Voice"],
-      spotlight: {
-        railId: "AEGIS//OPS",
-        railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT</span>',
-        statusTitle: "Designed and engineered in-house at Chester Studio",
-        standfirst: "AegisLeadOS is my own product, designed and engineered end to end at Chester Studio. You give it one order, <em>“capture 10 med spas in New York”</em>, and it sweeps the market, walks each prospect's site the way a customer would, diagnoses the revenue leak, and drafts the outreach for a human to approve before anything sends. Same play for HVAC, roofing, dental, or any local service market.",
-        redact: "DEMO RECORDS BLURRED",
-        feeds: [
-          { label: "FEED 01 // CAPTURE.RUN", cap: "FEED 01 // CAPTURE.RUN · “10 MED SPAS, NEW YORK”", aria: "live capture run on the territorial atlas", poster: "public/projects/aegis-leados-capture.jpg", webm: "public/projects/aegis-feed-01.webm", mp4: "public/projects/aegis-feed-01.mp4" },
-          { label: "FEED 02 // WORKFLOW.LIVE", cap: "FEED 02 // WORKFLOW.LIVE · LEADS IN MOTION", aria: "live capture workflow", poster: "public/projects/aegis-leados-workflow.jpg", webm: "public/projects/aegis-feed-02.webm", mp4: "public/projects/aegis-feed-02.mp4" },
-          { label: "FEED 03 // OPS.PIPELINE", cap: "FEED 03 // OPS.PIPELINE · MID-SWEEP", aria: "operations and captured pipeline", poster: "public/projects/aegis-leados-pipeline.jpg", webm: "public/projects/aegis-feed-03.webm", mp4: "public/projects/aegis-feed-03.mp4" },
-        ],
-        how: [
-          { t: "Pick a market", d: "HVAC, roofing, med spa, dental. Any local service, any US city." },
-          { t: "AI sweeps the map", d: "Finds real businesses, then walks each website like a customer would." },
-          { t: "Workflow qualifies", d: "Evidence, demand checks, and a live revenue leak diagnosis." },
-          { t: "You approve", d: "Human verification gates every send. Nothing goes out on its own." },
-          { t: "Start the outreach", d: "Scored, diagnosed, and drafted in your pipeline. You send when ready." },
-        ],
-        howAt: [0, 6, 21.3, 33.5, 42],
-        feedStep: [null, 2, 4],
-        telemetry: ["1,231 TESTS PASSING", "LEADS SCORED 0–6", "EVERY SEND HUMAN-GATED", "VOICE-COMMANDABLE"],
-        typeExtra: " · Swift shell · local Node core · deck.gl atlas",
-        cta: "OPEN CASE FILE",
-      },
-    },
-    {
-      name: "Trader Journal",
-      type: "Trading Journal Platform",
-      category: "Digital Products",
-      image: "public/projects/trader-journal.jpg?v=2",
-      flagship: true,
-      audience: "Retail and funded traders",
-      proves: "I trade through my own tools, and the analytics never overclaim",
-      desc: "The journal I keep my own trading in, now at 2.0. Type one line, like usdjpy long 148.10 sl 147.80 0.5 lots, and it opens the position, shows the risk and R:R, and watches the live price. Close it, grade it in one tap, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days. Drop in a TopstepX, Vantage, or Binance CSV and the trades land in their days. A session report ranks entry hours and hold times and labels every read by how many trades back it. Vanilla JS with no build step, Node 22 on Vercel, PostgreSQL underneath.",
-      tags: ["Trading", "Analytics", "Vanilla JS", "PostgreSQL", "CSV Import"],
-      spotlight: {
-        railId: "TJ//DESK",
-        railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // IN-HOUSE PRODUCT · V2.0</span>',
-        statusTitle: "Designed and engineered in-house at Chester Studio",
-        standfirst: "This is the journal I keep my own trading in, now at its second version. Type one line, <em>“usdjpy long 148.10 sl 147.80 0.5 lots”</em>, and it opens the position and watches the live price. Close it, grade it in one tap, and the whole desk reacts: equity curve, win rate, R-multiples, a calendar of green and red days. Drop in a <em>TopstepX, Vantage, or Binance CSV</em> and the trades land where they belong, and a session report ranks your entry hours with a confidence label on every read. Numbers you can act on, never numbers it made up.",
-        redact: "SAMPLE TRADES · DEMO MODE",
-        feeds: [
-          { label: "FEED 01 // LOG.TRADE", cap: "FEED 01 // LOG.TRADE · “ONE LINE IN, EVERY NUMBER MOVES”", aria: "logging a trade from the command bar, closing and grading it, and watching the desk react", poster: "public/projects/trader-journal-log.jpg?v=2", webm: "public/projects/trader-feed-01.webm?v=2", mp4: "public/projects/trader-feed-01.mp4?v=2" },
-          { label: "FEED 02 // CALENDAR.DRILL", cap: "FEED 02 // CALENDAR.DRILL · GREEN DAY, THEN A TOPSTEPX IMPORT", aria: "drilling into a calendar day, then importing a TopstepX export into it", poster: "public/projects/trader-journal-calendar.jpg?v=2", webm: "public/projects/trader-feed-02.webm?v=2", mp4: "public/projects/trader-feed-02.mp4?v=2" },
-          { label: "FEED 03 // SESSION.INTEL", cap: "FEED 03 // SESSION.INTEL · CONFIDENCE BEFORE CLAIMS", aria: "the session intelligence report", poster: "public/projects/trader-journal-timing.jpg?v=2", webm: "public/projects/trader-feed-03.webm?v=2", mp4: "public/projects/trader-feed-03.mp4?v=2" },
-        ],
-        how: [
-          { t: "Log the trade", d: "One line in the command bar: symbol, side, entry, stop, size. It shows the risk and R:R before you press Enter." },
-          { t: "Close and grade it", d: "Close at the live price, then one tap for mood, one for execution grade, and a sentence of notes." },
-          { t: "The desk reacts", d: "Net P&L, today, the equity curve and the calendar update the moment the sheet closes." },
-          { t: "Drill any day", d: "Click a calendar day to land in its trades. A broker CSV imports straight into it." },
-          { t: "Read the session report", d: "Entry hours and hold times ranked, each labelled developing or reliable by how many trades back it." },
-        ],
-        // step starts in FEED 01, from the film script's own marks
-        howAt: [0, 14.8, 29.4, 36.2, 43.6],
-        feedStep: [null, 3, 4],
-        telemetry: ["TOPSTEPX · VANTAGE · BINANCE CSV IMPORT", "LIVE PRICES · BINANCE / COINGECKO / GOLD-API", "EVERY READ LABELLED BY SAMPLE SIZE", "NO BUILD STEP · NO FRONT-END DEPS"],
-        typeExtra: " · Vanilla JS · Node 22 on Vercel · PostgreSQL",
-        cta: "OPEN THE LEDGER",
-      },
-    },
-    {
-      name: "Miniature Bookshop",
-      type: "Custom Ecommerce Storefront",
-      category: "Websites",
-      image: "public/projects/little-bookshop.jpg",
-      flagship: true,
-      audience: "Small makers who have outgrown marketplace templates",
-      proves: "Storybook charm on the surface, a strict money path underneath",
-      desc: "A client storefront for miniature bookshelves and tiny books sold in sets of six, built from scratch in Next.js instead of bending a Shopify theme. Customers pick a shelf, type six titles and watch a hand-drawn shelf fill spine by spine, then the bundle lands in a basket that remembers it. Every cart is repriced on the server, every order gets a number the customer can quote, the shop is paid the way it already sells on Instagram, by GCash or MariBank transfer, and both order emails go out exactly once. A 36-check Playwright smoke suite guards the whole path.",
-      tags: ["Ecommerce", "Next.js", "Illustration", "Postgres", "Playwright"],
-      spotlight: {
-        railId: "BOOKSHOP//STORE",
-        railStatus: 'CHESTER STUDIO<span class="fs__statusextra"> // CLIENT BUILD</span>',
-        statusTitle: "Built for a client by Chester Studio",
-        standfirst: "Miniature Bookshop sells miniature bookshelves and tiny books in sets of six, so its store had to feel handmade too. I built it from scratch in Next.js rather than bending a Shopify theme: a customer picks a shelf, <em>types six titles and watches a hand-drawn shelf fill spine by spine</em>, then the bundle lands in a basket that remembers it. Underneath the charm the money path is strict. Every cart is repriced on the server, and the shop is paid the way it already sells on Instagram, by GCash or MariBank transfer, with no gateway fees and no card ever collected.",
-        redact: "DEV MAIL OUTBOX · NO LIVE ORDERS",
-        feeds: [
-          { label: "FEED 01 // BUILD.SHELF", cap: "FEED 01 // BUILD.SHELF · “SIX TITLES, ONE TINY SHELF”", aria: "building a little shelf from six titles", poster: "public/projects/little-bookshop-build.jpg", webm: "public/projects/bookshop-feed-01.webm", mp4: "public/projects/bookshop-feed-01.mp4" },
-          { label: "FEED 02 // MONEY.PATH", cap: "FEED 02 // MONEY.PATH · BASKET TO PAYMENT SCREEN", aria: "checkout to the payment instructions screen", poster: "public/projects/little-bookshop-money.jpg", webm: "public/projects/bookshop-feed-02.webm", mp4: "public/projects/bookshop-feed-02.mp4" },
-          { label: "FEED 03 // CATALOG.LIVE", cap: "FEED 03 // CATALOG.LIVE · NINE COLORS, SIX LITTLE BOOKS", aria: "the catalog and product pages", poster: "public/projects/little-bookshop-catalog.jpg", webm: "public/projects/bookshop-feed-03.webm", mp4: "public/projects/bookshop-feed-03.mp4" },
-        ],
-        how: [
-          { t: "Pick a shelf", d: "Classic, Arched or Scalloped. Two sizes, nine colors, every one printed to order." },
-          { t: "Type six titles", d: "A hand-drawn shelf fills spine by spine as the customer types. Six, always: UI, cart and server agree." },
-          { t: "Dress the shelf", d: "A plant, a ladder, shelf letters, a theme, a note. Progress saves itself if they wander off." },
-          { t: "Into the basket", d: "One bundle, six titles and all. The basket persists, and the browser never decides a price." },
-          { t: "Pay by transfer", d: "GCash or MariBank with one-tap copy and an order number to quote on Instagram. The shop confirms by hand." },
-        ],
-        howAt: [0, 18.4, 35.1, 46.8, 50.4],
-        feedStep: [null, 4, 0],
-        telemetry: ["GCASH · MARIBANK MANUAL TRANSFER", "EVERY CART REPRICED SERVER-SIDE", "ORDER EMAILS SENT EXACTLY ONCE", "36-CHECK PLAYWRIGHT SMOKE"],
-        typeExtra: " · Next.js 16 · Tailwind 4 · Postgres on Neon",
-        cta: "OPEN THE STOREFRONT",
-      },
-    },
-    {
       name: "Motorcycle Dealership",
       type: "Dealership Sales Website",
       category: "Websites",
@@ -321,285 +215,684 @@
     p.slug = p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   });
 
-  // Interleave: flagship, then a clean row of three, repeat. Stacking all three
-  // flagships first meant ~3,200px of case study before any sense of range.
-  (() => {
-    const flags = PROJECTS.filter((p) => p.flagship);
-    const rest = PROJECTS.filter((p) => !p.flagship);
-    const ordered = [];
-    flags.forEach((f) => {
-      ordered.push(f);
-      ordered.push(...rest.splice(0, 3));
-    });
-    ordered.push(...rest);
-    PROJECTS.length = 0;
-    PROJECTS.push(...ordered);
-  })();
-
-  const DESKTOP_CAP = 12; // flagship + row of 3, three times over
+  /* ==========================================================
+     FLAGSHIPS :: the four products on the Selected Work wall.
+     Each groups its features by who meets them: the customer,
+     the owner, and what runs behind it. `v` drives the visual.
+     ========================================================== */
+  const P = "public/projects/";
+  const TF_MARK = '<svg viewBox="0 0 23 23" aria-hidden="true"><path class="leaf leaf--l" d="M0 6H2.2A8.8 12.8 0 0 1 11 18.8V22H8.8A8.8 12.8 0 0 1 0 9.2Z"/><path class="leaf leaf--r" d="M12 14.8A8.8 12.8 0 0 1 20.8 2H23V5.2A8.8 12.8 0 0 1 14.2 18H12Z"/></svg>';
+  const WORK = [
+    {
+      id: "tapfour", name: "Tapfour", kind: "NFC tap stands + business software", label: "LIVE · TAP4.PH",
+      accent: "#c8f23c", railId: "TAP4//EDGE", service: "Business System", url: "https://tap4.ph",
+      logo: { svg: TF_MARK },
+      oneLine: "A tap on a Tapfour Connect stand opens a shop’s Google review page, its menu or its socials, with no app to install. Behind the stand runs the software I built for it: an owner dashboard for taps, menu, bills, stock, staff and branches, and an admin console that takes every stand from blank chip to live.",
+      short: "One tap opens your review page, menu or socials. Behind it, an owner dashboard and an admin console I built end to end.",
+      poster: P + "tapfour-dash-home.jpg",
+      cover: P + "tapfour.jpg",
+      feeds: [
+        { label: "FEED 01", tag: "TAP.FILM", start: 4, pos: "30% 50%", poster: P + "tapfour.jpg", webm: P + "tapfour-feed-01.webm", mp4: P + "tapfour-feed-01.mp4" },
+        { label: "FEED 02", tag: "DASHBOARD.TAP4.PH", poster: P + "tapfour-dash-home.jpg" },
+        { label: "FEED 03", tag: "ADMIN.TAP4.PH", poster: P + "tapfour-admin-home.jpg" },
+      ],
+      how: [
+        { t: "Pick the stand", d: "Tapfour Connect in Glossy Black or White, or the 4-Tap Bar." },
+        { t: "Choose where taps go", d: "Google review, the menu, socials, or all four on one page." },
+        { t: "Customers tap", d: "Their phone opens the page at once. Nothing to install." },
+        { t: "Run the shop", d: "Taps, busiest hours, bills, stock and staff on one dashboard." },
+        { t: "Change it anytime", d: "Edit a link and the very next tap follows. No reprint." },
+      ],
+      proof: ["OWNER DASHBOARD + ADMIN CONSOLE", "EDITS LIVE ON THE NEXT TAP", "QR EXPORT · SVG + PNG", "BOT TAPS FLAGGED · DOUBLE TAPS MERGED"],
+      stack: "Cloudflare Workers (Hono) · D1 at the edge · Shopify",
+      heads: ["home", "board", "connect"],
+      groups: [
+        { label: "What customers see", feats: [
+          { id: "connect", t: "Tapfour Connect", b: "Tap for a Google review, scan for the menu. One glossy stand.", v: { type: "photo", src: P + "tapfour-connect-black-menu.jpg", y: 48 } },
+          { id: "finish", t: "Glossy Black or White", b: "Review, Review + QR menu, or Socials 4-in-1 designs.", v: { type: "photo", src: P + "tapfour-connect-white-review.jpg", y: 46 } },
+          { id: "bar", t: "4-Tap Bar", b: "Four tap zones, each straight to its own app.", v: { type: "photo", src: P + "tapfour-bar.jpg", y: 50 } },
+          { id: "links", t: "A 4-in-1 links page", b: "Review, menu and socials on one page in the shop’s colour.", v: { type: "shot", src: P + "tapfour-page-links.jpg", x: 50, y: 26, z: 1, tall: true } },
+          { id: "menu", t: "A live QR menu", b: "Sold-out items show the moment the owner marks them.", v: { type: "shot", src: P + "tapfour-page-menu.jpg", x: 50, y: 22, z: 1, tall: true } },
+        ] },
+        { label: "The owner dashboard", feats: [
+          { id: "home", t: "Today, at a glance", b: "Taps, QR scans, reviews opened and menu views, live.", v: { type: "shot", src: P + "tapfour-dash-home.jpg", x: 57, y: 18, z: 1.7 } },
+          { id: "needs", t: "“Needs you” first", b: "Late bills and low stock sit beside the busiest hours.", v: { type: "shot", src: P + "tapfour-dash-home.jpg", x: 78, y: 40, z: 2 } },
+          { id: "dest", t: "Change where taps go", b: "Edit a link and every stand follows on the next tap.", v: { type: "shot", src: P + "tapfour-dash-links.jpg", x: 70, y: 40, z: 1.6 } },
+          { id: "menuedit", t: "Menu editor", b: "Change a price or mark it sold out. No reprint.", v: { type: "shot", src: P + "tapfour-dash-menu.jpg", x: 62, y: 70, z: 1.6 } },
+          { id: "billing", t: "Bills to pay", b: "Late, this week, unpaid. Paid ✓ books next month’s.", v: { type: "shot", src: P + "tapfour-dash-billing.jpg", x: 40, y: 34, z: 1.7 } },
+          { id: "stock", t: "Stock with low warnings", b: "Tap − and + as you use it. Low items reach Home.", v: { type: "shot", src: P + "tapfour-dash-stock.jpg", x: 40, y: 40, z: 1.7 } },
+          { id: "staff", t: "Who’s working", b: "Shifts by branch; status updates itself from the clock.", v: { type: "shot", src: P + "tapfour-dash-staff.jpg", x: 42, y: 40, z: 1.7 } },
+          { id: "branches", t: "Branches", b: "Taps per branch, up to 20 on the Empire plan.", v: { type: "shot", src: P + "tapfour-dash-branches.jpg", x: 60, y: 28, z: 1.6 } },
+          { id: "report", t: "Monthly report", b: "What people opened and when. Print or save as PDF.", v: { type: "shot", src: P + "tapfour-dash-reports.jpg", x: 58, y: 40, z: 1.45 } },
+        ] },
+        { label: "The admin console", feats: [
+          { id: "overview", t: "Every tap, every stand", b: "All clients’ taps, scans and setup work on one screen.", v: { type: "shot", src: P + "tapfour-admin-home.jpg", x: 45, y: 40, z: 1.35 } },
+          { id: "clients", t: "Clients and plans", b: "Each business, its plan, its stands and its taps.", v: { type: "shot", src: P + "tapfour-admin-clients.jpg", x: 45, y: 62, z: 1.6 } },
+          { id: "board", t: "Stand setup board", b: "Write the chip, tap to test, quality check, go live.", v: { type: "shot", src: P + "tapfour-admin-board.jpg", x: 50, y: 74, z: 1.55 } },
+          { id: "device", t: "Device page + QR export", b: "Every stand’s links, with the QR as SVG or PNG.", v: { type: "shot", src: P + "tapfour-admin-device.jpg", x: 70, y: 66, z: 1.6 } },
+          { id: "history", t: "Who changed what", b: "Every link change, check and login, with who did it.", v: { type: "shot", src: P + "tapfour-admin-history.jpg", x: 40, y: 45, z: 1.5 } },
+          { id: "edge", t: "Redirects at the edge", b: "Bot taps flagged; a double read within 10 s counts once.", v: { type: "flow", steps: ["Tap", "Edge 302", "Your page"] } },
+        ] },
+      ],
+    },
+    {
+      id: "aegis", name: "AegisLeadOS", kind: "AI lead generation console", label: "IN-HOUSE PRODUCT",
+      accent: "#33d6e2", railId: "AEGIS//OPS", service: "AI Automation",
+      logo: { img: "public/logos/aegis-logo.png" },
+      oneLine: "Give it one order, like “capture 10 med spas in New York”, and it finds the businesses, walks each website the way a customer would, diagnoses the revenue leak and drafts the outreach. A human approves every send.",
+      short: "One typed order finds, scores and drafts outreach to local businesses. You approve every send.",
+      poster: P + "aegis-leados.jpg",
+      feeds: [
+        { label: "FEED 01", tag: "CAPTURE.RUN", poster: P + "aegis-leados-capture.jpg", webm: P + "aegis-feed-01.webm", mp4: P + "aegis-feed-01.mp4" },
+        { label: "FEED 02", tag: "WORKFLOW.LIVE", poster: P + "aegis-leados-workflow.jpg", webm: P + "aegis-feed-02.webm", mp4: P + "aegis-feed-02.mp4" },
+        { label: "FEED 03", tag: "OPS.PIPELINE", poster: P + "aegis-leados-pipeline.jpg", webm: P + "aegis-feed-03.webm", mp4: P + "aegis-feed-03.mp4" },
+      ],
+      how: [
+        { t: "Pick a market", d: "HVAC, roofing, med spa, dental. Any local service, any US city." },
+        { t: "AI sweeps the map", d: "Finds real businesses, then walks each website like a customer would." },
+        { t: "Workflow qualifies", d: "Evidence, demand checks and a live revenue-leak diagnosis." },
+        { t: "You approve", d: "Human verification gates every send. Nothing goes out on its own." },
+        { t: "Start the outreach", d: "Scored, diagnosed and drafted in your pipeline. You send when ready." },
+      ],
+      proof: ["1,231 TESTS PASSING", "LEADS SCORED 0–6", "EVERY SEND HUMAN-GATED", "VOICE-COMMANDABLE"],
+      stack: "Swift shell · local Node core · React · deck.gl",
+      heads: ["capture", "score", "drafted"],
+      groups: [
+        { label: "What the operator sees", feats: [
+          { id: "atlas", t: "Territorial atlas", b: "Watch the whole market light up on a live map.", v: { type: "shot", src: P + "aegis-leados-capture.jpg", x: 45, y: 50, z: 1.5 } },
+          { id: "capture", t: "One order starts a run", b: "Type or say “10 med spas in New York” and it goes.", v: { type: "cmd", prompt: "▸", line: "capture 10 med spas in New York", out: ["SWEEPING", "12 FOUND", "10 TO QUALIFY"] } },
+          { id: "score", t: "Lead scores 0–6, with receipts", b: "See why a lead is worth a call, not just a number.", v: { type: "score", n: 5, of: 6, ev: ["No online booking", "Form unanswered 9 days", "4.6★ · 167 reviews"] } },
+          { id: "leak", t: "Revenue-leak diagnosis", b: "Know exactly where each business is losing customers.", v: { type: "rows", rows: [{ a: "Contact form never answered", b: "SEVERE", tone: "bad" }, { a: "No tap-to-call on mobile", b: "VISIBLE", tone: "warn" }, { a: "Booking hidden 3 clicks deep", b: "CLEAR", tone: "acc" }] } },
+          { id: "crm", t: "CRM pipeline with replies", b: "Every lead and every reply on one board.", v: { type: "shot", src: P + "aegis-leados-pipeline.jpg", x: 62, y: 30, z: 1.9 } },
+        ] },
+        { label: "The safety net", feats: [
+          { id: "drafted", t: "Drafted, never auto-sent", b: "Nothing reaches a prospect until you’ve read it.", v: { type: "gate", steps: ["Drafted", "You review", "Send"], lock: 2 } },
+          { id: "approval", t: "A human approves every send", b: "Approve, edit or kill each message in one click.", v: { type: "rows", rows: [{ a: "Opener · first touch", b: "APPROVED", tone: "ok" }, { a: "Opener · second lead", b: "WAITING ON YOU", tone: "warn" }, { a: "Follow-up · day 3", b: "EDITED", tone: "acc" }] } },
+        ] },
+        { label: "Under the hood", feats: [
+          { id: "mac", t: "A native Mac app", b: "Runs on your Mac; your lead data stays local.", v: { type: "flow", steps: ["Swift shell", "Node core", "React UI"] } },
+          { id: "voice", t: "Voice-commandable console", b: "Ask out loud; it answers and acts.", v: { type: "cmd", prompt: "◉", line: "show me Memphis roofers", out: ["LISTENING", "24 ON THE MAP"] } },
+          { id: "tests", t: "1,231 passing tests", b: "Built to be trusted with your pipeline.", v: { type: "term", lines: ["capture.run", "score.evidence", "gate.approve"], total: "1,231 passing" } },
+          { id: "markets", t: "Any local service market", b: "HVAC, roofing, dental or med spa: same play.", v: { type: "chips", items: ["HVAC", "Roofing", "Dental", "Med spa", "Plumbing"], hi: 3 } },
+        ] },
+      ],
+    },
+    {
+      id: "trader", name: "Trader Journal", kind: "Trading journal platform · v2.0", label: "IN-HOUSE PRODUCT",
+      accent: "#ff6a2b", railId: "TJ//DESK", service: "Digital Product",
+      logo: { img: "public/logos/trader-journal.svg" },
+      oneLine: "The journal I keep my own trading in. Type one line, close the trade, grade it in one tap, and the whole desk updates. It never shows a number it made up.",
+      short: "Log a trade in one line, grade it in one tap, and see your real edge.",
+      poster: P + "trader-journal.jpg?v=2",
+      feeds: [
+        { label: "FEED 01", tag: "LOG.TRADE", poster: P + "trader-journal-log.jpg?v=2", webm: P + "trader-feed-01.webm?v=2", mp4: P + "trader-feed-01.mp4?v=2" },
+        { label: "FEED 02", tag: "CALENDAR.DRILL", poster: P + "trader-journal-calendar.jpg?v=2", webm: P + "trader-feed-02.webm?v=2", mp4: P + "trader-feed-02.mp4?v=2" },
+        { label: "FEED 03", tag: "SESSION.INTEL", poster: P + "trader-journal-timing.jpg?v=2", webm: P + "trader-feed-03.webm?v=2", mp4: P + "trader-feed-03.mp4?v=2" },
+      ],
+      how: [
+        { t: "Log the trade", d: "One line: symbol, side, entry, stop, size. Risk and R:R show before Enter." },
+        { t: "Close and grade it", d: "Close at the live price, then one tap for mood and one for grade." },
+        { t: "The desk reacts", d: "Net P&L, today, the equity curve and the calendar update at once." },
+        { t: "Drill any day", d: "Click a calendar day to land in its trades. A broker CSV imports into it." },
+        { t: "Read the session report", d: "Entry hours and hold times ranked, labelled developing or reliable." },
+      ],
+      proof: ["TOPSTEPX · VANTAGE · BINANCE CSV IMPORT", "EVERY READ LABELLED BY SAMPLE SIZE", "NO BUILD STEP"],
+      stack: "Vanilla JS · Node 22 on Vercel · PostgreSQL",
+      heads: ["cmdbar", "cal", "session"],
+      groups: [
+        { label: "What the trader sees", feats: [
+          { id: "cmdbar", t: "One-line trade logging", b: "Type the trade; see the risk before you press Enter.", v: { type: "cmd", prompt: "›", line: "usdjpy long 148.10 sl 147.80 0.5 lots", out: ["RISK $100", "R:R 2.4", "ENTER ↵"] } },
+          { id: "live", t: "Live prices on open trades", b: "Watch every open position move as it happens.", v: { type: "rows", rows: [{ a: "XAUUSD · long", b: "+0.21%", tone: "ok" }, { a: "USDJPY · long", b: "+$86", tone: "ok" }, { a: "BTCUSD · short", b: "−$24", tone: "bad" }] } },
+          { id: "close", t: "One-tap close and journal", b: "Mood, grade, mistakes, a note: done in seconds.", v: { type: "chips", items: ["A+", "A", "B", "C", "D", "F"], hi: 1, sub: ["Calm", "Late entry", "Voice note"] } },
+          { id: "dash", t: "The desk at a glance", b: "P&L, streak, next event and risk state on one screen.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2", x: 0, y: 4, z: 2.1 } },
+          { id: "cal", t: "Green and red days", b: "Click any day to see the trades behind it.", v: { type: "cal", days: "..g.grr.g....rg.gr.r...g...gr.." } },
+          { id: "review", t: "Trade review with filters", b: "Find every Friday breakout loss in two clicks.", v: { type: "shot", src: P + "trader-journal-log.jpg?v=2", x: 62, y: 88, z: 2 } },
+        ] },
+        { label: "Insight", feats: [
+          { id: "session", t: "Session intelligence", b: "Your best hours to trade, labelled developing or reliable.", v: { type: "heat", vals: [1, 0, 2, 9, 6, 2, 1, 0, 3, 1, 0, 2, 4, 5, 3, 1, 0, 1, 2, 3, 1, 0, 0, 1], hi: 3, tag: "3–4 AM · DEVELOPING · n=3" } },
+          { id: "playbook", t: "Playbook by setup", b: "See which setups actually pay you.", v: { type: "bars", vals: [62, 28, 80, 45], labels: ["BRKOUT", "SCALP", "REVRSL", "TREND"], hi: 2 } },
+          { id: "monthly", t: "Monthly review", b: "Close each month knowing what to repeat.", v: { type: "kpi", n: "+$1,160", sub: "SEPTEMBER · 8 GREEN · 5 RED", tone: "ok" } },
+          { id: "reflect", t: "Daily reflection, weekly digest", b: "A few lines a day become a weekly lesson.", v: { type: "rows", rows: [{ a: "Mon · Waited for the retest", b: "CALM", tone: "ok" }, { a: "Tue · Chased the open", b: "FOMO", tone: "bad" }, { a: "Week 3 digest", b: "READY", tone: "acc" }] } },
+          { id: "edgeclock", t: "Release-edge terminal", b: "A countdown to the next big release, with the news wire.", v: { type: "count", t: "00:46:12", label: "CPI M/M · HIGH IMPACT", wire: ["Fed speakers on deck", "Gold steady into CPI"] } },
+        ] },
+        { label: "Under the hood", feats: [
+          { id: "imports", t: "Broker CSV imports", b: "Drop in a TopstepX, Vantage or Binance file; trades land in their days.", v: { type: "flow", steps: ["broker.csv", "Parse", "14 trades in"] } },
+          { id: "feeds", t: "Live prices, three sources", b: "Binance, CoinGecko and gold-api keep the numbers honest.", v: { type: "chips", items: ["BINANCE", "COINGECKO", "GOLD-API"], hi: -1, sub: ["LIVE"] } },
+          { id: "stack", t: "No build step", b: "Fast to load and simple to keep running.", v: { type: "term", lines: ["vanilla js", "node 22 · vercel", "postgresql"], total: "0 front-end deps" } },
+        ] },
+      ],
+    },
+    {
+      id: "bookshop", name: "Miniature Bookshop", kind: "Custom ecommerce storefront", label: "CLIENT BUILD",
+      accent: "#ffab98", railId: "BOOKSHOP//STORE", service: "Website",
+      logo: { img: "public/logos/bookshop-icon.png" },
+      oneLine: "Miniature bookshelves and tiny books sold in sets of six, with storybook charm on the surface and a strict money path underneath.",
+      short: "Build a tiny shelf of six books, pay by GCash. Charm on top, a strict money path below.",
+      poster: P + "little-bookshop.jpg",
+      feeds: [
+        { label: "FEED 01", tag: "BUILD.SHELF", poster: P + "little-bookshop-build.jpg", webm: P + "bookshop-feed-01.webm", mp4: P + "bookshop-feed-01.mp4" },
+        { label: "FEED 02", tag: "MONEY.PATH", poster: P + "little-bookshop-money.jpg", webm: P + "bookshop-feed-02.webm", mp4: P + "bookshop-feed-02.mp4" },
+        { label: "FEED 03", tag: "CATALOG.LIVE", poster: P + "little-bookshop-catalog.jpg", webm: P + "bookshop-feed-03.webm", mp4: P + "bookshop-feed-03.mp4" },
+      ],
+      how: [
+        { t: "Pick a shelf", d: "Classic, Arched or Scalloped. Two sizes, nine colours." },
+        { t: "Type six titles", d: "A hand-drawn shelf fills spine by spine as the customer types." },
+        { t: "Dress the shelf", d: "A plant, a ladder, letters, a theme, a note. Progress saves itself." },
+        { t: "Into the basket", d: "One bundle, six titles. The basket persists; the browser never sets a price." },
+        { t: "Pay by transfer", d: "GCash or MariBank with one-tap copy and an order number to quote." },
+      ],
+      proof: ["EVERY CART REPRICED SERVER-SIDE", "ORDER EMAILS SENT EXACTLY ONCE", "36-CHECK PLAYWRIGHT SMOKE"],
+      stack: "Next.js 16 · Tailwind 4 · Postgres on Neon",
+      heads: ["six", "transfer", "reprice"],
+      groups: [
+        { label: "What shoppers see", feats: [
+          { id: "builder", t: "Shelf builder", b: "Classic, Arched or Scalloped; two sizes; nine colours.", v: { type: "swatches", colors: ["#f2a593", "#efece6", "#5b4134", "#b9a3db", "#a9c79e", "#c9a46e", "#f0d77a", "#2c3e70", "#3a3a3e"], labels: ["Classic", "Arched", "Scalloped"], hi: 2 } },
+          { id: "six", t: "Six titles, spine by spine", b: "Type a title and watch the little shelf fill.", v: { type: "shelf", n: 5, typing: "The Secret Garden" } },
+          { id: "dress", t: "Dress the shelf", b: "Plant, ladder, letters, theme, note. Progress saves itself.", v: { type: "chips", items: ["Plant", "Ladder", "Letters", "Theme", "Note"], hi: 0, sub: ["AUTOSAVED"] } },
+          { id: "basket", t: "A basket that remembers", b: "Come back tomorrow; the shelf is still waiting.", v: { type: "rows", rows: [{ a: "Scalloped shelf · Sage", b: "₱645", tone: "mute" }, { a: "Six little books", b: "₱519", tone: "mute" }, { a: "Bundle", b: "₱1,164", tone: "acc" }] } },
+          { id: "gift", t: "Gift cards, balance check", b: "Give a shelf; check what’s left in one tap.", v: { type: "kpi", n: "₱500", sub: "GIFT CARD BALANCE", tone: "acc" } },
+        ] },
+        { label: "How the shop gets paid", feats: [
+          { id: "transfer", t: "GCash or MariBank transfer", b: "Paid the way the shop already sells. No gateway fees, no cards.", v: { type: "shot", src: P + "little-bookshop-money.jpg", x: 50, y: 66, z: 1.9 } },
+          { id: "order", t: "An order number to quote", b: "Shoppers quote it on Instagram; the shop confirms by hand.", v: { type: "kpi", n: "#LB-2048", sub: "QUOTE THIS ON INSTAGRAM", tone: "acc" } },
+        ] },
+        { label: "Under the hood", feats: [
+          { id: "reprice", t: "Every cart repriced on the server", b: "The browser never decides a price.", v: { type: "flow", steps: ["Basket", "Server reprice", "₱1,164"] } },
+          { id: "emails", t: "Order emails sent exactly once", b: "No double emails, no missing ones.", v: { type: "rows", rows: [{ a: "To the shopper", b: "SENT ×1", tone: "ok" }, { a: "To the shop", b: "SENT ×1", tone: "ok" }] } },
+          { id: "smoke", t: "36-check purchase test", b: "The money path is tested before every release.", v: { type: "term", lines: ["build a shelf", "basket persists", "server reprice"], total: "36 / 36 passing" } },
+          { id: "stackb", t: "A stack it won’t outgrow", b: "Next.js 16, Tailwind 4 and Postgres on Neon.", v: { type: "chips", items: ["NEXT.JS 16", "TAILWIND 4", "NEON POSTGRES"], hi: -1 } },
+        ] },
+      ],
+    },
+  ];
 
   /* ==========================================================
-     RENDER: PROJECT GRID
+     SELECTED WORK :: bento wall → feature map → case file
+     Four tiles. A tile grows into a full-screen map of who
+     meets which feature; the case file and the index of other
+     builds open over it.
      ========================================================== */
-  const grid = document.getElementById("workGrid");
-
-  // Flagship spotlight: rail, standfirst, live footage stage, HOW IT WORKS, telemetry.
-  // Everything comes from p.spotlight so any project can carry the treatment.
-  const flagshipHTML = (p, seq) => {
-    const sp = p.spotlight;
-    const feeds = sp.feeds.map((f, i) => `
-          <button class="fs__feed${i === 0 ? " is-live" : ""}" type="button" data-feed="${i}" aria-label="Show feed ${i + 1}: ${f.aria}">
-            <img src="${f.poster}" alt="" loading="lazy" /><span class="fs__pill fs__feedcap">${f.label}</span>
-          </button>`).join("");
-    const how = sp.how.map((h, i) => `
-          <li><button type="button" data-step="${i}" aria-label="Step ${i + 1}: ${h.t}. Jump footage to this step"><b>0${i + 1}</b><span><strong>${h.t}</strong><small>${h.d}</small></span></button></li>`).join("");
-    const chips = sp.telemetry.map((c, i) => `<span style="--i:${i}">${c}</span>`).join("\n        ");
-    return `
-      <div class="fs__rail" aria-hidden="true">
-        <span class="fs__id"><i></i>${sp.railId}<span class="fs__idextra"> · FLAGSHIP ${seq}</span></span>
-        <span class="fs__status" title="${sp.statusTitle}">${sp.railStatus}</span>
-        <span class="fs__clock">--:--:--Z</span>
-      </div>
-      <p class="fs__standfirst">${sp.standfirst}</p>
-      <div class="fs__stage">
-        <figure class="fs__main">
-          <video class="fs__video" muted playsinline preload="none" disablepictureinpicture
-            poster="${sp.feeds[0].poster}" aria-label="${p.name} screen capture">
-            <source src="${sp.feeds[0].webm}" type="video/webm" />
-            <source src="${sp.feeds[0].mp4}" type="video/mp4" />
-          </video>
-          <span class="fs__scan" aria-hidden="true"></span>
-          <span class="project__shine" aria-hidden="true"></span>
-          <span class="project__spot" aria-hidden="true"></span>
-          <div class="fs__hud" aria-hidden="true">
-            <span class="fs__pill fs__rec"><i></i>REC · FIELD CAPTURE</span>
-            <span class="fs__pill fs__tc">TC 00:00 · LOOP</span>
-          </div>
-          <div class="fs__hud fs__hud--bottom" aria-hidden="true">
-            <span class="fs__pill fs__cap">${sp.feeds[0].cap}</span>
-            <span class="fs__pill fs__redact">${sp.redact}</span>
-          </div>
-        </figure>
-        <aside class="fs__feeds">${feeds}
-        </aside>
-      </div>
-      <div class="fs__how" aria-label="How ${p.name} works, synced to the footage">
-        <span class="fs__howlabel">HOW IT WORKS<em>follows the footage, tap a step to jump</em></span>
-        <ol class="fs__howsteps">${how}
-        </ol>
-      </div>
-      <div class="fs__telemetry" aria-hidden="true">
-        ${chips}
-      </div>
-      <div class="project__body">
-        <div>
-          <h3 class="project__name">${p.name}</h3>
-          <p class="project__type">${p.type}<span class="fs__typeextra">${sp.typeExtra}</span></p>
-          <p class="project__proves">${p.proves}</p>
-          <p class="project__for"><span>For</span>${p.audience}</p>
-        </div>
-        <span class="fs__actions">
-          <button type="button" class="fs__expand" aria-expanded="false">
-            <span class="fs__expand-text">How it works</span><b>↓</b>
-          </button>
-          <span class="fs__cta">${sp.cta} <b>↗</b></span>
-        </span>
-      </div>`;
-  };
-
-  let flagshipSeq = 0;
-  PROJECTS.forEach((p, i) => {
-    const card = document.createElement("article");
-    card.className = p.flagship ? "project project--flagship is-peek" : "project";
-    const seq = p.flagship ? String(++flagshipSeq).padStart(3, "0") : null;
-    card.dataset.category = p.category;
-    card.dataset.index = i;
-    card.setAttribute("data-reveal", "");
-    card.style.setProperty("--d", `${(i % 3) * 0.08}s`);
-    card.style.setProperty("--accent", p.accent);
-    card.innerHTML = p.flagship ? flagshipHTML(p, seq) : `
-      <div class="project__media">
-        <div class="project__chrome" aria-hidden="true">
-          <i></i><i></i><i></i>
-          <span class="project__url"><b></b>/${p.slug}</span>
-          <span class="project__num">${String(i + 1).padStart(2, "0")}</span>
-        </div>
-        <div class="project__shot">
-          <img src="${p.image}" alt="${p.name}, ${p.type}" loading="lazy" />
-          <span class="project__shine" aria-hidden="true"></span>
-          <span class="project__spot" aria-hidden="true"></span>
-        </div>
-        <span class="project__cat">${p.category}</span>
-      </div>
-      <div class="project__body">
-        <div class="project__head">
-          <div>
-            <h3 class="project__name">${p.name}</h3>
-            <p class="project__type">${p.type}</p>
-          </div>
-          <span class="project__arrow" aria-hidden="true">↗</span>
-        </div>
-        <p class="project__proves">${p.proves}</p>
-        <p class="project__for"><span>For</span>${p.audience}</p>
-      </div>`;
-    card.addEventListener("click", () => openModal(i));
-
-    const expand = card.querySelector(".fs__expand");
-    if (expand) {
-      expand.addEventListener("click", (e) => {
-        e.stopPropagation(); // expanding is not opening the case file
-        const peeking = card.classList.toggle("is-peek");
-        expand.setAttribute("aria-expanded", String(!peeking));
-        expand.querySelector(".fs__expand-text").textContent = peeking ? "How it works" : "Collapse";
-        expand.querySelector("b").textContent = peeking ? "↓" : "↑";
-        if (peeking) card.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      });
-    }
-    // tall screenshots slow-pan top→bottom on hover instead of cropping forever
-    if (!p.flagship) {
-      const im = card.querySelector("img");
-      const markTall = () => {
-        if (im.naturalWidth && im.naturalHeight / im.naturalWidth > 0.85) card.classList.add("is-tall");
-      };
-      im.complete ? markTall() : im.addEventListener("load", markTall, { once: true });
-    }
-    grid.appendChild(card);
+  const isPhone = () => innerWidth < 1000;
+  const WHO = ["CUSTOMER", "OWNER", "BEHIND IT"];
+  const VERBS = ["TAPS INTO", "REPORTS TO", "RUNS ON"];
+  WORK.forEach((p) => {
+    p.byId = {};
+    p.groups.forEach((g, gi) => g.feats.forEach((f) => { f.gi = gi; p.byId[f.id] = f; }));
   });
 
-  // flagship rail clocks: real time, UTC, always ticking (content, not motion)
-  const fsClocks = document.querySelectorAll(".fs__clock");
-  if (fsClocks.length) {
-    const tickClock = () => {
-      const t = new Date().toISOString().slice(11, 19) + "Z";
-      fsClocks.forEach((c) => { c.textContent = t; });
-    };
-    tickClock();
-    setInterval(tickClock, 1000);
+  // ---- feature visuals: one small, honest picture per feature
+  const TONE = { ok: "#34d399", bad: "#f87171", warn: "#e9b44c", mute: "#9ba0ab" };
+  const tone = (t) => (t === "acc" ? "var(--acc)" : TONE[t] || "#9ba0ab");
+  const viz = (v, big) => {
+    const t = v.type;
+    const st = (i) => `style="--i:${i}"`;
+    let h = "";
+    if (t === "shot" || t === "photo") {
+      const fit = big ? "contain" : "cover";
+      const pos = big ? "50% 50%" : `${v.x ?? 50}% ${v.y ?? 50}%`;
+      const z = big ? 1 : v.z || 1;
+      h = `<img src="${v.src}" alt="" loading="lazy" style="object-fit:${fit};object-position:${pos};--z:${z};transform-origin:${pos}" />`;
+    } else if (t === "cmd") {
+      h = `<div class="vz-cmd"><div class="vz-cmd__bar"><b>${v.prompt}</b><span class="vz-cmd__line" style="--n:${v.line.length}">${v.line}</span><i></i></div>
+        <div class="vz-cmd__out">${v.out.map((o, i) => `<span ${st(i)}>${o}</span>`).join("")}</div></div>`;
+    } else if (t === "score") {
+      h = `<div class="vz-score"><div><div class="vz-score__n">${v.n}<small>/${v.of}</small></div>
+        <div class="vz-score__dots">${Array.from({ length: v.of }, (_, i) => `<span class="${i < v.n ? "on" : ""}" ${st(i)}></span>`).join("")}</div></div>
+        <div class="vz-score__ev">${v.ev.map((e, i) => `<p ${st(i)}><b>◆</b>${e}</p>`).join("")}</div></div>`;
+    } else if (t === "rows") {
+      h = `<div class="vz-rows">${v.rows.map((r, i) => `<p ${st(i)}><span>${r.a}</span><b style="color:${tone(r.tone)}">${r.b}</b></p>`).join("")}</div>`;
+    } else if (t === "gate") {
+      h = `<div class="vz-gate">${v.steps.map((s, i) => {
+        const cls = i === v.lock ? "lock" : i === v.lock - 1 ? "human" : "done";
+        return `<div class="vz-gate__s vz-gate__s--${cls}" ${st(i)}><b>${cls === "lock" ? "■" : cls === "done" ? "✓" : "●"}</b><span>${s}</span></div>${i < v.steps.length - 1 ? "<em>→</em>" : ""}`;
+      }).join("")}</div>`;
+    } else if (t === "flow") {
+      h = `<div class="vz-flow">${v.steps.map((s, i) => `<span class="vz-flow__s${i === v.steps.length - 1 ? " is-end" : ""}" ${st(i)}>${s}</span>${i < v.steps.length - 1 ? `<i ${st(i)}></i>` : ""}`).join("")}</div>`;
+    } else if (t === "term") {
+      h = `<div class="vz-term">${v.lines.map((l, i) => `<p ${st(i)}><b>✓</b> ${l}</p>`).join("")}${v.total ? `<p class="vz-term__total" ${st(v.lines.length)}>▸ ${v.total}</p>` : ""}</div>`;
+    } else if (t === "chips") {
+      h = `<div class="vz-chips"><div>${v.items.map((c, i) => `<span class="${i === v.hi ? "on" : ""}" ${st(i)}>${c}</span>`).join("")}</div>
+        ${v.sub ? `<p>${v.sub.map((s) => `<span>+ ${s}</span>`).join("")}</p>` : ""}</div>`;
+    } else if (t === "bars") {
+      const m = Math.max(...v.vals);
+      h = `<div class="vz-bars">${v.tag ? `<p>${v.tag}</p>` : ""}<div>${v.vals.map((x, i) => `<span class="${i === v.hi ? "on" : ""}" style="--h:${Math.round((x / m) * 100)}%;--i:${i}"><i></i>${v.labels ? `<em>${v.labels[i]}</em>` : ""}</span>`).join("")}</div></div>`;
+    } else if (t === "cal") {
+      h = `<div class="vz-cal">${v.days.split("").map((d, i) => `<span class="${d === "g" ? "g" : d === "r" ? "r" : ""}" style="--i:${i}">${i + 1}</span>`).join("")}</div>`;
+    } else if (t === "heat") {
+      const m = Math.max(...v.vals);
+      h = `<div class="vz-heat"><div>${v.vals.map((x, i) => `<span class="${i === v.hi ? "hi" : ""}" style="--a:${x ? 0.15 + (x / m) * 0.85 : 0};--i:${i}"></span>`).join("")}</div>
+        <p class="vz-heat__axis"><span>00</span><span>06</span><span>12</span><span>18</span><span>23</span></p><p class="vz-heat__tag">${v.tag}</p></div>`;
+    } else if (t === "kpi") {
+      h = `<div class="vz-kpi"><b style="color:${tone(v.tone)}">${v.n}</b><span>${v.sub}</span></div>`;
+    } else if (t === "count") {
+      h = `<div class="vz-count"><div><span>${v.label}</span><b data-countdown="${v.t}">${v.t}</b></div><div>${v.wire.map((w) => `<p>WIRE · ${w}</p>`).join("")}</div></div>`;
+    } else if (t === "swatches") {
+      h = `<div class="vz-sw"><div>${v.colors.map((c, i) => `<span style="background:${c};--i:${i}"></span>`).join("")}</div><p>${v.labels.map((l, i) => `<em class="${i === v.hi ? "on" : ""}">${l}</em>`).join("")}</p></div>`;
+    } else if (t === "shelf") {
+      const pal = ["#c98f86", "#8fae8a", "#e2c27a", "#b07b6e", "#9fb4c9", "#d9a5a0"];
+      const hs = [86, 72, 92, 78, 88, 80];
+      h = `<div class="vz-shelf"><div class="vz-shelf__case">${pal.map((c, i) => `<span class="${i < v.n ? "" : "empty"}" style="--c:${c};--h:${hs[i]}%;--i:${i}"></span>`).join("")}</div>
+        <div class="vz-shelf__side"><p>${v.n} of 6 chosen</p><div class="vz-shelf__in"><span class="vz-cmd__line" style="--n:${v.typing.length}">${v.typing}</span><i></i></div></div></div>`;
+    }
+    return `<span class="vz vz--${t}${v.tall ? " vz--tall" : ""}${big ? " vz--big" : ""}">${h}</span>`;
+  };
+
+  // visuals animate in once they are on screen
+  const vizObserver = new IntersectionObserver((ents) => {
+    ents.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("is-on"); vizObserver.unobserve(en.target); } });
+  }, { threshold: 0.3 });
+  const armViz = (root) => root.querySelectorAll(".vz:not(.is-on)").forEach((el) => vizObserver.observe(el));
+
+  const logoHTML = (p) => `<span class="wlogo">${p.logo.svg || `<img src="${p.logo.img}" alt="" />`}</span>`;
+  const sources = (f) => `${f.webm ? `<source src="${f.webm}" type="video/webm" />` : ""}<source src="${f.mp4}" type="video/mp4" />`;
+
+  // ---- the wall
+  const wall = document.getElementById("wall");
+  wall.innerHTML = WORK.map((p, i) => `
+    <article class="wtile" role="listitem" style="--acc:${p.accent}">
+      <button type="button" class="wtile__btn" data-open="${i}" aria-label="Open ${p.name}: ${p.kind}">
+        <span class="wtile__media"><img src="${p.poster}" alt="" loading="lazy" /></span>
+        <span class="wtile__shade" aria-hidden="true"></span>
+        <span class="wtile__corner" aria-hidden="true"></span>
+        <span class="wtile__rail" aria-hidden="true">
+          <span class="wtile__chip"><i></i>0${i + 1}<span class="wtile__rid"> · ${p.railId}</span></span>
+          <span class="wtile__tag">${p.label}</span>
+        </span>
+        <span class="wtile__body">
+          <span class="wtile__text">
+            <span class="wtile__brand">${logoHTML(p)}<span class="wtile__kind">${p.kind}</span></span>
+            <span class="wtile__name">${p.name}</span>
+            <span class="wtile__line">${p.short}</span>
+            <span class="wtile__heads" aria-hidden="true">${p.heads.map((id) => `<span class="wtile__head"><span class="wtile__viz">${viz(p.byId[id].v)}</span><span class="wtile__cap">${p.byId[id].t}</span></span>`).join("")}</span>
+          </span>
+          <span class="wtile__arrow" aria-hidden="true">↗</span>
+        </span>
+      </button>
+    </article>`).join("") + `
+    <button type="button" class="wmore" id="wmore" aria-label="Open the index of ${PROJECTS.length} more builds">
+      <span class="wmore__title"><b>+${PROJECTS.length} more builds</b><small>SITES · AI SYSTEMS · PRODUCTS</small></span>
+      <span class="wmore__strip" aria-hidden="true">${PROJECTS.map((b) => `<img src="${b.image}" alt="" loading="lazy" />`).join("")}</span>
+      <span class="wmore__arrow" aria-hidden="true">↗</span>
+    </button>`;
+  armViz(wall);
+  const tiles = [...wall.querySelectorAll(".wtile__btn")];
+
+  // desktop: a tile plays its first feed while hovered
+  if (isFinePointer && !prefersReducedMotion) {
+    tiles.forEach((btn, i) => {
+      const f = WORK[i].feeds[0];
+      if (!f.mp4) return;
+      let vid = null;
+      btn.addEventListener("mouseenter", () => {
+        if (!vid) {
+          vid = document.createElement("video");
+          vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = "auto";
+          vid.innerHTML = sources(f);
+          if (f.start) vid.addEventListener("loadedmetadata", () => { vid.currentTime = f.start; }, { once: true });
+          btn.querySelector(".wtile__media").appendChild(vid);
+        }
+        vid.play().then(() => vid.classList.add("is-playing")).catch(() => {});
+      });
+      btn.addEventListener("mouseleave", () => { if (vid) { vid.pause(); vid.classList.remove("is-playing"); } });
+    });
   }
 
-  /* ==========================================================
-     FLAGSHIP LIVE FOOTAGE: one video per card, src-swap on a
-     signal-drop cut, broadcast rotation, HOW steps synced to time
-     ========================================================== */
-  const initSpotlight = (fsCard, p) => {
-    const sp = p.spotlight;
-    const fsVideo = fsCard.querySelector(".fs__video");
-    if (!fsVideo) return;
-    const fsMain = fsVideo.parentElement;
-    const fsTc = fsCard.querySelector(".fs__tc");
-    const fsCap = fsCard.querySelector(".fs__cap");
-    const feedBtns = [...fsCard.querySelectorAll(".fs__feed")];
-    const howSteps = [...fsCard.querySelectorAll(".fs__howsteps button")];
-    let currentFeed = 0;
-    let userTookOver = false;
-    let fsInView = false;
-    let playPill = null;
-    let howIdx = -1;
-
-    const wantsPlay = () => (prefersReducedMotion ? playPill && playPill.classList.contains("is-playing") : fsInView);
-
-    const setHowStep = (idx) => {
-      if (idx === howIdx) return;
-      howIdx = idx;
-      howSteps.forEach((b, i) => b.parentElement.classList.toggle("is-now", i === idx));
-    };
-    // feed 0 syncs by timecode; other feeds pin the step they demonstrate
-    const syncHow = () => {
-      if (currentFeed !== 0) { setHowStep(sp.feedStep[currentFeed] ?? -1); return; }
-      const t = fsVideo.currentTime;
-      let idx = 0;
-      for (let i = 0; i < sp.howAt.length; i++) if (t >= sp.howAt[i]) idx = i;
-      setHowStep(idx);
-    };
-
-    const setFeed = (idx, cut) => {
-      currentFeed = idx;
-      const f = sp.feeds[idx];
-      feedBtns.forEach((b, i) => b.classList.toggle("is-live", i === idx));
-      if (fsCap) fsCap.textContent = f.cap;
-      fsVideo.poster = f.poster; // poster first: a slow load shows the right still, never black
-      fsVideo.innerHTML = `<source src="${f.webm}" type="video/webm" /><source src="${f.mp4}" type="video/mp4" />`;
-      fsVideo.load();
-      if (cut && !prefersReducedMotion) {
-        fsMain.classList.remove("is-cutting");
-        void fsMain.offsetWidth;
-        fsMain.classList.add("is-cutting");
-        fsMain.addEventListener("animationend", () => fsMain.classList.remove("is-cutting"), { once: true });
-      }
-      if (wantsPlay()) fsVideo.play().catch(() => {});
-      syncHow();
-    };
-
-    // broadcast rotation: each feed plays to the end, then the next cuts in.
-    // A manually chosen feed loops itself instead of rotating on.
-    fsVideo.addEventListener("ended", () => {
-      if (userTookOver) {
-        fsVideo.currentTime = 0;
-        fsVideo.play().catch(() => {});
-        return;
-      }
-      setFeed((currentFeed + 1) % sp.feeds.length, true);
-    });
-
-    feedBtns.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation(); // feed switching is navigation, not a modal open
-        userTookOver = true;
-        setFeed(parseInt(btn.dataset.feed, 10), true);
-      });
-    });
-
-    howSteps.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        userTookOver = true;
-        const idx = parseInt(btn.dataset.step, 10);
-        if (currentFeed !== 0) setFeed(0, true);
-        const seek = () => { fsVideo.currentTime = sp.howAt[idx]; fsVideo.play().catch(() => {}); setHowStep(idx); };
-        fsVideo.readyState >= 1 ? seek() : fsVideo.addEventListener("loadedmetadata", seek, { once: true });
-      });
-    });
-
-    fsVideo.addEventListener("timeupdate", () => {
-      syncHow();
-      if (!fsTc) return;
-      const t = Math.floor(fsVideo.currentTime);
-      fsTc.textContent = `TC ${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")} · LOOP`;
-    });
-    syncHow();
-
-    if (prefersReducedMotion) {
-      playPill = document.createElement("button");
-      playPill.className = "fs__play";
-      playPill.type = "button";
-      playPill.textContent = "▶ PLAY FOOTAGE";
-      fsMain.appendChild(playPill);
-      playPill.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (fsVideo.paused) {
-          fsVideo.play().catch(() => {});
-          playPill.textContent = "❚❚";
-          playPill.classList.add("is-playing");
-        } else {
-          fsVideo.pause();
-          playPill.textContent = "▶ PLAY FOOTAGE";
-          playPill.classList.remove("is-playing");
-        }
-      });
-    } else {
-      // observe the stage, not the whole card: 35% of a tall card never
-      // enters short viewports (landscape phones, small windows)
-      const fsObserver = new IntersectionObserver((entries) => {
-        entries.forEach((en) => {
-          fsInView = en.isIntersecting;
-          if (fsInView) fsVideo.play().catch(() => {});
-          else fsVideo.pause();
-        });
-      }, { threshold: 0.35 });
-      fsObserver.observe(fsMain);
-    }
+  // ---- overlays share one scroll lock
+  let locks = 0;
+  const lock = (on) => {
+    locks = Math.max(0, locks + (on ? 1 : -1));
+    document.documentElement.classList.toggle("is-locked", locks > 0);
   };
-  grid.querySelectorAll(".project--flagship").forEach((card) => initSpotlight(card, PROJECTS[card.dataset.index]));
+
+  // ---- the feature map
+  const fmap = document.getElementById("fmap");
+  const S = { open: -1, node: null, card: 0, feed: 0 };
+  let lastTile = null;
+
+  const rectOf = (i) => {
+    const r = tiles[i].getBoundingClientRect();
+    return { l: r.left, t: r.top, w: r.width, h: r.height };
+  };
+  const setBox = (r) => {
+    fmap.style.left = r ? r.l + "px" : "0px";
+    fmap.style.top = r ? r.t + "px" : "0px";
+    fmap.style.width = r ? r.w + "px" : "100%";
+    fmap.style.height = r ? r.h + "px" : "100%";
+    fmap.style.borderRadius = r ? "18px" : "0px";
+  };
+
+  const hubMedia = (p) => {
+    const f = p.feeds[S.feed];
+    return f.mp4
+      ? `<video class="fm-hub__video" muted playsinline loop preload="metadata" poster="${f.poster}"${f.pos ? ` style="object-position:${f.pos}"` : ""} aria-label="${p.name} screen capture">${sources(f)}</video>`
+      : `<img src="${f.poster}" alt="${p.name}, ${f.tag.toLowerCase()}" />`;
+  };
+  const feedsHTML = (p) => `<div class="fm-feeds" role="tablist" aria-label="${p.name} footage">${p.feeds.map((f, i) => `
+      <button type="button" role="tab" aria-selected="${i === S.feed}" class="fm-feed${i === S.feed ? " is-on" : ""}" data-feed="${i}">
+        <img src="${f.poster}" alt="" loading="lazy" /><span>${f.label}</span>
+      </button>`).join("")}</div>`;
+
+  const deckOf = (p) => {
+    const d = [{ hub: true, stage: 0, kick: "THE PRODUCT · " + p.label, t: p.name, b: p.short }];
+    p.groups.forEach((g, gi) => g.feats.forEach((f) => d.push({ f, stage: gi + 1, kick: `0${gi + 1} · ${WHO[gi]} · ${g.label.toUpperCase()}`, t: f.t, b: f.b })));
+    return d;
+  };
+
+  function renderMap() {
+    const p = WORK[S.open];
+    fmap.style.setProperty("--acc", p.accent);
+    fmap.setAttribute("aria-label", `${p.name} feature map`);
+    const bar = `
+      <div class="fm-bar">
+        <button type="button" class="fm-back" data-act="close" aria-label="Back to the wall">←<span> WALL · ESC</span></button>
+        <div class="fm-title">${logoHTML(p)}<b>${p.name}</b><span class="fm-title__kind">${p.kind}</span></div>
+        <div class="fm-step">
+          <button type="button" data-act="prev" aria-label="Previous product">←</button>
+          <span class="fm-step__pos">0${S.open + 1} / 0${WORK.length}</span>
+          <button type="button" data-act="next" aria-label="Next product">→</button>
+        </div>
+        <button type="button" class="fm-case" data-act="case">CASE FILE <span>↗</span></button>
+        <button type="button" class="fm-build" data-act="build">Build something like this →</button>
+      </div>`;
+    let body;
+    if (!isPhone()) {
+      const group = (g, gi) => `
+        <section class="fm-col" style="--n:${Math.max(g.feats.length, 3)}">
+          <header><p>0${gi + 1} · ${WHO[gi]}</p><h4>${g.label}</h4></header>
+          <div class="fm-nodes">${g.feats.map((f, k) => `
+            <button type="button" class="fm-node${S.node === f.id ? " is-sel" : ""}" data-node="${f.id}" style="--k:${k}" aria-pressed="${S.node === f.id}">
+              <span class="fm-node__viz">${viz(f.v)}</span>
+              <span class="fm-node__txt"><b>${f.t}</b><small>${f.b}</small></span>
+            </button>`).join("")}</div>
+        </section>`;
+      const wire = (i) => `<div class="fm-wire" aria-hidden="true"><span>${VERBS[i]}</span><i></i></div>`;
+      body = `
+        <div class="fm-map">
+          ${group(p.groups[0], 0)}${wire(0)}
+          <section class="fm-hub">
+            <p class="fm-hub__kick">THE PRODUCT</p>
+            <div class="fm-hub__stage">${hubMedia(p)}<span class="fm-hub__rec"><i></i>${p.feeds[S.feed].label} // ${p.feeds[S.feed].tag}</span></div>
+            ${feedsHTML(p)}
+            <p class="fm-hub__line">${p.oneLine}</p>
+            <div class="fm-chips">${p.proof.map((c, i) => `<span style="--i:${i}">${c}</span>`).join("")}</div>
+          </section>
+          ${wire(1)}${group(p.groups[1], 1)}${wire(2)}${group(p.groups[2], 2)}
+        </div>`;
+    } else {
+      const deck = deckOf(p);
+      S.card = Math.min(S.card, deck.length - 1);
+      const c = deck[S.card];
+      const stages = ["Product", "Customer", "Owner", "Behind"];
+      body = `
+        <div class="fm-deck">
+          <div class="fm-tabs" role="tablist" aria-label="Feature map stages">${stages.map((t, si) => `
+            <button type="button" role="tab" aria-selected="${c.stage === si}" class="${c.stage === si ? "is-on" : ""}" data-stage="${si}"><small>${si ? p.groups[si - 1].feats.length + " FEATURES" : "OVERVIEW"}</small>${t}</button>`).join("")}
+          </div>
+          <div class="fm-card" role="group" aria-roledescription="card" aria-label="${c.t}, card ${S.card + 1} of ${deck.length}">
+            <div class="fm-card__media">${c.hub ? hubMedia(p) : viz(c.f.v)}</div>
+            ${c.hub ? feedsHTML(p) : ""}
+            <div class="fm-card__txt"><p>${c.kick}</p><h3>${c.t}</h3><span>${c.b}</span></div>
+          </div>
+          <div class="fm-ctrl">
+            <button type="button" data-act="cprev" aria-label="Previous card">←</button>
+            <span aria-live="polite">${S.card + 1}/${deck.length}</span>
+            <button type="button" data-act="cnext" aria-label="Next card">→</button>
+            <button type="button" class="fm-case" data-act="case">CASE FILE ↗</button>
+            <button type="button" class="fm-build" data-act="build" aria-label="Build something like this">Build</button>
+          </div>
+        </div>`;
+    }
+    fmap.innerHTML = `<div class="fm-in">${bar}${body}</div>`;
+    if (!isPhone()) renderNode();
+    fmap.querySelectorAll(".vz").forEach((el) => requestAnimationFrame(() => el.classList.add("is-on")));
+    const v = fmap.querySelector(".fm-hub__video");
+    if (v && !prefersReducedMotion) { v.muted = true; v.play().catch(() => {}); }
+  }
+
+  // the opened-up feature sits over the map, so the map (and its film) keep running
+  function renderNode() {
+    const p = WORK[S.open];
+    const old = fmap.querySelector(".fm-node-over");
+    if (old) old.remove();
+    fmap.querySelectorAll(".fm-node").forEach((b) => {
+      const on = b.dataset.node === S.node;
+      b.classList.toggle("is-sel", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+    const N = S.node && p.byId[S.node];
+    if (!N) return;
+    fmap.querySelector(".fm-in").insertAdjacentHTML("beforeend", `
+      <div class="fm-node-over" data-act="clearnode">
+        <div class="fm-detail" role="dialog" aria-label="${N.t}">
+          <div class="fm-detail__viz">${viz(N.v, true)}</div>
+          <div class="fm-detail__foot">
+            <div><p>0${N.gi + 1} · ${WHO[N.gi]} · ${p.groups[N.gi].label.toUpperCase()}</p><h3>${N.t}</h3><span>${N.b}</span></div>
+            <button type="button" data-act="clearnode">ESC · MAP</button>
+          </div>
+        </div>
+      </div>`);
+    const d = fmap.querySelector(".fm-detail .vz");
+    requestAnimationFrame(() => d.classList.add("is-on"));
+  }
+
+  function openTile(i, node) {
+    lastTile = tiles[i];
+    const k = node ? deckOf(WORK[i]).findIndex((c) => c.f && c.f.id === node) : 0;
+    Object.assign(S, { open: i, node: node && !isPhone() ? node : null, card: Math.max(0, k), feed: 0 });
+    renderMap();
+    fmap.hidden = false;
+    lock(true);
+    if (prefersReducedMotion) { setBox(null); fmap.classList.add("is-full"); }
+    else {
+      fmap.classList.remove("is-full");
+      fmap.classList.add("is-moving");
+      setBox(rectOf(i));
+      requestAnimationFrame(() => requestAnimationFrame(() => { setBox(null); fmap.classList.add("is-full"); }));
+      setTimeout(() => fmap.classList.remove("is-moving"), 560);
+    }
+    fmap.querySelector(".fm-back").focus({ preventScroll: true });
+  }
+  function closeTile() {
+    if (S.open < 0) return;
+    const i = S.open;
+    fmap.querySelectorAll("video").forEach((v) => v.pause());
+    const done = () => { fmap.hidden = true; fmap.innerHTML = ""; S.open = -1; lock(false); tiles[i].focus({ preventScroll: true }); };
+    if (prefersReducedMotion) return done();
+    fmap.classList.add("is-moving");
+    fmap.classList.remove("is-full");
+    setBox(rectOf(i));
+    setTimeout(() => { fmap.classList.remove("is-moving"); done(); }, 520);
+  }
+  const stepProduct = (d) => {
+    Object.assign(S, { open: (S.open + d + WORK.length) % WORK.length, node: null, card: 0, feed: 0 });
+    lastTile = tiles[S.open];
+    renderMap();
+  };
+  const stepCard = (d) => {
+    const n = deckOf(WORK[S.open]).length;
+    S.card = (S.card + d + n) % n;
+    renderMap();
+  };
+
+  tiles.forEach((b, i) => b.addEventListener("click", () => openTile(i)));
+  fmap.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-act],[data-node],[data-feed],[data-stage]");
+    if (!t) return;
+    if (t.dataset.node) { S.node = S.node === t.dataset.node ? null : t.dataset.node; renderNode(); return; }
+    if (t.dataset.feed) { S.feed = +t.dataset.feed; renderMap(); return; }
+    if (t.dataset.stage) { const k = deckOf(WORK[S.open]).findIndex((c) => c.stage === +t.dataset.stage); S.card = Math.max(0, k); renderMap(); return; }
+    const act = t.dataset.act;
+    if (act === "clearnode") { if (e.target.closest(".fm-detail") && t.classList.contains("fm-node-over")) return; S.node = null; renderNode(); }
+    else if (act === "close") closeTile();
+    else if (act === "prev") stepProduct(-1);
+    else if (act === "next") stepProduct(1);
+    else if (act === "cprev") stepCard(-1);
+    else if (act === "cnext") stepCard(1);
+    else if (act === "case") openCase(S.open);
+    else if (act === "build") openWizard(WORK[S.open].service);
+  });
+  let tx = 0;
+  fmap.addEventListener("touchstart", (e) => { tx = e.touches[0].clientX; }, { passive: true });
+  fmap.addEventListener("touchend", (e) => {
+    if (!e.target.closest(".fm-card")) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) stepCard(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  let lastPhone = isPhone();
+  addEventListener("resize", () => {
+    if (S.open < 0 || isPhone() === lastPhone) return;
+    lastPhone = isPhone();
+    renderMap();
+  }, { passive: true });
+
+  // ---- the case file
+  const casefile = document.getElementById("casefile");
+  function openCase(i) {
+    const p = WORK[i];
+    casefile.style.setProperty("--acc", p.accent);
+    casefile.innerHTML = `
+      <div class="cf-panel" role="document">
+        <div class="cf-media"><img src="${p.cover || p.poster}" alt="${p.name}" /><span class="cf-corner" aria-hidden="true"></span></div>
+        <div class="cf-body">
+          <p class="cf-rail"><i></i>${p.railId} · CASE FILE<span>${p.label}</span></p>
+          <div class="cf-head">${logoHTML(p)}<div><h3>${p.name}</h3><p>${p.kind} · ${p.stack}</p></div></div>
+          <p class="cf-copy">${p.oneLine}</p>
+          <ol class="cf-how">${p.how.map((s, k) => `<li><b>0${k + 1}</b><span><strong>${s.t}</strong><small> · ${s.d}</small></span></li>`).join("")}</ol>
+          <div class="fm-chips">${p.proof.map((c, k) => `<span style="--i:${k}">${c}</span>`).join("")}</div>
+          <div class="cf-actions">
+            <button type="button" class="cf-build" data-act="build">Build something like this →</button>
+            ${p.url ? `<a class="cf-visit" href="${p.url}" target="_blank" rel="noopener">Visit ${p.url.replace("https://", "")} ↗</a>` : ""}
+            <button type="button" class="cf-close" data-act="close" aria-label="Close case file">ESC · CLOSE</button>
+          </div>
+        </div>
+      </div>`;
+    casefile.hidden = false;
+    lock(true);
+    casefile.querySelector(".cf-close").focus({ preventScroll: true });
+  }
+  const closeCase = () => { if (casefile.hidden) return; casefile.hidden = true; lock(false); };
+  casefile.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-act]");
+    if (e.target === casefile || (t && t.dataset.act === "close")) closeCase();
+    else if (t && t.dataset.act === "build") { const svc = WORK[S.open >= 0 ? S.open : 0].service; closeCase(); openWizard(svc); }
+  });
+
+  // ---- the index of every other build
+  const moreidx = document.getElementById("moreidx");
+  moreidx.innerHTML = `
+    <div class="mi-head">
+      <div><p>INDEX // ${PROJECTS.length} MORE BUILDS</p><h3>Range, not just flagships.</h3></div>
+      <button type="button" class="mi-close" data-act="close" aria-label="Close the index">ESC · CLOSE</button>
+    </div>
+    <div class="mi-grid">${PROJECTS.map((b, i) => `
+      <button type="button" class="mi-card" data-build="${i}" style="--acc:${b.accent}" aria-label="${b.name}, ${b.type}">
+        <span class="mi-card__img"><img src="${b.image}" alt="" loading="lazy" /></span>
+        <span class="mi-card__cap"><b><i></i>${b.name}</b><small>${b.type}</small></span>
+      </button>`).join("")}
+    </div>`;
+  const openMore = () => { moreidx.hidden = false; lock(true); moreidx.querySelector(".mi-close").focus({ preventScroll: true }); };
+  const closeMore = () => { if (moreidx.hidden) return; moreidx.hidden = true; lock(false); document.getElementById("wmore").focus({ preventScroll: true }); };
+  document.getElementById("wmore").addEventListener("click", openMore);
+  moreidx.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-build]");
+    if (b) { openModal(+b.dataset.build); return; }
+    if (e.target.closest("[data-act=close]")) closeMore();
+  });
+
+  // ---- keys: 1–4 open, ← → step, Esc backs out one layer
+  addEventListener("keydown", (e) => {
+    if (document.getElementById("wizard").classList.contains("is-open") || modal.classList.contains("is-open")) return;
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === "Escape") {
+      if (!casefile.hidden) closeCase();
+      else if (!moreidx.hidden) closeMore();
+      else if (S.open >= 0 && S.node) { S.node = null; renderNode(); }
+      else if (S.open >= 0) closeTile();
+      return;
+    }
+    if (!casefile.hidden || !moreidx.hidden) return;
+    if (/^[1-4]$/.test(e.key)) {
+      const k = +e.key - 1;
+      if (S.open >= 0) { Object.assign(S, { open: k, node: null, card: 0, feed: 0 }); renderMap(); return; }
+      const r = wall.getBoundingClientRect();
+      if (r.top < innerHeight * 0.6 && r.bottom > innerHeight * 0.4) openTile(k);
+    } else if (S.open >= 0 && (e.key === "ArrowRight" || e.key === "ArrowLeft")) {
+      e.preventDefault();
+      const d = e.key === "ArrowRight" ? 1 : -1;
+      isPhone() ? stepCard(d) : stepProduct(d);
+    }
+  });
+
+  /* ==========================================================
+     WHAT I BUILD :: friction → fix, shown on real product screens
+     ========================================================== */
+  const OPS = [
+    { q: "Bills and supplier dues live in a notebook.", kind: "INTERNAL TOOL", t: "A bills tracker that never forgets", b: "Late, due this week, unpaid. Tick Paid and next month’s bill books itself, and anything late waits for you on the home screen.", img: "tapfour-dash-billing.jpg", pos: "30% 20%", url: "dashboard.tap4.ph/billing", p: 0, node: "billing" },
+    { q: "We find out stock is gone when a customer asks.", kind: "DASHBOARD", t: "Stock that warns you first", b: "Tap − and + as you use it. Anything running low is flagged before the shift that needs it.", img: "tapfour-dash-stock.jpg", pos: "30% 22%", url: "dashboard.tap4.ph/inventory", p: 0, node: "stock" },
+    { q: "Leads come in, then nobody follows up.", kind: "AI AUTOMATION", t: "Leads captured, scored and drafted", b: "One order finds the businesses, scores each one 0–6 with the evidence, and drafts the outreach. A person approves every send.", img: "aegis-leados-pipeline.jpg", pos: "50% 30%", url: "aegisleados · ops.pipeline", p: 1, node: "crm" },
+    { q: "I can’t tell which branch is doing well.", kind: "DASHBOARD", t: "Every branch on one screen", b: "Taps, reviews and visits per branch, the busiest hours, and a monthly report that saves as a PDF.", img: "tapfour-dash-reports.jpg", pos: "40% 25%", url: "dashboard.tap4.ph/reports", p: 0, node: "report" },
+    { q: "My numbers live in five spreadsheets.", kind: "CUSTOM SOFTWARE", t: "One place your numbers add up", b: "Log it in one line and every chart, calendar and report updates itself. No copying between tabs.", img: "trader-journal.jpg?v=2", pos: "50% 0%", url: "trader journal · desk", p: 2, node: "dash" },
+    { q: "Our website looks fine but doesn’t sell.", kind: "WEBSITE", t: "A site built around how people buy", b: "A storefront shaped to the product, with a checkout that can’t get the price wrong and emails that go out exactly once.", img: "little-bookshop.jpg", pos: "50% 20%", url: "Miniature Bookshop · store", p: 3, node: "transfer" },
+  ];
+  const opsEl = document.getElementById("ops");
+  if (opsEl) {
+    const list = opsEl.querySelector(".ops__list");
+    list.insertAdjacentHTML("beforeend", OPS.map((o, i) => `
+      <button type="button" role="tab" class="ops__item" data-ops="${i}" aria-selected="false" aria-controls="opsPanel">
+        <i>0${i + 1}</i><span>“${o.q}”</span><em>${o.kind}</em>
+      </button>`).join(""));
+    const items = [...list.querySelectorAll(".ops__item")];
+    const $ = (id) => document.getElementById(id);
+    const panel = $("opsPanel");
+    let cur = -1, timer = null, auto = !prefersReducedMotion, inView = false;
+    const show = (i) => {
+      if (i === cur) return;
+      cur = i;
+      const o = OPS[i], p = WORK[o.p];
+      items.forEach((b, k) => { b.classList.toggle("is-on", k === i); b.setAttribute("aria-selected", String(k === i)); });
+      if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: items[i].offsetLeft - list.offsetLeft, behavior: prefersReducedMotion ? "auto" : "smooth" });
+      panel.style.setProperty("--acc", p.accent);
+      panel.classList.remove("is-swap"); void panel.offsetWidth; panel.classList.add("is-swap");
+      $("opsImg").src = P + o.img;
+      $("opsImg").alt = `${p.name}: ${o.t}`;
+      $("opsImg").style.objectPosition = o.pos;
+      $("opsImg").style.setProperty("--o", o.pos);
+      $("opsUrl").textContent = o.url;
+      $("opsKind").textContent = o.kind;
+      $("opsTitle").textContent = o.t;
+      $("opsBody").textContent = o.b;
+      $("opsSeen").innerHTML = `${logoHTML(p)}Seen in ${p.name} <b>↗</b>`;
+    };
+    const tick = () => {
+      clearTimeout(timer);
+      if (!auto || !inView) return;
+      panel.classList.remove("is-timing"); void panel.offsetWidth; panel.classList.add("is-timing");
+      timer = setTimeout(() => { show((cur + 1) % OPS.length); tick(); }, 6000);
+    };
+    const stopAuto = () => { auto = false; clearTimeout(timer); panel.classList.remove("is-timing"); };
+    items.forEach((b, i) => b.addEventListener("click", () => { stopAuto(); show(i); }));
+    list.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      e.preventDefault();
+      stopAuto();
+      const n = (cur + (e.key === "ArrowDown" ? 1 : -1) + OPS.length) % OPS.length;
+      show(n); items[n].focus();
+    });
+    $("opsSeen").addEventListener("click", () => { stopAuto(); openTile(OPS[cur].p, OPS[cur].node); });
+    $("opsStart").addEventListener("click", () => openWizard(WORK[OPS[cur].p].service));
+    new IntersectionObserver(([en]) => { inView = en.isIntersecting; tick(); }, { threshold: 0.35 }).observe(opsEl);
+    show(0);
+  }
+
+  // the release-edge countdown really counts down
+  setInterval(() => {
+    document.querySelectorAll("[data-countdown]").forEach((el) => {
+      const [h, m, s] = el.textContent.split(":").map(Number);
+      let t = h * 3600 + m * 60 + s - 1;
+      if (t < 0) t = Number(el.dataset.countdown.split(":").reduce((a, x) => a * 60 + +x, 0));
+      el.textContent = [t / 3600, (t % 3600) / 60, t % 60].map((x) => String(Math.floor(x)).padStart(2, "0")).join(":");
+    });
+  }, 1000);
 
   /* ==========================================================
      RENDER: TOOLS, dual marquee belt with real brand icons
@@ -737,7 +1030,7 @@
   /* ==========================================================
      ACTIVE NAV LINK
      ========================================================== */
-  const sections = ["work", "proof", "build", "system", "tools", "contact"];
+  const sections = ["work", "build", "system", "tools", "contact"];
   const navLinks = document.querySelectorAll(".nav__link");
   const bottomLinks = document.querySelectorAll(".bottomnav [data-bn]");
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -765,26 +1058,6 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
   document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
-
-  // Proof cards: terminal lines type themselves on scroll
-  const typeEls = document.querySelectorAll(".proof-card__type");
-  if (typeEls.length) {
-    const typeObs = new IntersectionObserver((entries) => {
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        typeObs.unobserve(en.target);
-        const text = en.target.dataset.type;
-        if (prefersReducedMotion) { en.target.textContent = text; return; }
-        let i = 0;
-        const tick = () => {
-          en.target.textContent = text.slice(0, ++i);
-          if (i < text.length) setTimeout(tick, 30);
-        };
-        setTimeout(tick, 500);
-      });
-    }, { threshold: 0.5 });
-    typeEls.forEach((el) => typeObs.observe(el));
-  }
 
   // System flow rail
   const flow = document.getElementById("systemFlow");
@@ -925,119 +1198,15 @@
   }
 
   /* ==========================================================
-     3D TILT on project cards
-     ========================================================== */
-  if (isFinePointer && !prefersReducedMotion) {
-    grid.querySelectorAll(".project").forEach((card) => {
-      // full-width flagship gets a dampened tilt. 7 degrees on that span reads as broken
-      const k = card.classList.contains("project--flagship") ? 2 : 7;
-      card.addEventListener("mousemove", (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(900px) rotateY(${px * k}deg) rotateX(${-py * k}deg) translateY(-4px)`;
-      });
-      card.addEventListener("mouseleave", () => { card.style.transform = ""; });
-    });
-  }
-
-  /* ==========================================================
      SPOTLIGHT on build cards
      ========================================================== */
-  document.querySelectorAll(".build-card, .project, .hstat").forEach((card) => {
-    // flagship: the spot lives inside the feed stage, so track coords relative to it
-    const fsMain = card.querySelector(".fs__main");
+  document.querySelectorAll(".build-card, .hstat, .offer").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${e.clientX - r.left}px`);
       card.style.setProperty("--my", `${e.clientY - r.top}px`);
-      if (fsMain) {
-        const fr = fsMain.getBoundingClientRect();
-        fsMain.style.setProperty("--mx", `${e.clientX - fr.left}px`);
-        fsMain.style.setProperty("--my", `${e.clientY - fr.top}px`);
-      }
     });
   });
-
-  /* ==========================================================
-     WORK: filters + desktop cap + show-all + mobile carousel
-     ========================================================== */
-  const filters = document.querySelectorAll(".filter");
-  const workToggle = document.getElementById("workToggle");
-  const workMore = workToggle.parentElement;
-  let activeFilter = "All";
-  let expanded = false;
-
-  // Fill filter counts from the data
-  filters.forEach((btn) => {
-    const cat = btn.dataset.filter;
-    const n = cat === "All" ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
-    btn.querySelector("sup").textContent = n;
-  });
-
-  function applyWork(animate) {
-    let shown = 0;
-    let matches = 0;
-    grid.querySelectorAll(".project").forEach((card) => {
-      const match = activeFilter === "All" || card.dataset.category === activeFilter;
-      if (match) matches++;
-      card.classList.toggle("is-filtered", !match);
-      const collapsed = match && !expanded && shown >= DESKTOP_CAP;
-      card.classList.toggle("is-collapsed", collapsed);
-      card.classList.remove("is-entering");
-      if (match && !collapsed) {
-        if (animate) {
-          void card.offsetWidth;
-          card.style.animationDelay = `${shown * 0.06}s`;
-          card.classList.add("is-entering");
-        }
-        shown++;
-      }
-    });
-    workMore.classList.toggle("is-hidden", matches <= DESKTOP_CAP);
-    workToggle.querySelector(".btn__text").textContent = expanded
-      ? "Show less"
-      : `Show all ${matches} projects`;
-    workToggle.querySelector(".btn__arrow").textContent = expanded ? "↑" : "↓";
-    const readout = document.getElementById("workReadout");
-    if (readout) readout.textContent = `INDEX // ${String(matches).padStart(2, "0")} BUILDS ON RECORD`;
-  }
-  applyWork(false);
-
-  filters.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filters.forEach((f) => f.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      activeFilter = btn.dataset.filter;
-      expanded = false;
-      applyWork(true);
-      grid.scrollTo({ left: 0, behavior: "smooth" });
-    });
-  });
-
-  workToggle.addEventListener("click", () => {
-    expanded = !expanded;
-    applyWork(true);
-    if (!expanded) document.getElementById("work").scrollIntoView({ behavior: "smooth" });
-  });
-
-  // Mobile carousel arrows
-  const workPrev = document.getElementById("workPrev");
-  const workNext = document.getElementById("workNext");
-  const cardStep = () => {
-    const card = grid.querySelector(".project:not(.is-filtered)");
-    return card ? card.getBoundingClientRect().width + 16 : 300;
-  };
-  workPrev.addEventListener("click", () => grid.scrollBy({ left: -cardStep(), behavior: "smooth" }));
-  workNext.addEventListener("click", () => grid.scrollBy({ left: cardStep(), behavior: "smooth" }));
-  const updateArrows = () => {
-    const maxScroll = grid.scrollWidth - grid.clientWidth;
-    workPrev.disabled = grid.scrollLeft <= 4;
-    workNext.disabled = grid.scrollLeft >= maxScroll - 4;
-  };
-  grid.addEventListener("scroll", updateArrows, { passive: true });
-  addEventListener("resize", updateArrows, { passive: true });
-  updateArrows();
 
   /* ==========================================================
      PROJECT MODAL
@@ -1137,7 +1306,7 @@
       options: [
         { v: "Website", d: "Landing page or full site that converts", icon: "globe" },
         { v: "AI Automation", d: "Workflows that run your busywork 24/7", icon: "zap" },
-        { v: "Business System", d: "CRM, dashboards, pipelines, reporting", icon: "chart" },
+        { v: "Business System", d: "Dashboards, internal tools, CRM, reporting", icon: "chart" },
         { v: "Digital Product", d: "Web or mobile app, MVP to launch", icon: "blocks" },
       ],
     },
