@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=15" />
+  <link rel="stylesheet" href="assets/css/style.css?v=17" />
 
   <script type="application/ld+json">
   {
@@ -96,44 +96,7 @@
   </script>
 </head>
 <body>
-  <!-- ==================== ENTRY :: pick your pace ====================
-       First visit only. Quick look opens the one-screen Control Deck,
-       Full site drops into the page below. ?view=quick|full skips it. -->
-  <div class="entry" id="entry" hidden>
-    <div class="entry__head" aria-hidden="true">
-      <span class="entry__brand"><b>Chester</b><small>STUDIO</small></span>
-      <span class="entry__ask">PICK YOUR PACE</span>
-    </div>
-    <button type="button" class="entry__door entry__door--quick" data-pick="deck" aria-label="Quick look, about 1 minute">
-      <span class="entry__in">
-        <span class="entry__pv entry__pv--deck" aria-hidden="true">
-          <span class="epv__bar"><i></i><s></s></span>
-          <span class="epv__grid">
-            <span class="epv__col"><i></i><i></i><i class="is-acc"></i><em class="epv__idea"></em><em class="epv__box"></em><em class="epv__btn"></em></span>
-            <span class="epv__col epv__col--work"><span class="epv__shot"><img src="public/projects/tapfour-dash-home.jpg" alt="" /></span><b class="is-on"></b><b></b><b></b><b></b></span>
-            <span class="epv__col epv__col--list"><b></b><b></b><b></b><b></b><b></b><u></u><u></u><u></u></span>
-          </span>
-          <span class="epv__ask"><i></i><i class="is-on"></i><i></i><i></i><i></i></span>
-        </span>
-        <span class="entry__label"><small>1 MIN</small><b>Quick look<em>→</em></b><span>One screen: the work, the services, a way to reach me.</span></span>
-      </span>
-    </button>
-    <span class="entry__div" aria-hidden="true"></span>
-    <button type="button" class="entry__door entry__door--full" data-pick="site" aria-label="Full site, about 5 minutes">
-      <span class="entry__in">
-        <span class="entry__pv entry__pv--page" aria-hidden="true">
-          <span class="epv__nav"><b></b><i></i><i></i><i></i></span>
-          <span class="epv__scroll">
-            <span class="epv__h"></span><span class="epv__h epv__h--acc"></span><span class="epv__p"></span>
-            <img src="public/projects/tapfour-site.jpg" alt="" /><img src="public/projects/aegis-leados.jpg" alt="" /><img src="public/projects/tapfour-dash-reports.jpg" alt="" /><img src="public/projects/trader-journal.jpg?v=2" alt="" /><img src="public/projects/Motorcycle Dealership.jpg" alt="" /><img src="public/projects/little-bookshop.jpg" alt="" /><img src="public/projects/Real Estate Automation-ai.jpg" alt="" /><img src="public/projects/Local Accounting Firm-accounting.jpg" alt="" />
-          </span>
-        </span>
-        <span class="entry__label"><small>5 MIN</small><b>Full site<em>→</em></b><span>Every product, how I build, and the whole system.</span></span>
-      </span>
-    </button>
-  </div>
-
-  <!-- ==================== CONTROL DECK :: the 1-minute view ==================== -->
+  <!-- ==================== QUICK VIEW :: the 1-minute view (nav link or ?view=quick) ==================== -->
   <div class="deck" id="deck" data-theme="dark" role="dialog" aria-modal="true" aria-label="Chester Studio quick view" hidden></div>
 
   <!-- ==================== PRELOADER ==================== -->
@@ -728,6 +691,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=15"></script>
+  <script src="assets/js/main.js?v=17"></script>
 </body>
 </html>

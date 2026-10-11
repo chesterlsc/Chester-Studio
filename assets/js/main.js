@@ -702,11 +702,14 @@
     }
     fmap.querySelector(".fm-back").focus({ preventScroll: true });
   }
+  // set when the map or the index was opened from the quick view: closing goes back there, not to the page
+  let backToDeck = false;
   function closeTile() {
     if (S.open < 0) return;
     const i = S.open;
     fmap.querySelectorAll("video").forEach((v) => v.pause());
     const done = () => { fmap.hidden = true; fmap.innerHTML = ""; S.open = -1; lock(false); tiles[i].focus({ preventScroll: true }); };
+    if (backToDeck) { backToDeck = false; showDeck(); done(); return; }
     if (prefersReducedMotion) return done();
     fmap.classList.add("is-moving");
     fmap.classList.remove("is-full");
@@ -801,7 +804,12 @@
       </button>`).join("")}
     </div>`;
   const openMore = () => { moreidx.hidden = false; lock(true); moreidx.querySelector(".mi-close").focus({ preventScroll: true }); };
-  const closeMore = () => { if (moreidx.hidden) return; moreidx.hidden = true; lock(false); document.getElementById("wmore").focus({ preventScroll: true }); };
+  const closeMore = () => {
+    if (moreidx.hidden) return;
+    moreidx.hidden = true;
+    lock(false);
+    if (backToDeck) { backToDeck = false; showDeck(); } else document.getElementById("wmore").focus({ preventScroll: true });
+  };
   document.getElementById("wmore").addEventListener("click", openMore);
   moreidx.addEventListener("click", (e) => {
     const b = e.target.closest("[data-build]");
@@ -898,7 +906,7 @@
      Desktop is laid out at 1280×800 and scaled to fit the window,
      so nothing is ever cut; phones get a single scrolling column.
      ========================================================== */
-  const QV_POSTER = { tapfour: "tapfour-dash-home.jpg", bookshop: "little-bookshop-catalog.jpg" };
+  const QV_POSTER = { tapfour: "tapfour-dash-home.jpg", aegis: "aegis-leados-pipeline.jpg", bookshop: "little-bookshop-catalog.jpg" };
   const QV_BUILD = [
     ["Websites", "Sell and take bookings online", "Website"],
     ["Custom software", "Apps made for your business", "Digital Product"],
@@ -924,7 +932,7 @@
     ["STAFF PORTAL", "One place for schedules, leave requests and payslips.", "Business System"],
     ["REPORTING", "A weekly report that writes itself and lands in my inbox every Monday.", "AI Automation"],
   ];
-  const IDEA_MS = 10000, TYPE_MS = 2400;
+  const IDEA_MS = 10000, TYPE_MS = 1900;
 
   const deckEl = document.getElementById("deck");
   const D = { p: 0, q: 0, brief: "", briefSvc: undefined, on: false, t0: 0, idea: -1 };
@@ -947,7 +955,7 @@
             <p class="qv-lead">Websites, software, dashboards and automations. Designed, built and looked after.</p>
             <div class="qv-idea" role="button" tabindex="0" data-qv="nextidea" aria-label="Show another idea">
               <div class="qv-idea__top"><span class="qv-idea__tag"></span><span class="qv-idea__num"></span><button type="button" class="qv-idea__use" data-qv="useidea">Use this →</button></div>
-              <p class="qv-idea__txt" aria-live="polite">“<span></span><i></i>”</p>
+              <p class="qv-idea__txt" aria-live="polite">“<span></span>”</p>
               <span class="qv-idea__bar"></span>
             </div>
             <div class="qv-brief">
@@ -999,25 +1007,41 @@
   }
 
   // the idea card types itself out, holds, then moves on
+  // runs every display frame (60/90/120 Hz): the bar moves on the GPU (transform only),
+  // and the DOM is touched only when a letter or a state actually changes
+  const IDEA = { el: null, n: -1, out: null };
   function tickIdea() {
     if (!D.on) return;
     const el = deckEl.querySelector(".qv-idea");
     if (!el) return;
+    if (el !== IDEA.el) Object.assign(IDEA, { el, n: -1, out: null, bar: el.querySelector(".qv-idea__bar"), txt: el.querySelector(".qv-idea__txt span") });
     const it = performance.now() - D.t0;
     const i = Math.floor(it / IDEA_MS) % QV_IDEAS.length, t = it % IDEA_MS;
     const [tag, full] = QV_IDEAS[i];
     const n = prefersReducedMotion ? full.length : Math.min(full.length, Math.floor((t / TYPE_MS) * full.length));
     if (i !== D.idea) {
+      // the whole sentence is laid out up front (no reflow while typing); letters fade in one by one
       D.idea = i;
+      IDEA.n = 0;
       el.querySelector(".qv-idea__tag").textContent = tag;
       el.querySelector(".qv-idea__num").textContent = `0${i + 1} / 0${QV_IDEAS.length}`;
+      IDEA.txt.innerHTML = [...full].map((c) => `<span>${c}</span>`).join("");
+      IDEA.chars = IDEA.txt.children;
+      IDEA.last = null;
     }
-    el.querySelector(".qv-idea__txt span").textContent = full.slice(0, n);
-    el.classList.toggle("is-typing", n < full.length);
-    el.classList.toggle("is-out", !prefersReducedMotion && t > IDEA_MS - 600);
-    el.style.setProperty("--pct", (t / IDEA_MS) * 100 + "%");
+    if (n !== IDEA.n) {
+      for (let k = IDEA.n; k < n; k++) IDEA.chars[k].className = "on";
+      if (IDEA.last) IDEA.last.className = "on";
+      IDEA.last = n > 0 && n < full.length ? IDEA.chars[n - 1] : null; // the caret rides the newest letter
+      if (IDEA.last) IDEA.last.className = "on cur";
+      IDEA.n = n;
+    }
+    const out = !prefersReducedMotion && t > IDEA_MS - 600;
+    if (out !== IDEA.out) { IDEA.out = out; el.classList.toggle("is-out", out); }
+    IDEA.bar.style.transform = `scaleX(${(t / IDEA_MS).toFixed(4)})`;
   }
-  setInterval(tickIdea, 60);
+  let ideaRaf = 0;
+  const ideaLoop = () => { tickIdea(); ideaRaf = D.on ? requestAnimationFrame(ideaLoop) : 0; };
 
   // ---- switching between the quick view and the full site
   let lastMob = deckMob();
@@ -1025,16 +1049,15 @@
     if (D.on) return;
     D.on = true;
     D.t0 = performance.now();
+    if (!ideaRaf) ideaRaf = requestAnimationFrame(ideaLoop);
     lastMob = deckMob();
     renderDeck();
     deckEl.hidden = false;
     deckEl.scrollTop = 0;
     lock(true);
     requestAnimationFrame(() => requestAnimationFrame(() => deckEl.classList.add("is-on")));
-    try { sessionStorage.setItem("cs-view", "deck"); } catch (e) {}
   }
   function showSite(then) {
-    try { sessionStorage.setItem("cs-view", "site"); } catch (e) {}
     if (!D.on) return;
     D.on = false;
     deckEl.classList.remove("is-on");
@@ -1043,7 +1066,7 @@
     setTimeout(() => { if (!D.on) { deckEl.hidden = true; deckEl.innerHTML = ""; } }, prefersReducedMotion ? 0 : 520);
   }
   // land on the wall first, so the tile grows from where it really is
-  const seeTile = (i) => { wall.scrollIntoView({ block: "center", behavior: "instant" }); openTile(i); };
+  const seeTile = (i) => { backToDeck = true; wall.scrollIntoView({ block: "center", behavior: "instant" }); openTile(i); };
   document.querySelectorAll("[data-quick-view]").forEach((b) => b.addEventListener("click", showDeck));
 
   deckEl.addEventListener("input", (e) => { if (e.target.id === "qvBrief") { D.brief = e.target.value; D.briefSvc = undefined; } });
@@ -1068,7 +1091,7 @@
       const act = ds.qv;
       if (act === "site") { showSite(); return; }
       if (act === "openp") { const i = D.p; showSite(() => seeTile(i)); return; }
-      if (act === "more") { showSite(() => { wall.scrollIntoView({ block: "center", behavior: "instant" }); openMore(); }); return; }
+      if (act === "more") { showSite(() => { backToDeck = true; wall.scrollIntoView({ block: "center", behavior: "instant" }); openMore(); }); return; }
       if (act === "send") { openWizard(D.briefSvc, D.brief.trim()); return; }
       if (act === "useidea") {
         const [, full, svc] = QV_IDEAS[Math.max(0, D.idea)];
@@ -1093,32 +1116,8 @@
     if (deckMob() !== lastMob) { lastMob = deckMob(); renderDeck(); } else scaleDeck();
   }, { passive: true });
 
-  // ---- the entry: pick your pace (first visit of a session only)
-  const entry = document.getElementById("entry");
-  (() => {
-    const q = new URLSearchParams(location.search);
-    let saved = null;
-    try { saved = sessionStorage.getItem("cs-view"); } catch (e) {}
-    const want = q.get("view") || (location.hash.length > 1 ? "site" : saved);
-    if (want === "quick" || want === "deck") { showDeck(); return; }
-    if (want === "full" || want === "site") return;
-    entry.hidden = false;
-    lock(true);
-    requestAnimationFrame(() => entry.classList.add("is-in"));
-    let picked = false;
-    entry.querySelectorAll("[data-pick]").forEach((door) => door.addEventListener("click", () => {
-      if (picked) return;
-      picked = true;
-      const to = door.dataset.pick;
-      entry.classList.add("is-picking", "is-pick-" + to);
-      if (to === "deck") showDeck(); // renders underneath, revealed as the entry fades
-      setTimeout(() => {
-        entry.classList.add("is-out");
-        if (to === "site") { lock(false); try { sessionStorage.setItem("cs-view", "site"); } catch (e) {} }
-        setTimeout(() => { entry.hidden = true; if (to === "deck") lock(false); }, 600);
-      }, prefersReducedMotion ? 0 : 850);
-    }));
-  })();
+  // ?view=quick opens straight into the quick view
+  if (new URLSearchParams(location.search).get("view") === "quick") showDeck();
 
   // the release-edge countdown really counts down
   setInterval(() => {
