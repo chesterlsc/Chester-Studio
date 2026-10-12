@@ -1402,137 +1402,121 @@
   }
 
   /* ==========================================================
-     ROLE ROTATOR
+     HERO BRIEF
+     The command bar types out example briefs; chips start one
+     and pick the service; sending opens the intake wizard.
      ========================================================== */
-  const roles = [
-    "Full Stack Developer",
-    "WordPress Developer",
-    "AI Automation Engineer",
+  const briefForm = document.getElementById("briefForm");
+  const briefInput = document.getElementById("briefInput");
+  const briefChips = [...document.querySelectorAll("#briefChips button")];
+  let briefSvc;
+
+  briefChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      briefChips.forEach((c) => c.setAttribute("aria-pressed", c === chip));
+      briefSvc = chip.dataset.svc;
+      briefInput.value = chip.dataset.text;
+      briefInput.focus();
+    });
+  });
+  briefForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    openWizard(briefSvc, briefInput.value.trim());
+  });
+
+  const IDEAS = [
+    "A booking site for my salon",
+    "A dashboard for my sales team",
+    "Rebuild our WordPress site",
+    "A client portal with payments",
+    "Automate our lead follow-up",
   ];
-  const roleEl = document.getElementById("roleSwap");
-  let roleIdx = 0;
-  if (!prefersReducedMotion) {
-    setInterval(() => {
-      roleEl.classList.add("is-out");
-      setTimeout(() => {
-        roleIdx = (roleIdx + 1) % roles.length;
-        roleEl.textContent = roles[roleIdx];
-        roleEl.classList.remove("is-out");
-        roleEl.classList.add("is-in");
-        setTimeout(() => roleEl.classList.remove("is-in"), 520);
-      }, 380);
-    }, 2600);
-  }
+  const heroEl = document.getElementById("hero");
+  const spot = document.getElementById("heroSpot");
+  const track = document.getElementById("buildsTrack");
+  // the set twice, for a seamless loop
+  [...track.children].forEach((li) => {
+    const copy = li.cloneNode(true);
+    copy.setAttribute("aria-hidden", "true");
+    track.appendChild(copy);
+  });
+  const builds = [...track.children];
 
-  /* ==========================================================
-     HERO BUILD LINE
-     What I actually do: an idea or a mess goes in, a running
-     system comes out. Four real scenarios, not fake telemetry.
-     ========================================================== */
-  const blIn = document.getElementById("blIn");
-  if (blIn) {
-    const BUILDS = [
-      {
-        in: "Leads pile up in my inbox and go cold.",
-        out: "Every lead captured, qualified, and booked while you run the business.",
-        kind: "Lead capture system",
-      },
-      {
-        in: "My site looks fine but nobody ever finds it.",
-        out: "Fast, findable, and built so visits turn into booked calls.",
-        kind: "Website build",
-      },
-      {
-        in: "Quotes and follow-ups eat my whole week.",
-        out: "Quotes go out in seconds, follow-ups run themselves, you stay in control.",
-        kind: "Workflow automation",
-      },
-      {
-        in: "I have an idea but no way to build it.",
-        out: "A working product, shipped and live, with real users on it.",
-        kind: "Digital product",
-      },
-    ];
-    const blOut = document.getElementById("blOut");
-    const blKind = document.getElementById("blKind");
-    const blDots = document.getElementById("blDots");
-    const stages = [...document.querySelectorAll(".buildline__stage")];
-    const wires = [...document.querySelectorAll(".buildline__wire")];
-    let blIdx = 0;
-    let blTimers = [];
+  const setSpot = (x, y) => {
+    const r = heroEl.getBoundingClientRect();
+    spot.style.setProperty("--mx", `${((x - r.left) / r.width) * 100}%`);
+    spot.style.setProperty("--my", `${((y - r.top) / r.height) * 100}%`);
+  };
+  let lastTouch = -1e4;
+  heroEl.addEventListener("mousemove", (e) => setSpot(e.clientX, e.clientY), { passive: true });
+  heroEl.addEventListener("touchmove", (e) => {
+    lastTouch = performance.now();
+    setSpot(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
 
-    blDots.innerHTML = BUILDS.map(() => "<b></b>").join("");
-    const dots = [...blDots.children];
+  let paused = false;
+  track.parentElement.addEventListener("mouseenter", () => (paused = true));
+  track.parentElement.addEventListener("mouseleave", () => (paused = false));
 
-    const swap = (el, text) => {
-      el.textContent = text;
-      el.classList.remove("is-swap");
-      void el.offsetWidth;
-      el.classList.add("is-swap");
+  // each name brightens, and its tag fills in, as it nears the centre
+  const lens = (off) => {
+    const W = track.parentElement.clientWidth || 1;
+    builds.forEach((el) => {
+      const cx = el.offsetLeft + el.offsetWidth / 2 - off;
+      const k = Math.max(0, 1 - Math.abs(cx - W / 2) / (W * 0.3));
+      const e = k * k * (3 - 2 * k);
+      const c = (a, b) => Math.round(a + (b - a) * e);
+      el.style.color = `rgb(${c(125, 245)},${c(130, 246)},${c(140, 248)})`;
+      el.firstChild.style.opacity = (0.4 + 0.6 * e).toFixed(3);
+      el.firstChild.style.background = `rgba(233,180,76,${(0.16 * e).toFixed(3)})`;
+    });
+  };
+
+  if (prefersReducedMotion) {
+    briefInput.placeholder = IDEAS[0];
+    lens(0);
+  } else {
+    const tw = { i: 0, c: 0, phase: "type", acc: 0 };
+    const typeStep = (ms) => {
+      tw.acc += ms;
+      const idea = IDEAS[tw.i];
+      if (tw.phase === "type" && tw.acc > 55) { tw.acc = 0; if (++tw.c >= idea.length) tw.phase = "hold"; }
+      else if (tw.phase === "hold" && tw.acc > 1800) { tw.acc = 0; tw.phase = "del"; }
+      else if (tw.phase === "del" && tw.acc > 22) { tw.acc = 0; if (--tw.c <= 0) { tw.phase = "type"; tw.i = (tw.i + 1) % IDEAS.length; } }
+      const txt = idea.slice(0, Math.max(0, tw.c)) + (tw.phase === "hold" ? "" : "|");
+      if (briefInput.placeholder !== txt) briefInput.placeholder = txt;
     };
 
-    const runBuild = (i) => {
-      const b = BUILDS[i];
-      blTimers.forEach(clearTimeout);
-      blTimers = [];
-      stages.forEach((s) => s.classList.remove("is-on"));
-      wires.forEach((w) => w.classList.remove("is-on"));
-      dots.forEach((d, n) => d.classList.toggle("is-on", n === i));
-      swap(blIn, b.in);
-      blKind.textContent = b.kind;
-      blOut.textContent = "";
-
-      if (prefersReducedMotion) {
-        stages.forEach((s) => s.classList.add("is-on"));
-        wires.forEach((w) => w.classList.add("is-on"));
-        blOut.textContent = b.out;
-        return;
+    // only animate while the hero is on screen
+    let onScreen = true, raf = 0, last = 0, t = 0, mo = 0, mv = 1;
+    const loop = (now) => {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now; t += dt;
+      mv += ((paused ? 0 : 1) - mv) * Math.min(1, dt * 4);
+      mo += dt * mv;
+      const small = innerWidth <= 700;
+      const half = (track.scrollWidth + (small ? 36 : 56)) / 2;
+      const off = (mo * (small ? 26 : 38)) % half;
+      track.style.transform = `translateX(${-off}px)`;
+      lens(off);
+      // no hover on touch screens: the spotlight drifts until a finger takes it
+      if (!isFinePointer && now - lastTouch > 2500) {
+        spot.style.setProperty("--mx", `${50 + Math.sin(t * 0.5) * 32}%`);
+        spot.style.setProperty("--my", `${38 + Math.cos(t * 0.37) * 18}%`);
       }
-      // design, build, automate light in order, then the outcome lands
-      const at = (ms, fn) => blTimers.push(setTimeout(fn, ms));
-      at(500, () => stages[0].classList.add("is-on"));
-      at(1000, () => wires[0].classList.add("is-on"));
-      at(1550, () => stages[1].classList.add("is-on"));
-      at(2050, () => wires[1].classList.add("is-on"));
-      at(2600, () => stages[2].classList.add("is-on"));
-      at(3150, () => swap(blOut, b.out));
+      typeStep(dt * 1000);
+      raf = onScreen ? requestAnimationFrame(loop) : 0;
     };
-
-    runBuild(0);
-    if (!prefersReducedMotion) {
-      setInterval(() => {
-        blIdx = (blIdx + 1) % BUILDS.length;
-        runBuild(blIdx);
-      }, 6400);
-    }
-  }
-
-  /* ==========================================================
-     HERO PARALLAX (orbs + feed panel)
-     ========================================================== */
-  if (isFinePointer && !prefersReducedMotion) {
-    const parallaxEls = document.querySelectorAll("[data-parallax]");
-    let pmx = 0, pmy = 0, cx = 0, cy = 0;
-    addEventListener("mousemove", (e) => {
-      pmx = (e.clientX / innerWidth - 0.5) * 2;
-      pmy = (e.clientY / innerHeight - 0.5) * 2;
-    }, { passive: true });
-    const parallaxLoop = () => {
-      cx += (pmx - cx) * 0.05;
-      cy += (pmy - cy) * 0.05;
-      parallaxEls.forEach((el) => {
-        const depth = parseFloat(el.dataset.parallax);
-        el.style.translate = `${cx * depth}px ${cy * depth}px`;
-      });
-      requestAnimationFrame(parallaxLoop);
-    };
-    parallaxLoop();
+    new IntersectionObserver(([en]) => {
+      onScreen = en.isIntersecting;
+      if (onScreen && !raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
+    }).observe(heroEl);
   }
 
   /* ==========================================================
      SPOTLIGHT on build cards
      ========================================================== */
-  document.querySelectorAll(".build-card, .hstat, .offer").forEach((card) => {
+  document.querySelectorAll(".build-card, .offer").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       card.style.setProperty("--mx", `${e.clientX - r.left}px`);

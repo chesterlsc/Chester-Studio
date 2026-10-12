@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=28" />
+  <link rel="stylesheet" href="assets/css/style.css?v=29" />
 
   <script type="application/ld+json">
   {
@@ -171,127 +171,66 @@
 
   <main id="top">
 
-    <!-- ==================== HERO ==================== -->
+    <!-- ==================== HERO ====================
+         The hero is the call to action: a question, a command bar
+         that types out example briefs, and project-type chips. -->
     <section class="hero" id="hero">
       <div class="hero__bg" aria-hidden="true">
-        <div class="hero__grid"></div>
-        <div class="hero__orb hero__orb--blue" data-parallax="30"></div>
-        <div class="hero__orb hero__orb--yellow" data-parallax="-20"></div>
+        <div class="hero__dots"></div>
+        <div class="hero__dots hero__dots--lit" id="heroSpot"></div>
         <div class="hero__beam"></div>
-        <div class="hero__noise"></div>
+        <div class="hero__glow"></div>
       </div>
 
       <div class="container hero__inner">
-        <div class="hero__badges" data-intro style="--d:.1s">
-          <span class="badge badge--lead">
-            I'm Chester · Ideas in. Systems out.
-          </span>
-          <span class="badge">
-            <span class="badge__dot"></span>
-            5 client systems live &amp; running
-          </span>
-        </div>
+        <span class="hero__badge" data-intro style="--d:.1s"><img src="assets/img/favicon.svg" alt="" width="16" height="16" />Chester Studio · Design &amp; development</span>
 
-        <h1 class="hero__title">
-          <span class="hero__line" data-intro style="--d:.2s"><span class="hero__word">I&nbsp;design&nbsp;&amp;</span></span>
-          <span class="hero__line" data-intro style="--d:.32s"><span class="hero__word hero__word--stroke">engineer</span></span>
-          <span class="hero__line" data-intro style="--d:.44s"><span class="hero__word hero__word--gradient">digital systems.</span></span>
-        </h1>
+        <h1 class="hero__title" data-intro style="--d:.2s">What <br class="hero__m" />should<br class="hero__d" /> we <br class="hero__m" /><em>build?</em></h1>
 
-        <div class="hero__roles" data-intro style="--d:.6s">
-          <span class="hero__roles-static">Currently operating as</span>
-          <span class="hero__roles-swap"><span id="roleSwap" class="hero__role">Full Stack Developer</span></span>
-        </div>
+        <div class="brief">
+          <form class="brief__bar" id="briefForm" data-intro style="--d:.35s">
+            <label class="brief__field">
+              <span class="brief__caret" aria-hidden="true">›</span>
+              <input type="text" id="briefInput" placeholder="Describe your project" aria-label="Describe your project" autocomplete="off" enterkeyhint="go" />
+            </label>
+            <button type="submit" class="brief__go">Start a project <span aria-hidden="true">→</span></button>
+          </form>
 
-        <p class="hero__sub" data-intro style="--d:.7s">
-          You either have <em class="hl hl--yellow" style="--hd:1.2s">an idea waiting to be built</em>,
-          or a business <em class="hl hl--yellow" style="--hd:1.7s">too busy to scale</em>.
-          Both need the same thing: <em class="hl hl--blue" style="--hd:2.2s">a system</em>.
-          I design it, I build it, and the <em class="hl hl--blue" style="--hd:2.7s">data does the follow-up</em>
-          while you run the business.
-        </p>
-
-        <div class="hero__actions" data-intro style="--d:.8s">
-          <a href="#work" class="btn btn--primary btn--lg" data-magnetic>
-            <span class="btn__text">Explore the work</span>
-            <span class="btn__arrow" aria-hidden="true">↓</span>
-          </a>
-          <button type="button" class="btn btn--ghost btn--lg" data-wizard-open data-magnetic>
-            <span class="btn__text">Book a build</span>
-          </button>
-        </div>
-
-        <div class="hero__stats" data-intro style="--d:.95s">
-          <a class="hstat hstat--work" href="#work" aria-label="20 plus systems shipped. See the work.">
-            <span class="hstat__viz">
-              <span class="hstat__num"><span data-count="20">0</span><i>+</i></span>
-              <span class="hstat__spark" aria-hidden="true"><b style="--h:38%;--i:0"></b><b style="--h:58%;--i:1"></b><b style="--h:46%;--i:2"></b><b style="--h:74%;--i:3"></b><b style="--h:62%;--i:4"></b><b style="--h:100%;--i:5"></b></span>
-            </span>
-            <span class="hstat__label">Systems shipped</span>
-            <span class="hstat__arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="hstat hstat--flow" href="#system" aria-label="Built end to end, no handoffs. See the system.">
-            <span class="hstat__viz hstat__pipe" aria-hidden="true">
-              <i class="hstat__dot">Idea</i><i class="hstat__seg"></i><i class="hstat__dot">Build</i><i class="hstat__seg"></i><i class="hstat__dot hstat__dot--gold">Ship</i>
-            </span>
-            <span class="hstat__label">End to end · no handoffs</span>
-            <span class="hstat__arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="hstat hstat--build" href="#build" aria-label="Websites, software, dashboards and internal tools. See what I build.">
-            <span class="hstat__viz hstat__kinds" aria-hidden="true"><b>Web</b><b>App</b><b>Dash</b><b>Ops</b></span>
-            <span class="hstat__label">Sites to internal tools</span>
-            <span class="hstat__arrow" aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-
-      <a href="#work" class="hero__scroll" aria-label="Scroll to work">
-        <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
-        Scroll
-      </a>
-    </section>
-
-    <!-- ==================== BUILD LINE ====================
-         What I turn an idea or a mess into. Sits inside the hero on
-         desktop, becomes its own band on tablet and phone. -->
-    <div class="buildband">
-      <div class="hero__feed buildline" data-parallax="8">
-        <div class="hero__feed-head">
-          <i></i><i></i><i></i>
-          <span class="hero__feed-title">Build Line</span>
-          <span class="hero__feed-live"><b></b>Shipping</span>
-        </div>
-
-        <div class="buildline__body">
-          <p class="buildline__label">What you have now</p>
-          <p class="buildline__in" id="blIn">Leads pile up in my inbox and go cold.</p>
-
-          <div class="buildline__stages" id="blStages" aria-hidden="true">
-            <span class="buildline__stage"><i></i>Design</span>
-            <span class="buildline__wire"></span>
-            <span class="buildline__stage"><i></i>Build</span>
-            <span class="buildline__wire"></span>
-            <span class="buildline__stage"><i></i>Automate</span>
+          <div class="brief__chips" id="briefChips" data-intro style="--d:.45s">
+            <button type="button" aria-pressed="false" data-svc="Website" data-text="A new website for ">Website</button>
+            <button type="button" aria-pressed="false" data-svc="WordPress / WooCommerce" data-text="Rebuild our WordPress site so ">WordPress</button>
+            <button type="button" aria-pressed="false" data-svc="Digital Product" data-text="A web app where customers can ">Web app</button>
+            <button type="button" aria-pressed="false" data-svc="Business System" data-text="A dashboard for our team to ">Internal tool</button>
+            <button type="button" aria-pressed="false" data-svc="AI Automation" data-text="Automate the part where we ">Automation</button>
           </div>
 
-          <p class="buildline__label buildline__label--out">What you run after</p>
-          <p class="buildline__out" id="blOut">Every lead captured, qualified, and booked while you run the business.</p>
-        </div>
-
-        <div class="buildline__foot">
-          <span id="blKind">Lead capture system</span>
-          <span class="buildline__dots" id="blDots" aria-hidden="true"></span>
+          <p class="brief__or" data-intro style="--d:.55s">or <a href="#work">Explore the work <span aria-hidden="true">↓</span></a> first</p>
         </div>
       </div>
-    </div>
 
-    <!-- ==================== MARQUEE ==================== -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Websites</span><i>✦</i><span>AI Systems</span><i>✦</i><span>Automation</span><i>✦</i><span>Digital Products</span><i>✦</i><span>Growth Work</span><i>✦</i>
-        <span>Websites</span><i>✦</i><span>AI Systems</span><i>✦</i><span>Automation</span><i>✦</i><span>Digital Products</span><i>✦</i><span>Growth Work</span><i>✦</i>
+      <div class="hero__builds" data-intro style="--d:.7s">
+        <p class="hero__builds-label">Recent builds</p>
+        <div class="hero__builds-view">
+          <ul class="hero__builds-track" id="buildsTrack">
+            <li><span>AI</span>AI lead generation</li>
+            <li><span>Dashboard</span>Sales pipeline dashboard</li>
+            <li><span>Software</span>Trading analytics platform</li>
+            <li><span>Web</span>E-commerce store</li>
+            <li><span>AI</span>AI quoting assistant</li>
+            <li><span>AI</span>Property operations AI</li>
+            <li><span>Software</span>Client intake portal</li>
+            <li><span>Software</span>Booking system</li>
+            <li><span>Dashboard</span>Finance reporting dashboard</li>
+            <li><span>AI</span>AI customer chat</li>
+            <li><span>Software</span>Inventory management</li>
+            <li><span>Web</span>WordPress rebuild</li>
+            <li><span>Automation</span>Workflow automation</li>
+            <li><span>Software</span>Internal CRM</li>
+            <li><span>Web</span>Wayfinding web app</li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- ==================== WORK ==================== -->
     <section class="section work" id="work">
@@ -819,6 +758,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=28"></script>
+  <script src="assets/js/main.js?v=29"></script>
 </body>
 </html>
