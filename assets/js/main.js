@@ -930,7 +930,7 @@
     ["Custom software", "Apps made for your business", "Digital Product"],
     ["Dashboards", "Your numbers, live", "Business System"],
     ["Internal tools", "Run your team in one place", "Business System"],
-    ["Automation & AI", "Repeat work done + AI on your site", "AI Automation"],
+    ["Automation & AI", "AI in your site, on a budget you set", "AI Automation", true],
   ];
   const QV_STEPS = [["Brief", "You tell me what you need."], ["Plan", "I send back the plan."], ["Build", "You see it come together."], ["Launch", "It goes live. I look after it."]];
   const QV_ASK = [
@@ -996,8 +996,8 @@
           </section>
           <section class="qv-col qv-side">
             ${kick("03", "WHAT I BUILD")}
-            <div class="qv-build">${QV_BUILD.map(([t, o], i) => `
-              <button type="button" data-qv-b="${i}"><span><b>${t}</b><em>${o}</em></span><i>→</i></button>`).join("")}
+            <div class="qv-build">${QV_BUILD.map(([t, o, , hot], i) => `
+              <button type="button" data-qv-b="${i}"${hot ? ' class="is-hot" aria-label="Automation and AI: see the AI case study"' : ""}><span><b>${t}${hot ? "<small>AI CASE</small>" : ""}</b><em>${o}</em></span><i>→</i></button>`).join("")}
             </div>
             ${kick("04", "HOW IT WORKS")}
             <div class="hw" id="qvHow">
@@ -1160,7 +1160,13 @@
       deckEl.querySelectorAll(".qv-chips button").forEach((b, k) => { b.classList.toggle("is-on", k === D.q); b.setAttribute("aria-selected", String(k === D.q)); });
       deckEl.querySelector(".qv-answer").textContent = QV_ASK[D.q][1];
       return;
-    } else if (ds.qvB) { openWizard(QV_BUILD[+ds.qvB][2]); return; }
+    } else if (ds.qvB) {
+      const b = QV_BUILD[+ds.qvB];
+      // the AI row shows the case study on the full site; the rest open the brief
+      if (b[3]) showSite(() => document.querySelector(".aicase").scrollIntoView({ block: "start", behavior: "instant" }));
+      else openWizard(b[2]);
+      return;
+    }
     else {
       const act = ds.qv;
       if (act === "site") { showSite(); return; }
