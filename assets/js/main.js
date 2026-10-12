@@ -926,7 +926,7 @@
      ========================================================== */
   const QV_POSTER = { tapfour: "tapfour-dash-home.webp", aegis: "aegis-leados-pipeline.webp", bookshop: "shop-catalog.webp" };
   const QV_BUILD = [
-    ["Websites", "Sell and take bookings online", "Website"],
+    ["Websites", "Sites + WordPress, built and maintained", "Website"],
     ["Custom software", "Apps made for your business", "Digital Product"],
     ["Dashboards", "Your numbers, live", "Business System"],
     ["Internal tools", "Run your team in one place", "Business System"],

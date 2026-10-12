@@ -38,6 +38,15 @@
   };
   const CODE = [...document.querySelectorAll("script.src")].map((n) => ({ file: n.dataset.file.split("/").pop(), path: n.dataset.file, note: n.dataset.note, src: paint(n.textContent.replace(/^\n|\n$/g, "")) }));
 
+  // Client stores under NDA. Only what can be said: the sector, the market and the work.
+  // The pictures are blurred illustrations of each kind of store, not the clients' sites.
+  const NDA = [
+    { sector: "Beauty & skincare brand", img: "beauty.webp", acc: "#e9a6a3" },
+    { sector: "Food & snacks brand", img: "food.webp", acc: "#f2a93b" },
+    { sector: "Physical goods brand", img: "goods.webp", acc: "#a9b5a0" },
+  ];
+  const NDA_DID = ["WordPress maintenance: updates, backups and security", "Store fixes and speed", "Growth work on the storefront"];
+
   // ---- live-store buttons
   document.querySelectorAll("[data-demo]").forEach((a) => {
     a.href = DEMO;
@@ -59,6 +68,20 @@
       <b>${s.t}</b><span><i class="flow__who">${s.who}</i>${s.d}</span></li>`).join("");
   document.getElementById("mails").innerHTML = MAILS.map((m) => `<li>
       <figure class="frame frame--mail"><img src="${IMG + m.img}" alt="${m.alt}" loading="lazy" /></figure><span>${m.t}</span></li>`).join("");
+
+  // ---- client work under NDA
+  if (NDA.length) {
+    document.getElementById("nda").hidden = false;
+    document.getElementById("ndaList").innerHTML = NDA.map((n) => `<article class="nda-card" style="--acc:${n.acc}">
+        <div class="nda-card__shot"><img src="${IMG}nda/${n.img}" alt="" loading="lazy" width="960" height="600" /><span class="nda-card__stamp">NDA</span></div>
+        <div class="nda-card__body">
+          <p class="feat__n">WordPress care + growth · Ongoing</p>
+          <h3>${n.sector}</h3>
+          <p class="nda-card__where">US e-commerce store</p>
+          <ul class="ticks">${NDA_DID.map((d) => `<li>${d}</li>`).join("")}</ul>
+        </div>
+      </article>`).join("");
+  }
 
   // ---- code tabs
   const box = document.getElementById("codeTabs");

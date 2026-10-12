@@ -230,3 +230,21 @@ code { font-family: var(--font-mono); font-size: .86em; padding: .1em .35em; bor
 .care__month span { font-size: .92rem; color: var(--text-2); }
 @media (max-width: 900px) { .care { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .care__month li { grid-template-columns: 1fr; gap: .3rem; } }
+
+/* ---------- Client work under NDA */
+.nda { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.nda-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); transition: border-color .3s, transform .3s var(--ease); }
+.nda-card:hover { border-color: color-mix(in srgb, var(--acc) 50%, transparent); transform: translateY(-3px); }
+.nda-card__shot { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #111; }
+.nda-card__shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.nda-card__stamp {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-10deg);
+  padding: .3rem 1rem; border: 2px solid var(--acc); border-radius: 8px; background: rgba(5, 5, 7, .72);
+  font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; letter-spacing: .32em; color: var(--acc);
+}
+.nda-card__body { padding: 1.3rem 1.4rem 1.5rem; }
+.nda-card__body .feat__n { margin-bottom: .5rem; }
+.nda-card h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.35rem; text-transform: uppercase; }
+.nda-card__where { margin-top: .2rem; font-size: .88rem; color: var(--text-3); }
+.nda-card .ticks { margin-top: 1rem; }
+@media (max-width: 900px) { .nda { grid-template-columns: 1fr; max-width: 520px; } }
