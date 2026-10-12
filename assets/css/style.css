@@ -1636,17 +1636,48 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 .aicase__kick i { width: 7px; height: 7px; border-radius: 50%; background: #2fd66f; box-shadow: 0 0 10px #2fd66f; animation: stBlink 1.6s ease-in-out infinite; }
 .aicase h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.15; margin-top: 10px; }
 .aicase h3 em { font-style: normal; color: var(--yellow); }
-.aicase__panel > p { color: var(--text-2); font-size: .92rem; line-height: 1.6; margin-top: 10px; max-width: 620px; }
-.aicase__flow { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 20px; counter-reset: st; }
+.aicase__sub { color: var(--text-2); font-size: .92rem; margin-top: 6px; }
+.aicase { --loop: 15s; --beat: 3s; }
+.aicase__demo { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px; margin-top: 18px; }
+.aicase__flow { list-style: none; display: flex; flex-direction: column; gap: 6px; counter-reset: st; }
 .aicase__flow li {
-  position: relative; display: flex; flex-direction: column; gap: 3px; padding: 10px 11px 11px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2);
-  animation: aicaseStep 10s ease-in-out infinite; animation-delay: calc(var(--i) * 2s);
+  flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 12px; border-radius: 11px; border: 1px solid var(--border); background: var(--surface-2);
+  animation: aicaseStep var(--loop) ease-in-out infinite both; animation-delay: calc(var(--i) * var(--beat));
 }
-.aicase__flow b { font-size: .86rem; font-weight: 600; }
+.aicase__flow b { font-size: .84rem; font-weight: 600; white-space: nowrap; }
 .aicase__flow b::before { counter-increment: st; content: "0" counter(st) " "; font-family: var(--font-mono); font-size: .62rem; font-weight: 400; color: var(--text-3); }
-.aicase__flow span { font-size: .72rem; line-height: 1.35; color: var(--text-2); }
-@keyframes aicaseStep { 0%, 22%, 100% { border-color: var(--border); box-shadow: none; } 4%, 18% { border-color: rgba(233, 180, 76, .6); box-shadow: 0 0 0 3px rgba(233, 180, 76, .08); } }
-.aicase__note { font-size: .82rem !important; color: var(--text-3) !important; }
+.aicase__flow span { font-size: .72rem; line-height: 1.3; color: var(--text-2); text-align: right; }
+@keyframes aicaseStep { 0%, 21%, 100% { border-color: var(--border); box-shadow: none; } 2%, 19% { border-color: rgba(233, 180, 76, .6); box-shadow: 0 0 0 3px rgba(233, 180, 76, .08); } }
+
+/* the chat that acts each case out, one scene per step, in step with the list */
+.aichat { position: relative; min-height: 236px; display: flex; flex-direction: column; border-radius: 16px; border: 1px solid var(--border-strong); background: #0a0a10; overflow: hidden; }
+.aichat__top { flex: none; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.aichat__top i { width: 8px; height: 8px; border-radius: 50%; background: #2fd66f; box-shadow: 0 0 8px #2fd66f; }
+.aichat__top b { font-size: .8rem; font-weight: 600; white-space: nowrap; }
+.aichat__top span { margin-left: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .06em; color: var(--text-3); white-space: nowrap; }
+.aichat__body { position: relative; flex: 1; }
+.aichat__scene {
+  position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 14px;
+  animation: aichatScene var(--loop) infinite both; animation-delay: calc(var(--i) * var(--beat));
+}
+.aichat__scene > .is-late, .aichat__scene > .is-later { animation: aichatLate var(--loop) infinite both; animation-delay: calc(var(--i) * var(--beat)); }
+.aichat__scene > .is-later { animation-name: aichatLater; }
+@keyframes aichatScene { 0% { opacity: 0; transform: translateY(10px); } 2.5%, 18.5% { opacity: 1; transform: none; } 20%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes aichatLate { 0%, 6% { opacity: 0; transform: translateY(6px); } 8.5%, 100% { opacity: 1; transform: none; } }
+@keyframes aichatLater { 0%, 12% { opacity: 0; transform: translateY(6px); } 14.5%, 100% { opacity: 1; transform: none; } }
+.aichat__me, .aichat__ai { max-width: 86%; padding: 8px 12px; border-radius: 14px; font-size: .8rem; line-height: 1.4; }
+.aichat__me { align-self: flex-end; background: var(--surface-2); border: 1px solid var(--border); border-bottom-right-radius: 4px; }
+.aichat__ai { align-self: flex-start; background: rgba(233, 180, 76, .12); border: 1px solid rgba(233, 180, 76, .3); border-bottom-left-radius: 4px; }
+.aichat__sys { align-self: center; padding: 4px 11px; border-radius: 99px; border: 1px dashed rgba(233, 180, 76, .4); color: var(--blue); font-family: var(--font-mono); font-size: .62rem; letter-spacing: .04em; text-align: center; }
+.aichat__card { align-self: flex-start; min-width: 62%; display: flex; flex-direction: column; gap: 4px; padding: 10px 13px; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--surface-2); }
+.aichat__card b { font-size: .8rem; font-weight: 600; }
+.aichat__card span { font-size: .74rem; color: var(--text-2); }
+.aichat__bar { display: block; height: 5px; border-radius: 3px; background: #22222e; overflow: hidden; }
+.aichat__bar i { display: block; height: 100%; width: 64%; border-radius: inherit; background: var(--blue); transform-origin: left; animation: aichatBar var(--loop) infinite both; animation-delay: calc(var(--i) * var(--beat)); }
+@keyframes aichatBar { 0%, 3% { transform: scaleX(0); } 15%, 100% { transform: scaleX(1); } }
+.aichat__slots { display: flex; gap: 6px; }
+.aichat__slots i { font-style: normal; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border-strong); font-size: .74rem; color: var(--text); }
+.aichat__slots i.is-on { background: var(--blue); border-color: var(--blue); color: #050507; font-weight: 600; }
 .aicase__pay { display: flex; flex-direction: column; gap: 10px; padding: 30px 28px; border-left: 1px solid var(--border); background: rgba(5, 5, 7, .35); }
 .aicase__pay-head { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 2px; }
 .aicase__opt { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); }
@@ -1673,14 +1704,13 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 }
 @media (max-width: 640px) {
   .aicase__main, .aicase__pay { padding: 22px 18px; }
-  .aicase__flow { grid-template-columns: 1fr; gap: 6px; }
-  .aicase__flow li { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 10px; }
-  .aicase__flow span { text-align: right; }
+  .aicase__demo { grid-template-columns: 1fr; }
+  .aicase__flow li { padding: 9px 12px; }
   .aicase__go { align-self: stretch; }
   .aicase__tabs { flex-wrap: nowrap; }
   .aicase__tabs button { flex: 1 1 auto; min-height: 44px; padding: 0 8px; font-size: .76rem; white-space: nowrap; }
 }
-@media (prefers-reduced-motion: reduce) { .aicase * { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .aicase * { animation: none !important; } .aichat__scene:not(:first-child) { display: none; } }
 
 /* the invitation */
 .build__cta {
@@ -1724,6 +1754,52 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   .ops__panel *, .mini-app *, .mini-board *, .build__cta::after { animation: none !important; }
+}
+
+/* compact What I Build: tighter section, five cards in one row on wide screens, a swipe row on phones */
+.section.build { padding: clamp(64px, 8vw, 100px) 0; }
+.build__head { margin-bottom: 36px; }
+.offer .build-card__chips { gap: 5px; margin-top: 12px; }
+.offer .build-card__chips span { padding: 3px 9px; font-size: .68rem; }
+.offer .build-card__foot { padding-top: 16px; }
+.build__cta { padding: 22px 28px; }
+.build__cta h3 { font-size: clamp(1.2rem, 1.9vw, 1.5rem); }
+@media (min-width: 1000px) {
+  .ops { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+  .ops__item { padding: 11px 14px; }
+  .aicase__pay { justify-content: center; }
+  .aicase__go { margin-top: 8px; }
+}
+@media (min-width: 1200px) {
+  .offers { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .offer, .offer:nth-child(4), .offer:nth-child(5) { grid-column: auto; flex-direction: column; }
+  .offer .build-card__scene, .offer:nth-child(4) .build-card__scene, .offer:nth-child(5) .build-card__scene { width: auto; height: 124px; min-height: 0; border-right: 0; border-bottom: 1px solid var(--border); }
+  .offer .build-card__scene > :not(.build-card__scene-tag) { zoom: .78; }
+  .offer .build-card__scene-tag { top: 8px; left: 10px; padding: 3px 8px; font-size: .58rem; }
+  .offer .build-card__content { padding: 16px 16px 18px; }
+  .offer .build-card__content .build-card__num { top: 10px; right: 12px; font-size: 1.5rem; }
+  .offer h3 { font-size: 1.12rem; margin-bottom: 6px; }
+  .offer p { font-size: .84rem; line-height: 1.5; }
+  .offer .build-card__foot { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .offer .build-card__outcome { font-size: .78rem; }
+  .offer .build-card__start { padding: 6px 12px; font-size: .78rem; }
+}
+@media (max-width: 640px) {
+  .section.build { padding: 56px 0; }
+  .build__head { margin-bottom: 24px; }
+  .offers { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: -4vw; padding: 2px 4vw 8px; scrollbar-width: none; }
+  .offers::-webkit-scrollbar { display: none; }
+  .offer, .offer:nth-child(5) { flex: 0 0 84%; scroll-snap-align: center; }
+  .offers [data-reveal] { opacity: 1; transform: none; }
+  .offer .build-card__scene { height: 140px !important; }
+  .offer .build-card__content { padding: 16px 16px 18px; }
+  .build__cta { padding: 20px 18px; gap: 16px; }
+  .aicase__flow { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .aicase__flow li { flex: 0 0 auto; padding: 6px 10px; }
+  .aicase__flow span { display: none; }
+  .aicase__flow b { font-size: .78rem; }
+  .aicase__pay { gap: 8px; }
+  .aicase__opt { padding: 10px 12px; }
 }
 
 /* ============================================================

@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=26" />
+  <link rel="stylesheet" href="assets/css/style.css?v=28" />
 
   <script type="application/ld+json">
   {
@@ -358,7 +358,7 @@
         <div class="section__head build__head" data-reveal>
           <p class="section__kicker"><span></span>What I Build</p>
           <h2 class="section__title">Software that makes the <em>day-to-day</em> easier.</h2>
-          <p class="section__sub">Websites, software, dashboards and internal tools, built around the way your business already runs. If there’s something you’ve wanted to streamline, automate or build but haven’t had the time or the people for, I’ll turn it into something your team actually uses.</p>
+          <p class="section__sub">Websites, software, dashboards and internal tools, built around how your business already runs.</p>
         </div>
 
         <div class="ops" id="ops" data-reveal>
@@ -403,7 +403,7 @@
             <div class="build-card__content">
               <span class="build-card__num">01</span>
               <h3>Websites</h3>
-              <p>Fast, premium sites and online stores that rank, load in a blink and turn visitors into bookings and orders. Built from scratch, on Shopify or on WordPress: your pick, or I'll recommend the right fit. Then I manage it and keep it maintained.</p>
+              <p>Fast sites and online stores that sell. Custom, Shopify or WordPress, built and maintained.</p>
               <div class="build-card__chips"><span>Landing pages</span><span>Online stores</span><span>Custom-built</span><span>Shopify</span><span>WordPress</span><span>Care plans</span><span>SEO</span></div>
               <div class="build-card__foot">
                 <span class="build-card__outcome">→ More enquiries and sales</span>
@@ -428,7 +428,7 @@
             <div class="build-card__content">
               <span class="build-card__num">02</span>
               <h3>Custom software</h3>
-              <p>Web apps and products built from scratch around one job your business does every day.</p>
+              <p>Web apps built around one job your business does every day.</p>
               <div class="build-card__chips"><span>Web apps</span><span>MVPs</span><span>Client portals</span><span>Mobile-ready</span></div>
               <div class="build-card__foot">
                 <span class="build-card__outcome">→ Your process, as a product</span>
@@ -450,7 +450,7 @@
             <div class="build-card__content">
               <span class="build-card__num">03</span>
               <h3>Dashboards</h3>
-              <p>Your numbers in one place and always current, so decisions stop waiting on spreadsheets.</p>
+              <p>Your numbers in one place, always current.</p>
               <div class="build-card__chips"><span>Live KPIs</span><span>Reports</span><span>Branches</span><span>PDF exports</span></div>
               <div class="build-card__foot">
                 <span class="build-card__outcome">→ The business at a glance</span>
@@ -472,7 +472,7 @@
             <div class="build-card__content">
               <span class="build-card__num">04</span>
               <h3>Internal tools</h3>
-              <p>Admin consoles, trackers and boards your team runs on: bills, stock, staff, orders, approvals.</p>
+              <p>Trackers and boards for bills, stock, staff and orders.</p>
               <div class="build-card__chips"><span>Admin panels</span><span>Trackers</span><span>Roles &amp; logins</span><span>Audit logs</span></div>
               <div class="build-card__foot">
                 <span class="build-card__outcome">→ Less chasing, fewer mistakes</span>
@@ -500,7 +500,7 @@
             <div class="build-card__content">
               <span class="build-card__num">05</span>
               <h3>Automation &amp; AI</h3>
-              <p>Follow-ups, quotes, scheduling and reporting that run themselves, with a person approving what matters. I can build AI into your website too: it answers customers, captures leads and books calls.</p>
+              <p>Busywork that runs itself, plus AI on your website that answers and books.</p>
               <div class="build-card__chips"><span>n8n / Zapier</span><span>AI agents</span><span>AI on your site</span><span>Integrations</span><span>Approvals</span></div>
               <div class="build-card__foot">
                 <span class="build-card__outcome">→ Hours back every week</span>
@@ -519,47 +519,80 @@
               <button type="button" role="tab" id="aict-studio" aria-controls="aic-studio" aria-selected="false" data-aic="studio">Content studio</button>
             </div>
             <div class="aicase__panel" role="tabpanel" id="aic-store" aria-labelledby="aict-store">
-              <h3>Customer service for an online store that <em>never clocks out</em>.</h3>
-              <p>For an ecommerce client: an AI assistant trained on the store’s products, policies and past conversations, answering shoppers on the website day and night. It takes the everyday questions that used to need hands-on time and passes the tricky ones to a person. I look after it: retraining it as products change and keeping an eye on every answer.</p>
-              <ol class="aicase__flow" aria-label="What the AI does, step by step">
-                <li style="--i:0"><b>Learn</b><span>Products, policies, past chats</span></li>
-                <li style="--i:1"><b>Answer</b><span>Sizes, stock, shipping</span></li>
-                <li style="--i:2"><b>Track</b><span>Order status on request</span></li>
-                <li style="--i:3"><b>Hand off</b><span>Tricky ones to a person</span></li>
-                <li style="--i:4"><b>Report</b><span>What customers ask most</span></li>
-              </ol>
-              <p class="aicase__note">API usage has a daily budget cap, so the cost per day is fixed.</p>
+              <h3>Store support that <em>never clocks out</em>.</h3>
+              <p class="aicase__sub">Trained on the store. Answers shoppers 24/7. Daily API budget.</p>
+              <div class="aicase__demo">
+                <div class="aichat" aria-hidden="true">
+                  <div class="aichat__top"><i></i><b>Store assistant</b><span>Daily cap on</span></div>
+                  <div class="aichat__body">
+                    <div class="aichat__scene" style="--i:0"><div class="aichat__sys">Trained on every product, size and policy</div></div>
+                    <div class="aichat__scene" style="--i:1"><div class="aichat__me">Do you have this in medium?</div><div class="aichat__ai is-late">Yes, 3 left in M. Order today and it ships tomorrow.</div></div>
+                    <div class="aichat__scene" style="--i:2"><div class="aichat__me">Where’s my order?</div><div class="aichat__card is-late"><b>Out for delivery</b><span>Arriving today</span></div></div>
+                    <div class="aichat__scene" style="--i:3"><div class="aichat__me">My item arrived damaged.</div><div class="aichat__ai is-late">Sorry about that. Passing you to the team now.</div><div class="aichat__sys is-later">Handed to a person</div></div>
+                    <div class="aichat__scene" style="--i:4"><div class="aichat__card"><b>Today’s report</b><span>Most asked: sizing</span><em class="aichat__bar"><i></i></em><span>Daily budget used</span></div></div>
+                  </div>
+                </div>
+                <ol class="aicase__flow" aria-label="What the AI does, step by step">
+                  <li style="--i:0"><b>Learn</b><span>Products & policies</span></li>
+                  <li style="--i:1"><b>Answer</b><span>Sizes, stock, shipping</span></li>
+                  <li style="--i:2"><b>Track</b><span>Where’s my order</span></li>
+                  <li style="--i:3"><b>Hand off</b><span>Tricky ones to a person</span></li>
+                  <li style="--i:4"><b>Report</b><span>What shoppers ask</span></li>
+                </ol>
+              </div>
             </div>
             <div class="aicase__panel" role="tabpanel" id="aic-clinic" aria-labelledby="aict-clinic" hidden>
-              <h3>A dental clinic’s front desk that <em>books patients around the clock</em>.</h3>
-              <p>For a dental clinic: an AI receptionist on the clinic’s website, trained on its treatments, prices, dentists and opening hours. It answers patients in plain language, books them into open slots and sends reminders, and hands anything urgent to the front desk. Tailored to how the clinic works, not a generic chatbot.</p>
-              <ol class="aicase__flow" aria-label="What the AI does, step by step">
-                <li style="--i:0"><b>Learn</b><span>Treatments, prices, hours</span></li>
-                <li style="--i:1"><b>Answer</b><span>Any hour, in plain words</span></li>
-                <li style="--i:2"><b>Book</b><span>Straight into open slots</span></li>
-                <li style="--i:3"><b>Remind</b><span>Before every visit</span></li>
-                <li style="--i:4"><b>Hand off</b><span>Urgent ones to the desk</span></li>
-              </ol>
-              <p class="aicase__note">Fewer missed calls, fewer no-shows, and the front desk keeps the human moments.</p>
+              <h3>A front desk that <em>books patients 24/7</em>.</h3>
+              <p class="aicase__sub">Trained on the clinic. Answers, books, reminds. Tailored, not generic.</p>
+              <div class="aicase__demo">
+                <div class="aichat" aria-hidden="true">
+                  <div class="aichat__top"><i></i><b>Clinic receptionist</b><span>Synced to calendar</span></div>
+                  <div class="aichat__body">
+                    <div class="aichat__scene" style="--i:0"><div class="aichat__sys">Trained on treatments, dentists and opening hours</div></div>
+                    <div class="aichat__scene" style="--i:1"><div class="aichat__me">How long is a cleaning?</div><div class="aichat__ai is-late">About 45 minutes. Want me to book one?</div></div>
+                    <div class="aichat__scene" style="--i:2"><div class="aichat__ai">Open slots tomorrow:</div><div class="aichat__card is-late"><span class="aichat__slots"><i>9:00</i><i class="is-on">10:30</i><i>2:00</i></span></div><div class="aichat__sys is-later">Booked for 10:30 tomorrow ✓</div></div>
+                    <div class="aichat__scene" style="--i:3"><div class="aichat__card"><b>Reminder</b><span>Your cleaning is tomorrow at 10:30</span></div></div>
+                    <div class="aichat__scene" style="--i:4"><div class="aichat__me">I have bad tooth pain.</div><div class="aichat__ai is-late">Marked urgent. The front desk is calling you now.</div></div>
+                  </div>
+                </div>
+                <ol class="aicase__flow" aria-label="What the AI does, step by step">
+                  <li style="--i:0"><b>Learn</b><span>Treatments & hours</span></li>
+                  <li style="--i:1"><b>Answer</b><span>Any hour, plain words</span></li>
+                  <li style="--i:2"><b>Book</b><span>Straight into open slots</span></li>
+                  <li style="--i:3"><b>Remind</b><span>Before every visit</span></li>
+                  <li style="--i:4"><b>Hand off</b><span>Urgent ones to the desk</span></li>
+                </ol>
+              </div>
             </div>
             <div class="aicase__panel" role="tabpanel" id="aic-studio" aria-labelledby="aict-studio" hidden>
-              <h3>A content studio that <em>runs itself on AI</em>.</h3>
-              <p>Built for a client’s video channel. It spots what’s trending, writes the captions, titles and hashtags, renders the video and schedules it for the hour the audience is online. Then it reads the views and gets sharper.</p>
-              <ol class="aicase__flow" aria-label="What the AI does, step by step">
-                <li style="--i:0"><b>Spot</b><span>What’s trending</span></li>
-                <li style="--i:1"><b>Write</b><span>Captions, titles, tags</span></li>
-                <li style="--i:2"><b>Render</b><span>A finished 9:16 video</span></li>
-                <li style="--i:3"><b>Post</b><span>At peak hours</span></li>
-                <li style="--i:4"><b>Learn</b><span>From every view</span></li>
-              </ol>
-              <p class="aicase__note">Plus a built-in AI assistant that can run the whole app from a chat.</p>
+              <h3>A content studio that <em>runs itself</em>.</h3>
+              <p class="aicase__sub">Finds the trend, makes the video, posts it, learns. On the client’s AI plan.</p>
+              <div class="aicase__demo">
+                <div class="aichat" aria-hidden="true">
+                  <div class="aichat__top"><i></i><b>Studio autopilot</b><span>On the client’s plan</span></div>
+                  <div class="aichat__body">
+                    <div class="aichat__scene" style="--i:0"><div class="aichat__sys">Trending now: look-twice photos</div></div>
+                    <div class="aichat__scene" style="--i:1"><div class="aichat__card"><b>Title</b><span>Wait… look again</span></div><div class="aichat__sys is-late">+ caption and hashtags</div></div>
+                    <div class="aichat__scene" style="--i:2"><div class="aichat__card"><b>Rendering 1080×1920</b><em class="aichat__bar"><i></i></em></div><div class="aichat__sys is-later">Video ready ✓</div></div>
+                    <div class="aichat__scene" style="--i:3"><div class="aichat__card"><b>Scheduled</b><span>7:00 PM, when the audience is online</span></div></div>
+                    <div class="aichat__scene" style="--i:4"><div class="aichat__sys">Reading the views</div><div class="aichat__ai is-late">Noted what worked. The next one leans into it.</div></div>
+                  </div>
+                </div>
+                <ol class="aicase__flow" aria-label="What the AI does, step by step">
+                  <li style="--i:0"><b>Spot</b><span>What’s trending</span></li>
+                  <li style="--i:1"><b>Write</b><span>Captions, titles, tags</span></li>
+                  <li style="--i:2"><b>Render</b><span>A finished 9:16 video</span></li>
+                  <li style="--i:3"><b>Post</b><span>At peak hours</span></li>
+                  <li style="--i:4"><b>Learn</b><span>From every view</span></li>
+                </ol>
+              </div>
             </div>
           </div>
           <div class="aicase__pay">
-            <p class="aicase__pay-head">How the AI is paid for. Your call.</p>
-            <div class="aicase__opt" data-for="studio"><b>Your existing AI plan <em>This build</em></b><span>Runs on a subscription you already pay for, like Claude Pro or Max. No per-use bill.</span></div>
-            <div class="aicase__opt" data-for="store clinic"><b>Pay-as-you-go API <em>This build</em></b><span>Metered credits with a daily or monthly budget cap you set. No surprise invoices.</span></div>
-            <div class="aicase__opt"><b>Safe fallback</b><span>If the AI is off or the day’s budget is spent, it hands over to a person or smart templates.</span></div>
+            <p class="aicase__pay-head">How the AI is paid for</p>
+            <div class="aicase__opt" data-for="studio"><b>Your existing AI plan <em>This build</em></b><span>A plan you already pay for. No per-use bill.</span></div>
+            <div class="aicase__opt" data-for="store clinic"><b>Pay-as-you-go API <em>This build</em></b><span>A daily or monthly cap you set. No surprises.</span></div>
+            <div class="aicase__opt"><b>Safe fallback</b><span>Budget spent or AI off? A person takes over.</span></div>
             <button type="button" class="aicase__go" data-wizard-open data-wizard-service="AI Automation">Put AI in my business →</button>
           </div>
         </div>
@@ -568,8 +601,7 @@
           <div>
             <p class="build__cta-kick"><i></i>Open invitation</p>
             <h3>Got something you’ve been meaning to <em>streamline, automate or build</em>?</h3>
-            <p>Tell me what slows your week down. I’ll come back with what it looks like built, and what it takes.</p>
-          </div>
+                      </div>
           <button type="button" class="btn btn--primary btn--lg" data-wizard-open data-magnetic>
             <span class="btn__text">Tell me about it</span>
             <span class="btn__arrow" aria-hidden="true">→</span>
@@ -787,6 +819,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=26"></script>
+  <script src="assets/js/main.js?v=28"></script>
 </body>
 </html>
