@@ -1619,55 +1619,40 @@
     cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.1a1 1 0 0 0 1-.76L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>',
   };
 
-  const WIZARD_STEPS = [
-    {
-      key: "service",
-      q: "What are we building?",
-      hint: "Pick the closest fit. We refine it together later.",
-      options: [
-        { v: "Website", d: "Landing page or full site that converts", icon: "globe" },
-        { v: "WordPress / WooCommerce", d: "Custom theme, store, plugin or a fix", icon: "cart" },
-        { v: "AI Automation", d: "Workflows that run your busywork 24/7", icon: "zap" },
-        { v: "Business System", d: "Dashboards, internal tools, CRM, reporting", icon: "chart" },
-        { v: "Digital Product", d: "Web or mobile app, MVP to launch", icon: "blocks" },
-      ],
-    },
-    {
-      key: "goal",
-      q: "What's the main goal?",
-      hint: "The outcome that would make this a win.",
-      options: [
-        { v: "More leads & sales", d: "Turn traffic into pipeline", icon: "trend" },
-        { v: "Save time with automation", d: "Kill the manual busywork", icon: "clock" },
-        { v: "Launch something new", d: "From idea to shipped", icon: "star" },
-        { v: "Level up the brand", d: "Look as premium as the work", icon: "target" },
-      ],
-    },
-    {
-      key: "budget",
-      q: "Ballpark budget?",
-      hint: "USD. A range is enough to scope the right solution.",
-      options: [
-        { v: "Under $1,000", d: "Lean and focused", icon: "coin" },
-        { v: "$1,000 – $3,000", d: "Solid single build", icon: "coin" },
-        { v: "$3,000 – $10,000", d: "Full system", icon: "coin" },
-        { v: "$10,000+", d: "End-to-end partner", icon: "coin" },
-      ],
-    },
-    {
-      key: "timeline",
-      q: "When do you need it?",
-      hint: "Honest timelines make better builds.",
-      options: [
-        { v: "ASAP, this month", d: "Fast-track it", icon: "zap" },
-        { v: "2–4 weeks", d: "Standard sprint", icon: "clock" },
-        { v: "1–3 months", d: "Room to go deep", icon: "clock" },
-        { v: "Flexible / exploring", d: "Just scoping for now", icon: "target" },
-      ],
-    },
-    { key: "details", q: "Tell me about you.", hint: "So I know who to reply to.", form: true },
-    { key: "review", q: "Your project brief.", hint: "One tap and this lands straight in my inbox.", review: true },
+  // the service ids are what the rest of the site passes in; labels are what the client reads
+  const SERVICES = [
+    { v: "Website", label: "Website or online store", d: "New site, redesign, Shopify or custom", icon: "globe",
+      follow: ["Is there a site already?", ["Starting fresh", "Redesign what I have", "Fix something on it"]] },
+    { v: "WordPress / WooCommerce", label: "WordPress or WooCommerce", d: "Build, extend, or monthly care", icon: "cart",
+      follow: ["What do you need?", ["A new site or store", "Add to my site", "Monthly care plan"]] },
+    { v: "Digital Product", label: "Custom software", d: "Web app, client portal or MVP", icon: "blocks",
+      follow: ["Who will use it?", ["My customers", "My team", "Both"]] },
+    { v: "Business System", label: "Dashboard or internal tool", d: "Your numbers, stock, staff or orders", icon: "chart",
+      follow: ["Where does the work live now?", ["Spreadsheets", "Another app", "On paper"]] },
+    { v: "AI Automation", label: "AI or automation", d: "Support chat, bookings, follow-ups", icon: "zap",
+      follow: ["What should it handle?", ["Customer questions", "Bookings", "Follow-ups and busywork", "Content"]] },
+    { v: "Not sure yet", label: "Not sure yet", d: "Tell me the problem, I'll suggest the fix", icon: "target",
+      follow: ["What would make this a win?", ["More customers", "Less manual work", "Launch something new"]] },
   ];
+  const BUDGETS = {
+    php: ["Under ₱50,000", "₱50,000 – ₱150,000", "₱150,000 – ₱500,000", "₱500,000+", "Not sure, advise me"],
+    usd: ["Under $1,000", "$1,000 – $3,000", "$3,000 – $10,000", "$10,000+", "Not sure, advise me"],
+  };
+  const CARE = {
+    php: ["Under ₱3,000 / month", "₱3,000 – ₱8,000 / month", "₱8,000+ / month", "Not sure, recommend one"],
+    usd: ["Under $60 / month", "$60 – $150 / month", "$150+ / month", "Not sure, recommend one"],
+  };
+  const TIMING = [
+    { v: "This month", icon: "zap" },
+    { v: "1–3 months", icon: "clock" },
+    { v: "Later this year", icon: "clock" },
+    { v: "Flexible / exploring", icon: "target" },
+  ];
+  const NOTE_PROMPTS = ["Deadline", "Current site", "Sites I like", "Already tried", "Who signs off"];
+  const CHANNELS = ["Email only", "Viber", "WhatsApp"];
+  const STEP_LABEL = { service: "Building", follow: "Detail", budget: "Budget", care: "Budget", timing: "Timing", details: "Reply to" };
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  const DRAFT_KEY = "csIntake";
 
   const wizard = document.getElementById("wizard");
   const wizardStep = document.getElementById("wizardStep");
@@ -1676,138 +1661,165 @@
   const wizardBack = document.getElementById("wizardBack");
   const wizardNext = document.getElementById("wizardNext");
   const wizardDots = document.getElementById("wizardDots");
-  const answers = {};
-  let stepIdx = 0;
   // Cloudflare Worker in api/ that forwards the brief through Resend
   const FORM_ENDPOINT = "https://chester-studio-contact.chesterlsc.workers.dev";
-  let sent = false; // false | "sending" | "ok" | "error"
 
-  WIZARD_STEPS.forEach(() => {
-    const dot = document.createElement("i");
-    wizardDots.appendChild(dot);
-  });
+  let answers = {};
+  let stepIdx = 0;
+  let sent = false; // false | "sending" | "ok" | "error"
+  let receipt = false; // the relay emailed the client a copy
+
+  // a half-finished brief survives a closed tab or a stray click
+  try {
+    const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
+    if (d && d.answers) { answers = d.answers; stepIdx = d.stepIdx || 0; }
+  } catch {}
+  const saveDraft = () => {
+    try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ answers, stepIdx })); } catch {}
+  };
+  if (!answers.cur) {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    answers.cur = tz === "Asia/Manila" ? "php" : "usd";
+  }
+
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const svcOf = (v) => SERVICES.find((s) => s.v === v);
+  const isCare = () => answers.follow === "Monthly care plan";
+  const steps = () => {
+    const s = ["service"];
+    if (svcOf(answers.service)) s.push("follow");
+    s.push(isCare() ? "care" : "budget", "timing", "details", "review");
+    return s;
+  };
+  const stepKey = () => steps()[stepIdx];
+  const answerKey = (k) => (k === "care" ? "budget" : k);
+  const valueText = (k) => {
+    if (k === "service") return svcOf(answers.service)?.label;
+    if (k === "details") return answers.email && answers.email + (answers.reply && answers.reply !== "Email only" ? ` · ${answers.reply} ${answers.phone || ""}` : "");
+    return answers[answerKey(k)];
+  };
+
+  // the next business day, 6 pm Manila, shown in the client's own time
+  function replyBy() {
+    const d = new Date(Date.now() + 8 * 3600e3);
+    do d.setUTCDate(d.getUTCDate() + 1); while (d.getUTCDay() === 0 || d.getUTCDay() === 6);
+    return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 10))
+      .toLocaleString(undefined, { weekday: "long", day: "numeric", month: "long", hour: "numeric", minute: "2-digit" });
+  }
+
+  const optionsHtml = (key, list) => `<div class="wizard__options">${list
+    .map((o) => {
+      const v = typeof o === "string" ? o : o.v;
+      return `<button type="button" class="wizard-option ${answers[key] === v ? "is-selected" : ""}" data-key="${key}" data-value="${esc(v)}" aria-pressed="${answers[key] === v}">
+          ${o.icon ? `<span class="wizard-option__icon">${ICONS[o.icon]}</span>` : ""}
+          <span><strong>${esc(o.label || v)}</strong>${o.d ? `<small>${esc(o.d)}</small>` : ""}</span>
+          <span class="wizard-option__check">✓</span>
+        </button>`;
+    })
+    .join("")}</div>`;
+
+  const currencyHtml = () => `<span class="wizard__cur" role="group" aria-label="Currency">${["php", "usd"]
+    .map((c) => `<button type="button" data-cur="${c}" aria-pressed="${answers.cur === c}">${c === "php" ? "₱ PHP" : "$ USD"}</button>`)
+    .join("")}</span>`;
 
   function renderStep(dir) {
-    const step = WIZARD_STEPS[stepIdx];
-    let html = `<h3 class="wizard__q">${step.q}</h3><p class="wizard__hint">${step.hint}</p>`;
+    const k = stepKey();
+    const head = (q, hint) => `<h3 class="wizard__q">${q}</h3>${hint ? `<p class="wizard__hint">${hint}</p>` : ""}`;
+    let html = answers.brief && !sent
+      ? `<p class="wizard__echo"><b>You said</b><span>${esc(answers.brief)}</span></p>`
+      : "";
 
-    if (step.options) {
-      html += `<div class="wizard__options">${step.options
-        .map(
-          (o) => `
-        <button type="button" class="wizard-option ${answers[step.key] === o.v ? "is-selected" : ""}" data-value="${o.v}">
-          <span class="wizard-option__icon">${ICONS[o.icon]}</span>
-          <span><strong>${o.v}</strong><small>${o.d}</small></span>
-          <span class="wizard-option__check">✓</span>
-        </button>`
-        )
-        .join("")}</div>`;
-    } else if (step.form) {
-      html += `<div class="wizard__fields">
-        <div class="wizard-field"><label>Name <em>*</em></label><input type="text" id="wzName" placeholder="Your name" value="${answers.name || ""}" /></div>
-        <div class="wizard-field"><label>Email <em>*</em></label><input type="email" id="wzEmail" placeholder="you@company.com" value="${answers.email || ""}" /></div>
-        <div class="wizard-field"><label>Company / brand</label><input type="text" id="wzCompany" placeholder="Optional" value="${answers.company || ""}" /></div>
-        <div class="wizard-field"><label>Anything else?</label><textarea id="wzNotes" placeholder="Links, context, the problem in your own words…">${answers.notes || ""}</textarea></div>
-        <input type="text" id="wzWebsite" class="wizard-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    if (sent) {
+      html = sentHtml();
+    } else if (k === "service") {
+      html += head("Which is closest?", "Pick the nearest fit. You can change it later.") + optionsHtml("service", SERVICES);
+    } else if (k === "follow") {
+      const [q, list] = svcOf(answers.service).follow;
+      html += head(q) + optionsHtml("follow", list);
+    } else if (k === "budget" || k === "care") {
+      html += `<div class="wizard__qrow">${head(k === "care" ? "Monthly budget?" : "Ballpark budget?")}${currencyHtml()}</div>
+        <p class="wizard__hint">A range is enough to scope the right solution.</p>`
+        + optionsHtml("budget", (k === "care" ? CARE : BUDGETS)[answers.cur]);
+    } else if (k === "timing") {
+      html += head("When do you need it?", "Honest timelines make better builds.") + optionsHtml("timing", TIMING);
+    } else if (k === "details") {
+      const phone = answers.reply && answers.reply !== "Email only";
+      html += head("Where should I reply?", "Only used to answer this brief.") + `<div class="wizard__fields">
+        <div class="wizard-field"><label for="wzName">Name <em>*</em></label><input type="text" id="wzName" data-k="name" autocomplete="name" placeholder="Your name" value="${esc(answers.name || "")}" /></div>
+        <div class="wizard-field"><label for="wzEmail">Email <em>*</em></label><input type="email" id="wzEmail" data-k="email" autocomplete="email" placeholder="you@company.com" value="${esc(answers.email || "")}" /></div>
+        <div class="wizard-field"><label for="wzCompany">Company or brand</label><input type="text" id="wzCompany" data-k="company" autocomplete="organization" placeholder="Optional" value="${esc(answers.company || "")}" /></div>
+        <div class="wizard-field"><label>Also reach me on</label><div class="wizard__seg">${CHANNELS
+          .map((c) => `<button type="button" data-reply="${c}" aria-pressed="${(answers.reply || "Email only") === c}">${c}</button>`)
+          .join("")}</div></div>
+        ${phone ? `<div class="wizard-field"><label for="wzPhone">${answers.reply} number <em>*</em></label><input type="tel" id="wzPhone" data-k="phone" autocomplete="tel" placeholder="+63 9xx xxx xxxx" value="${esc(answers.phone || "")}" /></div>` : ""}
+        <input type="text" id="wzWebsite" data-k="website" class="wizard-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
       </div>`;
-    } else if (step.review) {
-      if (sent) {
-        const panel = {
-          sending: ["…", "Sending your brief…", "One moment."],
-          ok: ["✓", "Brief received.", `It landed in my inbox — I'll reply to <b>${answers.email}</b> within one business day.`],
-          error: ["!", "That didn't go through.", "Copy the brief below and email it to <b>chestercatapia08@gmail.com</b> and I'll pick it up from there."],
-        }[sent];
-        html = `<div class="wizard__sent">
-          <div class="wizard__sent-icon">${panel[0]}</div>
-          <h4>${panel[1]}</h4>
-          <p>${panel[2]}</p>
-        </div>`;
-      } else {
-        const rows = [
-          ["Building", answers.service],
-          ["Goal", answers.goal],
-          ["Budget", answers.budget],
-          ["Timeline", answers.timeline],
-          ["Name", answers.name],
-          ["Email", answers.email],
-        ]
-          .filter((r) => r[1])
-          .map((r) => `<div class="wizard__summary-row"><span>${r[0]}</span><b>${r[1]}</b></div>`)
-          .join("");
-        html += `<div class="wizard__summary">${rows}</div>`;
-      }
+    } else if (k === "review") {
+      const rows = steps()
+        .filter((s) => s !== "review" && valueText(s))
+        .map((s) => `<div class="wizard__summary-row"><span>${STEP_LABEL[s]}</span><b>${esc(valueText(s))}</b><button type="button" data-jump="${s}" aria-label="Edit ${STEP_LABEL[s]}">Edit</button></div>`)
+        .join("");
+      html += head("Your brief", "Check it over, then send. It goes straight to my inbox.") + `<div class="wizard__summary">${rows}</div>
+        <div class="wizard-field wizard__notes"><label for="wzNotes">Anything else I should know? <small>Optional</small></label>
+          <textarea id="wzNotes" data-k="notes" placeholder="Deadlines, your current site, examples you like, what you've tried, who signs off…">${esc(answers.notes || "")}</textarea></div>
+        <div class="wizard__chips">${NOTE_PROMPTS.map((p) => `<button type="button" data-add="${p}">+ ${p}</button>`).join("")}</div>
+        <p class="wizard__privacy">Goes only to Chester. No mailing list, no sharing.</p>`;
     }
 
     wizardStep.classList.remove("is-enter-left", "is-enter-right", "is-exit-left", "is-exit-right");
     wizardStep.innerHTML = html;
     if (dir) wizardStep.classList.add(dir > 0 ? "is-enter-right" : "is-enter-left");
-
-    // wire options: select + auto-advance
-    wizardStep.querySelectorAll(".wizard-option").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        wizardStep.querySelectorAll(".wizard-option").forEach((b) => b.classList.remove("is-selected"));
-        btn.classList.add("is-selected");
-        answers[WIZARD_STEPS[stepIdx].key] = btn.dataset.value;
-        syncFooter();
-        setTimeout(() => goTo(stepIdx + 1), 420);
-      });
-    });
-
     syncFooter();
-    const firstInput = wizardStep.querySelector("input");
-    if (firstInput) setTimeout(() => firstInput.focus(), 350);
+    if (k === "details" && !sent) setTimeout(() => wizardStep.querySelector("input[data-k]:not(.wizard-hp)[value='']")?.focus(), 350);
+  }
+
+  function sentHtml() {
+    if (sent === "sending") {
+      return `<div class="wizard__sent"><div class="wizard__sent-icon is-wait">…</div><h4>Sending your brief…</h4><p>One moment.</p></div>`;
+    }
+    if (sent === "ok") {
+      const via = answers.reply && answers.reply !== "Email only" ? ` on ${esc(answers.reply)} or email` : "";
+      return `<div class="wizard__sent"><div class="wizard__sent-icon">✓</div><h4>Brief received.</h4>
+        <p class="wizard__ref">Ref ${esc(answers.ref)}</p>
+        <p>I'll reply${via} by <b>${esc(replyBy())}</b>, your time.${receipt ? ` A copy is on its way to <b>${esc(answers.email)}</b>. Reply to it any time to add more.` : ""}</p></div>`;
+    }
+    return `<div class="wizard__sent"><div class="wizard__sent-icon is-error">!</div><h4>That didn't send.</h4>
+      <p>Your answers are saved on this device. Try again, or copy the brief and email it to <b class="wizard__addr">chestercatapia08@gmail.com</b>.</p>
+      <pre class="wizard__brief">${esc(briefText())}</pre>
+      <button type="button" class="wizard__copy" data-copy>Copy brief</button></div>`;
   }
 
   function stepValid() {
-    const step = WIZARD_STEPS[stepIdx];
-    if (step.options) return !!answers[step.key];
-    if (step.form) {
-      const name = document.getElementById("wzName");
-      const email = document.getElementById("wzEmail");
-      return name && name.value.trim() && email && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim());
+    const k = stepKey();
+    if (k === "details") {
+      const phoneOk = !answers.reply || answers.reply === "Email only" || (answers.phone || "").replace(/\D/g, "").length >= 7;
+      return !!(answers.name || "").trim() && EMAIL_RE.test((answers.email || "").trim()) && phoneOk;
     }
-    return true;
-  }
-
-  function collectForm() {
-    const step = WIZARD_STEPS[stepIdx];
-    if (!step.form) return;
-    answers.name = document.getElementById("wzName").value.trim();
-    answers.email = document.getElementById("wzEmail").value.trim();
-    answers.company = document.getElementById("wzCompany").value.trim();
-    answers.notes = document.getElementById("wzNotes").value.trim();
-    answers.website = document.getElementById("wzWebsite").value;
+    if (k === "review") return true;
+    return !!answers[answerKey(k)];
   }
 
   function syncFooter() {
-    const step = WIZARD_STEPS[stepIdx];
-    const pct = (stepIdx / (WIZARD_STEPS.length - 1)) * 100;
-    wizardBar.style.width = `${Math.max(8, pct)}%`;
-    wizardStepNum.textContent = `${String(stepIdx + 1).padStart(2, "0")} / ${String(WIZARD_STEPS.length).padStart(2, "0")}`;
-    wizardBack.classList.toggle("is-hidden", stepIdx === 0 || sent);
+    const all = steps();
+    const n = all.length;
+    wizardBar.style.width = sent ? "100%" : `${Math.max(8, (stepIdx / (n - 1)) * 100)}%`;
+    wizardStepNum.textContent = `${String(stepIdx + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
+    wizardBack.classList.toggle("is-hidden", stepIdx === 0 || !!sent);
+    if (wizardDots.children.length !== n) wizardDots.innerHTML = "<i></i>".repeat(n);
     [...wizardDots.children].forEach((d, i) => {
       d.classList.toggle("is-active", i === stepIdx);
       d.classList.toggle("is-done", i < stepIdx);
     });
-    const nextText = wizardNext.querySelector(".btn__text");
-    const nextArrow = wizardNext.querySelector(".btn__arrow");
-    if (sent) {
-      nextText.textContent = sent === "sending" ? "Sending…" : "Copy brief";
-      nextArrow.textContent = "⧉";
-      wizardNext.disabled = sent === "sending";
-    } else if (step.review) {
-      nextText.textContent = "Send brief";
-      nextArrow.textContent = "→";
-      wizardNext.disabled = false;
-    } else {
-      nextText.textContent = "Continue";
-      nextArrow.textContent = "→";
-      wizardNext.disabled = step.options ? !answers[step.key] : false;
-    }
+    const label = sent === "sending" ? "Sending…" : sent === "ok" ? "Done" : sent ? "Try again"
+      : all[stepIdx] === "review" ? "Send brief" : "Continue";
+    wizardNext.querySelector(".btn__text").textContent = label;
+    wizardNext.querySelector(".btn__arrow").textContent = sent === "ok" ? "✓" : "→";
+    wizardNext.disabled = sent === "sending" || (!sent && all[stepIdx] !== "details" && !stepValid());
+    saveDraft();
   }
 
   function goTo(idx, dirOverride) {
-    if (idx < 0 || idx >= WIZARD_STEPS.length) return;
+    if (idx < 0 || idx >= steps().length) return;
     const dir = dirOverride !== undefined ? dirOverride : idx > stepIdx ? 1 : -1;
     wizardStep.classList.add(dir > 0 ? "is-exit-left" : "is-exit-right");
     setTimeout(() => {
@@ -1817,32 +1829,45 @@
   }
 
   function briefText() {
+    const line = (k, v) => `${(k + ":").padEnd(11)}${v || "not specified"}`;
     return [
-      `New project inquiry for Chester Studio`,
+      `New project brief${answers.ref ? ` · ${answers.ref}` : ""}`,
       ``,
-      `Building:  ${answers.service || "not specified"}`,
-      `Goal:      ${answers.goal || "not specified"}`,
-      `Budget:    ${answers.budget || "not specified"}`,
-      `Timeline:  ${answers.timeline || "not specified"}`,
+      line("Building", svcOf(answers.service)?.label),
+      line("Detail", answers.follow),
+      line("Budget", answers.budget),
+      line("Timing", answers.timing),
       ``,
-      `Name:      ${answers.name || "not specified"}`,
-      `Email:     ${answers.email || "not specified"}`,
-      `Company:   ${answers.company || "not specified"}`,
+      `In their words:`,
+      answers.brief || "not given",
       ``,
       `Notes:`,
-      answers.notes || "not specified",
+      answers.notes || "none",
+      ``,
+      line("Name", answers.name),
+      line("Email", answers.email),
+      line("Company", answers.company),
+      line("Reply on", answers.reply && answers.reply !== "Email only" ? `${answers.reply} ${answers.phone || ""}` : "Email"),
     ].join("\n");
   }
 
   async function submitWizard() {
+    const d = new Date();
+    answers.ref = `CS-${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}-${Math.floor(Math.random() * 900 + 100)}`;
     sent = "sending";
     renderStep(1);
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ ...answers, brief: briefText() }),
+        body: JSON.stringify({
+          name: answers.name, email: answers.email, website: answers.website,
+          service: svcOf(answers.service)?.label, ref: answers.ref, replyBy: replyBy(),
+          budget: answers.budget, timing: answers.timing, words: answers.brief, notes: answers.notes,
+          brief: briefText(),
+        }),
       });
+      receipt = res.ok && !!(await res.json().catch(() => ({}))).receipt;
       sent = res.ok ? "ok" : "error";
     } catch {
       sent = "error";
@@ -1850,15 +1875,24 @@
     renderStep(0);
   }
 
-  function openWizard(preService, notes) {
+  // keeps who they are for next time, forgets the project
+  function finish() {
+    const { name, email, company, reply, phone, cur } = answers;
+    answers = { name, email, company, reply, phone, cur };
+    stepIdx = 0;
     sent = false;
-    if (notes) answers.notes = notes;
-    if (preService) {
-      answers.service = preService;
+    saveDraft();
+  }
+
+  function openWizard(preService, brief) {
+    if (sent === "ok") finish();
+    sent = false;
+    if (brief) answers.brief = brief;
+    if (preService && svcOf(preService)) {
+      if (answers.service !== preService) { answers.service = preService; delete answers.follow; }
       stepIdx = 1;
-    } else {
-      stepIdx = 0;
     }
+    stepIdx = Math.min(stepIdx, steps().length - 1);
     renderStep(0);
     wizard.classList.add("is-open");
     wizard.setAttribute("aria-hidden", "false");
@@ -1869,6 +1903,7 @@
     wizard.classList.remove("is-open");
     wizard.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (sent === "ok") finish();
   }
 
   document.querySelectorAll("[data-wizard-open]").forEach((btn) => {
@@ -1878,33 +1913,70 @@
   document.getElementById("wizardBackdrop").addEventListener("click", closeWizard);
   wizardBack.addEventListener("click", () => goTo(stepIdx - 1));
 
-  wizardNext.addEventListener("click", () => {
-    const step = WIZARD_STEPS[stepIdx];
-    if (sent) {
-      navigator.clipboard && navigator.clipboard.writeText(briefText());
-      wizardNext.querySelector(".btn__text").textContent = "Copied ✓";
-      return;
-    }
-    if (step.form) {
-      if (!stepValid()) {
-        const email = document.getElementById("wzEmail");
-        const name = document.getElementById("wzName");
-        if (name && !name.value.trim()) name.classList.add("is-invalid");
-        if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.value.trim())) email.classList.add("is-invalid");
-        wizardStep.querySelectorAll("input").forEach((inp) =>
-          inp.addEventListener("input", () => inp.classList.remove("is-invalid"), { once: true })
-        );
-        return;
+  wizardStep.addEventListener("click", async (e) => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.dataset.key) {
+      const was = isCare();
+      answers[b.dataset.key] = b.dataset.value;
+      if (b.dataset.key === "service") delete answers.follow;
+      if (was !== isCare()) delete answers.budget;
+      wizardStep.querySelectorAll(".wizard-option").forEach((o) => {
+        o.classList.toggle("is-selected", o === b);
+        o.setAttribute("aria-pressed", o === b);
+      });
+      syncFooter();
+    } else if (b.dataset.cur) {
+      answers.cur = b.dataset.cur;
+      delete answers.budget;
+      renderStep(0);
+    } else if (b.dataset.reply) {
+      answers.reply = b.dataset.reply;
+      renderStep(0);
+    } else if (b.dataset.jump) {
+      goTo(steps().indexOf(b.dataset.jump));
+    } else if (b.dataset.add) {
+      const t = document.getElementById("wzNotes");
+      t.value = (t.value.trim() ? t.value.replace(/\s*$/, "\n") : "") + `${b.dataset.add}: `;
+      answers.notes = t.value;
+      saveDraft();
+      t.focus();
+      t.setSelectionRange(t.value.length, t.value.length);
+    } else if ("copy" in b.dataset) {
+      try {
+        await navigator.clipboard.writeText(briefText());
+        b.textContent = "Copied ✓";
+      } catch {
+        const r = document.createRange();
+        r.selectNodeContents(wizardStep.querySelector(".wizard__brief"));
+        getSelection().removeAllRanges();
+        getSelection().addRange(r);
+        b.textContent = "Selected. Copy it now";
       }
-      collectForm();
-      goTo(stepIdx + 1);
+    }
+  });
+  wizardStep.addEventListener("input", (e) => {
+    const k = e.target.dataset.k;
+    if (!k) return;
+    answers[k] = e.target.value;
+    e.target.classList.remove("is-invalid");
+    saveDraft();
+  });
+
+  wizardNext.addEventListener("click", () => {
+    if (sent === "ok") { closeWizard(); return; }
+    if (sent === "error" || stepKey() === "review") { submitWizard(); return; }
+    if (!stepValid()) {
+      if (stepKey() !== "details") return;
+      const bad = [
+        ["wzName", !(answers.name || "").trim()],
+        ["wzEmail", !EMAIL_RE.test((answers.email || "").trim())],
+        ["wzPhone", (answers.phone || "").replace(/\D/g, "").length < 7],
+      ];
+      bad.forEach(([id, isBad]) => { const el = document.getElementById(id); if (el && isBad) el.classList.add("is-invalid"); });
       return;
     }
-    if (step.review) {
-      submitWizard();
-      return;
-    }
-    if (stepValid()) goTo(stepIdx + 1);
+    goTo(stepIdx + 1);
   });
 
   /* ==========================================================
