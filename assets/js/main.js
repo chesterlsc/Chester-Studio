@@ -926,11 +926,11 @@
      ========================================================== */
   const QV_POSTER = { tapfour: "tapfour-dash-home.webp", aegis: "aegis-leados-pipeline.webp", bookshop: "shop-catalog.webp" };
   const QV_BUILD = [
-    ["Websites", "Sites + WordPress, built and maintained", "Website"],
+    ["Websites", "Sites + stores: custom, Shopify, WordPress", "Website"],
     ["Custom software", "Apps made for your business", "Digital Product"],
     ["Dashboards", "Your numbers, live", "Business System"],
     ["Internal tools", "Run your team in one place", "Business System"],
-    ["Automation & AI", "Repeat work, done for you", "AI Automation"],
+    ["Automation & AI", "Repeat work done + AI on your site", "AI Automation"],
   ];
   const QV_STEPS = [["Brief", "You tell me what you need."], ["Plan", "I send back the plan."], ["Build", "You see it come together."], ["Launch", "It goes live. I look after it."]];
   const QV_ASK = [

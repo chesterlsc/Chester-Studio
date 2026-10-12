@@ -1625,6 +1625,50 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 }
 .build-card__scene--tool .build-card__scene-tag { color: var(--blue); background: rgba(233, 180, 76, .1); border-color: rgba(233, 180, 76, .3); }
 
+/* AI case: the Shorts Autopilot, and how its AI is paid for */
+.aicase {
+  margin-top: 22px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 0; border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--border); background: radial-gradient(90% 120% at 100% 0%, rgba(233, 180, 76, .08), transparent 60%), var(--surface);
+}
+.aicase__main { padding: 30px 32px; }
+.aicase__kick { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); }
+.aicase__kick i { width: 7px; height: 7px; border-radius: 50%; background: #2fd66f; box-shadow: 0 0 10px #2fd66f; animation: stBlink 1.6s ease-in-out infinite; }
+.aicase h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.15; margin-top: 10px; }
+.aicase h3 em { font-style: normal; color: var(--yellow); }
+.aicase__main > p:not(.aicase__kick) { color: var(--text-2); font-size: .92rem; line-height: 1.6; margin-top: 10px; max-width: 620px; }
+.aicase__flow { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 20px; counter-reset: st; }
+.aicase__flow li {
+  position: relative; display: flex; flex-direction: column; gap: 3px; padding: 10px 11px 11px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2);
+  animation: aicaseStep 10s ease-in-out infinite; animation-delay: calc(var(--i) * 2s);
+}
+.aicase__flow b { font-size: .86rem; font-weight: 600; }
+.aicase__flow b::before { counter-increment: st; content: "0" counter(st) " "; font-family: var(--font-mono); font-size: .62rem; font-weight: 400; color: var(--text-3); }
+.aicase__flow span { font-size: .72rem; line-height: 1.35; color: var(--text-2); }
+@keyframes aicaseStep { 0%, 22%, 100% { border-color: var(--border); box-shadow: none; } 4%, 18% { border-color: rgba(233, 180, 76, .6); box-shadow: 0 0 0 3px rgba(233, 180, 76, .08); } }
+.aicase__note { font-size: .82rem !important; color: var(--text-3) !important; }
+.aicase__pay { display: flex; flex-direction: column; gap: 10px; padding: 30px 28px; border-left: 1px solid var(--border); background: rgba(5, 5, 7, .35); }
+.aicase__pay-head { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); margin-bottom: 2px; }
+.aicase__opt { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); }
+.aicase__opt b { display: flex; align-items: center; gap: 8px; font-size: .9rem; font-weight: 600; }
+.aicase__opt b em { margin-left: auto; padding: 2px 8px; border-radius: 99px; background: var(--blue-soft); color: var(--blue); font-style: normal; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+.aicase__opt span { font-size: .8rem; line-height: 1.45; color: var(--text-2); }
+.aicase__opt.is-used { border-color: rgba(233, 180, 76, .4); background: rgba(233, 180, 76, .05); }
+.aicase__go { margin-top: auto; align-self: flex-start; min-height: 44px; padding: 0 20px; border-radius: 99px; background: var(--yellow); color: #04070c; font-weight: 600; font-size: .88rem; transition: transform .25s var(--ease-out), box-shadow .25s; }
+.aicase__go:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 212, 59, .25); }
+.aicase__go:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+@media (max-width: 999px) {
+  .aicase { grid-template-columns: 1fr; }
+  .aicase__pay { border-left: 0; border-top: 1px solid var(--border); }
+}
+@media (max-width: 640px) {
+  .aicase__main, .aicase__pay { padding: 22px 18px; }
+  .aicase__flow { grid-template-columns: 1fr; gap: 6px; }
+  .aicase__flow li { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .aicase__flow span { text-align: right; }
+  .aicase__go { align-self: stretch; }
+}
+@media (prefers-reduced-motion: reduce) { .aicase * { animation: none !important; } }
+
 /* the invitation */
 .build__cta {
   position: relative; overflow: hidden; margin-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 30px;
