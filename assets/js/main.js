@@ -919,6 +919,22 @@
     show(0);
   }
 
+  // AI client cases: one tab per client; the pay panel marks what that build runs on
+  const aic = document.querySelector(".aicase");
+  if (aic) {
+    const tabs = [...aic.querySelectorAll("[data-aic]")];
+    const pick = (t) => {
+      aic.dataset.on = t.dataset.aic;
+      tabs.forEach((b) => { b.setAttribute("aria-selected", String(b === t)); document.getElementById("aic-" + b.dataset.aic).hidden = b !== t; });
+    };
+    tabs.forEach((b) => b.addEventListener("click", () => pick(b)));
+    aic.querySelector(".aicase__tabs").addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const n = tabs[(tabs.indexOf(document.activeElement) + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
+      pick(n); n.focus();
+    });
+  }
+
   /* ==========================================================
      QUICK VIEW :: the whole studio on one calm screen ("The Brief")
      Desktop is laid out at 1280×800 and scaled to fit the window,
@@ -930,7 +946,7 @@
     ["Custom software", "Apps made for your business", "Digital Product"],
     ["Dashboards", "Your numbers, live", "Business System"],
     ["Internal tools", "Run your team in one place", "Business System"],
-    ["Automation & AI", "AI in your site, on a budget you set", "AI Automation", true],
+    ["Automation & AI", "AI support for stores, clinics and more", "AI Automation", true],
   ];
   const QV_STEPS = [["Brief", "You tell me what you need."], ["Plan", "I send back the plan."], ["Build", "You see it come together."], ["Launch", "It goes live. I look after it."]];
   const QV_ASK = [
@@ -997,7 +1013,7 @@
           <section class="qv-col qv-side">
             ${kick("03", "WHAT I BUILD")}
             <div class="qv-build">${QV_BUILD.map(([t, o, , hot], i) => `
-              <button type="button" data-qv-b="${i}"${hot ? ' class="is-hot" aria-label="Automation and AI: see the AI case study"' : ""}><span><b>${t}${hot ? "<small>AI CASE</small>" : ""}</b><em>${o}</em></span><i>→</i></button>`).join("")}
+              <button type="button" data-qv-b="${i}"${hot ? ' class="is-hot" aria-label="Automation and AI: see three AI client cases"' : ""}><span><b>${t}${hot ? "<small>3 AI CASES</small>" : ""}</b><em>${o}</em></span><i>→</i></button>`).join("")}
             </div>
             ${kick("04", "HOW IT WORKS")}
             <div class="hw" id="qvHow">

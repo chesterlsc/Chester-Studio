@@ -1625,7 +1625,7 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 }
 .build-card__scene--tool .build-card__scene-tag { color: var(--blue); background: rgba(233, 180, 76, .1); border-color: rgba(233, 180, 76, .3); }
 
-/* AI case: a client content studio, and how its AI is paid for */
+/* AI client cases: store, clinic, content studio, and how each one's AI is paid for */
 .aicase {
   scroll-margin-top: 96px;
   margin-top: 22px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 0; border-radius: 22px; overflow: hidden;
@@ -1636,7 +1636,7 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 .aicase__kick i { width: 7px; height: 7px; border-radius: 50%; background: #2fd66f; box-shadow: 0 0 10px #2fd66f; animation: stBlink 1.6s ease-in-out infinite; }
 .aicase h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.35rem, 2.2vw, 1.75rem); line-height: 1.15; margin-top: 10px; }
 .aicase h3 em { font-style: normal; color: var(--yellow); }
-.aicase__main > p:not(.aicase__kick) { color: var(--text-2); font-size: .92rem; line-height: 1.6; margin-top: 10px; max-width: 620px; }
+.aicase__panel > p { color: var(--text-2); font-size: .92rem; line-height: 1.6; margin-top: 10px; max-width: 620px; }
 .aicase__flow { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-top: 20px; counter-reset: st; }
 .aicase__flow li {
   position: relative; display: flex; flex-direction: column; gap: 3px; padding: 10px 11px 11px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2);
@@ -1653,7 +1653,17 @@ html.is-locked, html.is-locked body { overflow: hidden; }
 .aicase__opt b { display: flex; align-items: center; gap: 8px; font-size: .9rem; font-weight: 600; }
 .aicase__opt b em { margin-left: auto; padding: 2px 8px; border-radius: 99px; background: var(--blue-soft); color: var(--blue); font-style: normal; font-family: var(--font-mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
 .aicase__opt span { font-size: .8rem; line-height: 1.45; color: var(--text-2); }
-.aicase__opt.is-used { border-color: rgba(233, 180, 76, .4); background: rgba(233, 180, 76, .05); }
+.aicase__opt b em { display: none; }
+.aicase[data-on="studio"] [data-for~="studio"], .aicase[data-on="store"] [data-for~="store"], .aicase[data-on="clinic"] [data-for~="clinic"] { border-color: rgba(233, 180, 76, .4); background: rgba(233, 180, 76, .05); }
+.aicase[data-on="studio"] [data-for~="studio"] em, .aicase[data-on="store"] [data-for~="store"] em, .aicase[data-on="clinic"] [data-for~="clinic"] em { display: inline; }
+.aicase__tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.aicase__tabs button { min-height: 36px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--border); color: var(--text-2); font-size: .82rem; font-weight: 600; transition: background-color .25s, border-color .25s, color .25s; }
+.aicase__tabs button:hover { border-color: rgba(233, 180, 76, .5); color: var(--text); }
+.aicase__tabs button[aria-selected="true"] { background: var(--blue); border-color: var(--blue); color: #050507; }
+.aicase__tabs button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.aicase__panel { margin-top: 16px; animation: aicaseIn .45s var(--ease-out); }
+.aicase__panel h3 { margin-top: 0; }
+@keyframes aicaseIn { from { opacity: 0; transform: translateY(6px); } }
 .aicase__go { margin-top: auto; align-self: flex-start; min-height: 44px; padding: 0 20px; border-radius: 99px; background: var(--yellow); color: #04070c; font-weight: 600; font-size: .88rem; transition: transform .25s var(--ease-out), box-shadow .25s; }
 .aicase__go:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255, 212, 59, .25); }
 .aicase__go:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
@@ -1667,6 +1677,8 @@ html.is-locked, html.is-locked body { overflow: hidden; }
   .aicase__flow li { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 10px; }
   .aicase__flow span { text-align: right; }
   .aicase__go { align-self: stretch; }
+  .aicase__tabs { flex-wrap: nowrap; }
+  .aicase__tabs button { flex: 1 1 auto; min-height: 44px; padding: 0 8px; font-size: .76rem; white-space: nowrap; }
 }
 @media (prefers-reduced-motion: reduce) { .aicase * { animation: none !important; } }
 

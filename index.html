@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=25" />
+  <link rel="stylesheet" href="assets/css/style.css?v=26" />
 
   <script type="application/ld+json">
   {
@@ -510,25 +510,56 @@
           </article>
         </div>
 
-        <div class="aicase" data-reveal>
+        <div class="aicase" data-on="store" data-reveal>
           <div class="aicase__main">
-            <p class="aicase__kick"><i></i>AI, built in · Client case</p>
-            <h3>A content studio that <em>runs itself on AI</em>.</h3>
-            <p>Built for a client’s video channel. It spots what’s trending, writes the captions, titles and hashtags, renders the video and schedules it for the hour the audience is online. Then it reads the views and gets sharper. The same kind of AI can go into your website, your shop or your back office.</p>
-            <ol class="aicase__flow" aria-label="What the AI does, step by step">
-              <li style="--i:0"><b>Spot</b><span>What’s trending</span></li>
-              <li style="--i:1"><b>Write</b><span>Captions, titles, tags</span></li>
-              <li style="--i:2"><b>Render</b><span>A finished 9:16 video</span></li>
-              <li style="--i:3"><b>Post</b><span>At peak hours</span></li>
-              <li style="--i:4"><b>Learn</b><span>From every view</span></li>
-            </ol>
-            <p class="aicase__note">Plus a built-in AI assistant that can run the whole app from a chat.</p>
+            <p class="aicase__kick"><i></i>AI, built in · Client cases</p>
+            <div class="aicase__tabs" role="tablist" aria-label="AI client cases">
+              <button type="button" role="tab" id="aict-store" aria-controls="aic-store" aria-selected="true" data-aic="store">Online store</button>
+              <button type="button" role="tab" id="aict-clinic" aria-controls="aic-clinic" aria-selected="false" data-aic="clinic">Dental clinic</button>
+              <button type="button" role="tab" id="aict-studio" aria-controls="aic-studio" aria-selected="false" data-aic="studio">Content studio</button>
+            </div>
+            <div class="aicase__panel" role="tabpanel" id="aic-store" aria-labelledby="aict-store">
+              <h3>Customer service for an online store that <em>never clocks out</em>.</h3>
+              <p>For an ecommerce client: an AI assistant trained on the store’s products, policies and past conversations, answering shoppers on the website day and night. It takes the everyday questions that used to need hands-on time and passes the tricky ones to a person. I look after it: retraining it as products change and keeping an eye on every answer.</p>
+              <ol class="aicase__flow" aria-label="What the AI does, step by step">
+                <li style="--i:0"><b>Learn</b><span>Products, policies, past chats</span></li>
+                <li style="--i:1"><b>Answer</b><span>Sizes, stock, shipping</span></li>
+                <li style="--i:2"><b>Track</b><span>Order status on request</span></li>
+                <li style="--i:3"><b>Hand off</b><span>Tricky ones to a person</span></li>
+                <li style="--i:4"><b>Report</b><span>What customers ask most</span></li>
+              </ol>
+              <p class="aicase__note">API usage has a daily budget cap, so the cost per day is fixed.</p>
+            </div>
+            <div class="aicase__panel" role="tabpanel" id="aic-clinic" aria-labelledby="aict-clinic" hidden>
+              <h3>A dental clinic’s front desk that <em>books patients around the clock</em>.</h3>
+              <p>For a dental clinic: an AI receptionist on the clinic’s website, trained on its treatments, prices, dentists and opening hours. It answers patients in plain language, books them into open slots and sends reminders, and hands anything urgent to the front desk. Tailored to how the clinic works, not a generic chatbot.</p>
+              <ol class="aicase__flow" aria-label="What the AI does, step by step">
+                <li style="--i:0"><b>Learn</b><span>Treatments, prices, hours</span></li>
+                <li style="--i:1"><b>Answer</b><span>Any hour, in plain words</span></li>
+                <li style="--i:2"><b>Book</b><span>Straight into open slots</span></li>
+                <li style="--i:3"><b>Remind</b><span>Before every visit</span></li>
+                <li style="--i:4"><b>Hand off</b><span>Urgent ones to the desk</span></li>
+              </ol>
+              <p class="aicase__note">Fewer missed calls, fewer no-shows, and the front desk keeps the human moments.</p>
+            </div>
+            <div class="aicase__panel" role="tabpanel" id="aic-studio" aria-labelledby="aict-studio" hidden>
+              <h3>A content studio that <em>runs itself on AI</em>.</h3>
+              <p>Built for a client’s video channel. It spots what’s trending, writes the captions, titles and hashtags, renders the video and schedules it for the hour the audience is online. Then it reads the views and gets sharper.</p>
+              <ol class="aicase__flow" aria-label="What the AI does, step by step">
+                <li style="--i:0"><b>Spot</b><span>What’s trending</span></li>
+                <li style="--i:1"><b>Write</b><span>Captions, titles, tags</span></li>
+                <li style="--i:2"><b>Render</b><span>A finished 9:16 video</span></li>
+                <li style="--i:3"><b>Post</b><span>At peak hours</span></li>
+                <li style="--i:4"><b>Learn</b><span>From every view</span></li>
+              </ol>
+              <p class="aicase__note">Plus a built-in AI assistant that can run the whole app from a chat.</p>
+            </div>
           </div>
           <div class="aicase__pay">
             <p class="aicase__pay-head">How the AI is paid for. Your call.</p>
-            <div class="aicase__opt is-used"><b>Your existing AI plan <em>This build</em></b><span>Runs on a subscription you already pay for, like Claude Pro or Max. No per-use bill.</span></div>
-            <div class="aicase__opt"><b>Pay-as-you-go API</b><span>Metered credits with a monthly budget cap you set. No surprise invoices.</span></div>
-            <div class="aicase__opt"><b>Safe fallback</b><span>If the AI is ever off, smart templates keep the work moving.</span></div>
+            <div class="aicase__opt" data-for="studio"><b>Your existing AI plan <em>This build</em></b><span>Runs on a subscription you already pay for, like Claude Pro or Max. No per-use bill.</span></div>
+            <div class="aicase__opt" data-for="store clinic"><b>Pay-as-you-go API <em>This build</em></b><span>Metered credits with a daily or monthly budget cap you set. No surprise invoices.</span></div>
+            <div class="aicase__opt"><b>Safe fallback</b><span>If the AI is off or the day’s budget is spent, it hands over to a person or smart templates.</span></div>
             <button type="button" class="aicase__go" data-wizard-open data-wizard-service="AI Automation">Put AI in my business →</button>
           </div>
         </div>
@@ -756,6 +787,6 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js?v=25"></script>
+  <script src="assets/js/main.js?v=26"></script>
 </body>
 </html>
