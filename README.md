@@ -1,8 +1,8 @@
-# Chester Studio Portfolio
+# Chester Studio
 
-Static portfolio for Chester Studio: premium websites, AI workflows, and business systems.
+The studio site for Chester Studio: websites, online stores, workflow automation and business systems for growing businesses.
 
-**Live site:** https://chesterlsc.github.io/Chester-Studio/
+**Live:** [chesterstudio.space](https://chesterstudio.space)
 
 ## Stack
 
@@ -47,7 +47,7 @@ cwebp -q 80 -sharp_yuv -m 6 -resize 640 0 shot.png -o public/projects/thumb/shot
 ## Contact form
 
 The intake wizard POSTs the brief to a Cloudflare Worker in `api/`, which sends it
-through Resend to chestercatapia08@gmail.com (with the visitor's address as reply-to).
+through Resend to the studio inbox (with the visitor's address as reply-to).
 
 ```bash
 cd api
