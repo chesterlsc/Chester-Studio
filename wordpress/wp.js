@@ -38,14 +38,25 @@
   };
   const CODE = [...document.querySelectorAll("script.src")].map((n) => ({ file: n.dataset.file.split("/").pop(), path: n.dataset.file, note: n.dataset.note, src: paint(n.textContent.replace(/^\n|\n$/g, "")) }));
 
-  // Client stores under NDA. Only what can be said: the sector, the market and the work.
-  // The pictures are blurred illustrations of each kind of store, not the clients' sites.
+  // Client stores under NDA: the real storefronts, with logos, names and contact details blurred.
+  // status "on call" = still the person they call; "past" = finished engagements.
   const NDA = [
-    { sector: "Beauty & skincare brand", img: "beauty.webp", acc: "#e9a6a3" },
-    { sector: "Food & snacks brand", img: "food.webp", acc: "#f2a93b" },
-    { sector: "Physical goods brand", img: "goods.webp", acc: "#a9b5a0" },
+    { sector: "Beauty & body care brand", where: "Australian e-commerce store", img: "beauty", acc: "#e98cb0", status: "on call" },
+    { sector: "Food & beverage brand", where: "US e-commerce store", img: "food", acc: "#4aa3b8", status: "past" },
+    { sector: "Home & garden store", where: "US e-commerce store", img: "goods", acc: "#4fae8a", status: "past" },
   ];
-  const NDA_DID = ["WordPress maintenance: updates, backups and security", "Store fixes and speed", "Growth work on the storefront"];
+  const NDA_COPY = {
+    "on call": {
+      label: "On call",
+      job: "selling online, direct to its customers. I’m on call for the store: when something needs updating, fixing or building, it comes to me.",
+      lists: [["When needed", ["WordPress, theme and plugin updates", "Backups, security checks and fixes", "Speed and store fixes"]], ["Growth", ["New pages for products and offers", "Storefront improvements"]]],
+    },
+    past: {
+      label: "Past work",
+      job: "selling online, direct to its customers. I kept the store fast, secure and current, and worked on how it sells.",
+      lists: [["What I did", ["Kept WordPress, the theme and plugins up to date", "Backups, security checks and uptime", "Speed and store fixes"]], ["Growth", ["New pages for products and offers", "Storefront improvements", "Growth work on what sells"]]],
+    },
+  };
 
   // ---- live-store buttons
   document.querySelectorAll("[data-demo]").forEach((a) => {
@@ -69,16 +80,20 @@
   document.getElementById("mails").innerHTML = MAILS.map((m) => `<li>
       <figure class="frame frame--mail"><img src="${IMG + m.img}" alt="${m.alt}" loading="lazy" /></figure><span>${m.t}</span></li>`).join("");
 
-  // ---- client work under NDA
+  // ---- client stores (NDA)
   if (NDA.length) {
     document.getElementById("nda").hidden = false;
-    document.getElementById("ndaList").innerHTML = NDA.map((n) => `<article class="nda-card" style="--acc:${n.acc}">
-        <div class="nda-card__shot"><img src="${IMG}nda/${n.img}" alt="" loading="lazy" width="960" height="600" /><span class="nda-card__stamp">NDA</span></div>
-        <div class="nda-card__body">
-          <p class="feat__n">WordPress care + growth · Ongoing</p>
+    document.getElementById("ndaList").innerHTML = NDA.map((n) => `<article class="case" style="--acc:${n.acc}">
+        <div class="case__media" aria-hidden="true">
+          <figure class="case__desk"><span class="frame__bar"><i></i><i></i><i></i><em></em></span><img src="${IMG}nda/${n.img}-desk.webp" alt="" loading="lazy" width="1400" height="972" /></figure>
+          <figure class="case__phone"><img src="${IMG}nda/${n.img}-phone.webp" alt="" loading="lazy" width="600" height="1299" /></figure>
+        </div>
+        <div class="case__copy">
+          <p class="feat__n">Case study · WordPress + WooCommerce · ${NDA_COPY[n.status].label}</p>
           <h3>${n.sector}</h3>
-          <p class="nda-card__where">US e-commerce store</p>
-          <ul class="ticks">${NDA_DID.map((d) => `<li>${d}</li>`).join("")}</ul>
+          <p class="case__where">${n.where}</p>
+          <p class="case__job">A ${n.sector.toLowerCase()} ${NDA_COPY[n.status].job}</p>
+          <div class="case__cols">${NDA_COPY[n.status].lists.map(([h, items]) => `<div><b>${h}</b><ul class="ticks">${items.map((d) => `<li>${d}</li>`).join("")}</ul></div>`).join("")}</div>
         </div>
       </article>`).join("");
   }
