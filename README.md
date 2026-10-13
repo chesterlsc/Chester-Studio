@@ -9,9 +9,12 @@ The studio site for Chester Studio: websites, online stores, workflow automation
 Pure HTML, CSS, and vanilla JavaScript with no frameworks and no build step. GitHub Pages serves the repo as-is.
 
 ```
-index.html           → the whole page
-assets/css/style.css → design system + animations
-assets/js/main.js    → cursor, preloader, filters, modal, scroll effects
+index.html           → the home page
+build/               → What I Build: dashboards, AI, automation, software, websites
+wordpress/           → the WordPress case study
+assets/css/style.css → design system, shared by every page
+assets/js/site.js    → shared: the ⌘K command palette and the project intake
+assets/js/main.js    → home page: work wall, quick view, hero, modal
 public/              → project screenshots and logos
 ```
 
@@ -26,11 +29,12 @@ python3 -m http.server 8000
 
 ## Editing content
 
-Content lives in plain data arrays in `assets/js/main.js`:
+Content lives in plain data arrays in `assets/js/main.js` and `assets/js/site.js`:
 
 - `WORK`: the four flagships on the Selected Work wall. Each feature sits in a group (customer, owner, behind it) and carries a `v` visual; `shot` crops a real screenshot from `public/projects/`.
 - `PROJECTS`: every other build, shown in the “+15 more builds” index and the project modal.
-- `OPS`: the friction → fix examples in What I Build, each pointing at a flagship feature.
+- `ITEMS` in `site.js`: what the command palette can jump to or do.
+- `build/index.html`: the What I Build samples, written straight in the HTML.
 - `TOOLS`: the tool belt.
 
 ## Adding images

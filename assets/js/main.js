@@ -8,6 +8,8 @@
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  // the intake and the command palette live in site.js, shared with every page
+  const openWizard = (...a) => window.CS.openWizard(...a);
 
   /* ==========================================================
      PROJECT DATA
@@ -860,82 +862,6 @@
   });
 
   /* ==========================================================
-     WHAT I BUILD :: friction → fix, shown on real product screens
-     ========================================================== */
-  const OPS = [
-    { q: "Bills and supplier dues live in a notebook.", kind: "INTERNAL TOOL", t: "A bills tracker that never forgets", b: "Late, due this week, unpaid. Tick Paid and next month’s bill books itself, and anything late waits for you on the home screen.", img: "tapfour-dash-billing.webp", url: "dashboard.tap4.ph/billing", p: 0, node: "billing" },
-    { q: "We find out stock is gone when a customer asks.", kind: "DASHBOARD", t: "Stock that warns you first", b: "Tap − and + as you use it. Anything running low is flagged before the shift that needs it.", img: "tapfour-dash-stock.webp", url: "dashboard.tap4.ph/inventory", p: 0, node: "stock" },
-    { q: "Leads come in, then nobody follows up.", kind: "AI AUTOMATION", t: "Leads captured, scored and drafted", b: "One order finds the businesses, scores each one 0–6 with the evidence, and drafts the outreach. A person approves every send.", img: "aegis-leados-pipeline.webp", url: "aegisleados · ops.pipeline", p: 1, node: "crm" },
-    { q: "I can’t tell which branch is doing well.", kind: "DASHBOARD", t: "Every branch on one screen", b: "Taps, reviews and visits per branch, the busiest hours, and a monthly report that saves as a PDF.", img: "tapfour-dash-reports.webp", url: "dashboard.tap4.ph/reports", p: 0, node: "report" },
-    { q: "My numbers live in five spreadsheets.", kind: "CUSTOM SOFTWARE", t: "One place your numbers add up", b: "Log it in one line and every chart, calendar and report updates itself. No copying between tabs.", img: "trader-journal.webp", url: "trader journal · desk", p: 2, node: "dash" },
-    { q: "Our website looks fine but doesn’t sell.", kind: "WEBSITE", t: "A site built around how people buy", b: "A storefront shaped to the product, with a checkout that can’t get the price wrong and emails that go out exactly once.", img: "shop-hero.webp", url: "bookshop storefront", p: 3, node: "transfer" },
-  ];
-  const opsEl = document.getElementById("ops");
-  if (opsEl) {
-    const list = opsEl.querySelector(".ops__list");
-    list.insertAdjacentHTML("beforeend", OPS.map((o, i) => `
-      <button type="button" role="tab" class="ops__item" data-ops="${i}" aria-selected="false" aria-controls="opsPanel">
-        <i>0${i + 1}</i><span>“${o.q}”</span><em>${o.kind}</em>
-      </button>`).join(""));
-    const items = [...list.querySelectorAll(".ops__item")];
-    const $ = (id) => document.getElementById(id);
-    const panel = $("opsPanel");
-    let cur = -1, timer = null, auto = !prefersReducedMotion, inView = false;
-    const show = (i) => {
-      if (i === cur) return;
-      cur = i;
-      const o = OPS[i], p = WORK[o.p];
-      items.forEach((b, k) => { b.classList.toggle("is-on", k === i); b.setAttribute("aria-selected", String(k === i)); });
-      if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: items[i].offsetLeft - list.offsetLeft, behavior: prefersReducedMotion ? "auto" : "smooth" });
-      panel.style.setProperty("--acc", p.accent);
-      panel.classList.remove("is-swap"); void panel.offsetWidth; panel.classList.add("is-swap");
-      $("opsImg").src = P + o.img;
-      $("opsImg").parentElement.style.setProperty("--src", bgUrl(thumb(P + o.img)));
-      $("opsImg").alt = `${p.name}: ${o.t}`;
-      $("opsUrl").textContent = o.url;
-      $("opsKind").textContent = o.kind;
-      $("opsTitle").textContent = o.t;
-      $("opsBody").textContent = o.b;
-      $("opsSeen").innerHTML = `${logoHTML(p)}Seen in ${p.name} <b>↗</b>`;
-    };
-    const tick = () => {
-      clearTimeout(timer);
-      if (!auto || !inView) return;
-      panel.classList.remove("is-timing"); void panel.offsetWidth; panel.classList.add("is-timing");
-      timer = setTimeout(() => { show((cur + 1) % OPS.length); tick(); }, 6000);
-    };
-    const stopAuto = () => { auto = false; clearTimeout(timer); panel.classList.remove("is-timing"); };
-    items.forEach((b, i) => b.addEventListener("click", () => { stopAuto(); show(i); }));
-    list.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
-      e.preventDefault();
-      stopAuto();
-      const n = (cur + (e.key === "ArrowDown" ? 1 : -1) + OPS.length) % OPS.length;
-      show(n); items[n].focus();
-    });
-    $("opsSeen").addEventListener("click", () => { stopAuto(); openTile(OPS[cur].p, OPS[cur].node); });
-    $("opsStart").addEventListener("click", () => openWizard(WORK[OPS[cur].p].service));
-    new IntersectionObserver(([en]) => { inView = en.isIntersecting; tick(); }, { threshold: 0.35 }).observe(opsEl);
-    show(0);
-  }
-
-  // AI client cases: one tab per client; the pay panel marks what that build runs on
-  const aic = document.querySelector(".aicase");
-  if (aic) {
-    const tabs = [...aic.querySelectorAll("[data-aic]")];
-    const pick = (t) => {
-      aic.dataset.on = t.dataset.aic;
-      tabs.forEach((b) => { b.setAttribute("aria-selected", String(b === t)); document.getElementById("aic-" + b.dataset.aic).hidden = b !== t; });
-    };
-    tabs.forEach((b) => b.addEventListener("click", () => pick(b)));
-    aic.querySelector(".aicase__tabs").addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-      const n = tabs[(tabs.indexOf(document.activeElement) + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length];
-      pick(n); n.focus();
-    });
-  }
-
-  /* ==========================================================
      QUICK VIEW :: the whole studio on one calm screen ("The Brief")
      Desktop is laid out at 1280×800 and scaled to fit the window,
      so nothing is ever cut; phones get a single scrolling column.
@@ -1149,7 +1075,7 @@
   }
   // land on the wall first, so the tile grows from where it really is
   const seeTile = (i) => { backToDeck = true; wall.scrollIntoView({ block: "center", behavior: "instant" }); openTile(i); };
-  document.querySelectorAll("[data-quick-view]").forEach((b) => b.addEventListener("click", showDeck));
+  window.CS.quickView = showDeck;
 
   deckEl.addEventListener("input", (e) => { if (e.target.id === "qvBrief") { D.brief = e.target.value; D.briefSvc = undefined; } });
   deckEl.addEventListener("keydown", (e) => {
@@ -1179,7 +1105,7 @@
     } else if (ds.qvB) {
       const b = QV_BUILD[+ds.qvB];
       // the AI row shows the case study on the full site; the rest open the brief
-      if (b[3]) showSite(() => document.querySelector(".aicase").scrollIntoView({ block: "start", behavior: "instant" }));
+      if (b[3]) { location.href = "build/#ai"; return; }
       else openWizard(b[2]);
       return;
     }
@@ -1294,19 +1220,6 @@
     );
   }
 
-  // Mini-dashboard KPI counts up when it scrolls into view
-  const loopCounters = document.querySelectorAll("[data-count-loop]");
-  if (loopCounters.length) {
-    const kpiObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        countUp(entry.target, parseInt(entry.target.dataset.countLoop, 10), 1800);
-        kpiObserver.unobserve(entry.target);
-      });
-    }, { threshold: 0.4 });
-    loopCounters.forEach((el) => kpiObserver.observe(el));
-  }
-
   /* ==========================================================
      MAGNETIC ELEMENTS
      ========================================================== */
@@ -1328,55 +1241,6 @@
   }
 
   /* ==========================================================
-     HEADER: scroll state, hide/show, progress
-     ========================================================== */
-  const header = document.getElementById("header");
-  const progressBar = document.getElementById("scrollProgress");
-  let lastY = 0;
-
-  addEventListener("scroll", () => {
-    const y = scrollY;
-    header.classList.toggle("is-scrolled", y > 40);
-    header.classList.toggle("is-hidden", y > 500 && y > lastY);
-    lastY = y;
-    const max = document.documentElement.scrollHeight - innerHeight;
-    progressBar.style.width = (max > 0 ? (y / max) * 100 : 0) + "%";
-  }, { passive: true });
-
-  /* ==========================================================
-     MOBILE MENU
-     ========================================================== */
-  const burger = document.getElementById("navBurger");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const setMenu = (open) => {
-    burger.classList.toggle("is-open", open);
-    mobileMenu.classList.toggle("is-open", open);
-    burger.setAttribute("aria-expanded", open);
-    mobileMenu.setAttribute("aria-hidden", !open);
-    document.body.style.overflow = open ? "hidden" : "";
-  };
-  burger.addEventListener("click", () => setMenu(!mobileMenu.classList.contains("is-open")));
-  mobileMenu.querySelectorAll("a, button").forEach((a) => a.addEventListener("click", () => setMenu(false)));
-
-  /* ==========================================================
-     ACTIVE NAV LINK
-     ========================================================== */
-  const sections = ["work", "build", "system", "tools", "contact"];
-  const navLinks = document.querySelectorAll(".nav__link");
-  const bottomLinks = document.querySelectorAll(".bottomnav [data-bn]");
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((l) => l.classList.toggle("is-active", l.getAttribute("href") === `#${entry.target.id}`));
-      bottomLinks.forEach((l) => l.classList.toggle("is-active", l.dataset.bn === entry.target.id));
-    });
-  }, { rootMargin: "-40% 0px -55% 0px" });
-  sections.forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) sectionObserver.observe(el);
-  });
-
-  /* ==========================================================
      SCROLL REVEAL
      ========================================================== */
   const revealObserver = new IntersectionObserver((entries) => {
@@ -1389,17 +1253,6 @@
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
   document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
-
-  // System flow rail
-  const flow = document.getElementById("systemFlow");
-  if (flow) {
-    const flowObserver = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { flow.classList.add("in-view"); flowObserver.disconnect(); }
-      });
-    }, { threshold: 0.3 });
-    flowObserver.observe(flow);
-  }
 
   /* ==========================================================
      HERO BRIEF
@@ -1421,7 +1274,84 @@
   });
   briefForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (briefMode === "explore") { if (shownHits[0]) shownHits[0].go(); return; }
     openWizard(briefSvc, briefInput.value.trim());
+  });
+
+  // ---- two doors: describe a project, or explore the work first
+  const briefEl = document.querySelector(".brief");
+  const briefResults = document.getElementById("briefResults");
+  const modeTabs = [...document.querySelectorAll(".brief__modes [data-mode]")];
+  let briefMode = "describe";
+  let shownHits = [];
+  const toTile = (i) => () => { wall.scrollIntoView({ block: "center", behavior: "instant" }); openTile(i); };
+  const KIND = { tapfour: "Dashboard", aegis: "AI", trader: "Software", bookshop: "Online store" };
+  const flag = (id) => {
+    const i = WORK.findIndex((p) => p.id === id), p = WORK[i];
+    return {
+      t: p.name, d: p.short, kind: KIND[id], img: thumb(p.poster), go: toTile(i),
+      // every feature title is searchable, so "stock" finds Tapfour
+      k: [p.kind, p.oneLine, p.stack, ...p.groups.flatMap((g) => g.feats.map((f) => f.t))].join(" "),
+    };
+  };
+  const page = (t, d, kind, img, href, k) => ({ t, d, kind, img: thumb(P + img), k, go: () => { location.href = href; } });
+  const WP = page("WordPress & WooCommerce", "Create, extend and maintain: themes, stores, plugins", "WordPress", "ulap-coffee.webp", "wordpress/",
+    "wordpress woocommerce theme block plugin create build extend gcash maya store shop ulap coffee");
+  const HITS = [
+    flag("tapfour"), flag("aegis"), WP, flag("bookshop"), flag("trader"),
+    page("Monthly WordPress care", "Updates, backups, security, speed and fixes", "WordPress", "ulap-coffee.webp", "#wordpress",
+      "wordpress care plan maintain maintenance monthly update updates backup security speed fix fixes hosting"),
+    page("Dashboards", "Your numbers in one place", "What I build", "tapfour-dash-reports.webp", "build/#dashboards", "dashboard kpi report numbers stock branches analytics"),
+    page("AI implementation", "AI that does a real job", "What I build", "aegis-leados-pipeline.webp", "build/#ai", "ai chatbot chat assistant agent receptionist support clinic"),
+    page("Automation", "Busywork that runs itself", "What I build", "shop-mail-shop-new-order.webp", "build/#automation", "automate automation workflow email follow-up n8n zapier"),
+    page("Custom software", "Built around one daily job", "What I build", "tapfour-admin-board.webp", "build/#software", "app web app portal mvp platform system"),
+    page("Websites & stores", "Sites and stores that sell", "What I build", "shop-hero.webp", "build/#websites", "website site store shop shopify landing seo ecommerce"),
+    page("Behind the build", "How the work stays clean", "What I build", "tapfour-admin-history.webp", "build/#behind", "backend server database tests security clean code"),
+  ];
+  // the four shown before anyone types: what clients buy most
+  const PREVIEW = HITS.slice(0, 4);
+  const STOP = new Set(["a", "an", "and", "the", "for", "to", "of", "my", "our", "we", "i", "in", "on", "with", "need", "want", "is", "it"]);
+  const escH = (x) => String(x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function renderHits() {
+    const q = briefInput.value.trim().toLowerCase();
+    const words = q.split(/\s+/).filter((w) => w.length > 1 && !STOP.has(w));
+    const has = (text, w) => (w.length > 3 ? text.includes(w) : new RegExp(`\\b${w.replace(/\W/g, "")}`).test(text));
+    shownHits = !words.length ? PREVIEW : HITS
+      .map((h) => {
+        const name = h.t.toLowerCase(), hay = `${name} ${h.d} ${h.kind} ${h.k}`.toLowerCase();
+        return { h, n: words.reduce((n, w) => n + (has(name, w) ? 2 : has(hay, w) ? 1 : 0), 0) };
+      })
+      .filter((x) => x.n > 0).sort((a, b) => b.n - a.n).slice(0, 4).map((x) => x.h);
+    briefResults.innerHTML = shownHits.length
+      ? shownHits.map((h, i) => `<a class="brief__hit" href="#" data-hit="${i}"><img src="${h.img}" alt="" loading="lazy" /><b>${escH(h.t)}<em>${h.kind}</em></b><span>${escH(h.d)}</span></a>`).join("")
+      : `<p class="brief__none">Nothing like that yet. <button type="button" data-describe>Describe it instead →</button></p>`;
+  }
+  function setMode(m, focus = true) {
+    briefMode = m;
+    briefEl.dataset.mode = m;
+    modeTabs.forEach((t) => {
+      const on = t.dataset.mode === m;
+      t.setAttribute("aria-selected", on);
+      t.tabIndex = on ? 0 : -1;
+    });
+    briefInput.setAttribute("aria-label", m === "explore" ? "Search the work" : "Describe your project");
+    if (m === "explore") { briefInput.placeholder = "Try dashboard, AI, WordPress…"; renderHits(); }
+    if (focus) briefInput.focus();
+  }
+  modeTabs.forEach((t) => t.addEventListener("click", () => setMode(t.dataset.mode)));
+  document.querySelector(".brief__modes").addEventListener("keydown", (e) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    const next = modeTabs.find((t) => t.dataset.mode !== briefMode);
+    setMode(next.dataset.mode, false);
+    next.focus();
+  });
+  briefInput.addEventListener("input", () => { if (briefMode === "explore") renderHits(); });
+  briefResults.addEventListener("click", (e) => {
+    const hit = e.target.closest("[data-hit]");
+    if (hit) { e.preventDefault(); shownHits[+hit.dataset.hit].go(); return; }
+    // no match: the words they typed become the start of a brief
+    if (e.target.closest("[data-describe]")) setMode("describe");
   });
 
   const IDEAS = [
@@ -1478,6 +1408,7 @@
   } else {
     const tw = { i: 0, c: 0, phase: "type", acc: 0 };
     const typeStep = (ms) => {
+      if (briefMode !== "describe") return; // exploring keeps its own, still placeholder
       tw.acc += ms;
       const idea = IDEAS[tw.i];
       if (tw.phase === "type" && tw.acc > 55) { tw.acc = 0; if (++tw.c >= idea.length) tw.phase = "hold"; }
@@ -1512,17 +1443,6 @@
       if (onScreen && !raf) { last = performance.now(); raf = requestAnimationFrame(loop); }
     }).observe(heroEl);
   }
-
-  /* ==========================================================
-     SPOTLIGHT on build cards
-     ========================================================== */
-  document.querySelectorAll(".build-card, .offer").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      card.style.setProperty("--my", `${e.clientY - r.top}px`);
-    });
-  });
 
   /* ==========================================================
      PROJECT MODAL
@@ -1604,394 +1524,10 @@
   });
 
   /* ==========================================================
-     INTAKE WIZARD
-     ========================================================== */
-  const ICONS = {
-    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
-    zap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
-    chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21V10M11 21V6M16 21v-8M21 21V3"/></svg>',
-    blocks: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>',
-    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
-    trend: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m23 6-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>',
-    star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>',
-    coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>',
-    cart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11.2a1 1 0 0 0 1 .8h9.1a1 1 0 0 0 1-.76L20 8H6.2"/><circle cx="9.5" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></svg>',
-  };
-
-  // the service ids are what the rest of the site passes in; labels are what the client reads
-  const SERVICES = [
-    { v: "Website", label: "Website or online store", d: "New site, redesign, Shopify or custom", icon: "globe",
-      follow: ["Is there a site already?", ["Starting fresh", "Redesign what I have", "Fix something on it"]] },
-    { v: "WordPress / WooCommerce", label: "WordPress or WooCommerce", d: "Build, extend, or monthly care", icon: "cart",
-      follow: ["What do you need?", ["A new site or store", "Add to my site", "Monthly care plan"]] },
-    { v: "Digital Product", label: "Custom software", d: "Web app, client portal or MVP", icon: "blocks",
-      follow: ["Who will use it?", ["My customers", "My team", "Both"]] },
-    { v: "Business System", label: "Dashboard or internal tool", d: "Your numbers, stock, staff or orders", icon: "chart",
-      follow: ["Where does the work live now?", ["Spreadsheets", "Another app", "On paper"]] },
-    { v: "AI Automation", label: "AI or automation", d: "Support chat, bookings, follow-ups", icon: "zap",
-      follow: ["What should it handle?", ["Customer questions", "Bookings", "Follow-ups and busywork", "Content"]] },
-    { v: "Not sure yet", label: "Not sure yet", d: "Tell me the problem, I'll suggest the fix", icon: "target",
-      follow: ["What would make this a win?", ["More customers", "Less manual work", "Launch something new"]] },
-  ];
-  const BUDGETS = {
-    php: ["Under ₱50,000", "₱50,000 – ₱150,000", "₱150,000 – ₱500,000", "₱500,000+", "Not sure, advise me"],
-    usd: ["Under $1,000", "$1,000 – $3,000", "$3,000 – $10,000", "$10,000+", "Not sure, advise me"],
-  };
-  const CARE = {
-    php: ["Under ₱3,000 / month", "₱3,000 – ₱8,000 / month", "₱8,000+ / month", "Not sure, recommend one"],
-    usd: ["Under $60 / month", "$60 – $150 / month", "$150+ / month", "Not sure, recommend one"],
-  };
-  const TIMING = [
-    { v: "This month", icon: "zap" },
-    { v: "1–3 months", icon: "clock" },
-    { v: "Later this year", icon: "clock" },
-    { v: "Flexible / exploring", icon: "target" },
-  ];
-  const NOTE_PROMPTS = ["Deadline", "Current site", "Sites I like", "Already tried", "Who signs off"];
-  const CHANNELS = ["Email only", "Viber", "WhatsApp"];
-  const STEP_LABEL = { service: "Building", follow: "Detail", budget: "Budget", care: "Budget", timing: "Timing", details: "Reply to" };
-  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-  const DRAFT_KEY = "csIntake";
-
-  const wizard = document.getElementById("wizard");
-  const wizardStep = document.getElementById("wizardStep");
-  const wizardBar = document.getElementById("wizardBar");
-  const wizardStepNum = document.getElementById("wizardStepNum");
-  const wizardBack = document.getElementById("wizardBack");
-  const wizardNext = document.getElementById("wizardNext");
-  const wizardDots = document.getElementById("wizardDots");
-  // Cloudflare Worker in api/ that forwards the brief through Resend
-  const FORM_ENDPOINT = "https://chester-studio-contact.chesterlsc.workers.dev";
-
-  let answers = {};
-  let stepIdx = 0;
-  let sent = false; // false | "sending" | "ok" | "error"
-  let receipt = false; // the relay emailed the client a copy
-
-  // a half-finished brief survives a closed tab or a stray click
-  try {
-    const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
-    if (d && d.answers) { answers = d.answers; stepIdx = d.stepIdx || 0; }
-  } catch {}
-  const saveDraft = () => {
-    try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ answers, stepIdx })); } catch {}
-  };
-  if (!answers.cur) {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    answers.cur = tz === "Asia/Manila" ? "php" : "usd";
-  }
-
-  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const svcOf = (v) => SERVICES.find((s) => s.v === v);
-  const isCare = () => answers.follow === "Monthly care plan";
-  const steps = () => {
-    const s = ["service"];
-    if (svcOf(answers.service)) s.push("follow");
-    s.push(isCare() ? "care" : "budget", "timing", "details", "review");
-    return s;
-  };
-  const stepKey = () => steps()[stepIdx];
-  const answerKey = (k) => (k === "care" ? "budget" : k);
-  const valueText = (k) => {
-    if (k === "service") return svcOf(answers.service)?.label;
-    if (k === "details") return answers.email && answers.email + (answers.reply && answers.reply !== "Email only" ? ` · ${answers.reply} ${answers.phone || ""}` : "");
-    return answers[answerKey(k)];
-  };
-
-  // the next business day, 6 pm Manila, shown in the client's own time
-  function replyBy() {
-    const d = new Date(Date.now() + 8 * 3600e3);
-    do d.setUTCDate(d.getUTCDate() + 1); while (d.getUTCDay() === 0 || d.getUTCDay() === 6);
-    return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 10))
-      .toLocaleString(undefined, { weekday: "long", day: "numeric", month: "long", hour: "numeric", minute: "2-digit" });
-  }
-
-  const optionsHtml = (key, list) => `<div class="wizard__options">${list
-    .map((o) => {
-      const v = typeof o === "string" ? o : o.v;
-      return `<button type="button" class="wizard-option ${answers[key] === v ? "is-selected" : ""}" data-key="${key}" data-value="${esc(v)}" aria-pressed="${answers[key] === v}">
-          ${o.icon ? `<span class="wizard-option__icon">${ICONS[o.icon]}</span>` : ""}
-          <span><strong>${esc(o.label || v)}</strong>${o.d ? `<small>${esc(o.d)}</small>` : ""}</span>
-          <span class="wizard-option__check">✓</span>
-        </button>`;
-    })
-    .join("")}</div>`;
-
-  const currencyHtml = () => `<span class="wizard__cur" role="group" aria-label="Currency">${["php", "usd"]
-    .map((c) => `<button type="button" data-cur="${c}" aria-pressed="${answers.cur === c}">${c === "php" ? "₱ PHP" : "$ USD"}</button>`)
-    .join("")}</span>`;
-
-  function renderStep(dir) {
-    const k = stepKey();
-    const head = (q, hint) => `<h3 class="wizard__q">${q}</h3>${hint ? `<p class="wizard__hint">${hint}</p>` : ""}`;
-    let html = answers.brief && !sent
-      ? `<p class="wizard__echo"><b>You said</b><span>${esc(answers.brief)}</span></p>`
-      : "";
-
-    if (sent) {
-      html = sentHtml();
-    } else if (k === "service") {
-      html += head("Which is closest?", "Pick the nearest fit. You can change it later.") + optionsHtml("service", SERVICES);
-    } else if (k === "follow") {
-      const [q, list] = svcOf(answers.service).follow;
-      html += head(q) + optionsHtml("follow", list);
-    } else if (k === "budget" || k === "care") {
-      html += `<div class="wizard__qrow">${head(k === "care" ? "Monthly budget?" : "Ballpark budget?")}${currencyHtml()}</div>
-        <p class="wizard__hint">A range is enough to scope the right solution.</p>`
-        + optionsHtml("budget", (k === "care" ? CARE : BUDGETS)[answers.cur]);
-    } else if (k === "timing") {
-      html += head("When do you need it?", "Honest timelines make better builds.") + optionsHtml("timing", TIMING);
-    } else if (k === "details") {
-      const phone = answers.reply && answers.reply !== "Email only";
-      html += head("Where should I reply?", "Only used to answer this brief.") + `<div class="wizard__fields">
-        <div class="wizard-field"><label for="wzName">Name <em>*</em></label><input type="text" id="wzName" data-k="name" autocomplete="name" placeholder="Your name" value="${esc(answers.name || "")}" /></div>
-        <div class="wizard-field"><label for="wzEmail">Email <em>*</em></label><input type="email" id="wzEmail" data-k="email" autocomplete="email" placeholder="you@company.com" value="${esc(answers.email || "")}" /></div>
-        <div class="wizard-field"><label for="wzCompany">Company or brand</label><input type="text" id="wzCompany" data-k="company" autocomplete="organization" placeholder="Optional" value="${esc(answers.company || "")}" /></div>
-        <div class="wizard-field"><label>Also reach me on</label><div class="wizard__seg">${CHANNELS
-          .map((c) => `<button type="button" data-reply="${c}" aria-pressed="${(answers.reply || "Email only") === c}">${c}</button>`)
-          .join("")}</div></div>
-        ${phone ? `<div class="wizard-field"><label for="wzPhone">${answers.reply} number <em>*</em></label><input type="tel" id="wzPhone" data-k="phone" autocomplete="tel" placeholder="+63 9xx xxx xxxx" value="${esc(answers.phone || "")}" /></div>` : ""}
-        <input type="text" id="wzWebsite" data-k="website" class="wizard-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      </div>`;
-    } else if (k === "review") {
-      const rows = steps()
-        .filter((s) => s !== "review" && valueText(s))
-        .map((s) => `<div class="wizard__summary-row"><span>${STEP_LABEL[s]}</span><b>${esc(valueText(s))}</b><button type="button" data-jump="${s}" aria-label="Edit ${STEP_LABEL[s]}">Edit</button></div>`)
-        .join("");
-      html += head("Your brief", "Check it over, then send. It goes straight to my inbox.") + `<div class="wizard__summary">${rows}</div>
-        <div class="wizard-field wizard__notes"><label for="wzNotes">Anything else I should know? <small>Optional</small></label>
-          <textarea id="wzNotes" data-k="notes" placeholder="Deadlines, your current site, examples you like, what you've tried, who signs off…">${esc(answers.notes || "")}</textarea></div>
-        <div class="wizard__chips">${NOTE_PROMPTS.map((p) => `<button type="button" data-add="${p}">+ ${p}</button>`).join("")}</div>
-        <p class="wizard__privacy">Goes only to Chester. No mailing list, no sharing.</p>`;
-    }
-
-    wizardStep.classList.remove("is-enter-left", "is-enter-right", "is-exit-left", "is-exit-right");
-    wizardStep.innerHTML = html;
-    if (dir) wizardStep.classList.add(dir > 0 ? "is-enter-right" : "is-enter-left");
-    syncFooter();
-    if (k === "details" && !sent) setTimeout(() => wizardStep.querySelector("input[data-k]:not(.wizard-hp)[value='']")?.focus(), 350);
-  }
-
-  function sentHtml() {
-    if (sent === "sending") {
-      return `<div class="wizard__sent"><div class="wizard__sent-icon is-wait">…</div><h4>Sending your brief…</h4><p>One moment.</p></div>`;
-    }
-    if (sent === "ok") {
-      const via = answers.reply && answers.reply !== "Email only" ? ` on ${esc(answers.reply)} or email` : "";
-      return `<div class="wizard__sent"><div class="wizard__sent-icon">✓</div><h4>Brief received.</h4>
-        <p class="wizard__ref">Ref ${esc(answers.ref)}</p>
-        <p>I'll reply${via} by <b>${esc(replyBy())}</b>, your time.${receipt ? ` A copy is on its way to <b>${esc(answers.email)}</b>. Reply to it any time to add more.` : ""}</p></div>`;
-    }
-    return `<div class="wizard__sent"><div class="wizard__sent-icon is-error">!</div><h4>That didn't send.</h4>
-      <p>Your answers are saved on this device. Try again, or copy the brief and email it to <b class="wizard__addr">chestercatapia08@gmail.com</b>.</p>
-      <pre class="wizard__brief">${esc(briefText())}</pre>
-      <button type="button" class="wizard__copy" data-copy>Copy brief</button></div>`;
-  }
-
-  function stepValid() {
-    const k = stepKey();
-    if (k === "details") {
-      const phoneOk = !answers.reply || answers.reply === "Email only" || (answers.phone || "").replace(/\D/g, "").length >= 7;
-      return !!(answers.name || "").trim() && EMAIL_RE.test((answers.email || "").trim()) && phoneOk;
-    }
-    if (k === "review") return true;
-    return !!answers[answerKey(k)];
-  }
-
-  function syncFooter() {
-    const all = steps();
-    const n = all.length;
-    wizardBar.style.width = sent ? "100%" : `${Math.max(8, (stepIdx / (n - 1)) * 100)}%`;
-    wizardStepNum.textContent = `${String(stepIdx + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
-    wizardBack.classList.toggle("is-hidden", stepIdx === 0 || !!sent);
-    if (wizardDots.children.length !== n) wizardDots.innerHTML = "<i></i>".repeat(n);
-    [...wizardDots.children].forEach((d, i) => {
-      d.classList.toggle("is-active", i === stepIdx);
-      d.classList.toggle("is-done", i < stepIdx);
-    });
-    const label = sent === "sending" ? "Sending…" : sent === "ok" ? "Done" : sent ? "Try again"
-      : all[stepIdx] === "review" ? "Send brief" : "Continue";
-    wizardNext.querySelector(".btn__text").textContent = label;
-    wizardNext.querySelector(".btn__arrow").textContent = sent === "ok" ? "✓" : "→";
-    wizardNext.disabled = sent === "sending" || (!sent && all[stepIdx] !== "details" && !stepValid());
-    saveDraft();
-  }
-
-  function goTo(idx, dirOverride) {
-    if (idx < 0 || idx >= steps().length) return;
-    const dir = dirOverride !== undefined ? dirOverride : idx > stepIdx ? 1 : -1;
-    wizardStep.classList.add(dir > 0 ? "is-exit-left" : "is-exit-right");
-    setTimeout(() => {
-      stepIdx = idx;
-      renderStep(dir);
-    }, 230);
-  }
-
-  function briefText() {
-    const line = (k, v) => `${(k + ":").padEnd(11)}${v || "not specified"}`;
-    return [
-      `New project brief${answers.ref ? ` · ${answers.ref}` : ""}`,
-      ``,
-      line("Building", svcOf(answers.service)?.label),
-      line("Detail", answers.follow),
-      line("Budget", answers.budget),
-      line("Timing", answers.timing),
-      ``,
-      `In their words:`,
-      answers.brief || "not given",
-      ``,
-      `Notes:`,
-      answers.notes || "none",
-      ``,
-      line("Name", answers.name),
-      line("Email", answers.email),
-      line("Company", answers.company),
-      line("Reply on", answers.reply && answers.reply !== "Email only" ? `${answers.reply} ${answers.phone || ""}` : "Email"),
-    ].join("\n");
-  }
-
-  async function submitWizard() {
-    const d = new Date();
-    answers.ref = `CS-${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}-${Math.floor(Math.random() * 900 + 100)}`;
-    sent = "sending";
-    renderStep(1);
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          name: answers.name, email: answers.email, website: answers.website,
-          service: svcOf(answers.service)?.label, ref: answers.ref, replyBy: replyBy(),
-          budget: answers.budget, timing: answers.timing, words: answers.brief, notes: answers.notes,
-          brief: briefText(),
-        }),
-      });
-      receipt = res.ok && !!(await res.json().catch(() => ({}))).receipt;
-      sent = res.ok ? "ok" : "error";
-    } catch {
-      sent = "error";
-    }
-    renderStep(0);
-  }
-
-  // keeps who they are for next time, forgets the project
-  function finish() {
-    const { name, email, company, reply, phone, cur } = answers;
-    answers = { name, email, company, reply, phone, cur };
-    stepIdx = 0;
-    sent = false;
-    saveDraft();
-  }
-
-  function openWizard(preService, brief) {
-    if (sent === "ok") finish();
-    sent = false;
-    if (brief) answers.brief = brief;
-    if (preService && svcOf(preService)) {
-      if (answers.service !== preService) { answers.service = preService; delete answers.follow; }
-      stepIdx = 1;
-    }
-    stepIdx = Math.min(stepIdx, steps().length - 1);
-    renderStep(0);
-    wizard.classList.add("is-open");
-    wizard.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeWizard() {
-    wizard.classList.remove("is-open");
-    wizard.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    if (sent === "ok") finish();
-  }
-
-  document.querySelectorAll("[data-wizard-open]").forEach((btn) => {
-    btn.addEventListener("click", () => openWizard(btn.dataset.wizardService));
-  });
-  document.getElementById("wizardClose").addEventListener("click", closeWizard);
-  document.getElementById("wizardBackdrop").addEventListener("click", closeWizard);
-  wizardBack.addEventListener("click", () => goTo(stepIdx - 1));
-
-  wizardStep.addEventListener("click", async (e) => {
-    const b = e.target.closest("button");
-    if (!b) return;
-    if (b.dataset.key) {
-      const was = isCare();
-      answers[b.dataset.key] = b.dataset.value;
-      if (b.dataset.key === "service") delete answers.follow;
-      if (was !== isCare()) delete answers.budget;
-      wizardStep.querySelectorAll(".wizard-option").forEach((o) => {
-        o.classList.toggle("is-selected", o === b);
-        o.setAttribute("aria-pressed", o === b);
-      });
-      syncFooter();
-    } else if (b.dataset.cur) {
-      answers.cur = b.dataset.cur;
-      delete answers.budget;
-      renderStep(0);
-    } else if (b.dataset.reply) {
-      answers.reply = b.dataset.reply;
-      renderStep(0);
-    } else if (b.dataset.jump) {
-      goTo(steps().indexOf(b.dataset.jump));
-    } else if (b.dataset.add) {
-      const t = document.getElementById("wzNotes");
-      t.value = (t.value.trim() ? t.value.replace(/\s*$/, "\n") : "") + `${b.dataset.add}: `;
-      answers.notes = t.value;
-      saveDraft();
-      t.focus();
-      t.setSelectionRange(t.value.length, t.value.length);
-    } else if ("copy" in b.dataset) {
-      try {
-        await navigator.clipboard.writeText(briefText());
-        b.textContent = "Copied ✓";
-      } catch {
-        const r = document.createRange();
-        r.selectNodeContents(wizardStep.querySelector(".wizard__brief"));
-        getSelection().removeAllRanges();
-        getSelection().addRange(r);
-        b.textContent = "Selected. Copy it now";
-      }
-    }
-  });
-  wizardStep.addEventListener("input", (e) => {
-    const k = e.target.dataset.k;
-    if (!k) return;
-    answers[k] = e.target.value;
-    e.target.classList.remove("is-invalid");
-    saveDraft();
-  });
-
-  wizardNext.addEventListener("click", () => {
-    if (sent === "ok") { closeWizard(); return; }
-    if (sent === "error" || stepKey() === "review") { submitWizard(); return; }
-    if (!stepValid()) {
-      if (stepKey() !== "details") return;
-      const bad = [
-        ["wzName", !(answers.name || "").trim()],
-        ["wzEmail", !EMAIL_RE.test((answers.email || "").trim())],
-        ["wzPhone", (answers.phone || "").replace(/\D/g, "").length < 7],
-      ];
-      bad.forEach(([id, isBad]) => { const el = document.getElementById(id); if (el && isBad) el.classList.add("is-invalid"); });
-      return;
-    }
-    goTo(stepIdx + 1);
-  });
-
-  /* ==========================================================
-     GLOBAL KEYBOARD
+     KEYBOARD: the project modal (the intake has its own, in site.js)
      ========================================================== */
   addEventListener("keydown", (e) => {
-    if (wizard.classList.contains("is-open")) {
-      if (e.key === "Escape") closeWizard();
-      if (e.key === "Enter" && !e.shiftKey && e.target.tagName !== "TEXTAREA") {
-        e.preventDefault();
-        if (!wizardNext.disabled) wizardNext.click();
-      }
-      return;
-    }
-    if (!modal.classList.contains("is-open")) return;
+    if (!modal.classList.contains("is-open") || document.getElementById("wizard").classList.contains("is-open")) return;
     if (e.key === "Escape") closeModal();
     if (e.key === "ArrowRight") stepModal(1);
     if (e.key === "ArrowLeft") stepModal(-1);
