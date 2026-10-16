@@ -45,6 +45,23 @@
       who: "HVAC, plumbing and roofing teams",
       built: "Estimate requests become booked jobs through instant SMS and email follow-ups, smart scheduling and a growth dashboard.",
     },
+    store: {
+      label: "AI store assistant", name: "Online store", service: "AI Automation",
+      who: "Online stores",
+      problem: "Sizing, stock and “where’s my order” questions pile up overnight.",
+      built: "An assistant on the store that answers sizing, stock and shipping at any hour, tracks orders, and hands damaged-item cases to a person. Pay-as-you-go, with a cap the owner sets.",
+    },
+    dental: {
+      label: "AI front desk", name: "Dental clinic", service: "AI Automation",
+      who: "Clinics and practices",
+      problem: "Patients ask to book after the desk has gone home.",
+      built: "A front desk that answers questions, books open slots, sends reminders, and flags urgent pain to the desk. Synced to the clinic calendar.",
+    },
+    studio: {
+      label: "AI content autopilot", name: "Content studio", service: "AI Automation",
+      who: "Creators and content teams",
+      built: "It spots what’s trending, writes and renders the video, posts at peak hours, and learns from the views. Runs on the client’s existing AI plan.",
+    },
     mallnav: {
       label: "Indoor navigation product", name: "Indoor mall navigation", service: "Digital Product",
       who: "Malls and large venues",
@@ -78,14 +95,14 @@
     at = (i + set.length) % set.length;
     const b = set[at];
     const c = CASES[b.dataset.case];
-    const fig = b.closest("figure");
+    const fig = b.closest("figure, .bp-case");
     $("bpBoxImg").src = b.dataset.full;
     $("bpBoxImg").alt = b.querySelector("img").alt;
     $("bpBoxCount").textContent = `${at + 1} / ${set.length}`;
     $("bpBoxLabel").textContent = c.label;
     $("bpBoxName").textContent = c.name;
     // this screen's own line, under the case name
-    $("bpBoxScreen").textContent = fig.querySelector("figcaption span").textContent;
+    $("bpBoxScreen").textContent = fig.querySelector("figcaption span, h3 + p").textContent;
     $("bpBoxFacts").innerHTML = ROWS.filter(([k]) => c[k]).map(([k, t]) => `<dt>${t}</dt><dd>${esc(c[k])}</dd>`).join("");
     $("bpBoxStart").dataset.wizardService = c.service;
     $("bpBoxMore").hidden = !c.more;
