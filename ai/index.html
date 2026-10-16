@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>AI Implementation: Try Six AI Assistants From Real Builds | Chester Studio</title>
+  <meta name="description" content="Six AI assistants from real builds: a store assistant, a clinic front desk, real estate lead booking, quote follow-up, lead generation and a content autopilot. Ask one something and see the logic behind every reply." />
+  <meta name="author" content="Chester Studio" />
+  <link rel="canonical" href="https://chesterstudio.space/ai/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Chester Studio" />
+  <meta property="og:url" content="https://chesterstudio.space/ai/" />
+  <meta property="og:title" content="AI that does a real job. Try it. | Chester Studio" />
+  <meta property="og:description" content="Ask six AI assistants from real builds something, and watch what each one checks, which rule it follows and when it hands you to a person." />
+  <meta property="og:image" content="https://chesterstudio.space/public/projects/ai-dental.webp" />
+  <meta property="og:image:alt" content="A dental clinic site with its AI front desk booking a patient" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://chesterstudio.space/public/projects/ai-dental.webp" />
+
+  <meta name="theme-color" content="#050507" />
+  <link rel="icon" href="../favicon.ico?v=3" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg?v=3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=33" />
+  <link rel="stylesheet" href="../build/build.css?v=4" />
+  <link rel="stylesheet" href="ai.css?v=3" />
+</head>
+<body class="bp-body">
+  <a class="bp-skip" href="#main">Skip to content</a>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main">
+      <a href="../" class="nav__logo" aria-label="Chester Studio, home">
+        <svg class="nav__logo-mark" viewBox="0 0 48 48" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f2cf6b" />
+              <stop offset="100%" stop-color="#c98f2e" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#0c0c10" stroke="url(#logoGrad)" stroke-width="1.6" />
+          <path class="nav__logo-c" d="M33 12 H19 L11 20 V28 L19 36 H33 V29.5 H21.8 L17.6 25.4 V22.6 L21.8 18.5 H33 Z" fill="url(#logoGrad)" />
+          <rect class="nav__logo-node" x="26.5" y="21" width="7" height="6" rx="1.3" fill="#ffd43b" />
+        </svg>
+        <span class="nav__logo-text">Chester <em>Studio</em></span>
+      </a>
+      <button type="button" class="nav__jump" data-palette aria-haspopup="dialog" aria-keyshortcuts="Meta+K Control+K">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+        <span class="nav__jump-long">Work, services, WordPress, contact…</span>
+        <span class="nav__jump-short">Jump to</span>
+        <kbd class="nav__kbd">⌘ K</kbd>
+      </button>
+      <div class="nav__end">
+        <a href="../#contact" class="nav__contact">Contact</a>
+        <button type="button" class="btn btn--primary nav__cta" data-wizard-open data-wizard-service="AI Automation">
+          <span class="btn__text">Start a project</span>
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="ai">
+    <section class="container ai-hero" aria-labelledby="ai-title">
+      <p class="ai-kick">AI implementation</p>
+      <h1 id="ai-title">AI that does a real job. <em>Try&nbsp;it.</em></h1>
+      <p class="ai-lede">Six assistants from builds I’ve made. Ask one something and watch what it checks in the business’s data, which rule it follows, what it costs, and when it hands you to a person.</p>
+      <ul class="ai-trust">
+        <li>Runs on your Claude or Codex plan</li>
+        <li>A person approves what matters</li>
+        <li>A monthly cap you choose</li>
+        <li>It says when it doesn’t know</li>
+        <li>A person takes over when it’s off</li>
+      </ul>
+    </section>
+
+    <section class="container ai-demo" aria-label="Try the AI">
+      <div class="aid" data-ai-demo data-ai-hash></div>
+    </section>
+
+    <!-- how every build thinks: the same six colours as the logic panel -->
+    <section class="ai-sec" aria-labelledby="h-loop">
+      <div class="container">
+        <div class="ai-sec__head">
+          <p class="ai-kick">How every build thinks</p>
+          <h2 id="h-loop">The same loop behind every reply.</h2>
+          <p>What you saw in the panel isn’t decoration. Each reply runs through these steps, in this order, and leaves a trail you can check.</p>
+        </div>
+        <ol class="ai-loop">
+          <li style="--k:#7cb4ff"><b>Understand</b><p>What the message means: the question, the order number, the tone.</p><code>Damaged item · tone: upset</code></li>
+          <li style="--k:#4fd1c5"><b>Check</b><p>Look it up in your real data: stock, calendar, price list, CRM.</p><code>Calendar · Tue 10:30 open</code></li>
+          <li style="--k:#e9b44c"><b>Follow your rules</b><p>The lines you draw: what it may do alone and what it never does.</p><code>Severe pain → front desk</code></li>
+          <li style="--k:#ff7a6b"><b>Guard</b><p>The limits that keep it safe: no guessing, no advice it isn’t qualified to give.</p><code>No made-up discounts</code></li>
+          <li style="--k:#5ee08f"><b>Act or draft</b><p>Book, add to cart, score, follow up. Or draft it and wait.</p><code>Booked · reminder Mon</code></li>
+          <li style="--k:#f39bd2"><b>Hand to a person</b><p>Refunds, offers, urgent cases and anything unclear go to your team.</p><code>Ticket #2291 · reply by 9 AM</code></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="ai-sec" aria-labelledby="h-guards">
+      <div class="container">
+        <div class="ai-sec__head">
+          <p class="ai-kick">Built so it can’t embarrass you</p>
+          <h2 id="h-guards">The rules come before the answers.</h2>
+          <p>Six lines every build holds. Each one is live in the demos above: press <b>Try it</b> and watch the logic panel catch it.</p>
+        </div>
+        <ul class="ai-guards">
+          <li style="--k:#ff7a6b">
+            <p class="ai-guard__kind">Guard</p>
+            <h3>It won’t guess</h3>
+            <p>When a question doesn’t match what it knows, it says so and passes it to a person, instead of making something up.</p>
+            <div class="ai-proof" role="group" aria-label="Example from the store demo">
+              <p class="ai-proof__me">What’s the weather like today?</p>
+              <p class="ai-proof__ai">I’m not sure about that one, and I’d rather not guess. I’ve sent it to the team.</p>
+              <p class="ai-proof__step"><b>Guard</b>Don’t guess · unclear questions go to a person</p>
+            </div>
+            <div class="ai-guard__try"><button type="button" data-try="store|typed|What's the weather like today?">Try it in the store <span aria-hidden="true">→</span></button></div>
+          </li>
+          <li style="--k:#ff7a6b">
+            <p class="ai-guard__kind">Guard</p>
+            <h3>It stays in its lane</h3>
+            <p>No medical, legal or money advice. No discounts or prices it wasn’t given. No describing neighbourhoods by who lives there.</p>
+            <div class="ai-proof" role="group" aria-label="Example from the dental demo">
+              <p class="ai-proof__me">Should I take antibiotics? I have some left.</p>
+              <p class="ai-proof__ai">I can’t give medical advice, that’s Dr. R’s call. I’ve asked the team to phone you tomorrow morning.</p>
+              <p class="ai-proof__step"><b>Guard</b>No medical advice · dentist notified</p>
+            </div>
+            <div class="ai-guard__try">
+              <button type="button" data-try="dental|meds">Clinic: antibiotics <span aria-hidden="true">→</span></button>
+              <button type="button" data-try="realestate|hood">Realtor: the neighbourhood <span aria-hidden="true">→</span></button>
+              <button type="button" data-try="store|discount">Store: a discount <span aria-hidden="true">→</span></button>
+            </div>
+          </li>
+          <li style="--k:#f39bd2">
+            <p class="ai-guard__kind">Person</p>
+            <h3>A person approves what matters</h3>
+            <p>The AI drafts. Nothing reaches a prospect until someone has read it and pressed send.</p>
+            <div class="ai-proof" role="group" aria-label="Example from the lead generation demo">
+              <p class="ai-proof__me">Draft the outreach for them.</p>
+              <p class="ai-proof__ai">Here’s the draft. It names one thing they can check themselves and asks for 15 minutes. <span class="ai-proof__pill">Waiting for you</span></p>
+              <p class="ai-proof__step"><b>Guard</b>Human gate · nothing sends without your approval</p>
+            </div>
+            <div class="ai-guard__try"><button type="button" data-try="leads|draft">Approve one yourself <span aria-hidden="true">→</span></button></div>
+          </li>
+          <li style="--k:#ff7a6b">
+            <p class="ai-guard__kind">Guard</p>
+            <h3>A limit you choose</h3>
+            <p>A monthly cap on pay-as-you-go, or your Claude or Codex plan’s own limit. When it’s reached, the AI pauses and messages go to your team, so nothing is lost.</p>
+            <div class="ai-proof" role="group" aria-label="Example from the store demo with the budget used up">
+              <p class="ai-proof__me">Where’s my order? It’s #48213.</p>
+              <p class="ai-proof__event">Assistant paused · a person will reply here by 9 AM</p>
+              <p class="ai-proof__step"><b>Guard</b>Monthly cap reached · $40 of $40 → AI paused</p>
+            </div>
+            <div class="ai-guard__try"><button type="button" data-try="store|order||capped">Try it with the budget used up <span aria-hidden="true">→</span></button></div>
+          </li>
+          <li style="--k:#e9b44c">
+            <p class="ai-guard__kind">Rule</p>
+            <h3>Honest with people</h3>
+            <p>Opt-outs are honoured the moment someone asks. Order details are shared only with the person who placed the order.</p>
+            <div class="ai-proof" role="group" aria-label="Example from the home services demo">
+              <p class="ai-proof__me">Stop texting me.</p>
+              <p class="ai-proof__ai">Understood, you won’t get any more texts from us.</p>
+              <p class="ai-proof__step"><b>Guard</b>Honoured instantly · logged, follow-ups cancelled</p>
+            </div>
+            <div class="ai-guard__try">
+              <button type="button" data-try="quoting|stop">Opt out of texts <span aria-hidden="true">→</span></button>
+              <button type="button" data-try="store|order">Ask about an order <span aria-hidden="true">→</span></button>
+            </div>
+          </li>
+          <li style="--k:#4fd1c5">
+            <p class="ai-guard__kind">Checked</p>
+            <h3>Tested before it ships</h3>
+            <p>1,231 automated tests run on AegisLeadOS before every change goes out. The demos on this page are checked against 422 real-world messages, typos included.</p>
+            <div class="ai-proof" role="group" aria-label="Example from the store demo">
+              <p class="ai-proof__me">is it true to szie?</p>
+              <p class="ai-proof__ai">It runs about half a size big, so most people size down.</p>
+              <p class="ai-proof__step"><b>Understood</b>Matched “size” despite the typo</p>
+            </div>
+            <div class="ai-guard__try"><button type="button" data-try="store|typed|is it true to szie?">Send it a typo <span aria-hidden="true">→</span></button></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ai-sec" aria-labelledby="h-pay">
+      <div class="container">
+        <div class="ai-sec__head">
+          <p class="ai-kick">Pay for AI your way</p>
+          <h2 id="h-pay">Already paying for Claude or Codex? Use it.</h2>
+          <p>You don’t need a new AI bill. Flip the switch under any demo’s logic panel to see the difference.</p>
+        </div>
+        <ul class="ai-pay">
+          <li class="is-hl">
+            <p class="ai-pay__tag">No new AI bill</p>
+            <h3>Your Claude or Codex plan</h3>
+            <p>The build runs on the subscription you already have: Claude Pro or Max, or a ChatGPT plan with Codex. Each reply costs nothing extra. When the plan’s limit is reached, a person takes over until it resets.</p>
+            <code>Content studio · runs this way today</code>
+          </li>
+          <li>
+            <p class="ai-pay__tag">Cents per reply</p>
+            <h3>Pay-as-you-go, with a cap</h3>
+            <p>Billed by use, with a monthly limit you set. A typical reply costs under a cent. Reach the cap and the AI pauses, messages go to your team.</p>
+            <code>Store · clinic · real estate · home services</code>
+          </li>
+          <li>
+            <p class="ai-pay__tag">Your account, your bill</p>
+            <h3>Your own keys</h3>
+            <p>Plug in your own API keys, like the Google Places key AegisLeadOS uses for lead sweeps. Usage lands on your account, and the AI confirms before anything is billed.</p>
+            <code>AegisLeadOS · confirms before each sweep</code>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ai-sec" aria-labelledby="h-shots">
+      <div class="container">
+        <div class="ai-sec__head">
+          <p class="ai-kick">From the builds</p>
+          <h2 id="h-shots">The same assistants, in the client’s own product.</h2>
+          <p>Client names are blurred.</p>
+        </div>
+        <div class="ai-shots">
+          <a class="ai-shot" href="../build/#ai"><span class="fit" style="--src:url('/public/projects/thumb/aegis-leados-capture.webp')"><img src="../public/projects/thumb/aegis-leados-capture.webp" alt="AegisLeadOS confirming a lead sweep before it bills the Places key" loading="lazy" decoding="async" /></span><b>AegisLeadOS · Lead capture</b><span>One typed order finds and scores local businesses.</span></a>
+          <a class="ai-shot" href="../build/#ai"><span class="fit" style="--src:url('/public/projects/thumb/ai-store.webp')"><img src="../public/projects/thumb/ai-store.webp" alt="Clothing store with its AI assistant open" loading="lazy" decoding="async" /></span><b>Online store · Store assistant</b><span>Sizing, stock, orders, and damage cases to a person.</span></a>
+          <a class="ai-shot" href="../build/#ai"><span class="fit" style="--src:url('/public/projects/thumb/ai-dental.webp')"><img src="../public/projects/thumb/ai-dental.webp" alt="Dental clinic site with its AI front desk booking a cleaning" loading="lazy" decoding="async" /></span><b>Dental clinic · Front desk</b><span>Books open slots and flags urgent pain to the desk.</span></a>
+          <a class="ai-shot" href="../build/#ai"><span class="fit" style="--src:url('/public/projects/thumb/build-realestate.webp')"><img src="../public/projects/thumb/build-realestate.webp" alt="Real estate lead-to-booking system on six phone screens" loading="lazy" decoding="async" /></span><b>Real estate · Lead to booking</b><span>Every lead qualified, followed up and booked.</span></a>
+          <a class="ai-shot" href="../build/#ai"><span class="fit" style="--src:url('/public/projects/thumb/build-quoting.webp')"><img src="../public/projects/thumb/build-quoting.webp" alt="Home-service quoting and follow-up platform" loading="lazy" decoding="async" /></span><b>Home services · Quote follow-up</b><span>Estimate requests become booked jobs.</span></a>
+          <a class="ai-shot" href="../build/#ai"><span class="fit" style="--src:url('/public/projects/thumb/ai-studio.webp')"><img src="../public/projects/thumb/ai-studio.webp" alt="Content autopilot dashboard from trend to posted video" loading="lazy" decoding="async" /></span><b>Content studio · Autopilot</b><span>From a trend to a posted video, and what the views taught it.</span></a>
+        </div>
+        <a class="ai-more" href="../build/#ai">See every screen full size, with its case <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="ai-sec" aria-labelledby="h-steps">
+      <div class="container">
+        <div class="ai-sec__head">
+          <p class="ai-kick">How a build goes</p>
+          <h2 id="h-steps">One job first. Trust before autopilot.</h2>
+        </div>
+        <ol class="ai-steps">
+          <li><h3>Pick one job</h3><p>The questions after hours, the follow-up nobody gets to, the booking back-and-forth.</p></li>
+          <li><h3>Teach it your business</h3><p>Your FAQs, price list, policies and calendar. It answers from those, not the open internet.</p></li>
+          <li><h3>Draw the lines</h3><p>What it may do alone, what needs a person, and what it never does.</p></li>
+          <li><h3>Run it beside your team</h3><p>It drafts, your team sends, until the drafts are ones you’d send yourself.</p></li>
+          <li><h3>Go live on your terms</h3><p>On the Claude or Codex plan you already pay for, or pay-as-you-go with a limit you set.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="container ai-close" aria-labelledby="h-close">
+      <p class="ai-kick">Your turn</p>
+      <h2 id="h-close">What should AI take off your plate?</h2>
+      <div class="ai-close__jobs">
+        <button type="button" data-ai-job="An AI assistant that answers customer questions after hours">After-hours questions</button>
+        <button type="button" data-ai-job="An AI front desk that books appointments and sends reminders">Bookings and reminders</button>
+        <button type="button" data-ai-job="AI that qualifies new leads and follows up at once">Lead follow-up</button>
+        <button type="button" data-ai-job="AI that follows up on quotes until they're booked">Quote follow-up</button>
+        <button type="button" data-ai-job="AI that finds and researches leads before anyone calls">Lead research</button>
+        <button type="button" data-ai-job="AI that makes and posts our short videos">Content</button>
+      </div>
+      <button type="button" class="ai-start" data-wizard-open data-wizard-service="AI Automation">Put AI to work <span aria-hidden="true">→</span></button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../" class="footer__logo">Chester<em>Studio</em></a>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="../#work">Work</a>
+        <a href="./" aria-current="page">AI</a>
+        <a href="../build/">What I build</a>
+        <a href="../wordpress/">WordPress</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+      <p class="footer__copy">© <span id="year">2026</span> Chester Studio. Designed &amp; engineered end to end.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=32"></script>
+  <script src="cases.js?v=2"></script>
+  <script src="demo.js?v=3"></script>
+  <script>
+    // "Try it" on a rule: jump to the demo and play that exact moment
+    document.querySelectorAll("[data-try]").forEach((b) => b.addEventListener("click", () => {
+      const demo = document.querySelector("[data-ai-demo]");
+      const [id, topic, said, capped] = b.dataset.try.split("|");
+      demo.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      demo.aiPlay?.(id, topic, said || undefined, { capped: capped === "capped" });
+    }));
+    document.querySelectorAll("[data-ai-job]").forEach((b) => b.addEventListener("click", () => window.CS?.openWizard?.("AI Automation", b.dataset.aiJob)));
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

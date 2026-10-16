@@ -30,6 +30,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css?v=33" />
+  <link rel="stylesheet" href="ai/ai.css?v=3" />
 
   <script type="application/ld+json">
   {
@@ -239,6 +240,21 @@
       </div>
     </section>
 
+    <!-- ==================== AI ====================
+         The AI builds, live: pick one and talk to it, with the logic
+         beside every reply. The full showcase lives at /ai/. -->
+    <section class="section aix" id="ai">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <p class="section__kicker"><span></span>AI Implementation</p>
+          <h2 class="section__title">AI that does a real job. <em>Try it.</em></h2>
+          <p class="section__sub">Six assistants from real builds. Ask one something and watch what it checks, which rule it follows, and when it hands you to a person. They can run on the Claude or Codex plan you already pay for.</p>
+        </div>
+        <div class="aid" data-ai-demo data-reveal></div>
+        <a class="work__all aix__more" href="ai/">How every AI build thinks, and the rules that keep it safe <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
     <!-- ==================== WORDPRESS ====================
          Build, extend and look after WordPress and WooCommerce sites.
          The full case study and live store live at /wordpress/. -->
@@ -341,6 +357,7 @@
       <a href="#top" class="footer__logo">Chester<em>Studio</em></a>
       <nav class="footer__nav" aria-label="Footer">
         <a href="#work">Work</a>
+        <a href="ai/">AI</a>
         <a href="build/">What I build</a>
         <a href="wordpress/">WordPress</a>
         <a href="#tools">Tools</a>
@@ -391,7 +408,16 @@
     </div>
   </div>
 
-  <script src="assets/js/site.js?v=31"></script>
-  <script src="assets/js/main.js?v=33"></script>
+  <script src="assets/js/site.js?v=32"></script>
+  <script src="assets/js/main.js?v=34"></script>
+  <script>
+    // the AI demo's scripts are big, so they load only as the section comes near
+    new IntersectionObserver((es, io) => {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      const add = (src, then) => { const s = document.createElement("script"); s.src = src; s.onload = then; document.body.append(s); };
+      add("ai/cases.js?v=2", () => add("ai/demo.js?v=3"));
+    }, { rootMargin: "900px" }).observe(document.getElementById("ai"));
+  </script>
 </body>
 </html>

@@ -85,6 +85,9 @@
 .bp-case .bp-case__pay { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--blue); }
 .bp-cases__note { grid-column: 1 / -1; font-size: 0.88rem; color: var(--text-3); }
 .bp-case .bp-zoom { margin-bottom: 8px; border-radius: 10px; }
+.bp-case__try { justify-self: start; display: inline-flex; gap: 6px; font-size: 0.86rem; font-weight: 500; color: var(--text); }
+.bp-case__try span { color: var(--blue); transition: transform 0.25s var(--ease-out); }
+.bp-case__try:hover span { transform: translateX(4px); }
 
 
 /* behind the build: principles, each with where it runs */

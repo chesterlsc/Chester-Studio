@@ -1298,11 +1298,13 @@
   const WP = page("WordPress & WooCommerce", "Create, extend and maintain: themes, stores, plugins", "WordPress", "ulap-coffee.webp", "wordpress/",
     "wordpress woocommerce theme block plugin create build extend gcash maya store shop ulap coffee");
   const HITS = [
-    flag("tapfour"), flag("aegis"), WP, flag("bookshop"), flag("trader"),
+    flag("tapfour"), flag("aegis"),
+    page("AI implementation", "Try six AI assistants from real builds", "AI", "ai-dental.webp", "ai/",
+      "ai chatbot chat assistant agent receptionist support clinic dental store booking demo try lead quote content"),
+    WP, flag("bookshop"), flag("trader"),
     page("Monthly WordPress care", "Updates, backups, security, speed and fixes", "WordPress", "ulap-coffee.webp", "#wordpress",
       "wordpress care plan maintain maintenance monthly update updates backup security speed fix fixes hosting"),
     page("Dashboards", "Your numbers in one place", "What I build", "tapfour-dash-reports.webp", "build/#dashboards", "dashboard kpi report numbers stock branches analytics"),
-    page("AI implementation", "AI that does a real job", "What I build", "aegis-leados-pipeline.webp", "build/#ai", "ai chatbot chat assistant agent receptionist support clinic"),
     page("Automation", "Busywork that runs itself", "What I build", "shop-mail-shop-new-order.webp", "build/#automation", "automate automation workflow email follow-up n8n zapier"),
     page("Custom software", "Built around one daily job", "What I build", "tapfour-admin-board.webp", "build/#software", "app web app portal mvp platform system"),
     page("Websites & stores", "Sites and stores that sell", "What I build", "shop-hero.webp", "build/#websites", "website site store shop shopify landing seo ecommerce"),

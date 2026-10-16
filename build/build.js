@@ -49,7 +49,7 @@
       label: "AI store assistant", name: "Online store", service: "AI Automation",
       who: "Online stores",
       problem: "Sizing, stock and “where’s my order” questions pile up overnight.",
-      built: "An assistant on the store that answers sizing, stock and shipping at any hour, tracks orders, and hands damaged-item cases to a person. Pay-as-you-go, with a cap the owner sets.",
+      built: "An assistant on the store that answers sizing, stock and shipping at any hour, tracks orders, and hands damaged-item cases to a person. Runs on the owner's Claude or Codex plan, or pay-as-you-go with a cap they set.",
     },
     dental: {
       label: "AI front desk", name: "Dental clinic", service: "AI Automation",
@@ -60,7 +60,7 @@
     studio: {
       label: "AI content autopilot", name: "Content studio", service: "AI Automation",
       who: "Creators and content teams",
-      built: "It spots what’s trending, writes and renders the video, posts at peak hours, and learns from the views. Runs on the client’s existing AI plan.",
+      built: "It spots what’s trending, writes and renders the video, posts at peak hours, and learns from the views. Runs on the client’s existing Claude or Codex plan.",
     },
     mallnav: {
       label: "Indoor navigation product", name: "Indoor mall navigation", service: "Digital Product",

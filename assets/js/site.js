@@ -471,11 +471,12 @@
   const ITEMS = [
     { g: "Pages", t: "Work", d: "Four products, built end to end", k: "portfolio projects case study", run: go(ROOT + "#work") },
     { g: "Pages", t: "What I build", d: "Dashboards, AI, automation, software", k: "services offer", run: go(ROOT + "build/") },
+    { g: "Pages", t: "AI implementation", d: "Try six AI assistants from real builds", k: "ai chatbot chat assistant agent gpt claude receptionist support demo try booking leads", run: go(ROOT + "ai/") },
     { g: "Pages", t: "WordPress", d: "Builds and monthly care", k: "woocommerce theme plugin care plan", run: go(ROOT + "#wordpress") },
     { g: "Pages", t: "Tools", d: "The stack behind the systems", k: "stack tech react node python", run: go(ROOT + "#tools") },
     { g: "Pages", t: "Contact", d: "Email, phone, Parañaque", k: "email phone call viber whatsapp location", run: go(ROOT + "#contact") },
     { g: "What I build", t: "Dashboards", d: "Your numbers in one place", k: "kpi report reports numbers stock branches analytics", run: go(ROOT + "build/#dashboards") },
-    { g: "What I build", t: "AI implementation", d: "AI that does a real job", k: "ai chatbot chat assistant agent gpt claude receptionist support", run: go(ROOT + "build/#ai") },
+    { g: "What I build", t: "AI screens", d: "AI builds in the client's own product", k: "ai screenshots aegis real estate quoting", run: go(ROOT + "build/#ai") },
     { g: "What I build", t: "Behind the build", d: "How the work stays clean", k: "backend server database api tests testing security clean code", run: go(ROOT + "build/#behind") },
     { g: "What I build", t: "Custom software", d: "Built around one daily job", k: "app web app portal mvp platform system", run: go(ROOT + "build/#software") },
     { g: "What I build", t: "Automation", d: "Busywork that runs itself", k: "automate workflow n8n zapier email follow-up integration", run: go(ROOT + "build/#automation") },
