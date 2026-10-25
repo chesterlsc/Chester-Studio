@@ -48,7 +48,7 @@ export default function Me() {
   };
   const exportData = async () => { downloadBlob(await exportAllLocal(), exportFilename()); toast(t('me.exported'), 'ok', 'download'); };
   const destroy = async () => {
-    try { await deleteEverything(); localStorage.clear(); toast(t('me.deleted'), 'ok'); setDel(false); setTimeout(() => location.assign('/'), 600); }
+    try { await deleteEverything(); localStorage.clear(); toast(t('me.deleted'), 'ok'); setDel(false); setTimeout(() => location.reload(), 600); }
     catch { toast(t('me.offlineSync'), 'warn'); }
   };
 

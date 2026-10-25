@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, createHashRouter, Outlet } from 'react-router-dom';
 import { Shell } from './Shell';
 
 const lazyPage = (f: () => Promise<{ default: React.ComponentType }>) => {
@@ -11,7 +11,10 @@ const lazyPage = (f: () => Promise<{ default: React.ComponentType }>) => {
   );
 };
 
-export const router = createBrowserRouter([
+/** Hash routing is used only for hosted previews (e.g. the claude.ai artifact) where path routes cannot be served. */
+const makeRouter = import.meta.env.VITE_ROUTER === 'hash' ? createHashRouter : createBrowserRouter;
+
+export const router = makeRouter([
   {
     path: '/',
     element: <Shell><Outlet /></Shell>,

@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   /** '1' to show the Google sign-in button. */
   readonly VITE_GOOGLE_AUTH?: string;
   /** Canonical site URL without trailing slash, e.g. https://prepare.ph */
+  readonly VITE_ROUTER?: 'hash' | 'browser';
   readonly VITE_SITE_URL?: string;
 }
 

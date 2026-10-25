@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useHref, useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, TopBar, toast } from '@/ui';
 import { getSetting, setSetting } from '@/store/db';
@@ -17,12 +17,17 @@ export default function PlanCard() {
   useEffect(() => { void getSetting<Plan>('plan', EMPTY).then((p) => { setPlan(p); setLoaded(true); }); }, []);
   useEffect(() => { if (loaded) void setSetting('plan', plan); }, [plan, loaded]);
 
-  const payload = `${location.origin}/plan#${btoa(unescape(encodeURIComponent(JSON.stringify(plan))))}`;
+  const planHref = useHref('/plan');
+  const [params, setParams] = useSearchParams();
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(plan))));
+  const payload = `${location.origin}${planHref}?p=${encodeURIComponent(encoded)}`;
   useEffect(() => {
-    if (location.hash.length > 1) {
-      try { const p = JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(1))))) as Plan; setPlan(p); toast(t('plan.saved'), 'ok'); history.replaceState(null, '', location.pathname); } catch { /* ignore */ }
-    }
-  }, [t]);
+    const p = params.get('p');
+    if (!p) return;
+    try { setPlan(JSON.parse(decodeURIComponent(escape(atob(p)))) as Plan); toast(t('plan.saved'), 'ok'); } catch { /* ignore */ }
+    setParams({}, { replace: true });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="page">
