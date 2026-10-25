@@ -1,0 +1,151 @@
+# HANDA (prepare.ph) — Build plan
+
+> Captain's plan. Written before code. Decisions that the brief left open are marked **[call]** with the reasoning.
+
+## 0. Where this lives
+
+This repo is the Chester Studio portfolio site (GitHub Pages at the root). **[call]** HANDA is built as a self-contained app in `handa/` so nothing at the root breaks. It deploys on its own (Cloudflare Pages or Netlify, free tier) to `prepare.ph`. The root site is untouched.
+
+## 1. One line
+
+Game-like home-readiness app for Filipino families: pick a scenario → pick a duration → set your household → START → stock a 3D house until the meter is full → share a Ready Card.
+
+## 2. Stack
+
+| Layer | Choice | Why |
+|---|---|---|
+| App | Vite 8 + React 19 + TypeScript | Fast dev, small bundles, route code-splitting is trivial. |
+| Routing | react-router 7 (data-less, lazy routes) | Each tab/screen is its own chunk. |
+| State | Zustand (UI + session) + Dexie (IndexedDB) | Local-first by default; Dexie gives us a real queryable store that survives offline. |
+| 3D house | three.js + @react-three/fiber + drei | **The brief's single most important visual.** A real WebGL scene, not a flat illustration: low-poly stylised bahay cutaway, isometric game camera, items fly into shelves, weather per scenario. Lazy-loaded so the landing page stays light. |
+| Motion (2D) | CSS springs via tokens + small `useSpring` helper (no heavy motion lib) | Keeps the first bundle small; everything animates with transform/opacity only. |
+| i18n | i18next + react-i18next, `en.json` / `tl.json` | No hard-coded strings. Taglish allowed in `tl`. |
+| PWA | vite-plugin-pwa (Workbox) | Precache app shell, runtime-cache fonts/images, offline after first visit. |
+| Auth + cloud | Supabase (email magic link + Google), Postgres, RLS on every table | Free tier. Env-gated: without keys the app runs fully as guest. |
+| Fonts | Self-hosted, subset: **Sora** (display) + **Inter Tight** (text) + **JetBrains Mono** (numbers) | Space-launch feel: geometric display, tight neutral body, mono for meters. |
+| Native wrap | Capacitor-ready: `src/native/*` adapters for notifications/storage/share | No rewrite later. |
+
+**[call] Why not Next.js?** No server rendering needed (offline-first SPA, auth via Supabase). Vite keeps hosting free and static.
+
+## 3. Folder structure
+
+```
+handa/
+  index.html                  app shell (dark, inline critical CSS)
+  public/                     icons, manifest, fonts (woff2, subset), og image
+  src/
+    main.tsx                  providers (i18n, router, db bootstrap)
+    app/
+      router.tsx              lazy routes
+      Shell.tsx               bottom tab bar (mobile) / side rail (desktop)
+    design/
+      tokens.css              color / type / space / radius / motion / shadow tokens
+      global.css              reset, dark-first theme, reduced-motion, low-data mode
+      icons/                  hand-drawn SVG icon set (one stroke weight, one fill style)
+    ui/                       Button, Meter, Chip, Sheet, Stepper, Toggle, Toast, EmptyState, Hint
+    i18n/                     index.ts, en.json, tl.json
+    domain/
+      types.ts                Household, Scenario, Item, Kit, Readiness …
+      scenarios.ts            8 scenarios, their weather, which categories matter and how much
+      readiness.ts            the math: needs = f(scenario, duration, household); coverage per category
+      catalog.ts              item catalog (what exists, units, covers person-days, where it goes)
+      kits.ts                 quick-add kits
+    content/                  guides, DIY, workouts, tips, first aid, baby, safety (EN + TL), quizzes
+    store/
+      db.ts                   Dexie schema (households, sessions, inventory, scores, surveys, outbox)
+      useSession.ts           current run (scenario/duration/household)
+      useInventory.ts         items placed in this run
+      useSettings.ts          lang, sound, reduced motion, low data, consent
+    sync/
+      supabase.ts             client (null when no env)
+      outbox.ts               write-local-first queue, replay when online, last-write-wins per row
+      migrateGuest.ts         guest → account: upload local rows, tag with user_id, keep local copy
+    scene/                    THE 3D HOUSE
+      HouseScene.tsx          Canvas, camera, lights, postfx-free (perf)
+      House.tsx               walls, roof (cut-away), floor, rooms
+      Storage.tsx             pantry, med cabinet, water corner, power station, go-bag hook
+      ItemMesh.tsx            procedural low-poly item meshes per category (bottle, can, box, lamp…)
+      FlyIn.tsx               spring flight from UI into storage slot + squash & settle
+      Weather.tsx             rain, flood water plane, heat shimmer, brownout flicker, zombie fog
+      useSceneStore.ts        slot allocation, highlight missing categories
+    screens/
+      Landing, Play (Scenario → Duration → Household), HouseScreen (3D + item tray + meter),
+      Score (Ready Card), Learn, LearnDeck (swipe cards + quiz), Inventory (expiry), PlanCard,
+      Hotlines, Profile (account, data export/delete), Pricing, Survey, Press, Onboarding
+    native/                   share.ts, notify.ts, storage.ts (web impl, Capacitor later)
+  supabase/
+    schema.sql                tables + RLS policies + export/delete RPC
+  .github/workflows/
+    keepalive.yml             daily ping so the free project does not pause
+    backup.yml                weekly export to a release asset
+  README.md
+```
+
+## 4. Data model
+
+**Local (Dexie) = source of truth on device. Cloud mirrors it per user.**
+
+- `households` — id, name, adults, kids, babies, seniors, pets, specialNeeds[], region, city
+- `runs` — id, householdId, scenario, durationDays, startedAt, finishedAt, readinessPct, daysCovered
+- `inventory` — id, runId?, householdId, catalogId, qty, unit, expiresAt?, location (slot), note
+- `scores` — runId, pct, categories{}, at
+- `surveys` — id, answers{}, at
+- `settings` — key/value
+- `outbox` — op, table, rowId, payload, at  (replayed to Supabase when online)
+
+Every row carries `updatedAt` and, once signed in, `userId`. Sync is **last-write-wins per row** by `updatedAt` **[call]** — simple, predictable, good enough for one family editing one household. Supabase tables mirror this with RLS `auth.uid() = user_id` on every table, insert/select/update/delete.
+
+## 5. The readiness math (domain/readiness.ts)
+
+- Person-day needs by category come from the scenario profile × duration × household weights (baby 0.5 water but +formula/diapers; senior +meds; pet +pet food/water).
+- Base: water 4 L/person/day (3 L drinking + 1 L hygiene; NDRRMC/DOH use 3–4 L), food 2,100 kcal/person/day, etc.
+- Each catalog item declares `covers: { category, personDays per unit }` where it makes sense; others are checklist items (`needed: n` per household).
+- Readiness % = weighted average of per-category coverage, weights from the scenario (e.g. Flood weights water+docs+shelter; Brownout weights power+food+cash).
+- "Days you can last" = min over critical categories of covered person-days ÷ people.
+
+## 6. The 3D house (the thing that has to look like a game)
+
+- **Style:** low-poly, chunky, slightly toy-like. Flat-shaded materials with a warm palette, soft directional sun + hemisphere fill, contact shadow blob under the house. No textures to download; everything is geometry + vertex colour → instant load, works offline.
+- **Camera:** orthographic-feeling isometric (actually perspective with narrow FOV at 3/4 angle), gentle orbit damping, zooms into a room when you pick a category.
+- **House:** 2-storey bahay with one wall and half the roof cut away so you see inside: kitchen/pantry, sala with the power station, CR with hygiene shelf, bedroom with baby corner, door with the go-bag hook, yard with water drums.
+- **Items:** procedural meshes per category (bottle, gallon, can, sack, box, lamp, battery, radio, bag). Tapping an item in the tray spawns it at the tray position, it **arcs** into its slot (spring on a bezier), squashes on landing, slot glows briefly. Completing a category pops confetti shards in that room.
+- **Weather:** rain streaks + darker sky for Bagyo; rising water plane for Baha; heat shimmer + orange sky for El Niño; lights off + flicker for Brownout; dry taps for Water interruption; shake for Lindol; dusk + boarded windows for Civil unrest; fog + green tint for Zombie.
+- **Perf:** one canvas, instanced items where many, `frameloop="demand"` when idle, DPR capped at 1.5 on mobile, reduced-motion → no weather particles and instant placement. Low-data mode → 2D fallback list.
+
+## 7. Milestones
+
+1. **M1 Foundation** — tokens, shell, i18n, router, Dexie, Landing. Runs.
+2. **M2 Core loop** — Play (scenario/duration/household), readiness math, HouseScreen with 3D house, item tray, meter, Score + Ready Card (canvas → PNG, Web Share).
+3. **M3 Content** — Learn decks (10+ Basic cards, 3 levels), DIY, Workouts, Tips, First aid, Baby, Safety, Hotlines, 3 kits.
+4. **M4 Accounts** — Supabase schema + RLS, magic link + Google, guest→account migration, outbox sync, export/delete.
+5. **M5 Polish** — PWA, onboarding, hints, survey, pricing, press/showcase + presentation mode, Lighthouse, a11y pass, README + workflows.
+
+## 8. Crew split (subagents)
+
+- **Content** — writes `src/content/*` and the item catalog in EN + TL against the typed schema.
+- **Data & security** — `supabase/schema.sql`, `sync/*`, migration, export/delete.
+- **QA** — build, type-check, Playwright smoke of the core loop, Lighthouse, a11y.
+- **Captain (me)** — design system, 3D scene, screens, integration.
+
+## 9. Decisions log
+
+- **Dark-first** with a light theme available. Brand colour is a signal orange on near-black (launch-pad feel), success is a mint green, warnings amber. No gradients except the scenario sky.
+- **No emoji as icons** — custom SVG set in `design/icons`.
+- **Sound** — tiny synthesized WebAudio blips (no audio files), off by default.
+- **Share card** rendered on a 2D canvas (1200×630) showing % + scenario + days, never item details (OPSEC).
+- **Payments off** — tier logic and gates exist (`domain/tiers.ts`), the upgrade button opens a "coming soon" sheet.
+- **Health content** carries a visible "for review by a licensed professional" banner and "when to go to a doctor" block.
+
+## 10. Decisions made while building (captain's log)
+
+- **Camera is frontal, not isometric.** The cut-away house is viewed from the front (the removed wall), slightly right and 20° up; orbit is limited to ±30° so a wall never blocks the interior. Portrait phones get a wider FOV and a longer distance so the whole lot fits; focusing a category only nudges the camera on phones.
+- **Pantry lives on the left wall** (not the back wall) so it reads from the camera; the kitchen partition is a half-wall counter for the same reason.
+- **Roof is a true section**: back slope + ridge + fascia only. The front slope is removed, like an architectural cut.
+- **Rain is line streaks**, not points; flood is a rising translucent plane capped below the shelves; brownout turns the house lights off and lets the lamps you place light the room, with a flicker while you have fewer than three power items.
+- **Tier gating is in the code but open while payments are off** (`PAYMENTS_ENABLED = false`): Intermediate/Pro guides stay readable so launch content is not dead-ended. Flip the flag and the locks appear.
+- **"Baby & kids" counts kids too** (wipes, kids' meds, comfort items), so a household with a 6-year-old and no baby still sees the category.
+- **Guest outbox is not written** when no cloud is configured; `migrateGuest` snapshots local rows at first sign-in instead.
+- **Fonts**: Sora / Inter Tight / JetBrains Mono as subset variable woff2 (≈78 KB total), preloaded.
+- **Bundle**: landing route ships React + router + i18n only (three.js, Dexie and Supabase are all behind dynamic imports). Lighthouse mobile on the landing: Performance 91, Accessibility 98, Best practices 100, SEO 100.
+- **QR for the plan card** is a dependency-free encoder (`src/lib/qr.tsx`), byte mode, EC level L, versions 1–40.
+- **Not done in v1** (next slices): payments (GCash/Maya via a PH gateway), Squads, multiple locations UI (data model supports `households` per user), printable PDF books, native wrappers.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /auth/
+Sitemap: https://prepare.ph/sitemap.xml

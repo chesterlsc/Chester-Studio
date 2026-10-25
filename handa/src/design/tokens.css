@@ -1,0 +1,129 @@
+/* HANDA design tokens — the only place raw values live. */
+:root {
+  /* ---- color: dark first ---- */
+  --bg: #0b0d12;
+  --bg-1: #10131a;
+  --bg-2: #161a23;
+  --bg-3: #1d2230;
+  --line: #262c3a;
+  --line-strong: #343c4f;
+  --fg: #f2f4f8;
+  --fg-1: #c5cbd8;
+  --fg-2: #8b93a7;
+  --fg-3: #5d6578;
+
+  --brand: #ff6a1a;          /* launch orange */
+  --brand-strong: #ff8a3d;
+  --brand-ink: #1a0d05;
+  --brand-dim: rgba(255, 106, 26, .16);
+
+  --ok: #3ddc97;
+  --ok-dim: rgba(61, 220, 151, .16);
+  --warn: #ffc247;
+  --warn-dim: rgba(255, 194, 71, .16);
+  --bad: #ff5d6c;
+  --bad-dim: rgba(255, 93, 108, .16);
+  --info: #5ea8ff;
+  --info-dim: rgba(94, 168, 255, .16);
+
+  /* category hues (used for chips, meters, 3D highlights) */
+  --c-water: #4fb8ff;
+  --c-food: #ffb24a;
+  --c-canning: #d79a62;
+  --c-medicine: #ff6f8d;
+  --c-baby: #c88cff;
+  --c-power: #ffe25a;
+  --c-shelter: #8fd3a3;
+  --c-hygiene: #6fe3dc;
+  --c-comms: #7f9bff;
+  --c-cash: #a4e86e;
+  --c-edc: #b9c2d6;
+  --c-pets: #ffa178;
+  --c-security: #ff8a66;
+
+  /* ---- type ---- */
+  --font-display: 'Sora', system-ui, -apple-system, sans-serif;
+  --font-text: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  --fs-2xs: .6875rem;  /* 11 */
+  --fs-xs: .75rem;     /* 12 */
+  --fs-sm: .875rem;    /* 14 */
+  --fs-md: 1rem;       /* 16 */
+  --fs-lg: 1.125rem;   /* 18 */
+  --fs-xl: 1.375rem;   /* 22 */
+  --fs-2xl: 1.75rem;   /* 28 */
+  --fs-3xl: 2.25rem;   /* 36 */
+  --fs-4xl: 3rem;      /* 48 */
+  --fs-5xl: clamp(2.75rem, 8vw, 4.5rem);
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.2;
+  --lh-text: 1.5;
+
+  /* ---- space (4pt grid) ---- */
+  --s-1: .25rem;
+  --s-2: .5rem;
+  --s-3: .75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --gutter: clamp(1rem, 4vw, 1.5rem);
+  --tab-h: 64px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+
+  /* ---- radius ---- */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ---- elevation ---- */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.25);
+  --shadow-2: 0 4px 14px rgba(0,0,0,.35), 0 12px 32px rgba(0,0,0,.3);
+  --shadow-brand: 0 8px 30px rgba(255,106,26,.35);
+  --inset-top: inset 0 1px 0 rgba(255,255,255,.06);
+
+  /* ---- motion ---- */
+  --ease-out: cubic-bezier(.2, .8, .2, 1);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);   /* bouncy */
+  --ease-pop: cubic-bezier(.18, 1.25, .4, 1);
+  --t-fast: 120ms;
+  --t-base: 220ms;
+  --t-slow: 420ms;
+  --t-scene: 700ms;
+
+  /* ---- misc ---- */
+  --tap: 48px;
+  --focus: 0 0 0 3px var(--bg), 0 0 0 5px var(--brand);
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f7fb;
+  --bg-1: #ffffff;
+  --bg-2: #eef0f6;
+  --bg-3: #e4e7f0;
+  --line: #d9dde8;
+  --line-strong: #c3c9d8;
+  --fg: #0b0d12;
+  --fg-1: #2a3040;
+  --fg-2: #5a6377;
+  --fg-3: #8a93a7;
+  --brand-dim: rgba(255, 106, 26, .14);
+  --shadow-1: 0 1px 2px rgba(10,14,30,.08), 0 2px 8px rgba(10,14,30,.06);
+  --shadow-2: 0 4px 14px rgba(10,14,30,.1), 0 12px 32px rgba(10,14,30,.08);
+  --inset-top: inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-base: 0ms; --t-slow: 0ms; --t-scene: 0ms; }
+}
+:root[data-motion="off"] { --t-fast: 0ms; --t-base: 0ms; --t-slow: 0ms; --t-scene: 0ms; }

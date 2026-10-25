@@ -1,0 +1,94 @@
+# Weekly logical backup of the `public` schema with pg_dump, encrypted and
+# stored as a workflow artifact for 90 days (free; no external storage needed).
+#
+# Required repository secrets:
+#   SUPABASE_DB_URL     Postgres connection string. Use the SESSION POOLER URI
+#                       (Dashboard > Connect > Session pooler, port 5432):
+#                       postgresql://postgres.<ref>:<password>@aws-0-<region>.pooler.supabase.com:5432/postgres
+#                       The direct host is IPv6-only on the free tier and GitHub
+#                       runners have no IPv6, so the direct URI will time out.
+#   BACKUP_PASSPHRASE   Any long random string. The dump holds user data and
+#                       artifacts are downloadable by anyone with read access to
+#                       the repository (everyone, on a public repo), so the dump
+#                       is ALWAYS encrypted. The job skips if this is missing.
+#
+# Restore:
+#   gpg --batch --passphrase "$BACKUP_PASSPHRASE" -d handa-YYYY-MM-DD.sql.gz.gpg \
+#     | gunzip | psql "$SUPABASE_DB_URL"
+#
+# NOTE: GitHub only runs workflows from `.github/workflows` at the REPOSITORY
+# ROOT. If `handa/` lives inside a larger repo, copy this file there.
+name: Supabase weekly backup
+
+on:
+  schedule:
+    - cron: '23 2 * * 0'   # Sundays 02:23 UTC (10:23 PHT)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: supabase-backup
+  cancel-in-progress: false
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+    steps:
+      - name: Check secrets
+        id: check
+        run: |
+          if [ -z "$SUPABASE_DB_URL" ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::SUPABASE_DB_URL not set; skipping backup."
+          elif [ -z "$BACKUP_PASSPHRASE" ]; then
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::BACKUP_PASSPHRASE not set; refusing to upload an unencrypted dump."
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Supabase runs Postgres 15/17; pg_dump must be >= the server version.
+      # Ubuntu's stock client is often older, so install from the PGDG repo.
+      - name: Install pg_dump 17
+        if: steps.check.outputs.ok == 'true'
+        run: |
+          set -euo pipefail
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc \
+            https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" \
+            | sudo tee /etc/apt/sources.list.d/pgdg.list >/dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq postgresql-client-17
+          pg_dump --version
+
+      - name: Dump public schema
+        if: steps.check.outputs.ok == 'true'
+        run: |
+          set -euo pipefail
+          stamp="$(date -u +%F)"
+          echo "stamp=$stamp" >> "$GITHUB_ENV"
+          mkdir -p out
+          pg_dump "$SUPABASE_DB_URL" \
+            --schema=public \
+            --no-owner --no-privileges \
+            --format=plain \
+            | gzip -9 \
+            | gpg --batch --yes --symmetric --cipher-algo AES256 \
+                  --passphrase-fd 3 --output "out/handa-$stamp.sql.gz.gpg" 3<<<"$BACKUP_PASSPHRASE"
+          ls -la out
+
+      - name: Upload artifact (90 days)
+        if: steps.check.outputs.ok == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: handa-db-backup-${{ env.stamp }}
+          path: out/*.sql.gz.gpg
+          retention-days: 90
+          if-no-files-found: error
