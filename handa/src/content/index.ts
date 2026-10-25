@@ -5,6 +5,8 @@ export * from './types';
 export { GUIDES } from './guides';
 export { HOTLINES, REGIONS, hotlinesByRegion } from './hotlines';
 export { AFFILIATES, AFFILIATE_DISCLOSURE, linksFor } from './affiliates';
+export * from './storage';
+export * from './storageTypes';
 
 const byId = new Map(GUIDES.map((g) => [g.id, g]));
 

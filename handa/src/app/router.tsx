@@ -21,7 +21,7 @@ export const router = makeRouter([
     children: [
       { index: true, element: lazyPage(() => import('@/screens/Landing')) },
       { path: 'play', element: lazyPage(() => import('@/screens/Play')) },
-      { path: 'house', element: lazyPage(() => import('@/screens/HouseScreen')) },
+      { path: 'house', element: lazyPage(() => import('@/screens/HouseRoute')) },
       { path: 'score', element: lazyPage(() => import('@/screens/Score')) },
       { path: 'learn', element: lazyPage(() => import('@/screens/Learn')) },
       { path: 'learn/:id', element: lazyPage(() => import('@/screens/LearnDeck')) },

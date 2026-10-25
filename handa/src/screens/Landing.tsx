@@ -1,10 +1,22 @@
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Chip, Icon } from '@/ui';
 import { SCENARIO_ORDER } from '@/domain/scenarios';
 import { useSession } from '@/store/useSession';
 import { useSettings } from '@/store/useSettings';
-import { HouseArt } from './HouseArt';
+const PlanHero = lazy(() => import('./PlanHero').then((m) => ({ default: m.PlanHero })));
+
+/** The blueprint hero is heavy-ish SVG; mount it after first paint so the landing stays instant. */
+function useIdle(): boolean {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+    const go = () => setReady(true);
+    if (w.requestIdleCallback) w.requestIdleCallback(go, { timeout: 1200 }); else setTimeout(go, 200);
+  }, []);
+  return ready;
+}
 import './screens.css';
 
 export default function Landing() {
@@ -15,6 +27,7 @@ export default function Landing() {
   const setScenario = useSession((s) => s.setScenario);
   const lang = useSettings((s) => s.lang);
   const setLang = useSettings((s) => s.setLang);
+  const idle = useIdle();
 
   return (
     <div className="page page--wide">
@@ -47,7 +60,7 @@ export default function Landing() {
             <span><Icon name="lock" size={16} />{t('landing.trust3')}</span>
           </div>
         </div>
-        <div className="hero__art pop"><HouseArt /></div>
+        <div className="hero__art pop"><div className="plan-hero">{idle && <Suspense fallback={null}><PlanHero /></Suspense>}</div></div>
       </section>
 
       {runId && scenario && (

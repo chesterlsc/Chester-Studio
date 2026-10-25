@@ -5,7 +5,8 @@ import { Badge, Button, Empty, Hint, Icon, Sheet, Stepper, Toggle, toast, TopBar
 import { useSession } from '@/store/useSession';
 import { clearHouseholdInventory, removeItem, setExpiry, setQty, useInventory } from '@/store/useInventory';
 import { catalogById } from '@/domain/catalog';
-import type { InventoryRow, SlotId } from '@/domain/types';
+import type { InventoryRow } from '@/domain/types';
+import { CATEGORY_ROOM, ROOM_ORDER, type RoomId } from '@/domain/rooms';
 import { linksFor, AFFILIATE_DISCLOSURE } from '@/content';
 import { pick } from '@/i18n';
 import { daysUntil, fmtDate } from '@/lib/format';
@@ -14,7 +15,6 @@ import { kv } from '@/native/storage';
 import { requestNotifyPermission } from '@/native/notify';
 import './screens.css';
 
-const SLOT_ORDER: SlotId[] = ['pantry', 'water-corner', 'med-cabinet', 'power-station', 'go-bag', 'baby-corner', 'tool-wall'];
 
 export default function Stock() {
   const { t } = useTranslation();
@@ -25,8 +25,8 @@ export default function Stock() {
 
   const expiring = useMemo(() => inventory.filter((r) => { const d = daysUntil(r.expiresAt); return d !== null && d <= 30; }).sort((a, b) => (a.expiresAt ?? 0) - (b.expiresAt ?? 0)), [inventory]);
   const bySlot = useMemo(() => {
-    const m = new Map<SlotId, InventoryRow[]>();
-    for (const r of inventory) m.set(r.slot, [...(m.get(r.slot) ?? []), r]);
+    const m = new Map<RoomId, InventoryRow[]>();
+    for (const r of inventory) { const item = catalogById(r.catalogId); if (!item) continue; const room = CATEGORY_ROOM[item.category]; m.set(room, [...(m.get(room) ?? []), r]); }
     return m;
   }, [inventory]);
 
@@ -90,9 +90,9 @@ export default function Stock() {
             </div>
           )}
           <div className="eyebrow" style={{ marginTop: 'var(--s-6)' }}>{t('stock.byLocation')}</div>
-          {SLOT_ORDER.filter((s) => bySlot.has(s)).map((slot) => (
+          {ROOM_ORDER.filter((s) => bySlot.has(s)).map((slot) => (
             <div key={slot}>
-              <div className="loc-head"><Icon name="house-cut" size={16} style={{ color: 'var(--fg-2)' }} /><h4>{t(`house.slot.${slot}`)}</h4><span className="xs mono muted">{bySlot.get(slot)!.length}</span></div>
+              <div className="loc-head"><Icon name="house-cut" size={16} style={{ color: 'var(--fg-2)' }} /><h4>{t(`room.${slot}`)}</h4><span className="xs mono muted">{bySlot.get(slot)!.length}</span></div>
               <div className="card" style={{ marginTop: 'var(--s-2)', paddingTop: 0, paddingBottom: 0 }}>{bySlot.get(slot)!.map((r) => <Row key={r.id} r={r} />)}</div>
             </div>
           ))}

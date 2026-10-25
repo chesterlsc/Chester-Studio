@@ -6,6 +6,10 @@
 .hero__lead { font-size: var(--fs-lg); color: var(--fg-1); max-width: 34rem; }
 .hero__art { position: relative; margin: 0 calc(-1 * var(--gutter)); overflow: hidden; }
 .hero__art svg { width: 100%; height: auto; }
+.plan-hero { position: relative; aspect-ratio: 4 / 3.4; border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line); background: var(--bp-bg); pointer-events: none; box-shadow: var(--shadow-2); }
+.plan-hero .ed__svg { width: 100%; height: 100%; }
+.plan-hero__in { position: absolute; inset: 0; animation: fade var(--t-slow) both; }
+.plan-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(120% 80% at 80% 0%, rgba(255,106,26,.12), transparent 60%); }
 .hero__cta { display: flex; flex-direction: column; gap: var(--s-2); align-items: flex-start; }
 .hero__ctasub { font-size: var(--fs-xs); color: var(--fg-2); font-family: var(--font-mono); letter-spacing: .06em; }
 @media (min-width: 900px) { .hero { grid-template-columns: 1.05fr 1fr; align-items: center; } .hero__art { margin: 0; } }

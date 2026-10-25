@@ -1,6 +1,6 @@
 # HANDA — prepare.ph
 
-**Handa ka na ba?** A game-like home-readiness app for Filipino families. Pick a scenario (bagyo, baha, init, brownout, walang tubig, lindol, gulo, zombie), pick how long, set your household, press START, and stock a 3D house until the readiness meter is full. Free, Tagalog/English, works offline.
+**Handa ka na ba?** A game-like home-readiness app for Filipino families. Pick a scenario (bagyo, baha, init, brownout, walang tubig, lindol, gulo, zombie), pick how long, set your household, press START, and stock an architect's blueprint of your home, room by room, until the readiness meter is full. Each room follows real storage rules (medicine out of the bathroom, water off the concrete and out of the sun, go-bags by the door). Free, Tagalog/English, works offline.
 
 - Product plan and design decisions: [`PLAN.md`](./PLAN.md)
 - Database + auth setup: [`supabase/README.md`](./supabase/README.md)
@@ -83,7 +83,8 @@ src/design     tokens.css (color/type/space/radius/motion), global.css, icons/ (
 src/ui         Button, Meter, Ring, Chip, Stepper, Segmented, Toggle, Sheet, Toast, Empty, Hint, TopBar
 src/domain     types, scenarios (weights + weather), readiness math, catalog (70 items), kits, tiers, badges
 src/content    guides (21, EN+TL, quizzes, sources), hotlines, affiliates
-src/scene      THE 3D HOUSE: House (cut-away bahay), ItemMesh (25 procedural shapes), Items (fly-in), Weather, Celebrate, slots
+src/plan       THE BLUEPRINT EDITOR (default): floorplan data (cm), Blueprint (plan), Elevation (section), Symbols (CAD blocks), Viewport (pan/zoom), simulation + SimChart, PlanScreen
+src/scene      the 3D house (set aside behind Me → House view → 3D): House, ItemMesh, Items, Weather, Celebrate
 src/screens    Landing, Play, HouseScreen, Score, Learn, LearnDeck, Hotlines, Stock, PlanCard, Me, Pricing, Survey, Press
 src/store      Dexie db, settings, session, inventory
 src/sync       Supabase client, auth, outbox sync, guest migration, export/delete

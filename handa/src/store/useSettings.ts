@@ -17,6 +17,8 @@ interface Settings {
   runsCompleted: number;
   streakDays: number;
   lastActiveDay?: string;
+  houseView: 'plan' | '3d';
+  setHouseView: (v: 'plan' | '3d') => void;
   setLang: (l: Lang) => void;
   setTheme: (t: Theme) => void;
   toggleSound: () => void;
@@ -51,6 +53,8 @@ export const useSettings = create<Settings>()(
       surveyDone: false,
       runsCompleted: 0,
       streakDays: 0,
+      houseView: 'plan',
+      setHouseView: (houseView) => set({ houseView }),
       setLang: (lang) => { setLang(lang); set({ lang }); },
       setTheme: (theme) => { set({ theme }); applyDom({ ...get(), theme }); },
       toggleSound: () => set((s) => ({ sound: !s.sound })),
@@ -73,7 +77,7 @@ export const useSettings = create<Settings>()(
       partialize: (s) => ({
         lang: s.lang, theme: s.theme, sound: s.sound, motion: s.motion, lowData: s.lowData,
         onboarded: s.onboarded, hintsSeen: s.hintsSeen, surveyDone: s.surveyDone,
-        runsCompleted: s.runsCompleted, streakDays: s.streakDays, lastActiveDay: s.lastActiveDay,
+        runsCompleted: s.runsCompleted, streakDays: s.streakDays, lastActiveDay: s.lastActiveDay, houseView: s.houseView,
       }),
       onRehydrateStorage: () => (state) => {
         if (!state) return;

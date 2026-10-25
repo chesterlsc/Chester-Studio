@@ -103,7 +103,19 @@ Every row carries `updatedAt` and, once signed in, `userId`. Sync is **last-writ
 - Readiness % = weighted average of per-category coverage, weights from the scenario (e.g. Flood weights water+docs+shelter; Brownout weights power+food+cash).
 - "Days you can last" = min over critical categories of covered person-days ÷ people.
 
-## 6. The 3D house (the thing that has to look like a game)
+## 6. The storage view: a blueprint you edit like a level (v2, replaces the 3D house as default)
+
+The 3D house (section 6a below) is kept behind **Me → House view → 3D (experimental)**. The default is now the **Readiness Plan**: an architect's drawing set operated like a game level editor.
+
+- **Drawing set.** Two plans on one A1-style sheet (ground floor, second floor), drawn in centimetres at 1:50: wall poché with 45° hatch, door swings, window symbols, dimension lines with ticks, room codes and areas, a north arrow, a scale bar, and a title block (project, client = household, scenario · duration, scale, date, sheet, readiness %). Light theme is ink on paper, dark theme is a blueprint.
+- **Rooms by storage logic, not by use.** Kitchen & pantry (food, preserving: cool/dry/dark, off the floor, FIFO) · Water station in the dirty kitchen (drums on a pallet out of sunlight, treatment shelf) · Bedroom (medicine cabinet at 1.60 m, locked; baby shelf) · Bathroom (hygiene only; never medicine) · Sala (power station console) · Study (document safe, cash, radio) · Entryway (go-bag hooks by the exit) · Bodega/garage (tool wall, pet rack) · Safe room upstairs (stay-in shelf, security, extinguisher). Each room carries a storage guide: climate, 6 rules, 4 nevers, a check cadence, PH/WHO sources, and 3 facts drawn as CAD general notes.
+- **Blocks.** Every item is a CAD block: a top-down symbol on the plan, a front elevation in the section, with a ×qty badge. Shelves have slot grids; overflow stacks with an offset. Missing categories get a pulsing **revision cloud**, the architect's own "fix this" mark.
+- **Editor chrome.** Left: Layers (categories with eye toggles and fill). Right: Inspector (room code, climate, cadence, store-it-right sheet, recommended next with quantities and tips, item steppers, facts). Bottom: Palette (asset browser) and a status bar (sheet, zoom, cursor in metres, readiness, days, rev). Pan, wheel/pinch zoom, Esc/1/2 shortcuts. On phones the panels become tabs under the canvas.
+- **Section view.** Per room, each storage unit as an elevation at 1:20: posts, shelves, off-floor dimension, total height, FFL line, items on shelves, general notes column.
+- **Simulate.** Day-by-day burn-down per category for the chosen scenario and duration, with run-out events and "N of D days covered".
+- **Cinematic tour.** Camera dollies room to room with captions, then opens the simulation. Presentation mode (from /press) auto-stocks the plan while touring, for recordings.
+
+## 6a. The 3D house (set aside, still shipped behind a setting)
 
 - **Style:** low-poly, chunky, slightly toy-like. Flat-shaded materials with a warm palette, soft directional sun + hemisphere fill, contact shadow blob under the house. No textures to download; everything is geometry + vertex colour → instant load, works offline.
 - **Camera:** orthographic-feeling isometric (actually perspective with narrow FOV at 3/4 angle), gentle orbit damping, zooms into a room when you pick a category.
@@ -148,4 +160,5 @@ Every row carries `updatedAt` and, once signed in, `userId`. Sync is **last-writ
 - **Fonts**: Sora / Inter Tight / JetBrains Mono as subset variable woff2 (≈78 KB total), preloaded.
 - **Bundle**: landing route ships React + router + i18n only (three.js, Dexie and Supabase are all behind dynamic imports). Lighthouse mobile on the landing: Performance 91, Accessibility 98, Best practices 100, SEO 100.
 - **QR for the plan card** is a dependency-free encoder (`src/lib/qr.tsx`), byte mode, EC level L, versions 1–40.
+- **v2 (blueprint)**: the pan/zoom viewport is a 150-line custom SVG component (no map library); symbols use `vector-effect: non-scaling-stroke` so line weight stays crisp at any zoom; the whole drawing is data in `src/plan/floorplan.ts` (centimetres), so moving a shelf is a one-line change.
 - **Not done in v1** (next slices): payments (GCash/Maya via a PH gateway), Squads, multiple locations UI (data model supports `households` per user), printable PDF books, native wrappers.
