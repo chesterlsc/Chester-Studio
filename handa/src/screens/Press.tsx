@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Icon, TopBar, toast } from '@/ui';
@@ -7,11 +7,10 @@ import { useSession } from '@/store/useSession';
 import { usePresentation } from '@/store/usePresentation';
 import { addItems } from '@/store/useInventory';
 import { catalogById } from '@/domain/catalog';
-import type { InventoryRow } from '@/domain/types';
 import { HouseArt } from './HouseArt';
 import './screens.css';
 
-const HouseScene = lazy(() => import('@/scene/HouseScene').then((m) => ({ default: m.HouseScene })));
+const PlanHero = lazy(() => import('./PlanHero').then((m) => ({ default: m.PlanHero })));
 
 const DEMO: Array<[string, number]> = [
   ['water-bottle-1l', 12], ['water-gallon-5', 3], ['water-drum', 1], ['rice-kg', 5], ['canned-sardines', 12], ['canned-meat', 6], ['instant-noodles', 10], ['biscuits', 6],
@@ -32,14 +31,6 @@ export default function Press() {
   const nav = useNavigate();
   const session = useSession();
   const setPresentation = usePresentation((s) => s.set);
-  const [rows, setRows] = useState<InventoryRow[]>([]);
-
-  // device preview inventory (in-memory, not saved)
-  useEffect(() => {
-    const now = Date.now();
-    setRows(DEMO.slice(0, 18).map(([cid, qty], i) => { const item = catalogById(cid)!; return { id: `p${i}`, householdId: 'preview', catalogId: cid, qty, unit: item.unit, slot: 'pantry', createdAt: now + i, updatedAt: now } as InventoryRow; }));
-  }, []);
-  const pct = useMemo(() => ({ water: .8, food: .9, medicine: .6, power: .7, comms: .5, cash: .4, edc: .6, shelter: .3, hygiene: .5, baby: .5, pets: .2, security: .3, canning: .2 }), []);
 
   const demo = async () => {
     const id = await loadDemo();
@@ -78,10 +69,8 @@ export default function Press() {
 
       <div className="devices">
         <div className="device">
-          <div className="device__screen" style={{ background: '#1b2a4a' }}>
-            <Suspense fallback={null}>
-              <HouseScene scenario="typhoon" inventory={rows} categoryPct={pct} missing={['shelter', 'pets']} focusSlot={null} onSelectSlot={() => {}} reduced={false} bursts={[]} onBurstDone={() => {}} autoRotate />
-            </Suspense>
+          <div className="device__screen plan-hero" style={{ borderRadius: 0, border: 0 }}>
+            <Suspense fallback={null}><PlanHero /></Suspense>
           </div>
         </div>
         <div className="device">
