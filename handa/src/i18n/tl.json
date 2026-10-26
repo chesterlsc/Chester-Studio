@@ -574,6 +574,23 @@
     "hint": "I-tap ang kuwarto para pumasok. May pulang badge ang kuwartong kulang pa.",
     "hintRoom": "I-tap ang gamit sa ibaba para ilagay. I-tap ang nakalagay para tingnan.",
     "dayNight": "Ilaw",
-    "sound": "Tunog"
+    "sound": "Tunog",
+    "note": {
+      "pantry": "Malamig, tuyo, madilim. Pinakamababang shelf 15 cm mula sa sahig. Pinakaluma sa harap (FIFO).",
+      "preserve": "Asin, asukal, suka, mantika: nakasara at tuyo, malayo sa kalan.",
+      "waterPad": "Food-grade na drum sa pallet, may takip, malayo sa araw. I-rotate kada 6 buwan.",
+      "treatment": "Purification tabs at filter: tuyo, may petsa, kasama ang malinis na tasa.",
+      "medCabinet": "Mataas (1.60 m), naka-lock, malamig at tuyo. Hindi sa mahalumigmig na banyo.",
+      "babyShelf": "Formula nakasara, diaper tuyo. Comfort toy na abot ng matanda.",
+      "hygiene": "Sabon, tissue, bleach: tuyong shelf, nakatakip ang bleach at malayo sa bata.",
+      "powerStation": "Baterya sa pack, power bank sa 50–80 %, lamp naka-charge. Malayo sa init.",
+      "library": "ID sa waterproof pouch at litrato sa phone. Radyo na may ekstrang baterya. Cash na barya.",
+      "hooks": "Isang go-bag kada tao sa sariling hook, sa tabi ng labasan. Magaan para sa bata.",
+      "bench": "Kapote at bota sa ilalim, handang damputin.",
+      "toolWall": "Trapal, lubid, tape at tools sa pader, pre-cut na plywood na may label kada bintana.",
+      "petRack": "Pagkain ng alaga sa saradong lalagyan, tali at carrier sa tabi ng daan palabas.",
+      "stayIn": "Itaas: banig, blackout curtain, extinguisher sa tabi ng pinto, kandado sa pinto."
+    },
+    "info": "Info sa pag-iimbak"
   }
 }

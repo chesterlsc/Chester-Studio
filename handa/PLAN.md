@@ -111,6 +111,7 @@ The house is a cut-away dollhouse (3 floors × 3 rooms) drawn as cartoon vector 
 - **Game layer**: XP (10 per placement, 15 for a first visit, 25–210 per mission, 100 for finishing), 10 levels, per-room missions generated from the readiness gaps (stock N × item, complete category, finish room), "Next best move" cards, level-up and room-complete celebrations with confetti, haptics, sounds.
 - **Popups that teach**: a "Common mistake" card on first entering a room (from the room's *never* list, tap for the full house rules), a "Storage tip" the first time an item is placed, a "Did you know" fact when a category completes, and a rules sheet per room (climate, 6 rules, nevers, cadence, facts, sources).
 - **Survival run**: the day-by-day scenario simulation, reachable from the map and the room.
+- **AA art pass (v3.1)**: one-point-perspective rooms with ceiling/floor AO, window light shafts and lamp pools, weather colour grade, film grain and vignette, dust motes; furniture drawn with top/side faces and shadows; items as shaded sprites with proper-storage variants (six-pack water, can rows, battery packs, document pouches, drums on pallets, hung go-bags); in-scene signage (FIFO, "no meds in the bathroom", 1.60 m cabinet height) and an info toggle that annotates every storage unit with its storage rule.
 - **Set aside, still shipped**: Blueprint editor (v2) and the 3D house (v1) under Me → House view.
 
 ## 6b. The blueprint editor (v2, set aside)

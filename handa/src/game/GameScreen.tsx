@@ -36,7 +36,7 @@ function unitFor(item: CatalogItem): Unit {
   const room = CATEGORY_ROOM[item.category]; const L = LAYOUTS[room];
   const pref = L.unitFor?.[item.category];
   let u = pref ? L.units.find((x) => x.id === pref) : undefined;
-  if (room === 'water') u = item.shape === 'drum' || item.shape === 'gallon' ? L.units[0] : L.units[1];
+  if (room === 'water') u = ['drum', 'gallon', 'bottle'].includes(item.shape) ? L.units[0] : L.units[1];
   if (room === 'entry') u = item.shape === 'bag' || item.category === 'edc' && ['rain-gear', 'go-bag'].includes(item.id) ? L.units[0] : L.units[1];
   return u ?? L.units[0];
 }
@@ -63,6 +63,7 @@ export default function GameScreen() {
   const [kitsOpen, setKitsOpen] = useState(false);
   const [hintSeen, setHintSeen] = useState(false);
   const [lightsToggle, setLightsToggle] = useState(true);
+  const [info, setInfo] = useState(false);
   const stage = useRef<HTMLDivElement>(null);
   const prevDone = useRef<Set<string> | null>(null);
   const prevLevel = useRef<number | null>(null);
@@ -214,7 +215,7 @@ export default function GameScreen() {
 
       <div className={`g__stage ${room ? 'g__stage--room' : ''}`} ref={stage} onPointerDown={() => setHintSeen(true)}>
         {room ? (
-          <RoomScene room={room} placed={placedByRoom[room] ?? []} weather={weather} lightsOn={lightsOn} flicker={flicker} freshKeys={fresh} selectedKey={inspect?.key ?? null} highlightUnit={cat ? unitFor(items.find((i) => i.category === cat) ?? items[0])?.id : null} accent={ROOMS[room].hue} onTapItem={(p) => { sfx.tap(); setInspect(p); }} unitLabel={(u) => t(`game.unit.${u.label}`)} />
+          <RoomScene room={room} placed={placedByRoom[room] ?? []} weather={weather} lightsOn={lightsOn} flicker={flicker} freshKeys={fresh} selectedKey={inspect?.key ?? null} highlightUnit={cat ? unitFor(items.find((i) => i.category === cat) ?? items[0])?.id : null} accent={ROOMS[room].hue} onTapItem={(p) => { sfx.tap(); setInspect(p); }} unitLabel={(u) => t(`game.unit.${u.label}`)} unitNote={(u) => t(`game.note.${u.note}`)} info={info} />
         ) : (
           <HouseMap placedByRoom={placedByRoom} roomPct={roomPct} missingCount={missingCount} weather={weather} lightsOn={lightsOn} flicker={flicker} onSelect={enterRoom} label={(r) => t(`room.${r}`)} />
         )}
@@ -225,6 +226,7 @@ export default function GameScreen() {
         )}
         <div className="g__side">
           {room && <Button iconOnly icon="book" size="sm" aria-label={t('game.rules')} onClick={() => setRulesOpen(true)} />}
+          {room && <Button iconOnly icon="info" size="sm" aria-label={t('game.info')} aria-pressed={info} className={info ? 'btn--on' : ''} onClick={() => setInfo((v) => !v)} />}
           <Button iconOnly icon="flag" size="sm" aria-label={t('game.missions')} onClick={() => setMissionsOpen(true)} />
           <Button iconOnly icon="clock" size="sm" aria-label={t('game.survival')} onClick={() => setSimOpen(true)} />
           <Button iconOnly icon={lightsToggle ? 'sun' : 'moon'} size="sm" aria-label={t('game.dayNight')} onClick={() => setLightsToggle((v) => !v)} />
@@ -234,7 +236,7 @@ export default function GameScreen() {
           <div className={`pc pc--${card.kind}`} role="status" key={card.title + card.body} onClick={() => { if (room && card.kind !== 'tip') { setCard(null); setRulesOpen(true); } }}>
             <div className="pc__i"><Icon name={card.icon} size={22} /></div>
             <div><div className="pc__k">{t(card.kind === 'tip' ? 'game.tip' : card.kind === 'fact' ? 'game.fact' : card.kind === 'mistake' ? 'game.mistake' : 'game.categoryDone', { cat: '' })}</div><div className="pc__t">{card.title}</div><div className="pc__b">{card.body}</div></div>
-            <button type="button" className="pc__x" aria-label={t('common.close')} onClick={() => setCard(null)}><Icon name="close" size={18} /></button>
+            <button type="button" className="pc__x" aria-label={t('common.close')} onClick={(e) => { e.stopPropagation(); setCard(null); }}><Icon name="close" size={18} /></button>
           </div>
         )}
         {confetti > 0 && motion && <div className="confetti" key={confetti}>{Array.from({ length: 60 }).map((_, i) => <i key={i} style={{ left: `${(i * 37) % 100}%`, background: ['#ff6a1a', '#3ddc97', '#ffc247', '#5ea8ff', '#ff6f8d', '#fff'][i % 6], animationDelay: `${(i * 41) % 600}ms`, transform: `rotate(${i * 23}deg)` }} />)}</div>}

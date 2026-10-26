@@ -31,6 +31,8 @@
 .lamp--flicker { animation: flick 2.4s steps(1) infinite; }
 @keyframes flick { 0%, 100% { opacity: 1; } 12% { opacity: .2; } 14% { opacity: 1; } 48% { opacity: .5; } 52% { opacity: 1; } 80% { opacity: .1; } 82% { opacity: 1; } }
 .wx-drop { animation: drop 1s linear infinite; }
+.mote { animation: mote 6s ease-in-out infinite; }
+@keyframes mote { 0%, 100% { transform: translate(0, 0); opacity: .2; } 50% { transform: translate(10px, 14px); opacity: .7; } }
 @keyframes drop { to { transform: translate(-30px, 200px); } }
 .wx-star { animation: pulse 1.6s ease-in-out infinite; }
 .wx-water { animation: wave 2.4s ease-in-out infinite; }
@@ -82,6 +84,8 @@
 .g__roomname .pill { background: rgba(5,7,12,.6); color: #fff; padding: 6px 12px; border-radius: var(--r-pill); font-weight: 700; backdrop-filter: blur(6px); display: inline-flex; align-items: center; gap: 8px; }
 .g__side { position: absolute; right: var(--s-3); top: var(--s-3); z-index: 4; display: flex; flex-direction: column; gap: 6px; }
 .g__side .btn { background: rgba(5,7,12,.6); color: #fff; backdrop-filter: blur(6px); border-color: transparent; }
+.g__side .btn--on { background: var(--brand); color: var(--brand-ink); }
+.callout { animation: pc-in var(--t-slow) var(--ease-spring) both; }
 
 /* toast-card popups (facts / tips / mistakes) */
 .pc { position: absolute; left: 50%; transform: translateX(-50%); bottom: var(--s-4); z-index: 30; width: min(92%, 440px); background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-3) var(--s-4); box-shadow: var(--shadow-2); display: grid; grid-template-columns: 44px 1fr auto; gap: var(--s-3); align-items: start; animation: pc-in var(--t-slow) var(--ease-spring) both; }

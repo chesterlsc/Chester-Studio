@@ -20,7 +20,7 @@ export function GameHero() {
       const item = catalogById(cid); if (!item) continue;
       const room = CATEGORY_ROOM[item.category]; const L = LAYOUTS[room];
       const pref = L.unitFor?.[item.category]; let u = (pref && L.units.find((x) => x.id === pref)) || L.units[0];
-      if (room === 'water') u = item.shape === 'drum' || item.shape === 'gallon' ? L.units[0] : L.units[1];
+      if (room === 'water') u = ['drum', 'gallon', 'bottle'].includes(item.shape) ? L.units[0] : L.units[1];
       const slot = count.get(u.id) ?? 0; count.set(u.id, slot + 1);
       (o[room] ??= []).push({ key: cid, catalogId: cid, shape: item.shape, category: item.category, color: CAT_COLOR[item.category], unitId: u.id, slot, qty, name: pick(item.name) });
     }

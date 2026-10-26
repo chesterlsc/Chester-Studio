@@ -574,6 +574,23 @@
     "hint": "Tap a room to go inside. Rooms with a red badge still need supplies.",
     "hintRoom": "Tap an item below to place it. Tap a placed item to inspect it.",
     "dayNight": "Lights",
-    "sound": "Sound"
+    "sound": "Sound",
+    "note": {
+      "pantry": "Cool, dry, dark. Lowest shelf 15 cm off the floor. Oldest at the front (FIFO).",
+      "preserve": "Salt, sugar, vinegar, oil: sealed and dry, away from the stove.",
+      "waterPad": "Food-grade drums on a pallet, lids on, out of sunlight. Rotate every 6 months.",
+      "treatment": "Purification tabs and filters: dry, dated, with the clean cups.",
+      "medCabinet": "High (1.60 m), locked, cool and dry. Never in the humid bathroom.",
+      "babyShelf": "Formula sealed, diapers dry. Comfort toy within reach of a grown-up.",
+      "hygiene": "Soap, tissue, bleach: dry shelf, bleach capped and away from kids.",
+      "powerStation": "Batteries in the pack, power banks at 50–80 %, lamps charged. Away from heat.",
+      "library": "IDs in a waterproof pouch plus phone photos. Radio with spare batteries. Cash in small bills.",
+      "hooks": "One go-bag per person on its own hook, by the exit. Kids carry light bags.",
+      "bench": "Raincoats and boots underneath, ready to grab.",
+      "toolWall": "Tarp, rope, tape and tools on the wall, pre-cut boards labelled per window.",
+      "petRack": "Pet food in a sealed bin, leash and carrier next to the exit route.",
+      "stayIn": "Upper floor: sleeping mats, blackout curtain, extinguisher by the door, lock on the door."
+    },
+    "info": "Storage info"
   }
 }
