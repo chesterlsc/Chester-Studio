@@ -5,7 +5,7 @@ import { Button, Chip, Icon } from '@/ui';
 import { SCENARIO_ORDER } from '@/domain/scenarios';
 import { useSession } from '@/store/useSession';
 import { useSettings } from '@/store/useSettings';
-const PlanHero = lazy(() => import('./PlanHero').then((m) => ({ default: m.PlanHero })));
+const GameHero = lazy(() => import('./GameHero').then((m) => ({ default: m.GameHero })));
 
 /** The blueprint hero is heavy-ish SVG; mount it after first paint so the landing stays instant. */
 function useIdle(): boolean {
@@ -60,7 +60,7 @@ export default function Landing() {
             <span><Icon name="lock" size={16} />{t('landing.trust3')}</span>
           </div>
         </div>
-        <div className="hero__art pop"><div className="plan-hero">{idle && <Suspense fallback={null}><PlanHero /></Suspense>}</div></div>
+        <div className="hero__art pop"><div className="game-hero__box">{idle && <Suspense fallback={null}><GameHero /></Suspense>}</div></div>
       </section>
 
       {runId && scenario && (

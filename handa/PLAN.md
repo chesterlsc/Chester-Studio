@@ -103,7 +103,17 @@ Every row carries `updatedAt` and, once signed in, `userId`. Sync is **last-writ
 - Readiness % = weighted average of per-category coverage, weights from the scenario (e.g. Flood weights water+docs+shelter; Brownout weights power+food+cash).
 - "Days you can last" = min over critical categories of covered person-days ÷ people.
 
-## 6. The storage view: a blueprint you edit like a level (v2, replaces the 3D house as default)
+## 6. The storage game: illustrated rooms (v3, the default)
+
+The house is a cut-away dollhouse (3 floors × 3 rooms) drawn as cartoon vector scenes. Tap a room to go inside: a full illustrated room with its own furniture, window weather, lamp glow (brownout turns the lights off and your placed lamps light the room), and storage units with slot grids. Items are illustrated sprites that fly from the tray onto the shelf with a bounce, stack with ×counters, and open an inspect sheet (quantity, expiry, where it should live, storage tip, where to buy).
+
+- **Rooms by storage science**: Kitchen & pantry, Water station, Bedroom (medicine cabinet at 1.60 m, locked; baby shelf), Bathroom (hygiene only), Sala (power station), Study/library (documents, cash, radio), Entryway (go-bag hooks), Bodega/garage (tool wall, pet rack), Safe room upstairs (stay-in shelf, boarded window, blackout curtain).
+- **Game layer**: XP (10 per placement, 15 for a first visit, 25–210 per mission, 100 for finishing), 10 levels, per-room missions generated from the readiness gaps (stock N × item, complete category, finish room), "Next best move" cards, level-up and room-complete celebrations with confetti, haptics, sounds.
+- **Popups that teach**: a "Common mistake" card on first entering a room (from the room's *never* list, tap for the full house rules), a "Storage tip" the first time an item is placed, a "Did you know" fact when a category completes, and a rules sheet per room (climate, 6 rules, nevers, cadence, facts, sources).
+- **Survival run**: the day-by-day scenario simulation, reachable from the map and the room.
+- **Set aside, still shipped**: Blueprint editor (v2) and the 3D house (v1) under Me → House view.
+
+## 6b. The blueprint editor (v2, set aside)
 
 The 3D house (section 6a below) is kept behind **Me → House view → 3D (experimental)**. The default is now the **Readiness Plan**: an architect's drawing set operated like a game level editor.
 

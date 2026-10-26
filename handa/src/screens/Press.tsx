@@ -10,7 +10,7 @@ import { catalogById } from '@/domain/catalog';
 import { HouseArt } from './HouseArt';
 import './screens.css';
 
-const PlanHero = lazy(() => import('./PlanHero').then((m) => ({ default: m.PlanHero })));
+const GameHero = lazy(() => import('./GameHero').then((m) => ({ default: m.GameHero })));
 
 const DEMO: Array<[string, number]> = [
   ['water-bottle-1l', 12], ['water-gallon-5', 3], ['water-drum', 1], ['rice-kg', 5], ['canned-sardines', 12], ['canned-meat', 6], ['instant-noodles', 10], ['biscuits', 6],
@@ -69,8 +69,8 @@ export default function Press() {
 
       <div className="devices">
         <div className="device">
-          <div className="device__screen plan-hero" style={{ borderRadius: 0, border: 0 }}>
-            <Suspense fallback={null}><PlanHero /></Suspense>
+          <div className="device__screen game-hero__box" style={{ borderRadius: 0, aspectRatio: 'auto', display: 'grid', placeItems: 'center' }}>
+            <Suspense fallback={null}><GameHero /></Suspense>
           </div>
         </div>
         <div className="device">

@@ -17,8 +17,8 @@ interface Settings {
   runsCompleted: number;
   streakDays: number;
   lastActiveDay?: string;
-  houseView: 'plan' | '3d';
-  setHouseView: (v: 'plan' | '3d') => void;
+  houseView: 'game' | 'plan' | '3d';
+  setHouseView: (v: 'game' | 'plan' | '3d') => void;
   setLang: (l: Lang) => void;
   setTheme: (t: Theme) => void;
   toggleSound: () => void;
@@ -53,7 +53,7 @@ export const useSettings = create<Settings>()(
       surveyDone: false,
       runsCompleted: 0,
       streakDays: 0,
-      houseView: 'plan',
+      houseView: 'game',
       setHouseView: (houseView) => set({ houseView }),
       setLang: (lang) => { setLang(lang); set({ lang }); },
       setTheme: (theme) => { set({ theme }); applyDom({ ...get(), theme }); },
