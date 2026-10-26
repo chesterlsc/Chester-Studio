@@ -13,7 +13,9 @@ function useIdle(): boolean {
   useEffect(() => {
     const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
     const go = () => setReady(true);
-    if (w.requestIdleCallback) w.requestIdleCallback(go, { timeout: 1200 }); else setTimeout(go, 200);
+    // decorative, so it waits for a quiet moment after first paint
+    const id = setTimeout(() => { if (w.requestIdleCallback) w.requestIdleCallback(go, { timeout: 1500 }); else go(); }, 2200);
+    return () => clearTimeout(id);
   }, []);
   return ready;
 }
