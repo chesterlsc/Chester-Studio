@@ -24,7 +24,7 @@ import type { IconName } from '@/design/icons/names';
 import { LAYOUTS, slotAt, type Unit } from './layouts';
 import { RoomScene, type PlacedSprite } from './RoomScene';
 import { HouseMap } from './HouseMap';
-import { ItemArt, ItemHero } from './ItemArt';
+import { ItemArt, ItemHero, use3dArt } from './ItemArt';
 import { missionsFor, roomItems, roomMissions, type Mission } from './missions';
 import { levelFor, useProgress } from './progress';
 import './game.css';
@@ -57,6 +57,7 @@ export default function GameScreen() {
   const [cele, setCele] = useState<{ title: string; body: string; icon: IconName } | null>(null);
   const [confetti, setConfetti] = useState(0);
   const [inspect, setInspect] = useState<PlacedSprite | null>(null);
+  const art3d = use3dArt();
   const [missionsOpen, setMissionsOpen] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
   const [simOpen, setSimOpen] = useState(false);
@@ -215,9 +216,9 @@ export default function GameScreen() {
 
       <div className={`g__stage ${room ? 'g__stage--room' : ''}`} ref={stage} onPointerDown={() => setHintSeen(true)}>
         {room ? (
-          <RoomScene room={room} placed={placedByRoom[room] ?? []} weather={weather} lightsOn={lightsOn} flicker={flicker} freshKeys={fresh} selectedKey={inspect?.key ?? null} highlightUnit={cat ? unitFor(items.find((i) => i.category === cat) ?? items[0])?.id : null} accent={ROOMS[room].hue} onTapItem={(p) => { sfx.tap(); setInspect(p); }} unitLabel={(u) => t(`game.unit.${u.label}`)} unitNote={(u) => t(`game.note.${u.note}`)} info={info} />
+          <RoomScene room={room} placed={placedByRoom[room] ?? []} weather={weather} lightsOn={lightsOn} flicker={flicker} freshKeys={fresh} selectedKey={inspect?.key ?? null} highlightUnit={cat ? unitFor(items.find((i) => i.category === cat) ?? items[0])?.id : null} accent={ROOMS[room].hue} onTapItem={(p) => { sfx.tap(); setInspect(p); }} unitLabel={(u) => t(`game.unit.${u.label}`)} unitNote={(u) => t(`game.note.${u.note}`)} info={info} art={art3d ? '3d' : 'vector'} />
         ) : (
-          <HouseMap placedByRoom={placedByRoom} roomPct={roomPct} missingCount={missingCount} weather={weather} lightsOn={lightsOn} flicker={flicker} onSelect={enterRoom} label={(r) => t(`room.${r}`)} />
+          <HouseMap placedByRoom={placedByRoom} roomPct={roomPct} missingCount={missingCount} weather={weather} lightsOn={lightsOn} flicker={flicker} onSelect={enterRoom} art={art3d ? '3d' : 'vector'} label={(r) => t(`room.${r}`)} />
         )}
         {room && (
           <div className="g__roomname">

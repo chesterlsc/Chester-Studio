@@ -18,6 +18,7 @@ pnpm dev          # http://localhost:5173
 pnpm build        # type-check + production build → dist/
 pnpm preview      # serve dist/ on :4173
 pnpm test         # vitest (readiness math, QR encoder)
+pnpm models       # re-render the cartoon 3D item models → public/models/*.glb + public/sprites/*.webp (Playwright, ~40 s)
 ```
 
 Node 22+. pnpm 10 (npm works too, but the lockfile is pnpm's).
@@ -83,7 +84,9 @@ src/design     tokens.css (color/type/space/radius/motion), global.css, icons/ (
 src/ui         Button, Meter, Ring, Chip, Stepper, Segmented, Toggle, Sheet, Toast, Empty, Hint, TopBar
 src/domain     types, scenarios (weights + weather), readiness math, catalog (70 items), kits, tiers, badges
 src/content    guides (21, EN+TL, quizzes, sources), hotlines, affiliates
-src/game       THE ROOM GAME (default): layouts (room scenes + slot grids), Furniture, Sprites, RoomScene, HouseMap (dollhouse), missions, progress (XP/levels), GameScreen
+src/game       THE ROOM GAME (default): layouts (room scenes + slot grids), Furniture, Sprites (vector fallback), RoomScene, HouseMap (dollhouse), ItemArt (3D sprite / live model), missions, progress (XP/levels), GameScreen
+src/models     cartoon 3D items: build.ts (procedural low-poly models, toon materials, ink outlines), ItemViewer (drag-to-rotate GLB viewer), manifest (generated), useSprite
+tools/render   dev-only renderer page used by scripts/build-models.mjs to export GLBs and WebP sprites
 src/plan       the blueprint editor (set aside behind Me → House view → Blueprint): floorplan data (cm), Blueprint (plan), Elevation (section), Symbols (CAD blocks), Viewport (pan/zoom), simulation + SimChart, PlanScreen
 src/scene      the 3D house (set aside behind Me → House view → 3D): House, ItemMesh, Items, Weather, Celebrate
 src/screens    Landing, Play, HouseScreen, Score, Learn, LearnDeck, Hotlines, Stock, PlanCard, Me, Pricing, Survey, Press

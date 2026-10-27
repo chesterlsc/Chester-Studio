@@ -28,7 +28,7 @@ export function GameHero() {
   }, []);
   return (
     <div className="game-hero" aria-hidden="true">
-      <HouseMap placedByRoom={placedByRoom} roomPct={{ kitchen: .7, water: .8, bedroom: .6, bathroom: .4, sala: .75, study: .5, entry: .3, bodega: .35, saferoom: .2 }} missingCount={{ entry: 1, bodega: 1, saferoom: 2 }} weather="rain" lightsOn onSelect={() => {}} label={(r) => t(`room.${r}`)} />
+      <HouseMap placedByRoom={placedByRoom} roomPct={{ kitchen: .7, water: .8, bedroom: .6, bathroom: .4, sala: .75, study: .5, entry: .3, bodega: .35, saferoom: .2 }} missingCount={{ entry: 1, bodega: 1, saferoom: 2 }} weather="dry" lightsOn onSelect={() => {}} label={(r) => t(`room.${r}`)} />
     </div>
   );
 }
