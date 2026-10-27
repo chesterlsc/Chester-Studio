@@ -87,7 +87,7 @@ export const LAYOUTS: Record<RoomId, RoomLayout> = {
       { id: 'baby-shelf', kind: 'shelf', x: 80, y: 300, w: 250, h: 170, cols: 3, rows: 2, label: 'babyShelf', note: 'babyShelf' },
     ],
     unitFor: { baby: 'baby-shelf', medicine: 'med-cabinet' },
-    signs: [{ x: 400, y: 252, text: 'LOCKED · KIDS CAN\'T REACH', color: '#ff9fb1' }],
+    signs: [{ x: 330, y: 252, text: 'LOCKED · KIDS CAN\'T REACH', color: '#ff9fb1' }],
   },
   bathroom: {
     id: 'bathroom', wall: '#c9f0ea', wallDark: '#a4e0d6', floor: '#e6ebe6', floorDark: '#b8c6c2', trim: '#f2fffb',

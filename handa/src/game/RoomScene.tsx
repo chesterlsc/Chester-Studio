@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import type { CategoryId, ItemShape } from '@/domain/types';
 import type { RoomId } from '@/domain/rooms';
-import { LAYOUTS, slotAt, type Unit } from './layouts';
+import { LAYOUTS, slotAt, type Unit, type Win } from './layouts';
 import { FurnitureGlyph, Lamp, UnitGlyph, Window } from './Furniture';
 import { spriteFor, spriteUrl } from '@/models/useSprite';
 import { GameDefs, Sprite, INK, SH } from './Sprites';
@@ -27,6 +27,8 @@ export interface RoomSceneProps {
   unitNote?: (u: Unit) => string;
   /** Item art: pre-rendered 3D cartoon sprites ('3d') or vector sprites (default). */
   art?: '3d' | 'vector';
+  /** Phone-sized stage: scale up labels, signs and callouts so they stay legible. */
+  compact?: boolean;
 }
 
 /**
@@ -68,14 +70,47 @@ function Art({ art, catalogId, shape, color, size, x, y, qty, shadow = true, cla
   );
 }
 
-export const RoomScene = memo(function RoomScene({ room, placed, weather, lightsOn, flicker, mini, freshKeys, selectedKey, highlightUnit, accent, info, onTapItem, onTapUnit, unitLabel, unitNote, art }: RoomSceneProps) {
+/**
+ * Everything that moves continuously (rain, stars, flood water, dust motes, lamp flicker,
+ * the pulsing unit ring and the spinning selection ring) lives in this thin overlay SVG,
+ * NOT in the room itself. The room is hundreds of inked paths: one animated child inside it
+ * would re-rasterise its tiles every frame. The overlay has ~40 light elements, so it is
+ * cheap to repaint, and the room below is painted once and cached by the compositor.
+ */
+function RoomFx({ room, windows, weather, lightsOn, flicker, daylight, ring, sel }: { room: RoomId; windows: Win[]; weather: string; lightsOn: boolean; flicker?: boolean; daylight: boolean; ring: Unit | null; sel: { x: number; y: number; r: number } | null }) {
+  const rain = weather === 'rain' || weather === 'flood';
+  const night = weather === 'dark' || weather === 'dusk';
+  return (
+    <svg viewBox={`0 0 ${P.W} ${P.H}`} preserveAspectRatio="xMidYMid meet" className="room room--fx" aria-hidden="true">
+      <defs>{windows.map((w, i) => <clipPath key={i} id={`fx-${room}-${i}`}><rect x={w.x} y={w.y} width={w.w} height={w.h} rx={6} /></clipPath>)}</defs>
+      {windows.map((w, i) => (
+        <g key={i} clipPath={`url(#fx-${room}-${i})`}>
+          {rain && Array.from({ length: 14 }).map((_, k) => <path key={k} className="wx-drop" style={{ animationDelay: `${(k * 137) % 900}ms` }} d={`M${w.x + 6 + k * (w.w / 14)} ${w.y - 20}l-8 30`} stroke="#dff1ff" strokeWidth={2.5} strokeLinecap="round" opacity=".8" />)}
+          {night && Array.from({ length: 10 }).map((_, k) => <circle key={k} cx={w.x + ((k * 61) % w.w)} cy={w.y + ((k * 37) % (w.h * .6))} r={1.8} fill="#fff" className="wx-star" style={{ animationDelay: `${(k * 211) % 1500}ms` }} />)}
+          {weather === 'flood' && <rect x={w.x} y={w.y + w.h * .7} width={w.w} height={w.h * .3} fill="#3d8fb5" opacity=".85" className="wx-water" />}
+        </g>
+      ))}
+      {daylight && windows.map((w, i) => Array.from({ length: 8 }).map((_, k) => <circle key={`m${i}${k}`} className="mote" style={{ animationDelay: `${(k * 331) % 3000}ms`, animationDuration: `${5 + (k % 4)}s` }} cx={w.x + 20 + ((k * 97) % (w.w + 160))} cy={w.y + 40 + ((k * 61) % 360)} r={1.8} fill="#fff" opacity=".55" />))}
+      {flicker && lightsOn && <rect className="fx-flicker" x={0} y={0} width={P.W} height={P.H} fill="#160c24" />}
+      {ring && <rect x={ring.x - 10} y={ring.y - 10} width={ring.w + 20} height={ring.h + 20} rx={14} fill="none" stroke="currentColor" strokeWidth={5} className="unit__ring" />}
+      {sel && <circle cx={sel.x} cy={sel.y} r={sel.r} fill="none" stroke="#fff" strokeWidth={5} strokeDasharray="8 6" className="sprite__ring" />}
+    </svg>
+  );
+}
+
+export const RoomScene = memo(function RoomScene({ room, placed, weather, lightsOn, flicker, mini, freshKeys, selectedKey, highlightUnit, accent, info, onTapItem, onTapUnit, unitLabel, unitNote, art, compact }: RoomSceneProps) {
   const L = LAYOUTS[room];
   const byUnit = useMemo(() => { const m = new Map<string, PlacedSprite[]>(); for (const p of placed) m.set(p.unitId, [...(m.get(p.unitId) ?? []), p]); return m; }, [placed]);
   const lamps = placed.filter((p) => p.shape === 'lamp');
   const daylight = !['dark', 'dusk'].includes(weather);
   const grade: Record<string, string> = { rain: 'rgba(70,110,170,.14)', flood: 'rgba(60,120,150,.14)', heat: 'rgba(255,160,60,.16)', dark: 'rgba(40,30,80,.3)', dry: 'rgba(255,240,210,.1)', shake: 'rgba(120,100,70,.12)', dusk: 'rgba(140,70,160,.2)', fog: 'rgba(60,140,100,.16)' };
   const floorLine = 'rgba(42,24,18,.22)';
-  return (
+  const tk = compact ? 1.6 : 1; // text scale for phone-sized stages
+  const ringUnit = !mini && highlightUnit ? L.units.find((u) => u.id === highlightUnit) ?? null : null;
+  const selP = !mini && selectedKey ? placed.find((p) => p.key === selectedKey) : undefined;
+  const selU = selP ? L.units.find((u) => u.id === selP.unitId) : undefined;
+  const selPos = selP && selU ? (() => { const s = slotAt(selU, selP.slot); const size = selU.kind === 'floor' ? Math.min(s.h * 1.1, s.w * 1.25) : selU.kind === 'hooks' ? Math.min(s.h * .9, s.w * 1.1) : Math.min(s.h * 1.05, s.w * 1.28); const k = Math.floor(selP.slot / (selU.cols * selU.rows)); return { x: s.x + k * 8, y: s.y - k * 6 - size * .5, r: size * .62 }; })() : null;
+  const scene = (
     <svg viewBox={`0 0 ${P.W} ${P.H}`} preserveAspectRatio={mini ? 'xMidYMid slice' : 'xMidYMid meet'} className={`room ${mini ? 'room--mini' : ''}`} role={mini ? undefined : 'img'}>
       {!mini && <GameDefs />}
       {/* ceiling */}
@@ -103,11 +138,10 @@ export const RoomScene = memo(function RoomScene({ room, placed, weather, lights
       {/* outlet + light switch */}
       <g className="fx" transform={`translate(${P.x1 - 64} ${P.y1 - 44})`}><rect width={26} height={18} rx={4} fill="#fff8ec" stroke={INK} strokeWidth={2} /><circle cx={8} cy={9} r={2.2} fill={INK} /><circle cx={18} cy={9} r={2.2} fill={INK} /></g>
       {/* windows + light shafts */}
-      {L.windows.map((w, i) => <Window key={i} w={w} weather={weather} lightsOn={lightsOn} />)}
-      {daylight && !mini && L.windows.map((w, i) => Array.from({ length: 10 }).map((_, k) => <circle key={`m${i}${k}`} className="mote" style={{ animationDelay: `${(k * 331) % 3000}ms`, animationDuration: `${5 + (k % 4)}s` }} cx={w.x + 20 + ((k * 97) % (w.w + 160))} cy={w.y + 40 + ((k * 61) % 360)} r={1.8} fill="#fff" opacity=".6" />))}
+      {L.windows.map((w, i) => <Window key={i} w={w} weather={weather} lightsOn={lightsOn} fx={!!mini} />)}
       {daylight && L.windows.map((w, i) => <path key={`s${i}`} d={`M${w.x} ${w.y}L${w.x + w.w} ${w.y}L${w.x + w.w + 220} ${P.H}L${w.x - 60} ${P.H}z`} fill="url(#winshaft)" opacity={lightsOn ? .9 : .5} style={{ pointerEvents: 'none' }} />)}
       {/* lamps behind furniture */}
-      {L.lamps.map((l, i) => <Lamp key={i} x={l.x} y={l.y} on={lightsOn} flicker={flicker} />)}
+      {L.lamps.map((l, i) => <Lamp key={i} x={l.x} y={l.y} on={lightsOn} />)}
       {lightsOn && L.lamps.map((l, i) => <ellipse key={`pool${i}`} cx={l.x} cy={P.H - 70} rx={360} ry={90} fill="url(#lamppool)" style={{ pointerEvents: 'none' }} />)}
       {/* furniture + props */}
       {L.furniture.map((f, i) => <FurnitureGlyph key={i} f={f} />)}
@@ -115,8 +149,7 @@ export const RoomScene = memo(function RoomScene({ room, placed, weather, lights
       {L.units.map((u) => (
         <g key={u.id} className={`unit ${highlightUnit === u.id ? 'unit--hl' : ''}`} onClick={() => onTapUnit?.(u)}>
           <UnitGlyph u={u} accent={accent} />
-          {highlightUnit === u.id && <rect x={u.x - 10} y={u.y - 10} width={u.w + 20} height={u.h + 20} rx={14} fill="none" stroke={accent} strokeWidth={6} className="unit__ring" />}
-          {!mini && unitLabel && <g transform={`translate(${u.x} ${u.y - 20})`}><rect x={0} y={-16} width={unitLabel(u).length * 7.2 + 24} height={26} rx={13} fill="#fff8ec" stroke={INK} strokeWidth={2.5} /><text x={12} y={2} fontSize={12.5} fontFamily="Sora, system-ui" fontWeight={700} fill={INK} letterSpacing=".01em">{unitLabel(u)}</text></g>}
+          {!mini && unitLabel && <g transform={`translate(${u.x} ${u.y - 20}) scale(${tk})`}><rect x={0} y={-16} width={unitLabel(u).length * 7.2 + 24} height={26} rx={13} fill="#fff8ec" stroke={INK} strokeWidth={2.5} /><text x={12} y={2} fontSize={12.5} fontFamily="Sora, system-ui" fontWeight={700} fill={INK} letterSpacing=".01em">{unitLabel(u)}</text></g>}
           {(byUnit.get(u.id) ?? []).map((p) => {
             const s = slotAt(u, p.slot);
             const size = u.kind === 'floor' ? Math.min(s.h * 1.1, s.w * 1.25) : u.kind === 'hooks' ? Math.min(s.h * .9, s.w * 1.1) : Math.min(s.h * 1.05, s.w * 1.28);
@@ -134,7 +167,6 @@ export const RoomScene = memo(function RoomScene({ room, placed, weather, lights
                 {!hung && u.kind !== 'floor' && p.qty >= 2 && !['bottle', 'can'].includes(p.shape) && <Art art={art} fit={fit} catalogId={p.catalogId} shape={p.shape} color={p.color} size={size * .96} x={x + size * .18} y={y - 3} className="sprite__ghost" qty={1} />}
                 {!hung && <Art art={art} fit={fit} catalogId={p.catalogId} shape={p.shape} color={p.color} size={size} x={x} y={y} qty={p.qty} />}
                 {p.qty > 1 && <g transform={`translate(${x + size * .4} ${y - size * .58})`}><rect x={-18} y={-12} width={36} height={23} rx={11.5} fill={INK} /><rect x={-18} y={-12} width={36} height={23} rx={11.5} fill="none" stroke={p.color} strokeWidth={2.5} /><text y={4.5} textAnchor="middle" fontSize={12} fontWeight={800} fontFamily="JetBrains Mono, monospace" fill="#fff">×{p.qty > 99 ? '99+' : p.qty}</text></g>}
-                {sel && <circle cx={x} cy={y} r={size * .62} fill="none" stroke="#fff" strokeWidth={5} strokeDasharray="8 6" className="sprite__ring" />}
               </g>
             );
           })}
@@ -142,26 +174,34 @@ export const RoomScene = memo(function RoomScene({ room, placed, weather, lights
       ))}
       {/* signage: small stickers with the storage rule in one line */}
       {!mini && L.signs?.map((sg, i) => (
-        <g key={`sign${i}`} transform={`translate(${sg.x} ${sg.y})`} style={{ pointerEvents: 'none' }}>
+        <g key={`sign${i}`} transform={`translate(${sg.x} ${sg.y}) scale(${tk})`} style={{ pointerEvents: 'none' }}>
           <rect x={0} y={0} width={sg.text.length * 6.4 + 16} height={21} rx={5} fill={sg.color ?? '#ffc247'} stroke={INK} strokeWidth={2.5} />
           <rect x={3} y={14} width={sg.text.length * 6.4 + 10} height={4} rx={2} fill={SH} />
           <text x={8} y={14.5} fontSize={10.5} fontFamily="JetBrains Mono, monospace" fontWeight={800} fill={INK} letterSpacing=".04em">{sg.text}</text>
         </g>
       ))}
-      {info && !mini && unitNote && L.units.map((u, i) => { const lines = wrap(unitNote(u)); const bw = Math.max(...lines.map((l) => l.length)) * 6.6 + 24; const bh = lines.length * 15 + 16; const right = u.x + u.w + 14 + bw < P.x1 - 10; const bx = right ? u.x + u.w + 14 : Math.max(P.x0 + 10, u.x + u.w - bw); const by = right ? u.y + 10 : Math.max(P.y0 + 14, u.y - bh - 34); const ax = u.x + u.w, ay = u.y + 20; return (
+      {info && !mini && unitNote && (() => { const boxes: Array<{ x: number; y: number; w: number; h: number }> = []; return L.units.map((u, i) => { const lines = wrap(unitNote(u), Math.round(34 / tk)); const bw = Math.max(...lines.map((l) => l.length)) * 6.6 * tk + 24; const bh = lines.length * 15 * tk + 16; const right = u.x + u.w + 14 + bw < P.x1 - 10; const left = !right && u.x - bw - 14 > P.x0 + 10; const bx = right ? u.x + u.w + 14 : left ? u.x - bw - 14 : Math.max(P.x0 + 10, u.x + u.w - bw); let by = right || left ? u.y + 10 : Math.max(P.y0 + 14, u.y - bh - 34);
+        /* push down past any callout already placed that this one would cover */
+        for (let pass = 0; pass < boxes.length + 1; pass++) { const hit = boxes.find((b) => bx < b.x + b.w && bx + bw > b.x && by < b.y + b.h && by + bh > b.y); if (!hit) break; by = hit.y + hit.h + 8; } by = Math.min(by, P.H - bh - 10); boxes.push({ x: bx, y: by, w: bw, h: bh }); const ax = left ? u.x : u.x + u.w, ay = u.y + 20; return (
         <g key={`co${i}`} className="callout" style={{ pointerEvents: 'none' }}>
-          <path d={`M${ax} ${ay}L${right ? bx : bx + bw - 20} ${right ? by + 14 : by + bh}`} stroke={INK} strokeWidth={4} /><path d={`M${ax} ${ay}L${right ? bx : bx + bw - 20} ${right ? by + 14 : by + bh}`} stroke={accent} strokeWidth={2} /><circle cx={ax} cy={ay} r={6} fill={accent} stroke={INK} strokeWidth={2} />
+          <path d={`M${ax} ${ay}L${right ? bx : left ? bx + bw : bx + bw - 20} ${right || left ? by + 14 : by + bh}`} stroke={INK} strokeWidth={4} /><path d={`M${ax} ${ay}L${right ? bx : left ? bx + bw : bx + bw - 20} ${right || left ? by + 14 : by + bh}`} stroke={accent} strokeWidth={2} /><circle cx={ax} cy={ay} r={6} fill={accent} stroke={INK} strokeWidth={2} />
           <rect x={bx} y={by} width={bw} height={bh} rx={9} fill="rgba(42,24,18,.9)" stroke={accent} strokeWidth={2} />
-          {lines.map((l, k) => <text key={k} x={bx + 12} y={by + 20 + k * 15} fontSize={11.5} fontFamily="Inter Tight, system-ui" fill="#fff8ec">{l}</text>)}
+          {lines.map((l, k) => <text key={k} x={bx + 12} y={by + 20 * tk + k * 15 * tk} fontSize={11.5 * tk} fontFamily="Inter Tight, system-ui" fill="#fff8ec">{l}</text>)}
         </g>
-      ); })}
+      ); }); })()}
       {/* colour grade + darkness + lamp glow */}
-      <rect x={0} y={0} width={P.W} height={P.H} fill={grade[weather] ?? 'transparent'} style={{ pointerEvents: 'none', mixBlendMode: 'multiply' }} />
+      <rect x={0} y={0} width={P.W} height={P.H} fill={grade[weather] ?? 'transparent'} style={{ pointerEvents: 'none' }} />
       {!lightsOn && <rect x={0} y={0} width={P.W} height={P.H} fill="#160c24" opacity={.66} style={{ pointerEvents: 'none' }} />}
       {!lightsOn && lamps.map((p) => { const u = L.units.find((x) => x.id === p.unitId); if (!u) return null; const s = slotAt(u, p.slot); return <g key={`g${p.key}`} style={{ pointerEvents: 'none' }}><circle cx={s.x} cy={s.y - 20} r={190} fill="url(#lampglow)" /><circle cx={s.x} cy={s.y - 20} r={60} fill="#ffe08a" opacity=".25" filter="url(#soft)" /></g>; })}
       {/* grain + vignette */}
-      {!mini && <rect x={0} y={0} width={P.W} height={P.H} filter="url(#grain)" style={{ pointerEvents: 'none', mixBlendMode: 'overlay' }} />}
       {!mini && <rect x={0} y={0} width={P.W} height={P.H} fill="url(#vignette)" style={{ pointerEvents: 'none' }} />}
     </svg>
+  );
+  if (mini) return scene;
+  return (
+    <div className="scene scene--room" style={{ color: accent }}>
+      {scene}
+      <RoomFx room={room} windows={L.windows} weather={weather} lightsOn={lightsOn} flicker={flicker} daylight={daylight} ring={ringUnit} sel={selPos} />
+    </div>
   );
 });

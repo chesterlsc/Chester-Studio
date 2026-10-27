@@ -1,5 +1,5 @@
 /* Item art: pre-rendered 3D cartoon sprites + live model hero. */
-.iart { display: block; object-fit: contain; filter: drop-shadow(0 6px 6px rgba(40, 20, 10, .28)); user-select: none; -webkit-user-drag: none; }
+.iart { display: block; object-fit: contain; user-select: none; -webkit-user-drag: none; }
 .ihero { position: relative; width: 132px; height: 132px; flex: none; display: grid; place-items: center; border-radius: var(--r-lg); background: radial-gradient(70% 70% at 50% 62%, rgba(255, 205, 130, .28), transparent 72%); }
 .ihero--3d { touch-action: none; cursor: grab; }
 .ihero--3d:active { cursor: grabbing; }

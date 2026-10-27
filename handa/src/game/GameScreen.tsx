@@ -58,6 +58,7 @@ export default function GameScreen() {
   const [confetti, setConfetti] = useState(0);
   const [inspect, setInspect] = useState<PlacedSprite | null>(null);
   const art3d = use3dArt();
+  const compact = useMediaQuery('(max-width: 899px)');
   const [missionsOpen, setMissionsOpen] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
   const [simOpen, setSimOpen] = useState(false);
@@ -214,12 +215,7 @@ export default function GameScreen() {
         <Button variant="primary" iconOnly icon="trophy" aria-label={t('game.finish')} onClick={() => void finishRun()} />
       </div>
 
-      <div className={`g__stage ${room ? 'g__stage--room' : ''}`} ref={stage} onPointerDown={() => setHintSeen(true)}>
-        {room ? (
-          <RoomScene room={room} placed={placedByRoom[room] ?? []} weather={weather} lightsOn={lightsOn} flicker={flicker} freshKeys={fresh} selectedKey={inspect?.key ?? null} highlightUnit={cat ? unitFor(items.find((i) => i.category === cat) ?? items[0])?.id : null} accent={ROOMS[room].hue} onTapItem={(p) => { sfx.tap(); setInspect(p); }} unitLabel={(u) => t(`game.unit.${u.label}`)} unitNote={(u) => t(`game.note.${u.note}`)} info={info} art={art3d ? '3d' : 'vector'} />
-        ) : (
-          <HouseMap placedByRoom={placedByRoom} roomPct={roomPct} missingCount={missingCount} weather={weather} lightsOn={lightsOn} flicker={flicker} onSelect={enterRoom} art={art3d ? '3d' : 'vector'} label={(r) => t(`room.${r}`)} />
-        )}
+      <div className="g__bar">
         {room && (
           <div className="g__roomname">
             <span className="pill"><Icon name="house-cut" size={16} />{t(`room.${room}`)}<span className="mono" style={{ color: readinessColor((roomPct[room] ?? 0) * 100) }}>{Math.round((roomPct[room] ?? 0) * 100)}%</span></span>
@@ -232,6 +228,14 @@ export default function GameScreen() {
           <Button iconOnly icon="clock" size="sm" aria-label={t('game.survival')} onClick={() => setSimOpen(true)} />
           <Button iconOnly icon={lightsToggle ? 'sun' : 'moon'} size="sm" aria-label={t('game.dayNight')} onClick={() => setLightsToggle((v) => !v)} />
         </div>
+      </div>
+
+      <div className={`g__stage ${room ? 'g__stage--room' : ''}`} ref={stage} onPointerDown={() => setHintSeen(true)}>
+        {room ? (
+          <RoomScene room={room} placed={placedByRoom[room] ?? []} weather={weather} lightsOn={lightsOn} flicker={flicker} freshKeys={fresh} selectedKey={inspect?.key ?? null} highlightUnit={cat ? unitFor(items.find((i) => i.category === cat) ?? items[0])?.id : null} accent={ROOMS[room].hue} onTapItem={(p) => { sfx.tap(); setInspect(p); }} unitLabel={(u) => t(`game.unit.${u.label}`)} unitNote={(u) => t(`game.note.${u.note}`)} info={info} art={art3d ? '3d' : 'vector'} compact={compact} />
+        ) : (
+          <HouseMap placedByRoom={placedByRoom} roomPct={roomPct} missingCount={missingCount} weather={weather} lightsOn={lightsOn} flicker={flicker} onSelect={enterRoom} art={art3d ? '3d' : 'vector'} label={(r) => t(`room.${r}`)} />
+        )}
         {!hintSeen && !presentation && <div className={`g__hint ${room ? '' : 'g__hint--top'}`}><Icon name="hand" size={14} />{room ? t('game.hintRoom') : t('game.hint')}</div>}
         {card && (
           <div className={`pc pc--${card.kind}`} role="status" key={card.title + card.body} onClick={() => { if (room && card.kind !== 'tip') { setCard(null); setRulesOpen(true); } }}>
@@ -367,4 +371,11 @@ export default function GameScreen() {
       )}
     </div>
   );
+}
+
+/** True while the media query matches (SSR-safe, updates on resize). */
+function useMediaQuery(q: string): boolean {
+  const [m, setM] = useState(() => typeof window !== 'undefined' && window.matchMedia(q).matches);
+  useEffect(() => { const mq = window.matchMedia(q); const on = () => setM(mq.matches); on(); mq.addEventListener('change', on); return () => mq.removeEventListener('change', on); }, [q]);
+  return m;
 }

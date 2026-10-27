@@ -332,7 +332,8 @@ export function UnitGlyph({ u, wood = WOOD, accent }: { u: Unit; wood?: string; 
 }
 
 /** Window: chunky inked frame, flat two-tone sky, weather, cute tied-back curtains. */
-export function Window({ w, weather, lightsOn }: { w: Win; weather: string; lightsOn: boolean }) {
+/** `fx`: draw static rain/stars/water inside the window (mini rooms). Full rooms animate these in RoomFx instead. */
+export function Window({ w, weather, lightsOn, fx }: { w: Win; weather: string; lightsOn: boolean; fx?: boolean }) {
   const { x, y, w: ww, h } = w;
   const sky: Record<string, [string, string]> = { rain: ['#2b4470', '#6a8ab8'], flood: ['#2e5470', '#7aa3b8'], heat: ['#ff9a3d', '#ffd9a0'], dark: ['#0a0e22', '#1e2440'], dry: ['#4fa8e0', '#cfeaf8'], shake: ['#857c6a', '#d6c9ae'], dusk: ['#452f6b', '#9a6fc4'], fog: ['#234a36', '#5f8f73'] };
   const [top, bottom] = sky[weather] ?? sky.dry;
@@ -351,12 +352,12 @@ export function Window({ w, weather, lightsOn }: { w: Win; weather: string; ligh
         {weather !== 'dark' && <g className="fx" fill={weather === 'rain' || weather === 'flood' ? '#8ea6c8' : '#fff'} opacity=".9"><circle cx={x + ww * .25} cy={y + h * .22} r={h * .1} /><circle cx={x + ww * .33} cy={y + h * .18} r={h * .13} /><circle cx={x + ww * .42} cy={y + h * .23} r={h * .09} /><rect x={x + ww * .18} y={y + h * .22} width={ww * .3} height={h * .09} rx={h * .045} /></g>}
         <path d={`M${x} ${y + h}v-${h * .34}l${ww * .14} -${h * .1}l${ww * .12} ${h * .08}l${ww * .14} -${h * .16}l${ww * .2} ${h * .2}l${ww * .14} -${h * .06}l${ww * .26} ${h * .12}v${h * .3}z`} fill="#3f6b52" stroke={INK} strokeWidth={2} opacity=".9" />
         <path d={`M${x} ${y + h}v-${h * .2}q${ww * .3} -${h * .1} ${ww * .5} 0t${ww * .5} 0v${h * .2}z`} fill="#5a9a62" />
-        {(weather === 'rain' || weather === 'flood') && Array.from({ length: 14 }).map((_, i) => <path key={i} className="wx-drop" style={{ animationDelay: `${(i * 137) % 900}ms` }} d={`M${x + 6 + i * (ww / 14)} ${y - 20}l-8 30`} stroke="#dff1ff" strokeWidth={3} strokeLinecap="round" opacity=".75" />)}
+        {fx && (weather === 'rain' || weather === 'flood') && Array.from({ length: 14 }).map((_, i) => <path key={i} className="wx-drop" style={{ animationDelay: `${(i * 137) % 900}ms` }} d={`M${x + 6 + i * (ww / 14)} ${y - 20}l-8 30`} stroke="#dff1ff" strokeWidth={3} strokeLinecap="round" opacity=".75" />)}
         {weather === 'heat' && <><circle cx={x + ww * .72} cy={y + h * .3} r={h * .18} fill="#fff4cc" stroke={INK} strokeWidth={2} /><circle cx={x + ww * .72} cy={y + h * .3} r={h * .3} fill="#fff4cc" opacity=".25" /></>}
-        {(weather === 'dark' || weather === 'dusk') && Array.from({ length: 10 }).map((_, i) => <circle key={i} cx={x + ((i * 61) % ww)} cy={y + ((i * 37) % (h * .6))} r={1.8} fill="#fff" className="wx-star" style={{ animationDelay: `${(i * 211) % 1500}ms` }} />)}
+        {fx && (weather === 'dark' || weather === 'dusk') && Array.from({ length: 10 }).map((_, i) => <circle key={i} cx={x + ((i * 61) % ww)} cy={y + ((i * 37) % (h * .6))} r={1.8} fill="#fff" className="wx-star" style={{ animationDelay: `${(i * 211) % 1500}ms` }} />)}
         {(weather === 'dark' || weather === 'dusk') && <circle cx={x + ww * .75} cy={y + h * .25} r={h * .12} fill="#fff4cc" stroke={INK} strokeWidth={2} />}
         {weather === 'fog' && <rect x={x} y={y + h * .35} width={ww} height={h * .65} fill="#9fd3b0" opacity=".45" />}
-        {weather === 'flood' && <rect x={x} y={y + h * .7} width={ww} height={h * .3} fill="#3d8fb5" opacity=".85" className="wx-water" />}
+        {fx && weather === 'flood' && <rect x={x} y={y + h * .7} width={ww} height={h * .3} fill="#3d8fb5" opacity=".85" />}
         <path className="fx" d={`M${x + ww * .06} ${y + h * .9}L${x + ww * .3} ${y + h * .08}h${ww * .08}L${x + ww * .14} ${y + h * .9}z`} fill="#fff" opacity=".22" />
       </g>
       <rect x={x} y={y} width={ww} height={h} rx={6} fill="none" stroke={INK} strokeWidth={2.5} />

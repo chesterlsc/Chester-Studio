@@ -23,7 +23,7 @@ export interface HouseMapProps {
  * and a little garden (lawn, picket fence, gate, bushes, path) under the house. The 9 mini rooms
  * are RoomScene in `mini` mode (thicker ink, no fine detail) so they read at thumbnail size.
  */
-const CW = 320, CH = 190, X0 = 20, Y0 = 136, SLAB = 12, VH = 780;
+const CW = 320, CH = 190, X0 = 20, Y0 = 136, SLAB = 12, VH = 820;
 const HB = Y0 + 3 * CH + 2 * SLAB; // bottom of the lowest room row (730); the garden lives below it
 const SKY: Record<string, [string, string]> = { rain: ['#2b4470', '#6a8ab8'], flood: ['#2e5470', '#7aa3b8'], heat: ['#ff9a3d', '#ffd9a0'], dark: ['#0a0e22', '#1e2440'], dry: ['#4fa8e0', '#cfeaf8'], shake: ['#857c6a', '#d6c9ae'], dusk: ['#452f6b', '#9a6fc4'], fog: ['#234a36', '#5f8f73'] };
 
@@ -40,6 +40,7 @@ export function HouseMap({ placedByRoom, roomPct, missingCount, weather, lightsO
   const cloud = night ? '#2a3350' : (weather === 'rain' || weather === 'flood') ? '#8ea6c8' : '#fff';
   const wallL = X0 - 14, wallR = X0 + 3 * CW + 14;
   return (
+    <div className="scene scene--map">
     <svg viewBox={`0 0 1000 ${VH}`} className="hmap" preserveAspectRatio="xMidYMid meet" role="img">
       <GameDefs />
       {/* sky: two hard bands + clouds */}
@@ -48,8 +49,6 @@ export function HouseMap({ placedByRoom, roomPct, missingCount, weather, lightsO
       <g opacity=".95"><Cloud x={110} y={60} s={1} c={cloud} /><Cloud x={760} y={40} s={.8} c={cloud} /><Cloud x={880} y={210} s={.6} c={cloud} /><Cloud x={-10} y={230} s={.7} c={cloud} /></g>
       {(weather === 'heat' || weather === 'dry') && <g><circle cx={900} cy={70} r={56} fill="#ffe08a" opacity=".35" /><circle className="ink" cx={900} cy={70} r={40} fill="#ffd166" /><circle className="fx" cx={888} cy={58} r={9} fill={HL} /></g>}
       {night && <g><circle className="ink" cx={880} cy={70} r={34} fill="#fff4cc" /><circle cx={866} cy={62} r={6} fill="#e8dcb0" /><circle cx={892} cy={84} r={4} fill="#e8dcb0" /></g>}
-      {(weather === 'rain' || weather === 'flood') && Array.from({ length: 40 }).map((_, i) => <path key={i} className="wx-drop" style={{ animationDelay: `${(i * 97) % 1000}ms` }} d={`M${(i * 53) % 1000} ${-20 - ((i * 31) % 120)}l-8 30`} stroke="#cfe9ff" strokeWidth={3.5} strokeLinecap="round" opacity=".7" />)}
-      {night && Array.from({ length: 30 }).map((_, i) => <circle key={i} cx={(i * 131) % 1000} cy={(i * 47) % 120} r={2} fill="#fff" className="wx-star" style={{ animationDelay: `${(i * 173) % 1500}ms` }} />)}
       {/* garden ground */}
       <path className="ink" d={`M-6 ${HB + 8}H1006V${VH + 10}H-6z`} fill="#5aa75f" />
       <rect x={0} y={HB + 34} width={1000} height={VH - HB - 34} fill="#4a8f50" />
@@ -64,7 +63,6 @@ export function HouseMap({ placedByRoom, roomPct, missingCount, weather, lightsO
       <Bush x={60} y={HB + 36} s={.8} /><Bush x={X0 + 2 * CW - 70} y={HB + 40} s={.7} /><Bush x={940} y={HB + 40} s={.6} />
       {/* mailbox */}
       <g transform={`translate(${X0 + 2 * CW + 300} ${HB - 12})`}><rect className="ink" x={10} y={16} width={6} height={44} fill="#8a5a36" /><rect className="ink" x={-6} y={0} width={38} height={22} rx={8} fill="#e8503f" /><rect x={-6} y={0} width={14} height={22} rx={6} fill="#ffd166" stroke={INK} strokeWidth={2} /></g>
-      {weather === 'flood' && <rect x={0} y={HB - 10} width={1000} height={VH - HB + 20} fill="#3d8fb5" opacity=".75" className="wx-water" rx={10} />}
       {/* roof: gable with shingle rows */}
       <path className="ink" d="M-10 130 500 2 1010 130z" fill="#b94a3d" style={{ strokeWidth: 8 }} />
       {[0, 1, 2, 3].map((i) => { const t = i / 4; const y = 130 - (130 - 2) * t; const hw = 510 * (1 - t); return <path key={i} d={`M${500 - hw} ${y}H${500 + hw}`} stroke={INK} strokeWidth={3} opacity=".55" strokeDasharray="30 6" />; })}
@@ -109,5 +107,12 @@ export function HouseMap({ placedByRoom, roomPct, missingCount, weather, lightsO
       ))}
       <rect className="ink" x={wallL - 10} y={HB} width={wallR - wallL + 20} height={14} rx={3} fill="#b07a48" style={{ strokeWidth: 6 }} />
     </svg>
+    {/* continuous weather lives in a thin overlay so the inked dollhouse is painted once */}
+    <svg viewBox={`0 0 1000 ${VH}`} className="hmap hmap-fx" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      {(weather === 'rain' || weather === 'flood') && Array.from({ length: 40 }).map((_, i) => <path key={i} className="wx-drop" style={{ animationDelay: `${(i * 97) % 1000}ms` }} d={`M${(i * 53) % 1000} ${-20 - ((i * 31) % 120)}l-8 30`} stroke="#cfe3ff" strokeWidth={2.5} strokeLinecap="round" opacity=".7" />)}
+      {night && Array.from({ length: 30 }).map((_, i) => <circle key={i} cx={(i * 131) % 1000} cy={(i * 47) % 120} r={2} fill="#fff" className="wx-star" style={{ animationDelay: `${(i * 173) % 1500}ms` }} />)}
+      {weather === 'flood' && <rect x={0} y={HB - 10} width={1000} height={VH - HB + 20} fill="#3d8fb5" opacity=".75" className="wx-water" rx={10} />}
+    </svg>
+    </div>
   );
 }

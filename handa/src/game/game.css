@@ -1,5 +1,5 @@
 /* ===================== ROOM GAME ===================== */
-.g { position: fixed; inset: 0; display: grid; grid-template-rows: auto 1fr auto; background: var(--bg); overflow: hidden; }
+.g { position: fixed; inset: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; background: var(--bg); overflow: hidden; }
 .g__hud { display: flex; align-items: center; gap: var(--s-2); padding: calc(var(--s-2) + var(--safe-t)) var(--s-3) var(--s-2); z-index: 5; background: linear-gradient(to bottom, var(--bg) 60%, transparent); }
 .g__hud .btn { flex: none; }
 .g__meter { flex: 1; min-width: 0; display: grid; gap: 4px; }
@@ -11,11 +11,19 @@
 .g__lvl b { font-size: var(--fs-sm); }
 .g__stage { position: relative; min-height: 0; overflow: hidden; display: grid; place-items: center; background: radial-gradient(120% 90% at 50% 0%, #1a2340 0%, var(--bg) 70%); }
 :root[data-theme="light"] .g__stage { background: radial-gradient(120% 90% at 50% 0%, #dbe6f6 0%, var(--bg) 70%); }
-.g__stage > svg.room { width: 100%; height: 100%; max-height: 100%; display: block; }
-.g__stage--room > svg.room { border-radius: 0; animation: room-in .5s var(--ease-out) both; }
+.g__stage { container-type: size; }
+/* .scene = a room or the dollhouse plus its animation overlay. Both SVGs share one viewBox and `meet`, so they align exactly. */
+.scene { position: relative; width: 100%; height: 100%; }
+.scene > svg.room, .scene > .hmap { width: 100%; height: 100%; display: block; }
+.room--fx, .hmap-fx { position: absolute; inset: 0; pointer-events: none; }
+.g__stage--room > .scene { animation: room-in .5s var(--ease-out) both; }
 @keyframes room-in { from { opacity: 0; transform: scale(.92); } }
 .pc { cursor: pointer; }
-@media (min-width: 900px) { .g__stage--room > svg.room { height: auto; max-height: calc(100% - 24px); border-radius: var(--r-xl); box-shadow: var(--shadow-2); margin: 12px; width: auto; } }
+@media (min-width: 900px) {
+  .g__stage--room > .scene { width: min(100% - 24px, (100cqh - 24px) * 1.6129); height: auto; aspect-ratio: 1000 / 620; border-radius: var(--r-xl); overflow: hidden; box-shadow: 0 0 0 4px #2a1812, var(--shadow-2); }
+  .scene--map { width: min(100%, 100cqh * 1.2195); height: auto; aspect-ratio: 1000 / 820; }
+  @supports not (width: 1cqh) { .g__stage--room > .scene, .scene--map { width: 100%; height: 100%; aspect-ratio: auto; box-shadow: none; } }
+}
 .room { user-select: none; -webkit-user-select: none; }
 .room--mini { pointer-events: none; }
 /* ---- toon ink system (see Sprites.tsx) ----
@@ -25,7 +33,7 @@
 .ink2 { stroke: #2a1812; stroke-width: var(--sw2, 1.5); fill: none; stroke-linejoin: round; stroke-linecap: round; }
 .room--mini .ink { stroke-width: calc(var(--sw, 6) * 1.7); }
 .room--mini .fx, .room--mini .ink2, .room--mini .mote { display: none; }
-@media (min-width: 900px) { .g__stage--room > svg.room { box-shadow: 0 0 0 4px #2a1812, var(--shadow-2); } }
+.room--mini .wx-drop, .room--mini .wx-star, .room--mini .wx-water, .room--mini .lamp--flicker { animation: none !important; }
 .unit { cursor: pointer; }
 .unit__ring { animation: ring-pulse 1.4s ease-in-out infinite; }
 @keyframes ring-pulse { 50% { opacity: .35; } }
@@ -37,6 +45,8 @@
 .sprite__ring { animation: spin 6s linear infinite; }
 @keyframes spin { to { stroke-dashoffset: -56; } }
 .lamp--flicker { animation: flick 2.4s steps(1) infinite; }
+.fx-flicker { opacity: 0; animation: flick-veil 2.4s steps(1) infinite; }
+@keyframes flick-veil { 0%, 100% { opacity: 0; } 12% { opacity: .45; } 14% { opacity: 0; } 48% { opacity: .25; } 52% { opacity: 0; } 80% { opacity: .5; } 82% { opacity: 0; } }
 @keyframes flick { 0%, 100% { opacity: 1; } 12% { opacity: .2; } 14% { opacity: 1; } 48% { opacity: .5; } 52% { opacity: 1; } 80% { opacity: .1; } 82% { opacity: 1; } }
 .wx-drop { animation: drop 1s linear infinite; }
 .mote { animation: mote 6s ease-in-out infinite; }
@@ -86,13 +96,14 @@
 .g__fly { position: absolute; left: 0; top: 0; width: 64px; height: 70px; pointer-events: none; z-index: 20; }
 .g__xp { position: absolute; pointer-events: none; z-index: 21; font-family: var(--font-mono); font-weight: 800; color: var(--ok); text-shadow: 0 2px 6px rgba(0,0,0,.5); animation: xp-rise 1.1s var(--ease-out) both; font-size: var(--fs-lg); }
 @keyframes xp-rise { 0% { opacity: 0; transform: translateY(0) scale(.6); } 20% { opacity: 1; transform: translateY(-14px) scale(1.1); } 100% { opacity: 0; transform: translateY(-80px) scale(1); } }
-.g__hint { position: absolute; left: 50%; transform: translateX(-50%); bottom: var(--s-3); background: rgba(5,7,12,.6); color: #fff; padding: 6px 12px; border-radius: var(--r-pill); font-size: var(--fs-xs); backdrop-filter: blur(6px); pointer-events: none; display: inline-flex; gap: 6px; align-items: center; max-width: 88%; text-align: center; z-index: 4; }
+.g__hint { position: absolute; left: 50%; transform: translateX(-50%); bottom: var(--s-3); background: rgba(5,7,12,.78); color: #fff; padding: 6px 12px; border-radius: var(--r-pill); font-size: var(--fs-xs); pointer-events: none; display: inline-flex; gap: 6px; align-items: center; max-width: 88%; text-align: center; z-index: 4; }
 .g__hint--top { bottom: auto; top: var(--s-3); }
 @media (max-width: 600px) { .g__meter-row .xs { display: none; } .g__lvl span { display: none; } }
+.g__bar { position: relative; z-index: 4; height: 0; }
 .g__roomname { position: absolute; left: var(--s-3); top: var(--s-3); z-index: 4; display: flex; align-items: center; gap: 10px; }
-.g__roomname .pill { background: rgba(5,7,12,.6); color: #fff; padding: 6px 12px; border-radius: var(--r-pill); font-weight: 700; backdrop-filter: blur(6px); display: inline-flex; align-items: center; gap: 8px; }
+.g__roomname .pill { background: rgba(5,7,12,.78); color: #fff; padding: 6px 12px; border-radius: var(--r-pill); font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
 .g__side { position: absolute; right: var(--s-3); top: var(--s-3); z-index: 4; display: flex; flex-direction: column; gap: 6px; }
-.g__side .btn { background: rgba(5,7,12,.6); color: #fff; backdrop-filter: blur(6px); border-color: transparent; }
+.g__side .btn { background: rgba(5,7,12,.78); color: #fff; border-color: transparent; }
 .g__side .btn--on { background: var(--brand); color: var(--brand-ink); }
 .callout { animation: pc-in var(--t-slow) var(--ease-spring) both; }
 
@@ -129,5 +140,22 @@
 .cele__i { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; background: var(--ok-dim); color: var(--ok); }
 .cele__card h2 { font-size: var(--fs-2xl); }
 
-@media (prefers-reduced-motion: reduce) { .sprite--land, .wx-drop, .wx-star, .wx-water, .lamp--flicker, .unit__ring, .confetti i { animation: none !important; } }
-:root[data-motion="off"] .sprite--land, :root[data-motion="off"] .wx-drop, :root[data-motion="off"] .confetti i { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .sprite--land, .wx-drop, .wx-star, .wx-water, .lamp--flicker, .fx-flicker, .mote, .unit__ring, .sprite__ring, .confetti i { animation: none !important; } }
+:root[data-motion="off"] .sprite--land, :root[data-motion="off"] .wx-drop, :root[data-motion="off"] .wx-star, :root[data-motion="off"] .wx-water, :root[data-motion="off"] .mote, :root[data-motion="off"] .fx-flicker, :root[data-motion="off"] .unit__ring, :root[data-motion="off"] .sprite__ring, :root[data-motion="off"] .confetti i { animation: none !important; }
+
+/* phones: the stage hugs the picture, the toolbar is a real row, and the tray takes the rest of the screen */
+@media (max-width: 899px) {
+  .g { grid-template-rows: auto auto auto minmax(0, 1fr); }
+  .g__bar { height: auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); padding: 4px var(--s-3) 6px; }
+  .g__roomname, .g__side { position: static; }
+  .g__side { flex-direction: row; margin-left: auto; }
+  .g__roomname .pill, .g__side .btn { background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); }
+  .g__side .btn--on { background: var(--brand); color: var(--brand-ink); }
+  .g__stage { height: auto; background: none; container-type: normal; }
+  .g__stage--room > .scene { aspect-ratio: 1000 / 620; height: auto; }
+  .scene--map { aspect-ratio: 1000 / 820; height: auto; }
+  .g__hint, .g__hint--top { top: auto; bottom: var(--s-2); font-size: 11px; padding: 4px 10px; max-width: 94%; }
+  .g__tray { min-height: 0; overflow: hidden auto; align-content: start; }
+}
+@media (max-width: 899px) and (min-height: 720px) {
+  .g__items { display: grid; grid-auto-flow: column; grid-template-rows: auto auto; grid-auto-columns: max-content; align-content: start; align-items: start; }
