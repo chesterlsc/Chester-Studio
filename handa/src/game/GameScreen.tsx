@@ -72,6 +72,7 @@ export default function GameScreen() {
   const [motion] = useState(() => motionAllowed());
 
   useEffect(() => { if (!scenario || !householdId) nav('/play', { replace: true }); }, [scenario, householdId, nav]);
+  useEffect(() => { document.documentElement.dataset.screen = 'game'; return () => { delete document.documentElement.dataset.screen; }; }, []);
   useEffect(() => { setCard(null); }, [room]);
   useEffect(() => { if (!card) return; const id = setTimeout(() => setCard(null), card.kind === 'mistake' ? 9000 : 6500); return () => clearTimeout(id); }, [card]);
 
@@ -338,7 +339,7 @@ export default function GameScreen() {
       </Sheet>
       <Sheet open={rulesOpen} onClose={() => setRulesOpen(false)} title={room ? `${t('game.rules')} · ${t(`room.${room}`)}` : ''}>
         {guide && room && (
-          <div className="stack">
+          <div className="stack g-rules">
             <div className="card" style={{ padding: 'var(--s-3) var(--s-4)' }}><div className="eyebrow">{t('game.climate')}</div><p>{pick(guide.climate)}</p><p className="xs muted" style={{ marginTop: 4 }}>{t('game.checks')}: {pick(guide.cadence)}</p></div>
             <div>{guide.rules.map((r, i) => <div key={i} className="rule"><Icon name={r.icon} size={18} style={{ color: ROOMS[room].hue, marginTop: 2 }} /><div><b>{pick(r.title)}</b><span>{pick(r.body)}</span></div></div>)}</div>
             <div className="eyebrow">{t('plan.never')}</div>

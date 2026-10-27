@@ -1,5 +1,5 @@
 /* ===================== ROOM GAME ===================== */
-.g { position: fixed; inset: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; background: var(--bg); overflow: hidden; }
+.g { position: fixed; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto minmax(0, 1fr) auto; background: var(--bg); overflow: hidden; }
 .g__hud { display: flex; align-items: center; gap: var(--s-2); padding: calc(var(--s-2) + var(--safe-t)) var(--s-3) var(--s-2); z-index: 5; background: linear-gradient(to bottom, var(--bg) 60%, transparent); }
 .g__hud .btn { flex: none; }
 .g__meter { flex: 1; min-width: 0; display: grid; gap: 4px; }
@@ -119,6 +119,16 @@
 .pc__b { font-size: var(--fs-sm); color: var(--fg-1); }
 .pc__x { color: var(--fg-3); }
 
+/* rules sheet (these also exist in plan.css, which is a lazy chunk the game does not load) */
+.g-rules .rule { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: var(--fs-sm); }
+.g-rules .rule:last-child { border-bottom: 0; }
+.g-rules .rule b { display: block; color: var(--fg); margin-bottom: 2px; }
+.g-rules .rule span { color: var(--fg-1); }
+.g-rules .never { display: flex; gap: 8px; align-items: flex-start; font-size: var(--fs-sm); color: var(--fg-1); padding: 5px 0; }
+.g-rules .never svg { color: var(--bad); flex: none; margin-top: 3px; }
+/* toasts must not cover the tray while the game is open */
+:root[data-screen="game"] .toasts { bottom: auto; top: calc(var(--safe-t) + 64px); }
+
 /* missions panel */
 .mis { display: grid; gap: 6px; }
 .mi { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; border-radius: var(--r-md); background: var(--bg-2); border: 1px solid var(--line); font-size: var(--fs-sm); }
@@ -148,6 +158,9 @@
   .g { grid-template-rows: auto auto auto minmax(0, 1fr); }
   .g__bar { height: auto; display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); padding: 4px var(--s-3) 6px; }
   .g__roomname, .g__side { position: static; }
+  .g__roomname { min-width: 0; flex: 1; }
+  .g__roomname .pill { max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-flex; min-width: 0; }
+  .g__roomname .pill > :first-child { flex: none; }
   .g__side { flex-direction: row; margin-left: auto; }
   .g__roomname .pill, .g__side .btn { background: var(--bg-2); color: var(--fg); border: 1px solid var(--line); }
   .g__side .btn--on { background: var(--brand); color: var(--brand-ink); }
@@ -155,7 +168,10 @@
   .g__stage--room > .scene { aspect-ratio: 1000 / 620; height: auto; }
   .scene--map { aspect-ratio: 1000 / 820; height: auto; }
   .g__hint, .g__hint--top { top: auto; bottom: var(--s-2); font-size: 11px; padding: 4px 10px; max-width: 94%; }
+  /* popup cards sit over the tray, never over the shelf the player is looking at */
+  .pc { position: fixed; bottom: calc(var(--s-3) + var(--safe-b)); width: min(94%, 440px); }
   .g__tray { min-height: 0; overflow: hidden auto; align-content: start; }
 }
 @media (max-width: 899px) and (min-height: 720px) {
-  .g__items { display: grid; grid-auto-flow: column; grid-template-rows: auto auto; grid-auto-columns: max-content; align-content: start; align-items: start; }
+  .g__items { display: grid; grid-auto-flow: column; grid-template-rows: auto auto; grid-auto-columns: max-content; align-content: start; align-items: stretch; }
+  .gi__have { white-space: nowrap; }
