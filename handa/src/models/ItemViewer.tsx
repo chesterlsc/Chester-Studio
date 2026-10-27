@@ -26,7 +26,9 @@ export interface ItemViewerProps {
   style?: CSSProperties;
 }
 
-export const modelUrl = (shape: ItemShape) => `${import.meta.env.BASE_URL}models/${shape}.glb`;
+/** Model file extension: 'glb' (default) or 'json' (glTF with embedded buffers) for hosts that do not serve .glb. */
+const MODEL_EXT = (import.meta.env.VITE_MODEL_EXT as string | undefined) || 'glb';
+export const modelUrl = (shape: ItemShape) => `${import.meta.env.BASE_URL}models/${shape}.${MODEL_EXT}`;
 
 const AZ = THREE.MathUtils.degToRad(32), EL = THREE.MathUtils.degToRad(24);
 const VIEW_DIR = new THREE.Vector3(Math.sin(AZ) * Math.cos(EL), Math.sin(EL), Math.cos(AZ) * Math.cos(EL));
