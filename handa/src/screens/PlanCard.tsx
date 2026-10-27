@@ -31,7 +31,7 @@ export default function PlanCard() {
 
   return (
     <div className="page">
-      <TopBar title={t('plan.title')} onBack={() => nav(-1)} right={<Button size="sm" icon="print" onClick={() => window.print()}>{t('plan.print')}</Button>} />
+      <TopBar title={t('plan.card')} onBack={() => nav(-1)} right={<Button size="sm" icon="print" onClick={() => window.print()}>{t('plan.print')}</Button>} />
       <div className="stack-6">
         <div className="stack">
           {(['meeting', 'contacts', 'medical'] as const).map((k) => (
@@ -43,7 +43,7 @@ export default function PlanCard() {
           <p className="xs muted">{t('plan.saved')}</p>
         </div>
         <div className="plan-print">
-          <div className="row row--between"><h2 style={{ fontSize: 22 }}>HANDA · {t('plan.title')}</h2><span className="k">prepare.ph</span></div>
+          <div className="plan-print__head"><h2 style={{ fontSize: 22 }}>HANDA · {t('plan.card')}</h2><span className="k">prepare.ph</span></div>
           {(['meeting', 'contacts', 'medical'] as const).map((k) => <div key={k}><div className="k">{t(`plan.${k}`)}</div><div className="v">{plan[k] || ' '}</div></div>)}
           <div className="row" style={{ gap: 16, alignItems: 'center' }}>
             <QR text={payload} size={112} />

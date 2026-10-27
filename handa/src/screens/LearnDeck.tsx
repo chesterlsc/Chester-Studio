@@ -90,7 +90,7 @@ export default function LearnDeck() {
             {guide.sources.length > 0 && (
               <div className="stack-2" style={{ width: '100%' }}>
                 <div className="eyebrow">{t('learn.sources')}</div>
-                {guide.sources.map((s) => <a key={s.url} className="row small" href={s.url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--info)', justifyContent: 'center' }}>{s.label}<Icon name="external" size={14} /></a>)}
+                {guide.sources.map((s) => <a key={s.url} className="small deck__src" href={s.url} target="_blank" rel="noopener noreferrer">{s.label}<Icon name="external" size={14} /></a>)}
               </div>
             )}
             <Button variant="primary" size="lg" onClick={() => { toast(t('learn.done'), 'ok', 'check'); nav('/learn'); }}>{t('learn.finish')}</Button>
@@ -99,7 +99,7 @@ export default function LearnDeck() {
       </div>
       <div className="deck__foot">
         <Button variant="ghost" icon="back" disabled={i === 0} onClick={() => goTo(i - 1)}>{t('common.back')}</Button>
-        <span className="xs muted">{t('learn.swipe')}</span>
+        <span className="xs muted deck__swipe">{t('learn.swipe')}</span>
         <Button variant={i === total - 1 ? 'ghost' : 'primary'} iconRight="chevron" disabled={i === total - 1 || (isQuiz && answers[quizIdx] === undefined && answered < guide.quiz.length && quizIdx >= 0 && answers[quizIdx] === undefined)} onClick={() => goTo(i + 1)}>{t('common.next')}</Button>
       </div>
     </div>

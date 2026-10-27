@@ -236,7 +236,9 @@
     "empty": "Pick a section above to start reading.",
     "done": "Guide done",
     "hotlines": "Hotlines",
-    "hotlinesSub": "Save these before the storm."
+    "hotlinesSub": "Save these before the storm.",
+    "cards_one": "{{count}} card",
+    "cards_other": "{{count}} cards"
   },
   "stock": {
     "title": "Your stock",
@@ -314,7 +316,17 @@
       "title": "Cinematic tour",
       "start": "Start tour",
       "stop": "Stop"
-    }
+    },
+    "card": "Family plan card",
+    "meeting": "Meeting point",
+    "meetingPh": "e.g. Barangay hall, Lola's house",
+    "contacts": "Emergency contacts",
+    "contactsPh": "Name · number",
+    "medical": "Medical notes",
+    "medicalPh": "Allergies, meds, blood type",
+    "print": "Print",
+    "qr": "Scan to open on another phone",
+    "saved": "Saved on this phone"
   },
   "me": {
     "title": "You",
@@ -378,7 +390,7 @@
     "installSub": "Add to your home screen. Works without signal.",
     "houseView": "House view",
     "houseViewPlan": "Blueprint",
-    "houseView3d": "3D (experimental)",
+    "houseView3d": "3D (beta)",
     "houseViewGame": "Rooms (game)",
     "itemArt": "Item art",
     "itemArtHint": "3D cartoon models are pre-rendered; vector is lighter.",
@@ -598,5 +610,10 @@
     "info": "Storage info",
     "rotateModel": "Drag to rotate · 3D model",
     "modelLoading": "Loading model…"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page is not in the house. Check the link or head back home.",
+    "home": "Back home"
   }
 }

@@ -208,7 +208,7 @@ export default function PlanScreen() {
 
   const Layers = () => (
     <div className="pn">
-      <div className="pn__h"><span>{t('plan.layers')}</span><button type="button" className="tb" style={{ minHeight: 26, padding: '0 8px' }} onClick={() => setHidden(new Set())}>{t('plan.showAll')}</button></div>
+      <div className="pn__h"><span>{t('plan.layers')}</span><button type="button" className="tb tb--xs" onClick={() => setHidden(new Set())}>{t('plan.showAll')}</button></div>
       {relevantCats.map((c) => {
         const p = Math.round((readiness.categories[c].pct) * 100);
         const on = !hidden.has(c);
@@ -251,7 +251,7 @@ export default function PlanScreen() {
                 <div key={item.id} className="reco__item">
                   <Icon name={CAT_ICON[item.category]} size={14} style={{ color: CAT_COLOR[item.category] }} />
                   <span><b>{t('plan.add', { n })}</b> × {pick(item.name)}<br /><span style={{ color: 'var(--bp-ink-2)' }}>{pick(ITEM_STORE_TIPS[item.id])}</span></span>
-                  <button type="button" className="tb" style={{ minHeight: 28, padding: '0 8px' }} onClick={(e) => void add(item, e.currentTarget)}><Icon name="plus" size={14} /></button>
+                  <button type="button" className="tb tb--xs" aria-label={`${t('common.add')} ${pick(item.name)}`} onClick={(e) => void add(item, e.currentTarget)}><Icon name="plus" size={14} /></button>
                 </div>
               ))}
             </div>
@@ -264,7 +264,7 @@ export default function PlanScreen() {
                 <div key={item.id} className={`irow ${have >= need ? 'irow--done' : ''}`}>
                   <svg viewBox="-50 -50 100 100" width={26} height={26}><Symbol shape={item.shape} color={CAT_COLOR[item.category]} size={96} view="section" /></svg>
                   <span><span style={{ display: 'block', fontSize: 'var(--fs-xs)' }}>{pick(item.name)}</span><span className="irow__have"><b>{have}</b> / {need} {item.unit}</span></span>
-                  <span className="irow__btns"><button type="button" className="tb" aria-label="−" onClick={() => void minus(item)}><Icon name="minus" size={12} /></button><button type="button" className="tb" aria-label="+" onClick={(e) => void add(item, e.currentTarget)}><Icon name="plus" size={12} /></button><button type="button" className="tb" aria-label="=" title="Set to need" onClick={() => void setExact(item, need)}><Icon name="check" size={12} /></button></span>
+                  <span className="irow__btns"><button type="button" className="tb" aria-label={`${t('common.remove')} ${pick(item.name)}`} onClick={() => void minus(item)}><Icon name="minus" size={12} /></button><button type="button" className="tb" aria-label={`${t('common.add')} ${pick(item.name)}`} onClick={(e) => void add(item, e.currentTarget)}><Icon name="plus" size={12} /></button><button type="button" className="tb" aria-label={`${t('plan.need')}: ${need}`} title={`${t('plan.need')}: ${need}`} onClick={() => void setExact(item, need)}><Icon name="check" size={12} /></button></span>
                 </div>
               );
             })}
@@ -353,12 +353,12 @@ export default function PlanScreen() {
         <div className="ed__status">
           <span><span className="dot" />{t('plan.status')}</span>
           <span>{t('plan.sheet')} <b>{titleBlock.sheet}</b></span>
-          <span>{t('plan.zoom')} <b>{zoomPct}%</b></span>
+          <span className="ed__st-lg">{t('plan.zoom')} <b>{zoomPct}%</b></span>
           <span className="ed__cursor">{t('plan.cursor')} <b>{cursor ? `${(cursor.x / 100).toFixed(2)}, ${(cursor.y / 100).toFixed(2)}` : '—'}</b></span>
           <span className="sp" />
-          <span>{t('plan.ready')} <b>{pct}%</b></span>
-          <span>{t('plan.days')} <b>{readiness.daysCovered}</b></span>
-          <span>{t('plan.rev')} <b>{inventory.length}</b></span>
+          <span className="ed__st-lg">{t('plan.ready')} <b>{pct}%</b></span>
+          <span className="ed__st-lg">{t('plan.days')} <b>{readiness.daysCovered}</b></span>
+          <span className="ed__st-lg">{t('plan.rev')} <b>{inventory.length}</b></span>
         </div>
       </div>
 

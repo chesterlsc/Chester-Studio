@@ -28,12 +28,12 @@ export default function Pricing() {
       <div className="tiers stack">
         <Tier id="guest" title={t('pricing.guest')} price={t('pricing.guestPrice')} features={feats('pricing.guestF')} />
         <Tier id="free" title={t('pricing.free')} price={t('pricing.freePrice')} features={feats('pricing.freeF')} />
-        <Tier id="plus" hi title={t('pricing.plus')} price={<>₱{TIERS.plus.price.monthly}<small>{t('pricing.mo')}</small> · ₱{TIERS.plus.price.yearly}<small>{t('pricing.yr')}</small></>} features={feats('pricing.plusF')} />
+        <Tier id="plus" hi title={t('pricing.plus')} price={<><span>₱{TIERS.plus.price.monthly}<small>{t('pricing.mo')}</small></span><span>₱{TIERS.plus.price.yearly}<small>{t('pricing.yr')}</small></span></>} features={feats('pricing.plusF')} />
       </div>
       <div className="card row" style={{ marginTop: 'var(--s-6)', gap: 'var(--s-4)' }}>
         <span className="lrow__icon" style={{ color: 'var(--brand)' }}><Icon name="book" /></span>
         <span className="grow"><b>{t('pricing.books')}</b><br /><span className="small muted">{t('pricing.booksSub')}</span></span>
-        <Badge>{t('common.soon')}</Badge>
+        <span style={{ flex: 'none' }}><Badge>{t('common.soon')}</Badge></span>
       </div>
       <Sheet open={soon} onClose={() => setSoon(false)} title={t('pricing.plus')}>
         <div className="stack">

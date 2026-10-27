@@ -44,16 +44,16 @@ export default function Stock() {
     return (
       <div className="stock-row">
         <span className="lrow__icon" style={{ '--row-color': CAT_COLOR[item.category], color: CAT_COLOR[item.category] } as React.CSSProperties}><Icon name={`cat-${item.category}`} /></span>
-        <div className="grow" style={{ minWidth: 0 }}>
-          <div style={{ fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{pick(item.name)}</div>
-          <div className="row" style={{ gap: 'var(--s-2)', flexWrap: 'wrap' }}>
-            <label className={`stock-row__exp ${expCls}`}>
-              <Icon name="calendar" size={12} />
+        <div className="grow">
+          <div className="stock-row__name">{pick(item.name)}</div>
+          <div className="stock-row__meta">
+            <label className={`stock-row__act stock-row__exp ${expCls}`} title={t('stock.setExpiry')}>
+              <Icon name="calendar" size={14} />
               {r.expiresAt ? (d !== null && d < 0 ? t('stock.expired') : fmtDate(r.expiresAt)) : t('stock.noExpiry')}
-              <input type="date" aria-label={t('stock.setExpiry')} style={{ position: 'absolute', opacity: 0, width: 1, height: 1 }} value={r.expiresAt ? new Date(r.expiresAt).toISOString().slice(0, 10) : ''} onChange={(e) => void setExpiry(r, e.target.value ? new Date(e.target.value).getTime() : undefined)} />
+              <input type="date" aria-label={t('stock.setExpiry')} style={{ position: 'absolute', inset: 0, opacity: 0, width: '100%', height: '100%', cursor: 'pointer' }} onClick={(e) => { try { e.currentTarget.showPicker?.(); } catch { /* needs a user gesture */ } }} value={r.expiresAt ? new Date(r.expiresAt).toISOString().slice(0, 10) : ''} onChange={(e) => void setExpiry(r, e.target.value ? new Date(e.target.value).getTime() : undefined)} />
             </label>
-            {item.buy && <button type="button" className="xs" style={{ color: 'var(--info)', fontWeight: 600 }} onClick={() => setBuy(r)}>{t('stock.where')}</button>}
-            <button type="button" className="xs" style={{ color: 'var(--fg-3)' }} onClick={() => void removeItem(r)} aria-label={t('common.remove')}><Icon name="trash" size={14} /></button>
+            {item.buy && <button type="button" className="stock-row__act stock-row__act--buy" onClick={() => setBuy(r)}>{t('stock.where')}</button>}
+            <button type="button" className="stock-row__act stock-row__act--del" onClick={() => void removeItem(r)} aria-label={`${t('common.remove')} ${pick(item.name)}`}><Icon name="trash" size={16} /></button>
           </div>
         </div>
         <Stepper value={r.qty} min={0} max={999} onChange={(v) => void setQty(r, v)} label={t('stock.qty')} />
@@ -70,9 +70,9 @@ export default function Stock() {
         <Link to="/plan" className="card row" style={{ gap: 'var(--s-4)' }}>
           <span className="lrow__icon" style={{ color: 'var(--brand)' }}><Icon name="card" /></span>
           <span className="grow"><b>{t('stock.plan')}</b><br /><span className="small muted">{t('stock.planSub')}</span></span>
-          <Icon name="chevron" style={{ color: 'var(--fg-3)' }} />
+          <Icon name="chevron" style={{ color: 'var(--fg-3)', flex: 'none' }} />
         </Link>
-        <div className="card setting" style={{ border: '1px solid var(--line)' }}>
+        <div className="card setting">
           <div className="setting__l"><b>{t('stock.reminders')}</b><small>{t('stock.remindersSub')}</small></div>
           <Toggle on={reminders} onChange={(v) => void toggleReminders(v)} label={t('stock.reminders')} />
         </div>

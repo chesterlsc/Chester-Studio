@@ -61,7 +61,7 @@ export default function Press() {
     <div className="page page--wide">
       <TopBar title={t('press.title')} onBack={() => nav('/')} />
       <p className="muted" style={{ marginBottom: 'var(--s-6)' }}>{t('press.sub')}</p>
-      <div className="grid-2" style={{ marginBottom: 'var(--s-8)' }}>
+      <div className="actions-2" style={{ marginBottom: 'var(--s-8)' }}>
         <Button variant="primary" size="lg" icon="inventory" onClick={() => void demo()}>{t('press.demo')}</Button>
         <Button size="lg" icon="play" onClick={() => void present()}>{t('press.present')}</Button>
       </div>
@@ -76,7 +76,7 @@ export default function Press() {
         <div className="device">
           <div className="device__screen" style={{ background: 'var(--bg)', padding: '64px 20px 20px', display: 'grid', alignContent: 'start', gap: 16 }}>
             <div className="eyebrow">{t('landing.eyebrow')}</div>
-            <h2 style={{ fontSize: 34, lineHeight: 1, letterSpacing: '-.04em', fontWeight: 800 }}>{t('landing.h1a')}<br />{t('landing.h1b')}<br /><span style={{ color: 'var(--brand)' }}>{t('landing.h1c')}</span></h2>
+            <h2 className="device__h2">{t('landing.h1a')}<br />{t('landing.h1b')}<br /><span style={{ color: 'var(--brand)' }}>{t('landing.h1c')}</span></h2>
             <HouseArt />
             <Button variant="primary" size="lg" icon="play">{t('landing.cta')}</Button>
           </div>
@@ -88,7 +88,7 @@ export default function Press() {
         {['f1', 'f2', 'f3', 'f4'].map((k) => <div key={k} className="row small"><Icon name="check" size={16} style={{ color: 'var(--ok)' }} />{t(`press.${k}`)}</div>)}
         <div className="row" style={{ marginTop: 'var(--s-3)', gap: 'var(--s-4)' }}>
           <svg width="56" height="56" viewBox="0 0 64 64" aria-label={t('press.logo')}><path d="M8 32 32 10l24 22v22H8z" fill="#ff6a1a" /><path d="M26 54V36h12v18" fill="var(--bg)" /></svg>
-          <div className="small muted">{t('press.contact')}: <a href="mailto:hello@prepare.ph" style={{ color: 'var(--info)' }}>hello@prepare.ph</a></div>
+          <div className="small muted">{t('press.contact')}: <a href="mailto:hello@prepare.ph" className="press__mail">hello@prepare.ph</a></div>
         </div>
       </section>
     </div>

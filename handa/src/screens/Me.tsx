@@ -54,7 +54,7 @@ export default function Me() {
 
   const signedIn = auth.status === 'signedIn';
   const Row = ({ to, icon, label }: { to: string; icon: IconName; label: string }) => (
-    <Link to={to} className="linkrow"><Icon name={icon} style={{ color: 'var(--fg-2)' }} />{label}<Icon name="chevron" /></Link>
+    <Link to={to} className="linkrow"><Icon name={icon} style={{ color: 'var(--fg-2)' }} /><span className="linkrow__t">{label}</span><Icon name="chevron" /></Link>
   );
 
   return (
@@ -65,7 +65,7 @@ export default function Me() {
         <div className="card acct">
           <div className="acct__avatar"><Icon name={signedIn ? 'cloud' : 'user'} size={26} /></div>
           <div className="grow">
-            <div className="row" style={{ gap: 8 }}>
+            <div className="acct__name">
               <b>{signedIn ? auth.user?.email ?? t('me.account') : t('me.guest')}</b>
               <Badge kind={auth.tier === 'plus' ? 'brand' : signedIn ? 'ok' : undefined}>{auth.tier === 'plus' ? t('me.plus') : signedIn ? t('me.account') : t('me.guest')}</Badge>
             </div>
@@ -87,7 +87,7 @@ export default function Me() {
 
         {/* progress */}
         <section className="stack-2">
-          <div className="row row--between"><div className="eyebrow">{t('me.badges')}</div><span className="xs mono muted">{t('me.streak', { n: s.streakDays })} · {t('me.runs', { n: s.runsCompleted })}</span></div>
+          <div className="row row--between" style={{ flexWrap: 'wrap', rowGap: 2 }}><div className="eyebrow">{t('me.badges')}</div><span className="xs mono muted">{t('me.streak', { n: s.streakDays })} · {t('me.runs', { n: s.runsCompleted })}</span></div>
           <div className="badges">
             {BADGES.map((b) => <div key={b.id} className={`badge-tile ${badges.has(b.id) ? 'badge-tile--on' : ''}`} title={t(`badges.${b.id}-sub`)}><span className="badge-tile__i"><Icon name={b.icon} /></span>{t(`badges.${b.id}`)}</div>)}
           </div>
@@ -97,7 +97,7 @@ export default function Me() {
           {scores.length === 0 ? <p className="small muted">{t('me.noHistory')}</p> : (
             <>
               <div className="history" aria-hidden="true">{scores.slice(-14).map((sc) => <span key={sc.id} style={{ height: `${Math.max(6, sc.pct)}%`, background: sc.pct >= 80 ? 'var(--ok)' : sc.pct >= 50 ? 'var(--warn)' : 'var(--bad)' }} title={`${sc.pct}%`} />)}</div>
-              <div className="xs muted mono row row--between"><span>{fmtDate(scores[0]?.at)}</span><span>{fmtDate(scores[scores.length - 1]?.at)}</span></div>
+              <div className="xs muted mono history__dates"><span>{fmtDate(scores[0]?.at)}</span>{scores.length > 1 && fmtDate(scores[0]?.at) !== fmtDate(scores[scores.length - 1]?.at) && <span>{fmtDate(scores[scores.length - 1]?.at)}</span>}</div>
             </>
           )}
         </section>
@@ -138,14 +138,14 @@ export default function Me() {
           <Row to="/pricing" icon="star" label={t('me.pricing')} />
           <Row to="/survey" icon="edit" label={t('me.feedback')} />
           <Row to="/hotlines" icon="phone" label={t('hotlines.title')} />
-          <Row to="/plan" icon="card" label={t('plan.title')} />
+          <Row to="/plan" icon="card" label={t('plan.card')} />
           <Row to="/press" icon="eye" label={t('me.press')} />
         </section>
 
         {/* data */}
         <section className="card stack-2">
           <div className="eyebrow">{t('me.data')}</div>
-          <div className="grid-2">
+          <div className="actions-2">
             <Button icon="download" onClick={() => void exportData()}>{t('me.export')}</Button>
             <Button variant="danger" icon="trash" onClick={() => setDel(true)}>{t('me.delete')}</Button>
           </div>

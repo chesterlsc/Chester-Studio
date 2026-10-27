@@ -23,7 +23,7 @@ export default function Hotlines() {
             <span className="lrow__icon" style={{ '--row-color': 'var(--bad)' } as React.CSSProperties}><Icon name="phone" /></span>
             <div className="grow">
               <div style={{ fontWeight: 600 }}>{pick(h.org)}{h.city ? ` · ${h.city}` : ''}</div>
-              <div className="small muted mono">{h.numbers.join(' · ')}</div>
+              <div className="small muted mono" style={{ overflowWrap: 'anywhere' }}>{h.numbers.join(' · ')}</div>
             </div>
             <a href={`tel:${h.numbers[0].replace(/[^\d+]/g, '')}`} className="btn btn--primary btn--sm">{t('hotlines.call')}</a>
           </div>

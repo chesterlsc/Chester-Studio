@@ -236,7 +236,9 @@
     "empty": "Pumili ng section sa taas para magsimula.",
     "done": "Tapos ang gabay",
     "hotlines": "Hotlines",
-    "hotlinesSub": "I-save na bago dumating ang bagyo."
+    "hotlinesSub": "I-save na bago dumating ang bagyo.",
+    "cards_one": "{{count}} card",
+    "cards_other": "{{count}} cards"
   },
   "stock": {
     "title": "Stock mo",
@@ -314,7 +316,17 @@
       "title": "Cinematic tour",
       "start": "Simulan ang tour",
       "stop": "Itigil"
-    }
+    },
+    "card": "Family plan card",
+    "meeting": "Tagpuan",
+    "meetingPh": "hal. Barangay hall, bahay ni Lola",
+    "contacts": "Emergency contacts",
+    "contactsPh": "Pangalan · numero",
+    "medical": "Medical notes",
+    "medicalPh": "Allergy, gamot, blood type",
+    "print": "I-print",
+    "qr": "I-scan para buksan sa ibang phone",
+    "saved": "Naka-save sa phone na ito"
   },
   "me": {
     "title": "Ikaw",
@@ -378,7 +390,7 @@
     "installSub": "Ilagay sa home screen. Gumagana kahit walang signal.",
     "houseView": "Itsura ng bahay",
     "houseViewPlan": "Blueprint",
-    "houseView3d": "3D (experimental)",
+    "houseView3d": "3D (beta)",
     "houseViewGame": "Mga kuwarto (laro)",
     "itemArt": "Itsura ng gamit",
     "itemArtHint": "Pre-rendered na 3D cartoon models; mas magaan ang vector.",
@@ -598,5 +610,10 @@
     "info": "Info sa pag-iimbak",
     "rotateModel": "I-drag para paikutin · 3D model",
     "modelLoading": "Nilo-load ang model…"
+  },
+  "notFound": {
+    "title": "Hindi mahanap ang page",
+    "body": "Wala sa bahay ang page na ito. Tingnan ang link o bumalik sa home.",
+    "home": "Balik sa home"
   }
 }

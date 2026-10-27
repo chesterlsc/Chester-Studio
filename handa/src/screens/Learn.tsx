@@ -42,16 +42,16 @@ export default function Learn() {
           return (
             <button key={g.id} type="button" className="guide" onClick={() => (locked ? nav('/pricing') : nav(`/learn/${g.id}`))}>
               <span className="guide__i"><Icon name={(g.cards[0]?.icon as IconName) ?? 'book'} /></span>
-              <span>
+              <span style={{ minWidth: 0 }}>
                 <span style={{ fontWeight: 700, display: 'block' }}>{pick(g.title)}</span>
                 <span className="small muted" style={{ display: 'block' }}>{pick(g.blurb)}</span>
                 <span className="guide__meta" style={{ marginTop: 6 }}>
                   <Badge kind={g.level === 'basic' ? 'ok' : g.level === 'intermediate' ? 'warn' : 'brand'}>{t(`learn.levels.${g.level}`)}</Badge>
-                  <span><Icon name="clock" size={12} style={{ verticalAlign: '-2px' }} /> {g.seconds}{t('common.sec')}</span>
-                  <span>{g.cards.length} cards</span>
+                  <span><Icon name="clock" size={12} />{g.seconds}{t('common.sec')}</span>
+                  <span>{t('learn.cards', { count: g.cards.length })}</span>
                 </span>
               </span>
-              <Icon name={locked ? 'lock' : 'chevron'} style={{ color: 'var(--fg-3)' }} />
+              <Icon name={locked ? 'lock' : 'chevron'} style={{ color: 'var(--fg-3)', flex: 'none' }} />
             </button>
           );
         })}

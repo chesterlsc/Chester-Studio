@@ -82,7 +82,7 @@ export default function Score() {
           <div className="score__pct">{score.pct}<small>%</small></div>
         </Ring>
         <div className="score__level" style={{ color: readinessColor(score.pct) }}>{t(`score.level.${level}`)}</div>
-        <div className="muted"><Icon name={scenario} size={16} style={{ verticalAlign: '-3px', marginRight: 6 }} />{t(`scenario.${scenario}`)} · {t('score.days')}: <b className="mono" style={{ color: 'var(--fg)' }}>{fmtDays(score.daysCovered)}</b></div>
+        <div className="score__meta"><Icon name={scenario} size={16} /><span>{t(`scenario.${scenario}`)}</span><span aria-hidden="true">·</span><span>{t('score.days')}: <b className="mono" style={{ color: 'var(--fg)' }}>{fmtDays(score.daysCovered)}</b></span></div>
       </div>
 
       {newBadges.length > 0 && (
@@ -97,9 +97,9 @@ export default function Score() {
       )}
 
       <div className="score__card rise">{img ? <img src={img} alt={t('score.title')} width={1200} height={630} /> : <div style={{ aspectRatio: '1200/630', background: 'var(--bg-2)' }} />}</div>
-      <p className="xs muted" style={{ display: 'flex', gap: 8, alignItems: 'center' }}><Icon name="lock" size={14} />{t('score.privacy')}</p>
+      <p className="xs muted" style={{ display: 'flex', gap: 8, alignItems: 'center' }}><Icon name="lock" size={14} style={{ flex: 'none' }} />{t('score.privacy')}</p>
 
-      <div className="grid-2">
+      <div className="actions-2">
         <Button variant="primary" size="lg" icon="share" onClick={() => void share()}>{t('score.share')}</Button>
         <Button size="lg" icon="download" onClick={() => void save()}>{t('score.save')}</Button>
       </div>
@@ -109,7 +109,7 @@ export default function Score() {
           <div className="eyebrow" style={{ marginBottom: 'var(--s-3)' }}>{t('score.topMissing')}</div>
           {gaps.map(([c, p]) => (
             <div className="gap" key={c}>
-              <span style={{ minWidth: 110, fontSize: 'var(--fs-sm)', fontWeight: 600 }}>{t(`cat.${c}`)}</span>
+              <span className="gap__label">{t(`cat.${c}`)}</span>
               <Meter value={p * 100} color={CAT_COLOR[c]} size="sm" />
               <span className="mono xs muted" style={{ minWidth: 36, textAlign: 'right' }}>{Math.round(p * 100)}%</span>
             </div>

@@ -1,0 +1,17 @@
+/* ---- Scenario simulation (burn-down chart) ----
+   Self-contained: the chart is also shown inside the game's survival sheet, where plan.css is not loaded,
+   so every colour falls back to the app tokens when the blueprint palette is missing. */
+.sim { display: grid; gap: var(--s-3); --sim-ink: var(--bp-ink, var(--fg)); --sim-ink-2: var(--bp-ink-2, var(--fg-2)); --sim-ink-3: var(--bp-ink-3, var(--fg-3)); --sim-grid: var(--bp-grid, color-mix(in srgb, var(--fg) 7%, transparent)); --sim-grid-major: var(--bp-grid-major, color-mix(in srgb, var(--fg) 16%, transparent)); --sim-line: var(--bp-panel-line, var(--line)); --sim-bg: var(--bp-bg, var(--bg)); }
+.sim__chart { width: 100%; height: auto; display: block; }
+.sim__t { font-family: var(--font-mono); fill: var(--sim-ink-2); letter-spacing: .08em; text-transform: uppercase; }
+.sim__legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: .06em; text-transform: uppercase; color: var(--sim-ink-2); }
+.sim__legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.sim__legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; flex: none; }
+.sim__events { display: grid; gap: 4px; }
+.sim__ev { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 10px; align-items: center; font-size: var(--fs-sm); padding: 6px 8px; border-radius: 8px; background: rgba(255,93,108,.08); border: 1px solid rgba(255,93,108,.25); color: var(--sim-ink); }
+.sim__ev--low { background: rgba(255,194,71,.08); border-color: rgba(255,194,71,.3); }
+.sim__ev--ok { background: var(--ok-dim); border-color: var(--ok); }
+.sim__ev b { font-family: var(--font-mono); color: var(--sim-ink); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.sim__big { display: flex; align-items: baseline; gap: 10px; font-family: var(--font-mono); flex-wrap: wrap; }
+.sim__big b { font-size: var(--fs-3xl); font-weight: 800; letter-spacing: -.03em; color: var(--sim-ink); line-height: 1; }
+.sim__big span { font-size: var(--fs-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--sim-ink-2); }
