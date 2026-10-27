@@ -379,7 +379,11 @@
     "houseView": "House view",
     "houseViewPlan": "Blueprint",
     "houseView3d": "3D (experimental)",
-    "houseViewGame": "Rooms (game)"
+    "houseViewGame": "Rooms (game)",
+    "itemArt": "Item art",
+    "itemArtHint": "3D cartoon models are pre-rendered; vector is lighter.",
+    "itemArt3d": "3D cartoon",
+    "itemArtVector": "Vector"
   },
   "pricing": {
     "title": "Plans",
@@ -591,6 +595,8 @@
       "petRack": "Pet food in a sealed bin, leash and carrier next to the exit route.",
       "stayIn": "Upper floor: sleeping mats, blackout curtain, extinguisher by the door, lock on the door."
     },
-    "info": "Storage info"
+    "info": "Storage info",
+    "rotateModel": "Drag to rotate · 3D model",
+    "modelLoading": "Loading model…"
   }
 }

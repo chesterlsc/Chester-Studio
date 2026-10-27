@@ -130,6 +130,7 @@ export default function Me() {
           <div className="setting"><div className="setting__l"><b>{t('me.motion')}</b></div><Segmented value={s.motion} options={[{ value: 'auto', label: t('me.motionAuto') }, { value: 'off', label: t('me.motionOff') }]} onChange={s.setMotion} label={t('me.motion')} /></div>
           <div className="setting"><div className="setting__l"><b>{t('me.lowData')}</b><small>{t('me.lowDataSub')}</small></div><Toggle on={s.lowData} onChange={s.setLowData} label={t('me.lowData')} /></div>
           <div className="setting"><div className="setting__l"><b>{t('me.houseView')}</b></div><Segmented value={s.houseView} options={[{ value: 'game', label: t('me.houseViewGame') }, { value: 'plan', label: t('me.houseViewPlan') }, { value: '3d', label: t('me.houseView3d') }]} onChange={s.setHouseView} label={t('me.houseView')} /></div>
+          <div className="setting"><div className="setting__l"><b>{t('me.itemArt')}</b><span className="xs muted">{t('me.itemArtHint')}</span></div><Segmented value={s.itemArt} options={[{ value: '3d', label: t('me.itemArt3d') }, { value: 'vector', label: t('me.itemArtVector') }]} onChange={(v) => s.setItemArt(v as '3d' | 'vector')} label={t('me.itemArt')} /></div>
         </section>
 
         {/* links */}

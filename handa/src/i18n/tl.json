@@ -379,7 +379,11 @@
     "houseView": "Itsura ng bahay",
     "houseViewPlan": "Blueprint",
     "houseView3d": "3D (experimental)",
-    "houseViewGame": "Mga kuwarto (laro)"
+    "houseViewGame": "Mga kuwarto (laro)",
+    "itemArt": "Itsura ng gamit",
+    "itemArtHint": "Pre-rendered na 3D cartoon models; mas magaan ang vector.",
+    "itemArt3d": "3D cartoon",
+    "itemArtVector": "Vector"
   },
   "pricing": {
     "title": "Mga plano",
@@ -591,6 +595,8 @@
       "petRack": "Pagkain ng alaga sa saradong lalagyan, tali at carrier sa tabi ng daan palabas.",
       "stayIn": "Itaas: banig, blackout curtain, extinguisher sa tabi ng pinto, kandado sa pinto."
     },
-    "info": "Info sa pag-iimbak"
+    "info": "Info sa pag-iimbak",
+    "rotateModel": "I-drag para paikutin · 3D model",
+    "modelLoading": "Nilo-load ang model…"
   }
 }
