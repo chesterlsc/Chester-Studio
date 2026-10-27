@@ -11,8 +11,11 @@ import '@/game/game.css';
 
 const DEMO: Array<[string, number]> = [['rice-kg', 5], ['canned-sardines', 12], ['canned-meat', 6], ['instant-noodles', 10], ['biscuits', 6], ['water-drum', 1], ['water-gallon-5', 3], ['water-bottle-1l', 12], ['first-aid-kit', 1], ['paracetamol', 2], ['ors', 4], ['diapers', 2], ['formula', 2], ['flashlight', 2], ['batteries', 3], ['powerbank', 2], ['solar-panel', 1], ['radio', 1], ['documents', 1], ['cash-small', 10], ['go-bag', 3], ['rain-gear', 3], ['tarp', 1], ['rope', 1], ['duct-tape', 2], ['soap', 2], ['tissue', 8], ['door-lock', 1]];
 
-/** Static dollhouse for the landing hero. */
-export function GameHero() {
+/**
+ * Dollhouse for the landing hero. The house itself is painted once; the light rain comes from
+ * HouseMap's own thin `.hmap-fx` overlay (transform-only drops), so idle cost stays near zero.
+ */
+export function GameHero({ weather = 'rain' }: { weather?: string }) {
   const { t } = useTranslation();
   const placedByRoom = useMemo(() => {
     const count = new Map<string, number>(); const o: Partial<Record<RoomId, PlacedSprite[]>> = {};
@@ -28,7 +31,7 @@ export function GameHero() {
   }, []);
   return (
     <div className="game-hero" aria-hidden="true">
-      <HouseMap placedByRoom={placedByRoom} roomPct={{ kitchen: .7, water: .8, bedroom: .6, bathroom: .4, sala: .75, study: .5, entry: .3, bodega: .35, saferoom: .2 }} missingCount={{ entry: 1, bodega: 1, saferoom: 2 }} weather="dry" lightsOn onSelect={() => {}} label={(r) => t(`room.${r}`)} />
+      <HouseMap placedByRoom={placedByRoom} roomPct={{ kitchen: .7, water: .8, bedroom: .6, bathroom: .4, sala: .75, study: .5, entry: .3, bodega: .35, saferoom: .2 }} missingCount={{ entry: 1, bodega: 1, saferoom: 2 }} weather={weather} lightsOn onSelect={() => {}} label={(r) => t(`room.${r}`)} />
     </div>
   );
 }

@@ -1,13 +1,16 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState, type CSSProperties } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Button, Chip, Icon } from '@/ui';
-import { SCENARIO_ORDER } from '@/domain/scenarios';
+import { SCENARIO_ORDER, SCENARIOS } from '@/domain/scenarios';
 import { useSession } from '@/store/useSession';
 import { useSettings } from '@/store/useSettings';
+import { HERO } from '@/intro/hero.strings';
+import '@/intro/hero.css';
+import './screens.css';
 const GameHero = lazy(() => import('./GameHero').then((m) => ({ default: m.GameHero })));
 
-/** The blueprint hero is heavy-ish SVG; mount it after first paint so the landing stays instant. */
+/** The dollhouse hero is heavy-ish SVG; mount it after first paint so the landing stays instant. */
 function useIdle(): boolean {
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -19,10 +22,15 @@ function useIdle(): boolean {
   }, []);
   return ready;
 }
-import './screens.css';
+
+/** Title line painted normally (LCP-safe) and revealed by a colour bar wiping off it. */
+function Wipe({ children, delay, accent }: { children: string; delay: number; accent?: boolean }) {
+  return <span className={`in-wipe ${accent ? 'in-wipe--accent accent' : ''}`}>{children}<i className="in-wipe__bar" aria-hidden="true" style={{ '--d': `${delay}ms` } as CSSProperties} /></span>;
+}
 
 export default function Landing() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const L = HERO[i18n.language === 'tl' ? 'tl' : 'en'];
   const nav = useNavigate();
   const runId = useSession((s) => s.runId);
   const scenario = useSession((s) => s.scenario);
@@ -30,6 +38,7 @@ export default function Landing() {
   const lang = useSettings((s) => s.lang);
   const setLang = useSettings((s) => s.setLang);
   const idle = useIdle();
+  const weather = runId && scenario ? SCENARIOS[scenario].weather : 'rain';
 
   return (
     <div className="page page--wide">
@@ -47,14 +56,14 @@ export default function Landing() {
         <div className="stack-6 rise">
           <div className="eyebrow">{t('landing.eyebrow')}</div>
           <h1 className="hero__title">
-            <span>{t('landing.h1a')}</span>
-            <span>{t('landing.h1b')}</span>
-            <span className="accent">{t('landing.h1c')}</span>
+            <Wipe delay={80}>{t('landing.h1a')}</Wipe>
+            <Wipe delay={220}>{t('landing.h1b')}</Wipe>
+            <Wipe delay={360} accent>{t('landing.h1c')}</Wipe>
           </h1>
           <p className="hero__lead">{t('landing.lead')}</p>
           <div className="hero__cta">
-            <Button variant="primary" size="lg" icon="play" onClick={() => nav('/play')}>{t('landing.cta')}</Button>
-            <span className="hero__ctasub">{t('landing.ctaSub')} · {t('app.tagline')}</span>
+            <span className="in-press"><Button variant="primary" size="lg" icon="play" onClick={() => nav('/play')}>{t('landing.cta')}</Button></span>
+            <span className="hero__ctasub in-ctasub"><span className="in-ctasub__ps">▶ {L.pressStart}</span><span>{t('landing.ctaSub')} · {t('app.tagline')}</span></span>
           </div>
           <div className="trust">
             <span><Icon name="shield" size={16} />{t('landing.trust1')}</span>
@@ -62,7 +71,17 @@ export default function Landing() {
             <span><Icon name="lock" size={16} />{t('landing.trust3')}</span>
           </div>
         </div>
-        <div className="hero__art pop"><div className="game-hero__box">{idle && <Suspense fallback={null}><GameHero /></Suspense>}</div></div>
+        <div className="hero__art pop">
+          <div className="game-hero__box">
+            {!idle && (
+              <div className="in-hero-ph" aria-hidden="true">
+                <i className="in-hero-ph__roof" /><i className="in-hero-ph__house"><i className="in-hero-ph__win" style={{ left: '12%', top: '22%' }} /><i className="in-hero-ph__win" style={{ right: '12%', top: '22%' }} /></i><i className="in-hero-ph__fence" />
+              </div>
+            )}
+            {idle && <Suspense fallback={null}><GameHero weather={weather} /></Suspense>}
+            <span className="in-hero-badge">{L.heroBadge}</span>
+          </div>
+        </div>
       </section>
 
       {runId && scenario && (
