@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HANDA ItemViewer test</title>
+    <style>
+      html, body { margin: 0; background: #f4e9d8; font: 12px/1.3 system-ui, sans-serif; color: #2a1812; }
+      h1 { font-size: 14px; margin: 12px 14px 6px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, 200px); gap: 10px; padding: 0 14px 14px; }
+      .cell { background: #fff7ea; border-radius: 12px; padding: 6px; }
+      .cell .v { height: 180px; }
+      .cell p { margin: 4px 0 0; text-align: center; }
+      .sprites { display: flex; gap: 12px; padding: 0 14px 14px; align-items: flex-end; }
+      .sprites img { height: 96px; }
+    </style>
+  </head>
+  <body>
+    <h1>ItemViewer (GLB + recolour + outline)</h1>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

@@ -24,7 +24,7 @@ import type { IconName } from '@/design/icons/names';
 import { LAYOUTS, slotAt, type Unit } from './layouts';
 import { RoomScene, type PlacedSprite } from './RoomScene';
 import { HouseMap } from './HouseMap';
-import { Sprite, GameDefs } from './Sprites';
+import { ItemArt, ItemHero } from './ItemArt';
 import { missionsFor, roomItems, roomMissions, type Mission } from './missions';
 import { levelFor, useProgress } from './progress';
 import './game.css';
@@ -261,7 +261,7 @@ export default function GameScreen() {
                   <div key={item.id} className={`gi ${done ? 'gi--done' : ''} ${hot ? 'gi--hot' : ''}`}>
                     {hot && !done && <span className="gi__hot">{t('game.nextMove')}</span>}
                     <button type="button" className="gi__add" aria-label={`${t('common.add')} ${pick(item.name)}`} onClick={(e) => void add(item, e.currentTarget)}><Icon name={done ? 'check' : 'plus'} size={16} /></button>
-                    <div className="gi__art"><svg viewBox="-50 -62 100 120"><GameDefs /><Sprite shape={item.shape} color={CAT_COLOR[item.category]} size={100} /></svg></div>
+                    <div className="gi__art"><ItemArt itemId={item.id} shape={item.shape} color={CAT_COLOR[item.category]} size={60} /></div>
                     <div className="gi__name">{pick(item.name)}</div>
                     <div className="gi__have"><span><b>{have}</b> / {need} {item.unit === 'php' ? '×₱500' : item.unit}</span>{have > 0 && <button type="button" className="gi__minus" aria-label={t('game.remove')} onClick={() => void minus(item)}><Icon name="minus" size={12} /></button>}</div>
                   </div>
@@ -276,7 +276,7 @@ export default function GameScreen() {
               {nextMoves.length === 0 && <div className="gi" style={{ width: 'auto', gridTemplateRows: 'none', alignItems: 'center' }}><Icon name="check" style={{ color: 'var(--ok)' }} /> {t('game.allDone')}</div>}
               {nextMoves.map((m) => (
                 <button key={m.id} type="button" className="gi gi--hot" style={{ width: 200, gridTemplateRows: '64px auto auto' }} onClick={() => enterRoom(m.room)}>
-                  <div className="gi__art"><svg viewBox="-50 -62 100 120"><GameDefs /><Sprite shape={m.item!.shape} color={CAT_COLOR[m.category]} size={100} /></svg></div>
+                  <div className="gi__art"><ItemArt itemId={m.item!.id} shape={m.item!.shape} color={CAT_COLOR[m.category]} size={60} /></div>
                   <div className="gi__name">{t('game.mission.stock', { need: m.need - m.have, item: pick(m.item!.name) })}</div>
                   <div className="gi__have"><span>{t(`room.${m.room}`)}</span><span className="mi__xp">+{m.xp} XP</span></div>
                 </button>
@@ -295,7 +295,7 @@ export default function GameScreen() {
           return (
             <div className="stack">
               <div className="row" style={{ gap: 'var(--s-4)' }}>
-                <svg viewBox="-50 -62 100 120" width={72} height={86}><GameDefs /><Sprite shape={item.shape} color={CAT_COLOR[item.category]} size={100} /></svg>
+                <ItemHero itemId={item.id} shape={item.shape} color={CAT_COLOR[item.category]} label={pick(item.name)} qty={row?.qty ?? 1} />
                 <div className="grow stack-2">
                   <div className="row row--between"><span className="small muted">{t('plan.have')} / {t('plan.need')}</span><span className="mono"><b>{row?.qty ?? 0}</b> / {need} {item.unit}</span></div>
                   {row && <Stepper value={row.qty} min={0} max={999} onChange={(v) => void setQty(row, v)} label={t('stock.qty')} />}

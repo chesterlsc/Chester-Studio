@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HANDA model renderer</title>
+    <style>
+      html, body { margin: 0; background: #f4e9d8; font: 13px/1.4 system-ui, sans-serif; color: #2a1812; }
+      #ui { padding: 10px 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      #ui select, #ui button { font: inherit; padding: 4px 8px; }
+      #stage { display: flex; gap: 12px; padding: 0 12px 12px; align-items: flex-start; flex-wrap: wrap; }
+      #gl { background: repeating-conic-gradient(#e3d2b9 0 25%, #f4e9d8 0 50%) 0 0 / 24px 24px; border: 1px solid #c9b79a; }
+      #out { background: #fff7ea; border: 1px solid #c9b79a; display: block; }
+      #sheet { display: grid; grid-template-columns: repeat(auto-fill, 112px); gap: 8px; padding: 12px; }
+      #sheet figure { margin: 0; background: #fff7ea; border-radius: 8px; padding: 6px; text-align: center; font-size: 10px; }
+      #sheet img { width: 96px; height: 96px; object-fit: contain; display: block; margin: 0 auto 4px; }
+    </style>
+  </head>
+  <body>
+    <div id="ui">
+      <strong>HANDA 3D item renderer</strong>
+      <select id="item"></select>
+      <select id="variant"><option value="">plain</option><option value="6">six-pack</option><option value="3">can row</option></select>
+      <button id="go">render</button>
+      <button id="all">contact sheet</button>
+      <span id="info"></span>
+    </div>
+    <div id="stage">
+      <canvas id="gl" width="512" height="512"></canvas>
+      <canvas id="out" width="256" height="256"></canvas>
+    </div>
+    <div id="sheet"></div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

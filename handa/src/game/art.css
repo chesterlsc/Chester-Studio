@@ -1,0 +1,7 @@
+/* Item art: pre-rendered 3D cartoon sprites + live model hero. */
+.iart { display: block; object-fit: contain; filter: drop-shadow(0 6px 6px rgba(40, 20, 10, .28)); user-select: none; -webkit-user-drag: none; }
+.ihero { position: relative; width: 132px; height: 132px; flex: none; display: grid; place-items: center; border-radius: var(--r-lg); background: radial-gradient(70% 70% at 50% 62%, rgba(255, 205, 130, .28), transparent 72%); }
+.ihero--3d { touch-action: none; cursor: grab; }
+.ihero--3d:active { cursor: grabbing; }
+.ihero__canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+.ihero__hint { position: absolute; left: 0; right: 0; bottom: -18px; text-align: center; font-size: 10px; color: var(--muted); letter-spacing: .04em; pointer-events: none; }
