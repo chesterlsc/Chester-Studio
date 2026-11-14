@@ -9,6 +9,7 @@ img { height: auto; }
 input, button, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :where(ul, ol)[role="list"] { list-style: none; padding: 0; }
+[hidden] { display: none !important; }
 
 /* ---------- Base ---------- */
 body {
