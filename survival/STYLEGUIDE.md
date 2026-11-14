@@ -32,7 +32,7 @@ Exit code 0 means it passes. Fix every ERROR. Read every WARNING and fix it unle
    - Scenario planning is allowed only when it is framed as arithmetic or guidance, e.g. "At 1 gallon per person per day, a family of 4 needs 1,460 gallons a year".
 4. **Myths must be debunked with a source.** Use the Myth vs Fact component.
 5. **Use recent facts.** Search for the latest guidance and data (2023–2026). If a guideline was updated (e.g. the AHA 2025 CPR Guidelines, the WHO Essential Medicines List 2025, the EPA 2024 PFAS rule), use the current version and say so. When a number changes over time, give the year: "(CDC, 2025)".
-6. **Research with the WebSearch tool.** Verify every number before you write it. **Only use URLs that came back in your search results.** Never invent or guess a URL. Prefer the most specific page (e.g. the CDC page on boiling water, not cdc.gov).
+6. **Research with the method in section 8.** Verify every important number before you write it. Never invent or guess a URL. Prefer the most specific page (e.g. the CDC page on boiling water, not cdc.gov).
 7. If you cannot verify a claim, **leave it out**. A shorter true chapter is better than a longer one with guesses.
 
 ## 3. Safety and content boundaries
@@ -247,9 +247,25 @@ SVG rules:
 ## 8. Working rules for agents
 
 - Edit **only** your own chapter file. Do not touch other files. Do not run git.
-- Research with WebSearch (load it with ToolSearch `select:WebSearch` if it is not already available). Do 10–25 searches. Record each URL exactly as it appears in the results.
 - `survival/src/chapters/_example.html` shows the syntax of every component. It is deliberately short and is **not** a model for length.
 - Read `survival/src/outline.json` for neighboring chapters. Cover **your** scope in depth and cross-link (`a.xref`) to other chapters for their topics instead of repeating them.
+
+### How to research (important: web search is rationed)
+
+The WebSearch tool has a small shared budget for the whole book, and **WebFetch does not work in this environment**. Use this method instead:
+
+1. **Draft from your own knowledge of official guidance** (WHO, CDC, FDA, EPA, AHA, AAP, ACOG, USDA, NFPA, extension services, peer-reviewed reviews). Include only facts you are confident are documented.
+2. **Verify the important numbers by reading the primary page** with the research tool (it uses curl through the proxy):
+   ```
+   node /home/user/Chester-Studio/survival/tools/research.mjs read "<url>" --grep "keyword|other keyword"
+   node /home/user/Chester-Studio/survival/tools/research.mjs read "<url>" --max 8000
+   ```
+   It reads HTML pages and PDFs. **Readable hosts:** www.cdc.gov, www.who.int, iris.who.int, apps.who.int, medlineplus.gov, www.fda.gov, www.epa.gov, www.nhs.uk, www.unicef.org, www.weather.gov, www.usfa.fema.gov, www.nfpa.org, www.energy.gov, www.nps.gov, www.fws.gov, www.fs.usda.gov, www.ars.usda.gov, www.nal.usda.gov, www.nrcs.usda.gov, nchfp.uga.edu, extension.psu.edu, extension.umn.edu, extension.usu.edu, extension.colostate.edu, extension.oregonstate.edu, www.ndsu.edu, www.aspca.org, www.healthychildren.org, www.acog.org, www.nimh.nih.gov, www.samhsa.gov, 988lifeline.org, www.arrl.org, armypubs.army.mil, nap.nationalacademies.org, www.nationalacademies.org.
+   **Blocked (403/CAPTCHA), cannot be read:** ready.gov, fema.gov (main site), redcross.org, fsis.usda.gov, foodsafety.gov, usda.gov, osha.gov, usgs.gov, cpr.heart.org, PubMed/PMC/NCBI, Cochrane Library, Sphere. You may still cite a page on these sites when you are certain the page exists and says what you cite, but prefer a readable equivalent (e.g. the CDC or FDA page on the same topic).
+   If a URL returns 404, it does not exist: find the right page (try the site's topic index page, then follow its links with `--grep`) or drop it.
+3. **WebSearch: at most 2 calls per agent**, only for facts from 2024–2026 that you cannot read on a readable host (e.g. a recent event's death toll). If it says the budget is used up, do not retry; carry on with steps 1–2.
+4. **Always finish and write the chapter.** Missing web search is not a reason to stop. Leave out only claims you cannot stand behind.
+5. Every source URL you cite must be one you read successfully or are certain exists. A link checker tests every URL afterwards.
 
 ## 9. Quality bar checklist (self-review before finishing)
 
