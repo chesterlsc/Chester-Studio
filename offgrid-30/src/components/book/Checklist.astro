@@ -1,0 +1,52 @@
+---
+// Tickable checklist. Ticks are saved on this device only (localStorage).
+import Icon from '../icons/Icon.astro';
+interface Props { id: string; title: string; items: string[]; }
+const { id, title, items } = Astro.props;
+---
+<section class="b-checklist cl card" data-checklist={id} aria-label={title}>
+  <div class="cl__head">
+    <h3>{title}</h3>
+    <p class="cl__count" aria-live="polite"><span data-done>0</span> / {items.length} done</p>
+  </div>
+  <div class="cl__bar" aria-hidden="true"><span data-bar></span></div>
+  <ul role="list">
+    {items.map((t, i) => (
+      <li><label><input type="checkbox" data-i={i} /><span class="cl__box" aria-hidden="true"><Icon name="check" size={20} /></span><span set:html={t} /></label></li>
+    ))}
+  </ul>
+  <button class="btn cl__reset no-print" type="button" data-reset>Clear ticks</button>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-checklist]').forEach((el) => {
+    const key = `og30:check:${el.dataset.checklist}`;
+    const boxes = [...el.querySelectorAll<HTMLInputElement>('input[type=checkbox]')];
+    let saved: number[] = [];
+    try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+    boxes.forEach((b, i) => (b.checked = saved.includes(i)));
+    const sync = () => {
+      const on = boxes.flatMap((b, i) => (b.checked ? [i] : []));
+      el.querySelector('[data-done]')!.textContent = String(on.length);
+      (el.querySelector('[data-bar]') as HTMLElement).style.width = `${(on.length / boxes.length) * 100}%`;
+      try { localStorage.setItem(key, JSON.stringify(on)); } catch {}
+    };
+    boxes.forEach((b) => b.addEventListener('change', sync));
+    el.querySelector('[data-reset]')!.addEventListener('click', () => { boxes.forEach((b) => (b.checked = false)); sync(); });
+    sync();
+  });
+</script>
+<style>
+  .cl { padding: var(--s2) var(--s2) var(--s3); }
+  .cl__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s2); flex-wrap: wrap; }
+  .cl__count { font-family: var(--font-mono); color: var(--ink-2); font-size: 1rem; }
+  .cl__bar { height: 8px; border-radius: 99px; background: var(--card-2); margin: .6rem 0 .4rem; overflow: hidden; }
+  .cl__bar span { display: block; height: 100%; width: 0; background: var(--ok); transition: width .25s; }
+  label { display: flex; gap: .75rem; align-items: flex-start; padding: .6rem 0; min-height: var(--tap); cursor: pointer; line-height: 1.35; border-top: 1px solid var(--rule); }
+  li:first-child label { border-top: 0; }
+  input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .cl__box { flex: none; width: 30px; height: 30px; display: grid; place-items: center; border: 2.5px solid var(--ink); border-radius: 8px; color: transparent; background: var(--card); }
+  input:checked + .cl__box { background: var(--ok); border-color: var(--ok); color: #fff; }
+  input:checked ~ span:last-child { color: var(--ink-2); text-decoration: line-through; text-decoration-thickness: 2px; }
+  input:focus-visible + .cl__box { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .cl__reset { margin-top: var(--s2); }
+</style>

@@ -1,0 +1,161 @@
+---
+// End-of-chapter quiz. Instant feedback with a link to the page that teaches the answer.
+// Without JS: each question has a "Show answer" reveal.
+import Icon from '../icons/Icon.astro';
+import type { IconName } from '../icons/paths';
+import { pageHref, getPage } from '../../lib/toc';
+type Opt = string | { text: string; icon: IconName };
+export interface Question { q: string; options: Opt[]; answer: number; explain: string; page?: string; }
+interface Props { id: string; questions: Question[]; title?: string; }
+const { id, questions, title = 'Quick quiz' } = Astro.props;
+const letters = 'ABCDEF';
+const text = (o: Opt) => (typeof o === 'string' ? o : o.text);
+---
+<section class="b-quiz quiz card" data-quiz={id} aria-labelledby={`quiz-h-${id}`}>
+  <div class="quiz__head">
+    <span class="quiz__ico"><Icon name="quiz" size={30} /></span>
+    <div>
+      <h2 id={`quiz-h-${id}`}>{title}</h2>
+      <p>{questions.length} questions · tap an answer to check it</p>
+    </div>
+    <p class="quiz__best" data-best hidden></p>
+  </div>
+
+  <ol class="quiz__list" role="list">
+    {questions.map((qq, qi) => (
+      <li class="qq" data-answer={qq.answer}>
+        <fieldset>
+          <legend><span class="qq__n">{qi + 1}</span><span set:html={qq.q} /></legend>
+          <div class:list={['qq__opts', qq.options.some((o) => typeof o !== 'string') && 'qq__opts--pics']}>
+            {qq.options.map((o, oi) => (
+              <label class="opt">
+                <input type="radio" name={`${id}-q${qi}`} value={oi} />
+                <span class="opt__letter" aria-hidden="true">{letters[oi]}</span>
+                {typeof o !== 'string' && <span class="opt__pic"><Icon name={o.icon} size={40} /></span>}
+                <span class="opt__text" set:html={text(o)} />
+                <span class="opt__mark" aria-hidden="true"></span>
+              </label>
+            ))}
+          </div>
+          <div class="qq__fb" aria-live="polite" hidden>
+            <p class="qq__verdict"></p>
+            <p set:html={qq.explain} />
+            {qq.page && getPage(qq.page) && <a class="chip" href={pageHref(qq.page)}><span class="chip__id">{qq.page}</span>{getPage(qq.page)!.page.title}</a>}
+          </div>
+          <details class="qq__nojs">
+            <summary>Show answer</summary>
+            <p><b>{letters[qq.answer]}. <span set:html={text(qq.options[qq.answer])} /></b> — <span set:html={qq.explain} /></p>
+          </details>
+        </fieldset>
+      </li>
+    ))}
+  </ol>
+
+  <div class="quiz__score" data-score hidden aria-live="polite">
+    <p class="quiz__big"><span data-got>0</span> / {questions.length}</p>
+    <p data-msg></p>
+    <button class="btn btn--solid" type="button" data-retry>Try again</button>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-quiz]').forEach((quiz) => {
+    const key = `og30:quiz:${quiz.dataset.quiz}`;
+    const items = [...quiz.querySelectorAll<HTMLElement>('.qq')];
+    const total = items.length;
+    const best = quiz.querySelector<HTMLElement>('[data-best]')!;
+    const score = quiz.querySelector<HTMLElement>('[data-score]')!;
+    const letters = 'ABCDEF';
+    quiz.classList.add('quiz--live');
+
+    const showBest = () => {
+      let b: string | null = null;
+      try { b = localStorage.getItem(key); } catch {}
+      if (b !== null) { best.hidden = false; best.textContent = `Best: ${b}/${total}`; }
+    };
+    showBest();
+
+    const finish = () => {
+      const got = items.filter((i) => i.dataset.result === 'right').length;
+      score.hidden = false;
+      score.querySelector('[data-got]')!.textContent = String(got);
+      score.querySelector('[data-msg]')!.textContent =
+        got === total ? 'Perfect. You know this chapter.' : got >= total - 1 ? 'Great work. Check the one you missed.' : 'Good start. Read the linked pages, then try again.';
+      try {
+        const prev = Number(localStorage.getItem(key) ?? -1);
+        if (got > prev) localStorage.setItem(key, String(got));
+      } catch {}
+      showBest();
+    };
+
+    items.forEach((item) => {
+      const answer = Number(item.dataset.answer);
+      const inputs = [...item.querySelectorAll<HTMLInputElement>('input')];
+      const fb = item.querySelector<HTMLElement>('.qq__fb')!;
+      inputs.forEach((inp) => inp.addEventListener('change', () => {
+        if (item.dataset.result) return;
+        const pick = Number(inp.value);
+        const right = pick === answer;
+        item.dataset.result = right ? 'right' : 'wrong';
+        inputs.forEach((x, i) => {
+          x.disabled = true;
+          const lab = x.closest('label')!;
+          if (i === answer) lab.classList.add('is-right');
+          else if (i === pick) lab.classList.add('is-wrong');
+        });
+        const v = fb.querySelector('.qq__verdict')!;
+        v.textContent = right ? '✓ Right!' : `✕ Not quite. The answer is ${letters[answer]}.`;
+        v.className = `qq__verdict ${right ? 'ok' : 'no'}`;
+        fb.hidden = false;
+        if (items.every((i) => i.dataset.result)) finish();
+      }));
+    });
+
+    quiz.querySelector('[data-retry]')!.addEventListener('click', () => {
+      items.forEach((item) => {
+        delete item.dataset.result;
+        item.querySelectorAll('input').forEach((x) => { x.checked = false; x.disabled = false; });
+        item.querySelectorAll('label').forEach((l) => l.classList.remove('is-right', 'is-wrong'));
+        item.querySelector<HTMLElement>('.qq__fb')!.hidden = true;
+      });
+      score.hidden = true;
+      items[0].querySelector('input')?.focus();
+    });
+  });
+</script>
+
+<style>
+  .quiz { padding: var(--s3) var(--s2); border-top: 8px solid var(--accent); }
+  .quiz__head { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; margin-bottom: var(--s3); }
+  .quiz__head p { color: var(--ink-2); font-size: 1rem; }
+  .quiz__ico { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); }
+  .quiz__best { margin-left: auto; font-family: var(--font-mono); padding: .2rem .7rem; border: 2px solid var(--ok); color: var(--ok); border-radius: 999px; }
+  .quiz__list { display: grid; gap: var(--s3); }
+  fieldset { border: 0; padding: 0; min-width: 0; }
+  legend { display: flex; gap: .65rem; align-items: flex-start; font-weight: 700; font-size: calc(var(--fs-body) * 1.05); line-height: 1.35; margin-bottom: .75rem; padding: 0; }
+  .qq__n { flex: none; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 8px; background: var(--ink); color: var(--paper); font-family: var(--font-head); font-size: 1.15rem; }
+  .qq__opts { display: grid; gap: .5rem; }
+  .qq__opts--pics { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+  .opt { position: relative; display: flex; align-items: center; gap: .75rem; min-height: 56px; padding: .6rem .9rem; border: 2px solid var(--rule-strong); border-radius: var(--radius); background: var(--card); cursor: pointer; line-height: 1.3; }
+  .qq__opts--pics .opt { flex-direction: column; text-align: center; padding: 1rem .6rem; }
+  .opt:hover { border-color: var(--ink); }
+  .opt input { position: absolute; opacity: 0; }
+  .opt:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .opt__letter { flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; border: 2px solid currentColor; font-family: var(--font-head); font-weight: 700; }
+  .opt__pic { color: var(--accent-ink); }
+  .opt__mark { margin-left: auto; font-weight: 700; }
+  .opt.is-right { border-color: var(--ok); background: var(--ok-tint); }
+  .opt.is-right .opt__mark::after { content: '✓ Correct'; color: var(--ok); }
+  .opt.is-wrong { border-color: var(--no); background: var(--no-tint); }
+  .opt.is-wrong .opt__mark::after { content: '✕ Your pick'; color: var(--no); }
+  .opt:has(input:disabled) { cursor: default; }
+  .qq__fb { margin-top: .75rem; padding: .9rem 1rem; border-radius: var(--radius-sm); background: var(--card-2); display: grid; gap: .5rem; justify-items: start; }
+  .qq__verdict { font-weight: 700; font-family: var(--font-head); font-size: 1.3rem; letter-spacing: .02em; }
+  .qq__verdict.ok { color: var(--ok); } .qq__verdict.no { color: var(--no); }
+  .qq__nojs { margin-top: .6rem; }
+  .qq__nojs summary { cursor: pointer; font-weight: 700; min-height: var(--tap); display: flex; align-items: center; }
+  .quiz--live .qq__nojs { display: none; }
+  .quiz__score { margin-top: var(--s3); padding: var(--s3); text-align: center; border-radius: var(--radius); background: var(--accent-tint); display: grid; gap: .5rem; justify-items: center; }
+  .quiz__big { font-family: var(--font-head); font-weight: 700; font-size: 3.5rem; line-height: 1; color: var(--accent-ink); }
+  @media print { .qq__nojs { display: block !important; } .qq__fb, .quiz__score { display: none !important; } }
+</style>

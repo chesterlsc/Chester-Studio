@@ -1,0 +1,136 @@
+/* =========================================================
+   OFFGRID 30 — DESIGN TOKENS
+   Palette: Okabe–Ito (colorblind-safe), tuned for contrast.
+   Color is NEVER the only signal: always paired with icon/shape/word.
+   ========================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Neutrals — warm paper + strong ink */
+  --paper: #FAF7F0;
+  --card: #FFFFFF;
+  --card-2: #F3EFE6;
+  --ink: #16181A;          /* 17.4:1 on paper */
+  --ink-2: #464B51;        /* 8.6:1 on paper  */
+  --rule: #DDD6C8;
+  --rule-strong: #A69F91;
+  --focus: #0B57D0;
+
+  /* Parts: base (fills/bands) · ink (text-safe ≥4.5:1 on paper) · tint (backgrounds) */
+  --part-1: #0072B2; --part-1-ink: #005A8C; --part-1-tint: #E6F1F8;  /* Water */
+  --part-2: #009E73; --part-2-ink: #00704F; --part-2-tint: #E0F3EC;  /* Food */
+  --part-3: #E69F00; --part-3-ink: #8F5A00; --part-3-tint: #FBF0DA;  /* Shelter & Energy */
+  --part-4: #D55E00; --part-4-ink: #A34700; --part-4-tint: #FBE7DA;  /* Health */
+  --part-5: #CC79A7; --part-5-ink: #8E4A72; --part-5-tint: #F7E8F0;  /* Family & Care */
+  --part-6: #F0E442; --part-6-ink: #6B6200; --part-6-tint: #FBF8D2;  /* Safety & Resources */
+  --part-7: #56B4E9; --part-7-ink: #1F6E99; --part-7-tint: #E5F3FB;  /* Find Your Way */
+  --part-8: #3A4652; --part-8-ink: #3A4652; --part-8-tint: #E9ECEF;  /* Mind & Future */
+
+  /* Text drawn ON a part band (base color) */
+  --on-part-1: #FFFFFF; --on-part-2: #FFFFFF; --on-part-3: #16181A; --on-part-4: #FFFFFF;
+  --on-part-5: #16181A; --on-part-6: #16181A; --on-part-7: #16181A; --on-part-8: #FFFFFF;
+
+  /* Signals (always with a shape) */
+  --ok: #00704F;      --ok-tint: #E0F3EC;     /* ✓ circle   */
+  --no: #A34700;      --no-tint: #FBE7DA;     /* ✕ square   */
+  --warn: #F0E442;    --warn-ink: #16181A;    /* ▲ triangle */
+  --danger: #16181A;  --on-danger: #FFFFFF;   /* ⬣ octagon  */
+  --tip: #005A8C;     --tip-tint: #E6F1F8;    /* ◆ diamond  */
+
+  /* Type */
+  --font-head: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif-condensed, system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', Verdana, system-ui, sans-serif;
+  --font-mono: 'Atkinson Hyperlegible Mono', ui-monospace, 'Courier New', monospace;
+
+  --fs-body: 1.125rem;     /* 18px phone */
+  --fs-small: 1rem;        /* 16px — absolute minimum, captions only */
+  --fs-h1: 2.125rem;       /* 34px */
+  --fs-h2: 1.625rem;       /* 26px */
+  --fs-h3: 1.3125rem;      /* 21px */
+  --lh: 1.55;
+  --measure: 65ch;
+
+  /* Space (8px grid) */
+  --s1: .5rem; --s2: 1rem; --s3: 1.5rem; --s4: 2rem; --s5: 3rem; --s6: 4rem;
+  --gutter: 1rem;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --tap: 48px;
+  --shadow: 0 1px 0 rgba(22,24,26,.06), 0 6px 18px -8px rgba(22,24,26,.18);
+  --stroke: 2px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --fs-body: 1.25rem;    /* 20px desktop */
+    --fs-h1: 3rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.5rem;
+    --gutter: 2rem;
+  }
+}
+
+/* ---------- Dark (system default unless user picks) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0E1012; --card: #1A1D20; --card-2: #22262A;
+    --ink: #F2EFE8; --ink-2: #C3C0B8; --rule: #33383D; --rule-strong: #5E656C; --focus: #8AB4F8;
+    --part-1-ink: #6CB8F0; --part-1-tint: #12293A;
+    --part-2-ink: #3FCB9B; --part-2-tint: #0F2C24;
+    --part-3-ink: #F2B544; --part-3-tint: #33280F;
+    --part-4-ink: #FF8A4C; --part-4-tint: #36200F;
+    --part-5-ink: #E79ACB; --part-5-tint: #33222D;
+    --part-6-ink: #F0E442; --part-6-tint: #33311A;
+    --part-7-ink: #8FD0F5; --part-7-tint: #18303D;
+    --part-8: #8C9AA8; --part-8-ink: #B8C4CF; --part-8-tint: #22282E; --on-part-8: #0E1012;
+    --ok: #3FCB9B; --ok-tint: #0F2C24; --no: #FF8A4C; --no-tint: #36200F;
+    --danger: #F2EFE8; --on-danger: #0E1012; --tip: #6CB8F0; --tip-tint: #12293A;
+    --shadow: 0 0 0 1px #2A2F34;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0E1012; --card: #1A1D20; --card-2: #22262A;
+  --ink: #F2EFE8; --ink-2: #C3C0B8; --rule: #33383D; --rule-strong: #5E656C; --focus: #8AB4F8;
+  --part-1-ink: #6CB8F0; --part-1-tint: #12293A;
+  --part-2-ink: #3FCB9B; --part-2-tint: #0F2C24;
+  --part-3-ink: #F2B544; --part-3-tint: #33280F;
+  --part-4-ink: #FF8A4C; --part-4-tint: #36200F;
+  --part-5-ink: #E79ACB; --part-5-tint: #33222D;
+  --part-6-ink: #F0E442; --part-6-tint: #33311A;
+  --part-7-ink: #8FD0F5; --part-7-tint: #18303D;
+  --part-8: #8C9AA8; --part-8-ink: #B8C4CF; --part-8-tint: #22282E; --on-part-8: #0E1012;
+  --ok: #3FCB9B; --ok-tint: #0F2C24; --no: #FF8A4C; --no-tint: #36200F;
+  --danger: #F2EFE8; --on-danger: #0E1012; --tip: #6CB8F0; --tip-tint: #12293A;
+  --shadow: 0 0 0 1px #2A2F34;
+}
+
+/* ---------- Lite mode: low battery, cheap phones ---------- */
+:root[data-lite] {
+  color-scheme: dark;
+  --paper: #000000; --card: #0A0A0A; --card-2: #111111;
+  --ink: #FFFFFF; --ink-2: #D0D0D0; --rule: #2A2A2A; --rule-strong: #555555; --focus: #8AB4F8;
+  --part-1-ink: #6CB8F0; --part-1-tint: #06131B;
+  --part-2-ink: #3FCB9B; --part-2-tint: #041510;
+  --part-3-ink: #F2B544; --part-3-tint: #171106;
+  --part-4-ink: #FF8A4C; --part-4-tint: #190E05;
+  --part-5-ink: #E79ACB; --part-5-tint: #170E14;
+  --part-6-ink: #F0E442; --part-6-tint: #16150A;
+  --part-7-ink: #8FD0F5; --part-7-tint: #0A161C;
+  --part-8: #8C9AA8; --part-8-ink: #B8C4CF; --part-8-tint: #0F1215; --on-part-8: #000;
+  --ok: #3FCB9B; --ok-tint: #041510; --no: #FF8A4C; --no-tint: #190E05;
+  --danger: #FFFFFF; --on-danger: #000; --tip: #6CB8F0; --tip-tint: #06131B;
+  --shadow: none;
+}
+
+/* ---------- Part scoping: set data-part on any wrapper ---------- */
+[data-part="1"] { --accent: var(--part-1); --accent-ink: var(--part-1-ink); --accent-tint: var(--part-1-tint); --on-accent: var(--on-part-1); }
+[data-part="2"] { --accent: var(--part-2); --accent-ink: var(--part-2-ink); --accent-tint: var(--part-2-tint); --on-accent: var(--on-part-2); }
+[data-part="3"] { --accent: var(--part-3); --accent-ink: var(--part-3-ink); --accent-tint: var(--part-3-tint); --on-accent: var(--on-part-3); }
+[data-part="4"] { --accent: var(--part-4); --accent-ink: var(--part-4-ink); --accent-tint: var(--part-4-tint); --on-accent: var(--on-part-4); }
+[data-part="5"] { --accent: var(--part-5); --accent-ink: var(--part-5-ink); --accent-tint: var(--part-5-tint); --on-accent: var(--on-part-5); }
+[data-part="6"] { --accent: var(--part-6); --accent-ink: var(--part-6-ink); --accent-tint: var(--part-6-tint); --on-accent: var(--on-part-6); }
+[data-part="7"] { --accent: var(--part-7); --accent-ink: var(--part-7-ink); --accent-tint: var(--part-7-tint); --on-accent: var(--on-part-7); }
+[data-part="8"] { --accent: var(--part-8); --accent-ink: var(--part-8-ink); --accent-tint: var(--part-8-tint); --on-accent: var(--on-part-8); }

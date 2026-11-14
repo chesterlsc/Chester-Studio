@@ -4,8 +4,8 @@
 > Next action is always the first unchecked item below.
 
 ## Steps
-- [x] STEP 1 — Plan: PLAN.md, STYLE.md, PROGRESS.md (awaiting approval)
-- [ ] STEP 2 — Design system: project setup, colors, fonts, icons, page template components, 3D viewer, quiz, one page mockup
+- [x] STEP 1 — Plan: PLAN.md, STYLE.md, PROGRESS.md (approved 2026-11-14)
+- [x] STEP 2 — Design system: project setup, colors, fonts, icons, page template components, 3D viewer, quiz, one page mockup (awaiting approval)
 - [ ] STEP 3 — Sample chapter: Chapter 1 in full, fact-checked
 - [ ] STEP 4 — Build all chapters (loop: research → write → visuals → fact-check → polish → PROGRESS → commit; report every 5)
 - [ ] STEP 5 — Final pass: search, navigation, offline, PDF, accessibility, mobile, broken links, final report
@@ -185,4 +185,7 @@
 - [ ] BM.3 Master source list
 
 ## Log
+- 2026-11-14 — STEP 2 built: Astro 5 project in `offgrid-30/`, tokens (light/dark/Lite), fonts, 74 icons, 15 template components, 3D viewer (R3F, loads on tap), quiz, design gallery `/design/`, mockup page 4.3. Waiting for approval.
+  - Fact-check note for 4.3: EPA page verified (2026-02-24). CDC URL `/water-emergency/about/making-water-safe-in-an-emergency.html` returned 404 → find current CDC URL in Ch 4. WHO PDF host `iris.who.int` blocked by network policy → WHO landing page used.
+  - Altitude rule conflict logged in STYLE.md 2.2 (using EPA's 1,000 m).
 - 2026-11-14 — STEP 1 drafted: 8 parts, 22 sections, 105 chapters, 1,058 pages. Waiting for TOC approval.

@@ -40,7 +40,9 @@ Every topic page (pages 1–9) has these blocks, in this order:
 | 7 | Legend | `<Legend>` | Only symbols used on this page |
 | + | Optional | `<Warning>`, `<RedFlag>`, `<SeeAlso>`, `<BeforeAfter>`, `<Compare>`, `<Video>`, `<Checklist>` | Use only when they add something |
 
-On phone the **Main visual moves to just under the title** (visual first). On desktop it sits beside the steps.
+**Visual first:** in the MDX file the `<MainVisual>` (with its legend) comes right after the front-matter, so on phones it sits just under the title and screen readers meet it in the same order. On desktop (≥ 980px) it moves to a sticky right column beside the Do/Don't and Steps.
+
+Writing a page = one MDX file. Components are injected automatically (no imports needed except page-specific diagrams). Reference implementation: `src/content/pages/04-making-water-safe/03-boiling-the-gold-standard.mdx`.
 
 **Review page (page 10 of every chapter):**
 1. Chapter recap as a tickable checklist (one line per page)

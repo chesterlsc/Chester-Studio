@@ -1,0 +1,19 @@
+---
+// The page's main visual + its legend. Sits under the title on phones, in a sticky right column on desktop.
+import Legend, { type LegendItem } from './Legend.astro';
+interface Props { caption: string; legend?: LegendItem[]; }
+const { caption, legend = [] } = Astro.props;
+---
+<section class="b-visual" aria-label="Main visual">
+  <figure class="mv card">
+    <div class="mv__art"><slot /></div>
+    <figcaption>{caption}</figcaption>
+  </figure>
+  {legend.length > 0 && <Legend items={legend} />}
+</section>
+<style>
+  .mv { padding: var(--s2); overflow: hidden; }
+  .mv__art { border-radius: var(--radius-sm); background: var(--accent-tint); }
+  .mv__art :global(svg.diagram) { width: 100%; height: auto; }
+  figcaption { margin-top: .75rem; font-size: var(--fs-small); color: var(--ink-2); font-weight: 700; }
+</style>

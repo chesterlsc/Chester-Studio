@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/icons/Icon.astro';
+import { parts, getChapter, pageHref } from '../lib/toc';
+import { SECTIONS, type SectionKey } from '../data/sections';
+import { availableIds } from '../lib/available';
+import { url } from '../lib/url';
+const ready = await availableIds();
+---
+<Base title="Contents">
+  <div class="wrap">
+    <h1>Contents</h1>
+    <p class="lede">8 parts · 22 sections · 105 chapters. Pages with a dot <span class="dot" aria-hidden="true"></span> are written. The rest are coming.</p>
+    <label class="filter">
+      <Icon name="search" />
+      <span class="visually-hidden">Find a topic</span>
+      <input type="search" placeholder="Find a topic: boil, splint, radio…" data-filter autocomplete="off" />
+    </label>
+    <p class="filter__none" data-none hidden>No match. Try a simpler word.</p>
+
+    {parts.map((p) => (
+      <section class="part" data-part={p.n} id={`part-${p.n}`}>
+        <h2 class="part__head"><span>Part {p.n}</span> {p.title}</h2>
+        {p.sections.map((s) => (
+          <div class="sec">
+            <h3><Icon name={SECTIONS[s.key as SectionKey].icon as any} /> {s.title}</h3>
+            {s.chapters.map((n) => {
+              const ch = getChapter(n);
+              return (
+                <details class="ch" data-ch>
+                  <summary><span class="ch__n">{n}</span><span class="ch__t">{ch.title}</span></summary>
+                  <ol role="list">
+                    {ch.pages.map((pg) => (
+                      <li data-item>
+                        {ready.has(pg.id)
+                          ? <a href={pageHref(pg.id)}><span class="pid">{pg.id}</span>{pg.title}<span class="dot" title="Written"></span></a>
+                          : <span class="todo"><span class="pid">{pg.id}</span>{pg.title}</span>}
+                        {pg.has3d && <span class="tag3d" title="Has a 3D model">3D</span>}
+                      </li>
+                    ))}
+                  </ol>
+                </details>
+              );
+            })}
+          </div>
+        ))}
+      </section>
+    ))}
+  </div>
+</Base>
+<script>
+  const input = document.querySelector<HTMLInputElement>('[data-filter]')!;
+  const none = document.querySelector<HTMLElement>('[data-none]')!;
+  const chs = [...document.querySelectorAll<HTMLDetailsElement>('[data-ch]')];
+  const run = () => {
+    const q = input.value.trim().toLowerCase();
+    let hits = 0;
+    chs.forEach((ch) => {
+      const title = ch.querySelector('summary')!.textContent!.toLowerCase();
+      const items = [...ch.querySelectorAll<HTMLElement>('[data-item]')];
+      let any = !q || title.includes(q);
+      items.forEach((it) => { const m = !q || title.includes(q) || it.textContent!.toLowerCase().includes(q); it.hidden = !m; if (m) any = true; });
+      ch.hidden = !any; ch.open = !!q && any; if (any) hits++;
+    });
+    document.querySelectorAll<HTMLElement>('.sec').forEach((s) => (s.hidden = ![...s.querySelectorAll<HTMLElement>('[data-ch]')].some((c) => !c.hidden)));
+    document.querySelectorAll<HTMLElement>('.part').forEach((s) => (s.hidden = ![...s.querySelectorAll<HTMLElement>('.sec')].some((c) => !c.hidden)));
+    none.hidden = hits > 0;
+  };
+  input.addEventListener('input', run);
+  if (location.hash === '#find') input.focus();
+</script>
+<style>
+  .wrap { max-width: 900px; margin: 0 auto; padding: var(--s4) var(--gutter); }
+  .lede { color: var(--ink-2); margin: .5rem 0 var(--s3); }
+  .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--ok); margin-left: .5rem; vertical-align: middle; }
+  .filter { position: sticky; top: 4.2rem; z-index: 5; display: flex; align-items: center; gap: .6rem; padding: 0 1rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); }
+  .filter input { flex: 1; min-height: 52px; border: 0; background: transparent; outline: none; font-size: var(--fs-body); }
+  .filter:focus-within { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .filter__none { margin-top: var(--s2); font-weight: 700; }
+  .part { margin-top: var(--s4); }
+  .part__head { display: flex; flex-direction: column; padding: .8rem 1rem; border-radius: var(--radius); background: var(--accent); color: var(--on-accent); text-transform: uppercase; letter-spacing: .04em; }
+  .part__head span { font-size: 1rem; opacity: .85; }
+  .sec h3 { display: flex; align-items: center; gap: .5rem; margin: var(--s3) 0 .5rem; color: var(--accent-ink); }
+  .ch { border-bottom: 1px solid var(--rule); }
+  .ch summary { display: flex; gap: .75rem; align-items: center; min-height: 56px; cursor: pointer; font-weight: 700; list-style: none; }
+  .ch summary::-webkit-details-marker { display: none; }
+  .ch__n { flex: none; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-tint); color: var(--accent-ink); font-family: var(--font-head); font-size: 1.2rem; }
+  .ch ol { padding: 0 0 var(--s2) 3.25rem; display: grid; gap: .15rem; }
+  .ch li { display: flex; align-items: center; gap: .5rem; min-height: 40px; }
+  .ch li a { color: var(--ink); font-weight: 700; }
+  .todo { color: var(--ink-2); }
+  .pid { display: inline-block; min-width: 3.2rem; font-family: var(--font-mono); font-size: .95rem; color: var(--ink-2); }
+  .tag3d { font-size: .8rem; font-weight: 700; padding: 0 .4rem; border: 2px solid currentColor; border-radius: 6px; color: var(--accent-ink); }
+</style>

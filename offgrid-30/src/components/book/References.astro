@@ -1,0 +1,20 @@
+---
+import Icon from '../icons/Icon.astro';
+export interface Ref { id: string; org: string; title: string; year: string | number; url: string; checked: string; }
+interface Props { refs: Ref[]; }
+const { refs } = Astro.props;
+---
+<section class="refs" aria-labelledby="refs-h">
+  <div class="block-head"><Icon name="references" size={28} /><h2 id="refs-h">References</h2></div>
+  <ol>
+    {refs.map((r) => (
+      <li id={`ref-${r.id}`}><b>{r.org}</b> ({r.year}). <cite>{r.title}</cite>. <a href={r.url} rel="noopener" target="_blank">{r.url.replace(/^https?:\/\//, '')}</a> <small>Checked {r.checked}.</small></li>
+    ))}
+  </ol>
+</section>
+<style>
+  ol { padding-left: 1.6rem; display: grid; gap: .75rem; font-size: 1rem; }
+  cite { font-style: normal; }
+  a { overflow-wrap: anywhere; }
+  small { color: var(--ink-2); }
+</style>

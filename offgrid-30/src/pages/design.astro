@@ -1,0 +1,186 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/icons/Icon.astro';
+import { ICONS, type IconName } from '../components/icons/paths';
+import { PARTS } from '../data/sections';
+import * as B from '../components/book';
+import LayeredFilter2D from '../components/diagrams/LayeredFilter2D.astro';
+import BoilNotYet from '../components/diagrams/ch04/BoilNotYet.astro';
+import BoilRolling from '../components/diagrams/ch04/BoilRolling.astro';
+import { steps as filterSteps } from '../components/three/models/layeredFilter.meta';
+import { url } from '../lib/url';
+
+const iconGroups: [string, IconName[]][] = [
+  ['Sections (22)', ['water','food','cooking','shelter','fire','power','tools','medicine','herbal','hygiene','kids','women','elderly','pets','security','salvage','trade','navigation','radio','mind','community','strategy']],
+  ['Signals', ['do','dont','caution','danger','tip']],
+  ['Need list & meta', ['tool','material','time','people','skill','heat','mountain','thermometer','pot','filter','cloth','jar','bubbles','settle','pour','lid']],
+  ['Legend & blocks', ['flow','cut','measure','ground','north','see-also','scenario','steps','need','legend','quiz','references']],
+  ['Interface', ['bookmark','search','print','lite','cube','rotate','play','sun','moon','menu','close','arrow-left','arrow-right','chevron-down','check','book','home','external','hand']],
+];
+const all = Object.keys(ICONS).length;
+const sections = ['Water','Food','Shelter & Energy','Health','Family & Care','Safety & Resources','Find Your Way','Mind & Future'];
+---
+<Base title="Design system" part={1}>
+  <div class="ds">
+    <header class="ds__head">
+      <p class="kicker">OFFGRID 30 · Step 2</p>
+      <h1>Design system</h1>
+      <p>Everything a page is built from. Try it in <b>dark mode</b> and <b>Lite mode</b> (top right), and print it.</p>
+      <a class="btn btn--solid" href={url('/c/04-making-water-safe/03-boiling-the-gold-standard/')}><Icon name="book" /> Open the page mockup</a>
+    </header>
+
+    <!-- COLORS -->
+    <section class="ds__sec">
+      <h2>1 · Colors</h2>
+      <p class="note">Okabe–Ito colorblind-safe palette. One color per Part. Color is always paired with an icon + name. Text colors pass WCAG AA (≥4.5:1) in light and dark.</p>
+      <div class="swatches">
+        {Object.entries(PARTS).map(([n, p]) => (
+          <div class="sw card" data-part={n}>
+            <div class="sw__base"><span>Part {n}</span><b>{p.name}</b></div>
+            <div class="sw__row"><span class="sw__chip" style="background:var(--accent-ink)"></span> Text color</div>
+            <div class="sw__row"><span class="sw__chip" style="background:var(--accent-tint)"></span> Tint</div>
+          </div>
+        ))}
+      </div>
+      <h3 class="sub">Signals: shape first, color second</h3>
+      <ul class="signals" role="list">
+        <li><span style="color:var(--ok)"><Icon name="do" size={40} /></span><b>Do</b><small>circle ✓</small></li>
+        <li><span style="color:var(--no)"><Icon name="dont" size={40} /></span><b>Don't</b><small>square ✕</small></li>
+        <li><span class="sig-warn"><Icon name="caution" size={40} /></span><b>Caution</b><small>triangle ▲</small></li>
+        <li><span><Icon name="danger" size={40} /></span><b>Danger</b><small>octagon</small></li>
+        <li><span style="color:var(--tip)"><Icon name="tip" size={40} /></span><b>Tip</b><small>diamond ◆</small></li>
+      </ul>
+    </section>
+
+    <!-- TYPE -->
+    <section class="ds__sec">
+      <h2>2 · Type</h2>
+      <div class="type card">
+        <p class="t-label">Heading · Barlow Condensed 700</p>
+        <p class="t-h1">Boiling: the gold standard</p>
+        <p class="t-h2">Step by step</p>
+        <p class="t-h3">What you need</p>
+        <p class="t-label">Body · Atkinson Hyperlegible Next · 18px phone / 20px desktop</p>
+        <p>Let cloudy water sit until the dirt sinks. One idea per line. Clear 1 l I and 0 O.</p>
+        <p class="t-label">Numbers · Atkinson Hyperlegible Mono</p>
+        <p class="t-mono">4.3 · 1,000 m · 3,300 ft · 1 L ≈ 1 qt</p>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section class="ds__sec">
+      <h2>3 · Icons <small>({all})</small></h2>
+      <p class="note">24px grid, 2px stroke, rounded. Readable from 20px to 64px.</p>
+      {iconGroups.map(([name, list]) => (
+        <>
+          <h3 class="sub">{name}</h3>
+          <ul class="icons" role="list">{list.map((i) => <li><Icon name={i} size={32} /><span>{i}</span></li>)}</ul>
+        </>
+      ))}
+    </section>
+
+    <!-- COMPONENTS -->
+    <section class="ds__sec">
+      <h2>4 · Page template blocks</h2>
+      <p class="note">These build every page: 1 Title + why · 2 Do/Don't · 3 Steps · 4 What you need · 5 Real life · 6 Main visual · 7 Legend.</p>
+
+      <h3 class="sub">Do / Don't</h3>
+      <B.DoDont do={['Boil at least <b>1 minute</b>', 'Store it <b>covered</b>']} dont={['Count tiny bubbles as boiling', 'Use <b>plastic</b> on the fire']} />
+
+      <h3 class="sub">Steps: tap a step to reveal more</h3>
+      <B.Steps steps={[
+        { icon: 'settle', label: 'Settle', title: 'Let it sit until dirt sinks.', detail: 'Pour the clear top off.' },
+        { icon: 'cloth', label: 'Strain', title: 'Pour through a clean cloth.' },
+        { icon: 'bubbles', label: 'Boil', title: 'Wait for a rolling boil.', detail: 'Big bubbles all over, non-stop.' },
+      ]} />
+
+      <h3 class="sub">What you need + alternatives</h3>
+      <B.NeedList items={[{ icon: 'pot', item: 'Metal pot', alt: 'Any clean metal container. Never plastic.' }, { icon: 'time', item: 'Timer', alt: 'Count slowly to 60.' }]} />
+
+      <h3 class="sub">Real life (POV scenario)</h3>
+      <B.Scenario when="Day 4" move="Settle, strain, then boil."><p>The tap is dry. You bring home creek water. It looks brown.</p></B.Scenario>
+
+      <h3 class="sub">Callouts</h3>
+      <div class="stack">
+        <B.Callout type="caution" title="Hot water burns fast."><p>Keep kids away from the pot.</p></B.Callout>
+        <B.Callout type="danger" title="Get help now if…"><p>Example of a red-flag box for medical pages.</p></B.Callout>
+        <B.Callout type="tip" title="Save fuel."><p>Example of a tip box.</p></B.Callout>
+      </div>
+
+      <h3 class="sub">Comparison chart</h3>
+      <B.Compare title="What boiling does" yesLabel="Kills" rows={[{ label: 'Germs', value: 'yes' }, { label: 'Cloudiness', value: 'partly', note: 'Example of a "partly" row' }, { label: 'Chemicals', value: 'no' }]} />
+
+      <h3 class="sub">Before / after slider</h3>
+      <B.BeforeAfter beforeLabel="Not yet" afterLabel="Rolling boil" label="Drag to compare">
+        <BoilNotYet slot="before" /><BoilRolling slot="after" />
+      </B.BeforeAfter>
+
+      <h3 class="sub">Checklist (saved on this device)</h3>
+      <B.Checklist id="demo" title="Water kit" items={['Metal pot with lid', 'Clean cloth', '2 clean containers with covers', 'Matches in a dry bag']} />
+
+      <h3 class="sub">Legend</h3>
+      <B.Legend items={[{ num: '3', text: 'Step number' }, { icon: 'flow', text: 'Water flow', tone: 'accent' }, { icon: 'do', text: 'Do', tone: 'ok' }, { icon: 'caution', text: 'Caution', tone: 'warn' }]} />
+    </section>
+
+    <section class="ds__sec">
+      <h2>5 · 3D viewer</h2>
+      <p class="note">Shows the 2D drawing first. 3D (React Three Fiber) loads only when tapped, renders only when something moves, and is switched off in Lite mode. Step through in either view. <b>Demo model:</b> the layer order is a placeholder until Chapter 5 is researched and fact-checked.</p>
+      <div class="card pad" data-part="1">
+        <B.Model3D model="layered-filter" title="Bottle filter" steps={filterSteps}>
+          <LayeredFilter2D />
+        </B.Model3D>
+      </div>
+    </section>
+
+    <section class="ds__sec" data-part="1">
+      <h2>6 · Chapter quiz</h2>
+      <p class="note">On each chapter's Review page. Instant feedback, link to the page that teaches it, best score saved. Without JavaScript: "Show answer".</p>
+      <B.Quiz id="demo-ch4" title="Quiz: Making water safe" questions={[
+        { q: 'Which one is a rolling boil?', options: ['Tiny bubbles on the bottom', 'Big bubbles rolling up all over, non-stop', 'Steam, but no bubbles'], answer: 1, explain: 'A rolling boil has big bubbles all over that do not stop.', page: '4.3' },
+        { q: 'You live near sea level. How long should water keep a rolling boil?', options: ['10 seconds', 'At least 1 minute', '30 minutes'], answer: 1, explain: 'At least 1 minute. Above 1,000 m (3,300 ft): 3 minutes.', page: '4.3' },
+        { q: 'True or false: boiling removes fuel and chemicals from water.', options: ['True', 'False'], answer: 1, explain: 'Boiling kills germs. It does not destroy chemicals, heavy metals or salt.', page: '4.9' },
+        { q: 'Your water is cloudy. What do you do first?', options: [{ text: 'Let it settle', icon: 'settle' }, { text: 'Boil it', icon: 'bubbles' }, { text: 'Store it', icon: 'jar' }], answer: 0, explain: 'Let it settle, then strain it. Then boil.', page: '4.2' },
+      ]} />
+    </section>
+
+    <section class="ds__sec">
+      <h2>7 · Video link &amp; references</h2>
+      <p class="note">Videos are links, not embeds: no data used until tapped, and the steps are always on the page.</p>
+      <B.Video href="https://www.youtube.com/@AmericanRedCross" title="Example: link to a trusted channel" org="American Red Cross" />
+      <div style="margin-top:var(--s3)">
+        <B.References refs={[{ id: 'epa-emergency', org: 'US EPA', title: 'Emergency Disinfection of Drinking Water', year: 2026, url: 'https://www.epa.gov/ground-water-and-drinking-water/emergency-disinfection-drinking-water', checked: '2026-11-14' }]} />
+      </div>
+    </section>
+  </div>
+</Base>
+<style>
+  .ds { max-width: 1000px; margin: 0 auto; padding: var(--s4) var(--gutter); }
+  .ds__head { display: grid; gap: .75rem; justify-items: start; padding-bottom: var(--s4); border-bottom: 3px solid var(--ink); }
+  .ds__sec { padding: var(--s4) 0; border-bottom: 1px solid var(--rule); }
+  .ds__sec > h2 { margin-bottom: .5rem; }
+  .ds__sec > h2 small { font-size: 1.1rem; color: var(--ink-2); }
+  .note { color: var(--ink-2); margin-bottom: var(--s3); }
+  .sub { margin: var(--s4) 0 var(--s2); font-size: 1.15rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+  .stack { display: grid; gap: var(--s2); }
+  .pad { padding: var(--s2); }
+  .swatches { display: grid; gap: var(--s2); grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .sw { overflow: hidden; }
+  .sw__base { padding: .9rem 1rem; background: var(--accent); color: var(--on-accent); display: grid; font-family: var(--font-head); text-transform: uppercase; letter-spacing: .05em; }
+  .sw__base span { font-size: .95rem; opacity: .85; } .sw__base b { font-size: 1.35rem; }
+  .sw__row { display: flex; align-items: center; gap: .6rem; padding: .5rem 1rem; font-size: 1rem; border-top: 1px solid var(--rule); }
+  .sw__row:nth-child(2) { color: var(--accent-ink); font-weight: 700; }
+  .sw__chip { width: 26px; height: 26px; border-radius: 6px; border: 2px solid var(--ink); }
+  .signals { display: grid; gap: var(--s2); grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .signals li { display: grid; justify-items: center; text-align: center; gap: .2rem; padding: var(--s2); border: 1px solid var(--rule); border-radius: var(--radius); background: var(--card); }
+  .signals small { color: var(--ink-2); font-size: 1rem; }
+  .sig-warn :global(.icon) { fill: var(--warn); color: var(--ink); }
+  .type { padding: var(--s3); display: grid; gap: .5rem; }
+  .t-label { font-size: 1rem; color: var(--ink-2); margin-top: .75rem; letter-spacing: .04em; }
+  .t-h1 { font: 700 var(--fs-h1)/1.05 var(--font-head); }
+  .t-h2 { font: 700 var(--fs-h2)/1.1 var(--font-head); }
+  .t-h3 { font: 600 var(--fs-h3)/1.1 var(--font-head); }
+  .t-mono { font-family: var(--font-mono); }
+  .icons { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+  .icons li { display: grid; justify-items: center; gap: .35rem; padding: .9rem .4rem; border: 1px solid var(--rule); border-radius: var(--radius-sm); background: var(--card); font-size: .95rem; color: var(--ink-2); text-align: center; overflow-wrap: anywhere; }
+  .icons li :global(.icon) { color: var(--ink); }
+</style>

@@ -1,0 +1,148 @@
+---
+// 3D viewer with a 2D fallback. Shows the 2D drawing first; loads 3D (React Three Fiber) only when tapped.
+// Step-through works in both 2D and 3D. 3D is disabled in Lite mode. Without JS: 2D + full step list.
+import Icon from '../icons/Icon.astro';
+interface Step { label: string; text: string; }
+interface Props { model: string; title: string; steps: Step[]; sizeKb?: number; }
+const { model, title, steps, sizeKb = 300 } = Astro.props;
+---
+<div class="m3d" data-m3d data-model={model} data-steps={JSON.stringify(steps)}>
+  <div class="m3d__bar no-print">
+    <div class="m3d__mode" role="group" aria-label={`${title}: choose view`}>
+      <button type="button" class="m3d__tab" data-view="2d" aria-pressed="true"><Icon name="legend" size={20} /> 2D</button>
+      <button type="button" class="m3d__tab" data-view="3d" aria-pressed="false" data-heavy-btn><Icon name="cube" size={20} /> 3D</button>
+    </div>
+    <span class="m3d__note" data-note>Tap 3D to rotate &amp; zoom · ~{sizeKb} KB</span>
+  </div>
+
+  <div class="m3d__stage">
+    <div class="m3d__2d" data-2d><slot /></div>
+    <div class="m3d__3d" data-3d hidden>
+      <p class="m3d__loading" data-loading><Icon name="cube" size={28} /> Loading 3D…</p>
+    </div>
+    <button type="button" class="icon-btn m3d__reset" data-reset hidden aria-label="Reset view" title="Reset view"><Icon name="rotate" /></button>
+  </div>
+
+  <div class="m3d__stepper no-print" data-stepper hidden>
+    <button type="button" class="icon-btn m3d__nav" data-prev aria-label="Previous step"><Icon name="arrow-left" /></button>
+    <div class="m3d__now" aria-live="polite">
+      <p class="m3d__count" data-count></p>
+      <p class="m3d__label" data-label></p>
+      <p class="m3d__text" data-text></p>
+    </div>
+    <button type="button" class="icon-btn m3d__nav" data-next aria-label="Next step"><Icon name="arrow-right" /></button>
+  </div>
+
+  <ol class="m3d__list" data-list start="0">
+    {steps.map((s, i) => <li value={i}><b>{s.label}.</b> {s.text}</li>)}
+  </ol>
+</div>
+
+<script>
+  type Handle = { setStep(n: number): void; reset(): void; unmount(): void };
+  document.querySelectorAll<HTMLElement>('[data-m3d]').forEach((el) => {
+    const steps: { label: string; text: string }[] = JSON.parse(el.dataset.steps!);
+    const model = el.dataset.model!;
+    const $ = <T extends HTMLElement>(s: string) => el.querySelector<T>(s)!;
+    const view2d = $('[data-2d]'), view3d = $('[data-3d]'), loading = $('[data-loading]');
+    const btn2d = $<HTMLButtonElement>('[data-view="2d"]'), btn3d = $<HTMLButtonElement>('[data-view="3d"]');
+    const reset = $<HTMLButtonElement>('[data-reset]'), note = $('[data-note]');
+    let step = 0;
+    let handle: Handle | null = null;
+
+    el.classList.add('m3d--live');
+    $('[data-stepper]').hidden = false;
+
+    const paint2d = () => {
+      view2d.querySelectorAll<SVGElement>('[data-step]').forEach((g) => {
+        const s = Number(g.dataset.step);
+        g.classList.toggle('is-off', step !== 0 && s > step);
+        g.classList.toggle('is-cur', step !== 0 && s === step);
+      });
+    };
+    const update = () => {
+      $('[data-count]').textContent = step === 0 ? 'Overview' : `Step ${step} of ${steps.length - 1}`;
+      $('[data-label]').textContent = steps[step].label;
+      $('[data-text]').textContent = steps[step].text;
+      $<HTMLButtonElement>('[data-prev]').disabled = step === 0;
+      $<HTMLButtonElement>('[data-next]').disabled = step === steps.length - 1;
+      paint2d();
+      handle?.setStep(step);
+    };
+    $('[data-prev]').addEventListener('click', () => { step = Math.max(0, step - 1); update(); });
+    $('[data-next]').addEventListener('click', () => { step = Math.min(steps.length - 1, step + 1); update(); });
+
+    const isLite = () => 'lite' in document.documentElement.dataset;
+    const idleNote = note.textContent!;
+    const syncLite = () => {
+      btn3d.disabled = isLite();
+      if (isLite() && handle) show2d();
+      if (!handle) note.textContent = isLite() ? '3D is off in Lite mode' : idleNote;
+    };
+
+    const show2d = () => {
+      handle?.unmount(); handle = null;               // free the GPU + memory
+      view3d.hidden = true; view2d.hidden = false; reset.hidden = true;
+      view3d.replaceChildren(loading);
+      note.textContent = isLite() ? '3D is off in Lite mode' : idleNote;
+      btn2d.setAttribute('aria-pressed', 'true'); btn3d.setAttribute('aria-pressed', 'false');
+    };
+    const show3d = async () => {
+      if (isLite() || handle) return;
+      btn2d.setAttribute('aria-pressed', 'false'); btn3d.setAttribute('aria-pressed', 'true');
+      view3d.style.minHeight = `${Math.max(view2d.offsetHeight, 320)}px`;
+      view2d.hidden = true; view3d.hidden = false;
+      try {
+        const { mount } = await import('../three/mount');
+        loading.remove();
+        handle = mount(view3d, model, step);
+        reset.hidden = false;
+        note.textContent = 'Drag to rotate · pinch or scroll to zoom';
+      } catch (e) {
+        loading.textContent = '3D could not load on this device. Showing the 2D drawing.';
+        setTimeout(show2d, 2500);
+      }
+    };
+    btn2d.addEventListener('click', show2d);
+    btn3d.addEventListener('click', show3d);
+    reset.addEventListener('click', () => handle?.reset());
+    document.addEventListener('og30:lite', syncLite);
+    syncLite();
+    update();
+  });
+</script>
+
+<style>
+  .m3d__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: .75rem; }
+  .m3d__mode { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--card-2); border: 1px solid var(--rule); }
+  .m3d__tab { display: inline-flex; align-items: center; gap: .35rem; min-height: 42px; padding: 0 1rem; border: 0; border-radius: 999px; background: transparent; font-weight: 700; font-size: 1rem; }
+  .m3d__tab[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .m3d__tab:disabled { opacity: .45; cursor: not-allowed; }
+  .m3d__note { font-size: 1rem; color: var(--ink-2); }
+  :global(html:not(.js)) .m3d__bar { display: none; }
+
+  .m3d__stage { position: relative; border-radius: var(--radius-sm); background: var(--accent-tint); }
+  .m3d__2d :global(svg) { width: 100%; height: auto; }
+  .m3d__2d :global([data-step]) { transition: opacity .25s; }
+  .m3d__2d :global([data-step].is-off) { opacity: .12; }
+  .m3d__2d :global([data-step].is-cur) { filter: drop-shadow(0 0 4px var(--accent)); }
+  .m3d__3d { position: relative; width: 100%; aspect-ratio: 9 / 10; cursor: grab; }
+  .m3d__3d:active { cursor: grabbing; }
+  .m3d__loading { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .5rem; color: var(--ink-2); font-weight: 700; text-align: center; padding: var(--s2); }
+  .m3d__reset { position: absolute; right: .5rem; top: .5rem; background: var(--card); box-shadow: var(--shadow); }
+  .m3d__3d :global(.m3d-label) { display: inline-flex; gap: .4rem; align-items: center; white-space: nowrap; padding: .3rem .7rem; border-radius: 999px; background: var(--ink); color: var(--paper); font: 700 14px/1.2 var(--font-body); transform: translateY(-50%); }
+  .m3d__3d :global(.m3d-label b) { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--on-accent); }
+  .m3d__3d :global(.m3d-label--warn) { background: var(--warn); color: var(--warn-ink); }
+
+  .m3d__stepper { display: grid; grid-template-columns: auto 1fr auto; gap: .5rem; align-items: center; margin-top: .75rem; }
+  .m3d__stepper[hidden] { display: none; }
+  .m3d__nav { border: 2px solid var(--ink); }
+  .m3d__nav:disabled { opacity: .3; cursor: default; }
+  .m3d__now { text-align: center; min-height: 6.2em; }
+  .m3d__count { font-family: var(--font-mono); font-size: .95rem; color: var(--accent-ink); }
+  .m3d__label { font-family: var(--font-head); font-weight: 700; font-size: 1.35rem; line-height: 1.1; }
+  .m3d__text { font-size: 1rem; line-height: 1.4; margin-inline: auto; }
+  .m3d__list { margin-top: .75rem; padding-left: 1.5rem; display: grid; gap: .35rem; font-size: 1rem; }
+  .m3d--live .m3d__list { display: none; }
+  @media print { .m3d__list { display: grid !important; } }
+</style>

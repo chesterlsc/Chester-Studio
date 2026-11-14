@@ -1,0 +1,47 @@
+---
+// Drag slider comparing two pictures. Without JS both pictures show side by side.
+interface Props { beforeLabel: string; afterLabel: string; label: string; }
+const { beforeLabel, afterLabel, label } = Astro.props;
+---
+<figure class="ba" data-ba>
+  <div class="ba__stage">
+    <div class="ba__pane ba__pane--before"><slot name="before" /><span class="ba__tag ba__tag--before">{beforeLabel}</span></div>
+    <div class="ba__pane ba__pane--after"><slot name="after" /><span class="ba__tag ba__tag--after">{afterLabel}</span></div>
+    <span class="ba__handle" aria-hidden="true"><span>◀ ▶</span></span>
+  </div>
+  <label class="ba__ctl no-print">
+    <span class="visually-hidden">{label}: drag to compare {beforeLabel} and {afterLabel}</span>
+    <input type="range" min="0" max="100" value="50" step="1" />
+  </label>
+  <figcaption>{label}</figcaption>
+</figure>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((el) => {
+    const input = el.querySelector('input')!;
+    el.classList.add('ba--live');
+    const set = () => el.style.setProperty('--pos', `${input.value}%`);
+    input.addEventListener('input', set); set();
+  });
+</script>
+<style>
+  .ba { --pos: 50%; }
+  .ba__stage { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s1); }
+  .ba__pane { position: relative; border-radius: var(--radius-sm); overflow: hidden; background: var(--accent-tint); }
+  .ba__pane :global(svg) { width: 100%; height: auto; }
+  .ba__tag { position: absolute; top: .5rem; padding: .15rem .6rem; border-radius: 999px; font-family: var(--font-head); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .95rem; }
+  .ba__tag--before { left: .5rem; background: var(--no); color: #fff; }
+  .ba__tag--after { right: .5rem; background: var(--ok); color: #fff; }
+  :root[data-theme="dark"] .ba__tag, :root[data-lite] .ba__tag { color: #0E1012; }
+  .ba__handle, .ba__ctl { display: none; }
+  figcaption { margin-top: .6rem; font-size: var(--fs-small); color: var(--ink-2); font-weight: 700; }
+
+  /* JS on: overlay + slider */
+  .ba--live .ba__stage { display: block; position: relative; border-radius: var(--radius-sm); overflow: hidden; }
+  .ba--live .ba__pane { border-radius: 0; }
+  .ba--live .ba__pane--after { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--pos)); }
+  .ba--live .ba__handle { display: grid; place-items: center; position: absolute; top: 0; bottom: 0; left: var(--pos); width: 4px; margin-left: -2px; background: var(--ink); pointer-events: none; }
+  .ba--live .ba__handle span { padding: .3rem .5rem; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: .8rem; white-space: nowrap; }
+  .ba--live .ba__ctl { display: block; }
+  input[type="range"] { width: 100%; height: var(--tap); accent-color: var(--accent); cursor: ew-resize; }
+  @media print { .ba--live .ba__stage { display: grid; } .ba--live .ba__pane--after { position: relative; clip-path: none; } .ba__handle { display: none !important; } }
+</style>

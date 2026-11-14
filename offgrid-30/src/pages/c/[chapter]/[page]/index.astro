@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from 'astro:content';
+import BookPage from '../../../../layouts/BookPage.astro';
+import { getChapter } from '../../../../lib/toc';
+import * as book from '../../../../components/book';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((entry) => {
+    const ch = getChapter(entry.data.chapter);
+    const pg = ch.pages.find((p) => p.p === entry.data.page)!;
+    return { params: { chapter: ch.slug, page: pg.slug }, props: { entry } };
+  });
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<BookPage {...entry.data}>
+  <Content components={book} />
+</BookPage>

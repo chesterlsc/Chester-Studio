@@ -1,0 +1,148 @@
+---
+import Base from './Base.astro';
+import Icon from '../components/icons/Icon.astro';
+import SeeAlso from '../components/book/SeeAlso.astro';
+import { SECTIONS, PARTS, type SectionKey } from '../data/sections';
+import { getChapter, neighbours, pageHref } from '../lib/toc';
+import { url } from '../lib/url';
+
+interface Props {
+  id: string; chapter: number; page: number; section: string;
+  title: string; why: string; seeAlso?: string[]; status?: string;
+}
+const { id, chapter, page, section, title, why, seeAlso = [], status } = Astro.props;
+const sec = SECTIONS[section as SectionKey];
+const part = sec.part;
+const ch = getChapter(chapter);
+const { prev, next } = neighbours(id);
+---
+<Base title={`${title} (${id})`} description={why} part={part}>
+  <article class="book-page" data-part={part} data-pagefind-body data-page-id={id}>
+    <div class="edge-tab" aria-hidden="true">
+      <Icon name={sec.icon as any} size={22} />
+      <span>{sec.title}</span>
+    </div>
+
+    <header class="ph">
+      <div class="ph__band">
+        <span class="ph__section"><Icon name={sec.icon as any} size={22} /> Part {part} · {PARTS[part].name}{sec.title !== PARTS[part].name && <><span class="ph__sep">/</span> {sec.title}</>}</span>
+        <a class="ph__chapter" href={url(`/c/${ch.slug}/`)}>Ch {chapter} · {ch.title}</a>
+      </div>
+      <div class="ph__main">
+        <div class="ph__titles">
+          <p class="ph__id"><span>Page</span> {id}{status === 'draft' && <span class="ph__draft">Draft</span>}</p>
+          <h1>{title}</h1>
+          <p class="ph__why"><span class="ph__why-label">Why it matters</span> {why}</p>
+        </div>
+        <div class="ph__tools no-print">
+          <button class="icon-btn" type="button" data-bookmark={id} aria-pressed="false" aria-label="Bookmark this page" title="Bookmark"><Icon name="bookmark" /></button>
+          <button class="icon-btn" type="button" data-print aria-label="Print this page" title="Print"><Icon name="print" /></button>
+        </div>
+      </div>
+      <ol class="ph__dots no-print" role="list" aria-label={`Pages in chapter ${chapter}`}>
+        {ch.pages.map((p) => (
+          <li><a href={pageHref(p.id)} aria-current={p.id === id ? 'page' : undefined} title={`${p.id} ${p.title}`}><span class="visually-hidden">{p.id} {p.title}</span></a></li>
+        ))}
+      </ol>
+    </header>
+
+    <div class="page-body">
+      <slot />
+    </div>
+
+    {seeAlso.length > 0 && <SeeAlso ids={seeAlso} />}
+
+    <nav class="page-nav no-print" aria-label="Page navigation">
+      {prev ? <a class="page-nav__link" href={pageHref(prev.id)} rel="prev"><Icon name="arrow-left" /><span><small>Previous · {prev.id}</small>{prev.title}</span></a> : <span />}
+      {next && <a class="page-nav__link page-nav__link--next" href={pageHref(next.id)} rel="next"><span><small>Next · {next.id}</small>{next.title}</span><Icon name="arrow-right" /></a>}
+    </nav>
+  </article>
+</Base>
+
+<script>
+  const KEY = 'og30:bookmarks';
+  const read = (): string[] => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+  const write = (v: string[]) => { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch {} };
+  document.querySelectorAll<HTMLButtonElement>('[data-bookmark]').forEach((btn) => {
+    const id = btn.dataset.bookmark!;
+    const sync = () => btn.setAttribute('aria-pressed', String(read().includes(id)));
+    btn.addEventListener('click', () => {
+      const list = read();
+      write(list.includes(id) ? list.filter((x) => x !== id) : [...list, id]);
+      sync();
+    });
+    sync();
+  });
+  document.querySelectorAll('[data-print]').forEach((b) => b.addEventListener('click', () => window.print()));
+</script>
+
+<style>
+  .book-page { position: relative; max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter) var(--s4); }
+
+  /* Thumb-index tab on the right edge, like a printed field guide */
+  .edge-tab { display: none; }
+  @media (min-width: 1100px) {
+    .edge-tab {
+      position: fixed; right: 0; top: 30vh; z-index: 5;
+      display: flex; align-items: center; gap: .5rem;
+      writing-mode: vertical-rl; transform: rotate(180deg);
+      padding: 1rem .55rem; border-radius: 0 10px 10px 0;
+      background: var(--accent); color: var(--on-accent);
+      font-family: var(--font-head); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: .95rem;
+    }
+    .edge-tab :global(.icon) { transform: rotate(90deg); }
+  }
+
+  .ph { margin: 0 calc(var(--gutter) * -1) var(--s4); }
+  .ph__band {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem var(--s2);
+    padding: .55rem var(--gutter);
+    background: var(--accent); color: var(--on-accent);
+    font-family: var(--font-head); font-weight: 600; font-size: 1.05rem; letter-spacing: .05em; text-transform: uppercase;
+  }
+  .ph__section { display: inline-flex; align-items: center; gap: .5rem; }
+  .ph__sep { opacity: .6; }
+  .ph__chapter { color: inherit; text-decoration: none; }
+  .ph__chapter:hover { text-decoration: underline; }
+
+  .ph__main { display: flex; gap: var(--s2); align-items: flex-start; padding: var(--s3) var(--gutter) var(--s2); background: var(--accent-tint); border-bottom: 3px solid var(--accent); }
+  .ph__titles { flex: 1; min-width: 0; }
+  .ph__id { font-family: var(--font-mono); font-size: 1rem; color: var(--accent-ink); display: flex; gap: .5rem; align-items: center; }
+  .ph__id span:first-child { font-family: var(--font-head); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .ph__draft { font-family: var(--font-head); font-weight: 700; font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; padding: 0 .5rem; border: 2px dashed currentColor; border-radius: 6px; }
+  .ph h1 { margin: .2rem 0 .6rem; }
+  .ph__why { font-size: calc(var(--fs-body) * 1.08); font-weight: 700; max-width: 52ch; }
+  .ph__why-label { display: inline-block; margin-right: .4rem; padding: .05rem .5rem; border-radius: 6px; background: var(--accent); color: var(--on-accent); font-family: var(--font-head); font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; vertical-align: .12em; }
+  .ph__tools { display: flex; flex-direction: column; gap: .25rem; }
+  .ph__tools [aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+  .ph__tools [aria-pressed="true"] :global(path) { fill: currentColor; }
+
+  .ph__dots { display: flex; gap: 6px; padding: .6rem var(--gutter) 0; }
+  .ph__dots a { display: block; width: 26px; height: 26px; position: relative; }
+  .ph__dots a::after { content: ''; position: absolute; inset: 9px 0; border-radius: 4px; background: var(--rule); }
+  .ph__dots a:hover::after { background: var(--rule-strong); }
+  .ph__dots a[aria-current="page"]::after { background: var(--accent); inset: 7px 0; }
+  .ph__dots li:last-child a::after { border-radius: 4px 999px 999px 4px; }
+
+  /* ---------- Template grid: visual column on desktop ---------- */
+  .page-body { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .page-body > :global(*) { margin-bottom: var(--s4); }
+  @media (min-width: 980px) {
+    .page-body { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); column-gap: var(--s5); align-items: start; }
+    .page-body > :global(*) { grid-column: 1; }
+    .page-body > :global(.b-visual) { grid-column: 2; grid-row: 1 / span 30; position: sticky; top: 5rem; }
+  }
+
+  .page-nav { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); margin-top: var(--s4); padding-top: var(--s3); border-top: 2px solid var(--rule); }
+  .page-nav__link { display: flex; align-items: center; gap: .75rem; padding: var(--s2); min-height: var(--tap); border-radius: var(--radius); background: var(--card); border: 1px solid var(--rule); color: var(--ink); text-decoration: none; font-weight: 700; line-height: 1.25; }
+  .page-nav__link:hover { border-color: var(--ink); }
+  .page-nav__link small { display: block; font-weight: 400; color: var(--ink-2); font-size: .95rem; }
+  .page-nav__link--next { grid-column: 2; justify-content: flex-end; text-align: right; }
+
+  @media print {
+    .ph { margin: 0 0 1rem; }
+    .ph__band { background: none; color: #000; border-bottom: 2px solid #000; padding: 0 0 .25rem; }
+    .ph__main { background: none; padding: .5rem 0; }
+    .page-body { display: block; }
+  }
+</style>

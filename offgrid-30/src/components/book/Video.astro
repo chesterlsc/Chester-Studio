@@ -1,0 +1,18 @@
+---
+// Link card to a trusted video. Not embedded: saves data, works as a plain link, and the key steps are always on the page.
+import Icon from '../icons/Icon.astro';
+interface Props { href: string; title: string; org: string; minutes?: number; }
+const { href, title, org, minutes } = Astro.props;
+---
+<a class="video card no-print" href={href} target="_blank" rel="noopener">
+  <span class="video__play"><Icon name="play" size={34} /></span>
+  <span><b>{title}</b><small>{org}{minutes ? ` · ${minutes} min` : ''} · needs internet</small></span>
+  <Icon name="external" size={20} />
+</a>
+<style>
+  .video { display: grid; grid-template-columns: auto 1fr auto; gap: var(--s2); align-items: center; padding: var(--s2); color: var(--ink); text-decoration: none; }
+  .video:hover { border-color: var(--ink); }
+  .video__play { color: var(--accent-ink); }
+  b { display: block; line-height: 1.3; }
+  small { color: var(--ink-2); font-size: 1rem; }
+</style>

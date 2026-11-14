@@ -1,0 +1,20 @@
+---
+import Icon from '../icons/Icon.astro';
+import { getPage, pageHref } from '../../lib/toc';
+interface Props { ids: string[]; }
+const { ids } = Astro.props;
+const links = ids.map((id) => ({ id, hit: getPage(id) })).filter((x) => x.hit);
+---
+<nav class="see-also" aria-label="See also">
+  <p class="kicker"><Icon name="see-also" size={18} /> See also</p>
+  <ul role="list">
+    {links.map(({ id, hit }) => (
+      <li><a class="chip" href={pageHref(id)}><span class="chip__id">{id}</span>{hit!.page.title}</a></li>
+    ))}
+  </ul>
+</nav>
+<style>
+  .see-also { padding: var(--s3) 0 0; border-top: 2px solid var(--rule); }
+  .kicker { display: flex; align-items: center; gap: .4rem; margin-bottom: .75rem; }
+  ul { display: flex; flex-wrap: wrap; gap: .6rem; }
+</style>

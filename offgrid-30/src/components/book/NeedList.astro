@@ -1,0 +1,32 @@
+---
+import Icon from '../icons/Icon.astro';
+import type { IconName } from '../icons/paths';
+interface Item { item: string; alt: string; icon?: IconName; }
+interface Props { items: Item[]; }
+const { items } = Astro.props;
+---
+<section class="b-need" aria-labelledby="need-h">
+  <div class="block-head"><Icon name="need" size={28} /><h2 id="need-h">What you need</h2></div>
+  <ul class="need card" role="list">
+    {items.map((it) => (
+      <li>
+        <span class="need__ico"><Icon name={it.icon ?? 'material'} size={26} /></span>
+        <span class="need__item" set:html={it.item} />
+        <span class="need__alt"><span class="need__no">No? Use</span> <span set:html={it.alt} /></span>
+      </li>
+    ))}
+  </ul>
+</section>
+<style>
+  .need { padding: 0 var(--s2); }
+  li { display: grid; grid-template-columns: 40px 1fr; gap: .2rem var(--s2); align-items: center; padding: .85rem 0; border-top: 1px solid var(--rule); }
+  li:first-child { border-top: 0; }
+  .need__ico { grid-row: span 2; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px; background: var(--accent-tint); color: var(--accent-ink); }
+  .need__item { font-weight: 700; line-height: 1.3; }
+  .need__alt { color: var(--ink-2); line-height: 1.35; }
+  .need__no { font-family: var(--font-head); font-weight: 700; font-size: .95rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
+  @media (min-width: 640px) {
+    li { grid-template-columns: 40px minmax(0, .9fr) minmax(0, 1.1fr); }
+    .need__ico { grid-row: auto; }
+  }
+</style>

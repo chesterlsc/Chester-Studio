@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import { allPages, pageHref } from '../lib/toc';
+const index = Object.fromEntries(allPages.map((p) => [p.id, { title: p.title, href: pageHref(p.id), ch: p.chapter.title }]));
+---
+<Base title="Bookmarks">
+  <div class="wrap">
+    <h1>Bookmarks</h1>
+    <p class="lede">Tap the bookmark on any page to save it here. Saved on this device only.</p>
+    <ul class="list" role="list" data-list></ul>
+    <p data-empty hidden>No bookmarks yet.</p>
+  </div>
+  <script type="application/json" id="bm-index" set:html={JSON.stringify(index)} />
+</Base>
+<script>
+  const index = JSON.parse(document.getElementById('bm-index')!.textContent!);
+  let ids: string[] = [];
+  try { ids = JSON.parse(localStorage.getItem('og30:bookmarks') || '[]'); } catch {}
+  const list = document.querySelector('[data-list]')!;
+  ids.filter((id) => index[id]).forEach((id) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = index[id].href; a.className = 'chip';
+    a.innerHTML = `<span class="chip__id"></span>`;
+    a.querySelector('span')!.textContent = id;
+    a.append(` ${index[id].title}`);
+    li.append(a); list.append(li);
+  });
+  (document.querySelector('[data-empty]') as HTMLElement).hidden = list.children.length > 0;
+</script>
+<style>
+  .wrap { max-width: 900px; margin: 0 auto; padding: var(--s4) var(--gutter); }
+  .lede { color: var(--ink-2); margin: .5rem 0 var(--s3); }
+  .list { display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; }
+</style>

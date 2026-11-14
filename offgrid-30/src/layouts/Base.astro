@@ -1,0 +1,143 @@
+---
+import '@fontsource/atkinson-hyperlegible-next/latin-400.css';
+import '@fontsource/atkinson-hyperlegible-next/latin-700.css';
+import '@fontsource/barlow-condensed/latin-600.css';
+import '@fontsource/barlow-condensed/latin-700.css';
+import '@fontsource/atkinson-hyperlegible-mono/latin-400.css';
+import '../styles/global.css';
+import Icon from '../components/icons/Icon.astro';
+import { url } from '../lib/url';
+
+interface Props { title: string; description?: string; part?: number; }
+const { title, description = 'OFFGRID 30 — a visual survival book for 30 years without power. For ages 10 to 80.', part } = Astro.props;
+const fullTitle = title === 'OFFGRID 30' ? title : `${title} · OFFGRID 30`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#FAF7F0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0E1012" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+  <!-- Apply saved theme + Lite mode before first paint (no flash). -->
+  <script is:inline>
+    (function () {
+      var d = document.documentElement;
+      try {
+        var t = localStorage.getItem('og30:theme');
+        if (t === 'light' || t === 'dark') d.dataset.theme = t;
+        if (localStorage.getItem('og30:lite') === '1') d.dataset.lite = '';
+      } catch (e) {}
+      d.classList.add('js');
+    })();
+  </script>
+</head>
+<body data-part={part}>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar no-print">
+    <a class="brand" href={url('/')} aria-label="OFFGRID 30 home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="32" height="32"><rect x="1" y="1" width="30" height="30" rx="7" fill="currentColor"/><path d="M9 21.5 16 9l7 12.5z" fill="none" stroke="var(--paper)" stroke-width="2.4" stroke-linejoin="round"/><circle cx="16" cy="18" r="2.2" fill="var(--paper)"/></svg>
+      </span>
+      <span class="brand__name">OFFGRID <b>30</b></span>
+    </a>
+    <nav class="topbar__actions" aria-label="Tools">
+      <a class="icon-btn" href={url('/contents/#find')} aria-label="Contents and search" title="Contents & search"><Icon name="search" /></a>
+      <a class="icon-btn" href={url('/bookmarks/')} aria-label="Bookmarks" title="Bookmarks"><Icon name="bookmark" /></a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Dark mode" aria-pressed="false" title="Dark mode">
+        <span class="when-light"><Icon name="moon" /></span><span class="when-dark"><Icon name="sun" /></span>
+      </button>
+      <button class="icon-btn" type="button" data-lite-toggle aria-label="Lite mode: saves battery" aria-pressed="false" title="Lite mode (saves battery)">
+        <Icon name="lite" />
+      </button>
+    </nav>
+  </header>
+
+  <div class="lite-hint no-print" role="status" hidden data-lite-hint>
+    <Icon name="lite" /> <span>Battery is low. Turn on <b>Lite mode</b> to save power?</span>
+    <button class="btn btn--solid" type="button" data-lite-accept>Turn on</button>
+    <button class="icon-btn" type="button" data-lite-dismiss aria-label="No thanks"><Icon name="close" /></button>
+  </div>
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <footer class="site-foot no-print">
+    <p><b>OFFGRID 30</b> · Facts from WHO, CDC, Red Cross, FEMA, US Army field manuals and peer-reviewed studies. This book does not replace a doctor, lawyer or local expert.</p>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const store = {
+      get: (k: string) => { try { return localStorage.getItem(k); } catch { return null; } },
+      set: (k: string, v: string | null) => { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} },
+    };
+    const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const themeBtn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]')!;
+    const syncTheme = () => themeBtn.setAttribute('aria-pressed', String(isDark()));
+    themeBtn.addEventListener('click', () => {
+      const next = isDark() ? 'light' : 'dark';
+      root.dataset.theme = next; store.set('og30:theme', next); syncTheme();
+    });
+    syncTheme();
+
+    const liteBtn = document.querySelector<HTMLButtonElement>('[data-lite-toggle]')!;
+    const setLite = (on: boolean) => {
+      if (on) root.dataset.lite = ''; else delete root.dataset.lite;
+      store.set('og30:lite', on ? '1' : '0');
+      liteBtn.setAttribute('aria-pressed', String(on));
+      document.dispatchEvent(new CustomEvent('og30:lite', { detail: on }));
+    };
+    liteBtn.setAttribute('aria-pressed', String('lite' in root.dataset));
+    liteBtn.addEventListener('click', () => setLite(!('lite' in root.dataset)));
+
+    // Suggest Lite mode on low battery (only where the Battery API exists, only if the reader hasn't chosen).
+    const hint = document.querySelector<HTMLElement>('[data-lite-hint]')!;
+    const nav = navigator as Navigator & { getBattery?: () => Promise<{ level: number; charging: boolean }> };
+    if (store.get('og30:lite') === null && nav.getBattery) {
+      nav.getBattery().then((b) => { if (b.level < 0.2 && !b.charging) hint.hidden = false; }).catch(() => {});
+    }
+    hint.querySelector('[data-lite-accept]')!.addEventListener('click', () => { setLite(true); hint.hidden = true; });
+    hint.querySelector('[data-lite-dismiss]')!.addEventListener('click', () => { store.set('og30:lite', '0'); hint.hidden = true; });
+  </script>
+</body>
+</html>
+
+<style>
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s2);
+    padding: .375rem var(--gutter);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  :root[data-lite] .topbar { backdrop-filter: none; background: var(--paper); }
+  .brand { display: inline-flex; align-items: center; gap: .6rem; color: var(--ink); text-decoration: none; min-height: var(--tap); }
+  .brand__mark { color: var(--ink); display: grid; }
+  .brand__name { font-family: var(--font-head); font-weight: 600; font-size: clamp(1.3rem, 5vw, 1.5rem); letter-spacing: .06em; white-space: nowrap; }
+  .brand__name b { color: var(--accent-ink, var(--part-4-ink)); }
+  .topbar__actions { display: flex; gap: .125rem; }
+  .when-dark { display: none; }
+  .icon-btn[aria-pressed="true"] .when-light { display: none; }
+  .icon-btn[aria-pressed="true"] .when-dark { display: contents; }
+  .icon-btn[aria-pressed="true"] { color: var(--ink); }
+  [data-lite-toggle][aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+  .lite-hint {
+    display: flex; align-items: center; gap: var(--s1); flex-wrap: wrap;
+    margin: var(--s1) var(--gutter); padding: var(--s1) var(--s2);
+    background: var(--warn); color: var(--warn-ink); border-radius: var(--radius); font-size: 1rem;
+  }
+  .lite-hint[hidden] { display: none; }
+  .lite-hint .icon-btn { color: var(--warn-ink); margin-left: auto; }
+
+  .site-foot { padding: var(--s5) var(--gutter) var(--s4); color: var(--ink-2); font-size: var(--fs-small); border-top: 1px solid var(--rule); margin-top: var(--s5); }
+  .site-foot p { margin-inline: auto; max-width: 70ch; text-align: center; }
+</style>

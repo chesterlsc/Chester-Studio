@@ -1,0 +1,56 @@
+---
+// Numbered step strip. Each step can hold tap-to-reveal detail (native <details>: works without JS).
+import Icon from '../icons/Icon.astro';
+import type { IconName } from '../icons/paths';
+interface Step { title: string; detail?: string; icon?: IconName; label?: string; }
+interface Props { steps: Step[]; heading?: string; }
+const { steps, heading = 'Step by step' } = Astro.props;
+const strip = steps.filter((s) => s.icon && s.label);
+---
+<section class="b-steps" aria-labelledby="steps-h">
+  <div class="block-head"><Icon name="steps" size={28} /><h2 id="steps-h">{heading}</h2></div>
+
+  {strip.length === steps.length && (
+    <ol class="strip" role="list" aria-hidden="true">
+      {steps.map((s, i) => (
+        <li><span class="strip__ico"><Icon name={s.icon!} size={26} /><b>{i + 1}</b></span><span class="strip__lbl">{s.label}</span></li>
+      ))}
+    </ol>
+  )}
+
+  <ol class="steps" role="list">
+    {steps.map((s, i) => (
+      <li class="step">
+        <span class="step__n" aria-hidden="true">{i + 1}</span>
+        {s.detail ? (
+          <details>
+            <summary><span class="visually-hidden">Step {i + 1}: </span><span set:html={s.title} /><span class="step__more"><Icon name="chevron-down" size={22} /><span class="visually-hidden">More</span></span></summary>
+            <p class="step__detail" set:html={s.detail} />
+          </details>
+        ) : (
+          <p class="step__title"><span class="visually-hidden">Step {i + 1}: </span><span set:html={s.title} /></p>
+        )}
+      </li>
+    ))}
+  </ol>
+</section>
+<style>
+  .strip { display: flex; gap: 0; margin-bottom: var(--s3); overflow-x: auto; padding-bottom: .25rem; }
+  .strip li { flex: 1 1 0; min-width: 64px; display: flex; flex-direction: column; align-items: center; gap: .35rem; position: relative; text-align: center; }
+  .strip li + li::before { content: ''; position: absolute; top: 26px; right: calc(50% + 28px); left: calc(-50% + 28px); height: 3px; background: var(--accent); opacity: .5; }
+  .strip__ico { position: relative; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: var(--accent-tint); color: var(--accent-ink); border: 2px solid var(--accent); }
+  .strip__ico b { position: absolute; top: -6px; right: -6px; width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: .85rem; font-family: var(--font-mono); }
+  .strip__lbl { font-family: var(--font-head); font-weight: 600; font-size: 1rem; letter-spacing: .03em; line-height: 1.1; }
+
+  .steps { counter-reset: none; position: relative; }
+  .step { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: var(--s2); padding-bottom: var(--s2); }
+  .step:not(:last-child)::before { content: ''; position: absolute; left: 21px; top: 44px; bottom: 0; width: 2px; background: var(--rule-strong); }
+  .step__n { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-family: var(--font-head); font-weight: 700; font-size: 1.4rem; }
+  .step__title, summary { padding-top: .45rem; font-weight: 700; line-height: 1.35; }
+  summary { list-style: none; display: flex; gap: .5rem; justify-content: space-between; align-items: flex-start; cursor: pointer; min-height: var(--tap); padding-bottom: .25rem; }
+  summary::-webkit-details-marker { display: none; }
+  .step__more { flex: none; display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--rule-strong); color: var(--ink-2); transition: transform .2s; }
+  details[open] .step__more { transform: rotate(180deg); }
+  summary:hover .step__more { border-color: var(--ink); color: var(--ink); }
+  .step__detail { padding: .75rem 1rem; margin-top: .25rem; background: var(--accent-tint); border-radius: var(--radius-sm); line-height: 1.5; }
+</style>

@@ -1,0 +1,33 @@
+{
+  "name": "offgrid-30",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OFFGRID 30 — a visual, interactive survival book for 30 years without power.",
+  "scripts": {
+    "toc": "node scripts/build-toc.mjs",
+    "dev": "npm run toc && astro dev",
+    "build": "npm run toc && astro build && pagefind --site dist",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "4.3.14",
+    "@astrojs/react": "4.4.2",
+    "@fontsource/atkinson-hyperlegible-mono": "5.2.10",
+    "@fontsource/atkinson-hyperlegible-next": "5.2.7",
+    "@fontsource/barlow-condensed": "5.2.8",
+    "@react-three/drei": "10.7.9",
+    "@react-three/fiber": "9.8.2",
+    "astro": "5.18.2",
+    "react": "19.1.10",
+    "react-dom": "19.1.10",
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.17",
+    "@types/react-dom": "19.1.11",
+    "@types/three": "0.180.0",
+    "pagefind": "1.4.0"
+  }
+}

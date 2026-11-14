@@ -1,0 +1,94 @@
+---
+id: "4.3"
+chapter: 4
+page: 3
+section: water
+title: "Boiling: the gold standard"
+why: "A rolling boil kills the germs that make water unsafe to drink."
+tags: [boil, boiling, disinfect, treatment, altitude, germs]
+visual:
+  type: svg
+  alt: "A pot at a rolling boil, a 1-minute timer, and a mountain showing the 3-minute rule up high."
+sources: [epa-emergency, who-boil]
+seeAlso: ["4.2", "4.4", "4.9", "2.2", "19.8"]
+status: draft
+lastChecked: 2026-11-14
+---
+import BoilMain from '../../../components/diagrams/ch04/BoilMain.astro';
+import BoilNotYet from '../../../components/diagrams/ch04/BoilNotYet.astro';
+import BoilRolling from '../../../components/diagrams/ch04/BoilRolling.astro';
+
+<MainVisual
+  caption="Rolling boil + at least 1 minute. Up high: 3 minutes."
+  legend={[
+    { num: '3', text: 'Step number (see steps)' },
+    { icon: 'time', text: 'Time to keep it boiling', tone: 'accent' },
+    { icon: 'mountain', text: 'Height above sea level', tone: 'accent' },
+    { icon: 'do', text: 'Do this', tone: 'ok' },
+    { icon: 'dont', text: "Don't do this", tone: 'no' },
+    { icon: 'caution', text: 'Caution: can hurt you', tone: 'warn' },
+  ]}
+>
+  <BoilMain />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Let cloudy water <b>settle</b>, then strain it',
+    'Wait for a full <b>rolling</b> boil',
+    'Boil at least <b>1 minute</b> (3 minutes up high)',
+    'Store it in a <b>clean</b>, covered container',
+  ]}
+  dont={[
+    'Count tiny bubbles as boiling',
+    'Trust boiling to fix <b>fuel or chemical</b> water',
+    'Dip dirty cups or hands into clean water',
+    'Leave a hot pot where <b>kids</b> can reach',
+  ]}
+/>
+
+<Steps steps={[
+  { icon: 'settle', label: 'Settle', title: 'Let cloudy water sit until the dirt sinks.', detail: 'Then pour the clear water off the top. Leave the mud at the bottom.' },
+  { icon: 'cloth', label: 'Strain', title: 'Pour it through a clean cloth or coffee filter.', detail: 'A clean paper towel works too.' },
+  { icon: 'bubbles', label: 'Boil', title: 'Heat it until big bubbles roll up all over, non-stop.', detail: 'Tiny bubbles on the bottom do not count. Wait for a full, rolling boil.' },
+  { icon: 'time', label: 'Time', title: 'Keep it rolling for at least 1 minute.', detail: 'Live above 1,000 m (3,300 ft)? Boil for 3 minutes. No clock? Count slowly to 60.' },
+  { icon: 'lid', label: 'Cool', title: 'Take it off the heat. Let it cool on its own.', detail: 'Keep a lid on while it cools.' },
+  { icon: 'jar', label: 'Store', title: 'Pour it into a clean container with a cover.', detail: 'Tastes flat? Pour it from one clean container to another a few times. Or add a pinch of salt per liter (about 1 quart).' },
+]} />
+
+<BeforeAfter beforeLabel="Not yet" afterLabel="Rolling boil" label="Not yet vs. a rolling boil">
+  <BoilNotYet slot="before" />
+  <BoilRolling slot="after" />
+</BeforeAfter>
+
+<NeedList items={[
+  { icon: 'pot', item: 'A metal pot or kettle', alt: 'Any clean metal container that can sit on heat. <b>Never plastic.</b>' },
+  { icon: 'fire', item: 'Heat that can keep a strong boil', alt: 'A wood stove, campfire or rocket stove (see 19.2).' },
+  { icon: 'cloth', item: 'Clean cloth or coffee filter', alt: 'A clean paper towel.' },
+  { icon: 'jar', item: 'Clean container with a cover', alt: 'Any clean jug or bottle with a cap. Clean it first (see 2.2).' },
+  { icon: 'time', item: 'A clock or timer', alt: 'Count slowly to 60.' },
+]} />
+
+<Compare
+  title="What boiling does"
+  yesLabel="Kills" noLabel="No"
+  rows={[
+    { label: 'Bacteria', value: 'yes', note: 'Germs that cause cholera and typhoid' },
+    { label: 'Viruses', value: 'yes', note: 'Like hepatitis A' },
+    { label: 'Protozoa', value: 'yes', note: 'Tiny parasites, like Giardia' },
+    { label: 'Chemicals, fuel, heavy metals', value: 'no', note: 'Boiling does not destroy them. Find another water source (see 4.9).' },
+    { label: 'Salt', value: 'no', note: 'Boiled seawater is still salty.' },
+  ]}
+/>
+
+<Callout type="caution" title="Hot water burns fast.">
+  Keep children away from the pot. Turn pot handles in, away from the edge.
+</Callout>
+
+<Scenario when="Day 4 without power" move="Settle, strain, rolling boil, at least 1 full minute, cool it covered.">
+  The taps stopped on day 3. You carry a bucket of creek water home. It looks brown.
+
+  You let it sit until the mud sinks. You pour the clear top through a clean T-shirt into a pot.
+
+  On the stove, tiny bubbles form on the bottom. Not yet. You wait until big bubbles roll across the whole pot. Then you count slowly to 60.
+</Scenario>

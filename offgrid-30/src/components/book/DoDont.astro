@@ -1,0 +1,30 @@
+---
+import Icon from '../icons/Icon.astro';
+interface Props { do: string[]; dont: string[]; }
+const { do: dos, dont } = Astro.props;
+---
+<section class="b-dodont" aria-label="Do and don't">
+  <div class="dd dd--do card">
+    <h2 class="dd__head"><Icon name="do" size={30} /> Do</h2>
+    <ul role="list">{dos.map((t) => <li><Icon name="check" size={22} /><span set:html={t} /></li>)}</ul>
+  </div>
+  <div class="dd dd--dont card">
+    <h2 class="dd__head"><Icon name="dont" size={30} /> Don't</h2>
+    <ul role="list">{dont.map((t) => <li><Icon name="close" size={22} /><span set:html={t} /></li>)}</ul>
+  </div>
+</section>
+<style>
+  .b-dodont { display: grid; gap: var(--s2); }
+  @media (min-width: 640px) { .b-dodont { grid-template-columns: 1fr 1fr; } }
+  .dd { padding: var(--s2) var(--s2) var(--s3); border-top: 6px solid; }
+  .dd--do { border-top-color: var(--ok); }
+  .dd--dont { border-top-color: var(--no); }
+  .dd__head { display: flex; align-items: center; gap: .5rem; font-size: var(--fs-h3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: var(--s1); }
+  .dd--do .dd__head { color: var(--ok); }
+  .dd--dont .dd__head { color: var(--no); }
+  li { display: flex; gap: .6rem; align-items: flex-start; padding: .55rem 0; border-top: 1px solid var(--rule); line-height: 1.35; }
+  li:first-child { border-top: 0; }
+  li :global(.icon) { margin-top: .12em; }
+  .dd--do li :global(.icon) { color: var(--ok); }
+  .dd--dont li :global(.icon) { color: var(--no); }
+</style>

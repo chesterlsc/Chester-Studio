@@ -43,7 +43,9 @@ Assume every reader has ADHD: short, visual, scannable, self-explanatory.
 - Every number, dose, time, temperature or distance must trace to a source.
 - Record source IDs in the page's front-matter (`sources: [w1, w3]`). They are **not shown on the page**; the chapter's Review page lists them.
 - Give **both units**: liters + gallons, °C + °F, meters + feet, kg + lb.
-- Where sources disagree, use the **safer** number and say "at least" / "at most".
+- Where sources disagree, use the **safer** number and say "at least" / "at most". Log the disagreement in PROGRESS.md.
+  - Example (Step 2): boiling time up high. EPA (2026): 3 min above 1,000 m. Older CDC text: above 2,000 m / 6,500 ft. → We use **above 1,000 m (3,300 ft)**.
+- Use the source's exact wording for science words, then explain it: "protozoa (tiny parasites)".
 - Medical pages say clearly when a pro is needed (red-flag box). No dosing of prescription drugs, no surgery how-tos.
 - Herbal pages show an **evidence badge** (Strong / Moderate / Limited) and a "Who should NOT use this" box. Remedies with no good evidence are left out (or listed as "doesn't work" with the source).
 - Legal topics (rainwater, hunting, salvage, radio, weapons, burial) say "**check your local law**" and give the US federal baseline only where a source exists.
