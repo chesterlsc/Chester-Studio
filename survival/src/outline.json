@@ -1,0 +1,3233 @@
+{
+  "book": {
+    "title": "30 Years, No Power",
+    "subtitle": "The Visual, Fact-Checked Survival Field Manual",
+    "tagline": "For families, babies, women, dogs and everyone who has to keep living when the grid does not come back.",
+    "edition": "First edition · November 2026"
+  },
+  "priorities": {
+    "critical": {
+      "label": "Critical",
+      "icon": "🔴",
+      "meaning": "Can save a life in minutes to days. Learn first."
+    },
+    "high": {
+      "label": "High",
+      "icon": "🟠",
+      "meaning": "Needed in the first weeks."
+    },
+    "core": {
+      "label": "Core",
+      "icon": "🟢",
+      "meaning": "Needed to get through months and years."
+    },
+    "long": {
+      "label": "Long haul",
+      "icon": "🔵",
+      "meaning": "Needed to keep going for 30 years and rebuild."
+    }
+  },
+  "parts": [
+    {
+      "id": "start",
+      "num": 0,
+      "title": "Start Here",
+      "icon": "🧭",
+      "color": "#334155",
+      "intro": "What this book is, how to use it in a crisis, and the exact order of actions for the first 72 hours, the first month and the next 30 years."
+    },
+    {
+      "id": "mind",
+      "num": 1,
+      "title": "Mind & Plan",
+      "icon": "🧠",
+      "color": "#7c3aed",
+      "intro": "How people actually behave in disasters, how to plan as a family or group, and how to decide whether to stay or go."
+    },
+    {
+      "id": "water",
+      "num": 2,
+      "title": "Water",
+      "icon": "💧",
+      "color": "#0369a1",
+      "intro": "A person dies of dehydration long before starvation. How much water you need, how to store it, find it, and make it safe for decades."
+    },
+    {
+      "id": "food",
+      "num": 3,
+      "title": "Food",
+      "icon": "🌾",
+      "color": "#15803d",
+      "intro": "Storing food that lasts, cooking without power, preserving harvests, growing staple calories, foraging safely, hunting, fishing and raising animals."
+    },
+    {
+      "id": "medicine",
+      "num": 4,
+      "title": "Medicine & First Aid",
+      "icon": "🩺",
+      "color": "#b91c1c",
+      "intro": "First aid that saves lives in minutes, treating injuries and infections when no hospital is coming, and keeping medicines working for as long as possible."
+    },
+    {
+      "id": "women",
+      "num": 5,
+      "title": "Women's & Girls' Health",
+      "icon": "🌸",
+      "color": "#be185d",
+      "intro": "Periods, contraception, pregnancy, emergency childbirth, recovery after birth, breastfeeding and personal safety for women and girls."
+    },
+    {
+      "id": "kids",
+      "num": 6,
+      "title": "Babies & Children",
+      "icon": "👶",
+      "color": "#b45309",
+      "intro": "Keeping newborns, babies and children alive and healthy: feeding, warmth, hygiene, danger signs, safety, education and emotional health."
+    },
+    {
+      "id": "animals",
+      "num": 7,
+      "title": "Dogs & Animals",
+      "icon": "🐕",
+      "color": "#92400e",
+      "intro": "Dogs as guards, helpers and family. Feeding them without kibble, keeping them healthy, first aid, training, breeding, plus cats, livestock and draft animals."
+    },
+    {
+      "id": "shelter",
+      "num": 8,
+      "title": "Shelter, Heat & Light",
+      "icon": "🔥",
+      "color": "#c2410c",
+      "intro": "Staying warm, cool, dry and lit without electricity, and doing it without poisoning yourself with carbon monoxide or burning the house down."
+    },
+    {
+      "id": "tools",
+      "num": 9,
+      "title": "Tools & Skills",
+      "icon": "🛠️",
+      "color": "#475569",
+      "intro": "The hand tools that matter, keeping them working for decades, and the core trades: rope, wood, metal, sewing, soap and low-tech chemistry."
+    },
+    {
+      "id": "hygiene",
+      "num": 10,
+      "title": "Hygiene & Sanitation",
+      "icon": "🧼",
+      "color": "#0f766e",
+      "intro": "Clean hands, safe toilets and pest control prevent more deaths than almost anything else after a disaster."
+    },
+    {
+      "id": "security",
+      "num": 11,
+      "title": "Security & Community",
+      "icon": "🛡️",
+      "color": "#3730a3",
+      "intro": "Staying safe through deterrence, a low profile, de-escalation and strong neighbors, plus trade, group rules and safe firearm storage."
+    },
+    {
+      "id": "salvage",
+      "num": 12,
+      "title": "Scavenging & Salvage",
+      "icon": "🔎",
+      "color": "#4d7c0f",
+      "intro": "Finding and reusing what is left lawfully and safely: what to look for first, what is still usable, and the hazards that injure scavengers."
+    },
+    {
+      "id": "comms",
+      "num": 13,
+      "title": "Navigation, Comms & Travel",
+      "icon": "📡",
+      "color": "#0e7490",
+      "intro": "Finding your way, talking over distance without the internet, signaling for help, keeping time and records, and moving people and loads."
+    },
+    {
+      "id": "hazards",
+      "num": 14,
+      "title": "Disasters & Hazards",
+      "icon": "🌪️",
+      "color": "#991b1b",
+      "intro": "What the evidence says about each major hazard, from winter storms and floods to radiation, pandemics and solar storms."
+    },
+    {
+      "id": "longhaul",
+      "num": 15,
+      "title": "The 30-Year Plan",
+      "icon": "🏗️",
+      "color": "#a16207",
+      "intro": "Lessons from real long blackouts and sieges, and a phased plan to feed, heal, teach and govern a community for three decades."
+    },
+    {
+      "id": "reference",
+      "num": 16,
+      "title": "Reference",
+      "icon": "📚",
+      "color": "#1e293b",
+      "intro": "Master checklists, shelf-life tables, conversions and a glossary to keep at hand."
+    }
+  ],
+  "chapters": [
+    {
+      "id": "introduction",
+      "part": "start",
+      "title": "Introduction: Why This Book Exists",
+      "icon": "📖",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "What electricity actually runs: water pumping and treatment, refrigeration, hospitals, fuel pumps, communications, payment systems",
+        "Real recent grid failures with dates, durations and death tolls: 2025 Iberian Peninsula blackout, Texas Winter Storm Uri 2021, Hurricane Maria Puerto Rico 2017, Hurricane Helene 2024, 2003 Northeast blackout, Ukraine grid attacks 2022-2025",
+        "Geomagnetic storm facts: 1859 Carrington event, 1989 Quebec blackout, May 2024 G5 storm",
+        "Why this book uses facts only, every claim sourced, and how the book is organised into parts",
+        "What the reader should do in the next hour after reading"
+      ]
+    },
+    {
+      "id": "how-to-use",
+      "part": "start",
+      "title": "How to Use This Book (Built for Busy & ADHD Brains)",
+      "icon": "🧩",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "The icon, color and priority system (Critical 🔴, High 🟠, Core 🟢, Long haul 🔵) and the time tags (First 72 h, First 30 days, Year 1, Long haul)",
+        "Every box type and what it means (danger, warn, tip, fact, baby, dog, women, elder, long, practice, buy, watch), plus Myth vs Fact, Do/Don't, steps, timelines, flashcards, checklists",
+        "The site features: ⚡ Skim mode (hides long paragraphs, keeps boxes, steps, tables and diagrams), 🔊 Read aloud, ☰ Contents drawer, 🔍 Search (press /), Aa settings (dark mode, text size, spacing), ▶ Play steps slideshow, tap-to-flip flashcards, checklists saved on your device, Mark chapter as read with progress on the home page, calculators page, works offline after the first visit, Print the whole book or save it as a PDF",
+        "Evidence that checklists and written procedures reduce errors under stress (e.g. the WHO Surgical Safety Checklist study, NEJM 2009) and evidence on ADHD-friendly design (chunking, external memory aids)",
+        "Why print a paper copy: devices and batteries fail; facts on paper and ink longevity",
+        "Suggested reading paths: 1 hour (the Critical chapters), 1 weekend, 1 month; and how to run family drills with the book"
+      ]
+    },
+    {
+      "id": "first-72-hours",
+      "part": "start",
+      "title": "The First 72 Hours: Exact Order of Actions",
+      "icon": "⏱️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Hour-by-hour action order after the power goes out and it looks long: safety check, water capture, cold-food decisions, CO safety, medicines, communication",
+        "Fill every container while taps still have pressure; how long municipal water pressure lasts without power (facts from real events)",
+        "Fridge and freezer timings (USDA), which medicines need cooling",
+        "Fuel, cash, and phone battery facts",
+        "Checklist for each family member including babies and dogs"
+      ]
+    },
+    {
+      "id": "first-30-days",
+      "part": "start",
+      "title": "The First 30 Days",
+      "icon": "📅",
+      "priority": "critical",
+      "when": [
+        "30d"
+      ],
+      "scope": [
+        "Week-by-week priorities after the first 72 hours: water system, sanitation, food rationing, heating or cooling, security, neighbors",
+        "Facts from long outages on when disease outbreaks begin (e.g. post-disaster cholera, diarrhea) and why sanitation matters by week 2",
+        "Setting up a household routine and roles",
+        "Inventory and rationing math",
+        "When to start a garden and long-term systems"
+      ]
+    },
+    {
+      "id": "what-fails-when",
+      "part": "start",
+      "title": "What Fails When: The 30-Year Timeline",
+      "icon": "⏳",
+      "priority": "high",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "A sourced timeline of what degrades or stops: tap water pressure, cell towers' backup batteries, stored gasoline and diesel, car batteries, AA and lithium batteries, medicines, canned food, seeds, tires, rubber, plastics, solar panels, paper",
+        "Shelf-life numbers with sources for each item",
+        "What still works after 30 years: hand tools, cast iron, glass, wool, seeds if saved each year, knowledge on paper",
+        "Visual timeline from day 1 to year 30"
+      ]
+    },
+    {
+      "id": "what-kills-first",
+      "part": "start",
+      "title": "What Kills People First in Disasters",
+      "icon": "⚠️",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Facts on causes of death in long outages and disasters: hypothermia and CO in Texas 2021, excess deaths after Hurricane Maria (Harvard NEJM 2018 and GWU studies), heat deaths, interruption of medical care, drowning in floods",
+        "Rank the threats by how fast they kill and how common they are",
+        "Which groups face the most risk: elderly, people on medical devices, infants, people with chronic disease",
+        "What prevents each cause of death"
+      ]
+    },
+    {
+      "id": "disaster-psychology",
+      "part": "mind",
+      "title": "How People Really Behave in Disasters",
+      "icon": "🧠",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Research facts: mass panic is rare, people usually help each other (disaster sociology research)",
+        "Normalcy bias and delayed evacuation: documented examples",
+        "Stress effects on decision-making and fine motor skills",
+        "What actually improves performance under stress: training, rehearsal, checklists",
+        "Myths vs facts about looting and panic"
+      ]
+    },
+    {
+      "id": "stress-sleep-routine",
+      "part": "mind",
+      "title": "Stress, Sleep & Routines That Keep You Working",
+      "icon": "😴",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Sleep deprivation facts: effects on judgement, immunity and accidents",
+        "Sleep without power: light, noise, cold; shift systems for night watch",
+        "Daily routines and structure in long crises",
+        "Evidence-based stress management that needs no equipment: breathing, exercise, social contact",
+        "Signs someone is not coping"
+      ]
+    },
+    {
+      "id": "adhd-different-brains",
+      "part": "mind",
+      "title": "Surviving With ADHD, Autism & Different Brains",
+      "icon": "⚡",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Facts on ADHD prevalence and stimulant medication supply (FDA shortage facts 2022-2025) and what happens when medication stops",
+        "Evidence-based non-drug strategies: external reminders, checklists, routines, exercise, sleep",
+        "Strengths that can help in crises and how to assign roles",
+        "Autism and sensory needs in shelters and crowded spaces",
+        "Planning a medication stockpile legally and safely"
+      ]
+    },
+    {
+      "id": "group-planning",
+      "part": "mind",
+      "title": "Building Your Group: Size, Roles & Skills",
+      "icon": "👥",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Why households alone struggle long term; facts from history and research on social ties and disaster recovery (e.g. Aldrich)",
+        "Skills inventory: medical, food, mechanical, child care, security, teaching",
+        "Roles and rotation to prevent burnout",
+        "Including elderly, disabled, children and pets in plans",
+        "Group size considerations backed by evidence"
+      ]
+    },
+    {
+      "id": "family-emergency-plan",
+      "part": "mind",
+      "title": "The Family Emergency Plan",
+      "icon": "🗺️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Ready.gov and Red Cross family plan components: meeting points, out-of-area contact, paper contact list",
+        "Plans for school, work and separated family members",
+        "Practising drills and how often",
+        "Plans for babies, people with disabilities and pets",
+        "Printable plan template"
+      ]
+    },
+    {
+      "id": "budget-prepping",
+      "part": "mind",
+      "title": "Prepping on a Budget: What to Buy First",
+      "icon": "💰",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Order of purchases by life-saving value: water storage, treatment, food staples, first aid, light, heat",
+        "Cost per calorie of staple foods (rice, beans, oats, flour, oil) with sourced prices",
+        "Free and cheap preparations",
+        "Buying a little each week; avoiding gimmick products",
+        "What not to waste money on, with facts"
+      ]
+    },
+    {
+      "id": "stay-or-go",
+      "part": "mind",
+      "title": "Stay or Go? Sheltering in Place vs Evacuating",
+      "icon": "🚪",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Official criteria from FEMA and Ready.gov for staying vs leaving",
+        "Facts from evacuations: traffic, fuel shortages (e.g. Hurricane Rita 2005 evacuation deaths)",
+        "Risks of leaving a known shelter vs staying",
+        "Where to go: relatives, shelters, rural vs urban facts",
+        "Decision checklist"
+      ]
+    },
+    {
+      "id": "go-bags",
+      "part": "mind",
+      "title": "Go-Bags for Every Family Member",
+      "icon": "🎒",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Adult go-bag contents from Ready.gov/Red Cross with weights",
+        "Child, baby, elderly and dog go-bags",
+        "Documents to pack (copies, waterproofed) and cash",
+        "Weight limits backed by evidence (pack weight as % of body weight)",
+        "Checking and rotating bags"
+      ]
+    },
+    {
+      "id": "water-needs",
+      "part": "water",
+      "title": "How Much Water You Really Need",
+      "icon": "🥤",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "CDC and FEMA minimums (1 gallon/person/day) and WHO/Sphere figures for drinking, cooking and hygiene",
+        "Higher needs: heat, exercise, pregnancy, breastfeeding, children, sick people, dogs and pets",
+        "Signs of dehydration in adults, children and dogs",
+        "How long people survive without water: documented facts only",
+        "Calculator: water for your family for 3 days, 2 weeks, 1 year"
+      ]
+    },
+    {
+      "id": "water-storage",
+      "part": "water",
+      "title": "Storing Water for Months & Years",
+      "icon": "🛢️",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Safe containers (food-grade HDPE, 55-gallon drums), what not to use (milk jugs, bleach bottles facts)",
+        "Treating stored water and how often to rotate (CDC/FEMA)",
+        "Hidden water in the house: water heater, pipes, toilet tank (not bowl)",
+        "Bathtub storage facts",
+        "Storage location, weight and freezing"
+      ]
+    },
+    {
+      "id": "finding-water",
+      "part": "water",
+      "title": "Finding Water When the Taps Stop",
+      "icon": "🔍",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Sources ranked by safety: rain, springs, wells, streams, ponds",
+        "Locating water: terrain, vegetation, animal signs (facts only)",
+        "Dew and transpiration collection: real yields from studies",
+        "Urban sources: building tanks, swimming pools (chlorine/chemicals facts)",
+        "Water you must never drink: floodwater, seawater, urine (facts)"
+      ]
+    },
+    {
+      "id": "rainwater",
+      "part": "water",
+      "title": "Rainwater Harvesting: Roof Math & Systems",
+      "icon": "🌧️",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Roof catchment formula (1 inch of rain on 1,000 sq ft yields about 623 gallons) with source",
+        "Gutters, first-flush diverters, screens, tanks",
+        "Roof material contamination facts",
+        "Mosquito control in tanks",
+        "Treating rainwater before drinking"
+      ]
+    },
+    {
+      "id": "disinfecting-water",
+      "part": "water",
+      "title": "Disinfecting Water: Boiling, Bleach, Iodine & Tablets",
+      "icon": "♨️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "CDC/EPA boiling times (1 minute; 3 minutes above 6,500 ft)",
+        "EPA bleach dosing table by concentration and volume, scented bleach warning, bleach degradation over time",
+        "Iodine and chlorine dioxide tablets: what they kill (Cryptosporidium facts), contact times, pregnancy and thyroid cautions",
+        "Calcium hypochlorite (pool shock) as long-term chlorine source: EPA guidance",
+        "Bleach dosing calculator"
+      ]
+    },
+    {
+      "id": "water-filters",
+      "part": "water",
+      "title": "Water Filters & SODIS: What Each Method Removes",
+      "icon": "🧪",
+      "priority": "high",
+      "when": [
+        "30d"
+      ],
+      "scope": [
+        "Pore sizes and what they remove: bacteria, protozoa, viruses, chemicals",
+        "Comparison table of methods: boiling, chemical, filter types, UV, SODIS, distillation",
+        "SODIS method per WHO/Eawag: PET bottles, 6 hours sun, 2 days cloudy",
+        "Filter lifespan and cleaning; ceramic and hollow-fiber facts; freezing damage",
+        "Combining methods for best protection"
+      ]
+    },
+    {
+      "id": "biosand-filter",
+      "part": "water",
+      "title": "Build a Slow Sand / Biosand Filter",
+      "icon": "⏬",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "How slow sand filtration works (schmutzdecke biological layer) with published removal rates",
+        "Step-by-step biosand filter construction per CAWST design: container, gravel, sand sizes, flow rates",
+        "Maturation time and maintenance",
+        "Limits: still disinfect after filtering",
+        "Diagram of the layers"
+      ]
+    },
+    {
+      "id": "wells-pumps",
+      "part": "water",
+      "title": "Wells & Hand Pumps Without Electricity",
+      "icon": "🪣",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Types of wells: dug, driven, drilled; depths and contamination risk",
+        "Hand pump types and depth limits (suction pumps lift about 25 ft in practice; physics limit ~34 ft at sea level)",
+        "Retrofit hand pumps for existing wells",
+        "Well disinfection (shock chlorination) per CDC/EPA",
+        "Siting wells away from latrines: distance guidelines (WHO/Sphere)"
+      ]
+    },
+    {
+      "id": "waterborne-disease",
+      "part": "water",
+      "title": "Waterborne Diseases: Recognize, Prevent, Treat",
+      "icon": "🦠",
+      "priority": "critical",
+      "when": [
+        "30d"
+      ],
+      "scope": [
+        "Cholera, typhoid, dysentery, giardia, cryptosporidium, hepatitis A, E. coli: symptoms, incubation, spread",
+        "WHO global facts on diarrheal disease deaths",
+        "Prevention through water, sanitation and hygiene with effect sizes",
+        "Treatment priorities: oral rehydration first",
+        "When illness is likely from water vs food"
+      ]
+    },
+    {
+      "id": "chemical-contamination",
+      "part": "water",
+      "title": "Chemical Contamination: What Filters Can't Fix",
+      "icon": "☣️",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Floodwater contaminants, fuel, pesticides, heavy metals, nitrates, arsenic, PFAS (EPA 2024 PFAS rule)",
+        "What boiling does to chemicals (concentrates some)",
+        "Which methods remove chemicals: activated carbon, distillation, reverse osmosis, limits",
+        "Signs of chemical contamination; testing options",
+        "Choosing the safest source when all are imperfect"
+      ]
+    },
+    {
+      "id": "calories-nutrition",
+      "part": "food",
+      "title": "Calories & Nutrition: How Much Food Keeps You Alive",
+      "icon": "🍽️",
+      "priority": "critical",
+      "when": [
+        "30d"
+      ],
+      "scope": [
+        "Daily energy needs by age, sex and workload (Dietary Guidelines) and Sphere 2,100 kcal planning figure",
+        "Protein, fat and micronutrient minimums",
+        "Calorie density of storable foods table",
+        "Starvation physiology facts and refeeding syndrome",
+        "Feeding children, pregnant and breastfeeding women first: evidence"
+      ]
+    },
+    {
+      "id": "deficiency-diseases",
+      "part": "food",
+      "title": "Deficiency Diseases: Scurvy, Pellagra, Beriberi & More",
+      "icon": "🍋",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Scurvy (vitamin C): onset timeline, symptoms, food sources, how little prevents it",
+        "Pellagra (niacin) and nixtamalization of corn",
+        "Beriberi (thiamine) and polished rice; rickets (vitamin D); iodine deficiency; iron-deficiency anemia; night blindness (vitamin A)",
+        "Sprouting seeds to create vitamin C: evidence",
+        "Multivitamin shelf-life facts"
+      ]
+    },
+    {
+      "id": "food-storage",
+      "part": "food",
+      "title": "Long-Term Food Storage: What Lasts 30 Years",
+      "icon": "🥫",
+      "priority": "high",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "Shelf-life studies (e.g. BYU studies of 30-year-old wheat, rice, oats, dry beans)",
+        "What lasts: white rice, wheat, dried beans, sugar, salt, honey; what does not: brown rice, oils, whole-grain flour",
+        "Storage conditions: temperature, oxygen, moisture, light; effect of temperature on shelf life",
+        "Canned food facts (USDA high-acid vs low-acid timelines)",
+        "Rotation systems: first in, first out"
+      ]
+    },
+    {
+      "id": "food-packaging",
+      "part": "food",
+      "title": "Mylar, Buckets, Oxygen Absorbers & Pests",
+      "icon": "🪣",
+      "priority": "core",
+      "when": [
+        "30d"
+      ],
+      "scope": [
+        "Mylar bags, food-grade buckets, oxygen absorber sizing (cc per volume)",
+        "Why dried beans and grains must be under 10% moisture; botulism risk from storing moist foods in low oxygen",
+        "Pantry pests: weevils, moths, rodents; freezing and CO2 or diatomaceous earth facts",
+        "Glass jars and PET bottles for dry goods",
+        "Labelling and inventory"
+      ]
+    },
+    {
+      "id": "food-safety-no-fridge",
+      "part": "food",
+      "title": "Food Safety Without a Refrigerator",
+      "icon": "🧊",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "USDA: fridge safe ~4 hours closed; full freezer 48 hours, half 24 hours",
+        "Danger zone 40-140°F (4-60°C) and the 2-hour rule",
+        "Which foods to eat first after an outage",
+        "Foods safe at room temperature; when to discard (USDA tables)",
+        "Food poisoning symptoms and when it becomes dangerous"
+      ]
+    },
+    {
+      "id": "cooking-without-power",
+      "part": "food",
+      "title": "Cooking Without Power",
+      "icon": "🍳",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Camp stoves, rocket stoves, wood fires, charcoal, solar cookers, retained-heat (haybox) cooking with fuel savings evidence",
+        "Indoor air pollution facts (WHO: household air pollution deaths) and CO risks",
+        "Fuel efficiency comparisons",
+        "Cooking dried beans and grains with less fuel: soaking facts",
+        "Never use grills or camp stoves indoors (CDC CO data)"
+      ]
+    },
+    {
+      "id": "home-canning",
+      "part": "food",
+      "title": "Home Canning Safely",
+      "icon": "🫙",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Botulism facts (CDC): why low-acid foods need pressure canning at 240°F/116°C",
+        "Water-bath canning for high-acid foods; pH 4.6 threshold",
+        "USDA Complete Guide to Home Canning procedures and altitude adjustments",
+        "Reusing lids: facts; jar life",
+        "Signs of spoilage and safe disposal"
+      ]
+    },
+    {
+      "id": "drying-smoking-salting",
+      "part": "food",
+      "title": "Drying, Smoking, Salting & Fermenting",
+      "icon": "🥓",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Sun and air drying of fruits, vegetables and meat (USDA jerky temperature guidance, 160°F)",
+        "Salt curing ratios and nitrite facts",
+        "Smoking: hot vs cold smoking safety",
+        "Lacto-fermentation (sauerkraut) salt ratios and safety evidence",
+        "Storage life of each method"
+      ]
+    },
+    {
+      "id": "root-cellars",
+      "part": "food",
+      "title": "Root Cellars & Cold Storage Without Electricity",
+      "icon": "🥔",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Temperature and humidity needs for each crop (university extension tables)",
+        "Root cellar designs: basement corner, buried container, clamps",
+        "Evaporative coolers (zeer pot) evidence and performance",
+        "Ethylene and storing fruits apart",
+        "Ice houses and spring houses: historical facts"
+      ]
+    },
+    {
+      "id": "survival-garden",
+      "part": "food",
+      "title": "Survival Gardening: Most Calories per Square Meter",
+      "icon": "🥬",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Highest calorie-yield crops (potatoes, sweet potatoes, corn, beans, squash) with yield figures",
+        "Garden area needed to feed one person (published estimates)",
+        "Planting calendar basics and frost dates",
+        "Hand-tool gardening methods",
+        "Crop rotation and pest management without chemicals"
+      ]
+    },
+    {
+      "id": "soil-compost",
+      "part": "food",
+      "title": "Soil, Compost & Fertility Without Fertilizer",
+      "icon": "🪱",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Soil nutrients N-P-K and what depletes them",
+        "Composting ratios and temperatures that kill pathogens",
+        "Manures: nutrient values and safe aging times (USDA NOP 90/120-day rule)",
+        "Legumes for nitrogen fixation, wood ash for potassium, urine as fertilizer (WHO guidelines)",
+        "Testing soil without labs"
+      ]
+    },
+    {
+      "id": "seed-saving",
+      "part": "food",
+      "title": "Seed Saving & Seed Viability",
+      "icon": "🌱",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Seed viability years by crop (published tables)",
+        "Open-pollinated vs hybrid; why hybrid seeds do not breed true",
+        "Isolation distances and population sizes for genetic diversity",
+        "Drying and storing seeds: moisture and temperature rules (Harrington's rule)",
+        "Svalbard Global Seed Vault facts"
+      ]
+    },
+    {
+      "id": "grains-beans",
+      "part": "food",
+      "title": "Growing & Processing Grains and Beans",
+      "icon": "🌽",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Wheat, corn, oats, rice, amaranth: yields per area and labor",
+        "Threshing, winnowing and hand grinding",
+        "Nixtamalization of corn and why it prevents pellagra",
+        "Dry beans: growing, drying, storage; raw kidney bean toxin (lectin) facts",
+        "Storing grain on the farm"
+      ]
+    },
+    {
+      "id": "perennials-fruit",
+      "part": "food",
+      "title": "Perennials, Fruit Trees & Nut Trees",
+      "icon": "🍎",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Years to first harvest for common fruit and nut trees",
+        "Perennial vegetables: asparagus, rhubarb (leaf toxicity), Jerusalem artichoke",
+        "Grafting and propagation basics",
+        "Food forest facts and yields",
+        "Pollination and chill hours"
+      ]
+    },
+    {
+      "id": "foraging",
+      "part": "food",
+      "title": "Foraging Facts: Wild Edibles & Deadly Look-Alikes",
+      "icon": "🌿",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Poisoning statistics from wild plants (poison center data)",
+        "Deadly look-alikes: water hemlock, poison hemlock vs wild carrot, foxglove vs comfrey",
+        "Common widely recognized edibles with identification features",
+        "Why the 'universal edibility test' is not reliable for deadly toxins (facts)",
+        "Nutrition value of wild foods; calorie limits of foraging"
+      ]
+    },
+    {
+      "id": "mushrooms",
+      "part": "food",
+      "title": "Mushrooms: The Facts About Deadly Fungi",
+      "icon": "🍄",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Amanita phalloides and amatoxin facts: delayed symptoms, liver failure, mortality",
+        "Recent poisoning statistics (e.g. 2023-2025 outbreaks)",
+        "Why apps and folk tests fail",
+        "Rules if foraging at all; cultivating mushrooms instead (oyster mushrooms on straw)",
+        "What to do if poisoning is suspected"
+      ]
+    },
+    {
+      "id": "hunting",
+      "part": "food",
+      "title": "Hunting for Food",
+      "icon": "🦌",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Legal and ethical hunting; game populations and why over-hunting collapses supply (historical facts)",
+        "Meat yield per animal (deer, rabbit, squirrel, birds)",
+        "Field dressing and cooling meat quickly",
+        "Diseases in game: chronic wasting disease (CDC), tularemia, trichinella in bear/wild pig, brucellosis",
+        "Lead ammunition contamination facts"
+      ]
+    },
+    {
+      "id": "trapping",
+      "part": "food",
+      "title": "Trapping Small Game",
+      "icon": "🪤",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Legal status of trapping and snaring; humane trapping standards",
+        "Effort vs return facts from historical and research data",
+        "Common legal trap types and placement principles",
+        "Checking traps and handling animals safely (tularemia, rabies)",
+        "Rabbit starvation (protein poisoning) facts"
+      ]
+    },
+    {
+      "id": "fishing",
+      "part": "food",
+      "title": "Fishing Without Store Gear",
+      "icon": "🎣",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Hand lines, trotlines, fish traps, nets: legality and efficiency",
+        "Making hooks and lines from salvaged materials",
+        "Cleaning, cooking and preserving fish",
+        "Fish parasites and safe cooking temperatures (FDA)",
+        "Mercury and contaminated waters advisories"
+      ]
+    },
+    {
+      "id": "butchering",
+      "part": "food",
+      "title": "Butchering & Preserving Meat Safely",
+      "icon": "🔪",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Humane slaughter basics for poultry, rabbits, goats",
+        "Hygiene during butchering to prevent contamination",
+        "Safe internal cooking temperatures (USDA)",
+        "Preserving: drying, curing, canning meat",
+        "Using the whole animal: fat rendering, bones, hides"
+      ]
+    },
+    {
+      "id": "chickens",
+      "part": "food",
+      "title": "Chickens: Eggs & Meat",
+      "icon": "🐔",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Egg production rates by breed and age; light hours and laying",
+        "Feed needs and feeding without commercial feed",
+        "Coop basics, predators, winter care",
+        "Diseases: Salmonella from backyard poultry (CDC), avian influenza H5N1 facts 2024-2026",
+        "Hatching and breeding for self-sufficiency"
+      ]
+    },
+    {
+      "id": "rabbits-goats",
+      "part": "food",
+      "title": "Rabbits, Goats & Small Livestock",
+      "icon": "🐐",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Rabbit reproduction and meat yield facts",
+        "Dairy goats: milk yield, feeding, kidding",
+        "Sheep and pigs: feed conversion facts",
+        "Raw milk risks (CDC) and pasteurizing at home",
+        "Space, fencing and water needs"
+      ]
+    },
+    {
+      "id": "bees",
+      "part": "food",
+      "title": "Beekeeping: Honey, Wax & Pollination",
+      "icon": "🐝",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Honey yields per hive and honey's shelf life facts",
+        "Hive types and basic management",
+        "Pollination value for crops",
+        "Bee sting allergy facts and safety",
+        "Infant botulism: no honey under 12 months (CDC)"
+      ]
+    },
+    {
+      "id": "insects-protein",
+      "part": "food",
+      "title": "Insects & Alternative Protein",
+      "icon": "🦗",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "FAO 2013 edible insects report facts: species, protein content, feed conversion",
+        "Safe insects and how to cook them; allergy cross-reactivity with shellfish",
+        "Raising mealworms or crickets",
+        "Snails and slugs: rat lungworm parasite facts (CDC)",
+        "Other alternative proteins: sprouts, duckweed facts"
+      ]
+    },
+    {
+      "id": "special-diets",
+      "part": "food",
+      "title": "Special Diets: Diabetes, Allergies & Celiac",
+      "icon": "🥗",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Managing diabetes with diet when medication runs short: facts and limits",
+        "Food allergies and anaphylaxis risk without epinephrine; epinephrine shelf-life facts",
+        "Celiac disease and gluten-free staples",
+        "Kidney disease and potassium; low-salt needs",
+        "Planning special-diet stores"
+      ]
+    },
+    {
+      "id": "medical-kit",
+      "part": "medicine",
+      "title": "Building a Long-Term Medical Kit",
+      "icon": "🧰",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Tiered kit lists: personal, household, group (based on Red Cross, military IFAK, WHO essential lists)",
+        "Quantities for long durations",
+        "Storage conditions for medical supplies",
+        "Essential medicines list concept (WHO EML 2025) and what is OTC",
+        "Skills matter more than gear: training options"
+      ]
+    },
+    {
+      "id": "patient-assessment",
+      "part": "medicine",
+      "title": "Assessing a Sick or Injured Person",
+      "icon": "🩻",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Scene safety, primary survey (ABC / MARCH)",
+        "Vital signs without equipment: pulse, breathing rate, capillary refill, skin; normal ranges by age",
+        "SAMPLE history and head-to-toe exam",
+        "Recognising shock, stroke (BE FAST), heart attack, sepsis",
+        "Keeping written patient notes"
+      ]
+    },
+    {
+      "id": "cpr-choking",
+      "part": "medicine",
+      "title": "CPR & Choking: Adults, Children, Infants",
+      "icon": "❤️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Latest AHA 2025 Guidelines for CPR and ECC: compression rate 100-120/min, depth, ratios",
+        "Hands-only CPR evidence",
+        "Infant and child CPR differences",
+        "Choking: adult, child, infant (back blows and chest thrusts) per AHA/Red Cross",
+        "Survival statistics and when to stop CPR when no help is coming; include a metronome widget"
+      ]
+    },
+    {
+      "id": "severe-bleeding",
+      "part": "medicine",
+      "title": "Stopping Severe Bleeding",
+      "icon": "🩸",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Stop the Bleed: direct pressure, wound packing, tourniquets",
+        "Tourniquet facts: placement, time limits, evidence from military and civilian studies",
+        "Improvised tourniquets: evidence on effectiveness",
+        "How fast severe bleeding kills: blood volume facts",
+        "Nosebleeds and minor bleeding"
+      ]
+    },
+    {
+      "id": "wound-care",
+      "part": "medicine",
+      "title": "Wound Cleaning, Closure & Infection Prevention",
+      "icon": "🩹",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Irrigation with drinkable water is as effective as saline (Cochrane review)",
+        "When to close a wound and when to leave it open (contaminated wounds, bites)",
+        "Wound closure options: strips, glue facts",
+        "Tetanus facts and vaccination",
+        "Signs of infection and spreading cellulitis"
+      ]
+    },
+    {
+      "id": "infections-antibiotics",
+      "part": "medicine",
+      "title": "Infections, Sepsis & Antibiotic Facts",
+      "icon": "💊",
+      "priority": "critical",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Sepsis recognition and mortality facts (WHO, CDC)",
+        "Common infections: skin, urinary, respiratory, dental",
+        "Antibiotic resistance facts; why misuse is dangerous",
+        "FDA facts on fish and pet antibiotics not being approved for humans",
+        "Honey for wounds and other evidence-based non-antibiotic measures"
+      ]
+    },
+    {
+      "id": "burns",
+      "part": "medicine",
+      "title": "Burns",
+      "icon": "🔥",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Cool running water for 20 minutes (evidence)",
+        "Burn depth and size estimation (rule of nines, palm = 1%)",
+        "Myths: butter, ice, toothpaste",
+        "Dressing burns, infection and fluid needs",
+        "Chemical and electrical burns"
+      ]
+    },
+    {
+      "id": "fractures-sprains",
+      "part": "medicine",
+      "title": "Fractures, Sprains & Dislocations",
+      "icon": "🦴",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Signs of fracture vs sprain",
+        "Splinting principles and improvised splints",
+        "Open fractures and infection risk",
+        "Healing times for common fractures",
+        "Compartment syndrome warning signs"
+      ]
+    },
+    {
+      "id": "head-spine",
+      "part": "medicine",
+      "title": "Head & Spine Injuries",
+      "icon": "🧠",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Concussion signs and red flags (CDC HEADS UP)",
+        "Skull fracture and brain bleed warning signs",
+        "Spinal motion restriction: current evidence",
+        "Monitoring with AVPU and GCS",
+        "Return to activity after concussion"
+      ]
+    },
+    {
+      "id": "cold-heat-illness",
+      "part": "medicine",
+      "title": "Hypothermia, Frostbite & Heat Stroke",
+      "icon": "🌡️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Hypothermia stages and rewarming (Wilderness Medical Society guidelines)",
+        "Frostbite: do not rewarm if refreezing is possible",
+        "Heat exhaustion vs heat stroke; cold-water immersion cooling evidence",
+        "Risk groups: babies, elderly, medications that impair heat tolerance",
+        "Annual death facts from heat and cold"
+      ]
+    },
+    {
+      "id": "dehydration-ors",
+      "part": "medicine",
+      "title": "Diarrhea, Dehydration & Oral Rehydration",
+      "icon": "🥄",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "WHO ORS formula and home recipe (6 level teaspoons sugar + 1/2 teaspoon salt per liter)",
+        "ORS evidence: deaths prevented",
+        "Zinc for children with diarrhea (WHO)",
+        "Dehydration signs by severity in children and adults",
+        "When diarrhea is an emergency"
+      ]
+    },
+    {
+      "id": "bites-stings",
+      "part": "medicine",
+      "title": "Snakebites, Spider Bites, Stings & Anaphylaxis",
+      "icon": "🐍",
+      "priority": "high",
+      "when": [
+        "30d"
+      ],
+      "scope": [
+        "Snakebite first aid per WHO/CDC: what to do and myths (no cutting, sucking, tourniquets, ice)",
+        "Venomous spiders and scorpions facts",
+        "Anaphylaxis signs and epinephrine use; epinephrine past expiry study data",
+        "Ticks: removal and Lyme disease facts",
+        "Dog and human bites infection risk"
+      ]
+    },
+    {
+      "id": "poisoning",
+      "part": "medicine",
+      "title": "Poisoning & Toxic Exposures",
+      "icon": "☠️",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Common household poisonings (poison center data)",
+        "Do not induce vomiting: current guidance; activated charcoal facts",
+        "Lamp oil and hydrocarbon aspiration in children",
+        "Plant and mushroom poisoning first steps",
+        "Storing chemicals safely in a no-power home"
+      ]
+    },
+    {
+      "id": "medication-shelf-life",
+      "part": "medicine",
+      "title": "Medicines: Shelf Life & Expiration Facts",
+      "icon": "📦",
+      "priority": "high",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "US Shelf Life Extension Program (SLEP) findings",
+        "Which drugs degrade fast: insulin, liquid antibiotics, nitroglycerin, epinephrine, eye drops",
+        "Effect of heat and humidity on medicines",
+        "Storing medicines without refrigeration",
+        "Legal ways to keep extra supply"
+      ]
+    },
+    {
+      "id": "otc-medicines",
+      "part": "medicine",
+      "title": "Over-the-Counter Medicines: What Each Does",
+      "icon": "💊",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Pain and fever: acetaminophen/paracetamol and ibuprofen label doses and maximums, liver and kidney risks",
+        "Allergy: antihistamines; diarrhea: loperamide cautions; antacids; topical antibiotics and hydrocortisone",
+        "Children's dosing by weight facts and dangers (aspirin and Reye's syndrome)",
+        "Drug interactions to know",
+        "What OTC drugs do not treat"
+      ]
+    },
+    {
+      "id": "chronic-conditions",
+      "part": "medicine",
+      "title": "Chronic Conditions Without Pharmacies",
+      "icon": "🫀",
+      "priority": "critical",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Insulin-dependent diabetes: insulin room-temperature life (28 days), evaporative cooling evidence, signs of DKA and hypoglycemia",
+        "High blood pressure, heart disease, asthma, COPD, thyroid, epilepsy: what happens without medication",
+        "Dialysis dependence facts in disasters (e.g. Hurricane Katrina/Maria)",
+        "Lifestyle measures with proven effect sizes",
+        "Working with doctors now to build a supply"
+      ]
+    },
+    {
+      "id": "dental-care",
+      "part": "medicine",
+      "title": "Dental Care & Toothaches",
+      "icon": "🦷",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Fluoride, brushing and flossing facts",
+        "Tooth abscess dangers and when it becomes life-threatening",
+        "Temporary fillings and lost crowns",
+        "Clove oil (eugenol) evidence",
+        "Diet and sugar as tooth decay drivers"
+      ]
+    },
+    {
+      "id": "eyes-ears-skin",
+      "part": "medicine",
+      "title": "Eyes, Ears & Skin Problems",
+      "icon": "👁️",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Eye injuries, foreign bodies, chemical splashes (flush 15-20 minutes), conjunctivitis",
+        "Glasses: spare pairs, reading glasses facts",
+        "Ear infections and earwax",
+        "Skin: fungal infections, scabies, lice, sunburn, pressure sores",
+        "Sun protection facts"
+      ]
+    },
+    {
+      "id": "outbreaks",
+      "part": "medicine",
+      "title": "Epidemics: Quarantine, Isolation & Infection Control",
+      "icon": "😷",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "How diseases spread: contact, droplet, airborne, vector",
+        "Masks and respirators evidence",
+        "Isolation room setup and caring for an infectious patient",
+        "Disinfectant concentrations (bleach dilutions per CDC/WHO)",
+        "Historic facts: 1918 influenza, cholera, Ebola response"
+      ]
+    },
+    {
+      "id": "preventable-diseases",
+      "part": "medicine",
+      "title": "Vaccine-Preventable Diseases to Recognize",
+      "icon": "💉",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Tetanus, measles (2025-2026 outbreaks facts), diphtheria, whooping cough, polio: symptoms and mortality",
+        "Vaccinate now: schedules and boosters (CDC/WHO)",
+        "Measles contagiousness facts (R0)",
+        "Care and isolation without vaccines",
+        "Historical death rates before vaccines"
+      ]
+    },
+    {
+      "id": "medicinal-plants",
+      "part": "medicine",
+      "title": "Medicinal Plants: What the Evidence Shows",
+      "icon": "🌼",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Only remedies with evidence: honey for cough (Cochrane) and wounds, aloe for burns, peppermint for IBS, willow bark (salicin) facts, garlic",
+        "Plants with dangerous toxicity often promoted as remedies (comfrey liver toxicity, etc.)",
+        "Where modern drugs came from (aspirin, digoxin, artemisinin) and dosing danger of raw plants",
+        "Myths with no evidence: colloidal silver (FDA/NIH)",
+        "Growing a medicinal garden with evidence ratings"
+      ]
+    },
+    {
+      "id": "mental-health",
+      "part": "medicine",
+      "title": "Mental Health: Grief, Trauma & Suicide Prevention",
+      "icon": "💚",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "WHO Psychological First Aid: look, listen, link",
+        "Facts on PTSD and depression after disasters",
+        "Suicide warning signs and what helps (lethal means safety evidence)",
+        "Supporting grief",
+        "Substance use and withdrawal dangers (alcohol and benzodiazepine withdrawal can be fatal)"
+      ]
+    },
+    {
+      "id": "elderly-disabled",
+      "part": "medicine",
+      "title": "Caring for Elderly & Disabled People",
+      "icon": "🧓",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Disaster death data for older adults (e.g. Katrina, Texas 2021, heat waves)",
+        "Mobility aids, oxygen dependence (oxygen concentrators need power), CPAP",
+        "Dementia care in crises",
+        "Preventing falls and pressure injuries",
+        "Hearing, vision and communication aids"
+      ]
+    },
+    {
+      "id": "home-nursing",
+      "part": "medicine",
+      "title": "Nursing the Sick at Home",
+      "icon": "🛏️",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Fever management, fluids and feeding a sick person",
+        "Preventing pressure sores (repositioning every 2 hours)",
+        "Bed baths, toileting and infection control",
+        "Recording observations",
+        "When illness is beyond home care"
+      ]
+    },
+    {
+      "id": "death-and-dead",
+      "part": "medicine",
+      "title": "Death, Dying & Handling the Dead Safely",
+      "icon": "🕯️",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "WHO/ICRC facts: dead bodies from disasters do not cause epidemics",
+        "Real risks: cholera, Ebola, blood-borne exposure; protective measures",
+        "Burial depth and distance from water sources (guidelines)",
+        "Recording identity and informing families (ICRC)",
+        "Comfort care for the dying"
+      ]
+    },
+    {
+      "id": "periods",
+      "part": "women",
+      "title": "Periods Without Stores: Reusable Products & Hygiene",
+      "icon": "🩸",
+      "priority": "high",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "Menstrual cups (lifespan up to ~10 years), cloth pads, period underwear: evidence and safety (Lancet Public Health 2019 cup review)",
+        "Cleaning and drying reusables safely",
+        "Toxic shock syndrome facts",
+        "Stockpile math: products per year",
+        "Supporting girls through first periods"
+      ]
+    },
+    {
+      "id": "womens-common-health",
+      "part": "women",
+      "title": "Common Women's Health Problems",
+      "icon": "🌺",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Urinary tract infections: prevention, signs of kidney infection",
+        "Yeast infections and bacterial vaginosis",
+        "Iron-deficiency anemia from heavy periods",
+        "Breast self-awareness",
+        "Pelvic floor and prolapse facts"
+      ]
+    },
+    {
+      "id": "contraception",
+      "part": "women",
+      "title": "Contraception & Family Planning",
+      "icon": "🗓️",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Effectiveness of each method (CDC typical-use failure rates)",
+        "Long-acting options and their lifespans (IUDs, implants) as prep",
+        "Condom shelf life and storage",
+        "Lactational amenorrhoea method criteria",
+        "Fertility awareness methods evidence"
+      ]
+    },
+    {
+      "id": "pregnancy",
+      "part": "women",
+      "title": "Pregnancy Care Without a Hospital",
+      "icon": "🤰",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Nutrition: folic acid, iron, iodine; calories by trimester",
+        "Danger signs in pregnancy (WHO): bleeding, severe headache, swelling, fever, reduced fetal movement",
+        "Pre-eclampsia facts",
+        "Estimating due date",
+        "Facts on maternal mortality and what reduces it"
+      ]
+    },
+    {
+      "id": "childbirth",
+      "part": "women",
+      "title": "Emergency Childbirth: Step by Step",
+      "icon": "👶",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Stages of labor and timings",
+        "Preparing a clean birth kit (WHO clean birth practices)",
+        "Delivering a baby step by step; cord clamping timing (delayed cord clamping evidence)",
+        "Complications: breech, shoulder dystocia, cord around neck — recognized first steps only",
+        "Newborn resuscitation basics (Helping Babies Breathe)"
+      ]
+    },
+    {
+      "id": "postpartum",
+      "part": "women",
+      "title": "After Birth: Bleeding, Recovery & Warning Signs",
+      "icon": "🤱",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Postpartum hemorrhage facts: leading cause of maternal death; uterine massage and breastfeeding",
+        "Delivering the placenta",
+        "Infection signs, perineal care",
+        "Postpartum depression and psychosis facts",
+        "Spacing pregnancies: WHO recommendations"
+      ]
+    },
+    {
+      "id": "breastfeeding",
+      "part": "women",
+      "title": "Breastfeeding: The Survival Superpower",
+      "icon": "🍼",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "WHO: exclusive breastfeeding for 6 months; deaths prevented in emergencies",
+        "Latch, positions and supply facts",
+        "Mastitis and blocked ducts",
+        "Relactation and wet nursing facts",
+        "Nutrition needs of breastfeeding women"
+      ]
+    },
+    {
+      "id": "womens-safety",
+      "part": "women",
+      "title": "Personal Safety for Women & Girls",
+      "icon": "🛡️",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Facts: gender-based violence rises after disasters (WHO/UNFPA, Sphere)",
+        "Safe shelter design: lit paths, lockable latrines, women's spaces (Sphere/UNHCR)",
+        "Buddy systems and group protection",
+        "Reporting, support and clinical care after assault (WHO)",
+        "Teaching children body safety"
+      ]
+    },
+    {
+      "id": "newborn-care",
+      "part": "kids",
+      "title": "Newborn Care: The First 28 Days",
+      "icon": "🍼",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "WHO essential newborn care: drying, warmth, skin-to-skin, early breastfeeding",
+        "Cord care (dry cord care; chlorhexidine where mortality is high per WHO)",
+        "Kangaroo mother care evidence for small babies (2023 WHO update)",
+        "Jaundice signs and sunlight myths",
+        "Safe sleep facts (AAP)"
+      ]
+    },
+    {
+      "id": "infant-feeding",
+      "part": "kids",
+      "title": "Feeding Babies When Formula Runs Out",
+      "icon": "🥛",
+      "priority": "critical",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "FDA warnings against homemade formula and animal milk for infants under 12 months, with facts on harms",
+        "WHO safe formula preparation (water at least 70°C)",
+        "Stockpiling formula: shelf life, ready-to-feed vs powder, 2022 formula shortage facts",
+        "Donor milk, wet nursing and relactation",
+        "Cup feeding vs bottles in emergencies (hygiene evidence)"
+      ]
+    },
+    {
+      "id": "diapers-baby-hygiene",
+      "part": "kids",
+      "title": "Cloth Diapers & Baby Hygiene",
+      "icon": "🧷",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Number of diapers per day by age; cloth diaper stash math",
+        "Washing cloth diapers with little water",
+        "Diaper rash prevention and treatment",
+        "Elimination communication facts",
+        "Bathing babies safely and water temperature"
+      ]
+    },
+    {
+      "id": "sick-child-danger-signs",
+      "part": "kids",
+      "title": "Sick Baby & Child: Danger Signs",
+      "icon": "🚨",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "WHO IMCI general danger signs: unable to drink, vomiting everything, convulsions, lethargy",
+        "Fast breathing thresholds by age (pneumonia)",
+        "Fever in babies under 3 months",
+        "Dehydration in infants: sunken fontanelle, no tears",
+        "Meningitis and sepsis signs (rash glass test)"
+      ]
+    },
+    {
+      "id": "childhood-illness",
+      "part": "kids",
+      "title": "Fever, Coughs & Common Childhood Illnesses",
+      "icon": "🤒",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Fever facts: what temperature matters by age; fever is not the enemy",
+        "Weight-based dosing of children's acetaminophen and ibuprofen (label sources), no aspirin",
+        "Ear infections, croup, chickenpox, hand-foot-mouth, worms",
+        "Honey for cough over 1 year (evidence)",
+        "Febrile seizures facts"
+      ]
+    },
+    {
+      "id": "weaning-solids",
+      "part": "kids",
+      "title": "First Foods for Babies Without Stores",
+      "icon": "🥣",
+      "priority": "high",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "WHO complementary feeding from 6 months; iron-rich foods",
+        "Making baby food from stored staples",
+        "Foods to avoid: honey under 1, choking hazards, salt",
+        "Growth monitoring without clinics",
+        "Malnutrition signs (MUAC) and recovery"
+      ]
+    },
+    {
+      "id": "child-safety",
+      "part": "kids",
+      "title": "Keeping Kids Safe: Drowning, Fire, Poison, Strangers",
+      "icon": "🧯",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Drowning facts: buckets and water storage are hazards for toddlers (CPSC data)",
+        "Candle and fire injuries; lamp oil poisoning",
+        "Storing fuel, chemicals, medicines and firearms away from children",
+        "Child separation in disasters; ID and reunification",
+        "Teaching kids what to do"
+      ]
+    },
+    {
+      "id": "kids-mental-health",
+      "part": "kids",
+      "title": "Children's Stress, Trauma & Play",
+      "icon": "🧸",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "How children of different ages react to disasters (NCTSN/SAMHSA)",
+        "Routines, play and talking to kids about what happened",
+        "Signs a child needs more help",
+        "Child-friendly spaces evidence (UNICEF)",
+        "Caregiver self-care"
+      ]
+    },
+    {
+      "id": "teaching-kids",
+      "part": "kids",
+      "title": "Teaching Kids Without Schools",
+      "icon": "✏️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Learning loss facts from COVID school closures",
+        "Literacy and numeracy priorities; evidence-based reading instruction (phonics)",
+        "Books and materials to stockpile",
+        "Practical skills curriculum by age",
+        "Keeping records of education"
+      ]
+    },
+    {
+      "id": "kids-skills-by-age",
+      "part": "kids",
+      "title": "Survival Skills Kids Can Learn by Age",
+      "icon": "🧒",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Developmental milestones as guide to what children can safely do",
+        "Age-appropriate chores with evidence on child development",
+        "Teaching water safety and swimming (drowning prevention facts)",
+        "Fire safety and tool safety for kids",
+        "Making learning a game"
+      ]
+    },
+    {
+      "id": "baby-kit",
+      "part": "kids",
+      "title": "The Baby & Toddler Prep Kit",
+      "icon": "🎒",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Complete list for a 0-3 year old: feeding, diapers, clothing, medicine, sleeping",
+        "Quantities for 2 weeks, 3 months, 1 year",
+        "Clothing sizes needed as children grow",
+        "Car seats and carriers",
+        "Infant medicines and thermometer"
+      ]
+    },
+    {
+      "id": "dogs-in-survival",
+      "part": "animals",
+      "title": "Dogs in a Long Emergency",
+      "icon": "🐕",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Facts on dogs' senses (scent, hearing) and their documented roles: guarding, alerting, hunting, herding",
+        "Health benefits of dog ownership evidence",
+        "Costs: food and water per dog by size",
+        "Pet evacuation facts (PETS Act after Katrina)",
+        "Deciding how many dogs a household can sustain"
+      ]
+    },
+    {
+      "id": "feeding-dogs",
+      "part": "animals",
+      "title": "Feeding Dogs Without Kibble",
+      "icon": "🦴",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Dog energy needs by weight (NRC formula)",
+        "Foods toxic to dogs: xylitol, grapes/raisins, onions/garlic, chocolate, macadamia, cooked bones (ASPCA)",
+        "Homemade diets: study showing most recipes deficient (UC Davis 2013) and how to balance with available foods",
+        "Storing dry dog food: shelf life and oxygen",
+        "Raw feeding pathogen facts"
+      ]
+    },
+    {
+      "id": "dog-health",
+      "part": "animals",
+      "title": "Dog Health: Parasites, Vaccines & Disease",
+      "icon": "🩺",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Core vaccines and duration of immunity facts (WSAVA)",
+        "Parvovirus, distemper, leptospirosis, heartworm: signs and spread",
+        "Fleas, ticks and worms without vet products",
+        "Spaying/neutering facts and roaming",
+        "Dental and nail care"
+      ]
+    },
+    {
+      "id": "dog-first-aid",
+      "part": "animals",
+      "title": "Dog First Aid",
+      "icon": "🚑",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Normal dog vital signs",
+        "Heatstroke in dogs and cooling",
+        "Bloat (GDV) emergency signs",
+        "Wounds, bleeding and muzzling an injured dog safely",
+        "Poisoning first steps; human medicines toxic to dogs (ibuprofen, acetaminophen)"
+      ]
+    },
+    {
+      "id": "dog-training",
+      "part": "animals",
+      "title": "Training Dogs for Work",
+      "icon": "🦮",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Evidence for reward-based training over punishment",
+        "Basic obedience, recall and quiet commands",
+        "Alert and guarding behavior without aggression",
+        "Pulling carts and carrying packs: safe weight limits",
+        "Hunting and tracking dogs"
+      ]
+    },
+    {
+      "id": "dog-breeding",
+      "part": "animals",
+      "title": "Breeding, Whelping & Dog Population Control",
+      "icon": "🐾",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Dog reproductive cycle facts",
+        "Whelping: normal birth timings and when there is trouble",
+        "Puppy care and weaning",
+        "Inbreeding facts and keeping genetic diversity",
+        "Feral dog packs and population risks (rabies)"
+      ]
+    },
+    {
+      "id": "cats-pets",
+      "part": "animals",
+      "title": "Cats & Other Pets",
+      "icon": "🐈",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Cats and rodent control: evidence",
+        "Cat nutrition: taurine requirement; toxic foods (lilies)",
+        "Toxoplasmosis and pregnancy facts",
+        "Small pets, birds and fish in long outages",
+        "Rehoming decisions"
+      ]
+    },
+    {
+      "id": "zoonoses",
+      "part": "animals",
+      "title": "Rabies & Diseases Animals Give Humans",
+      "icon": "🦇",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Rabies: nearly 100% fatal once symptoms start; bats; wound washing for 15 minutes (WHO)",
+        "Leptospirosis after floods, hantavirus from rodents, plague, tularemia",
+        "Ringworm, toxocara, giardia from animals",
+        "Avian influenza H5N1 facts in mammals 2024-2026",
+        "Preventing zoonoses"
+      ]
+    },
+    {
+      "id": "livestock-health",
+      "part": "animals",
+      "title": "Livestock Health Without a Vet",
+      "icon": "🐄",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Normal vital signs for goats, sheep, cattle, pigs, chickens",
+        "Common diseases and parasites (FAMACHA for barber pole worm)",
+        "Hoof care, birthing assistance basics",
+        "Quarantining new animals",
+        "Euthanasia and carcass disposal guidelines"
+      ]
+    },
+    {
+      "id": "draft-animals",
+      "part": "animals",
+      "title": "Horses, Donkeys & Draft Animals",
+      "icon": "🐴",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Work capacity and feed needs of horses, donkeys, mules, oxen",
+        "Historical facts on animal-powered farming",
+        "Harness basics and hoof care",
+        "Colic and common health issues",
+        "Land needed to feed a draft animal"
+      ]
+    },
+    {
+      "id": "home-prep",
+      "part": "shelter",
+      "title": "Preparing Your Home for a Long Outage",
+      "icon": "🏠",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Heat loss facts: windows, attic, drafts; cheap fixes",
+        "Choosing a warm room; insulating with blankets and furniture",
+        "Pipes freezing: draining and protecting plumbing",
+        "Fire safety: extinguishers, smoke alarms (battery)",
+        "Structural checks after storms"
+      ]
+    },
+    {
+      "id": "wood-heat",
+      "part": "shelter",
+      "title": "Heating With Wood",
+      "icon": "🪵",
+      "priority": "core",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "Wood stove types and efficiency (EPA certified stoves)",
+        "Firewood math: cords per winter, seasoning to under 20% moisture, BTU by species",
+        "Chimney fires and creosote; cleaning",
+        "Clearances and installation safety",
+        "Cutting and splitting safely; chainsaw injury facts"
+      ]
+    },
+    {
+      "id": "carbon-monoxide",
+      "part": "shelter",
+      "title": "Carbon Monoxide: The Blackout Killer",
+      "icon": "💨",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "CDC facts on CO deaths during power outages and storms (generators, grills, cars in garages)",
+        "Symptoms by concentration; why sleeping people die",
+        "Generator placement (at least 20 ft from home per CDC)",
+        "Battery CO alarms",
+        "Treatment: fresh air, oxygen"
+      ]
+    },
+    {
+      "id": "warm-without-heat",
+      "part": "shelter",
+      "title": "Staying Warm Without Heat",
+      "icon": "🧣",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "How the body loses heat: conduction, convection, radiation, evaporation",
+        "Layering, wool vs cotton facts",
+        "Sleep systems: insulation from the ground (R-values), shared warmth",
+        "Room-in-a-room and tent indoors evidence",
+        "Warming babies and elderly safely"
+      ]
+    },
+    {
+      "id": "staying-cool",
+      "part": "shelter",
+      "title": "Staying Cool Without Air Conditioning",
+      "icon": "🌬️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Heat death facts (e.g. 2021 Pacific Northwest heat dome, Europe 2022/2023)",
+        "Fans above 35°C/95°F: evidence",
+        "Wet skin and evaporative cooling evidence",
+        "Shading, night ventilation and building cooling",
+        "Heat-sensitive people and medications"
+      ]
+    },
+    {
+      "id": "fire-starting",
+      "part": "shelter",
+      "title": "Fire Starting Methods That Last Decades",
+      "icon": "🔥",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30y"
+      ],
+      "scope": [
+        "Matches and lighters: storage life facts",
+        "Ferrocerium rods, flint and steel, magnifying lens",
+        "Friction fire: bow drill basics",
+        "Tinder and fire structures",
+        "Fire safety and wildfire risk"
+      ]
+    },
+    {
+      "id": "lighting",
+      "part": "shelter",
+      "title": "Light Without the Grid",
+      "icon": "🕯️",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30y"
+      ],
+      "scope": [
+        "Candle fire facts (NFPA house fire statistics)",
+        "Oil and kerosene lamps: fuels, lumens comparison",
+        "LED and solar lanterns; battery types and shelf life",
+        "Making candles and oil lamps from fats",
+        "Light pollution and security"
+      ]
+    },
+    {
+      "id": "solar-batteries",
+      "part": "shelter",
+      "title": "Small Solar & Batteries: What Lasts",
+      "icon": "☀️",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Solar panel degradation rate (~0.5%/year, NREL) and 25-30 year lifespans",
+        "Battery chemistries: lead-acid, LiFePO4 cycles and calendar life",
+        "Charge controllers, inverters and their lifespans",
+        "Sizing a small system for lights, radio and phone",
+        "Maintenance and failure modes"
+      ]
+    },
+    {
+      "id": "generators-fuel",
+      "part": "shelter",
+      "title": "Generators & Fuel Storage",
+      "icon": "⛽",
+      "priority": "high",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Gasoline and diesel shelf life and stabilizers",
+        "Propane storage life",
+        "Legal and safe fuel storage limits",
+        "Generator fuel consumption math",
+        "Backfeeding dangers to line workers; transfer switches"
+      ]
+    },
+    {
+      "id": "emergency-shelter",
+      "part": "shelter",
+      "title": "Emergency Shelters: Tents, Tarps & Natural Shelters",
+      "icon": "⛺",
+      "priority": "high",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Shelter site selection hazards (flood, deadfall)",
+        "Tarp configurations",
+        "Tents: ratings and lifespans",
+        "Insulation from ground and wind",
+        "Sphere minimum covered living space (3.5 m2 per person)"
+      ]
+    },
+    {
+      "id": "low-tech-building",
+      "part": "shelter",
+      "title": "Low-Tech Building: Timber, Earth & Stone",
+      "icon": "🧱",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Building materials without industry: timber, cob, adobe, stone, lime mortar",
+        "Thermal mass and insulation facts",
+        "Roofing options and lifespans",
+        "Foundations and drainage",
+        "Safety: earthquake and fire considerations"
+      ]
+    },
+    {
+      "id": "clothing-textiles",
+      "part": "shelter",
+      "title": "Clothing, Footwear & Textiles",
+      "icon": "🧥",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Fiber properties: wool, cotton, linen, synthetics",
+        "Clothing stockpile math for children growing",
+        "Footwear: lifespan and repair; foot care (trench foot facts)",
+        "Spinning and weaving basics; flax and wool processing",
+        "Tanning hides: brain tanning and vegetable tanning facts"
+      ]
+    },
+    {
+      "id": "laundry",
+      "part": "shelter",
+      "title": "Laundry & Washing Without Power",
+      "icon": "🧺",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Hand washing methods and plunger washers",
+        "Water use per load",
+        "Killing lice and bedbug eggs with heat and drying",
+        "Soap vs detergents",
+        "Drying clothes indoors and mold"
+      ]
+    },
+    {
+      "id": "essential-tools",
+      "part": "tools",
+      "title": "The Essential Hand Tools",
+      "icon": "🔧",
+      "priority": "high",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "Tiered list of hand tools by trade with what each does",
+        "Quality markers and materials (carbon vs stainless steel)",
+        "Tools that replace power tools",
+        "Tool storage and organization",
+        "Tool injury facts"
+      ]
+    },
+    {
+      "id": "tool-maintenance",
+      "part": "tools",
+      "title": "Sharpening & Maintaining Tools for 30 Years",
+      "icon": "🪚",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Rust prevention: oils, humidity facts",
+        "Sharpening angles for knives, axes, chisels, saws",
+        "Handle replacement and wood choice",
+        "Lubrication without petroleum",
+        "Storing spares"
+      ]
+    },
+    {
+      "id": "knots-cordage",
+      "part": "tools",
+      "title": "Knots, Rope & Making Cordage",
+      "icon": "🪢",
+      "priority": "core",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "The essential knots and their uses (with diagrams)",
+        "Knot strength reduction facts",
+        "Rope materials and lifespan; UV degradation",
+        "Making cordage from plant fibres",
+        "Lashings for building"
+      ]
+    },
+    {
+      "id": "woodworking",
+      "part": "tools",
+      "title": "Woodworking With Hand Tools",
+      "icon": "🪓",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Wood species properties and drying",
+        "Joinery without nails",
+        "Making handles, furniture, containers",
+        "Green woodworking: shaving horse and pole lathe",
+        "Safety facts"
+      ]
+    },
+    {
+      "id": "metalworking",
+      "part": "tools",
+      "title": "Basic Blacksmithing & Metal Repair",
+      "icon": "⚒️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Forge types and charcoal fuel",
+        "Heat colors and temperatures",
+        "Hardening and tempering carbon steel",
+        "Identifying scrap steel (spark test)",
+        "Safety: burns, eye protection, galvanized zinc fume fever"
+      ]
+    },
+    {
+      "id": "sewing-leather",
+      "part": "tools",
+      "title": "Sewing, Mending & Leatherwork",
+      "icon": "🧵",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Hand-sewing stitches and kit",
+        "Mending clothes: patches, darning",
+        "Treadle sewing machines facts",
+        "Leatherwork for shoes, straps and harness",
+        "Needle and thread stockpile"
+      ]
+    },
+    {
+      "id": "soap-candles",
+      "part": "tools",
+      "title": "Making Soap, Lye & Candles",
+      "icon": "🧴",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Lye from wood ash: process and caustic burn safety",
+        "Saponification and soap from animal fat",
+        "Handwashing efficacy of plain soap",
+        "Candles from tallow and beeswax",
+        "Chemical burn first aid"
+      ]
+    },
+    {
+      "id": "low-tech-chemistry",
+      "part": "tools",
+      "title": "Charcoal, Lime, Ash & Useful Low-Tech Materials",
+      "icon": "⚗️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Making charcoal and its uses (fuel, filtration)",
+        "Lime: production, uses in mortar, whitewash and sanitation; burns hazard",
+        "Wood ash uses",
+        "Natural glues: hide glue, pine resin",
+        "Vinegar making and uses as preservative and cleaner"
+      ]
+    },
+    {
+      "id": "pottery-containers",
+      "part": "tools",
+      "title": "Pottery & Making Containers",
+      "icon": "🏺",
+      "priority": "long",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "Finding and processing clay",
+        "Pit firing and kiln temperatures",
+        "Lead glaze dangers",
+        "Baskets, gourds and wooden containers",
+        "Waterproofing containers"
+      ]
+    },
+    {
+      "id": "handwashing-hygiene",
+      "part": "hygiene",
+      "title": "Handwashing & Personal Hygiene: Lifesaving Facts",
+      "icon": "🧼",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30y"
+      ],
+      "scope": [
+        "Handwashing reduces diarrhea by about 30% and respiratory illness by about 20% (CDC)",
+        "When and how to wash: 20 seconds",
+        "Tippy tap and low-water handwashing stations",
+        "Ash and soap alternatives evidence (Cochrane 2020)",
+        "Bathing, oral and foot hygiene"
+      ]
+    },
+    {
+      "id": "toilets",
+      "part": "hygiene",
+      "title": "Toilets Without Water",
+      "icon": "🚽",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30d"
+      ],
+      "scope": [
+        "Two-bucket toilet system and supplies",
+        "Pit latrine design, depth and distance from wells (Sphere/WHO)",
+        "Never pour waste where it reaches water",
+        "Fly control and latrine maintenance",
+        "Toilet:people ratios (Sphere 1 per 20)"
+      ]
+    },
+    {
+      "id": "composting-toilets",
+      "part": "hygiene",
+      "title": "Humanure & Composting Toilets",
+      "icon": "♻️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "WHO guidelines for safe use of excreta: time and temperature for pathogen kill",
+        "Composting toilet designs",
+        "Urine diversion and fertilizer use",
+        "Helminth eggs survival facts",
+        "What not to compost"
+      ]
+    },
+    {
+      "id": "waste-garbage",
+      "part": "hygiene",
+      "title": "Garbage & Waste Management",
+      "icon": "🗑️",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Disease and pests from garbage accumulation",
+        "Open burning dangers: dioxins, plastics (EPA)",
+        "Reduce, reuse, compost, bury",
+        "Medical waste and sharps disposal",
+        "Hazardous household waste"
+      ]
+    },
+    {
+      "id": "pests",
+      "part": "hygiene",
+      "title": "Rodents, Mosquitoes, Lice & Pests",
+      "icon": "🦟",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Diseases spread by rodents, mosquitoes, fleas, lice, ticks",
+        "Mosquito breeding prevention and bed nets evidence",
+        "Rodent proofing and safe cleanup of droppings (hantavirus, CDC)",
+        "Lice and scabies treatment without pharmacies",
+        "Bed bugs"
+      ]
+    },
+    {
+      "id": "home-security",
+      "part": "security",
+      "title": "Home Security & Deterrence",
+      "icon": "🔒",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Burglary research facts: what deters burglars (e.g. occupancy signs, dogs, alarms)",
+        "Doors, locks, windows and reinforcement",
+        "Lighting and visibility",
+        "Neighbourhood watch evidence",
+        "Safe rooms and fire exits"
+      ]
+    },
+    {
+      "id": "low-profile",
+      "part": "security",
+      "title": "Keeping a Low Profile (OPSEC)",
+      "icon": "🤫",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Why visible supplies attract trouble: documented cases",
+        "Light, smoke, noise and cooking smells discipline",
+        "What not to share on social media now",
+        "Discretion with neighbors vs community cooperation",
+        "Protecting documents and identity"
+      ]
+    },
+    {
+      "id": "de-escalation",
+      "part": "security",
+      "title": "De-escalation & Avoiding Violence",
+      "icon": "🕊️",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "De-escalation techniques with evidence base",
+        "Recognising escalation warning signs",
+        "Avoidance and escape as first options",
+        "Handling strangers asking for help",
+        "Legal facts on self-defense varying by jurisdiction"
+      ]
+    },
+    {
+      "id": "community-mutual-aid",
+      "part": "security",
+      "title": "Organizing Neighbors: Mutual Aid & Watch",
+      "icon": "🤝",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Social capital and disaster survival research (Aldrich; Chicago 1995 heat wave Klinenberg)",
+        "CERT program facts",
+        "Setting up watch rotas and communication",
+        "Sharing resources: tool libraries, communal kitchens",
+        "Including vulnerable neighbors"
+      ]
+    },
+    {
+      "id": "barter-trade",
+      "part": "security",
+      "title": "Barter, Trade & Money After Collapse",
+      "icon": "⚖️",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Historical facts: currency collapses (Zimbabwe, Venezuela, Argentina), siege economies",
+        "Goods and skills with trade value historically",
+        "Safe trading practices",
+        "Precious metals facts (and limits)",
+        "Record keeping and debts"
+      ]
+    },
+    {
+      "id": "group-governance",
+      "part": "security",
+      "title": "Group Rules, Decisions & Resolving Disputes",
+      "icon": "📜",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Elinor Ostrom's design principles for managing shared resources (Nobel 2009)",
+        "Decision-making methods",
+        "Conflict resolution and mediation evidence",
+        "Rules for sharing work and food",
+        "Justice without courts: historical facts and risks"
+      ]
+    },
+    {
+      "id": "firearm-safety",
+      "part": "security",
+      "title": "Firearm Safety, Storage & the Law",
+      "icon": "🔐",
+      "priority": "high",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Universal firearm safety rules",
+        "Safe storage facts: locked, unloaded, ammunition separate; child access research",
+        "Firearm suicide and accident statistics (CDC) and lethal means safety",
+        "Legal facts vary by country and state: transport, storage",
+        "Hearing and lead exposure facts"
+      ]
+    },
+    {
+      "id": "scavenging-law-ethics",
+      "part": "salvage",
+      "title": "Scavenging vs Looting: Law, Ethics & Risk",
+      "icon": "⚖️",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Legal definitions: looting penalties during emergencies, abandoned property, salvage rights",
+        "Research on looting rates in disasters (rare vs perceived)",
+        "Getting permission; community salvage agreements",
+        "Risks: confrontation, injury, legal consequences",
+        "Ethical salvage rules for a group"
+      ]
+    },
+    {
+      "id": "salvage-priorities",
+      "part": "salvage",
+      "title": "What to Salvage First: The Priority List",
+      "icon": "📋",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Highest-value items by survival use: water containers, medical supplies, tools, fasteners, fabric, glass, batteries",
+        "Where items are found: homes, garages, farms, hardware stores, vehicles (with permission)",
+        "Items that degrade fast vs last",
+        "Weight vs value decisions",
+        "Inventory and sharing"
+      ]
+    },
+    {
+      "id": "salvage-hazards",
+      "part": "salvage",
+      "title": "Salvage Hazards: Collapse, Asbestos, Chemicals & Sharps",
+      "icon": "🦺",
+      "priority": "critical",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Structural collapse signs after disasters",
+        "Asbestos in buildings built before 1980s; lead paint",
+        "Mold exposure after floods (CDC)",
+        "Chemicals, gas leaks, electrical hazards when power returns",
+        "PPE: gloves, N95/P100, boots; tetanus"
+      ]
+    },
+    {
+      "id": "salvage-vehicles",
+      "part": "salvage",
+      "title": "Useful Parts From Vehicles",
+      "icon": "🚗",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Car battery uses and lead-acid hazards",
+        "Fuel age and contamination",
+        "Useful parts: mirrors, wire, seat fabric, tires, alternators",
+        "Battery acid and lead safety",
+        "Airbag and fluid hazards"
+      ]
+    },
+    {
+      "id": "found-food-medicine",
+      "part": "salvage",
+      "title": "Found Food & Medicine: What's Still Safe",
+      "icon": "🥫",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "USDA facts on damaged cans: dents, bulging, rust",
+        "Flood-exposed food: what to discard (FDA)",
+        "Found medicines: identification, storage history, SLEP facts",
+        "Pet food and animal feed for human use: facts",
+        "Testing and smell are not reliable for botulism"
+      ]
+    },
+    {
+      "id": "repurposing",
+      "part": "salvage",
+      "title": "Repurposing Junk Into Useful Things",
+      "icon": "♻️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "High-value conversions: drums to stoves/rain barrels, tires, pallets, bicycles",
+        "Food safety of reused plastics (resin codes)",
+        "Glass and metal reuse",
+        "Safety: hazardous materials to avoid reusing (treated wood, lead, galvanized for cooking)",
+        "Organizing a salvage workshop"
+      ]
+    },
+    {
+      "id": "map-compass",
+      "part": "comms",
+      "title": "Map & Compass Navigation",
+      "icon": "🧭",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Reading topographic maps: contours, scale, grid",
+        "Compass parts and taking bearings; magnetic declination (NOAA)",
+        "Pacing and dead reckoning",
+        "Printing and storing local maps now",
+        "Practice exercises"
+      ]
+    },
+    {
+      "id": "natural-navigation",
+      "part": "comms",
+      "title": "Navigation by Sun & Stars",
+      "icon": "⭐",
+      "priority": "long",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Finding north by Polaris and Southern Cross",
+        "Sun position and shadow-stick method accuracy",
+        "Watch method limitations",
+        "Myths: moss on trees (facts)",
+        "Latitude from Polaris"
+      ]
+    },
+    {
+      "id": "radio-comms",
+      "part": "comms",
+      "title": "Radios: Ham, GMRS, CB & Listening",
+      "icon": "📻",
+      "priority": "high",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Radio services, licenses and ranges (FCC rules for FRS, GMRS, CB, amateur)",
+        "NOAA Weather Radio and emergency alert facts",
+        "Amateur radio's documented role in disasters (e.g. Hurricane Maria, Helene)",
+        "Antennas and power needs",
+        "Shortwave listening for news"
+      ]
+    },
+    {
+      "id": "signaling",
+      "part": "comms",
+      "title": "Signaling for Help & Rescue",
+      "icon": "🆘",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "International distress signals: SOS, three of anything, ground-to-air symbols",
+        "Signal mirrors range facts",
+        "Whistles vs shouting distance",
+        "Personal locator beacons and satellite messengers facts",
+        "Marking houses after disasters (FEMA search markings)"
+      ]
+    },
+    {
+      "id": "time-calendars",
+      "part": "comms",
+      "title": "Keeping Time, Dates & Calendars",
+      "icon": "🗓️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Why tracking dates matters: planting, pregnancy, medicine",
+        "Mechanical watches and clocks",
+        "Sundials and solar noon",
+        "Solstices, equinoxes and a perpetual calendar",
+        "Leap years and record keeping"
+      ]
+    },
+    {
+      "id": "weather-reading",
+      "part": "comms",
+      "title": "Reading the Weather Without Forecasts",
+      "icon": "⛅",
+      "priority": "core",
+      "when": [
+        "1y"
+      ],
+      "scope": [
+        "Barometric pressure trends and what they predict",
+        "Cloud types and associated weather",
+        "Wind shifts and fronts",
+        "Folk sayings that are scientifically true vs false",
+        "Lightning safety (30-30 rule, NOAA)"
+      ]
+    },
+    {
+      "id": "transport",
+      "part": "comms",
+      "title": "Bicycles, Carts & Moving Loads",
+      "icon": "🚲",
+      "priority": "core",
+      "when": [
+        "30d",
+        "30y"
+      ],
+      "scope": [
+        "Bicycle efficiency facts (most efficient human transport)",
+        "Bicycle maintenance and spare parts for decades",
+        "Cargo bikes, trailers, handcarts, wheelbarrows: load capacities",
+        "Walking distances and pack loads",
+        "Boats and waterways"
+      ]
+    },
+    {
+      "id": "records-knowledge",
+      "part": "comms",
+      "title": "Preserving Knowledge & Records",
+      "icon": "📚",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Paper and ink longevity: acid-free paper, pigment inks, archival facts",
+        "Digital storage lifespan facts (SSD, HDD, optical, flash)",
+        "Which books to keep: a core library",
+        "Copying and teaching knowledge",
+        "Protecting records from water, fire, pests"
+      ]
+    },
+    {
+      "id": "winter-storms",
+      "part": "hazards",
+      "title": "Winter Storms & Extreme Cold",
+      "icon": "❄️",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Texas 2021 Uri facts: causes of death, duration",
+        "Preparing homes, vehicles and people for extreme cold",
+        "Snow load and roof collapse",
+        "Shovelling and heart attack facts",
+        "Cold weather vehicle survival"
+      ]
+    },
+    {
+      "id": "heat-drought",
+      "part": "hazards",
+      "title": "Heat Waves & Drought",
+      "icon": "☀️",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "1y"
+      ],
+      "scope": [
+        "Heat wave death statistics (recent years)",
+        "Wet-bulb temperature and human limits (facts from studies)",
+        "Drought impacts on water and crops",
+        "Water rationing strategies",
+        "Livestock and dogs in heat"
+      ]
+    },
+    {
+      "id": "floods",
+      "part": "hazards",
+      "title": "Floods",
+      "icon": "🌊",
+      "priority": "critical",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Turn Around Don't Drown: 6 inches knocks adults down, 12 inches floats cars (NWS)",
+        "Flood deaths in vehicles statistics",
+        "After floods: mold, contamination, electrical hazards",
+        "Flash flood signs",
+        "Protecting water and food supplies"
+      ]
+    },
+    {
+      "id": "earthquakes",
+      "part": "hazards",
+      "title": "Earthquakes",
+      "icon": "🏚️",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Drop, Cover, Hold On evidence; myths about doorways and 'triangle of life'",
+        "Securing furniture and water heaters",
+        "Aftershock facts",
+        "Gas leaks and fires after quakes",
+        "Search and rescue basics and crush injury facts"
+      ]
+    },
+    {
+      "id": "wildfire",
+      "part": "hazards",
+      "title": "Wildfire & Smoke",
+      "icon": "🔥",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Defensible space zones (CAL FIRE/NFPA)",
+        "Ember ignition is the main cause of house loss (research)",
+        "Evacuation timing and Lahaina 2023 facts",
+        "Smoke health effects and DIY box fan filter (Corsi-Rosenthal) evidence",
+        "Masks for smoke: N95 vs cloth"
+      ]
+    },
+    {
+      "id": "storms-tornadoes",
+      "part": "hazards",
+      "title": "Hurricanes & Tornadoes",
+      "icon": "🌀",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Storm surge as the deadliest hurricane hazard (NHC)",
+        "Tornado shelter locations and mobile home facts",
+        "Hurricane Helene 2024 inland flooding facts",
+        "Window protection facts",
+        "After-storm hazards: chainsaws, CO, downed lines"
+      ]
+    },
+    {
+      "id": "nuclear-radiation",
+      "part": "hazards",
+      "title": "Nuclear & Radiation Emergencies",
+      "icon": "☢️",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Get inside, stay inside, stay tuned (CDC/FEMA)",
+        "Fallout decay: 7-10 rule facts",
+        "Shielding values of materials; best places in buildings",
+        "Potassium iodide: who, when, dose (FDA), what it does not do",
+        "Decontamination: remove outer clothing removes up to 90% (CDC)"
+      ]
+    },
+    {
+      "id": "chemical-accidents",
+      "part": "hazards",
+      "title": "Chemical Spills & Industrial Accidents",
+      "icon": "🧪",
+      "priority": "high",
+      "when": [
+        "72h"
+      ],
+      "scope": [
+        "Shelter-in-place vs evacuation for chemical releases",
+        "Chlorine and ammonia facts (e.g. Graniteville 2005)",
+        "East Palestine 2023 derailment facts",
+        "Decontaminating people",
+        "Sealing a room facts"
+      ]
+    },
+    {
+      "id": "pandemics",
+      "part": "hazards",
+      "title": "Pandemics: Facts From History & COVID-19",
+      "icon": "🦠",
+      "priority": "high",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "1918 influenza and COVID-19 facts (deaths, excess mortality)",
+        "Non-pharmaceutical interventions evidence",
+        "H5N1 bird flu status 2024-2026 facts",
+        "Supply chain effects seen in 2020",
+        "Household pandemic plan"
+      ]
+    },
+    {
+      "id": "solar-storms",
+      "part": "hazards",
+      "title": "Solar Storms & Grid Collapse: The Facts",
+      "icon": "🌞",
+      "priority": "core",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Carrington 1859, Quebec 1989, Halloween 2003, May 2024 G5 storm facts",
+        "How geomagnetic currents damage transformers; large power transformer lead times (DOE facts)",
+        "NOAA space weather scales",
+        "Faraday cage facts and limits",
+        "What official studies say about recovery times"
+      ]
+    },
+    {
+      "id": "civil-breakdown",
+      "part": "hazards",
+      "title": "Civil Breakdown: What History Shows",
+      "icon": "🏙️",
+      "priority": "core",
+      "when": [
+        "30d",
+        "1y"
+      ],
+      "scope": [
+        "Documented cases: Siege of Sarajevo, Venezuela crisis, Lebanon 2019-2023 economic collapse, Gaza 2023-2025 humanitarian facts",
+        "What people lacked most and what helped them survive",
+        "Black markets, fuel and medicine shortages",
+        "Community self-organization",
+        "Facts only, sourced from UN, ICRC, academic sources"
+      ]
+    },
+    {
+      "id": "long-blackouts-case-studies",
+      "part": "longhaul",
+      "title": "Real Long Blackouts: Lessons Learned",
+      "icon": "🔌",
+      "priority": "high",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Puerto Rico after Maria (11 months), Ukraine 2022-2025, Lebanon, South Africa load-shedding, Cuba 2024-2025 grid collapses",
+        "What households did to adapt (sourced)",
+        "Health impacts measured in studies",
+        "How long infrastructure took to restore",
+        "Lessons that apply to a 30-year scenario"
+      ]
+    },
+    {
+      "id": "year-by-year-plan",
+      "part": "longhaul",
+      "title": "Year 1 to Year 30: A Phased Plan",
+      "icon": "🗓️",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Phase 1: stored supplies (year 0-1); Phase 2: production (years 1-3); Phase 3: sustainability (years 3-10); Phase 4: rebuilding (years 10-30)",
+        "What runs out in each phase (sourced shelf lives)",
+        "Skills to master in each phase",
+        "Population and generational planning: children born after collapse",
+        "Milestones checklist"
+      ]
+    },
+    {
+      "id": "acre-math",
+      "part": "longhaul",
+      "title": "Feeding a Family Forever: The Land Math",
+      "icon": "🌾",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Published estimates of land needed per person for different diets",
+        "Labor hours for hand farming (historical/FAO data)",
+        "Crop yields without synthetic fertilizer (organic yield gap meta-analysis)",
+        "Fallow, rotation and soil fertility long-term",
+        "Storage needed to survive one failed harvest"
+      ]
+    },
+    {
+      "id": "community-health",
+      "part": "longhaul",
+      "title": "Public Health for a Small Community",
+      "icon": "🏥",
+      "priority": "long",
+      "when": [
+        "1y",
+        "30y"
+      ],
+      "scope": [
+        "Historical facts: water, sanitation and nutrition drove most mortality decline before modern medicine",
+        "Training community health workers (WHO evidence)",
+        "Disease surveillance with paper records",
+        "Maternal and child health as top priorities",
+        "Quarantine and outbreak response plans"
+      ]
+    },
+    {
+      "id": "rebuilding-trades",
+      "part": "longhaul",
+      "title": "Rebuilding Local Trades & Economy",
+      "icon": "🏭",
+      "priority": "long",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "Priority trades: farming, smithing, carpentry, medicine, teaching, milling",
+        "Apprenticeship models and learning times",
+        "Water and wind mills: historical facts",
+        "Markets and fair exchange",
+        "Infrastructure to rebuild first"
+      ]
+    },
+    {
+      "id": "low-tech-power",
+      "part": "longhaul",
+      "title": "Low-Tech Power for the Long Haul",
+      "icon": "⚙️",
+      "priority": "long",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "Water wheels and micro-hydro power physics (P = flow × head × g × efficiency)",
+        "Windmills for pumping water",
+        "Human and animal power outputs (watts)",
+        "Mechanical energy storage",
+        "What modern components cannot be made locally"
+      ]
+    },
+    {
+      "id": "next-generation",
+      "part": "longhaul",
+      "title": "Passing On Skills to the Next Generation",
+      "icon": "🎓",
+      "priority": "long",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "How skills are lost: historical cases of technology loss",
+        "Teaching methods with evidence (spaced repetition, practice)",
+        "Writing manuals and keeping this book alive",
+        "Cultural continuity, stories and morale",
+        "A 30-year teaching plan"
+      ]
+    },
+    {
+      "id": "master-checklists",
+      "part": "reference",
+      "title": "Master Checklists",
+      "icon": "✅",
+      "priority": "critical",
+      "when": [
+        "72h",
+        "30y"
+      ],
+      "scope": [
+        "Printable checklists: 72-hour kit, 2-week home supply, 1-year storage, medical kit, baby kit, dog kit, tools, documents",
+        "Quantities per person",
+        "Rotation schedule",
+        "Each item sourced to official guidance where possible",
+        "Cross-references to chapters"
+      ]
+    },
+    {
+      "id": "shelf-life-tables",
+      "part": "reference",
+      "title": "Shelf-Life Tables",
+      "icon": "📊",
+      "priority": "high",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "Foods, water, fuels, batteries, medicines, seeds, materials: shelf life with sources",
+        "Storage conditions that extend or shorten life",
+        "Signs of spoilage for each category",
+        "One table per category",
+        "Notes on what the numbers mean"
+      ]
+    },
+    {
+      "id": "conversions-field-math",
+      "part": "reference",
+      "title": "Conversions & Field Math",
+      "icon": "📐",
+      "priority": "core",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "Volume, weight, temperature, length conversions",
+        "Water volume of containers, roof catchment math, bleach dilutions",
+        "Calorie math, dosing by weight",
+        "Estimating distance, height and time",
+        "Area and land measures"
+      ]
+    },
+    {
+      "id": "glossary",
+      "part": "reference",
+      "title": "Glossary",
+      "icon": "🔤",
+      "priority": "core",
+      "when": [
+        "30y"
+      ],
+      "scope": [
+        "Plain-language definitions of medical, technical and survival terms used in the book",
+        "Abbreviations (CDC, WHO, FEMA, ORS, CPR, etc.)",
+        "Each term with a one-line definition",
+        "Grouped alphabetically",
+        "Links to chapters"
+      ]
+    }
+  ]
+}
