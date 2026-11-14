@@ -1,0 +1,98 @@
+---
+// Whole-book print view: cover → contents → every written page in book order.
+// scripts/pdf.mjs renders this to dist/offgrid-30.pdf.
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/icons/Icon.astro';
+import * as book from '../components/book';
+import { SECTIONS, PARTS, type SectionKey } from '../data/sections';
+import { chapters, getChapter, getPage } from '../lib/toc';
+
+const entries = (await getCollection('pages')).sort((a, b) => a.data.chapter - b.data.chapter || a.data.page - b.data.page);
+const rendered = await Promise.all(entries.map(async (e) => ({ e, Content: (await render(e)).Content })));
+const written = new Set(entries.map((e) => e.data.id));
+const chaptersWithPages = chapters.filter((c) => c.pages.some((p) => written.has(p.id)));
+const today = new Date().toISOString().slice(0, 10);
+---
+<Base title="Print edition">
+  <div class="print-book">
+    <section class="cover">
+      <p class="kicker">The survival book for the long run</p>
+      <h1>OFFGRID <span>30</span></h1>
+      <p class="cover__lede">How to live 30 years without power.</p>
+      <p class="cover__meta">Print edition · {written.size} of {chapters.length * 10} pages written · {today}</p>
+      <ul class="cover__parts" role="list">
+        {Object.entries(PARTS).map(([n, p]) => <li data-part={n}><b>Part {n}</b> {p.name}</li>)}
+      </ul>
+      <p class="cover__note">Facts from WHO, CDC, Red Cross, FEMA, US Army field manuals and peer-reviewed studies. This book does not replace a doctor, lawyer or local expert.</p>
+    </section>
+
+    <section class="toc">
+      <h2>Contents</h2>
+      {chaptersWithPages.map((c) => (
+        <div class="toc__ch" data-part={c.part}>
+          <h3><span>Ch {c.n}</span> {c.title}</h3>
+          <ol role="list">
+            {c.pages.filter((p) => written.has(p.id)).map((p) => (
+              <li><a href={`#p-${p.id}`}><span class="toc__id">{p.id}</span> {p.title}</a></li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </section>
+
+    {rendered.map(({ e, Content }) => {
+      const d = e.data;
+      const sec = SECTIONS[d.section as SectionKey];
+      const ch = getChapter(d.chapter);
+      return (
+        <article class="pp" id={`p-${d.id}`} data-part={sec.part}>
+          <header class="pp__head">
+            <p class="pp__band"><Icon name={sec.icon as any} size={18} /> Part {sec.part} · {PARTS[sec.part].name} · Ch {d.chapter} {ch.title}<span>{d.id}</span></p>
+            <h2>{d.title}</h2>
+            <p class="pp__why"><b>Why it matters:</b> {d.why}</p>
+          </header>
+          <div class="pp__body"><Content components={book} /></div>
+          {d.seeAlso.length > 0 && (
+            <p class="pp__see"><b>See also:</b> {d.seeAlso.map((id) => getPage(id)).filter(Boolean).map((h) => `${h!.page.id} ${h!.page.title}`).join(' · ')}</p>
+          )}
+        </article>
+      );
+    })}
+  </div>
+</Base>
+
+<style>
+  .print-book { max-width: 820px; margin: 0 auto; padding: var(--s3) var(--gutter); }
+  .cover { min-height: 90vh; display: flex; flex-direction: column; justify-content: center; gap: var(--s2); }
+  .cover h1 { font-size: 6rem; line-height: .9; letter-spacing: .03em; }
+  .cover h1 span { color: var(--part-4-ink); }
+  .cover__lede { font-size: 1.6rem; font-weight: 700; }
+  .cover__meta, .cover__note { color: var(--ink-2); }
+  .cover__parts { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; margin: var(--s2) 0; }
+  .cover__parts li { padding: .5rem .8rem; border-left: 8px solid var(--accent); background: var(--accent-tint); }
+  .toc { break-before: page; }
+  .toc h2 { margin-bottom: var(--s2); }
+  .toc__ch { margin-bottom: var(--s2); break-inside: avoid; }
+  .toc__ch h3 { font-size: 1.3rem; color: var(--accent-ink); }
+  .toc__ch h3 span { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-2); }
+  .toc__ch ol { columns: 2; column-gap: var(--s3); font-size: 1rem; }
+  .toc__ch a { color: var(--ink); text-decoration: none; }
+  .toc__id { font-family: var(--font-mono); color: var(--ink-2); }
+  .pp { break-before: page; padding-top: var(--s2); }
+  .pp__band { display: flex; align-items: center; gap: .4rem; padding: .35rem .7rem; background: var(--accent); color: var(--on-accent); font-family: var(--font-head); font-weight: 600; letter-spacing: .05em; text-transform: uppercase; font-size: .95rem; border-radius: 6px; }
+  .pp__band span { margin-left: auto; font-family: var(--font-mono); }
+  .pp__head h2 { font-size: 2.4rem; margin: .5rem 0 .3rem; }
+  .pp__why { font-weight: 700; margin-bottom: var(--s2); padding-bottom: var(--s1); border-bottom: 3px solid var(--accent); }
+  .pp__body > :global(*) { margin-bottom: var(--s3); }
+  .pp__body :global(.b-visual) { break-inside: avoid; }
+  .pp__see { font-size: 1rem; color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: .5rem; }
+  @media print {
+    .print-book { max-width: none; padding: 0; }
+    .cover { min-height: 0; height: 240mm; }
+    .cover h1 { font-size: 64pt; }
+    .pp__band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .cover__parts li { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pp__body :global(.mv__art), .pp__body :global(.ba__pane), .pp__body :global(.m3d__stage) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>

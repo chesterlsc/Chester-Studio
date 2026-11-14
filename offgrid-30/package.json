@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "OFFGRID 30 — a visual, interactive survival book for 30 years without power.",
+  "description": "OFFGRID 30 \u2014 a visual, interactive survival book for 30 years without power.",
   "scripts": {
     "toc": "node scripts/build-toc.mjs",
     "dev": "npm run toc && astro dev",
     "build": "npm run toc && astro build && pagefind --site dist",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "pdf": "node scripts/pdf.mjs",
+    "book": "npm run build && npm run pdf"
   },
   "dependencies": {
     "@astrojs/mdx": "4.3.14",

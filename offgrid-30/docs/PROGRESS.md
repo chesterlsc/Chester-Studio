@@ -5,8 +5,8 @@
 
 ## Steps
 - [x] STEP 1 — Plan: PLAN.md, STYLE.md, PROGRESS.md (approved 2026-11-14)
-- [x] STEP 2 — Design system: project setup, colors, fonts, icons, page template components, 3D viewer, quiz, one page mockup (awaiting approval)
-- [ ] STEP 3 — Sample chapter: Chapter 1 in full, fact-checked
+- [x] STEP 2 — Design system: project setup, colors, fonts, icons, page template components, 3D viewer, quiz, one page mockup (approved 2026-11-14)
+- [~] STEP 3 — Sample chapter: Chapter 1 in full, fact-checked
 - [ ] STEP 4 — Build all chapters (loop: research → write → visuals → fact-check → polish → PROGRESS → commit; report every 5)
 - [ ] STEP 5 — Final pass: search, navigation, offline, PDF, accessibility, mobile, broken links, final report
 
@@ -17,7 +17,7 @@
 # PART 1 — WATER (blue)
 
 ## Water
-- [ ] Ch 1 — Water Basics: How Much You Need  (0/10 pages)
+- [~] Ch 1 — Water Basics: How Much You Need  (research ✓ · writing · visuals · fact-check)
 - [ ] Ch 2 — Storing Water  (0/10 pages)
 - [ ] Ch 3 — Finding Water  (0/10 pages)
 - [ ] Ch 4 — Making Water Safe  (0/10 pages)
@@ -184,7 +184,13 @@
 - [ ] BM.2 How we check facts
 - [ ] BM.3 Master source list
 
+## Working mode (user decision 2026-11-14)
+- **Build all, then PDF:** no stop-for-approval between chapters. Loop each chapter: research → write + visuals (parallel agents) → fact-check → polish → PROGRESS → commit. Report every 5 chapters.
+- Whole-book PDF: `npm run book` → `dist/offgrid-30.pdf` (built from `/print/`). Grows as chapters are written.
+- Visual default: hand-drawn SVG diagrams first; Wikimedia Commons photos only where a real photo teaches better.
+
 ## Log
+- 2026-11-14 — Ch 1 research done (`docs/research/ch01-facts.md`, ~175 facts, 38 sources). Book decisions on conflicts: store 1 gal/person/day, ~¾ gal of it drinking (Ready.gov); toilet tank only if clear & no cleaner, treat before drinking (CDC 2025); home pipe/heater water safe if supply was safe when shut, if in doubt treat; no breastfeeding litres until National Academies report is checked. Research hosts added to the environment (WHO docs, Sphere, National Academies, Army pubs, USDA, extension, AVMA, NREL/DOE, ARRL/FCC, NFPA, NIH institutes, AAP, ACOG, Wikimedia…). Gap-fill for Sphere / FM 21-76 / extension livestock tables still pending (re-run blocked this session); Ch 1 ships without those facts.
 - 2026-11-14 — STEP 2 built: Astro 5 project in `offgrid-30/`, tokens (light/dark/Lite), fonts, 74 icons, 15 template components, 3D viewer (R3F, loads on tap), quiz, design gallery `/design/`, mockup page 4.3. Waiting for approval.
   - Fact-check note for 4.3: EPA page verified (2026-02-24). CDC URL `/water-emergency/about/making-water-safe-in-an-emergency.html` returned 404 → find current CDC URL in Ch 4. WHO PDF host `iris.who.int` blocked by network policy → WHO landing page used.
   - Altitude rule conflict logged in STYLE.md 2.2 (using EPA's 1,000 m).

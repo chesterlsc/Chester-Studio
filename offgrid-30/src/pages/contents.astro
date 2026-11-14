@@ -11,6 +11,7 @@ const ready = await availableIds();
   <div class="wrap">
     <h1>Contents</h1>
     <p class="lede">8 parts · 22 sections · 105 chapters. Pages with a dot <span class="dot" aria-hidden="true"></span> are written. The rest are coming.</p>
+    <p class="dl"><a class="btn" href={url('/offgrid-30.pdf')} download><Icon name="print" /> Download the book as PDF</a> <a class="btn" href={url('/print/')}>Print view</a></p>
     <label class="filter">
       <Icon name="search" />
       <span class="visually-hidden">Find a topic</span>
@@ -72,6 +73,7 @@ const ready = await availableIds();
 <style>
   .wrap { max-width: 900px; margin: 0 auto; padding: var(--s4) var(--gutter); }
   .lede { color: var(--ink-2); margin: .5rem 0 var(--s3); }
+  .dl { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: var(--s3); }
   .dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: var(--ok); margin-left: .5rem; vertical-align: middle; }
   .filter { position: sticky; top: 4.2rem; z-index: 5; display: flex; align-items: center; gap: .6rem; padding: 0 1rem; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); }
   .filter input { flex: 1; min-height: 52px; border: 0; background: transparent; outline: none; font-size: var(--fs-body); }
