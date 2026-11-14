@@ -52,6 +52,11 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 | `perez2023` | Peer-reviewed review | Pérez S et al. "Mitigation and animal response to water stress in small ruminants." *Animal Frontiers* 13(5):81–88 | 2023 | https://pmc.ncbi.nlm.nih.gov/articles/PMC10575300/ | 2026-11-14 | 3 |
 | `blake2026` | Peer-reviewed study | Blake NE et al. "Characterization of individual beef cattle water intake." *Journal of Animal Science* (doi:10.1093/jas/skag054) | 2026 | https://pmc.ncbi.nlm.nih.gov/articles/PMC13023050/ | 2026-11-14 | 3 |
 | `schale2023` | Peer-reviewed study | Schale P et al. "Estimates of Water Consumption of Growing Pigs under Practical Conditions Based on Climate and Performance Data." *Animals (Basel)* | 2023 | https://pmc.ncbi.nlm.nih.gov/articles/PMC10177191/ | 2026-11-14 | 3 |
+| `cdc-bf-travel` | CDC | Travel Recommendations for Nursing Mothers (Infant and Toddler Nutrition) | Feb. 13, 2026 | https://www.cdc.gov/infant-toddler-nutrition/breastfeeding/travel-recommendations.html | 2026-11-14 | 1 |
+| `ready-burns` | FEMA / Ready.gov | Preventing and Treating Burns \| Ready.gov | Last Updated 08/31/2023 | https://www.ready.gov/preventing-and-treating-burns | 2026-11-14 | 1 |
+| `cdc-germs-home` | CDC | Preventing Waterborne Germs at Home | Mar. 15, 2024 | https://www.cdc.gov/healthywater/drinking/preventing-waterborne-germs-at-home.html | 2026-11-14 | 1 |
+| `cdc-gen` | CDC | Use a Generator Safely (Natural Disasters PSA toolkit) | Aug. 26, 2026 | https://www.cdc.gov/natural-disasters/psa-toolkit/use-a-generator-safely.html | 2026-11-14 | 1 |
+| `cdc-co-psa` | CDC | Avoiding Carbon Monoxide Poisoning (Natural Disasters PSA toolkit) | Aug. 26, 2026 | https://www.cdc.gov/natural-disasters/psa-toolkit/avoiding-carbon-monoxide-poisoning.html | 2026-11-14 | 1 |
 | `suckow-rabbit` | Academic textbook chapter (on PMC) | Suckow MA, Brammer DW, Rush HG, Chrisp CE. "Biology and Diseases of Rabbits." In: *Laboratory Animal Medicine* (Fox JG et al., eds.) | 2002 | https://pmc.ncbi.nlm.nih.gov/articles/PMC7150213/ | 2026-11-14 | 3 (textbook, weakest of the set) |
 
 ---
@@ -100,7 +105,7 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Needs vary. → "However, individual needs vary depending on age, health, physical condition, activity, diet and climate." → [`ready-water`]
 
 **WHO emergency minimums** (WHO Q&A, text dated 2005)
-- 7.5 L (2 gal [conv]) per person per day meets most people's needs (drinking + food). Basis: breastfeeding women, moderate activity, warm weather. → "a minimum of 7.5 litres per capita per day will meet the requirements of most people under most conditions." → [`who-hum`]
+- 7.5 L (2 gal [conv]) per person per day is the bare minimum for most people. WHO does **not** say what it covers (it is not "drinking + food"; fixed after fact-check M3). Basis: breastfeeding women, moderate activity, warm weather. → "a minimum of 7.5 litres per capita per day will meet the requirements of most people under most conditions." → [`who-hum`]
 - In an emergency, at least 15 L (4 gal [conv]). → "However, in an emergency situation, a minimum of 15 litres is required." → [`who-hum`]
 - About 20 L (5.3 gal [conv]) for basic hygiene. → "A higher quantity of about 20 litres per capita per day should be assured to take care of basic hygiene needs and basic food hygiene." → [`who-hum`]
 - Right after a disaster, treated water may be cut to 7.5 L. → "it may be necessary to limit treated water to a minimum of 7.5 litres per day per person." → [`who-hum`]
@@ -163,6 +168,8 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Call 911 if "The person loses consciousness at any time." / "There is any other change in the person's alertness (for example, confusion or seizures)." / "The person has a fever over 102°F (38.8°C)." (as printed; exact conversion is 38.9°C [conv]) / "You notice symptoms of heatstroke (such as rapid pulse or rapid breathing)." → [`mlp-dehyd-ency`]
 - NHS emergency (999) signs with dehydration: "blue, grey, pale or blotchy skin, lips or tongue"; "skin that feels cold"; "difficulty breathing, or is taking lots of quick breaths"; "are confused"; "are sleepier than normal or difficult to wake". → "These could be signs of shock, which is a serious complication of dehydration." → [`nhs-dehyd`]
 - NHS urgent (same day) signs include: "your baby has a soft spot on their head that sinks inwards (sunken fontanelle)"; "you feel dizzy when you stand up and it does not go away". → [`nhs-dehyd`]
+- NHS urgent (same day) list also has (quoted by the fact-check, 2026-11-14): "you're feeling unusually tired (or your child seems drowsy)"; "you have dark yellow pee or you're peeing less than normal (or your baby has fewer wet nappies)"; "your baby or child have few or no tears when they cry". → [`nhs-dehyd`]
+- MedlinePlus 911 list also has: the condition does not improve, or gets worse, despite treatment (A.D.A.M. page; paraphrased, copying banned; re-read 2026-11-14). → [`mlp-dehyd-ency`]
 - Untreated severe dehydration can cause "Death", "Permanent brain damage", "Seizures". → [`mlp-dehyd-ency`]
 
 ### P4 — Who needs extra water
@@ -177,14 +184,16 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Watch kids and older adults when someone is sick. → "Pay close attention to children and older adults." → [`mlp-dehyd-ency`]
 - Under 5s and older adults. → "Children under the age of 5 and older adults should get plenty of fluids as they have an increased risk of dehydration." → [`nhs-dehyd`]
 - Heat risk groups: "older people, especially those aged 65 and over"; "babies and young children aged 5 years and under"; people who are pregnant; "people whose jobs involve manual labour". → [`nhs-heat`]
-- Hard work in heat: 1 cup (237 mL [conv]) every 15–20 minutes, i.e. about 0.7–0.95 L (24–32 oz) per hour [conv]. → "During moderate activity in moderately hot conditions, workers should drink about 1 cup every 15 to 20 minutes." → [`cdc-niosh-heat`]
+- Moderate work in moderate heat (not "hard work"; fixed after fact-check m1): 1 cup (237 mL [conv]) every 15–20 minutes, i.e. about 0.7–0.95 L (24–32 oz) per hour [conv]. → "During moderate activity in moderately hot conditions, workers should drink about 1 cup every 15 to 20 minutes." → [`cdc-niosh-heat`]
 - Drink before you are thirsty when working in heat. → "drinking small amounts of water before becoming thirsty." → [`cdc-niosh-heat`]
 - Sweat can reach 1 L (34 oz [conv]) an hour. → "sweat rates may reach 1 liter per hour, resulting in substantial fluid and sodium loss." → [`cdc-yb-heat`]
 - Too much plain water can also harm (low blood salt). → "Excessive water ingestion is also a major contributor to exercise-associated hyponatremia" → [`cdc-yb-heat`]
 - Breastfeeding/formula babies with dehydration: keep feeding. → "carry on breastfeeding your baby or using formula – try to give small amounts more often than usual" → [`nhs-dehyd`]
-- Babies under 6 months: if giving extra water, boil and cool it first. → "(if your baby is under 6 months, then boil the water first before letting it cool)" → [`nhs-dehyd`]
+- Babies under 6 months: if giving extra water, boil and cool it first. → "(if your baby is under 6 months, then boil the water first before letting it cool)" → [`nhs-dehyd`]. **NHS gives extra sips only to babies "on formula or solid foods"** → "give your baby small sips of extra water if they're on formula or solid foods" → [`nhs-dehyd`]
+- Breastfed babies under 6 months need no water, even in heat. → "Breastfed babies younger than 6 months do not need to drink water or any other liquids, even in hot weather." → [`cdc-bf-travel`, Feb 13, 2026]
 - Babies 6–12 months may have 4–8 oz (118–237 mL [conv]) of water a day. → "Water (4 to 8 ounces a day)." → [`cdc-infant`]
 - Caffeine and alcohol raise water needs. → "Caffeinated drinks and alcohol dehydrate the body which increases the need for drinking water." → [`ready-water`]
+- Not instead of water. → "Do not drink carbonated or caffeinated beverages instead of drinking water." → [`ready-water`] (quote from the fact-check, 2026-11-14). See **Conflicts** (caffeine).
 - Alcohol does not count as water. → "Alcohol does not add to the body's water because it is a diuretic." → [`mlp-water`]
 - Heat stroke warning signs (for a "See also" chip; heat illness likely has its own chapter): "Extremely high body temperature (above 103 degrees F)" (39.4°C [conv]); "Red, hot and dry skin with no sweat"; "Rapid, strong pulse"; "Dizziness, confusion or unconsciousness". → [`ready-heat`]
 - High altitude: CDC only says risk starts at about 2,450 m (8,000 ft) and lists dehydration as a look-alike of altitude sickness. → "Any unacclimatized traveler proceeding to a sleeping altitude of ≥2,450 m (≥8,000 ft)" → [`cdc-yb-alt`]. **No Tier 1–3 source found giving extra water amounts for altitude.**
@@ -198,6 +207,7 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Pets, evacuation: 3 days. → "Water for three days" → [`fema-cert-animal`]
 - Livestock, stay-at-home: 1–2 weeks, more for heat. → "Water for 1-2 weeks (include considerations for extreme heat)" → [`fema-cert-animal`]
 - Livestock: plan a way to run a well or melt snow. → "Camp stove and 2 or more gallons fuel for melting ice or snow for water or a generator and fuel to power a well" → [`fema-cert-animal`]
+- Generators (for the well pump) must run outside, away from openings. → "When you're using a generator, keep it outside at least 20 feet away from any doors, windows, or vents." (20 ft = 6.1 m [conv]) → [`cdc-gen`]; also "Keep generators outside, at least 20 feet from doors, windows, and vents." and never use generators "inside your home, garage, or carport" → [`cdc-co-psa`] (read by WebFetch, 2026-11-14). Full CO page: see 35.1.
 - Livestock evacuation sites need water. → "Ensure destinations have food, water, veterinary care and handling equipment." → [`ready-pets`]
 
 **Daily amounts (peer-reviewed; no extension/USDA table could be reached — see Not verified)**
@@ -209,7 +219,8 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Horses: about 60 mL/kg/day (0.9 fl oz per lb [conv]). → "approximately 60 ml/kg/day (2 to 3 ml/kg/h)" → [`freeman2021`]
 - Horses need more with work and heat. → "with higher volumes in response to activity and high ambient temperatures" → [`freeman2021`]
 - Nursing mares: +37–74% (about 41–52 L / 11–14 gal a day [conv, from 30 L base]). → "Lactating mares can increase water consumption by 37 to 74% above maintenance needs to meet milk production" → [`freeman2021`]
-- Beef cattle: about 21.65 L (5.7 gal [conv]) a day in mild weather. → "Under thermoneutral conditions (THI < 72), cattle drank 21.65 ± 0.02 L/d." → [`blake2026`]
+- Beef cattle: about 21.65 L (5.7 gal [conv]) a day in mild weather. → "Under thermoneutral conditions (THI < 72), cattle drank 21.65 ± 0.02 L/d." → [`blake2026`]. The study animals are **young growing beef cattle** (bulls, heifers, steers), not cows: "bulls consuming the most water (25.62 ± 0.03 L/d), followed by heifers (23.21 ± 0.07 L/d), and steers (21.83 ± 0.06 L/d)" → [`blake2026`]. A milking cow needs much more (no source verified).
+- Beef cattle in heat: about 30 L (8 gal [conv]) a day. → "This increased to 30.38 ± 0.07 L/d at THI 80–89" → [`blake2026`] (quoted by the fact-check, 2026-11-14)
 - Beef cattle in severe heat drink about 50% more per body weight: 8.47 vs 5.53 L per 100 kg (about 1.0 vs 0.66 gal per 100 lb [conv]). → "animals in THI ≥ 90 consumed 8.47 ± 0.03 L/100 kg BW compared to 5.53 ± 0.01 in THI < 72." → [`blake2026`]
 - Sheep: a 60 kg (132 lb [conv]) ewe drank about 2.18 L (0.58 gal [conv]) a day at 22°C (72°F [conv]). → "the average daily water intake of 40 empty Rasa Aragonesa ewes (60 kg of BW) was 2.18 l." → [`perez2023`]
 - Sheep drink about twice as much in warm weather. → "ewes drank twice more water under warm (24.8 ºC) than cold (0.4 ºC) temperatures." (76.6°F vs 32.7°F [conv]) → [`perez2023`]
@@ -218,6 +229,7 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Pigs (growing/finishing): about 7.1 L (1.9 gal [conv]) a day on average over fattening (Table 3, kg/pig/day); about 3.2 L per kg of feed (0.38 gal per lb [conv]). → "was 3.2 L/kg feed over the entire fattening period" → [`schale2023`]
 - Pigs drink more when hot. → "When the air temperature increases, the water consumption of pigs also increases" → [`schale2023`]
 - Chickens (adult meat birds): 150–200 mL (5–7 fl oz [conv]) a day, up to 300–350 mL (10–12 fl oz [conv]). → "An adult broiler chicken usually drinks about 150 to 200 ml per day, and it can reach up to 300–350 ml per day" → [`elsabry2023`]
+- Laying hens: about 500 mL (17 fl oz [conv]) a day, drinking freely, in one study (Fujita et al. 2001, cited in the review). → "restricting water to only 20% of ad libtium WI (500 ml/day) for 7 days significantly reduced daily FI" → [`elsabry2023`]. Single study, secondary citation: shown on 1.5 as "Laying hen (1 study) ~0.5 L". An extension/USDA layer table is still needed.
 - Rabbits: about 120 mL/kg/day (1.8 fl oz per lb [conv]). → "In general, daily water intake is approximately 120 ml per kilogram of body weight." → [`suckow-rabbit`]
 - Rabbits on dry pellets drink more. → "rabbits will drink more water when consuming dry, pelleted feed" → [`suckow-rabbit`]
 
@@ -249,6 +261,7 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Power or gas off first, then drain from the bottom. → "To use the water in your hot-water tank, be sure the electricity or gas is off, and open the drain at the bottom of the tank." → [`fema-ayr`; `rc-foodwater`]
 - Close the cold intake, open a hot tap. → "Start the water flowing by turning off the water intake valve at the tank and turning on the hot-water faucet." → [`fema-ayr`]
 - Refill before power/gas goes back on. → "Refill the tank before turning the gas or electricity back on." → [`fema-ayr`]
+- **Scald warning (added after fact-check M2).** Water-heater water can scald. → "Set your water heater's thermostat to 120 °F or lower to prevent scalding burns." → [`ready-burns`, updated 08/31/2023]; "Keeping your home water heater between 130°F–140°F can kill germs like Legionella in water, but also increases your risk of burns." and this is "especially important if young children, older adults, or other people at increased risk of burns live in your home." → [`cdc-germs-home`, Mar 15, 2024]. Page 1.6 says: "Hot! The water can scald. An adult does this." ("An adult does this" is a supervision instruction, not a sourced fact.) **"Let it cool first" is still NOT sourced**, so it is not on the page.
 - Gas needs a pro to relight. → "If the gas is turned off, a professional will be needed to turn it back on." → [`fema-ayr`]; "If you turn off the gas for any reason, only a qualified professional can turn it back on." → [`ready-safety`]
 
 ### P7 — Shutting off your home's water safely
@@ -301,6 +314,7 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - Food (not water) can be cut — but not for kids or pregnant women → [`rc-foodwater`, quoted in P1].
 - In heat: shade, no hard work in the hottest hours, no alcohol or caffeine. → "stay in the shade especially between 11am and 3pm" / "avoid exercise or activity that makes you hotter" / "Drink extra fluids but avoid alcohol, caffeine and hot drinks" → [`nhs-heat`]
 - What to cut first (order of uses): **no Tier 1–3 source found** with a ranked list. WHO only notes untreated water can be used for laundry and bathing: "During emergencies, people may use an untreated water source for laundry, bathing, etc." → [`who-hum`]
+- Hands, dishes, food and teeth need **safe** water, not untreated water. → "Treat all water of uncertain quality before using it for drinking, food washing or preparation, washing dishes, brushing teeth, or making ice" → [`ready-water`]; CDC lists bottled, boiled or treated water for drinking, making ice, making baby formula, brushing teeth, washing dishes, preparing or washing food, and washing hands → [`cdc-safe`] (per fact-check, 2026-11-14). Page 1.9 therefore says: untreated water for **laundry and bathing only. Not for hands, dishes, food or teeth.**
 - **US Army FM 21-76: NOT VERIFIED** (site blocked; see section 4).
 
 ---
@@ -317,6 +331,8 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 | Body water share | MedlinePlus: "more than two-thirds" [`mlp-water`] | Popkin: 75% (babies) down to 55% (older adults) [`popkin2010`] | Not a real clash: the share falls with age. Say "**about 55–75%**, more in babies". |
 | WHO death figures | `who-san` (Nov 2026): **1.4 million** deaths/yr from poor water, sanitation and hygiene | `who-dw` (2023): **~1 million** diarrhoea deaths from unsafe water, sanitation and hand hygiene; **505,000** from dirty drinking water | Different measures. Use the newest, **1.4 million** (`who-san`), and say it is the total for all three. |
 | Thirst as a guide | CDC Yellow Book: thirst alone is not enough to prevent mild dehydration [`cdc-yb-heat`] | Same page: to prevent low blood salt, drink "only enough to relieve thirst" | Not a clash: one is about too little, one about too much. Say "drink regularly, check pee colour, don't force huge amounts". |
+| Caffeine (tea, coffee) as fluid | Ready.gov: caffeinated drinks "dehydrate the body"; "Do not drink carbonated or caffeinated beverages instead of drinking water" [`ready-water`]; NHS heat: "avoid alcohol, caffeine and hot drinks" [`nhs-heat`] | NHS: "Water, lower-fat milk and lower-sugar drinks, including tea and coffee, all count as part of your daily intake" [`nhs-drinks`]; MedlinePlus lists tea, coffee and soda as drinks that supply water [`mlp-water`] | **Editor decision (2026-11-14): "Skip alcohol. Go easy on caffeine; plain water is best."** Used on 1.4 (Do/Don't) and 1.9 (Do/Don't, LowWaterPlan). Alcohol is not disputed (`mlp-water`: "Alcohol does not add to the body's water"). |
+| Breastfed babies and water | NHS: under 6 months, boil extra water first [`nhs-dehyd`] (reads as if any baby may get water) | CDC: breastfed babies under 6 months need no water, even in heat [`cdc-bf-travel`]; NHS gives extra sips only to babies on formula or solids [`nhs-dehyd`] | **Safer:** breastfed under 6 months: no water. Formula-fed: small sips of boiled, cooled water. (Fact-check C1.) |
 | 102°F conversion | MedlinePlus prints 38.8°C | Exact math: 38.9°C [conv] | Quote MedlinePlus as printed or round to **39°C (102°F)**. |
 
 ---
@@ -333,7 +349,7 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 - **FEMA training handout** (training.fema.gov), which reportedly says a water heater holds "30 or more gallons" and warns the water may be very hot: blocked, **not verified**.
 
 **Looked for on reachable Tier 1 pages but not found:**
-- Water heater safety details: **let it cool first**, **drain off sediment**, **scald warning**. Not on `fema-ayr`, `rc-foodwater` or `cdc-find`.
+- Water heater safety details: **let it cool first**, **drain off sediment**, **scald warning**. Not on `fema-ayr`, `rc-foodwater` or `cdc-find`. **Update 2026-11-14:** scald warning now sourced (`ready-burns`, `cdc-germs-home`). "Let it cool first" and sediment: still not found. Tried for a better scald source: nfpa.org and healthychildren.org are blocked by this session's network; CPSC Publication 5098 not read; usfa.fema.gov not tried after those failures.
 - Extra water amount for **high altitude**: none found (`cdc-yb-alt` gives no fluid advice).
 - Ready.gov: no hidden-water list or main-valve text on `ready-water` (they are on `ready-safety` and `fema-ayr` instead).
 - A ranked "what to cut first" list for water uses: none found.
@@ -346,5 +362,5 @@ Factors used: 1 US gallon = 3.785 L; 1 US quart = 0.946 L; 1 US fl oz = 29.57 mL
 ## Summary
 
 - **Facts verified:** about 175 quoted facts (bullets and table rows), all with an exact quote read on the page on 2026-11-14.
-- **Sources used:** 38 (28 Tier 1, 10 Tier 3).
+- **Sources used:** 43 (33 Tier 1, 10 Tier 3). Five Tier 1 sources added after the fact-check on 2026-11-14: `cdc-bf-travel`, `ready-burns`, `cdc-germs-home`, `cdc-gen`, `cdc-co-psa`.
 - **Main gaps:** Sphere Handbook, WHO Technical Note 9, the National Academies DRI report (pregnancy and lactation values), FM 21-76, and extension/USDA livestock tables. All are blocked by the session network, not missing. Also not found: water heater "let it cool / sediment" steps and extra water for high altitude.

@@ -8,10 +8,10 @@ why: "Work out how much water your household needs to store."
 tags: [planner, calculator, gallons, liters, jugs, drums, household, storage]
 visual:
   type: svg
-  alt: "A water calculator: people times days times 1 gallon (3.8 L), doubled for hot weather, plus pets by weight. It shows the total in gallons and liters, and how many 5 gal (19 L) jugs or 55 gal (208 L) drums you need."
-sources: [ready-water, cdc-store, rc-foodwater, rc-kit]
+  alt: "A water calculator: people times days times 1 gallon (3.8 L), with the people's water doubled for hot weather, plus dogs and cats by weight. Farm animals and rabbits are added by hand. It shows the total in gallons and liters, and how many 5 gal (19 L) jugs or 55 gal (208 L) drums you need."
+sources: [ready-water, cdc-store, rc-foodwater, rc-kit, zanghi2018, kosmal2025]
 seeAlso: ["1.2", "1.4", "1.5", "2.1", "2.5", "2.6"]
-status: draft
+status: checked
 lastChecked: 2026-11-14
 ---
 import WaterCalc from '../../../components/diagrams/ch01/WaterCalc.astro';
@@ -24,7 +24,7 @@ import WaterCalc from '../../../components/diagrams/ch01/WaterCalc.astro';
   do={[
     'Plan <b>1 gallon</b> (3.8 L) per person per day',
     'Plan at least <b>3 days</b>; aim for 2 weeks',
-    'Plan <b>double</b> for very hot weather',
+    'Plan <b>double</b> for people in very hot weather',
     'Replace water you bottled yourself every <b>6 months</b>',
   ]}
   dont={[
@@ -37,15 +37,15 @@ import WaterCalc from '../../../components/diagrams/ch01/WaterCalc.astro';
 <Steps heading="Use the planner" steps={[
   { icon: 'people', label: 'People', title: 'Enter how many people you supply.' },
   { icon: 'time', label: 'Days', title: 'Enter the days: at least 3, aim for 14.', detail: '3 days is enough if you must leave home. 2 weeks is a good start for staying home.' },
-  { icon: 'heat', label: 'Heat', title: 'Tick "hot weather" to double the total.', detail: 'Very hot weather can double water needs (see 1.4).' },
-  { icon: 'pets', label: 'Pets', title: 'Add each pet by its weight.', detail: 'See 1.5 for animal amounts.' },
+  { icon: 'heat', label: 'Heat', title: 'Tick "hot weather" to double the water for people.', detail: 'Very hot weather can double water needs (see 1.4). Animals need more in heat too (see 1.5).' },
+  { icon: 'pets', label: 'Pets', title: 'Add your dogs and cats by weight.', detail: 'Dogs and cats only. Add other animals by hand (see 1.5).' },
   { icon: 'jar', label: 'Jugs', title: 'Read the total and how many jugs or drums you need.', detail: '1 jug holds 5 gal (19 L). 1 drum holds 55 gal (208 L).' },
   { icon: 'measure', label: 'Date', title: 'Write the fill date on each container you fill.', detail: 'Replace water you bottled yourself every 6 months. Keep store-bought water sealed until you need it.' },
 ]} />
 
 <Callout type="tip" title="No calculator? Do it by hand.">
-  People × days × 1 gallon = gallons. Times 3.8 = liters.
-  Example: 4 people × 14 days = 56 gallons (212 L). That is 12 jugs of 5 gal (19 L). Using drums only? You need 2 drums of 55 gal (208 L).
+  People × days × 1 gallon = gallons. Times 3.785 (about 3.8) = liters.
+  Example: 4 people × 14 days = 56 gallons. 56 × 3.785 = 212 L. That is 12 jugs of 5 gal (19 L). Using drums only? You need 2 drums of 55 gal (208 L).
 </Callout>
 
 <NeedList items={[

@@ -11,7 +11,7 @@ visual:
   alt: "A person with dehydration signs labeled, a baby panel (sunken soft spot, few or no tears, no wet diaper for 3+ hours, unusually sleepy), and a get-help-now strip of danger signs."
 sources: [nhs-dehyd, nhs-drinks, mlp-dehyd-ency, mlp-dehyd-topic, mlp-water, popkin2010, cdc-yb-heat]
 seeAlso: ["1.4", "52.2", "65.7", "49.4", "71.2"]
-status: draft
+status: checked
 lastChecked: 2026-11-14
 ---
 import DehydrationSigns from '../../../components/diagrams/ch01/DehydrationSigns.astro';
@@ -63,11 +63,13 @@ import PeeChart from '../../../components/diagrams/ch01/PeeChart.astro';
 
 <Callout type="danger" title="Get help now if someone:">
   Is confused, faints, or has no pee. Has a fast heartbeat or fast breathing.
-  Has cold, pale, grey or blotchy skin, or is hard to wake. Has a fever over 102°F (39°C).
+  Has blue, grey, pale or blotchy skin or lips, or cold skin, or is hard to wake. Has a fever over 102°F (39°C).
+  Or gets worse even after drinking.
 </Callout>
 
 <Callout type="caution" title="Get help the same day if:">
-  A baby's soft spot sinks in. Or you feel dizzy when you stand up, and it does not go away.
+  A baby's soft spot sinks in, or a baby has few tears or fewer wet diapers. A child seems drowsy.
+  You feel dizzy on standing, and it does not go away.
 </Callout>
 
 <Scenario when="Day 6 without power, hot weather" move="Don't wait for thirst. Give regular drinks and check pee color each morning.">

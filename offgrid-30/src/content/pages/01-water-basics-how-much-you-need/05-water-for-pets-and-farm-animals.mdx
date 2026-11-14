@@ -8,10 +8,10 @@ why: "Animals need water every day too. Heat and milking raise their needs."
 tags: [pets, dogs, cats, rabbits, livestock, horses, cattle, goats, sheep, pigs, chickens]
 visual:
   type: svg
-  alt: "Bar chart of daily water: horse about 30 L (7.9 gal), beef cow 22 L, milking goat in heat 15 L, goat in heat 7.4 L, pig 7 L, sheep 2.2 L, chicken 0.15–0.2 L. Pets by body weight: dog 63–73 mL/kg, cat 50–60 mL/kg, rabbit about 120 mL/kg."
-sources: [ready-pets, fema-cert-animal, zanghi2018, kosmal2025, freeman2021, blake2026, perez2023, schale2023, elsabry2023, suckow-rabbit]
-seeAlso: ["74.3", "75.4", "76.4", "15.5", "1.8"]
-status: draft
+  alt: "Bar chart of daily water: horse (500 kg) about 30 L (7.9 gal), young beef cattle 22 L (30 L in heat), milking goat in heat 15 L, goat in heat 7.4 L, pig 7 L, sheep (60 kg) 2.2 L, meat chicken 0.15–0.35 L, laying hen about 0.5 L. Pets by body weight: dog 63–73 mL/kg, cat 50–60 mL/kg, rabbit about 120 mL/kg."
+sources: [ready-pets, fema-cert-animal, zanghi2018, kosmal2025, freeman2021, blake2026, perez2023, schale2023, elsabry2023, suckow-rabbit, cdc-gen]
+seeAlso: ["74.3", "75.4", "76.4", "15.5", "1.8", "35.1"]
+status: checked
 lastChecked: 2026-11-14
 ---
 import AnimalWater from '../../../components/diagrams/ch01/AnimalWater.astro';
@@ -20,7 +20,7 @@ import AnimalWater from '../../../components/diagrams/ch01/AnimalWater.astro';
   caption="Daily water for common animals. Averages from studies: real needs vary."
   legend={[
     { swatch: 'var(--part-1)', text: 'Water per animal, per day' },
-    { text: 'Dashed bar: extra for a nursing mare' },
+    { text: 'Dashed bar: extra in heat, or for a nursing mare' },
     { text: 'Each grid line = 10 L (2.6 gal)' },
   ]}
 >
@@ -47,7 +47,7 @@ import AnimalWater from '../../../components/diagrams/ch01/AnimalWater.astro';
   { icon: 'measure', label: 'Daily', title: "Find each animal's daily need in the chart.", detail: 'Dog on dry food: 63–73 mL/kg (1–1.1 fl oz/lb). Cat: 50–60 mL/kg (0.8–0.9 fl oz/lb). Rabbit: about 120 mL/kg (1.8 fl oz/lb).' },
   { icon: 'heat', label: 'Extra', title: 'Add more for hot days, work and milking.', detail: 'Sheep drink about twice as much in warm weather. Nursing mares need 37–74% more than usual.' },
   { icon: 'time', label: 'Days', title: 'Multiply by days: pets 2 weeks, livestock 1–2 weeks.', detail: 'Leaving home? Take 3 days of water for each pet. Make sure the place you go has water for livestock.' },
-  { icon: 'fire', label: 'Backup', title: 'Plan a way to get more: melt snow, or power a well.', detail: 'FEMA: keep a camp stove and 2 gallons (7.6 L) or more of fuel. Or a generator and fuel for the well pump.' },
+  { icon: 'fire', label: 'Backup', title: 'Plan a way to get more: melt snow, or power a well.', detail: 'FEMA: keep a camp stove and 2 gallons (7.6 L) or more of fuel. Or a generator and fuel for the well pump. Generators run outside only.' },
 ]} />
 
 <NeedList items={[
@@ -66,5 +66,5 @@ import AnimalWater from '../../../components/diagrams/ch01/AnimalWater.astro';
 
   In this heat, a milking goat can drink about 15 L (4 gal) a day. The pair needs about 30 L (8 gal). The dog needs more on top.
 
-  You fill their troughs from your stored barrels. Then you start the generator to run the well.
+  You fill their troughs from your stored barrels. Then you start the generator outside, 20 feet (6 m) from doors and windows, to run the well.
 </Scenario>

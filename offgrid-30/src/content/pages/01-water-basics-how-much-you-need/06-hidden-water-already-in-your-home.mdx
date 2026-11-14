@@ -8,10 +8,10 @@ why: "Your home already holds safe water. Know where it is, and what to avoid."
 tags: [water heater, pipes, ice, toilet tank, canned food, radiator, waterbed, pool]
 visual:
   type: svg
-  alt: "A house cut-away. Safe: the water heater (drained after power or gas is off), the pipes, melted ice, a clear toilet tank with no cleaner (treat it), and canned fruit or vegetable liquid. Never drink: the toilet bowl, radiators or heating boilers, or a waterbed. A pool or spa is for washing only."
-sources: [fema-ayr, rc-foodwater, cdc-find, cdc-safe, ready-water, ready-safety, who-hum]
-seeAlso: ["1.7", "4.3", "4.4", "4.9", "3.8", "29.3"]
-status: draft
+  alt: "A house cut-away. Safe: the water heater (drained by an adult after power or gas is off, as the water can scald), the pipes, melted ice, a clear toilet tank with no cleaner (treat it), and canned fruit or vegetable liquid. Never drink: the toilet bowl, radiators or heating boilers, or a waterbed. A pool or spa is for washing only."
+sources: [fema-ayr, rc-foodwater, cdc-find, cdc-safe, ready-water, ready-safety, who-hum, ready-burns, cdc-germs-home]
+seeAlso: ["1.7", "4.3", "4.4", "4.9", "3.8", "29.3", "49.2"]
+status: checked
 lastChecked: 2026-11-14
 ---
 import HiddenWater from '../../../components/diagrams/ch01/HiddenWater.astro';
@@ -32,6 +32,7 @@ import HiddenWater from '../../../components/diagrams/ch01/HiddenWater.astro';
   do={[
     'Shut the <b>main</b> valve first (see 1.7)',
     'Turn off power or gas <b>before</b> draining the heater',
+    'Let an <b>adult</b> drain the hot heater',
     'Use melted <b>ice</b> and canned fruit or vegetable liquid',
     '<b>Treat</b> toilet-tank water before you drink it',
   ]}
@@ -48,7 +49,7 @@ import HiddenWater from '../../../components/diagrams/ch01/HiddenWater.astro';
   { icon: 'power', label: 'Off', title: 'Turn off the power or gas to the water heater.', detail: 'Only a trained pro should turn gas back on. Refill the tank before the power or gas goes back on.' },
   { icon: 'tool', label: 'Close', title: 'Close the water intake valve at the tank.' },
   { icon: 'flow', label: 'Tap', title: 'Turn on a hot-water tap in the house.', detail: 'This starts the water flowing.' },
-  { icon: 'pour', label: 'Drain', title: 'Open the drain at the bottom of the tank. Catch the water.', detail: 'Use a clean container. The heater must not be damaged.' },
+  { icon: 'pour', label: 'Drain', title: 'Open the drain at the bottom of the tank. Catch the water.', detail: 'Hot! The water can scald. An adult does this. Use a clean container. The heater must not be damaged.' },
   { icon: 'flow', label: 'Pipes', title: 'For pipes: open the highest tap, then collect from the lowest.', detail: 'A little water trickles out of the top tap. That lets air in, so the low tap can flow.' },
 ]} />
 
@@ -82,7 +83,7 @@ import HiddenWater from '../../../components/diagrams/ch01/HiddenWater.astro';
 <Scenario when="Day 2, a water main breaks" move="Use heater, pipe and ice water. Never use a tank with cleaner, the bowl or radiators.">
   The radio says a water main broke in town. You shut your main valve. Your stored jugs are low.
 
-  You turn off power to the water heater. You close its intake valve and open a hot tap upstairs. Then you fill clean jugs from the drain at the bottom.
+  You turn off power to the water heater. You close its intake valve and open a hot tap upstairs. The water can scald, so you drain it yourself. You fill clean jugs from the drain at the bottom.
 
   Your kids point to the toilet tank. It has a blue cleaner tablet in it. You say no.
 </Scenario>

@@ -1,9 +1,9 @@
 ---
 // 1.5 main visual: daily water per farm animal (bar chart) + pets per body weight.
 ---
-<svg class="diagram" viewBox="0 0 520 924" role="img" aria-labelledby="c1p5-t c1p5-d">
+<svg class="diagram" viewBox="0 0 520 1000" role="img" aria-labelledby="c1p5-t c1p5-d">
   <title id="c1p5-t">How much water animals drink each day</title>
-  <desc id="c1p5-d">Bar chart of water per animal per day. Horse at rest about 30 litres (7.9 gallons), a nursing mare up to about 52 litres (14 gallons). Beef cow in mild weather about 22 litres (5.7 gallons). Milking goat in heat about 15 litres (4 gallons). Goat in heat about 7.4 litres (2 gallons). Growing pig about 7 litres (1.9 gallons). Sheep in mild weather about 2.2 litres (0.6 gallons). Chicken 0.15 to 0.2 litres (5 to 7 ounces). Pets, per kilogram of body weight per day: dog 63 to 73 millilitres (about 1 ounce per pound), cat 50 to 60 millilitres (about 0.8 to 0.9 ounces per pound), rabbit about 120 millilitres (about 1.8 ounces per pound). Heat and milk raise needs: sheep drink about twice as much in warm weather. These are averages from studies; real needs vary.</desc>
+  <desc id="c1p5-d">Bar chart of water per animal per day. Horse at rest, 500 kilograms (1,100 pounds), about 30 litres (7.9 gallons), a nursing mare up to about 52 litres (14 gallons). Young beef cattle (bulls, steers, heifers) in mild weather about 22 litres (5.7 gallons), about 30 litres (8 gallons) in heat. Milking goat in heat about 15 litres (4 gallons). Goat in heat about 7.4 litres (2 gallons). Growing pig about 7 litres (1.9 gallons). Sheep, 60 kilograms (132 pounds), in mild weather about 2.2 litres (0.6 gallons). Meat chicken 0.15 to 0.35 litres (5 to 12 ounces). Laying hen about 0.5 litres (17 ounces), from one study. Pets, per kilogram of body weight per day: dog 63 to 73 millilitres (about 1 ounce per pound), cat 50 to 60 millilitres (about 0.8 to 0.9 ounces per pound), rabbit about 120 millilitres (about 1.8 ounces per pound). Heat and milk raise needs: sheep drink about twice as much in warm weather. These are averages from studies; real needs vary.</desc>
   <defs>
     <pattern id="c1p5-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="9" height="9" fill="var(--card)"/>
@@ -14,15 +14,18 @@
   <!-- Heading -->
   <text x="14" y="36" font-family="var(--font-head)" font-weight="700" font-size="28" fill="var(--ink)">Water per animal, per day</text>
 
+  <!-- Chart panel (a card, so text halos match the background) -->
+  <rect x="4" y="50" width="512" height="628" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/>
+
   <!-- Grid: every 10 L -->
   <g stroke="var(--ink-2)" stroke-width="1.5" stroke-dasharray="3 5" opacity=".7">
-    <path d="M136 56 V552"/><path d="M200 56 V552"/><path d="M264 56 V552"/><path d="M328 56 V552"/><path d="M392 56 V552"/>
+    <path d="M136 60 V620"/><path d="M200 60 V620"/><path d="M264 60 V620"/><path d="M328 60 V620"/><path d="M392 60 V620"/>
   </g>
-  <path d="M72 56 V552" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M72 60 V620" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
   <g font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--ink-2)" text-anchor="middle">
-    <text x="72" y="574">0</text><text x="136" y="574">10 L</text><text x="200" y="574">20 L</text><text x="264" y="574">30 L</text><text x="328" y="574">40 L</text><text x="392" y="574">50 L</text>
+    <text x="72" y="642">0</text><text x="136" y="642">10 L</text><text x="200" y="642">20 L</text><text x="264" y="642">30 L</text><text x="328" y="642">40 L</text><text x="392" y="642">50 L</text>
   </g>
-  <text x="514" y="598" text-anchor="end" font-family="var(--font-body)" font-size="15" fill="var(--ink-2)">Each line = 10 L (2.6 gal)</text>
+  <text x="504" y="664" text-anchor="end" font-family="var(--font-body)" font-size="15" fill="var(--ink-2)">Each line = 10 L (2.6 gal)</text>
 
   <!-- ===== Rows (bar scale: 6.4 units per litre, bars start at x=72) ===== -->
   <g font-family="var(--font-body)" fill="var(--ink)">
@@ -36,14 +39,14 @@
       <path d="M12 3 L12 -3 L15 1" />
       <path d="M13 1 L21 15 L24 12 L16 -1 Z" fill="var(--ink)"/>
     </g>
-    <text x="78" y="74" font-size="18" font-weight="700">Horse <tspan font-weight="400">at rest</tspan></text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="74" font-size="18" font-weight="700">Horse <tspan font-weight="400">at rest, 500 kg (1,100 lb)</tspan></text>
     <rect x="264" y="82" width="140.8" height="28" fill="url(#c1p5-hatch)" stroke="var(--part-1)" stroke-width="2.5" stroke-dasharray="6 4"/>
     <rect x="72" y="82" width="192" height="28" rx="3" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
     <text x="84" y="103" font-size="18" font-weight="700" fill="var(--on-part-1)">30 L · 7.9 gal</text>
     <path d="M404.8 112 V128 H392" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round"/>
-    <text x="386" y="134" font-size="16" text-anchor="end"><tspan font-weight="700">Nursing mare:</tspan> up to ~52 L (14 gal)</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="386" y="134" font-size="16" text-anchor="end"><tspan font-weight="700">Nursing mare:</tspan> up to ~52 L (14 gal)</text>
 
-    <!-- Beef cow -->
+    <!-- Young beef cattle: solid = mild weather, dashed = extra in heat -->
     <g transform="translate(8 160)" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
       <path d="M50 14 Q55 20 52 30" fill="none" stroke-width="3"/>
       <path d="M19 32 V44 M24 32 V44 M41 32 V44 M46 32 V44" stroke-width="3.5"/>
@@ -53,9 +56,11 @@
       <path d="M4 9 Q0 3 4 1 M16 9 Q20 3 16 1" fill="none"/>
       <circle cx="7" cy="15" r="1.6" fill="var(--ink)" stroke="none"/>
     </g>
-    <text x="78" y="158" font-size="18" font-weight="700">Beef cow <tspan font-weight="400">mild weather</tspan></text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="158" font-size="18" font-weight="700">Beef cattle <tspan font-weight="400">(young), mild weather</tspan></text>
+    <rect x="212.8" y="166" width="51.2" height="28" fill="url(#c1p5-hatch)" stroke="var(--part-1)" stroke-width="2.5" stroke-dasharray="6 4"/>
     <rect x="72" y="166" width="140.8" height="28" rx="3" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
-    <text x="222" y="187" font-size="18" font-weight="700">22 L · 5.7 gal</text>
+    <text x="80" y="187" font-size="17" font-weight="700" fill="var(--on-part-1)">22 L · 5.7 gal</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="274" y="187" font-size="16"><tspan font-weight="700">In heat:</tspan> ~30 L (8 gal)</text>
 
     <!-- Milking goat -->
     <g transform="translate(10 230)" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
@@ -67,9 +72,9 @@
       <path d="M13 5 Q15 -2 22 1" fill="none" stroke-width="3"/>
       <path d="M5 13 L5 19" stroke-width="3"/>
     </g>
-    <text x="78" y="226" font-size="18" font-weight="700">Milking goat <tspan font-weight="400">in heat</tspan></text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="226" font-size="18" font-weight="700">Milking goat <tspan font-weight="400">in heat</tspan></text>
     <rect x="72" y="234" width="96" height="28" rx="3" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
-    <text x="178" y="255" font-size="18" font-weight="700">15 L · 4 gal</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="178" y="255" font-size="18" font-weight="700">15 L · 4 gal</text>
 
     <!-- Goat -->
     <g transform="translate(10 298)" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
@@ -80,9 +85,9 @@
       <path d="M13 5 Q15 -2 22 1" fill="none" stroke-width="3"/>
       <path d="M5 13 L5 19" stroke-width="3"/>
     </g>
-    <text x="78" y="294" font-size="18" font-weight="700">Goat <tspan font-weight="400">in heat</tspan></text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="294" font-size="18" font-weight="700">Goat <tspan font-weight="400">in heat</tspan></text>
     <rect x="72" y="302" width="47.4" height="28" rx="3" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
-    <text x="130" y="323" font-size="18" font-weight="700">7.4 L · 2 gal</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="130" y="323" font-size="18" font-weight="700">7.4 L · 2 gal</text>
 
     <!-- Pig -->
     <g transform="translate(8 366)" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
@@ -93,9 +98,9 @@
       <path d="M50 18 Q56 14 55 19 Q54 23 51 20" fill="none"/>
       <circle cx="16" cy="18" r="1.6" fill="var(--ink)" stroke="none"/>
     </g>
-    <text x="78" y="362" font-size="18" font-weight="700">Growing pig</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="362" font-size="18" font-weight="700">Growing pig</text>
     <rect x="72" y="370" width="44.8" height="28" rx="3" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
-    <text x="128" y="391" font-size="18" font-weight="700">7 L · 1.9 gal</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="128" y="391" font-size="18" font-weight="700">7 L · 1.9 gal</text>
 
     <!-- Sheep -->
     <g transform="translate(8 434)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
@@ -103,9 +108,9 @@
       <path d="M18 14 Q18 6 26 8 Q30 2 37 7 Q45 5 46 13 Q53 16 49 23 Q51 31 43 31 Q38 36 31 32 Q24 36 20 30 Q12 30 14 22 Q10 16 18 14 Z" fill="var(--card)"/>
       <ellipse cx="9" cy="16" rx="7" ry="9" fill="var(--ink)" transform="rotate(-25 9 16)"/>
     </g>
-    <text x="78" y="430" font-size="18" font-weight="700">Sheep <tspan font-weight="400">mild weather</tspan></text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="430" font-size="18" font-weight="700">Sheep <tspan font-weight="400">60 kg (132 lb), mild weather</tspan></text>
     <rect x="72" y="438" width="14.1" height="28" rx="2" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
-    <text x="96" y="459" font-size="18" font-weight="700">2.2 L · 0.6 gal</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="96" y="459" font-size="18" font-weight="700">2.2 L · 0.6 gal</text>
 
     <!-- Chicken -->
     <g transform="translate(12 500)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
@@ -116,13 +121,25 @@
       <path d="M13 18 Q14 24 16 18" fill="var(--part-4)"/>
       <circle cx="18" cy="9.5" r="1.6" fill="var(--ink)" stroke="none"/>
     </g>
-    <text x="78" y="498" font-size="18" font-weight="700">Chicken</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="498" font-size="18" font-weight="700">Meat chicken</text>
     <rect x="72" y="506" width="4" height="28" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
-    <text x="88" y="527" font-size="18" font-weight="700">0.15–0.2 L · 5–7 oz</text>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="88" y="527" font-size="18" font-weight="700">0.15–0.35 L · 5–12 oz</text>
+
+    <!-- Laying hen -->
+    <g transform="translate(12 568)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M22 34 V44 H18 M30 34 V44 H26" fill="none" stroke-width="3"/>
+      <path d="M12 12 Q12 4 19 4 Q26 4 26 12 Q28 20 38 16 L44 8 Q46 24 40 30 Q32 38 22 35 Q12 32 12 22 Z" fill="var(--part-2-tint)"/>
+      <path d="M14 4 Q15 -2 19 1 Q22 -3 24 3" fill="var(--part-4)"/>
+      <path d="M12 10 L5 13 L12 15 Z" fill="var(--part-3)"/>
+      <circle cx="18" cy="9.5" r="1.6" fill="var(--ink)" stroke="none"/>
+    </g>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="78" y="566" font-size="18" font-weight="700">Laying hen <tspan font-weight="400">(1 study)</tspan></text>
+    <rect x="72" y="574" width="4" height="28" fill="var(--part-1)" stroke="var(--ink)" stroke-width="2.5"/>
+    <text stroke="var(--card)" stroke-width="5" stroke-linejoin="round" paint-order="stroke" x="88" y="595" font-size="18" font-weight="700">~0.5 L · 17 oz</text>
   </g>
 
   <!-- ===== Pets box ===== -->
-  <g transform="translate(8 616)" font-family="var(--font-body)" fill="var(--ink)">
+  <g transform="translate(8 692)" font-family="var(--font-body)" fill="var(--ink)">
     <rect x="0" y="0" width="504" height="214" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/>
     <text x="16" y="32" font-family="var(--font-head)" font-weight="700" font-size="23">Pets — per body weight, per day</text>
 
@@ -169,7 +186,7 @@
   </g>
 
   <!-- ===== Notes ===== -->
-  <g font-family="var(--font-body)" fill="var(--ink)">
+  <g font-family="var(--font-body)" fill="var(--ink)" transform="translate(0 76)">
     <path d="M26 848 L40 872 H12 Z" fill="var(--warn)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
     <text x="26" y="868" text-anchor="middle" font-size="15" font-weight="700" fill="var(--warn-ink)">!</text>
     <text x="50" y="862" font-size="17" font-weight="700">Heat and milk raise needs</text>

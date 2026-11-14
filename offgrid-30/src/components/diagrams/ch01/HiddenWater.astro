@@ -1,9 +1,9 @@
 ---
 // 1.6 main visual: house cut-away showing safe (✓) and unsafe (✕) water already inside the home.
 ---
-<svg class="diagram" viewBox="0 0 520 884" role="img" aria-labelledby="c1p6-t c1p6-d">
+<svg class="diagram" viewBox="0 0 520 918" role="img" aria-labelledby="c1p6-t c1p6-d">
   <title id="c1p6-t">Hidden water already in your home</title>
-  <desc id="c1p6-d">A two-floor house cut open. Safe sources, marked with a check: 1, the water heater (the tank for your taps, not the heating system); 2, the water in the pipes: open the highest tap to let air in, then collect from the lowest tap; 3, melted ice cubes; 4, the toilet tank, not the bowl, only if it is clear and no cleaner was added, and treat it before drinking; 5, the liquid in canned fruit and vegetables. Never drink, marked with a cross: the toilet bowl, radiators and the heating boiler, and a waterbed. A pool or spa, marked with a warning triangle, is for washing only, not for drinking. To drain the water heater: turn the power or gas off, close the cold water inlet, open a hot tap, then drain from the valve at the bottom.</desc>
+  <desc id="c1p6-d">A two-floor house cut open. Safe sources, marked with a check: 1, the water heater (the tank for your taps, not the heating system); 2, the water in the pipes: open the highest tap to let air in, then collect from the lowest tap; 3, melted ice cubes; 4, the toilet tank, not the bowl, only if it is clear and no cleaner was added, and treat it before drinking; 5, the liquid in canned fruit and vegetables. Never drink, marked with a cross: the toilet bowl, radiators and the heating boiler, and a waterbed. A pool or spa, marked with a warning triangle, is for washing only, not for drinking. To drain the water heater: turn the power or gas off, close the cold water inlet, open a hot tap, then drain from the valve at the bottom. Warning: the water can be hot enough to scald, so an adult does this.</desc>
   <defs>
     <g id="c1p6-ok">
       <circle r="12" fill="var(--ok)" stroke="var(--card)" stroke-width="2"/>
@@ -210,8 +210,15 @@
     </g>
   </g>
 
-  <!-- ===== Notes ===== -->
+  <!-- Scald warning for the drain strip -->
   <g font-family="var(--font-body)" fill="var(--ink)">
+    <path d="M22 768 L38 796 H6 Z" fill="var(--warn)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="22" y="792" text-anchor="middle" font-size="16" font-weight="700" fill="var(--warn-ink)">!</text>
+    <text x="48" y="788" font-size="17"><tspan font-weight="700">Hot!</tspan> The water can scald. <tspan font-weight="700">An adult does this.</tspan></text>
+  </g>
+
+  <!-- ===== Notes ===== -->
+  <g font-family="var(--font-body)" fill="var(--ink)" transform="translate(0 34)">
     <path d="M22 778 L38 806 H6 Z" fill="var(--warn)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
     <text x="22" y="802" text-anchor="middle" font-size="16" font-weight="700" fill="var(--warn-ink)">!</text>
     <text x="48" y="792" font-size="16"><tspan font-weight="700">Toilet tank (4):</tspan> only if clear and</text>

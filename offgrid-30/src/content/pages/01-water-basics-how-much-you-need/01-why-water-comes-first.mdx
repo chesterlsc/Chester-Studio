@@ -9,9 +9,9 @@ tags: [water, priority, body water, survival, dehydration, germs]
 visual:
   type: svg
   alt: "An adult and a baby filled with water: babies are about 75% water, older adults about 55%. Water keeps you cool, cushions joints, protects the spinal cord and carries waste out. Most people die in 3–7 days without it."
-sources: [mlp-water, popkin2010, cdc-drinks, mlp-dehyd-ency, rc-foodwater, fema-ayr, who-hum, who-san, who-dw, ready-water]
+sources: [mlp-water, popkin2010, cdc-drinks, mlp-dehyd-ency, rc-foodwater, fema-ayr, who-hum, who-san, who-dw, ready-water, cdc-safe]
 seeAlso: ["1.2", "1.3", "1.6", "4.1", "4.3"]
-status: draft
+status: checked
 lastChecked: 2026-11-14
 ---
 import BodyWater from '../../../components/diagrams/ch01/BodyWater.astro';
@@ -20,7 +20,7 @@ import BodyWater from '../../../components/diagrams/ch01/BodyWater.astro';
   caption="Your body is mostly water. Most people die in 3–7 days without it."
   legend={[
     { swatch: 'var(--part-1)', text: 'Water in the body' },
-    { num: '3', text: 'Days without water' },
+    { num: '3–7', text: 'Days most people live without water' },
   ]}
 >
   <BodyWater />
@@ -29,7 +29,7 @@ import BodyWater from '../../../components/diagrams/ch01/BodyWater.astro';
 <DoDont
   do={[
     'Plan <b>water</b> first, before food',
-    'Get <b>enough</b> water first, then make it safe',
+    'Collect <b>enough</b> water first, then make it safe to drink',
     'Keep toilets and hands <b>clean</b> too',
     'Treat any water you are <b>unsure</b> of',
   ]}
