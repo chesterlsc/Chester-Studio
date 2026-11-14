@@ -143,6 +143,8 @@ const { prev, next } = neighbours(id);
     .ph { margin: 0 0 1rem; }
     .ph__band { background: none; color: #000; border-bottom: 2px solid #000; padding: 0 0 .25rem; }
     .ph__main { background: none; padding: .5rem 0; }
-    .page-body { display: block; }
+    .page-body { display: flow-root; }
+    .page-body > :global(.b-visual) { float: right; width: 82mm; margin: 0 0 4mm 6mm; position: static; }
+    .page-body > :global(*) { margin-bottom: 4mm; }
   }
 </style>

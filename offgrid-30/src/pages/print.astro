@@ -86,6 +86,7 @@ const today = new Date().toISOString().slice(0, 10);
   .pp__why { font-weight: 700; margin-bottom: var(--s2); padding-bottom: var(--s1); border-bottom: 3px solid var(--accent); }
   .pp__body > :global(*) { margin-bottom: var(--s3); }
   .pp__body :global(.b-visual) { break-inside: avoid; }
+  .pp__body :global(.ba) { break-inside: avoid; }
   .pp__see { font-size: 1rem; color: var(--ink-2); border-top: 1px solid var(--rule); padding-top: .5rem; }
   @media print {
     .print-book { max-width: none; padding: 0; }
@@ -94,5 +95,25 @@ const today = new Date().toISOString().slice(0, 10);
     .pp__band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .cover__parts li { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .pp__body :global(.mv__art), .pp__body :global(.ba__pane), .pp__body :global(.m3d__stage) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pp { padding-top: 0; }
+    .pp__head h2 { font-size: 22pt; margin: 2mm 0 1mm; }
+    .pp__why { margin-bottom: 3mm; padding-bottom: 2mm; }
+    .pp__body { display: flow-root; }
+    .pp__body > :global(*) { margin-bottom: 4mm; }
+    /* Field-guide layout: main visual in a right column, text flows beside it */
+    .pp__body > :global(.b-visual) { float: right; width: 82mm; margin: 0 0 4mm 6mm; }
+    .pp__body :global(.mv) { padding: 2mm; }
+    .pp__body :global(.mv__art svg) { max-height: 150mm; width: 100%; }
+    .pp__body :global(.legend) { margin-top: 2mm; padding: 2mm; }
+    .pp__body :global(.legend ul) { grid-template-columns: 1fr 1fr; gap: 1mm 3mm; }
+    .pp__body :global(.legend li) { font-size: 8.5pt; }
+    .pp__body :global(.b-dodont) { grid-template-columns: 1fr; gap: 2mm; }
+    .pp__body :global(.dd) { padding: 2mm 3mm; }
+    .pp__body :global(.dd li) { padding: 1mm 0; }
+    .pp__body :global(.step) { padding-bottom: 1.5mm; }
+    .pp__body :global(.strip) { display: none; }
+    .pp__body :global(.need li) { padding: 1.5mm 0; }
+    .pp__body :global(.pov) { padding: 3mm 4mm; }
+    .pp__body :global(.b-scenario), .pp__body :global(.b-need), .pp__body :global(.callout) { break-inside: avoid; }
   }
 </style>

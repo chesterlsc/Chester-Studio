@@ -453,5 +453,9 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
     .wc { border-width: 1.5px; }
     .wc__quick summary::before { display: none; }
     .wc__quick::details-content { content-visibility: visible; display: block; }
+    /* Paper: the live tool can't be used, so print only the quick table. */
+    .wc__notes, .wc__result, .wc__jugrow, .wc__headicon { display: none !important; }
+    .wc__tablewrap { overflow: visible; }
+    .wc table { width: 100%; font-size: 9pt; }
   }
 </style>

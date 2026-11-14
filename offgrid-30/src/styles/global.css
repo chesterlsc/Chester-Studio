@@ -113,7 +113,7 @@ a:hover { text-decoration-thickness: 3px; }
     color-scheme: light;
   }
   @page { margin: 14mm 12mm; }
-  body { font-size: 11.5pt; background: #fff; }
+  body { font-size: 10.5pt; line-height: 1.4; background: #fff; }
   .no-print, .topbar, .page-nav, [data-heavy] { display: none !important; }
   details > *:not(summary) { display: block !important; }
   details summary::marker { content: ''; }

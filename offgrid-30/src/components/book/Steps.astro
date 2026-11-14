@@ -52,5 +52,6 @@ const strip = steps.filter((s) => s.icon && s.label);
   .step__more { flex: none; display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--rule-strong); color: var(--ink-2); transition: transform .2s; }
   details[open] .step__more { transform: rotate(180deg); }
   summary:hover .step__more { border-color: var(--ink); color: var(--ink); }
+  @media print { .step__more { display: none; } .step__detail { padding: 1mm 3mm; } }
   .step__detail { padding: .75rem 1rem; margin-top: .25rem; background: var(--accent-tint); border-radius: var(--radius-sm); line-height: 1.5; }
 </style>
