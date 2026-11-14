@@ -1,7 +1,7 @@
 ---
 // 1.7 main visual: where the main water line enters the house — house valve (use) vs street valve (don't) + winter outdoor-tap inset.
 ---
-<svg class="diagram" viewBox="0 0 520 790" role="img" aria-labelledby="c1p7-t c1p7-d">
+<svg class="diagram" viewBox="0 0 520 846" role="img" aria-labelledby="c1p7-t c1p7-d">
   <title id="c1p7-t">Find and test your home's main water valve</title>
   <desc id="c1p7-d">The water line comes from the street, under the ground, into the house. Inside the house, where the line comes through the wall, is the house main valve, marked with a check: use this one. Find it and hang a tag on it that says MAIN WATER. Test it now: it may be rusted open or only close part way. Shutting it traps water in your water heater and toilet tanks, and keeps dirty water out, because broken lines can pollute your water. Outside, the street or curb valve in a cement box, marked with a cross, needs a special tool. Winter inset: close the inside valve that feeds the outdoor tap, then open the outdoor tap so the pipe can drain.</desc>
   <defs>
@@ -16,15 +16,15 @@
   </defs>
 
   <!-- ===== Soil + ground ===== -->
-  <rect x="0" y="230" width="520" height="210" fill="var(--part-3-tint)"/>
+  <rect x="0" y="230" width="520" height="232" fill="var(--part-3-tint)"/>
   <!-- House: ground floor + basement -->
   <path d="M220 70 L370 14 L520 70" fill="var(--card-2)" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"/>
   <rect x="228" y="70" width="300" height="160" fill="var(--card)" stroke="var(--ink)" stroke-width="3.5"/>
-  <rect x="234" y="230" width="290" height="170" fill="var(--card)"/>
-  <rect x="222" y="230" width="12" height="176" fill="var(--card-2)" stroke="var(--ink)" stroke-width="3"/>
-  <path d="M222 406 H520" stroke="var(--ink)" stroke-width="5"/>
+  <rect x="234" y="230" width="290" height="190" fill="var(--card)"/>
+  <rect x="222" y="230" width="12" height="190" fill="var(--card-2)" stroke="var(--ink)" stroke-width="3"/>
+  <path d="M222 420 H520" stroke="var(--ink)" stroke-width="5"/>
   <path d="M0 230 H520" stroke="var(--ink)" stroke-width="3.5"/>
-  <text x="510" y="392" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--ink-2)">Basement</text>
+  <text x="244" y="408" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--ink-2)">Basement</text>
 
   <!-- Street + curb -->
   <path d="M0 222 H150 V230" fill="none" stroke="var(--ink)" stroke-width="3"/>
@@ -35,13 +35,13 @@
   <path d="M0 370 H296 V258 H484 V300 M412 258 V188" fill="none" stroke="var(--ink)" stroke-width="13" stroke-linejoin="round"/>
   <path d="M0 370 H296 V258 H484 V300 M412 258 V188" fill="none" stroke="var(--part-1)" stroke-width="7" stroke-linejoin="round"/>
   <!-- crack + dirt -->
-  <path d="M64 362 L72 370 L62 378" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M58 361 L66 366 L60 372 L68 379 L78 379 L70 372 L76 366 L68 361 Z" fill="var(--part-3-tint)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
   <g fill="var(--part-3-ink)">
     <circle cx="56" cy="394" r="4"/><circle cx="74" cy="398" r="5"/><circle cx="66" cy="412" r="4"/><circle cx="84" cy="384" r="3.5"/><circle cx="48" cy="382" r="3"/>
   </g>
   <g font-family="var(--font-body)" fill="var(--ink)">
-    <text x="12" y="436" font-size="16"><tspan font-weight="700">Why:</tspan> broken lines can</text>
-    <text x="12" y="456" font-size="16">pollute your water</text>
+    <text x="12" y="434" font-size="16"><tspan font-weight="700">Why:</tspan> broken lines can</text>
+    <text x="12" y="454" font-size="16">pollute your water</text>
   </g>
 
   <!-- Curb box (street valve) -->
@@ -77,7 +77,8 @@
   <text x="344" y="297" font-family="var(--font-body)" font-size="20" font-weight="700" fill="var(--ink)">Use this one</text>
 
   <!-- Water heater (basement) -->
-  <rect x="456" y="300" width="56" height="98" rx="12" fill="#B9C2CA" stroke="var(--ink)" stroke-width="3"/>
+  <rect x="456" y="300" width="56" height="112" rx="12" fill="#B9C2CA" stroke="var(--ink)" stroke-width="3"/>
+  <text x="512" y="446" text-anchor="end" font-family="var(--font-body)" font-size="15" font-weight="700" fill="var(--ink)">Water heater</text>
   <!-- Toilet tank (ground floor) -->
   <rect x="388" y="150" width="50" height="36" rx="4" fill="var(--part-1-tint)" stroke="var(--ink)" stroke-width="2.5"/>
   <path d="M384 192 H442 Q442 216 418 222 L420 230 H404 L406 222 Q384 216 384 192 Z" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round"/>
@@ -87,7 +88,7 @@
 
   <!-- Step numbers on the drawing -->
   <g font-family="var(--font-head)" font-weight="700" font-size="20" text-anchor="middle">
-    <circle cx="436" cy="388" r="15" fill="var(--accent)"/><text x="436" y="395" fill="var(--on-accent)">1</text>
+    <circle cx="336" cy="398" r="15" fill="var(--accent)"/><text x="336" y="405" fill="var(--on-accent)">1</text>
     <circle cx="256" cy="276" r="15" fill="var(--accent)"/><text x="256" y="283" fill="var(--on-accent)">2</text>
     <circle cx="362" cy="214" r="15" fill="var(--accent)"/><text x="362" y="221" fill="var(--on-accent)">3</text>
   </g>
@@ -95,20 +96,19 @@
   <!-- ===== Callouts ===== -->
   <g font-family="var(--font-body)" fill="var(--ink)">
     <g font-family="var(--font-head)" font-weight="700" font-size="20" text-anchor="middle">
-      <circle cx="252" cy="434" r="15" fill="var(--accent)"/><text x="252" y="441" fill="var(--on-accent)">1</text>
-      <circle cx="252" cy="476" r="15" fill="var(--accent)"/><text x="252" y="483" fill="var(--on-accent)">2</text>
-      <circle cx="252" cy="540" r="15" fill="var(--accent)"/><text x="252" y="547" fill="var(--on-accent)">3</text>
+      <circle cx="26" cy="494" r="15" fill="var(--accent)"/><text x="26" y="501" fill="var(--on-accent)">1</text>
+      <circle cx="26" cy="536" r="15" fill="var(--accent)"/><text x="26" y="543" fill="var(--on-accent)">2</text>
+      <circle cx="26" cy="600" r="15" fill="var(--accent)"/><text x="26" y="607" fill="var(--on-accent)">3</text>
     </g>
-    <text x="276" y="440" font-size="17" font-weight="700">Find it and tag it</text>
-    <text x="276" y="482" font-size="17" font-weight="700">Test it now:</text>
-    <text x="276" y="502" font-size="16">it may be rusted open or</text>
-    <text x="276" y="522" font-size="16">only close part way</text>
-    <text x="276" y="546" font-size="17" font-weight="700">Shut it to trap water</text>
-    <text x="276" y="566" font-size="16">in your heater and toilet tanks</text>
+    <text x="52" y="500" font-size="17"><tspan font-weight="700">Find it and tag it.</tspan> Show everyone at home.</text>
+    <text x="52" y="542" font-size="17"><tspan font-weight="700">Test it now:</tspan> it may be rusted open</text>
+    <text x="52" y="564" font-size="17">or only close part way.</text>
+    <text x="52" y="606" font-size="17"><tspan font-weight="700">Shut it to trap water</tspan> in your heater</text>
+    <text x="52" y="628" font-size="17">and toilet tanks.</text>
   </g>
 
   <!-- ===== Winter inset ===== -->
-  <g transform="translate(8 592)" font-family="var(--font-body)" fill="var(--ink)">
+  <g transform="translate(8 648)" font-family="var(--font-body)" fill="var(--ink)">
     <rect width="504" height="190" rx="12" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/>
     <text x="16" y="32" font-family="var(--font-head)" font-weight="700" font-size="23">Winter: outdoor tap</text>
     <!-- snowflake -->
@@ -135,7 +135,6 @@
     </g>
     <g font-family="var(--font-head)" font-weight="700" font-size="17" text-anchor="middle">
       <circle cx="30" cy="148" r="12" fill="var(--ink)"/><text x="30" y="154" fill="var(--paper)">1</text>
-      <circle cx="342" cy="148" r="0"/>
     </g>
     <text x="48" y="154" font-size="17" font-weight="700">Close the inside valve</text>
     <path d="M200 136 V122" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>

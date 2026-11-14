@@ -84,20 +84,19 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
     <!-- Result -->
     <div class="wc__result" data-result>
       <p class="wc__kicker wc__kicker--ink">You need to store</p>
-      <div class="wc__totals" aria-hidden="true">
+      <div class="wc__totals" data-totals aria-hidden="true">
         <p><span class="wc__big" data-out="gal">56</span><span class="wc__bigunit">gal</span></p>
-        <p class="wc__eq">=</p>
-        <p><span class="wc__big" data-out="l">212</span><span class="wc__bigunit">L</span></p>
+        <p><span class="wc__eq">=</span><span class="wc__big" data-out="l">212</span><span class="wc__bigunit">L</span></p>
       </div>
       <p class="wc__perday" aria-hidden="true">Per day: <b data-out="perday">4 gal (15 L)</b></p>
       <ul class="wc__tiles" role="list" aria-hidden="true">
         <li>
           <svg viewBox="0 0 40 48" width="34" height="41" focusable="false"><path d="M13 4 H27 V10 Q35 12 35 20 V42 Q35 45 32 45 H8 Q5 45 5 42 V20 Q5 12 13 10 Z" fill="var(--part-1-tint)" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"/><path d="M6.5 24 H33.5 V42 Q33.5 43.5 32 43.5 H8 Q6.5 43.5 6.5 42 Z" fill="var(--part-1)"/></svg>
-          <span><b class="wc__tilenum" data-out="jugs">12</b> jugs <small>of 5 gal (19 L)</small></span>
+          <span><b class="wc__tilenum" data-out="jugs">12</b> <span data-out="jugword">jugs</span> <small>of 5 gal (19 L)</small></span>
         </li>
         <li>
           <svg viewBox="0 0 40 48" width="34" height="41" focusable="false"><rect x="5" y="4" width="30" height="41" rx="4" fill="var(--part-1-tint)" stroke="var(--ink)" stroke-width="3"/><path d="M5 17 H35 M5 32 H35" stroke="var(--ink)" stroke-width="3"/><rect x="11" y="7" width="7" height="4" rx="1" fill="var(--ink)"/></svg>
-          <span><b class="wc__tilenum" data-out="drums">2</b> drums <small>of 55 gal (208 L)</small></span>
+          <span><b class="wc__tilenum" data-out="drums">2</b> <span data-out="drumword">drums</span> <small>of 55 gal (208 L)</small></span>
         </li>
       </ul>
       <div class="wc__jugrow" data-jugrow aria-hidden="true"></div>
@@ -154,6 +153,9 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
   const JUG_MAX = 30;
 
   const fmt = (n: number) => (n >= 10 ? Math.round(n).toLocaleString('en-US') : String(Math.round(n * 10) / 10));
+  // Totals: one decimal below 100 so small pet amounts still show (e.g. 61.4 gal).
+  const fmtTotal = (n: number) => (n >= 100 ? Math.round(n).toLocaleString('en-US') : String(Math.round(n * 10) / 10));
+  const plural = (n: number, one: string, many: string) => `${n.toLocaleString('en-US')} ${n === 1 ? one : many}`;
   const num = (v: string, min: number, max: number, fallback: number) => {
     const n = parseFloat(v);
     return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : fallback;
@@ -171,6 +173,7 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
     const out = (k: string) => root.querySelector<HTMLElement>(`[data-out="${k}"]`)!;
     const jugrow = root.querySelector<HTMLElement>('[data-jugrow]')!;
     const say = root.querySelector<HTMLElement>('[data-say]')!;
+    const totalsEl = root.querySelector<HTMLElement>('[data-totals]')!;
     const quick = root.querySelector<HTMLDetailsElement>('[data-quick]');
 
     const daysRadio = () => form.querySelector<HTMLInputElement>('[name=days]:checked')!;
@@ -214,11 +217,14 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
       const jugs = Math.ceil(gal1 / 5 - 1e-9);
       const drums = Math.ceil(gal1 / 55 - 1e-9);
 
-      out('gal').textContent = fmt(totalGal);
+      out('gal').textContent = fmtTotal(totalGal);
       out('l').textContent = Math.round(totalL).toLocaleString('en-US');
+      totalsEl.classList.toggle('wc__totals--long', (out('gal').textContent! + out('l').textContent!).length > 8);
       out('perday').textContent = `${fmt(totalGal / d)} gal (${fmt(totalL / d)} L)`;
       out('jugs').textContent = jugs.toLocaleString('en-US');
       out('drums').textContent = drums.toLocaleString('en-US');
+      out('jugword').textContent = jugs === 1 ? 'jug' : 'jugs';
+      out('drumword').textContent = drums === 1 ? 'drum' : 'drums';
       out('split').textContent = petL > 0
         ? `People ${fmt(peopleGal)} gal + pets ${fmt(petL / GAL_L)} gal`
         : `${p} ${p === 1 ? 'person' : 'people'} × ${d} ${d === 1 ? 'day' : 'days'} × ${hot.checked ? '2 gal (hot)' : '1 gal'}`;
@@ -226,7 +232,7 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
       const shown = Math.min(jugs, JUG_MAX);
       jugrow.innerHTML = '<i></i>'.repeat(shown) + (jugs > JUG_MAX ? `<b>+${(jugs - JUG_MAX).toLocaleString('en-US')}</b>` : '');
 
-      say.textContent = `Store ${fmt(totalGal)} gallons, which is ${Math.round(totalL).toLocaleString('en-US')} litres: ${jugs} jugs of 5 gallons or ${drums} drums of 55 gallons.`;
+      say.textContent = `Store ${fmtTotal(totalGal)} gallons, which is ${Math.round(totalL).toLocaleString('en-US')} litres: ${plural(jugs, 'jug', 'jugs')} of 5 gallons or ${plural(drums, 'drum', 'drums')} of 55 gallons.`;
 
       if (save) {
         try {
@@ -267,7 +273,13 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
     form.addEventListener('submit', (e) => e.preventDefault());
 
     live.hidden = false;
-    if (quick) quick.open = false;
+    // Fold the quick table on screen (the calculator replaces it); always open it for printing.
+    if (quick) {
+      quick.open = false;
+      let wasOpen = false;
+      addEventListener('beforeprint', () => { wasOpen = quick.open; quick.open = true; });
+      addEventListener('afterprint', () => { quick.open = wasOpen; });
+    }
     update(false);
   });
 </script>
@@ -385,7 +397,9 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
     font-variant-numeric: tabular-nums;
   }
   .wc__bigunit { font-family: var(--font-head); font-weight: 700; font-size: 1.75rem; margin-left: .2rem; }
-  .wc__eq { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--ink-2); }
+  .wc__eq { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--ink-2); margin-right: .5rem; }
+  .wc__totals--long .wc__big { font-size: 2.5rem; }
+  .wc__totals--long .wc__bigunit { font-size: 1.375rem; }
   .wc__perday { font-size: 1.125rem; }
   .wc__tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: .6rem; margin-top: .85rem; }
   .wc__tiles li {
@@ -417,6 +431,13 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
     min-height: var(--tap); padding: .75rem 1rem; cursor: pointer;
     font-family: var(--font-head); font-weight: 700; font-size: 1.375rem;
   }
+  .wc__quick summary { list-style: none; }
+  .wc__quick summary::-webkit-details-marker { display: none; }
+  .wc__quick summary::before {
+    content: ''; flex: none; align-self: center; width: .55rem; height: .55rem; margin-right: .2rem;
+    border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink); transform: rotate(-45deg);
+  }
+  .wc__quick[open] summary::before { transform: rotate(45deg); }
   .wc__quick summary span { font-family: var(--font-body); font-weight: 400; font-size: 1rem; color: var(--ink-2); }
   .wc__tablewrap { padding: 0 .75rem; overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
@@ -430,6 +451,7 @@ const litres = (gal: number) => Math.round(gal * GAL_L).toLocaleString('en-US');
   @media (prefers-reduced-motion: reduce) { .wc__switch::after { transition: none; } }
   @media print {
     .wc { border-width: 1.5px; }
-    .wc__quick summary { list-style: none; }
+    .wc__quick summary::before { display: none; }
+    .wc__quick::details-content { content-visibility: visible; display: block; }
   }
 </style>
