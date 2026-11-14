@@ -1,0 +1,71 @@
+---
+id: "1.9"
+chapter: 1
+page: 9
+section: water
+title: "When water runs low: what to do"
+why: "Drink what you need today. Then save body water and find more for tomorrow."
+tags: [rationing, low water, shade, salty food, conserve, priority]
+visual:
+  type: svg
+  alt: "A step-by-step priority flow for low water: drink today's need and never less than 1 quart (about 1 L); drink known-safe water first; use untreated water for washing only; save body water with shade, rest and watery food; then find more for tomorrow."
+sources: [ready-water, fema-ayr, rc-foodwater, nhs-heat, who-hum, cdc-find]
+seeAlso: ["1.3", "1.6", "3.1", "4.3", "4.4", "49.4"]
+status: draft
+lastChecked: 2026-11-14
+---
+import LowWaterPlan from '../../../components/diagrams/ch01/LowWaterPlan.astro';
+
+<MainVisual
+  caption="Water running low: drink first, save body water, then find more."
+  legend={[
+    { num: '1', text: 'Do these in order' },
+    { icon: 'caution', text: 'Hard limit: never go below this', tone: 'warn' },
+    { icon: 'dont', text: "Don't do this", tone: 'no' },
+  ]}
+>
+  <LowWaterPlan />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Drink what you <b>need</b> today',
+    'Drink water you <b>know</b> is safe first',
+    'Rest in the <b>shade</b> from 11 am to 3 pm',
+    'Eat canned food with lots of <b>liquid</b>',
+  ]}
+  dont={[
+    'Ration drinking water unless <b>officials</b> say to',
+    'Drink less than 1 quart (<b>about 1 L</b>) a day',
+    'Eat <b>salty</b> food — it makes you thirsty',
+    'Count fizzy drinks, <b>alcohol</b> or coffee as water',
+  ]}
+/>
+
+<Steps heading="Stretch your water" steps={[
+  { icon: 'water', label: 'Drink', title: 'Let everyone drink what they need today.', detail: 'Never less than 1 quart (4 cups, about 1 L) per person a day.' },
+  { icon: 'check', label: 'Safe', title: 'Drink known-safe water first. Save doubtful water for later.', detail: "Can't treat it? Put off drinking it as long as you can. But don't get dehydrated (see 1.3)." },
+  { icon: 'hygiene', label: 'Wash', title: 'Use untreated water for washing and laundry only.', detail: 'Treat it before you drink it (see 4.3 and 4.4).' },
+  { icon: 'sun', label: 'Shade', title: 'Rest and stay cool. Stay in the shade from 11 am to 3 pm.', detail: 'Less activity and staying cool lower how much water your body needs.' },
+  { icon: 'food', label: 'Eat', title: 'Skip salty food. Eat canned food with lots of liquid.', detail: 'Salt-free crackers and whole-grain cereal are good choices too.' },
+  { icon: 'search', label: 'Find', title: 'Look for more water for tomorrow.', detail: 'Check the hidden water in your home (see 1.6). Treat any water from outside (see 4.3).' },
+]} />
+
+<NeedList items={[
+  { icon: 'measure', item: 'A cup to track how much you drink', alt: 'A bottle with lines marked on it.' },
+  { icon: 'food', item: 'Canned food with liquid', alt: 'Salt-free crackers or whole-grain cereal.' },
+  { icon: 'sun', item: 'A cool, shaded place to rest', alt: 'Shade from a tree, tarp or sheet.' },
+  { icon: 'pot', item: 'A way to treat new water', alt: 'A metal pot and heat to boil it (see 4.3).' },
+]} />
+
+<Callout type="danger" title="Get help now if someone:">
+  Is confused, faints, or has no pee. Has a fast heartbeat or fast breathing. See 1.3 for all the signs.
+</Callout>
+
+<Scenario when="Day 9, the jugs are almost empty" move="Drink today's need, stay cool and still, then find more for tomorrow.">
+  You have 2 jugs left for 3 people. It is hot. Your partner wants to cut everyone to a few sips.
+
+  You don't. Everyone drinks what they need today. You save the creek water for washing. You eat canned peaches, juice and all. At noon, you rest in the shade.
+
+  At dusk, you go out to find more water.
+</Scenario>

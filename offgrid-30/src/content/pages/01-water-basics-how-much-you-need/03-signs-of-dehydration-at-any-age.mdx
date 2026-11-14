@@ -1,0 +1,76 @@
+---
+id: "1.3"
+chapter: 1
+page: 3
+section: water
+title: "Signs of dehydration at any age"
+why: "Thirst comes late. Check pee color and other signs to catch dehydration early."
+tags: [dehydration, thirst, urine, pee color, babies, older adults, red flags]
+visual:
+  type: svg
+  alt: "A person with dehydration signs labeled, a baby panel (sunken soft spot, few or no tears, no wet diaper for 3+ hours, unusually sleepy), and a get-help-now strip of danger signs."
+sources: [nhs-dehyd, nhs-drinks, mlp-dehyd-ency, mlp-dehyd-topic, mlp-water, popkin2010, cdc-yb-heat]
+seeAlso: ["1.4", "52.2", "65.7", "49.4", "71.2"]
+status: draft
+lastChecked: 2026-11-14
+---
+import DehydrationSigns from '../../../components/diagrams/ch01/DehydrationSigns.astro';
+import PeeChart from '../../../components/diagrams/ch01/PeeChart.astro';
+
+<MainVisual
+  caption="Know the signs in adults, kids and babies. Some mean: get help now."
+  legend={[
+    { icon: 'danger', text: 'Danger: get help now', tone: 'no' },
+  ]}
+>
+  <DehydrationSigns />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Check pee <b>color</b>, best in the morning',
+    'Drink so your pee stays <b>pale</b> yellow',
+    'Remind <b>older</b> adults to drink — thirst fades with age',
+    "Count a baby's <b>wet</b> diapers",
+  ]}
+  dont={[
+    'Wait for <b>thirst</b> — it comes late',
+    "Ignore a baby's <b>sunken</b> soft spot",
+    "Brush off <b>dizziness</b> on standing that won't go away",
+    'Leave a <b>confused</b> or very sleepy person alone',
+  ]}
+/>
+
+<Steps heading="Check for dehydration" steps={[
+  { icon: 'search', label: 'Pee', title: 'Look at the pee: pale is good, dark means drink now.', detail: 'Check in the morning. That is when color is most accurate. Peeing less often than usual is also a sign.' },
+  { icon: 'hand', label: 'Ask', title: 'Ask about thirst, headache, dizziness and tiredness.', detail: 'Also check for a dry mouth, lips and tongue, and muscle cramps.' },
+  { icon: 'search', label: 'Look', title: 'Look for sunken eyes and dry, cool skin.', detail: 'Dry, shriveled skin, a fast heartbeat or fast breathing are signs of severe dehydration.' },
+  { icon: 'kids', label: 'Baby', title: "For a baby: check diapers, tears and the soft spot.", detail: 'Warning signs: no wet diaper for 3 hours or more, few or no tears, a sunken soft spot, or being unusually sleepy.' },
+  { icon: 'water', label: 'Drink', title: 'Mild signs? Drink more now, then check again.', detail: 'For a rehydration drink you can make at home, see 52.2.' },
+  { icon: 'danger', label: 'Help', title: 'Get help fast for confusion, fainting, no pee or fast breathing.', detail: 'Severe dehydration is a life-threatening emergency. Left untreated, it can cause seizures, brain damage or death.' },
+]} />
+
+<Callout type="tip" title="Check your pee in the morning.">
+  <PeeChart />
+  Aim for clear, pale yellow pee all day.
+</Callout>
+
+<NeedList items={[
+  { icon: 'water', item: 'Safe water to sip', alt: 'Water hidden in your home (see 1.6).' },
+  { icon: 'thermometer', item: 'A thermometer for fever', alt: 'Feel for hot skin. If unsure, get help.' },
+  { icon: 'time', item: 'A clock to time wet diapers', alt: 'Write down the time of each change.' },
+]} />
+
+<Callout type="danger" title="Get help now if someone:">
+  Is confused, faints, or has no pee. Has a fast heartbeat or fast breathing.
+  Has cold, pale, grey or blotchy skin, or is hard to wake. Has a fever over 102°F (39°C).
+  Is a baby whose soft spot sinks in.
+</Callout>
+
+<Scenario when="Day 6 without power, hot weather" move="Don't wait for thirst. Give regular drinks and check pee color each morning.">
+  Your dad is 78. He says he isn't thirsty, so he skips his water at lunch.
+
+  By evening he is tired and has a headache. This morning his pee was dark yellow.
+
+  You remember that thirst fades with age. You bring him small cups of water all evening. At dawn, you check his pee again. It is paler.
+</Scenario>

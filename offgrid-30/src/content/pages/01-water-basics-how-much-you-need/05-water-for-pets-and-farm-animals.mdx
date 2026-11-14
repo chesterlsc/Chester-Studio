@@ -1,0 +1,70 @@
+---
+id: "1.5"
+chapter: 1
+page: 5
+section: water
+title: "Water for pets and farm animals"
+why: "Animals need water every day too. Heat and milking raise their needs."
+tags: [pets, dogs, cats, rabbits, livestock, horses, cattle, goats, sheep, pigs, chickens]
+visual:
+  type: svg
+  alt: "Bar chart of daily water: horse about 30 L (7.9 gal), beef cow 22 L, milking goat in heat 15 L, goat in heat 7.4 L, pig 7 L, sheep 2.2 L, chicken 0.15–0.2 L. Pets by body weight: dog 63–73 mL/kg, cat 50–60 mL/kg, rabbit about 120 mL/kg."
+sources: [ready-pets, fema-cert-animal, zanghi2018, kosmal2025, freeman2021, blake2026, perez2023, schale2023, elsabry2023, suckow-rabbit]
+seeAlso: ["74.3", "75.4", "76.4", "15.5", "1.8"]
+status: draft
+lastChecked: 2026-11-14
+---
+import AnimalWater from '../../../components/diagrams/ch01/AnimalWater.astro';
+
+<MainVisual
+  caption="Daily water for common animals. Averages from studies: real needs vary."
+  legend={[
+    { swatch: 'var(--part-1)', text: 'Water per animal, per day' },
+    { text: 'Dashed bar: extra for a nursing mare' },
+    { text: 'Each grid line = 10 L (2.6 gal)' },
+  ]}
+>
+  <AnimalWater />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Store pet water for <b>2 weeks</b> at home',
+    'Pack <b>3 days</b> of pet water if you leave',
+    'Plan <b>1–2 weeks</b> for livestock, more for heat',
+    'Give <b>milking</b> animals extra water',
+  ]}
+  dont={[
+    'Leave animals out of your water <b>math</b>',
+    'Forget that <b>dry</b> food means more drinking',
+    'Rely on an electric <b>well</b> pump alone',
+    'Take animals somewhere with no <b>water</b>',
+  ]}
+/>
+
+<Steps heading="Plan water for your animals" steps={[
+  { icon: 'pets', label: 'List', title: 'List every animal and its rough weight.', detail: 'Pets are planned by body weight, in kg or lb.' },
+  { icon: 'measure', label: 'Daily', title: "Find each animal's daily need in the chart.", detail: 'Dog on dry food: 63–73 mL/kg (1–1.1 fl oz/lb). Cat: 50–60 mL/kg (0.8–0.9 fl oz/lb). Rabbit: about 120 mL/kg (1.8 fl oz/lb).' },
+  { icon: 'heat', label: 'Extra', title: 'Add more for hot days, work and milking.', detail: 'Sheep drink about twice as much in warm weather. Nursing mares need 37–74% more than usual.' },
+  { icon: 'time', label: 'Days', title: 'Multiply by days: pets 2 weeks, livestock 1–2 weeks.', detail: 'Leaving home? Take 3 days of water for each pet. Make sure the place you go has water for livestock.' },
+  { icon: 'fire', label: 'Backup', title: 'Plan a way to get more: melt snow, or power a well.', detail: 'FEMA: keep a camp stove and 2 gallons (7.6 L) or more of fuel. Or a generator and fuel for the well pump.' },
+]} />
+
+<NeedList items={[
+  { icon: 'pets', item: 'A water bowl for each pet', alt: 'Any clean, heavy dish that will not tip.' },
+  { icon: 'jar', item: 'Stored water just for animals', alt: 'Add their share to your own jugs (see 1.8).' },
+  { icon: 'fire', item: 'Camp stove and fuel to melt snow or ice', alt: 'A generator and fuel to run a well pump.' },
+  { icon: 'material', item: 'Big tubs or troughs for livestock', alt: 'Any large, clean container.' },
+]} />
+
+<Callout type="tip" title="Example: a 20 kg (44 lb) dog on dry food">
+  20 × 63–73 mL = about 1.3–1.5 L (0.3–0.4 gal) a day. For 2 weeks, store about 18–20 L (5 gal).
+</Callout>
+
+<Scenario when="Summer, day 5 without power" move="Count every animal in your water plan. Give milking animals and hot animals more.">
+  Your well pump runs on power, so it is silent. You have 2 milking goats and a dog.
+
+  In this heat, a milking goat can drink about 15 L (4 gal) a day. The pair needs about 30 L (8 gal). The dog needs more on top.
+
+  You fill their troughs from your stored barrels. Then you start the generator to run the well.
+</Scenario>

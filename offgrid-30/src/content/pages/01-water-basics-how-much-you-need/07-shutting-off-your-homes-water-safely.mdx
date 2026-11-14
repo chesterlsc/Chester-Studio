@@ -1,0 +1,70 @@
+---
+id: "1.7"
+chapter: 1
+page: 7
+section: water
+title: "Shutting off your home's water safely"
+why: "Broken lines can pollute your water. Closing the main valve keeps it safe."
+tags: [main valve, shut-off, water line, sewer, contamination, outdoor tap, freezing]
+visual:
+  type: svg
+  alt: "The main water line entering a house. Use the house valve, not the street valve at the curb, which needs a special tool. Tag it and test it. Closing it keeps dirty water out and traps water in the heater and toilet tanks. In winter, close the inside valve to an outdoor tap and open the outside tap to drain."
+sources: [ready-safety, cdc-find, fema-ayr, rc-foodwater, rc-frozen]
+seeAlso: ["1.6", "29.3", "30.5", "30.8", "2.9"]
+status: draft
+lastChecked: 2026-11-14
+---
+import MainValve from '../../../components/diagrams/ch01/MainValve.astro';
+
+<MainVisual
+  caption="Use the house valve ✓, not the street valve ✕. Tag it. Test it."
+  legend={[
+    { icon: 'do', text: 'Use this valve', tone: 'ok' },
+    { icon: 'dont', text: 'Not this one: needs a special tool', tone: 'no' },
+    { num: '1', text: 'Step number in the drawing' },
+  ]}
+>
+  <MainValve />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Find and <b>tag</b> your main valve now',
+    'Teach <b>everyone</b> at home how to close it',
+    'Test that it closes <b>all</b> the way',
+    'Keep it off until officials say water is <b>safe</b>',
+  ]}
+  dont={[
+    'Use the <b>street</b> valve at the curb',
+    'Wait for a disaster to look for the <b>valve</b>',
+    'Leave a rusted or stuck valve <b>unfixed</b>',
+    'Thaw frozen pipes with an open <b>flame</b>',
+  ]}
+/>
+
+<Steps heading="Shut off your water" steps={[
+  { icon: 'search', label: 'Find', title: 'Find the valve on the main water line where it enters your house.', detail: 'Use this house valve. The street valve in the cement box at the curb is very hard to turn. It needs a special tool.' },
+  { icon: 'bookmark', label: 'Tag', title: 'Tag it so anyone can find it fast.' },
+  { icon: 'hand', label: 'Test', title: 'Test it now: close it all the way, then open it again.', detail: 'It may be rusted open, or only close part way. Replace it if needed (see 29.3).' },
+  { icon: 'people', label: 'Teach', title: 'Show everyone in your home how to close it.' },
+  { icon: 'tool', label: 'Close', title: 'Hear of broken water or sewer lines? Turn the valve to closed.', detail: 'Close it too if local officials warn of a problem. Keep it shut until they say the water is safe to drink.' },
+  { icon: 'water', label: 'Keep', title: 'Know that this also traps water in your heater and toilet tanks.', detail: 'With the valve open, gravity can drain them. See 1.6 to use that water.' },
+]} />
+
+<NeedList items={[
+  { icon: 'bookmark', item: 'A tag or bright label', alt: 'Bright tape or a strip of cloth tied on.' },
+  { icon: 'book', item: 'A note of where the valve is', alt: 'A simple sketch kept with your emergency plan.' },
+  { icon: 'tool', item: 'A new valve, if yours sticks', alt: 'A plumber or a handy neighbor (see 29.3).' },
+]} />
+
+<Callout type="tip" title="Before a freeze: outdoor taps.">
+  Close the inside valve to each outdoor tap. Open the outdoor tap so it drains. Leave it open, so leftover water can expand without breaking the pipe.
+</Callout>
+
+<Scenario when="The night of a big storm" move="Close the house valve now. Keep it closed until officials say the water is safe.">
+  The radio says sewer and water lines broke across town. Your taps still run.
+
+  You go to the basement, to the valve with the orange tag. Last spring you tested it, so you know it turns. You close it all the way.
+
+  Now dirty water can't flow in. The water in your heater and toilet tanks stays in your house.
+</Scenario>

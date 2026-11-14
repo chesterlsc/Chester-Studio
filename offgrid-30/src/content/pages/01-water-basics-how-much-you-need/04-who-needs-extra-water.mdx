@@ -1,0 +1,70 @@
+---
+id: "1.4"
+chapter: 1
+page: 4
+section: water
+title: "Who needs extra water"
+why: "Heat, hard work, sickness, pregnancy and age all raise water needs."
+tags: [heat, hot weather, work, fever, diarrhea, pregnancy, breastfeeding, babies, older adults]
+visual:
+  type: svg
+  alt: "Cards showing who needs more water: heat can double needs, hard work in heat needs 1 cup every 15–20 minutes, fever or vomiting means drink early, pregnancy and breastfeeding need more, under-5s and over-65s are at higher risk, babies 6–12 months may have 4–8 oz a day, and too much plain water fast can harm."
+sources: [ready-water, fema-ayr, cdc-store, cdc-drinks, nhs-drinks, mlp-dehyd-ency, nhs-dehyd, nhs-heat, cdc-niosh-heat, cdc-yb-heat, cdc-infant, mlp-water]
+seeAlso: ["1.2", "1.3", "49.4", "52.2", "64.3", "65.7"]
+status: draft
+lastChecked: 2026-11-14
+---
+import ExtraWater from '../../../components/diagrams/ch01/ExtraWater.astro';
+
+<MainVisual
+  caption="Heat, hard work, sickness, pregnancy and age all mean more water."
+  legend={[
+    { num: '×2', text: 'Need can double' },
+    { icon: 'caution', text: 'Caution: too much, too fast can harm', tone: 'warn' },
+  ]}
+>
+  <ExtraWater />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Store <b>extra</b> water if you live somewhere hot',
+    'Hot work: 1 cup (237 mL) every <b>15–20</b> minutes',
+    'Give fluids <b>early</b> for fever, vomiting or diarrhea',
+    'Keep <b>feeding</b> a sick baby breast milk or formula',
+  ]}
+  dont={[
+    'Wait for <b>thirst</b> when working in heat',
+    'Count <b>alcohol</b> or caffeine drinks as water',
+    'Gulp huge amounts of <b>plain</b> water fast',
+    'Give a baby under 6 months <b>unboiled</b> water',
+  ]}
+/>
+
+<Steps heading="Plan extra water" steps={[
+  { icon: 'heat', label: 'Heat', title: 'In very hot weather, plan up to double the water.', detail: 'Very hot temperatures can double water needs. Sweat can reach 1 L (34 oz) an hour.' },
+  { icon: 'tool', label: 'Work', title: 'Working hard in heat? Drink 1 cup (237 mL) every 15–20 minutes.', detail: "Start before you feel thirsty. That is about 0.7–0.95 L (24–32 oz) an hour." },
+  { icon: 'medicine', label: 'Sick', title: 'Fever, vomiting or diarrhea? Drink plenty, before signs of dehydration.', detail: 'Watch children and older adults closely. For a rehydration drink, see 52.2.' },
+  { icon: 'women', label: 'Pregnant', title: 'Pregnant or breastfeeding? Store and drink more water.', detail: 'For breastfeeding, see 64.3.' },
+  { icon: 'elderly', label: 'Age', title: 'Watch under-5s and adults 65+ closely, most of all in heat.', detail: 'They have a higher risk of dehydration. Remind them to drink.' },
+  { icon: 'kids', label: 'Baby', title: 'Babies 6–12 months may have 4–8 oz (120–240 mL) of water a day.', detail: 'Baby sick? Keep up breast milk or formula, in small amounts more often. Under 6 months: boil any extra water, then cool it.' },
+]} />
+
+<NeedList items={[
+  { icon: 'water', item: 'Extra stored water for hot months', alt: 'Use the water hidden in your home (see 1.6).' },
+  { icon: 'measure', item: 'A cup that holds 1 cup (237 mL)', alt: 'Any cup. Fill it to the same line each time.' },
+  { icon: 'time', item: 'A timer for drink breaks', alt: 'Drink at every rest break.' },
+  { icon: 'thermometer', item: 'A thermometer for fever', alt: 'Feel for hot skin. Watch for the signs on 1.3.' },
+]} />
+
+<Callout type="caution" title="Too much plain water, fast, can harm.">
+  Drinking far too much can cause low blood salt (hyponatremia). Drink often. Check pee color. Don't force huge amounts.
+</Callout>
+
+<Scenario when="Week 2, a heat wave" move="Hard work in heat: 1 cup (237 mL) every 15–20 minutes, starting before thirst.">
+  It is mid-afternoon and very hot. Your teen is splitting wood in the yard. They haven't had a drink since lunch. They say they aren't thirsty.
+
+  You call a break in the shade. You hand them a full cup of water and set a timer.
+
+  Every 15 minutes, they stop and drink another cup.
+</Scenario>

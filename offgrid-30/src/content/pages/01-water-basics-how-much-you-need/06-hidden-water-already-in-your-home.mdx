@@ -1,0 +1,88 @@
+---
+id: "1.6"
+chapter: 1
+page: 6
+section: water
+title: "Hidden water already in your home"
+why: "Your home already holds safe water. Know where it is, and what to avoid."
+tags: [water heater, pipes, ice, toilet tank, canned food, radiator, waterbed, pool]
+visual:
+  type: svg
+  alt: "A house cut-away. Safe: the water heater (drained after power or gas is off), the pipes, melted ice, a clear toilet tank with no cleaner (treat it), and canned fruit or vegetable liquid. Never drink: the toilet bowl, radiators or heating boilers, or a waterbed. A pool or spa is for washing only."
+sources: [fema-ayr, rc-foodwater, cdc-find, cdc-safe, ready-water, ready-safety, who-hum]
+seeAlso: ["1.7", "4.3", "4.4", "4.9", "3.8", "29.3"]
+status: draft
+lastChecked: 2026-11-14
+---
+import HiddenWater from '../../../components/diagrams/ch01/HiddenWater.astro';
+
+<MainVisual
+  caption="Safe hidden water ✓, and water you must never drink ✕."
+  legend={[
+    { icon: 'do', text: 'Safe to use', tone: 'ok' },
+    { icon: 'dont', text: 'Never drink', tone: 'no' },
+    { icon: 'caution', text: 'Washing only, or treat before drinking', tone: 'warn' },
+    { num: '1', text: 'Safe source, or drain step, in order' },
+  ]}
+>
+  <HiddenWater />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Shut the <b>main</b> valve first (see 1.7)',
+    'Turn off power or gas <b>before</b> draining the heater',
+    'Use melted <b>ice</b> and canned fruit or vegetable liquid',
+    '<b>Treat</b> toilet-tank water before you drink it',
+  ]}
+  dont={[
+    'Drink from the toilet <b>bowl</b>',
+    'Use <b>radiator</b> or heating-boiler water at all',
+    'Drink from a <b>waterbed</b>, pool or spa',
+    'Use toilet-tank water with <b>cleaner</b> in it',
+  ]}
+/>
+
+<Steps heading="Get water from your heater and pipes" steps={[
+  { icon: 'tool', label: 'Valve', title: 'Shut the main water valve to keep dirty water out.', detail: 'See 1.7 for how.' },
+  { icon: 'power', label: 'Off', title: 'Turn off the power or gas to the water heater.', detail: 'Only a trained pro should turn gas back on. Refill the tank before the power or gas goes back on.' },
+  { icon: 'tool', label: 'Close', title: 'Close the water intake valve at the tank.' },
+  { icon: 'flow', label: 'Tap', title: 'Turn on a hot-water tap in the house.', detail: 'This starts the water flowing.' },
+  { icon: 'pour', label: 'Drain', title: 'Open the drain at the bottom of the tank. Catch the water.', detail: 'Use a clean container. The heater must not be damaged.' },
+  { icon: 'flow', label: 'Pipes', title: 'For pipes: open the highest tap, then collect from the lowest.', detail: 'A little water trickles out of the top tap. That lets air in, so the low tap can flow.' },
+]} />
+
+<Compare
+  title="Is it safe to drink?"
+  yesLabel="Safe" noLabel="Never"
+  rows={[
+    { label: 'Water heater tank', value: 'yes', note: 'The tap-water heater only, and not damaged. Not a heating-system tank.' },
+    { label: 'Water in your pipes', value: 'yes' },
+    { label: 'Melted ice cubes', value: 'yes', note: 'Made with clean water.' },
+    { label: 'Liquid in canned fruit and vegetables', value: 'yes' },
+    { label: 'Toilet tank (not the bowl)', value: 'partly', note: 'Only if clear, with no cleaner. Treat it first (see 4.3, 4.4).' },
+    { label: 'Pool or spa', value: 'partly', note: 'For washing and cleaning only. Never drink it.' },
+    { label: 'Toilet bowl', value: 'no' },
+    { label: 'Radiators and heating boilers', value: 'no', note: 'Not for drinking, cooking or washing.' },
+    { label: 'Waterbed', value: 'no', note: 'Chemicals in the water or vinyl.' },
+    { label: 'Water with fuel or chemicals in it', value: 'no', note: 'Do not use it (see 4.9).' },
+  ]}
+/>
+
+<NeedList items={[
+  { icon: 'jar', item: 'Clean containers with lids', alt: 'Clean pots with lids.' },
+  { icon: 'pot', item: 'A bucket or pot under the drain', alt: 'Any clean, wide container.' },
+  { icon: 'filter', item: 'A way to treat doubtful water', alt: 'Boil it (see 4.3) or use bleach (see 4.4).' },
+]} />
+
+<Callout type="caution" title="In doubt? Treat it.">
+  Treat any water you are unsure of before drinking. This matters most if a water line broke before you shut the main valve.
+</Callout>
+
+<Scenario when="Day 2, a water main breaks" move="Use heater, pipe and ice water. Never use a tank with cleaner, the bowl or radiators.">
+  The radio says a water main broke in town. You shut your main valve. Your stored jugs are low.
+
+  You turn off power to the water heater. You close its intake valve and open a hot tap upstairs. Then you fill clean jugs from the drain at the bottom.
+
+  Your kids point to the toilet tank. It has a blue cleaner tablet in it. You say no.
+</Scenario>

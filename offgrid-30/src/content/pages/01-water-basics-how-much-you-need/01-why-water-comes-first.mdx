@@ -1,0 +1,68 @@
+---
+id: "1.1"
+chapter: 1
+page: 1
+section: water
+title: "Why water comes first"
+why: "Every part of your body needs water. Without it, most people die in 3–7 days."
+tags: [water, priority, body water, survival, dehydration, germs]
+visual:
+  type: svg
+  alt: "An adult and a baby filled with water: babies are about 75% water, older adults about 55%. Water keeps you cool, cushions joints, protects the spinal cord and carries waste out. Most people die in 3–7 days without it."
+sources: [mlp-water, popkin2010, cdc-drinks, mlp-dehyd-ency, rc-foodwater, fema-ayr, who-hum, who-san, who-dw, ready-water]
+seeAlso: ["1.2", "1.3", "1.6", "4.1", "4.3"]
+status: draft
+lastChecked: 2026-11-14
+---
+import BodyWater from '../../../components/diagrams/ch01/BodyWater.astro';
+
+<MainVisual
+  caption="Your body is mostly water. Most people die in 3–7 days without it."
+  legend={[
+    { swatch: 'var(--part-1)', text: 'Water in the body' },
+    { num: '3', text: 'Days without water' },
+  ]}
+>
+  <BodyWater />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Plan <b>water</b> first, before food',
+    'Get <b>enough</b> water first, then make it safe',
+    'Keep toilets and hands <b>clean</b> too',
+    'Treat any water you are <b>unsure</b> of',
+  ]}
+  dont={[
+    'Cut <b>water</b> first — food is safer to cut',
+    'Cut food for <b>children</b> or pregnant women',
+    'Brush off <b>severe</b> dehydration — it can kill',
+  ]}
+/>
+
+<Steps heading="Put water first" steps={[
+  { icon: 'water', label: 'Drink', title: 'Drink water every day, even on busy days.', detail: 'Water keeps your temperature normal. It cushions your joints and protects your spinal cord. It carries waste out in pee, sweat and poop.' },
+  { icon: 'people', label: 'Count', title: 'Count everyone who needs water from you.', detail: 'See 1.2 for how much each person needs a day.' },
+  { icon: 'jar', label: 'Store', title: 'Store water now, before anything goes wrong.', detail: 'Water quickly becomes precious after many disasters.' },
+  { icon: 'filter', label: 'Treat', title: 'Make water safe when you are not sure of it.', detail: 'Dirty water can spread diarrhea, cholera, typhoid and polio. Boiling kills germs (see 4.3).' },
+  { icon: 'hygiene', label: 'Clean', title: 'Keep toilets and hands clean, too.', detail: 'WHO lists 3 top needs in an emergency: safe water, toilets, and clean habits like handwashing.' },
+]} />
+
+<NeedList items={[
+  { icon: 'water', item: 'Water for every person, every day', alt: 'Start with the water already in your home (see 1.6).' },
+  { icon: 'jar', item: 'Clean containers with lids', alt: 'Any clean jug or bottle with a cap (see 2.1).' },
+  { icon: 'pot', item: 'A way to make water safe', alt: 'A metal pot and heat to boil it (see 4.3).' },
+  { icon: 'book', item: 'A written water plan', alt: 'Use the planner on page 1.8.' },
+]} />
+
+<Callout type="caution" title="Dirty water kills, too.">
+  Poor water, toilets and hygiene together kill about 1.4 million people a year (WHO).
+</Callout>
+
+<Scenario when="Day 1 of a long blackout" move="Water first. Fill clean, covered containers, then sort the food.">
+  The power went out this morning. Your family wants to save the freezer food first.
+
+  You stop and think. Most adults can safely eat less for a while. Nobody can go without water. Most people die in 3 to 7 days without it.
+
+  So you start with water. You fill every clean jug that has a lid. Then you turn to the freezer.
+</Scenario>

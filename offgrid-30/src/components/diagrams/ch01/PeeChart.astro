@@ -1,0 +1,84 @@
+---
+---
+<svg class="diagram" viewBox="0 0 520 234" role="img" aria-labelledby="c1p3b-t c1p3b-d">
+  <title id="c1p3b-t">Pee color chart</title>
+  <desc id="c1p3b-d">Three levels of pee color. 1: pale yellow means good. 2: dark yellow with a strong smell means drink now. 3: amber or very dark pee, or no pee at all, means danger: get help. Check in the morning, when it is most accurate.</desc>
+
+  <rect width="520" height="234" fill="var(--accent-tint)"/>
+
+  <!-- Cards -->
+  <g fill="var(--card)" stroke="var(--ink)" stroke-width="2.5">
+    <rect x="8" y="8" width="160" height="186" rx="12"/>
+    <rect x="180" y="8" width="160" height="186" rx="12"/>
+    <rect x="352" y="8" width="160" height="186" rx="12"/>
+  </g>
+
+  <!-- Number circles -->
+  <g font-family="var(--font-head)" font-weight="700" font-size="22" text-anchor="middle">
+    <circle cx="32" cy="34" r="16" fill="var(--accent)"/><text x="32" y="42" fill="var(--on-accent)">1</text>
+    <circle cx="204" cy="34" r="16" fill="var(--accent)"/><text x="204" y="42" fill="var(--on-accent)">2</text>
+    <circle cx="376" cy="34" r="16" fill="var(--accent)"/><text x="376" y="42" fill="var(--on-accent)">3</text>
+  </g>
+
+  <!-- Cups (real pee colors, always outlined + numbered + worded) -->
+  <g stroke="var(--ink)" stroke-width="3" stroke-linejoin="round">
+    <path d="M78 20 H130 L125 80 H83 Z" fill="var(--card)"/>
+    <path d="M80.3 30 H127.7 L123.6 77.5 H84.4 Z" fill="#F4EBA0" stroke="none"/>
+    <path d="M250 20 H302 L297 80 H255 Z" fill="var(--card)"/>
+    <path d="M252.3 30 H299.7 L295.6 77.5 H256.4 Z" fill="#D9A21B" stroke="none"/>
+    <path d="M422 20 H474 L469 80 H427 Z" fill="var(--card)"/>
+    <path d="M424.3 30 H471.7 L467.6 77.5 H428.4 Z" fill="#9A5A0A" stroke="none"/>
+    <path d="M78 20 H130 L125 80 H83 Z M250 20 H302 L297 80 H255 Z M422 20 H474 L469 80 H427 Z" fill="none"/>
+  </g>
+  <!-- smell lines on 2 -->
+  <g fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round">
+    <path d="M314 22 q-6 -6 0 -10 q6 -4 0 -10"/>
+    <path d="M324 30 q-6 -6 0 -10 q6 -4 0 -10"/>
+  </g>
+
+  <!-- Words -->
+  <g font-family="var(--font-body)" font-size="16" font-weight="700" fill="var(--ink)">
+    <text x="20" y="108">Pale yellow</text>
+    <text x="192" y="108">Dark yellow,</text>
+    <text x="192" y="127">strong smell</text>
+    <text x="364" y="108" font-size="15">Amber or very</text>
+    <text x="364" y="127" font-size="15">dark, or no pee</text>
+  </g>
+
+  <!-- Result bars -->
+  <rect x="14" y="138" width="148" height="50" rx="8" fill="var(--ok-tint)" stroke="var(--ok)" stroke-width="2"/>
+  <circle cx="38" cy="163" r="13" fill="var(--ok)"/>
+  <path d="M31 163 l5 5 l9 -10" fill="none" stroke="var(--card)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="60" y="170" font-family="var(--font-body)" font-size="19" font-weight="700" fill="var(--ink)">Good</text>
+
+  <rect x="186" y="138" width="148" height="50" rx="8" fill="var(--part-6-tint)" stroke="var(--ink)" stroke-width="2"/>
+  <path d="M210 150 L224 175 H196 Z" fill="var(--warn)" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M210 158 V166" stroke="var(--warn-ink)" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="210" cy="170.5" r="1.6" fill="var(--warn-ink)"/>
+  <text x="232" y="170" font-family="var(--font-body)" font-size="18" font-weight="700" fill="var(--ink)">Drink now</text>
+
+  <rect class="c1p3b-danger" x="358" y="138" width="148" height="50" rx="8" fill="var(--danger)"/>
+  <g transform="translate(380 163)">
+    <path class="c1p3b-danger-s" d="M13 5.4 L5.4 13 L-5.4 13 L-13 5.4 L-13 -5.4 L-5.4 -13 L5.4 -13 L13 -5.4 Z" fill="none" stroke="var(--on-danger)" stroke-width="2.5" stroke-linejoin="round"/>
+    <path class="c1p3b-danger-s" d="M0 -7 V2" stroke="var(--on-danger)" stroke-width="3" stroke-linecap="round"/>
+    <circle class="c1p3b-danger-f" cy="7" r="1.8" fill="var(--on-danger)"/>
+  </g>
+  <g class="c1p3b-danger-f" font-family="var(--font-body)" font-weight="700" fill="var(--on-danger)">
+    <text x="400" y="159" font-size="16">Danger:</text>
+    <text x="400" y="179" font-size="16">get help</text>
+  </g>
+
+  <!-- Footnote -->
+  <g transform="translate(24 216)">
+    <circle r="7" fill="var(--part-3)" stroke="var(--ink)" stroke-width="2"/>
+    <path d="M0 -14 V-11 M0 11 V14 M-14 0 H-11 M11 0 H14 M-10 -10 l2 2 M8 8 l2 2 M-10 10 l2 -2 M8 -8 l2 -2" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <text x="46" y="222" font-family="var(--font-body)" font-size="16" fill="var(--ink)"><tspan font-weight="700">Check in the morning:</tspan> it’s most accurate.</text>
+</svg>
+<style>
+  @media print {
+    .c1p3b-danger { fill: #fff; stroke: #000; stroke-width: 3; }
+    .c1p3b-danger-s { stroke: #000; }
+    .c1p3b-danger-f { fill: #000; }
+  }
+</style>

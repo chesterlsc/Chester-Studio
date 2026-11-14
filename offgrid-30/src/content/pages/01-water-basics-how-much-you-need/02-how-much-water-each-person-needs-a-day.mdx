@@ -1,0 +1,68 @@
+---
+id: "1.2"
+chapter: 1
+page: 2
+section: water
+title: "How much water each person needs a day"
+why: "Store 1 gallon (3.8 L) per person per day. Keep at least 3 days."
+tags: [gallon, liters, daily need, storage, drinking, WHO]
+visual:
+  type: svg
+  alt: "A 1 gallon (3.8 L) jug: about three quarters is drinking water for an active person, the rest is for cooking and washing. A side ladder shows WHO emergency minimums of 7.5, 15 and 20 liters."
+sources: [ready-water, ready-kit, cdc-store, rc-kit, rc-foodwater, who-hum, mlp-water, popkin2010, cdc-drinks]
+seeAlso: ["1.4", "1.5", "1.8", "2.1", "2.5"]
+status: draft
+lastChecked: 2026-11-14
+---
+import DailyGallon from '../../../components/diagrams/ch01/DailyGallon.astro';
+
+<MainVisual
+  caption="1 gallon (3.8 L) per person a day: drinking, cooking and washing."
+  legend={[
+    { swatch: 'var(--part-1)', text: 'Drinking: about ¾ gal (2.8 L)' },
+    { num: '14', text: 'Days of water to aim for (at least 3)' },
+    { text: 'Side ladder: WHO emergency minimums, per person per day' },
+  ]}
+>
+  <DailyGallon />
+</MainVisual>
+
+<DoDont
+  do={[
+    'Store <b>1 gallon</b> (3.8 L) per person per day',
+    'Keep at least <b>3 days</b>; aim for 2 weeks',
+    'Count water in <b>food</b> and other drinks too',
+    'Store <b>more</b> for heat, sickness and pets',
+  ]}
+  dont={[
+    'Plan for drinking <b>only</b> — cooking and washing need water',
+    'Stop at 3 days if you can store <b>more</b>',
+    'Forget that needs <b>change</b> with age, health and weather',
+  ]}
+/>
+
+<Steps heading="Work out your daily water" steps={[
+  { icon: 'people', label: 'Count', title: 'Count the people in your home.' },
+  { icon: 'water', label: 'Drink', title: 'Plan about ¾ gallon (2.8 L) of drinks per active person.', detail: 'Older guides say at least ½ gallon (1.9 L). Use the bigger number. On normal days, adults need about 2.7–3.7 L (91–125 oz) from food and drinks.' },
+  { icon: 'cooking', label: 'Cook', title: 'Add the rest of the gallon for cooking and washing.', detail: 'That makes 1 gallon (3.8 L) per person per day in all.' },
+  { icon: 'time', label: 'Days', title: 'Multiply by days: at least 3, best 14.', detail: 'Red Cross: 3 days if you must leave home. 2 weeks if you stay home.' },
+  { icon: 'heat', label: 'Extra', title: 'Add more for heat, sickness, pregnancy and animals.', detail: 'See 1.4 for who needs extra. See 1.5 for pets and farm animals.' },
+]} />
+
+<NeedList items={[
+  { icon: 'jar', item: 'Clean jugs with caps', alt: 'Any food-safe container with a lid (see 2.1 and 2.2).' },
+  { icon: 'measure', item: 'A measuring cup or marked jug', alt: 'A 1 L (about 1 quart) bottle to count with.' },
+  { icon: 'book', item: 'A list of everyone you supply', alt: 'Use the planner on page 1.8.' },
+]} />
+
+<Callout type="tip" title="Long term, plan for more.">
+  WHO says 7.5 L (2 gal) a day covers most people's drinking and food. In an emergency, WHO sets at least 15 L (4 gal). About 20 L (5.3 gal) covers basic washing.
+</Callout>
+
+<Scenario when="Before storm season" move="Store at least 3 days now, then keep adding until you reach 2 weeks.">
+  You live with your partner and your 8-year-old. You want water ready before storm season.
+
+  You do the math: 3 people × 3 days × 1 gallon. That is 9 gallons (34 L).
+
+  You fill and cap 9 clean gallon jugs. That is the minimum. Each payday, you add a few more. You are working toward 2 weeks.
+</Scenario>
