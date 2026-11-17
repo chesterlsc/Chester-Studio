@@ -158,14 +158,16 @@
       tags: ["Mobile", "Marketplace", "UX"],
     },
     {
-      name: "Indoor Mall Navigation",
-      type: "Indoor Navigation Product",
+      name: "Mall Maps PH",
+      type: "Offline Indoor Map Web App",
       category: "Digital Products",
-      image: "public/projects/build-mallnav.webp",
-      audience: "Malls and large venues",
-      proves: "Complex wayfinding made simple on mobile",
-      desc: "Indoor navigation for malls. Searchable directories, turn-by-turn wayfinding, and store promos in a clean mobile experience, backed by a marketing site that drives installs.",
-      tags: ["Mobile", "Maps", "Product"],
+      image: "public/projects/mall-maps-today.webp",
+      audience: "Shoppers in big Philippine malls",
+      proves: "A 3D map, search and turn-by-turn directions that work offline",
+      desc: "An offline, no-login indoor map web app, piloted at SM Mall of Asia. A 3D map of every floor, directions with landmarks across floors, and about 900 places to search.",
+      tags: ["PWA", "Maps", "Offline", "Product"],
+      page: "mall-maps/",
+      pageText: "See the full case study and open the app ↗",
     },
     {
       name: "Pet Matching App",
@@ -225,7 +227,7 @@
     "Guided Intake Flow": "#d8b45a",
     "Local Accounting Firm": "#34d399",
     "On-Demand Mechanic App": "#22c55e",
-    "Indoor Mall Navigation": "#38bdf8",
+    "Mall Maps PH": "#38bdf8",
     "Pet Matching App": "#fb923c",
   };
   PROJECTS.forEach((p) => {
@@ -1476,7 +1478,7 @@
     modalTags.innerHTML = p.tags.map((t) => `<span>${t}</span>`).join("");
     const pageLink = document.getElementById("modalPage");
     pageLink.hidden = !p.page;
-    if (p.page) pageLink.href = p.page;
+    if (p.page) { pageLink.href = p.page; pageLink.textContent = p.pageText || "See the full case study and live store ↗"; }
   }
 
   function openModal(i) {
