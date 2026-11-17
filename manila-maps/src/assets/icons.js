@@ -125,10 +125,12 @@ export function svg(name, { size = 24, stroke = 2, cls = '' } = {}) {
 }
 
 /** Brand mark (matches the app icon): green tile, white pin, soft road curve. */
+let logoN = 0;
 export function logoSvg(size = 72) {
+  const id = `mmg${++logoN}`;
   return `<svg width="${size}" height="${size}" viewBox="0 0 512 512" aria-hidden="true">
-  <defs><linearGradient id="mmg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16C27F"/><stop offset="1" stop-color="#08935C"/></linearGradient></defs>
-  <rect width="512" height="512" rx="110" fill="url(#mmg)"/>
+  <defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16C27F"/><stop offset="1" stop-color="#08935C"/></linearGradient></defs>
+  <rect width="512" height="512" rx="110" fill="url(#${id})"/>
   <path d="M84 436c60-30 120-30 180-26s120 6 172-32" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="26" stroke-linecap="round"/>
   <path d="M256 66c-75 0-136 59-136 133 0 92 136 245 136 245s136-153 136-245c0-74-61-133-136-133z" fill="#fff"/>
   <circle cx="256" cy="198" r="50" fill="#0B9E6A"/>

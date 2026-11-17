@@ -8,14 +8,17 @@ open ends with an approximate outline of the coasts outside Metro Manila
 (Bulacan in the north, Cavite in the south). Laguna de Bay's multipolygon is
 incomplete in the extract, so its shoreline ways are closed the same way.
 
-Output: GeoJSON FeatureCollection with properties {class, name}.
-usage: water.py <input.osm.pbf> <out.geojson>
+Output: GeoJSON FeatureCollection with properties {class, name}, plus (optional
+third argument) a list of admin-boundary way ids that run through the bay or the
+lake (municipal waters), which the tile profile leaves out of the boundary layer.
+usage: water.py <input.osm.pbf> <out.geojson> [out_water_boundary_ways.txt]
 """
 import json
 import sys
 
 import osmium
-from shapely.geometry import LineString, MultiLineString, Polygon, mapping
+from shapely import prepared
+from shapely.geometry import LineString, MultiLineString, Polygon, mapping, shape
 from shapely.ops import linemerge, unary_union
 from shapely.validation import make_valid
 
@@ -45,10 +48,12 @@ LAGUNA_REL = 79348
 
 
 def collect(path):
-    coast, lake_ways, lake_ids = [], [], set()
+    coast, lake_ways, lake_ids, admin_ids, admin_ways = [], [], set(), set(), {}
     for o in osmium.FileProcessor(path, osmium.osm.RELATION):
         if o.id == LAGUNA_REL:
             lake_ids = {m.ref for m in o.members if m.type == 'w'}
+        if o.tags.get('boundary') == 'administrative' and o.tags.get('admin_level') in ('6', '10'):
+            admin_ids.update(m.ref for m in o.members if m.type == 'w')
     fp = osmium.FileProcessor(path, osmium.osm.NODE | osmium.osm.WAY).with_locations()
     for w in fp:
         if not w.is_way():
@@ -63,7 +68,9 @@ def collect(path):
             coast.append(LineString(coords))
         if w.id in lake_ids:
             lake_ways.append(LineString(coords))
-    return coast, lake_ways
+        if w.id in admin_ids and w.tags.get('natural') != 'coastline':
+            admin_ways[w.id] = LineString(coords)
+    return coast, lake_ways, admin_ways
 
 
 def parts(g):
@@ -76,8 +83,8 @@ def polys(g):
          for q in parts(p) if q.geom_type == 'Polygon']
 
 
-def main(src, out):
-    coast, lake = collect(src)
+def main(src, out, out_ways=None):
+    coast, lake, admin_ways = collect(src)
     features = []
     merged = parts(linemerge(MultiLineString(coast)))
     open_lines = [g for g in merged if not g.is_ring]
@@ -117,6 +124,16 @@ def main(src, out):
     with open(out, 'w') as f:
         json.dump({'type': 'FeatureCollection', 'features': features}, f)
 
+    if out_ways:
+        # shrink water a little so boundaries along the shore itself are kept
+        water = unary_union([shape(f['geometry']) for f in features]).buffer(-0.0004)
+        prep = prepared.prep(water)
+        skip = [wid for wid, ln in admin_ways.items()
+                if prep.intersects(ln) and ln.intersection(water).length > 0.5 * ln.length]
+        with open(out_ways, 'w') as f:
+            f.write('\n'.join(str(w) for w in sorted(skip)) + '\n')
+        print(f'boundary ways in water: {len(skip)} of {len(admin_ways)}', file=sys.stderr)
+
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    main(*sys.argv[1:4])
