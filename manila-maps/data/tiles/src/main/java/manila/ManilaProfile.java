@@ -28,8 +28,6 @@ import java.util.regex.Pattern;
  */
 public class ManilaProfile implements Profile {
 
-  /** Laguna de Bay: incomplete in the clipped extract, comes from water.geojson instead. */
-  private static final long LAGUNA_DE_BAY_REL = 79348L;
 
   record AdminRel(long id, int level) implements OsmRelationInfo {}
 
@@ -140,6 +138,7 @@ public class ManilaProfile implements Profile {
         processPlace(sf, fc);
       }
       processPoi(sf, fc);
+      processHousenumber(sf, fc);
     } catch (GeometryException e) {
       // skip broken geometries
     }
@@ -156,7 +155,6 @@ public class ManilaProfile implements Profile {
   }
 
   void processWaterPolygon(SourceFeature sf, FeatureCollector fc) throws GeometryException {
-    if (sf.id() == LAGUNA_DE_BAY_REL && isRelation(sf)) return;
     String cls = null;
     if (sf.hasTag("natural", "water") || sf.hasTag("waterway", "riverbank") ||
       sf.hasTag("landuse", "reservoir", "basin") || sf.hasTag("natural", "bay") && false) {
@@ -567,6 +565,17 @@ public class ManilaProfile implements Profile {
       return new Poi("attraction", hist, 9, 14);
     }
     return null;
+  }
+
+  // ---------------------------------------------------------------- house numbers
+
+  void processHousenumber(SourceFeature sf, FeatureCollector fc) throws GeometryException {
+    String hn = sf.getString("addr:housenumber");
+    if (hn == null || hn.isBlank() || hn.length() > 12) return;
+    if (sf.canBeLine() && !sf.canBePolygon()) return;
+    if (isRelation(sf) && !sf.hasTag("type", "multipolygon")) return;
+    (sf.isPoint() ? fc.point("housenumber") : fc.pointOnSurface("housenumber"))
+      .setAttr("housenumber", hn.trim()).setMinZoom(14).setBufferPixels(8);
   }
 
   void processPoi(SourceFeature sf, FeatureCollector fc) throws GeometryException {

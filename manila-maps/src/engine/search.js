@@ -90,6 +90,68 @@ class Search {
     this._last = new Int16Array(n).fill(-1);
     this._nameToks = new Array(n); // lazy cache
     this._grid = null;
+    // warm the caches used by "street + city" queries so the first such query is fast
+    this.isPlaceWord('', false);
+    for (let si = 0; si < this.subs.length; si++) this.subWordsAt(si);
+  }
+
+  /** Smallest (= most important) record ids having a token with prefix q (or its canonical form). */
+  topForWord(q, max) {
+    const mark = this._cnt;
+    let buf = [];
+    let cutoff = Infinity;
+    const { tokOff, postings } = this;
+    for (const [a, b] of this.tokenRanges(q)) {
+      for (let t = a; t < b; t++) {
+        const e = tokOff[t + 1];
+        for (let p = tokOff[t]; p < e; p++) {
+          const r = postings[p];
+          if (r >= cutoff) break; // postings are sorted
+          if (mark[r]) continue;
+          mark[r] = 1;
+          buf.push(r);
+          if (buf.length >= 4 * max) {
+            buf.sort((x, y) => x - y);
+            for (let i = max; i < buf.length; i++) mark[buf[i]] = 0;
+            buf.length = max;
+            cutoff = buf[max - 1];
+          }
+        }
+      }
+    }
+    buf.sort((x, y) => x - y);
+    for (const r of buf) mark[r] = 0;
+    if (buf.length > max) buf = buf.slice(0, max);
+    return buf;
+  }
+
+  /** Is w a word of a city / municipality / province name? */
+  isPlaceWord(w, prefixOk) {
+    if (!this._placeWords) {
+      const set = new Set();
+      for (let r = 0; r < this.count; r++) {
+        const kind = this.kinds[this.kind[r]];
+        const cat = this.cats[this.cat[r]];
+        if (kind === 'city' || cat === 'province') for (const x of words(this.names[r])) if (x.length >= 3) set.add(x);
+      }
+      set.delete('city');
+      set.delete('san');
+      this._placeWords = set;
+      this._placeList = [...set];
+    }
+    if (this._placeWords.has(w)) return true;
+    return prefixOk && w.length >= 3 && this._placeList.some((x) => x.startsWith(w));
+  }
+
+  subWords(r) {
+    return this.subWordsAt(this.sub[r]);
+  }
+
+  subWordsAt(si) {
+    if (!this._subWords) this._subWords = new Array(this.subs.length);
+    let w = this._subWords[si];
+    if (!w) { w = words(this.subs[si]); this._subWords[si] = w; }
+    return w;
   }
 
   canonOf(t) {
@@ -128,7 +190,11 @@ class Search {
     };
     addPrefix(q);
     const c = this.canonOf(q);
-    if (c !== q) addPrefix(c);
+    if (c !== q) {
+      // canonical abbreviation ("street" -> "st"): exact token only, not every "st…" word
+      const a = this.lowerBound(c);
+      if (a < this.tokens.length && this.tokens[a] === c) ranges.push([a, a + 1]);
+    }
     return ranges;
   }
 
@@ -178,41 +244,63 @@ class Search {
       : (qc.includes('stn') || qwords.includes('lrt') || qwords.includes('mrt')) ? 'station'
         : qc.includes('city') ? 'city' : null;
     const k = qwords.length;
-    const cnt = this._cnt;
-    const last = this._last;
-    const touched = [];
-    const { tokOff, postings } = this;
-    for (let i = 0; i < k; i++) {
-      for (const [a, b] of this.tokenRanges(qwords[i])) {
-        for (let t = a; t < b; t++) {
-          const e = tokOff[t + 1];
-          for (let p = tokOff[t]; p < e; p++) {
-            const r = postings[p];
-            if (last[r] !== i) {
-              if (last[r] === -1) touched.push(r);
-              last[r] = i;
-              cnt[r]++;
+    // ids are importance-ordered: cap the candidates we score (short prefixes match a lot)
+    const MAX = k === 1 && qwords[0].length <= 2 ? 300 : 1500;
+    let full;
+    let partial = [];
+    let maxMissing = 0;
+    if (k === 1) {
+      full = this.topForWord(qwords[0], MAX);
+    } else {
+      // City / province words ("rizal street malolos") may match the subtitle instead.
+      const optWords = [];
+      for (let i = 0; i < k; i++) if (this.isPlaceWord(qwords[i], i === k - 1)) optWords.push([qwords[i], i === k - 1]);
+      const optional = optWords.length;
+      maxMissing = Math.max(1, Math.min(optional, 2, k - 1));
+      const cnt = this._cnt;
+      const last = this._last;
+      const touched = [];
+      const { tokOff, postings } = this;
+      for (let i = 0; i < k; i++) {
+        for (const [a, b] of this.tokenRanges(qwords[i])) {
+          for (let t = a; t < b; t++) {
+            const e = tokOff[t + 1];
+            for (let p = tokOff[t]; p < e; p++) {
+              const r = postings[p];
+              if (last[r] !== i) {
+                if (last[r] === -1) touched.push(r);
+                last[r] = i;
+                cnt[r]++;
+              }
             }
           }
         }
       }
+      // partial matches are only kept when their subtitle names one of the place words
+      let subOk = null;
+      if (optional) {
+        subOk = new Uint8Array(this.subs.length);
+        for (let si = 0; si < this.subs.length; si++) {
+          const sw = this.subWordsAt(si);
+          for (const [w, pre] of optWords) {
+            if (sw.some((x) => x === w || (pre && x.startsWith(w)))) { subOk[si] = 1; break; }
+          }
+        }
+      }
+      full = [];
+      for (const r of touched) {
+        if (cnt[r] === k) full.push(r);
+        else if (cnt[r] >= k - maxMissing && (!subOk || subOk[this.sub[r]])) partial.push(r);
+      }
+      for (const r of touched) { cnt[r] = 0; last[r] = -1; }
+      full.sort((a, b) => a - b);
+      if (full.length > MAX) full = full.slice(0, MAX);
+      if (!optional && full.length >= limit) partial = [];
     }
-    // candidates: all words matched; if too few, allow one missing word (k >= 2)
-    let full = [];
-    let partial = [];
-    for (const r of touched) {
-      if (cnt[r] === k) full.push(r);
-      else if (k >= 2 && cnt[r] === k - 1) partial.push(r);
-    }
-    for (const r of touched) { cnt[r] = 0; last[r] = -1; }
-    full.sort((a, b) => a - b);
-    // ids are importance-ordered: cap the candidates we score (short prefixes match a lot)
-    const MAX = k === 1 && qwords[0].length <= 2 ? 300 : 1500;
-    if (full.length > MAX) full = full.slice(0, MAX);
     let cands = full.map((r) => [r, 0]);
-    if (full.length < limit && partial.length) {
+    if (partial.length) {
       partial.sort((a, b) => a - b);
-      cands = cands.concat(partial.slice(0, MAX).map((r) => [r, 1]));
+      cands = cands.concat(partial.slice(0, 3000).map((r) => [r, 1]));
     }
     const qFolded = qwords.join(' ');
     let nearLon = 0;
@@ -228,11 +316,18 @@ class Search {
       const rt = this.recordToks(r);
       let text = 0;
       let altOnly = false;
+      let missed = 0;
       for (let i = 0; i < k; i++) {
         let s = Search.wordScore(qwords[i], qc[i], rt.name, rt.nameC);
         if (s < 1) {
           const sa = Search.wordScore(qwords[i], qc[i], rt.alt, rt.altC) * 0.85;
           if (sa > s) { s = sa; altOnly = true; }
+        }
+        if (s === 0 && missing) {
+          // matched by where it is ("... malolos", "... cavite")?
+          const sw = this.subWords(r);
+          if (sw.some((w) => w === qwords[i] || (i === k - 1 && qwords[i].length >= 3 && w.startsWith(qwords[i])))) s = 0.8;
+          else missed++;
         }
         text += s;
       }
@@ -244,7 +339,7 @@ class Search {
       else if (rt.nickFolded.some((a) => a.startsWith(qFolded))) text += 18;
       else if (rt.altFolded.some((a) => a.startsWith(qFolded))) text += 12;
       if (!altOnly) text -= Math.min(20, Math.max(0, rt.name.length - k) * 3);
-      if (missing) text -= 45;
+      text -= 45 * missed;
       let score = text + this.imp[r] * 0.55;
       const kind = this.kinds[this.kind[r]];
       if (kindHint && kind === kindHint) score += 25;

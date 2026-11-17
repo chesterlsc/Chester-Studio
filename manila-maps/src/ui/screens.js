@@ -27,7 +27,7 @@ export class Splash {
         <div class="splash-status">
           <div class="progress indeterminate"><div class="progress-bar"></div></div>
           <p class="splash-msg">Preparing offline map…</p>
-          <p class="splash-sub">Works fully offline · Metro Manila</p>
+          <p class="splash-sub">Works fully offline · Greater Manila</p>
         </div>
       </div>`);
     root.appendChild(this.el);

@@ -15,7 +15,7 @@ MMAP=data/out/manila.mmap
 [ -f "$MMAP" ] || { echo "Missing $MMAP — run data/build.sh first" >&2; exit 1; }
 
 ID=$(python3 -I -c 'import zipfile,json,sys;print(json.loads(zipfile.ZipFile(sys.argv[1]).read("manifest.json"))["id"])' "$MMAP")
-VER=${ID#manila-}
+VER=${ID##*-}
 echo "Bundle: $ID ($(du -h "$MMAP" | cut -f1))"
 mkdir -p release
 

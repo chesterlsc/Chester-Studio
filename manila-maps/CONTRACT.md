@@ -87,6 +87,7 @@ All names are in the `name` property (OSM `name`, fallback `name:en`).
 | `boundary` | line | `level`: `city` or `barangay`; | city 9, barangay 13 |
 | `place` | point | `class`: `city` `town` `suburb` `quarter` `neighbourhood` `barangay` `village` `locality`; `name`; `rank` (int, lower = more important) | city 8, suburb 11, barangay 13 |
 | `poi` | point | `class` (icon category, below); `subclass` (raw OSM value); `name`; `rank` (int, lower = more important) | rank-based: 12 for big malls, stations, hospitals, airports; 14 for everything |
+| `housenumber` | point | `housenumber` (OSM `addr:housenumber`, from address nodes and building/area centroids) | 14 |
 
 `poi.class` values: `mall` `shop` `supermarket` `convenience` `market` `food`
 `cafe` `bar` `bank` `atm` `hospital` `clinic` `pharmacy` `school` `university`

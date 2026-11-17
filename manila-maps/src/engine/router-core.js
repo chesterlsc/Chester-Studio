@@ -14,21 +14,33 @@ export function routerCore(scope) {
   var F_SNAP_CAR = 2048, F_SNAP_MOTO = 4096, F_SNAP_WALK = 8192;
   var F_MINOR_SERVICE = 16384, F_UNPAVED = 32768;
 
-  // km/h by class (Metro Manila traffic: slow). Order = header.classes.
+  // km/h by road class and area density (edgeClass bits 6-7, from build_route.py):
+  // 0 = dense city (Metro Manila-like traffic), 1 = town, 2 = rural / provincial.
+  var CAR_DENSE = {
+    motorway: 70, motorway_link: 40, trunk: 28, trunk_link: 22, primary: 25, primary_link: 20,
+    secondary: 22, secondary_link: 18, tertiary: 19, tertiary_link: 16, unclassified: 16, residential: 15,
+    living_street: 8, service: 10, road: 14, track: 8,
+  };
+  var CAR_TOWN = {
+    motorway: 80, motorway_link: 40, trunk: 38, trunk_link: 28, primary: 33, primary_link: 24,
+    secondary: 29, secondary_link: 22, tertiary: 25, tertiary_link: 20, unclassified: 21, residential: 18,
+    living_street: 10, service: 12, road: 20, track: 10,
+  };
+  var CAR_RURAL = {
+    motorway: 85, motorway_link: 45, trunk: 52, trunk_link: 35, primary: 47, primary_link: 30,
+    secondary: 42, secondary_link: 28, tertiary: 36, tertiary_link: 25, unclassified: 30, residential: 24,
+    living_street: 12, service: 15, road: 28, track: 14,
+  };
+  var MOTO_DENSE = {
+    motorway: 60, motorway_link: 35, trunk: 33, trunk_link: 26, primary: 30, primary_link: 24,
+    secondary: 27, secondary_link: 22, tertiary: 23, tertiary_link: 20, unclassified: 19, residential: 18,
+    living_street: 10, service: 12, road: 16, track: 10,
+  };
+  function scaled(t, f) { var o = {}; for (var k in t) o[k] = Math.round(t[k] * f); return o; }
   var SPEEDS = {
-    car: {
-      motorway: 70, motorway_link: 40, trunk: 28, trunk_link: 22, primary: 25, primary_link: 20,
-      secondary: 22, secondary_link: 18, tertiary: 19, tertiary_link: 16, unclassified: 16, residential: 15,
-      living_street: 8, service: 10, road: 14, track: 8,
-    },
-    motorcycle: {
-      motorway: 60, motorway_link: 35, trunk: 33, trunk_link: 26, primary: 30, primary_link: 24,
-      secondary: 27, secondary_link: 22, tertiary: 23, tertiary_link: 20, unclassified: 19, residential: 18,
-      living_street: 10, service: 12, road: 16, track: 10,
-    },
-    walk: {
-      steps: 2.2, corridor: 4.2, platform: 4.2,
-    },
+    car: [CAR_DENSE, CAR_TOWN, CAR_RURAL],
+    motorcycle: [MOTO_DENSE, scaled(CAR_TOWN, 1.08), scaled(CAR_RURAL, 1.05)],
+    walk: { steps: 2.2, corridor: 4.2, platform: 4.2 },
   };
   var WALK_SPEED = 4.8;
   var NODE_DELAY = { car: 2.5, motorcycle: 1.5, walk: 0 }; // s per busy intersection end
@@ -100,9 +112,13 @@ export function routerCore(scope) {
   }
 
   // ------------------------------------------------------------ costs
-  function speedOf(mode, cls) {
+  function clsOf(e) { return G.classes[G.edgeClass[e] & 63]; }
+
+  function speedOf(mode, e) {
+    var cls = clsOf(e);
     if (mode === 'walk') return SPEEDS.walk[cls] || WALK_SPEED;
-    return SPEEDS[mode][cls] || 12;
+    var dens = G.edgeClass[e] >> 6;
+    return SPEEDS[mode][dens > 2 ? 2 : dens][cls] || 12;
   }
 
   function costs(mode) {
@@ -110,9 +126,9 @@ export function routerCore(scope) {
     var g = G, E = g.E, c = new Float32Array(E);
     var delay = NODE_DELAY[mode] || 0;
     for (var e = 0; e < E; e++) {
-      var cls = g.classes[g.edgeClass[e]];
+      var cls = clsOf(e);
       var fl = g.edgeFlags[e];
-      var t = g.edgeLen[e] / (speedOf(mode, cls) / 3.6);
+      var t = g.edgeLen[e] / (speedOf(mode, e) / 3.6);
       if (mode !== 'walk') {
         if (fl & F_PRIVATE) t = t * 4 + 30;
         if (fl & F_MINOR_SERVICE) t *= 1.6;
@@ -134,7 +150,7 @@ export function routerCore(scope) {
 
   /** Real (penalty-free) travel time of length m on edge e. */
   function travelTime(mode, e, m) {
-    return m / (speedOf(mode, G.classes[G.edgeClass[e]]) / 3.6);
+    return m / (speedOf(mode, e) / 3.6);
   }
 
   // ------------------------------------------------------------ geometry helpers
@@ -188,6 +204,7 @@ export function routerCore(scope) {
   var CELL = 1500; // 0.0015 deg (~165 m)
 
   function buildGrid() {
+    // cell -> edges (each edge listed once per cell it crosses)
     var g = G, E = g.E;
     var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
     for (var i = 0; i < g.N; i++) {
@@ -196,52 +213,45 @@ export function routerCore(scope) {
       if (y < minY) minY = y; if (y > maxY) maxY = y;
     }
     var nx = Math.ceil((maxX - minX) / CELL) + 1, ny = Math.ceil((maxY - minY) / CELL) + 1;
-    var segTotal = g.geomOff[E] + E;
-    var segEdge = new Uint32Array(segTotal);
     var counts = new Uint32Array(nx * ny + 1);
-    function pt(e, k, n) { // k-th point of edge e (n = number of points)
-      if (k === 0) return [g.nodeLon[g.edgeFrom[e]], g.nodeLat[g.edgeFrom[e]]];
-      if (k === n - 1) return [g.nodeLon[g.edgeTo[e]], g.nodeLat[g.edgeTo[e]]];
-      var q = g.geomOff[e] + k - 1;
-      return [g.geomXY[2 * q], g.geomXY[2 * q + 1]];
-    }
-    function cells(a, b, fn) {
-      var cx0 = Math.floor((Math.min(a[0], b[0]) - minX) / CELL), cx1 = Math.floor((Math.max(a[0], b[0]) - minX) / CELL);
-      var cy0 = Math.floor((Math.min(a[1], b[1]) - minY) / CELL), cy1 = Math.floor((Math.max(a[1], b[1]) - minY) / CELL);
-      for (var cy = cy0; cy <= cy1; cy++) for (var cx = cx0; cx <= cx1; cx++) fn(cy * nx + cx);
-    }
-    var pass;
-    var segs = null, fill = null;
-    for (pass = 0; pass < 2; pass++) {
-      var s = 0;
-      for (var e = 0; e < E; e++) {
-        var n = g.geomOff[e + 1] - g.geomOff[e] + 2;
-        var prev = pt(e, 0, n);
-        for (var k = 1; k < n; k++) {
-          var cur = pt(e, k, n);
-          if (pass === 0) { segEdge[s] = e; cells(prev, cur, function (c) { counts[c + 1]++; }); }
-          else { var sid = s; cells(prev, cur, function (c) { segs[fill[c]++] = sid; }); }
-          prev = cur; s++;
+    var tmp = [];
+    function edgeCells(e) {
+      tmp.length = 0;
+      var n = g.geomOff[e + 1] - g.geomOff[e] + 2;
+      var a = segPt(e, 0, n);
+      for (var k = 1; k < n; k++) {
+        var b = segPt(e, k, n);
+        var cx0 = Math.floor((Math.min(a[0], b[0]) - minX) / CELL), cx1 = Math.floor((Math.max(a[0], b[0]) - minX) / CELL);
+        var cy0 = Math.floor((Math.min(a[1], b[1]) - minY) / CELL), cy1 = Math.floor((Math.max(a[1], b[1]) - minY) / CELL);
+        for (var cy = cy0; cy <= cy1; cy++) {
+          for (var cx = cx0; cx <= cx1; cx++) {
+            var c = cy * nx + cx;
+            if (tmp.indexOf(c) < 0) tmp.push(c);
+          }
         }
+        a = b;
       }
-      if (pass === 0) {
-        for (i = 1; i < counts.length; i++) counts[i] += counts[i - 1];
-        segs = new Uint32Array(counts[counts.length - 1]);
-        fill = counts.slice();
-      }
+      return tmp;
     }
-    GRID = { minX: minX, minY: minY, nx: nx, ny: ny, counts: counts, segs: segs, segEdge: segEdge };
+    var e, j, cs;
+    for (e = 0; e < E; e++) { cs = edgeCells(e); for (j = 0; j < cs.length; j++) counts[cs[j] + 1]++; }
+    for (i = 1; i < counts.length; i++) counts[i] += counts[i - 1];
+    var edges = new Uint32Array(counts[counts.length - 1]);
+    var fill = counts.slice(0, nx * ny);
+    for (e = 0; e < E; e++) { cs = edgeCells(e); for (j = 0; j < cs.length; j++) edges[fill[cs[j]]++] = e; }
+    GRID = { minX: minX, minY: minY, nx: nx, ny: ny, counts: counts, edges: edges, seen: new Uint32Array(E), q: 0 };
   }
 
   /** Nearest edge usable by mode. Returns { edge, along (m from edgeFrom), len, point, distance }. */
   function snapPoint(lon, lat, mode, maxM) {
     if (!GRID) buildGrid();
     var g = G, gr = GRID, bits = modeBits(mode);
+    var q = ++gr.q;
     maxM = maxM || 1500;
     var X = lon * 1e6, Y = lat * 1e6;
     var mx = 0.1113195 * Math.cos(lat * Math.PI / 180), my = 0.110946;
     var cx = Math.floor((X - gr.minX) / CELL), cy = Math.floor((Y - gr.minY) / CELL);
-    var best = Infinity, bestSeg = -1, bestT = 0;
+    var best = Infinity, bestE = -1, bestK = 0, bestT = 0;
     var maxRing = Math.ceil(maxM / 160) + 1;
     for (var ring = 0; ring <= maxRing; ring++) {
       for (var y = cy - ring; y <= cy + ring; y++) {
@@ -251,29 +261,32 @@ export function routerCore(scope) {
           if (Math.abs(x - cx) !== ring && Math.abs(y - cy) !== ring) continue;
           var c = y * gr.nx + x;
           for (var i = gr.counts[c]; i < gr.counts[c + 1]; i++) {
-            var s = gr.segs[i], e = gr.segEdge[s];
+            var e = gr.edges[i];
+            if (gr.seen[e] === q) continue;
+            gr.seen[e] = q;
             if (!(g.edgeFlags[e] & bits.snap)) continue;
-            var k = s - (g.geomOff[e] + e); // segment index within edge
             var n = g.geomOff[e + 1] - g.geomOff[e] + 2;
-            var a = segPt(e, k, n), b = segPt(e, k + 1, n);
-            var ax = (a[0] - X) * mx, ay = (a[1] - Y) * my, bx = (b[0] - X) * mx, by = (b[1] - Y) * my;
-            var dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
-            var t = l2 > 0 ? -(ax * dx + ay * dy) / l2 : 0;
-            t = t < 0 ? 0 : t > 1 ? 1 : t;
-            var px = ax + t * dx, py = ay + t * dy, d = px * px + py * py;
-            // prefer named / bigger roads slightly when nearly equidistant
-            if (d < best) { best = d; bestSeg = s; bestT = t; }
+            var a = segPt(e, 0, n);
+            for (var k = 0; k < n - 1; k++) {
+              var b = segPt(e, k + 1, n);
+              var ax = (a[0] - X) * mx, ay = (a[1] - Y) * my, bx = (b[0] - X) * mx, by = (b[1] - Y) * my;
+              var dx = bx - ax, dy = by - ay, l2 = dx * dx + dy * dy;
+              var t = l2 > 0 ? -(ax * dx + ay * dy) / l2 : 0;
+              t = t < 0 ? 0 : t > 1 ? 1 : t;
+              var px = ax + t * dx, py = ay + t * dy, d = px * px + py * py;
+              if (d < best) { best = d; bestE = e; bestK = k; bestT = t; }
+              a = b;
+            }
           }
         }
       }
       // ring r covers at least (r * 165 m) around; stop once best is within it
-      if (bestSeg >= 0 && Math.sqrt(best) < ring * 160) break;
+      if (bestE >= 0 && Math.sqrt(best) < ring * 160) break;
     }
-    if (bestSeg < 0) return null;
+    if (bestE < 0) return null;
     var dm = Math.sqrt(best);
     if (dm > maxM) return null;
-    var e2 = gr.segEdge[bestSeg];
-    var k2 = bestSeg - (g.geomOff[e2] + e2);
+    var e2 = bestE, k2 = bestK;
     var co = edgeCoords(e2);
     var along = 0;
     for (var j = 0; j < k2; j++) along += dist(co[j], co[j + 1]);
@@ -535,7 +548,7 @@ export function routerCore(scope) {
         : i === 0 ? res.startNode === G.edgeTo[e]
           : i === pieces.length - 1 ? res.endNode === G.edgeFrom[e]
             : dist(a, [fx, fy]) < dist(b, [fx, fy]);
-      return { edge: e, forward: fwd, flags: G.edgeFlags[e], cls: G.classes[G.edgeClass[e]], name: label(e).name, len: pc.len };
+      return { edge: e, forward: fwd, flags: G.edgeFlags[e], cls: clsOf(e), name: label(e).name, len: pc.len };
     }) : undefined;
     return {
       mode: mode,
@@ -589,7 +602,7 @@ export function routerCore(scope) {
       if (g.edgeFrom[e] === v) ok = g.edgeFlags[e] & bits.f;
       else { ok = g.edgeFlags[e] & bits.b; co.reverse(); }
       if (!ok) continue;
-      res.push({ edge: e, bearing: bearingOut(co, 0), link: !!(g.edgeFlags[e] & F_LINK), cls: g.classes[g.edgeClass[e]] });
+      res.push({ edge: e, bearing: bearingOut(co, 0), link: !!(g.edgeFlags[e] & F_LINK), cls: clsOf(e) });
     }
     return res;
   }
@@ -653,7 +666,7 @@ export function routerCore(scope) {
         } else {
           var sameName = (lbP.name && lbP.name === lbC.name) || (!lbP.name && !lbC.name && lbP.ref === lbC.ref);
           var linkP = !!(flP & F_LINK), linkC = !!(flC & F_LINK);
-          var clsC = g.classes[g.edgeClass[p.edge]];
+          var clsC = clsOf(p.edge);
           var straightAlt = opts.some(function (o) { return o.bearing != null && bin != null && Math.abs(norm(o.bearing - bin)) < 35; });
           var forwardAlts = opts.filter(function (o) { return o.bearing != null && bin != null && Math.abs(norm(o.bearing - bin)) < 50; });
           if (Math.abs(angle) >= 170 && opts.length === 0 && mode !== 'walk') {
@@ -808,7 +821,11 @@ export function routerCore(scope) {
       var reply = function (ok, result, error) { scope.postMessage({ id: msg.id, ok: ok, result: result, error: error }); };
       try {
         if (msg.type === 'load') {
-          load(new Uint8Array(msg.bytes)).then(function (r) { reply(true, r); }, function (e) { reply(false, null, String(e && e.message || e)); });
+          load(new Uint8Array(msg.bytes)).then(function (r) {
+            reply(true, r);
+            // warm up off the UI thread so the first route is fast: spatial index + car costs
+            setTimeout(function () { if (!GRID) buildGrid(); costs('car'); }, 0);
+          }, function (e) { reply(false, null, String(e && e.message || e)); });
         } else if (msg.type === 'route') {
           reply(true, route(msg.params));
         } else if (msg.type === 'snap') {

@@ -2,7 +2,11 @@
 """Pack the map bundle (manila.mmap): a STORED zip, manifest.json first.
 
 usage: pack.py --out data/out/manila.mmap --tiles T --search S --route R \
-               --glyphs DIR --state metro_manila.state.txt
+               --glyphs DIR --coverage work/coverage.json \
+               --state a.state.txt [--state b.state.txt ...]
+
+The bundle id / osmTimestamp come from the newest of the given state files; bounds
+come from the coverage (union of the regions in the data, from water.py).
 """
 import argparse
 import datetime as dt
@@ -14,8 +18,7 @@ import re
 import sys
 import zipfile
 
-BOUNDS = [120.90, 14.34, 121.14, 14.79]
-CENTER = [121.02, 14.58]
+DEFAULT_CENTER = [121.02, 14.58]  # Metro Manila: the default view
 FONT = 'Noto Sans Regular'
 
 
@@ -38,16 +41,24 @@ def main():
     ap.add_argument('--search', required=True)
     ap.add_argument('--route', required=True)
     ap.add_argument('--glyphs', required=True, help='dir with <range>.pbf.gz (or .pbf)')
-    ap.add_argument('--state', help='osm state.txt with timestamp=')
+    ap.add_argument('--state', action='append', default=[], help='osm state.txt with timestamp= (repeatable)')
+    ap.add_argument('--coverage', help='coverage.json with "bounds" (from water.py)')
+    ap.add_argument('--center', default=','.join(map(str, DEFAULT_CENTER)), help='lon,lat of the default view')
+    ap.add_argument('--title', default='Greater Manila')
     ap.add_argument('--timestamp', help='override OSM timestamp (ISO, Z)')
     a = ap.parse_args()
 
-    ts = a.timestamp or osm_timestamp(a.state)
+    stamps = [t for t in (osm_timestamp(p) for p in a.state) if t]
+    ts = a.timestamp or (max(stamps) if stamps else None)
     if not ts:
         ts = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
         print('warning: no OSM timestamp, using now', file=sys.stderr)
     day = ts[:10].replace('-', '')
 
+    bounds = [120.90, 14.34, 121.14, 14.79]
+    if a.coverage:
+        with open(a.coverage) as f:
+            bounds = json.load(f)['bounds']
     entries = []  # (name, bytes)
     for name, path in (('tiles.pmtiles', a.tiles), ('search.bin', a.search), ('route.bin', a.route)):
         with open(path, 'rb') as f:
@@ -68,12 +79,13 @@ def main():
     manifest = {
         'format': 'manila-mapbundle',
         'formatVersion': 1,
-        'id': f'manila-{day}',
-        'title': 'Metro Manila',
+        # The id changes whenever the OSM date or the covered area changes, so "Update map" sees it as new.
+        'id': f"{re.sub(r'[^a-z0-9]+', '-', a.title.lower()).strip('-')}-{day}",
+        'title': a.title,
         'osmTimestamp': ts,
         'builtAt': dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'bounds': BOUNDS,
-        'center': CENTER,
+        'bounds': bounds,
+        'center': [float(v) for v in a.center.split(',')],
         'minzoom': 0,
         'maxzoom': 14,
         'attribution': '© OpenStreetMap contributors',
