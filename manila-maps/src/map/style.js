@@ -280,7 +280,7 @@ export function buildStyle({ sources, glyphs }) {
         paint: { 'text-color': C.waterLabel, 'text-halo-color': 'rgba(255,255,255,0.7)', 'text-halo-width': 1 },
       },
       {
-        id: 'oneway', type: 'symbol', source: 'osm', 'source-layer': 'road', minzoom: 16,
+        id: 'oneway', type: 'symbol', source: 'osm', 'source-layer': 'road', minzoom: 16.5,
         filter: ['all', ['has', 'oneway'], ['match', ['get', 'class'], ['primary', 'secondary', 'tertiary', 'minor', 'service', 'trunk'], true, false]],
         layout: {
           'symbol-placement': 'line', 'symbol-spacing': 140,
@@ -328,7 +328,7 @@ export function buildStyle({ sources, glyphs }) {
       {
         id: 'poi', type: 'symbol', source: 'osm', 'source-layer': 'poi', minzoom: 12,
         filter: ['all', ['has', 'name'],
-          ['<=', ['coalesce', ['get', 'rank'], 99], ['step', ['zoom'], 3, 14, 6, 15, 9, 16, 12, 17, 15, 18, 99]]],
+          ['<=', ['coalesce', ['get', 'rank'], 99], ['step', ['zoom'], 3, 14, 6, 15, 9, 16, 12, 17, 13, 18, 16, 19, 99]]],
         layout: poiLayout(),
         paint: poiPaint(),
       },

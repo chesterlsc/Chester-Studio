@@ -83,6 +83,8 @@ export async function startApp(root, bundle) {
       try { app.cleanup?.(); } catch (e) { console.error(e); }
       app.screen = name;
       app.cleanup = cleanup || null;
+      app.lostFollow = false;
+      recenterBtn.hidden = true;
       shell.dataset.screen = name;
     },
     setTopOcclusion(px) { app.topOcclusion = px; sheet.topLimit = px ? px + 8 : 0; },
@@ -105,9 +107,13 @@ export async function startApp(root, bundle) {
   window.__mm = app; // handy for QA in a desktop browser
 
   // ---------- sheet → floating controls ----------
+  let padTimer = 0;
   sheet.onChange((h) => {
     shell.style.setProperty('--sheet-h', `${Math.round(h)}px`);
     shell.classList.toggle('sheet-tall', h > shell.clientHeight * 0.62);
+    // Keep the followed dot above the sheet.
+    clearTimeout(padTimer);
+    padTimer = setTimeout(() => { if (!app.navActive) follow.refreshPadding(); }, 120);
   });
 
   // ---------- controls ----------
@@ -146,14 +152,23 @@ export async function startApp(root, bundle) {
     locateBtn.classList.toggle('follow', follow.mode === 'follow');
     locateBtn.innerHTML = svg(follow.mode === 'follow' ? 'navigate' : 'locate', { size: follow.mode === 'follow' ? 20 : 24 });
     locateBtn.classList.toggle('no-fix', !Location.last);
-    recenterBtn.hidden = !(app.navActive && follow.mode === 'off');
+    if (follow.mode !== 'off') app.lostFollow = false;
+    recenterBtn.hidden = !(follow.mode === 'off' && (app.navActive || app.lostFollow));
   };
-  follow.onChange(syncLocate);
+  let prevMode = 'off';
+  follow.onChange((mode, reason) => {
+    // Panning away from the heading-up camera offers a one-tap way back.
+    if (mode === 'off' && reason === 'user' && prevMode === 'follow') app.lostFollow = true;
+    prevMode = mode;
+    syncLocate();
+  });
   follow.paddingFor = (mode) => {
     const H = shell.clientHeight;
     if (mode === 'follow') {
-      const bottom = app.navActive ? (shell.querySelector('.nav-bottom')?.offsetHeight || 100) : (sheet.hidden ? 0 : Math.min(sheet.visible, H * 0.4));
-      return { top: Math.round(H * 0.42), bottom: Math.round(bottom + 20), left: 0, right: 0 };
+      // Put the dot ~70% down the visible map area (lower third), like navigation apps.
+      const occ = app.navActive ? (shell.querySelector('.nav-bottom')?.offsetHeight || 100) : (sheet.hidden ? 0 : Math.min(sheet.visible, H * 0.6));
+      const visible = H - occ;
+      return { top: Math.round(visible * 0.4), bottom: Math.round(occ), left: 0, right: 0 };
     }
     return app.padding();
   };
@@ -275,5 +290,5 @@ export async function startApp(root, bundle) {
 }
 
 function safeTop() {
-  return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sat')) || 0;
+  return (window.__insets?.top || 0);
 }

@@ -7,14 +7,13 @@ import { startApp } from './ui/app.js';
 
 const root = document.getElementById('app');
 
-// Expose safe-area insets as numbers for JS layout maths.
+// Resolve the safe-area insets (CSS vars) to pixels for JS layout maths.
 function syncInsets() {
   const probe = document.createElement('div');
-  probe.style.cssText = 'position:fixed;top:0;left:0;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;visibility:hidden;pointer-events:none';
+  probe.style.cssText = 'position:fixed;top:0;left:0;padding:var(--sat) 0 var(--sab) 0;visibility:hidden;pointer-events:none';
   document.body.appendChild(probe);
   const cs = getComputedStyle(probe);
-  document.documentElement.style.setProperty('--sat', cs.paddingTop);
-  document.documentElement.style.setProperty('--sab', cs.paddingBottom);
+  window.__insets = { top: parseFloat(cs.paddingTop) || 0, bottom: parseFloat(cs.paddingBottom) || 0 };
   probe.remove();
 }
 
@@ -27,7 +26,7 @@ async function boot() {
   } catch (e) {
     splash.el.remove();
     if (e?.code === 'NEED_FILE') {
-      showWelcome(root, { onPick: (onProgress) => MapStore.importBackup(onProgress) });
+      showWelcome(root, { onPick: (onProgress) => MapStore.importBackup(onProgress), onReady: boot });
     } else {
       console.error(e);
       showError(root, e, { onRetry: boot });

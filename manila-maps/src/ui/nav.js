@@ -136,7 +136,7 @@ export function startNav(app, { route, to, simulate = false, onExit, onDone }) {
     app.root.classList.remove('navigating');
     overlays.setRouteDone(null);
     // Show the real position again if we were simulating.
-    if (lastFix?.simulated) Location.last = null;
+    if (lastFix?.simulated) { Location.last = null; Location.restart(); }
   };
 
   ui.addEventListener('click', async (e) => {

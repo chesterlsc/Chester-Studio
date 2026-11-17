@@ -52,7 +52,7 @@ export class Splash {
 }
 
 /** Shown in the web build opened from Files when no map has been imported yet. */
-export function showWelcome(root, { onPick }) {
+export function showWelcome(root, { onPick, onReady }) {
   const el = html(`
     <div class="screen welcome">
       <div class="welcome-card">
@@ -87,7 +87,9 @@ export function showWelcome(root, { onPick }) {
       if (r?.ok) {
         msg.textContent = 'Map ready. Opening…';
         bar.style.width = '100%';
-        setTimeout(() => location.reload(), 300);
+        // Open right away (no reload): on file:// the browser may only keep the
+        // file for this session.
+        setTimeout(() => { el.remove(); onReady(); }, 250);
         return;
       }
       if (!r?.cancelled) { err.textContent = r?.error || 'That file could not be opened.'; err.hidden = false; }

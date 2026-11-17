@@ -69,7 +69,13 @@ export class Follow {
   }
 
   refreshPadding() {
-    if (this.mode !== 'off') this.map.easeTo({ padding: this.paddingFor(this.mode), duration: 300 });
+    if (this.mode === 'off') return;
+    const cam = { padding: this.paddingFor(this.mode), duration: 350 };
+    if (this.puck.pos) cam.center = this.puck.pos;
+    this.entering = true;
+    const token = ++this._token;
+    this.map.once('moveend', () => { if (token === this._token) { this.entering = false; this.puck._kick(); } });
+    this.map.easeTo(cam);
   }
 
   _frame(now) {

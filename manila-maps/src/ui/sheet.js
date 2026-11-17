@@ -28,7 +28,7 @@ export class Sheet {
   /** Pixel height for a snap. */
   heightOf(s) {
     const H = this.maxH;
-    const topGap = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sat')) || 0;
+    const topGap = (window.__insets?.top || 0);
     const full = H - Math.max(topGap + 12, this.topLimit || 0);
     if (typeof s === 'number') return Math.min(full, s);
     if (s === 'full') return full;
@@ -51,7 +51,7 @@ export class Sheet {
     return 160;
   }
 
-  _sab() { return parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sab')) || 0; }
+  _sab() { return (window.__insets?.bottom || 0); }
 
   /**
    * Show content. opts: { snaps, snap, peekEl, cls }
