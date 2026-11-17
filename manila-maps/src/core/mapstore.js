@@ -46,7 +46,38 @@ async function opfsFile() {
   if (!root) return null;
   try { return await (await root.getFileHandle(OPFS_NAME)).getFile(); } catch { return null; }
 }
-let sessionBlob = null; // fallback when OPFS is unavailable
+let sessionBlob = null; // last-resort fallback for this session only
+
+// IndexedDB fallback: OPFS is blocked on file:// pages, IndexedDB is not.
+function idb() {
+  return new Promise((resolve, reject) => {
+    if (!('indexedDB' in globalThis)) return reject(new Error('no IndexedDB'));
+    const req = indexedDB.open('manila-maps', 1);
+    req.onupgradeneeded = () => req.result.createObjectStore('files');
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function idbGet(key) {
+  try {
+    const db = await idb();
+    return await new Promise((resolve) => {
+      const r = db.transaction('files').objectStore('files').get(key);
+      r.onsuccess = () => resolve(r.result || null);
+      r.onerror = () => resolve(null);
+    });
+  } catch { return null; }
+}
+async function idbPut(key, value) {
+  const db = await idb();
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction('files', 'readwrite');
+    tx.objectStore('files').put(value, key);
+    tx.oncomplete = resolve;
+    tx.onerror = () => reject(tx.error);
+    tx.onabort = () => reject(tx.error);
+  });
+}
 
 function pickFile(accept = '.mmap,application/zip,application/octet-stream') {
   return new Promise((resolve) => {
@@ -67,8 +98,8 @@ async function webOpen() {
       return await openBundle(httpRangeReader(DEV_URL, size));
     } catch { /* fall through to stored copy */ }
   }
-  const f = (await opfsFile()) || sessionBlob;
-  if (f) return openBundle(blobRangeReader(f, 'opfs'));
+  const f = (await opfsFile()) || (await idbGet(OPFS_NAME)) || sessionBlob;
+  if (f) return openBundle(blobRangeReader(f, 'stored'));
   throw needFileError();
 }
 
@@ -105,7 +136,7 @@ export const MapStore = {
     if (isNative) {
       try { return await Native.exportBackup(); } catch (e) { return { ok: false, error: e.message }; }
     }
-    const f = (await opfsFile()) || sessionBlob;
+    const f = (await opfsFile()) || (await idbGet(OPFS_NAME)) || sessionBlob;
     let blob = f;
     if (!blob) {
       try { const size = await httpSize(DEV_URL); blob = await (await fetch(DEV_URL)).blob(); void size; } catch { /* none */ }
@@ -136,21 +167,29 @@ export const MapStore = {
       const b = await openBundle(blobRangeReader(file, 'picked'));
       await verifyBundle(b, { maxHashBytes: 64 * 1024 * 1024, onProgress });
       onProgress?.({ phase: 'install', loaded: 0, total: file.size });
+      try { await navigator.storage?.persist?.(); } catch { /* ignore */ }
       const root = await opfsRoot();
+      let stored = false;
       if (root) {
-        try { await navigator.storage.persist?.(); } catch { /* ignore */ }
-        const tmp = await root.getFileHandle(OPFS_NAME + '.incoming', { create: true });
-        const w = await tmp.createWritable();
-        await w.write(file);
-        await w.close();
-        // Swap only after the new copy is complete.
-        const finalH = await root.getFileHandle(OPFS_NAME, { create: true });
-        const w2 = await finalH.createWritable();
-        await w2.write(await tmp.getFile());
-        await w2.close();
-        await root.removeEntry(OPFS_NAME + '.incoming');
-      } else {
-        sessionBlob = file;
+        try {
+          const tmp = await root.getFileHandle(OPFS_NAME + '.incoming', { create: true });
+          const w = await tmp.createWritable();
+          await w.write(file);
+          await w.close();
+          // Swap only after the new copy is complete.
+          const finalH = await root.getFileHandle(OPFS_NAME, { create: true });
+          const w2 = await finalH.createWritable();
+          await w2.write(await tmp.getFile());
+          await w2.close();
+          await root.removeEntry(OPFS_NAME + '.incoming');
+          stored = true;
+        } catch { /* OPFS not writable here: use IndexedDB below */ }
+      }
+      if (!stored) {
+        // Read the file into memory first so IndexedDB keeps a real copy, not a reference to the picked file.
+        const copy = new Blob([await file.arrayBuffer()], { type: 'application/octet-stream' });
+        try { await idbPut(OPFS_NAME, copy); stored = true; } catch { /* fall back to this session */ }
+        sessionBlob = copy;
       }
       return { ok: true, manifest: b.manifest };
     } catch (e) {

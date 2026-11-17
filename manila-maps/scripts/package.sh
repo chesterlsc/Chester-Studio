@@ -15,6 +15,7 @@ MMAP=data/out/manila.mmap
 [ -f "$MMAP" ] || { echo "Missing $MMAP — run data/build.sh first" >&2; exit 1; }
 
 ID=$(python3 -I -c 'import zipfile,json,sys;print(json.loads(zipfile.ZipFile(sys.argv[1]).read("manifest.json"))["id"])' "$MMAP")
+VER=${ID#manila-}
 echo "Bundle: $ID ($(du -h "$MMAP" | cut -f1))"
 mkdir -p release
 
@@ -36,7 +37,7 @@ else
   (cd android && "$GRADLE" --no-daemon -q assembleDebug)
   APK=android/app/build/outputs/apk/debug/app-debug.apk
 fi
-cp "$APK" "release/ManilaMaps-$ID.apk"
+cp "$APK" "release/ManilaMaps-$VER.apk"
 
 echo "== offline zip"
 STAGE=$(mktemp -d)
@@ -44,8 +45,8 @@ mkdir -p "$STAGE/Manila Maps"
 cp dist-offline/index.html "$STAGE/Manila Maps/Manila Maps.html"
 cp "$MMAP" "$STAGE/Manila Maps/manila.mmap"
 cp scripts/OFFLINE-README.txt "$STAGE/Manila Maps/READ ME.txt"
-rm -f "release/ManilaMaps-offline-$ID.zip"
-(cd "$STAGE" && zip -q -0 -r "$ROOT/release/ManilaMaps-offline-$ID.zip" "Manila Maps")
+rm -f "release/ManilaMaps-offline-$VER.zip"
+(cd "$STAGE" && zip -q -0 -r "$ROOT/release/ManilaMaps-offline-$VER.zip" "Manila Maps")
 rm -rf "$STAGE"
 
 echo "== update files"

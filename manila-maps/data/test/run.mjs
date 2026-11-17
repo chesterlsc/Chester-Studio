@@ -192,6 +192,32 @@ for (const [a, b] of pairs) {
   }
   console.log(`QC Memorial Circle -> NAIA T3 car, warm: ${runs.map((x) => x.toFixed(0)).join(', ')} ms`);
 }
+// Robustness: random start/end points across Metro Manila must never throw
+// (e.g. starting on a roundabout), and every route must be well-formed.
+{
+  let seed = 12345;
+  const rnd = () => ((seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
+  const [W, S, E, N] = [120.96, 14.40, 121.12, 14.76];
+  const pts = [[121.0493, 14.6515], [121.0509, 14.6516]]; // on / next to QC Memorial Circle roundabout
+  for (let i = 0; i < 120; i++) pts.push([W + rnd() * (E - W), S + rnd() * (N - S)]);
+  let ok = 0, none = 0, threw = 0;
+  for (let i = 0; i + 1 < pts.length; i += 1) {
+    for (const mode of ['car', 'motorcycle', 'walk']) {
+      try {
+        const r = await router.route({ from: pts[i], to: pts[(i * 7 + 3) % pts.length], mode });
+        if (!r) { none++; continue; }
+        if (r.steps[0].maneuver !== 'depart' || r.steps.at(-1).maneuver !== 'arrive') fail('random route: bad steps');
+        if (r.steps.some((s) => !s.instruction)) fail('random route: step without instruction');
+        ok++;
+      } catch (e) {
+        threw++;
+        fail(`random route ${JSON.stringify(pts[i])} [${mode}] threw: ${e.message}`);
+      }
+    }
+  }
+  console.log(`random routes: ${ok} ok, ${none} no route, ${threw} threw`);
+}
+
 const sn = await router.snap([121.0244, 14.5567], 'car');
 console.log('snap Ayala Triangle (car):', JSON.stringify(sn));
 

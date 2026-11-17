@@ -6,7 +6,7 @@ import path from 'node:path';
 // Serves data/out/*.mmap at /mapdata/ during dev and preview (with Range support),
 // so the bundle never gets copied into the web build output.
 function mapDataServer() {
-  const dir = path.resolve(__dirname, 'data/out');
+  const dir = path.resolve(import.meta.dirname, 'data/out');
   const handler = (req, res, next) => {
     if (!req.url.startsWith('/mapdata/')) return next();
     const file = path.join(dir, path.basename(decodeURIComponent(req.url.split('?')[0])));

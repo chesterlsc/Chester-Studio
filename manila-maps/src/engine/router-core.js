@@ -643,6 +643,8 @@ export function routerCore(scope) {
           inRound = { exits: 0 };
           cur._round = inRound;
         } else if (rbC && rbP) {
+          // The route can start (or snap) already on the roundabout: track exits from here.
+          if (!inRound) inRound = { exits: 0 };
           if (opts.some(function (o) { return !(g.edgeFlags[o.edge] & F_ROUNDABOUT); })) inRound.exits++;
         } else if (!rbC && rbP && inRound) {
           inRound.exits++;
