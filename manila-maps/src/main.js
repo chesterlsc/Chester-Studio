@@ -26,7 +26,11 @@ async function boot() {
   } catch (e) {
     splash.el.remove();
     if (e?.code === 'NEED_FILE') {
-      showWelcome(root, { onPick: (onProgress) => MapStore.importBackup(onProgress), onReady: boot });
+      showWelcome(root, {
+        onPick: (onProgress) => MapStore.importBackup(onProgress),
+        onDownload: e.canDownload ? (onProgress) => MapStore.download(onProgress) : null,
+        onReady: boot,
+      });
     } else {
       console.error(e);
       showError(root, e, { onRetry: boot });
@@ -46,4 +50,9 @@ async function boot() {
 }
 
 window.addEventListener('resize', syncInsets);
+
+// Installable web app (iPhone/iPad/Mac): cache the app files so it opens with no internet.
+if (import.meta.env.MODE === 'pwa' && 'serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'all' }).catch(() => {});
+}
 boot();

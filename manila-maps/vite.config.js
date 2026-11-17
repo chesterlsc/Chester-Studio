@@ -34,14 +34,37 @@ function mapDataServer() {
   };
 }
 
+// Installable web app (iPhone/iPad "Add to Home Screen", Mac "Add to Dock"): manifest + icons.
+function pwaHead() {
+  return {
+    name: 'pwa-head',
+    transformIndexHtml(html) {
+      return html.replace('</head>', `  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/png" href="./icon-192.png" />
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Manila Maps" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+</head>`);
+    },
+  };
+}
+
+const OUT = { offline: 'dist-offline', pwa: 'dist-pwa' };
+
 export default defineConfig(({ mode }) => ({
   base: './',
-  plugins: [mapDataServer(), ...(mode === 'offline' ? [viteSingleFile()] : [])],
+  plugins: [
+    mapDataServer(),
+    ...(mode === 'offline' || mode === 'pwa' ? [viteSingleFile()] : []),
+    ...(mode === 'pwa' ? [pwaHead()] : []),
+  ],
   build: {
-    outDir: mode === 'offline' ? 'dist-offline' : 'dist',
+    outDir: OUT[mode] || 'dist',
     target: 'es2020',
     chunkSizeWarningLimit: 4000,
-    assetsInlineLimit: mode === 'offline' ? 100000000 : 4096,
+    assetsInlineLimit: mode === 'offline' || mode === 'pwa' ? 100000000 : 4096,
   },
   worker: { format: 'es' },
   server: { host: true },

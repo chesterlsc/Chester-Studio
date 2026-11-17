@@ -189,8 +189,21 @@ class LocationService {
       }
       this.emit('compass', this.compass);
     };
-    if ('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', handler);
-    else window.addEventListener('deviceorientation', handler);
+    const listen = () => {
+      if ('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', handler);
+      else window.addEventListener('deviceorientation', handler);
+    };
+    // iPhone/iPad: the compass needs permission, which can only be asked from a tap.
+    const DOE = window.DeviceOrientationEvent;
+    if (DOE && typeof DOE.requestPermission === 'function') {
+      const ask = () => {
+        document.removeEventListener('click', ask, true);
+        document.removeEventListener('touchend', ask, true);
+        DOE.requestPermission().then((r) => { if (r === 'granted') listen(); }).catch(() => {});
+      };
+      document.addEventListener('click', ask, true);
+      document.addEventListener('touchend', ask, true);
+    } else listen();
   }
 }
 

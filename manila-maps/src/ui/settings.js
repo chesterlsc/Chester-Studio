@@ -142,7 +142,7 @@ export function openSettings(app) {
     } else if (a === 'update') {
       const ok = await confirmDialog({
         title: 'Update map?',
-        message: 'This downloads about 100 MB. Use Wi-Fi if you can. Your current map stays installed until the new one is downloaded and verified.',
+        message: `This downloads about ${Math.round((app.bundle.reader?.size || 42e6) / 1e6)} MB. Use Wi-Fi if you can. Your current map stays installed until the new one is downloaded and verified.`,
         ok: 'Download',
       });
       if (!ok) return;

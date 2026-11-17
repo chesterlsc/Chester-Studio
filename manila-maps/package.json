@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "build:web-offline": "vite build --mode offline",
+    "build:web-app": "vite build --mode pwa",
     "preview": "vite preview"
   },
   "devDependencies": {

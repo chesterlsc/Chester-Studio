@@ -51,15 +51,35 @@ export class Splash {
   }
 }
 
-/** Shown in the web build opened from Files when no map has been imported yet. */
-export function showWelcome(root, { onPick, onReady }) {
+function isStandalone() {
+  try {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  } catch { return false; }
+}
+
+function installHint() {
+  const ua = navigator.userAgent;
+  const iOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  const mac = /Macintosh/.test(ua) && !iOS;
+  if (iOS) return 'Install first so the map is kept for good: tap <b>Share</b> → <b>Add to Home Screen</b>, then open Manila Maps from your Home Screen and download the map there.';
+  if (mac) return 'Install first so the map is kept for good: in Safari choose <b>File → Add to Dock</b> (in Chrome: <b>Install</b> in the address bar), then open Manila Maps from the Dock and download the map there.';
+  return 'Tip: install the app first (browser menu → <b>Install app</b> / <b>Add to Home screen</b>), then download the map inside it.';
+}
+
+/** First run of a web build: download the map (hosted app) or open a .mmap from Files. */
+export function showWelcome(root, { onPick, onDownload, onReady }) {
+  const hosted = !!onDownload;
   const el = html(`
     <div class="screen welcome">
       <div class="welcome-card">
         <div class="splash-logo">${logoSvg(76)}</div>
         <h1>Welcome to Manila Maps</h1>
-        <p>This offline version needs the map file <b>manila.mmap</b> once. Pick it from your files and it will be kept in this browser’s storage — no internet needed afterwards.</p>
-        <button class="btn btn-primary btn-block btn-lg" data-a="pick">Open map file (.mmap)</button>
+        ${hosted && !isStandalone() ? `<p class="install-hint">${installHint()}</p>` : ''}
+        <p>${hosted
+          ? 'Download the Metro Manila map once (about 42 MB, Wi-Fi recommended). It stays on this device until you remove the app — after that everything works with no internet.'
+          : 'This offline version needs the map file <b>manila.mmap</b> once. Pick it from your files and it will be kept on this device — no internet needed afterwards.'}</p>
+        ${hosted ? '<button class="btn btn-primary btn-block btn-lg" data-a="download">Download map (42 MB)</button>' : ''}
+        <button class="btn ${hosted ? 'btn-soft' : 'btn-primary btn-lg'} btn-block" data-a="pick">${hosted ? 'I have the map file (.mmap)' : 'Open map file (.mmap)'}</button>
         <div class="welcome-progress" hidden>
           <div class="progress"><div class="progress-bar"></div></div>
           <p class="welcome-msg"></p>
@@ -69,37 +89,38 @@ export function showWelcome(root, { onPick, onReady }) {
       </div>
     </div>`);
   root.appendChild(el);
-  const btn = el.querySelector('[data-a="pick"]');
+  const btns = [...el.querySelectorAll('[data-a]')];
   const prog = el.querySelector('.welcome-progress');
   const bar = prog.querySelector('.progress-bar');
   const msg = prog.querySelector('.welcome-msg');
   const err = el.querySelector('.welcome-error');
-  btn.addEventListener('click', async () => {
+  const run = async (action) => {
     err.hidden = true;
-    btn.disabled = true;
+    btns.forEach((b) => { b.disabled = true; });
     const onProgress = (p) => {
       prog.hidden = false;
-      msg.textContent = progressText(p) + (p?.total ? ` (${fmtBytes(p.total)})` : '');
-      if (p?.total) bar.style.width = `${Math.min(100, (p.loaded / p.total) * 100)}%`;
+      msg.textContent = progressText(p) + (p?.total ? ` (${fmtBytes(p.loaded || 0)} of ${fmtBytes(p.total)})` : '');
+      if (p?.total) bar.style.width = `${Math.min(100, ((p.loaded || 0) / p.total) * 100)}%`;
     };
     try {
-      const r = await onPick(onProgress);
+      const r = await action(onProgress);
       if (r?.ok) {
         msg.textContent = 'Map ready. Opening…';
         bar.style.width = '100%';
-        // Open right away (no reload): on file:// the browser may only keep the
-        // file for this session.
+        // Open right away (no reload): on file:// the browser may only keep the file for this session.
         setTimeout(() => { el.remove(); onReady(); }, 250);
         return;
       }
-      if (!r?.cancelled) { err.textContent = r?.error || 'That file could not be opened.'; err.hidden = false; }
+      if (!r?.cancelled) { err.textContent = r?.error || 'That did not work. Please try again.'; err.hidden = false; }
     } catch (e) {
       err.textContent = e?.message || String(e);
       err.hidden = false;
     }
     prog.hidden = true;
-    btn.disabled = false;
-  });
+    btns.forEach((b) => { b.disabled = false; });
+  };
+  el.querySelector('[data-a="pick"]').addEventListener('click', () => run(onPick));
+  el.querySelector('[data-a="download"]')?.addEventListener('click', () => run(onDownload));
   return el;
 }
 

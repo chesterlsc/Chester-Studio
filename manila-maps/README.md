@@ -15,6 +15,22 @@ By Chester Studio. Map data © OpenStreetMap contributors (ODbL).
 | `ManilaMaps-offline-<id>.zip` | Browser version: unzip into Files, open `Manila Maps.html`, pick `manila.mmap` once. |
 | `manila.mmap` + `manila-latest.json` | Files to publish for the in-app **Update map** button (see below). |
 
+## iPhone, iPad and Mac (installable web app)
+
+Published at **https://chesterstudio.space/maps/** (folder `maps/` at the site root,
+built with `scripts/build-web-app.sh`).
+
+- **iPhone / iPad:** open the link in Safari → Share → **Add to Home Screen**.
+  Open Manila Maps from the Home Screen and tap **Download map (42 MB)** once.
+- **Mac (mini, MacBook):** open the link in Safari → File → **Add to Dock**
+  (Chrome: the Install icon in the address bar). Open it from the Dock and
+  download the map once.
+- Download the map *inside* the installed app: Safari tabs and installed apps
+  keep separate storage.
+- After that it works with no internet. The map is kept in the app's own
+  storage (marked persistent) until you remove the app. Update map, Save
+  backup to Files and Import from Files work the same as on Android.
+
 ## How the data is kept
 
 - One file, `manila.mmap`, holds everything: vector tiles (`tiles.pmtiles`),
@@ -37,10 +53,11 @@ By Chester Studio. Map data © OpenStreetMap contributors (ODbL).
    (download.openstreetmap.fr/extracts/asia/philippines/) and run
    `data/build.sh <path-to.pbf>`.
 2. `scripts/package.sh` writes `release/manila.mmap` and `release/manila-latest.json`.
-3. Create a GitHub release on `chesterlsc/chester-studio` and attach both files.
-   The app's default update address is
-   `https://github.com/chesterlsc/chester-studio/releases/latest/download/manila-latest.json`
-   (changeable in Settings).
+3. Run `scripts/build-web-app.sh` and publish the site: it puts the new
+   `maps/mapdata/manila.mmap` and `manila-latest.json` online. Every app
+   (Android, iPhone, Mac) checks
+   `https://chesterstudio.space/maps/mapdata/manila-latest.json` only when you tap
+   **Update map**.
 
 ## Building
 
