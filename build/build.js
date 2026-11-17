@@ -62,10 +62,12 @@
       who: "Creators and content teams",
       built: "It spots what’s trending, writes and renders the video, posts at peak hours, and learns from the views. Runs on the client’s existing Claude or Codex plan.",
     },
-    mallnav: {
-      label: "Indoor navigation product", name: "Indoor mall navigation", service: "Digital Product",
-      who: "Malls and large venues",
-      built: "Searchable directories, turn-by-turn wayfinding and store promos in a clean mobile experience, with a site that drives installs.",
+    mallmaps: {
+      label: "Live web app · piloted at SM Mall of Asia", name: "Mall Maps PH", service: "Digital Product", more: "../mall-maps/",
+      who: "Shoppers in big Philippine malls",
+      problem: "Malls are huge, and mall apps and websites rarely have a map you can use.",
+      built: "An offline, no-login indoor map: a 3D map of every floor, turn-by-turn directions with landmarks across floors, and about 900 places to search.",
+      hood: "Home usable in about 1.6 s on a first visit · Preact, MapLibre GL, Workbox, Cloudflare",
     },
     mechanic: {
       label: "On-demand service product", name: "On-demand mechanic app", service: "Digital Product",

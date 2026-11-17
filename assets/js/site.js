@@ -481,6 +481,7 @@
     { g: "What I build", t: "Custom software", d: "Built around one daily job", k: "app web app portal mvp platform system", run: go(ROOT + "build/#software") },
     { g: "What I build", t: "Automation", d: "Busywork that runs itself", k: "automate workflow n8n zapier email follow-up integration", run: go(ROOT + "build/#automation") },
     { g: "What I build", t: "Websites & stores", d: "Sites and stores that sell", k: "website site store shop shopify landing page seo ecommerce", run: go(ROOT + "build/#websites") },
+    { g: "Case studies", t: "Mall Maps PH", d: "An offline indoor map for Philippine malls", k: "mall map maps indoor wayfinding navigation directions moa sm offline pwa app case study", run: go(ROOT + "mall-maps/") },
     { g: "Do", t: "Start a project", d: "Six short steps, one brief", k: "quote hire brief begin", run: () => openWizard() },
     { g: "Do", t: "Open quick view", d: "The whole studio on one screen", k: "overview summary", run: () => (CS.quickView ? CS.quickView() : (location.href = ROOT + "?view=quick")) },
     { g: "Do", t: "WordPress care plan", d: "Updates, backups, speed, fixes", k: "maintenance maintain monthly", run: () => openWizard("WordPress / WooCommerce", "", "Monthly care plan") },

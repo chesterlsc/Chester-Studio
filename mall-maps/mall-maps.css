@@ -1,0 +1,95 @@
+/* ============================================================
+   MALL MAPS PH :: case study
+   Built on the site's tokens in ../assets/css/style.css and the
+   page parts in ../build/build.css (.bp-*). Only what's new is here:
+   phone frames, the feature rows, the facts strip and chips.
+   ============================================================ */
+
+/* intro: the words, then three real screens */
+.mm-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 500px); gap: clamp(32px, 5vw, 72px); align-items: center; padding-bottom: 56px; }
+.mm-top .bp-hero { padding-bottom: 0; }
+.mm-top .bp-hero h1 { font-size: clamp(2.5rem, 5.4vw, 4.8rem); max-width: 13ch; }
+.mm-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 8px; }
+.mm-cta .bp-more { align-self: center; }
+
+/* a phone: the screenshot inside a dark bezel */
+.mm-phone {
+  margin: 0; overflow: hidden; border-radius: 34px; border: 7px solid #16161d; background: #0b0d16;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px var(--border-strong);
+}
+.mm-phone img { display: block; width: 100%; height: auto; }
+
+.mm-fan { position: relative; display: grid; grid-template-columns: 1fr 1.12fr 1fr; align-items: center; isolation: isolate; }
+.mm-fan .mm-phone:nth-child(1) { transform: translateX(14%) rotate(-6deg); z-index: 0; }
+.mm-fan .mm-phone:nth-child(2) { z-index: 1; }
+.mm-fan .mm-phone:nth-child(3) { transform: translateX(-14%) rotate(6deg); z-index: 0; }
+.mm-fan::before {
+  content: ""; position: absolute; inset: -10% 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(233, 180, 76, 0.16), transparent);
+}
+
+/* the numbers that are true today */
+.mm-facts {
+  list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px;
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--border);
+}
+.mm-facts li { display: grid; gap: 4px; align-content: start; padding: 20px 22px; background: var(--bg-2); }
+.mm-facts b { font-family: var(--font-display); font-weight: 600; font-size: 2.2rem; line-height: 1; color: var(--blue); }
+.mm-facts span { font-size: 0.86rem; color: var(--text-2); line-height: 1.45; }
+
+/* the problem, plainly */
+.mm-why { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); }
+.mm-why p { color: var(--text-2); font-size: 1.08rem; max-width: 60ch; }
+.mm-why p + p { margin-top: 14px; }
+.mm-why p b { color: var(--text); font-weight: 500; }
+
+/* one screen, one job */
+.mm-head { position: static; max-width: 640px; margin-bottom: clamp(48px, 7vw, 88px); }
+.mm-rows { max-width: 980px; margin-inline: auto; }
+.mm-feat { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.mm-feat + .mm-feat { margin-top: clamp(64px, 9vw, 112px); }
+.mm-feat--flip { grid-template-columns: minmax(0, 1fr) 280px; }
+.mm-feat--flip .mm-phone { order: 2; }
+.mm-feat__copy { display: grid; gap: 14px; max-width: 54ch; }
+.mm-feat__copy h3 {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.08; text-wrap: balance;
+}
+.mm-feat__copy > p { color: var(--text-2); }
+.mm-ticks { list-style: none; display: grid; gap: 8px; margin-top: 4px; }
+.mm-ticks li { display: flex; gap: 10px; font-size: 0.95rem; }
+.mm-ticks li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 0.6em; border-radius: 50%; background: var(--blue); }
+.mm-ticks q { color: var(--blue); }
+
+/* chips: the next malls, the stack */
+.mm-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.mm-chips li {
+  padding: 7px 14px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface-2);
+  font: 0.78rem var(--font-mono); color: var(--text-2);
+}
+.mm-next { display: grid; gap: 12px; padding-top: 20px; border-top: 1px solid var(--border); }
+.mm-next h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; }
+.mm-next p { font-size: 0.92rem; color: var(--text-2); }
+
+.mm-note { font-size: 0.82rem; color: var(--text-3); }
+
+/* each row eases in once as it arrives */
+.js .mm-feat { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.js .mm-feat.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .mm-feat { opacity: 1; transform: none; } }
+
+@media (max-width: 1000px) {
+  .mm-top { grid-template-columns: minmax(0, 1fr); }
+  .mm-fan { max-width: 520px; width: 100%; justify-self: center; }
+  .mm-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mm-why { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+}
+@media (max-width: 700px) {
+  .mm-top { padding-bottom: 40px; gap: 40px; }
+  .mm-cta .btn { width: 100%; justify-content: center; }
+  .mm-phone { border-width: 5px; border-radius: 24px; }
+  .mm-facts li { padding: 16px; }
+  .mm-facts b { font-size: 1.8rem; }
+  .mm-feat, .mm-feat--flip { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .mm-feat .mm-phone { order: 0; width: min(250px, 70vw); justify-self: center; }
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-root="../">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Mall Maps PH: An Offline Indoor Map for Philippine Malls | Chester Studio</title>
+  <meta name="description" content="Mall Maps PH is an offline, no-login indoor map web app for Philippine malls, piloted at SM Mall of Asia. A 3D map of every floor, directions with landmarks, and about 900 places to search." />
+  <meta name="author" content="Chester Studio" />
+  <link rel="canonical" href="https://chesterstudio.space/mall-maps/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Chester Studio" />
+  <meta property="og:url" content="https://chesterstudio.space/mall-maps/" />
+  <meta property="og:title" content="Mall Maps PH | Chester Studio" />
+  <meta property="og:description" content="An offline, no-login indoor map for Philippine malls, piloted at SM Mall of Asia." />
+  <meta property="og:image" content="https://chesterstudio.space/public/projects/mall-maps-share.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Mall Maps PH on three phones: the floor map, the 3D home screen and the store directory" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://chesterstudio.space/public/projects/mall-maps-share.jpg" />
+
+  <meta name="theme-color" content="#050507" />
+  <link rel="icon" href="../favicon.ico?v=3" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg?v=3" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=33" />
+  <link rel="stylesheet" href="../build/build.css?v=4" />
+  <link rel="stylesheet" href="mall-maps.css?v=1" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mall Maps PH",
+    "url": "https://mallmaps.chesterstudio.space",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "Any",
+    "description": "An offline, no-login indoor map web app for Philippine malls, piloted at SM Mall of Asia.",
+    "image": "https://chesterstudio.space/public/projects/mall-maps-share.jpg",
+    "author": { "@type": "ProfessionalService", "name": "Chester Studio", "url": "https://chesterstudio.space/" }
+  }
+  </script>
+</head>
+<body>
+  <a class="bp-skip" href="#main">Skip to content</a>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main">
+      <a href="../" class="nav__logo" aria-label="Chester Studio, home">
+        <svg class="nav__logo-mark" viewBox="0 0 48 48" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f2cf6b" />
+              <stop offset="100%" stop-color="#c98f2e" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="10" fill="#0c0c10" stroke="url(#logoGrad)" stroke-width="1.6" />
+          <path class="nav__logo-c" d="M33 12 H19 L11 20 V28 L19 36 H33 V29.5 H21.8 L17.6 25.4 V22.6 L21.8 18.5 H33 Z" fill="url(#logoGrad)" />
+          <rect class="nav__logo-node" x="26.5" y="21" width="7" height="6" rx="1.3" fill="#ffd43b" />
+        </svg>
+        <span class="nav__logo-text">Chester <em>Studio</em></span>
+      </a>
+      <button type="button" class="nav__jump" data-palette aria-haspopup="dialog" aria-keyshortcuts="Meta+K Control+K">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+        <span class="nav__jump-long">Work, services, WordPress, contact…</span>
+        <span class="nav__jump-short">Jump to</span>
+        <kbd class="nav__kbd">⌘ K</kbd>
+      </button>
+      <div class="nav__end">
+        <a href="../#contact" class="nav__contact">Contact</a>
+        <button type="button" class="btn btn--primary nav__cta" data-wizard-open>
+          <span class="btn__text">Start a project</span>
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="bp">
+
+    <!-- ==================== INTRO ==================== -->
+    <section class="container mm-top" aria-labelledby="mm-title">
+      <div class="bp-hero">
+        <p class="bp-kick">Case study · Mall Maps PH</p>
+        <h1 id="mm-title">A mall map that works <em>offline</em>.</h1>
+        <p class="bp-lede">Mall Maps PH is an indoor map for Philippine malls. It runs in the browser, needs no login, and keeps working with no signal. I designed and built it, and it’s piloted at SM Mall of Asia.</p>
+        <div class="mm-cta">
+          <a class="btn btn--primary btn--lg" href="https://mallmaps.chesterstudio.space" target="_blank" rel="noopener">
+            <span class="btn__text">Open Mall Maps PH</span>
+            <span class="btn__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="bp-more" href="#built">See how it works <span aria-hidden="true">→</span></a>
+        </div>
+        <nav class="bp-index" aria-label="On this page">
+          <a href="#problem">The problem</a>
+          <a href="#built">What I built</a>
+          <a href="#behind">Behind the build</a>
+          <a href="#next">Next malls</a>
+        </nav>
+      </div>
+      <div class="mm-fan">
+        <figure class="mm-phone"><img src="../public/projects/mall-maps-map.webp" alt="The floor map with SM Cinema selected and a Start Navigation button" width="800" height="1738" decoding="async" /></figure>
+        <figure class="mm-phone"><img src="../public/projects/mall-maps-today.webp" alt="Mall Maps PH home screen: a 3D map of SM Mall of Asia Level 2, search, and one-tap buttons for restroom, exit, food, ATM and info" width="800" height="1738" fetchpriority="high" /></figure>
+        <figure class="mm-phone"><img src="../public/projects/mall-maps-directory.webp" alt="The A to Z store directory, each store with its logo, level and wing" width="800" height="1738" decoding="async" /></figure>
+      </div>
+    </section>
+
+    <div class="container">
+      <ul class="mm-facts" aria-label="Mall Maps PH in numbers">
+        <li><b>~900</b><span>places to search at SM Mall of Asia</span></li>
+        <li><b>430</b><span>brands shown with their real logo</span></li>
+        <li><b>1.6 s</b><span>to a usable Home on a first visit</span></li>
+        <li><b>6</b><span>more Metro Manila malls in a private preview</span></li>
+      </ul>
+    </div>
+
+    <!-- ==================== THE PROBLEM ==================== -->
+    <section class="bp-cat" id="problem" aria-labelledby="h-problem">
+      <div class="container mm-why">
+        <div class="bp-cat__text">
+          <p class="bp-cat__kind">The problem</p>
+          <h2 id="h-problem">Big malls, no usable map.</h2>
+        </div>
+        <div>
+          <p>Philippine malls are huge, and shoppers get lost in them. You know the store is somewhere on Level 2, but not which wing, or which way to walk.</p>
+          <p>Mall apps and websites rarely have a map you can actually use on a phone. So I built one: <b>a map that opens fast, finds the store, and walks you there.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WHAT I BUILT ==================== -->
+    <section class="bp-cat" id="built" aria-labelledby="h-built">
+      <div class="container">
+        <div class="bp-cat__text mm-head">
+          <p class="bp-cat__kind">What I built</p>
+          <h2 id="h-built">Mall Maps PH, piloted at SM Mall of Asia.</h2>
+          <p class="bp-cat__lead">An offline, no-login indoor map web app. You can install it from the browser like an app, and an iPhone app built with Capacitor is planned.</p>
+        </div>
+
+        <div class="mm-rows">
+          <div class="mm-feat">
+            <figure class="mm-phone"><img src="../public/projects/mall-maps-today.webp" alt="Home screen with the 3D map of Level 2, store logos as pins, and buttons for the nearest restroom, exit, food, ATM and info desk" width="800" height="1738" loading="lazy" decoding="async" /></figure>
+            <div class="mm-feat__copy">
+              <p class="bp-cat__kind">01 · The map</p>
+              <h3>A 3D map of every floor.</h3>
+              <p>Each floor is drawn in 3D on the phone’s graphics chip, with MapLibre. The biggest stores are lit so you can get your bearings, and stores sit on the map as their real logos.</p>
+              <ul class="mm-ticks">
+                <li>Biggest stores lit, real store logos as pins</li>
+                <li>Nearest restroom, exit, ATM, food and info desk in one tap</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mm-feat mm-feat--flip">
+            <figure class="mm-phone"><img src="../public/projects/mall-maps-map.webp" alt="Floor map with SM Cinema 1-6 selected, a prompt asking where you are, and a Start Navigation button" width="800" height="1738" loading="lazy" decoding="async" /></figure>
+            <div class="mm-feat__copy">
+              <p class="bp-cat__kind">02 · Directions</p>
+              <h3>Directions that point at things you can see.</h3>
+              <p>Turn-by-turn walking directions use landmarks, like <q>walk toward Uniqlo</q>. When a route changes floors, the floors stack up in 3D so you can see where you go up or down.</p>
+              <ul class="mm-ticks">
+                <li>Routes across floors, shown as stacked 3D floors</li>
+                <li>Location comes from the phone’s own prompt, with no fake “blue dot” precision</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mm-feat">
+            <figure class="mm-phone"><img src="../public/projects/mall-maps-store.webp" alt="TGI Fridays store page showing it is closed and opens at 11:00 AM, a Directions button, and the closest restroom, ATM and exit" width="800" height="1738" loading="lazy" decoding="async" /></figure>
+            <div class="mm-feat__copy">
+              <p class="bp-cat__kind">03 · Store pages</p>
+              <h3>Every store, with what’s near it.</h3>
+              <p>Each store shows whether it’s open now, its hours, and the closest restroom, ATM and exit. Store data is checked for freshness against OpenStreetMap and public sources, and each store carries a quiet “Last checked” line.</p>
+              <ul class="mm-ticks">
+                <li>Open and closed hours</li>
+                <li>Closest essentials from every store</li>
+                <li>A “Last checked” line on each store</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mm-feat mm-feat--flip">
+            <figure class="mm-phone"><img src="../public/projects/mall-maps-directory.webp" alt="Directory screen listing stores from A Veneto to Acer, each with its logo, level and wing, with filters for floor and type" width="800" height="1738" loading="lazy" decoding="async" /></figure>
+            <div class="mm-feat__copy">
+              <p class="bp-cat__kind">04 · Search and directory</p>
+              <h3>About 900 places, one search box.</h3>
+              <p>Search covers about 900 places at MOA: stores, food, restrooms and ATMs. The A–Z directory lists every store with its real logo, 430 brands in all.</p>
+              <ul class="mm-ticks">
+                <li>Filter by floor, or by stores, dining and services</li>
+                <li>Every store with its real logo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== BEHIND THE BUILD ==================== -->
+    <section class="bp-cat bp-cat--behind" id="behind" aria-labelledby="h-behind">
+      <div class="container bp-cat__in">
+        <div class="bp-cat__text">
+          <p class="bp-cat__kind">Behind the build</p>
+          <h2 id="h-behind">Made for a phone, inside a mall.</h2>
+          <p class="bp-cat__lead">Signal inside a mall is often weak, and nobody should need an account to find a restroom. These are the parts that make it work there.</p>
+          <a class="bp-more" href="https://mallmaps.chesterstudio.space" target="_blank" rel="noopener">Open Mall Maps PH <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="bp-behind">
+          <ul class="bp-rules">
+            <li>
+              <h3>Works fully offline</h3>
+              <p>After the first visit, the whole mall is saved to the phone. The map, search and directions keep working with no signal.</p>
+              <code>Workbox · installable web app</code>
+            </li>
+            <li>
+              <h3>Fast on mobile data</h3>
+              <p>Home is usable in about 1.6 seconds on a first visit.</p>
+              <code>Preact · Vite</code>
+            </li>
+            <li>
+              <h3>No login</h3>
+              <p>Open the link and use it. There’s no account and nothing to sign up for.</p>
+              <code>Web app · iPhone app via Capacitor planned</code>
+            </li>
+            <li>
+              <h3>Honest about location</h3>
+              <p>It asks with the phone’s own location prompt, and never shows a blue dot more precise than it really is.</p>
+              <code>The phone’s own location prompt</code>
+            </li>
+            <li>
+              <h3>Store data that stays fresh</h3>
+              <p>Stores are checked against OpenStreetMap and public sources, and each one says when it was last checked.</p>
+              <code>OpenStreetMap · public sources</code>
+            </li>
+            <li>
+              <h3>New malls, mapped by a tool</h3>
+              <p>A tool I wrote builds the map for a new mall automatically from OpenStreetMap.</p>
+              <code>OpenStreetMap · MapLibre GL</code>
+            </li>
+          </ul>
+
+          <div class="mm-next" id="next">
+            <h3>Next malls</h3>
+            <p>Six more Metro Manila malls are mapped and in a private preview.</p>
+            <ul class="mm-chips" aria-label="Malls in private preview">
+              <li>SM Megamall</li><li>SM City Manila</li><li>Robinsons Place Manila</li><li>Ayala Malls Manila Bay</li><li>SM Southmall</li><li>SM City Sta. Mesa</li>
+            </ul>
+          </div>
+
+          <div class="mm-next">
+            <h3>Built with</h3>
+            <ul class="mm-chips" aria-label="Stack">
+              <li>Preact</li><li>TypeScript</li><li>Vite</li><li>MapLibre GL</li><li>Workbox (offline)</li><li>Capacitor</li><li>Cloudflare</li>
+            </ul>
+            <p>Hosted on Cloudflare.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CLOSE ==================== -->
+    <section class="container bp-close" aria-labelledby="h-close">
+      <h2 id="h-close">Want an app like this for your business?</h2>
+      <p>Describe it in your own words. You’ll get questions or a first plan back within one business day.</p>
+      <div class="bp-close__row">
+        <button type="button" class="btn btn--primary btn--lg" data-wizard-open data-wizard-service="Digital Product">
+          <span class="btn__text">Start a project</span>
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </button>
+        <span class="bp-close__mail">or email <b>chestercatapia08@gmail.com</b></span>
+      </div>
+      <p class="mm-note">Mall Maps PH is an independent guide, not affiliated with SM, Ayala or Robinsons.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="../" class="footer__logo">Chester<em>Studio</em></a>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="../#work">Work</a>
+        <a href="../ai/">AI</a>
+        <a href="../build/">What I build</a>
+        <a href="../wordpress/">WordPress</a>
+        <a href="../#tools">Tools</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+      <p class="footer__copy">© <span id="year">2026</span> Chester Studio. Designed &amp; engineered end to end.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js?v=33"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // each feature row eases in once, as it arrives
+    document.documentElement.classList.add("js");
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { threshold: 0.12 });
+    document.querySelectorAll(".mm-feat").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
