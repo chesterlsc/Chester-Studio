@@ -49,15 +49,8 @@ rm -f "release/ManilaMaps-offline-$VER.zip"
 (cd "$STAGE" && zip -q -0 -r "$ROOT/release/ManilaMaps-offline-$VER.zip" "Manila Maps")
 rm -rf "$STAGE"
 
-echo "== update files"
-cp "$MMAP" release/manila.mmap
-python3 -I - "$MMAP" "$ID" > release/manila-latest.json <<'PY'
-import hashlib, json, os, sys
-p, i = sys.argv[1], sys.argv[2]
-h = hashlib.sha256()
-with open(p, 'rb') as f:
-    for b in iter(lambda: f.read(1 << 20), b''):
-        h.update(b)
-print(json.dumps({"id": i, "url": "manila.mmap", "size": os.path.getsize(p), "sha256": h.hexdigest()}, indent=2))
-PY
+echo "== update files (same as published under maps/mapdata/)"
+rm -f release/manila.mmap
+mkdir -p release/update
+python3 -I scripts/split_bundle.py "$MMAP" release/update
 ls -la release

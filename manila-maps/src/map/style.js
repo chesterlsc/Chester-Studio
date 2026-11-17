@@ -303,10 +303,37 @@ export function buildStyle({ sources, glyphs }) {
             16, ['match', ['get', 'class'], ['motorway', 'trunk', 'primary', 'secondary'], 13.5, 12],
             19, 15],
           'text-max-angle': 30,
-          'symbol-spacing': 320,
-          'text-padding': 4,
+          'symbol-spacing': ['interpolate', ['linear'], ['zoom'], 13, 320, 17, 220],
+          'text-padding': 2,
         },
         paint: { 'text-color': '#5c6066', 'text-halo-color': C.halo, 'text-halo-width': 1.6 },
+      },
+      {
+        // Named alleys, footpaths, steps and tracks (Google-style: every street gets its name).
+        id: 'path-label', type: 'symbol', source: 'osm', 'source-layer': 'road', minzoom: 15.5,
+        filter: ['all', ['has', 'name'], pathRoads],
+        layout: {
+          'symbol-placement': 'line',
+          'symbol-sort-key': 20,
+          'text-field': ['get', 'name'],
+          'text-font': FONT,
+          'text-size': ['interpolate', ['linear'], ['zoom'], 15.5, 10, 19, 13],
+          'text-max-angle': 30,
+          'symbol-spacing': 260,
+          'text-padding': 2,
+        },
+        paint: { 'text-color': '#7b8089', 'text-halo-color': C.halo, 'text-halo-width': 1.4 },
+      },
+      {
+        // House numbers where OpenStreetMap has them (layer may be absent in older bundles).
+        id: 'housenumber', type: 'symbol', source: 'osm', 'source-layer': 'housenumber', minzoom: 17,
+        layout: {
+          'text-field': ['get', 'housenumber'],
+          'text-font': FONT,
+          'text-size': ['interpolate', ['linear'], ['zoom'], 17, 9.5, 19, 12],
+          'text-padding': 2,
+        },
+        paint: { 'text-color': '#9a958d', 'text-halo-color': C.halo, 'text-halo-width': 1.2 },
       },
       {
         id: 'road-shield', type: 'symbol', source: 'osm', 'source-layer': 'road', minzoom: 10,

@@ -1,7 +1,14 @@
 {
   "id": "manila-20261117",
-  "url": "manila.mmap",
+  "title": "Metro Manila",
+  "osmTimestamp": "2026-11-17T00:11:34Z",
   "size": 41948484,
   "sha256": "d1be9787c4cd2c95298059d6c62f6810dddbafcdb980d8e72525b048a5333c80",
-  "osmTimestamp": "2026-11-17T00:11:34Z"
+  "parts": [
+    {
+      "url": "manila.mmap.000",
+      "size": 41948484,
+      "sha256": "d1be9787c4cd2c95298059d6c62f6810dddbafcdb980d8e72525b048a5333c80"
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 // Manila Maps — app entry. Splash → open the offline map (installing it on first
 // run) → map UI. Web build opened from Files asks for the .mmap once.
 import './styles/app.css';
-import { MapStore } from './core/mapstore.js';
+import { MapStore, fetchLatest } from './core/mapstore.js';
 import { Splash, showWelcome, showError } from './ui/screens.js';
 import { startApp } from './ui/app.js';
 
@@ -26,7 +26,10 @@ async function boot() {
   } catch (e) {
     splash.el.remove();
     if (e?.code === 'NEED_FILE') {
+      let downloadBytes = 0;
+      if (e.canDownload) { try { downloadBytes = (await fetchLatest()).size || 0; } catch { /* offline */ } }
       showWelcome(root, {
+        downloadBytes,
         onPick: (onProgress) => MapStore.importBackup(onProgress),
         onDownload: e.canDownload ? (onProgress) => MapStore.download(onProgress) : null,
         onReady: boot,

@@ -12,7 +12,8 @@
 // replacing it with a newer map that has been fully downloaded and verified.
 // In dev (vite) with nothing stored, ./mapdata/manila.mmap is read directly.
 import { Capacitor, registerPlugin } from '@capacitor/core';
-import { openBundle, httpRangeReader, httpSize, blobRangeReader, verifyBundle, sha256Hex } from './bundle.js';
+import { openBundle, httpRangeReader, httpSize, blobRangeReader, verifyBundle } from './bundle.js';
+import { sha256 } from '@noble/hashes/sha2.js';
 
 const Native = registerPlugin('MapStore');
 const isNative = Capacitor.isNativePlatform();
@@ -162,36 +163,55 @@ async function storeBlob(blob) {
   return 'idb';
 }
 
-/** Download the published map, verify it, then store it (hosted web app). */
+/** Fetch the small description of the published map (id, size, parts, sha256). */
+export async function fetchLatest() {
+  const res = await fetch(WEB_LATEST, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`Map server answered ${res.status}`);
+  return res.json();
+}
+
+/**
+ * Download the published map, verify it, then store it (hosted web app).
+ * The map may be split into parts (GitHub Pages caps files at 100 MB). The whole
+ * file is hashed incrementally while it streams in, so memory stays ~1x the map.
+ */
 async function downloadLatest(onProgress, { currentId } = {}) {
-  const res0 = await fetch(WEB_LATEST, { cache: 'no-store' });
-  if (!res0.ok) throw new Error(`Map server answered ${res0.status}`);
-  const latest = await res0.json();
+  const latest = await fetchLatest();
   if (currentId && latest.id === currentId) return { ok: true, upToDate: true };
-  const url = new URL(latest.url, new URL(WEB_LATEST, location.href)).href;
-  const res = await fetch(url, { cache: 'no-store' });
-  if (!res.ok || !res.body) throw new Error(`Map download failed (${res.status})`);
-  const total = latest.size || Number(res.headers.get('Content-Length')) || 0;
-  const reader = res.body.getReader();
-  const chunks = [];
+  const base = new URL(WEB_LATEST, location.href);
+  const parts = latest.parts?.length ? latest.parts : [{ url: latest.url, size: latest.size }];
+  const total = latest.size || parts.reduce((t, p) => t + (p.size || 0), 0);
+  const hasher = sha256.create();
+  const partBlobs = [];
   let loaded = 0;
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    chunks.push(value);
-    loaded += value.length;
-    onProgress?.({ phase: 'download', loaded, total });
+  for (const part of parts) {
+    const res = await fetch(new URL(part.url, base).href, { cache: 'no-store' });
+    if (!res.ok || !res.body) throw new Error(`Map download failed (${res.status})`);
+    const reader = res.body.getReader();
+    const chunks = [];
+    let got = 0;
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      hasher.update(value);
+      chunks.push(value);
+      got += value.length;
+      loaded += value.length;
+      onProgress?.({ phase: 'download', loaded, total });
+    }
+    if (part.size && got !== part.size) throw new Error('Download was incomplete. Please try again.');
+    partBlobs.push(new Blob(chunks, { type: 'application/octet-stream' }));
   }
-  const blob = new Blob(chunks, { type: 'application/octet-stream' });
-  chunks.length = 0;
-  if (latest.size && blob.size !== latest.size) throw new Error('Download was incomplete. Please try again.');
-  onProgress?.({ phase: 'verify', loaded: 0, total: blob.size });
+  const blob = new Blob(partBlobs, { type: 'application/octet-stream' });
+  partBlobs.length = 0;
+  if (total && blob.size !== total) throw new Error('Download was incomplete. Please try again.');
+  onProgress?.({ phase: 'verify', loaded: total, total });
   if (latest.sha256) {
-    const h = await sha256Hex(new Uint8Array(await blob.arrayBuffer()));
+    const h = [...hasher.digest()].map((x) => x.toString(16).padStart(2, '0')).join('');
     if (h !== latest.sha256) throw new Error('Download is damaged (checksum mismatch). Please try again.');
   }
   const b = await openBundle(blobRangeReader(blob, 'download'));
-  await verifyBundle(b, { maxHashBytes: 0, onProgress });
+  await verifyBundle(b, { maxHashBytes: 0 });
   onProgress?.({ phase: 'install', loaded: 0, total: blob.size });
   await storeBlob(blob);
   return { ok: true, manifest: b.manifest };

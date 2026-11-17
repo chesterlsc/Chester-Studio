@@ -67,8 +67,9 @@ function installHint() {
 }
 
 /** First run of a web build: download the map (hosted app) or open a .mmap from Files. */
-export function showWelcome(root, { onPick, onDownload, onReady }) {
+export function showWelcome(root, { onPick, onDownload, onReady, downloadBytes }) {
   const hosted = !!onDownload;
+  const mb = downloadBytes ? `${Math.round(downloadBytes / 1e6)} MB` : '';
   const el = html(`
     <div class="screen welcome">
       <div class="welcome-card">
@@ -76,9 +77,9 @@ export function showWelcome(root, { onPick, onDownload, onReady }) {
         <h1>Welcome to Manila Maps</h1>
         ${hosted && !isStandalone() ? `<p class="install-hint">${installHint()}</p>` : ''}
         <p>${hosted
-          ? 'Download the Metro Manila map once (about 42 MB, Wi-Fi recommended). It stays on this device until you remove the app — after that everything works with no internet.'
+          ? `Download the offline map once${mb ? ` (about ${mb}, Wi-Fi recommended)` : ' (Wi-Fi recommended)'}. It stays on this device until you remove the app — after that everything works with no internet.`
           : 'This offline version needs the map file <b>manila.mmap</b> once. Pick it from your files and it will be kept on this device — no internet needed afterwards.'}</p>
-        ${hosted ? '<button class="btn btn-primary btn-block btn-lg" data-a="download">Download map (42 MB)</button>' : ''}
+        ${hosted ? `<button class="btn btn-primary btn-block btn-lg" data-a="download">Download map${mb ? ` (${mb})` : ''}</button>` : ''}
         <button class="btn ${hosted ? 'btn-soft' : 'btn-primary btn-lg'} btn-block" data-a="pick">${hosted ? 'I have the map file (.mmap)' : 'Open map file (.mmap)'}</button>
         <div class="welcome-progress" hidden>
           <div class="progress"><div class="progress-bar"></div></div>
