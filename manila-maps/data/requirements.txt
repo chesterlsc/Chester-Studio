@@ -1,0 +1,4 @@
+# Python deps for data/build.sh (installed into data/work/venv)
+osmium==4.3.2
+shapely==2.2.0
+numpy==2.5.5

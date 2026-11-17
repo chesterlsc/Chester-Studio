@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-offline/
+release/
+data/out/
+data/work/
+data/tiles/target/
+*.pbf
+*.pmtiles
+*.mmap
+android/app/src/main/assets/mapdata/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+dist-pwa/
