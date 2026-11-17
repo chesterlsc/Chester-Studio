@@ -1,7 +1,24 @@
 {
-  "id": "manila-20261117",
-  "url": "manila.mmap",
-  "size": 41948484,
-  "sha256": "d1be9787c4cd2c95298059d6c62f6810dddbafcdb980d8e72525b048a5333c80",
-  "osmTimestamp": "2026-11-17T00:11:34Z"
+  "id": "greater-manila-20261117",
+  "title": "Greater Manila",
+  "osmTimestamp": "2026-11-17T00:11:34Z",
+  "size": 186731552,
+  "sha256": "a2f2483cecf1c68b7a1ecba99cc1c1c7b75dd7a512c2005e9c25ba270bd664fb",
+  "parts": [
+    {
+      "url": "manila.mmap.000",
+      "size": 90000000,
+      "sha256": "7857836c44199f41ba28334c10ce3b228c5fc2bf0c4fe00f0c0db49b6372acdb"
+    },
+    {
+      "url": "manila.mmap.001",
+      "size": 90000000,
+      "sha256": "abbf0e5478b4c9a286e623bab7a120b3be34d85e40680d0bad0d80a9a73615d8"
+    },
+    {
+      "url": "manila.mmap.002",
+      "size": 6731552,
+      "sha256": "4c167fe4a9bd8540b98d3ecb36756d41928ec9cf81cb27a870f40be570a53e5d"
+    }
+  ]
 }

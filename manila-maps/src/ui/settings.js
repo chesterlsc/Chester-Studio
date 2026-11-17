@@ -24,7 +24,7 @@ export function openSettings(app) {
           <div class="card map-card">
             <div class="map-card-head">
               <span class="ricon" style="--ic:#0B9E6A">${svg('layers', { size: 20 })}</span>
-              <div><b class="mc-title">${esc(m.title || 'Metro Manila')}</b><span class="mc-id">${esc(m.id || '')}</span></div>
+              <div><b class="mc-title">${esc(m.title || 'Greater Manila')}</b><span class="mc-id">${esc(m.id || '')}</span></div>
               <span class="badge ok">${svg('check', { size: 14 })}Installed</span>
             </div>
             <dl class="kv">

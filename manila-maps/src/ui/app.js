@@ -217,7 +217,7 @@ export async function startApp(root, bundle) {
       if (inside(f)) {
         if (app.screen === 'home' && follow.mode === 'off') map.jumpTo({ center: [f.lon, f.lat], zoom: 15, padding: app.padding() });
       } else {
-        toast('You’re outside Metro Manila — this offline map covers Metro Manila only.', { ms: 5000 });
+        toast(`You’re outside the offline map — it covers ${app.bundle.manifest?.title || 'Greater Manila'} only.`, { ms: 5000 });
       }
     }
     if (app.pendingLocate) {

@@ -24,6 +24,7 @@
     "@capacitor/core": "^8.6.2",
     "@capacitor/geolocation": "^8.2.4",
     "@capacitor/haptics": "^8.0.2",
+    "@noble/hashes": "^2.4.0",
     "maplibre-gl": "^6.18.0",
     "pmtiles": "^4.5.0"
   }

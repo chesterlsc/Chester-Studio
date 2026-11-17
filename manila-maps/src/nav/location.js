@@ -20,12 +20,24 @@ export const ERR = {
   UNAVAILABLE: 'unavailable',
 };
 
+function deviceKind() {
+  const ua = navigator.userAgent || '';
+  if (/Android/.test(ua)) return 'android';
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document)) return 'ios';
+  if (/Macintosh/.test(ua)) return 'mac';
+  return 'other';
+}
+
 export function errorMessage(code) {
-  switch (code) {
-    case ERR.DENIED: return 'Location permission is off. Allow location for Manila Maps in your phone settings to see where you are.';
-    case ERR.OFF: return 'Your phone’s location (GPS) is turned off. Turn it on to see where you are.';
-    default: return 'Can’t get your location right now. Move to an open area and try again.';
+  const d = deviceKind();
+  if (code === ERR.DENIED || code === ERR.OFF) {
+    if (d === 'mac') return 'Location is off for this app. On your Mac open System Settings → Privacy & Security → Location Services, turn it on and allow Safari (and Manila Maps), then reopen the app. A Mac has no GPS: it finds you by Wi-Fi, which needs Wi-Fi turned on.';
+    if (d === 'ios') return 'Location is off for this app. Open Settings → Privacy & Security → Location Services: turn it on, then set Safari Websites to “While Using the App” (and Precise Location on). Reopen Manila Maps and tap Allow.';
+    if (d === 'android') return code === ERR.OFF ? 'Your phone’s location (GPS) is turned off. Turn it on to see where you are.' : 'Location permission is off. Allow location for Manila Maps in your phone settings to see where you are.';
+    return 'Location is blocked. Allow location for this site in your browser settings to see where you are.';
   }
+  if (d === 'mac') return 'Can’t find your location. A Mac has no GPS chip — it uses nearby Wi-Fi, which usually needs an internet connection. Use your phone for live GPS.';
+  return 'Can’t get your location right now. Move to an open area (near a window) and try again.';
 }
 
 class LocationService {

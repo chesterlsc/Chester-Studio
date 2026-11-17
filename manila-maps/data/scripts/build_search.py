@@ -25,7 +25,7 @@ from shapely.ops import nearest_points, unary_union
 from shapely.strtree import STRtree
 
 sys.path.insert(0, __import__('os').path.dirname(__file__))
-from common import (CANON, NCR_CITIES, aliases_for, alt_names, canon, display_name, fold, poi_for,  # noqa: E402
+from common import (CANON, aliases_for, alt_names, canon, display_name, fold, poi_for,  # noqa: E402
                     tokens)
 
 KINDS = ['street', 'poi', 'barangay', 'city', 'place', 'station']
@@ -57,12 +57,12 @@ class Collector:
         self.pois = []       # (name, poi tuple, geom, tags, area_m2)
         self.roads = []      # (name, cls, LineString, node_ids, tags)
         self.landuse_named = []  # residential/commercial named areas -> places
-        self.rel6 = {}       # admin_level=6 relation tags by name (for cities that fail to assemble)
+        self.rel6 = {}       # admin_level=6 relation tags by id (for cities that fail to assemble)
 
     def relation(self, r):
         t = r.tags
-        if t.get('boundary') == 'administrative' and t.get('admin_level') == '6' and t.get('name') in NCR_CITIES:
-            self.rel6[t.get('name')] = dict(t)
+        if t.get('boundary') == 'administrative' and t.get('admin_level') == '6':
+            self.rel6[r.id] = dict(t)
 
     def node(self, n):
         t = n.tags
@@ -102,7 +102,7 @@ class Collector:
         name = display_name(t)
         if not name:
             return
-        want_admin = ba and lvl in ('6', '8', '10') and not a.from_way()
+        want_admin = ba and lvl in ('3', '4', '6', '8', '10') and not a.from_way()
         p = t.get('place')
         poi = poi_for(t)
         lu = t.get('landuse')
@@ -157,7 +157,12 @@ def label_point(g):
 
 def main(src, out):
     c = Collector()
-    fp = osmium.FileProcessor(src).with_locations().with_areas()
+    keys = ('highway', 'place', 'amenity', 'shop', 'tourism', 'leisure', 'aeroway', 'railway',
+            'public_transport', 'office', 'historic', 'landuse', 'boundary')
+    fp = (osmium.FileProcessor(src)
+          .with_locations()
+          .with_areas(osmium.filter.KeyFilter(*keys))
+          .with_filter(osmium.filter.KeyFilter(*keys)))
     for o in fp:
         if o.is_node():
             c.node(o)
@@ -170,45 +175,82 @@ def main(src, out):
     log(f'admin {len(c.admin)} places {len(c.places)} pois {len(c.pois)} roads {len(c.roads)} '
         f'landuse {len(c.landuse_named)}')
 
-    # ---- admin hierarchy
-    cities = {}
-    for lvl, name, oid, g, t in c.admin:
-        if lvl == 6 and name in NCR_CITIES:
-            if name not in cities or g.area > cities[name][1].area:
-                cities[name] = (oid, g, t)
-    missing = [n for n in NCR_CITIES if n not in cities]
-    log('cities assembled:', len(cities), 'missing:', missing)
-    # Fallback for cities whose boundary relation is incomplete in the extract (e.g. Taguig):
-    # union of their barangays, matched by PSGC code prefix (first 7 digits of `ref`).
-    for name in missing:
-        t = c.rel6.get(name)
-        ref = (t or {}).get('ref', '')
-        if len(ref) != 10:
-            continue
-        parts = [g for lvl, _, _, g, bt in c.admin if lvl == 10 and bt.get('ref', '')[:7] == ref[:7]]
-        if parts:
-            g = unary_union(parts).buffer(0.0003).buffer(-0.0003)
-            cities[name] = (0, g, t)
-            log(f'  {name}: built from {len(parts)} barangays')
-    ncr = unary_union([g for _, g, _ in cities.values()]).buffer(0.002)
-    ncr_prep = shapely.prepared.prep(ncr)
+    # ---- admin hierarchy: regions (3), provinces (4), cities/municipalities (6),
+    # districts (8, e.g. Manila's), barangays (10)
+    regions = [(name, g) for lvl, name, oid, g, t in c.admin if lvl == 3]
+    if regions:
+        cover = unary_union([g for _, g in regions]).buffer(0)
+    else:
+        cover = unary_union([g for lvl, _, _, g, _ in c.admin if lvl in (4, 6)]).buffer(0)
+    cover_prep = shapely.prepared.prep(cover.buffer(0.002))
+    region_tree = STRtree([g for _, g in regions]) if regions else None
+    provinces = [(name, g) for lvl, name, oid, g, t in c.admin if lvl == 4 and cover_prep.contains(g.representative_point())]
+    prov_tree = STRtree([g for _, g in provinces])
 
-    city_names = list(cities.keys())
-    city_geoms = [cities[n][1] for n in city_names]
+    cities = {}  # relation id -> dict
+    for lvl, name, oid, g, t in c.admin:
+        if lvl == 6 and cover_prep.contains(g.representative_point()):
+            cities[oid] = dict(name=name, geom=g, tags=t)
+    # Cities whose boundary relation is incomplete in the extract (e.g. Taguig): union of
+    # their barangays, matched by PSGC code prefix (first 7 digits of `ref`).
+    brgy_by_prefix = defaultdict(list)
+    for lvl, _, _, g, bt in c.admin:
+        if lvl == 10 and len(bt.get('ref', '')) == 10:
+            brgy_by_prefix[bt['ref'][:7]].append(g)
+    for rid, t in c.rel6.items():
+        ref = t.get('ref', '')
+        if rid in cities or len(ref) != 10 or not brgy_by_prefix.get(ref[:7]):
+            continue
+        g = unary_union(brgy_by_prefix[ref[:7]]).buffer(0.0003).buffer(-0.0003)
+        if cover_prep.contains(g.representative_point()):
+            cities[rid] = dict(name=display_name(t) or t.get('name'), geom=g, tags=t)
+            log(f'  {cities[rid]["name"]}: built from {len(brgy_by_prefix[ref[:7]])} barangays')
+    city_ids = list(cities)
+    city_geoms = [cities[i]['geom'] for i in city_ids]
     city_tree = STRtree(city_geoms)
-    districts = [(name, g) for lvl, name, oid, g, t in c.admin if lvl == 8 and ncr_prep.intersects(g.centroid)]
+
+    def region_of(pt):
+        if region_tree is None:
+            return None
+        for i in region_tree.query(pt, predicate='intersects'):
+            return regions[i][0]
+        return None
+
+    def province_of(pt, near=0.0):
+        for i in prov_tree.query(pt, predicate='intersects'):
+            return provinces[i][0]
+        if near and provinces:
+            # independent cities (e.g. Angeles) are not part of their province's polygon
+            i = prov_tree.nearest(pt)
+            if i is not None and provinces[i][1].distance(pt) < near:
+                return provinces[i][0]
+        return None
+
+    for rid, ci in cities.items():
+        pt = ci['geom'].representative_point()
+        reg = region_of(pt)
+        prov = province_of(pt, near=0 if reg == 'Metro Manila' else 0.08)
+        if not prov and reg and reg != 'Metro Manila':
+            prov = reg
+        ci['province'] = prov
+        ci['ncr'] = reg == 'Metro Manila'
+        ci['label'] = f'{ci["name"]}, {prov}' if prov else ci['name']
+    log(f'regions {len(regions)} provinces {len(provinces)} cities/municipalities {len(cities)}')
+
+    districts = [(name, g) for lvl, name, oid, g, t in c.admin if lvl == 8 and cover_prep.contains(g.representative_point())]
     dist_tree = STRtree([g for _, g in districts])
-    brgys = [(name, oid, g, t) for lvl, name, oid, g, t in c.admin if lvl == 10 and ncr_prep.contains(g.centroid)]
+    brgys = [(name, oid, g, t) for lvl, name, oid, g, t in c.admin if lvl == 10 and cover_prep.contains(g.representative_point())]
     brgy_tree = STRtree([g for _, _, g, _ in brgys])
-    log(f'districts {len(districts)} barangays {len(brgys)}')
+    log(f'districts {len(districts)} barangay polygons {len(brgys)}')
 
     def city_at(pt):
+        """Relation id of the city/municipality at pt (or None)."""
         for i in city_tree.query(pt, predicate='intersects'):
-            return city_names[i]
+            return city_ids[i]
         # nearest within ~300 m (coast / boundary slivers)
         i = city_tree.nearest(pt)
         if i is not None and city_geoms[i].distance(pt) < 0.003:
-            return city_names[i]
+            return city_ids[i]
         return None
 
     def brgy_at(pt):
@@ -227,8 +269,9 @@ def main(src, out):
         return b if re.match(r'^(barangay|brgy|bgy)\b', b, re.I) else f'Barangay {b}'
 
     def subtitle_at(pt, skip_brgy=None):
-        city = city_at(pt)
-        if not city:
+        """("Barangay X, City, Province", city id) for a point."""
+        cid = city_at(pt)
+        if not cid:
             return None, None
         b = brgy_at(pt)
         d = district_at(pt)
@@ -240,8 +283,8 @@ def main(src, out):
                 parts.append(brgy_label(b))
         elif d and d != skip_brgy:
             parts.append(d)
-        parts.append(city)
-        return ', '.join(parts), city
+        parts.append(cities[cid]['label'])
+        return ', '.join(parts), cid
 
     recs = []  # dict(name, kind, category, subtitle, lon, lat, imp, alts)
 
@@ -257,68 +300,93 @@ def main(src, out):
         recs.append(dict(name=name, kind=kind, category=category or '', subtitle=subtitle or '',
                          lon=pt.x, lat=pt.y, imp=max(0, min(100, int(imp))), alts=al))
 
-    # ---- cities
+    # ---- regions, provinces, cities/municipalities
+    for name, g in regions:
+        add(name, 'place', 'region', 'Region', label_point(g), 90)
+    for name, g in provinces:
+        reg = region_of(g.representative_point())
+        add(name, 'place', 'province', f'Province, {reg}' if reg else 'Province', label_point(g), 93,
+            [f'{name} Province'])
     city_label_nodes = {}
     for name, p, g, t in c.places:
-        if p == 'city' and name in cities and g.geom_type == 'Point':
-            city_label_nodes[name] = g
-    for name, (oid, g, t) in cities.items():
-        pt = city_label_nodes.get(name) or label_point(g)
+        if p in ('city', 'town', 'municipality') and g.geom_type == 'Point':
+            cid = city_at(g)
+            if cid and fold(cities[cid]['name']).endswith(fold(name)) or (cid and fold(name).endswith(fold(cities[cid]['name']))):
+                city_label_nodes[cid] = g
+    big = {'Manila', 'Quezon City', 'Makati'}
+    for cid, ci in cities.items():
+        name, t = ci['name'], ci['tags']
+        pt = city_label_nodes.get(cid) or label_point(ci['geom'])
         alts = alt_names(t, name)
-        if name != 'Quezon City' and not name.endswith('City'):
+        bt = t.get('border_type', '')
+        is_city = 'city' in bt or (not bt and (name.endswith('City') or (t.get('official_name') or '').startswith('City of')
+                                               or name.startswith('City of')))
+        if is_city and not name.endswith('City') and not name.startswith('City of'):
             alts.append(f'{name} City')
-        add(name, 'city', 'city', 'City, Metro Manila' if name != 'Pateros' else 'Municipality, Metro Manila',
-            pt, 100 if name in ('Manila', 'Quezon City', 'Makati') else 95, alts)
+        kind_label = 'City' if is_city else 'Municipality'
+        where = 'Metro Manila' if ci['ncr'] else (ci['province'] or '')
+        imp = 100 if name in big and ci['ncr'] else 95 if ci['ncr'] or 'highly' in bt else 90 if is_city else 84
+        add(name, 'city', 'city', f'{kind_label}, {where}' if where else kind_label, pt, imp, alts)
     # districts (Manila districts, QC districts)
     for name, g in districts:
         pt = label_point(g)
-        city = city_at(pt)
-        if not city:
+        cid = city_at(pt)
+        if not cid:
             continue
-        add(name, 'place', 'district', city, pt, 78)
-    # barangays
+        add(name, 'place', 'district', cities[cid]['label'], pt, 78)
+    # barangays (polygons)
+    brgy_seen = set()
     for name, oid, g, t in brgys:
         pt = label_point(g)
-        city = city_at(pt)
-        if not city:
+        cid = city_at(pt)
+        if not cid:
             continue
         d = district_at(pt)
-        sub = 'Barangay, ' + (f'{d}, {city}' if d and city == 'Manila' else city)
-        disp = name
+        where = f'{d}, {cities[cid]["label"]}' if d and cities[cid]['name'] == 'Manila' else cities[cid]['label']
         imp = 58 if not numbered.match(name) else 40
-        add(disp, 'barangay', 'barangay', sub, pt, imp, alt_names(t, name) + [brgy_label(name)])
+        add(name, 'barangay', 'barangay', f'Barangay, {where}', pt, imp, alt_names(t, name) + [brgy_label(name)])
+        brgy_seen.add((fold(name), cid))
     log('admin records', len(recs))
 
-    # ---- places (place=* nodes/areas, named residential landuse = subdivisions)
-    brgy_names_by_city = defaultdict(set)
-    for r in recs:
-        if r['kind'] == 'barangay':
-            brgy_names_by_city[r['subtitle'].split(', ')[-1]].add(fold(r['name']))
+    # ---- places (place=* nodes/areas, named residential landuse = subdivisions).
+    # Barangays that are only mapped as a node (admin_level=10 or place=village, the usual
+    # PH tagging) become barangay records too.
     seen_place = []
     for name, p, g, t in c.places:
-        if p in ('city', 'town') and name in cities:
-            continue
         if p not in PLACE_IMP:
             continue
         pt = label_point(g)
-        if not ncr_prep.contains(pt):
+        if not cover_prep.contains(pt):
             continue
-        sub, city = subtitle_at(pt, skip_brgy=name)
-        if not city:
+        sub, cid = subtitle_at(pt, skip_brgy=name)
+        if not cid:
             continue
-        # skip place nodes duplicating a barangay of the same name in the same city
-        if t.get('admin_level') == '10' or (p in ('quarter', 'village') and fold(name) in brgy_names_by_city[city]):
+        if p in ('city', 'town', 'municipality') and cid in city_label_nodes and city_label_nodes[cid] is g:
+            continue
+        is_brgy = t.get('admin_level') == '10' or p == 'village' or t.get('designation') == 'barangay'
+        if is_brgy:
+            if (fold(name), cid) in brgy_seen:
+                continue
+            brgy_seen.add((fold(name), cid))
+            imp = 55 if not numbered.match(name) else 40
+            add(name, 'barangay', 'barangay', f'Barangay, {cities[cid]["label"]}', pt, imp,
+                alt_names(t, name) + [brgy_label(name)])
+            continue
+        if p in ('quarter',) and (fold(name), cid) in brgy_seen:
             continue
         add(name, 'place', p, sub, pt, PLACE_IMP[p] + (15 if 'wikidata' in t else 0), alt_names(t, name))
         seen_place.append((fold(name), pt))
+    seen_by_name = defaultdict(list)
+    for n_, p_ in seen_place:
+        seen_by_name[n_].append(p_)
     for name, g, t, m2 in c.landuse_named:
         pt = label_point(g)
-        if not ncr_prep.contains(pt):
+        if not cover_prep.contains(pt):
             continue
-        if any(n == fold(name) and dist_m((p.x, p.y), (pt.x, pt.y)) < 800 for n, p in seen_place):
+        if any(dist_m((p.x, p.y), (pt.x, pt.y)) < 800 for p in seen_by_name.get(fold(name), ())):
             continue
-        sub, city = subtitle_at(pt)
-        if not city:
+        sub, cid = subtitle_at(pt)
+        if not cid:
             continue
         imp = 30 + min(20, max(0, math.log10(max(m2, 1)) * 5 - 15))
         add(name, 'place', 'neighbourhood', sub, pt, imp, alt_names(t, name))
@@ -330,14 +398,14 @@ def main(src, out):
     npoi = 0
     for name, (cls, sub_cls, rank, kind), g, t, m2 in pois:
         pt = label_point(g)
-        if not ncr_prep.contains(pt):
+        if not cover_prep.contains(pt):
             continue
         key = (fold(name), cls)
         if any(dist_m((pt.x, pt.y), q) < 250 for q in kept[key]):
             continue
         kept[key].append((pt.x, pt.y))
-        sub, city = subtitle_at(pt)
-        if not city:
+        sub, cid = subtitle_at(pt)
+        if not cid:
             continue
         imp = 70 - rank * 3
         if m2 > 0:
@@ -371,19 +439,20 @@ def main(src, out):
     groups = defaultdict(list)
     for i, (name, cls, line, ends, t) in enumerate(c.roads):
         mid = line.interpolate(0.5, normalized=True)
-        if not ncr_prep.contains(mid):
+        if not cover_prep.contains(mid):
             continue
-        city = city_at(mid)
-        if not city:
+        cid = city_at(mid)
+        if not cid:
             continue
-        groups[(fold(name), city)].append(i)
+        groups[(fold(name), cid)].append(i)
     nstreet = 0
     street_lines = []  # (rec index, LineString) for reverse geocoding
     poi_pts = defaultdict(list)
     for r in recs:
         if r['kind'] in ('poi', 'station'):
             poi_pts[fold(r['name'])].append((r['lon'], r['lat']))
-    for (fname, city), idx in groups.items():
+    for (fname, cid), idx in groups.items():
+        city = cities[cid]['label']
         # union-find on proximity (< 120 m) / shared end nodes
         parent = list(range(len(idx)))
 
@@ -498,18 +567,19 @@ def write(out, recs, street_lines, brgys, cities, districts, city_at, district_a
     polys = []  # (label, level, geom)
     for name, oid, g, t in brgys:
         pt = g.representative_point()
-        city = city_at(pt)
-        if not city:
+        cid = city_at(pt)
+        if not cid:
             continue
+        city = cities[cid]['label']
         d = district_at(pt)
         lab = f'{d}, {city}' if (numbered.match(name) and d) else f'{brgy_label(name)}, {city}'
         polys.append((lab, 0, g))
     for name, g in districts:
-        city = city_at(g.representative_point())
-        if city:
-            polys.append((f'{name}, {city}', 1, g))
-    for name, (oid, g, t) in cities.items():
-        polys.append((name, 2, g))
+        cid = city_at(g.representative_point())
+        if cid:
+            polys.append((f'{name}, {cities[cid]["label"]}', 1, g))
+    for ci in cities.values():
+        polys.append((ci['label'], 2, ci['geom']))
     p_label, p_level, p_bbox, p_ring_off, ring_off, pcoords = [], [], [], [0], [0], []
     for lab, lvl, g in polys:
         g = g.simplify(0.00004)

@@ -27,7 +27,7 @@ export function showHome(app) {
         ${recents.length ? `
           <div class="section-head"><h3>Recent</h3><button class="link" data-a="clear">Clear</button></div>
           <ul class="list recents">${recents.map((p, i) => resultRow(p, my, { icon: 'clock', i })).join('')}</ul>`
-        : `<div class="empty-hint">${svg('search', { size: 22 })}<p>Search streets, malls, barangays and places across Metro Manila — no internet needed.</p></div>`}
+        : `<div class="empty-hint">${svg('search', { size: 22 })}<p>Search streets, malls, barangays and places across Metro Manila, Calabarzon and Central Luzon — no internet needed.</p></div>`}
         <div class="home-tip">${svg('pin', { size: 18 })}<span>Tip: long-press the map to drop a pin.</span></div>
         <p class="home-foot">Manila Maps · offline · © OpenStreetMap contributors</p>
       </div>

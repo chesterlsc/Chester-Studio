@@ -224,8 +224,9 @@ public class MapStorePlugin extends Plugin {
         io.execute(() -> {
             File inc = incomingFile();
             try {
-                String mmapUrl = url;
                 String expectSha = null;
+                java.util.List<String> partUrls = new java.util.ArrayList<>();
+                long total = -1;
                 if (!url.toLowerCase().endsWith(".mmap")) {
                     JSONObject desc = new JSONObject(new String(httpGetSmall(url), StandardCharsets.UTF_8));
                     String remoteId = desc.optString("id", "");
@@ -240,16 +241,41 @@ public class MapStorePlugin extends Plugin {
                         call.resolve(r);
                         return;
                     }
-                    mmapUrl = new URL(new URL(url), desc.getString("url")).toString();
                     expectSha = desc.optString("sha256", null);
+                    total = desc.optLong("size", -1);
+                    org.json.JSONArray parts = desc.optJSONArray("parts");
+                    if (parts != null && parts.length() > 0) {
+                        for (int i = 0; i < parts.length(); i++) {
+                            partUrls.add(new URL(new URL(url), parts.getJSONObject(i).getString("url")).toString());
+                        }
+                    } else {
+                        partUrls.add(new URL(new URL(url), desc.getString("url")).toString());
+                    }
+                } else {
+                    partUrls.add(url);
                 }
-                HttpURLConnection c = open(mmapUrl);
-                long total = c.getContentLengthLong();
-                try (InputStream in = c.getInputStream()) {
-                    copy(in, new FileOutputStream(inc), "download", total);
-                } finally {
-                    c.disconnect();
+                // Download every part into one incoming file next to the current map.
+                long[] done = { 0 };
+                try (FileOutputStream out = new FileOutputStream(inc)) {
+                    byte[] buf = new byte[BUF];
+                    for (String partUrl : partUrls) {
+                        HttpURLConnection c = open(partUrl);
+                        if (total < 0 && partUrls.size() == 1) total = c.getContentLengthLong();
+                        try (InputStream in = c.getInputStream()) {
+                            int n;
+                            while ((n = in.read(buf)) > 0) {
+                                out.write(buf, 0, n);
+                                done[0] += n;
+                                progress("download", done[0], total > 0 ? total : done[0]);
+                            }
+                        } finally {
+                            c.disconnect();
+                        }
+                    }
+                    out.flush();
+                    out.getFD().sync();
                 }
+                if (total > 0 && inc.length() != total) throw new IOException("Download was incomplete");
                 JSONObject manifest = verify(inc, expectSha);
                 swapIn(inc);
                 JSObject r = okResult(currentFile(getContext()));

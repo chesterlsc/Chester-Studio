@@ -31,6 +31,8 @@ CLASSES = ['motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'prima
            'service', 'road', 'track', 'pedestrian', 'footway', 'path', 'cycleway', 'steps', 'corridor',
            'platform', 'busway']
 CI = {c: i for i, c in enumerate(CLASSES)}
+assert len(CLASSES) < 64  # bits 6-7 of edgeClass hold the area density
+DENSE_NODES, TOWN_NODES = 300, 80  # graph nodes per 0.01 deg cell
 
 CAR_OK = {'motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary',
           'secondary_link', 'tertiary', 'tertiary_link', 'unclassified', 'residential', 'living_street',
@@ -259,6 +261,19 @@ def main(src, out):
     e_to = np.array(e_to, dtype=np.uint32)
     e_flags = np.array(e_flags, dtype=np.uint32)
 
+    # Area density -> edgeClass bits 6-7 (router.js uses slower city speeds where the
+    # street network is dense): graph nodes per 0.01 deg cell (~1.2 km2) around the edge.
+    lon_a, lat_a = np.array(nlon), np.array(nlat)
+    cx = np.floor(lon_a / 0.01).astype(np.int64)
+    cy = np.floor(lat_a / 0.01).astype(np.int64)
+    key = cx * 100000 + cy
+    uk, inv, cnt = np.unique(key, return_inverse=True, return_counts=True)
+    node_dens = cnt[inv]
+    ed = np.maximum(node_dens[e_from], node_dens[e_to])
+    dens = np.where(ed >= DENSE_NODES, 0, np.where(ed >= TOWN_NODES, 1, 2)).astype(np.uint8)
+    e_cls = (np.array(e_cls, dtype=np.uint8) | (dens << 6)).astype(np.uint8)
+    log(f'density: dense {int((dens == 0).sum())}, town {int((dens == 1).sum())}, rural {int((dens == 2).sum())} edges')
+
     # connected components per mode (undirected); only big components are snappable
     def components(mask):
         parent = np.arange(N, dtype=np.int64)
@@ -326,7 +341,7 @@ def main(src, out):
         ('edgeFrom', e_from),
         ('edgeTo', e_to),
         ('edgeLen', np.array(e_len, dtype=np.float32)),
-        ('edgeClass', np.array(e_cls, dtype=np.uint8)),
+        ('edgeClass', e_cls),
         ('edgeFlags', e_flags.astype(np.uint16)),
         ('edgeLabel', np.array(e_label, dtype=np.uint32)),
         ('geomOff', np.array(g_off, dtype=np.uint32)),

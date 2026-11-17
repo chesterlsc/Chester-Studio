@@ -60,6 +60,25 @@ console.log('\n== tiles ==');
     return new VectorTile(new Pbf(d));
   };
   const sea = await tileAt(10, 120.93, 14.57);
+  for (const [label, lon, lat] of [['mid Manila Bay', 120.75, 14.55], ['Verde Island Passage', 121.0, 13.65], ['off Zambales', 119.8, 15.2]]) {
+    const tt = await tileAt(9, lon, lat);
+    const ok = tt && tt.layers.water && [...Array(tt.layers.water.length).keys()].some((i) => tt.layers.water.feature(i).properties.class === 'sea');
+    console.log(`${label} z9 has sea: ${!!ok}`);
+    if (!ok) fail(`no sea at ${label}`);
+  }
+  {
+    // every named street keeps its name at z14 (provincial residential streets too)
+    const dt = await tileAt(14, 120.9367, 14.3294); // Dasmarinas, Cavite
+    const rl = dt.layers.road;
+    let named = 0;
+    const cls = {};
+    for (let i = 0; i < rl.length; i++) {
+      const p = rl.feature(i).properties;
+      if (p.name) { named++; cls[p.class] = (cls[p.class] || 0) + 1; }
+    }
+    console.log(`Dasmariñas z14: ${rl.length} roads, ${named} named (${JSON.stringify(cls)}), housenumbers: ${dt.layers.housenumber ? dt.layers.housenumber.length : 0}`);
+    if (!cls.minor) fail('no named minor streets at z14 in Dasmariñas');
+  }
   const seaOk = sea && sea.layers.water && [...Array(sea.layers.water.length).keys()].some((i) => sea.layers.water.feature(i).properties.class === 'sea');
   console.log(`Manila Bay z10 has water class=sea: ${!!seaOk}`);
   if (!seaOk) fail('no sea polygon in Manila Bay');
@@ -94,6 +113,15 @@ const cases = [
   ['st lukes bgc', /St\. Luke's Medical Center/],
   ['Paranaque', /Parañaque/],
   ['mrt cubao', /Cubao/],
+  // Greater Manila (Calabarzon / Central Luzon)
+  ['aguinaldo highway imus', /Aguinaldo Highway/],
+  ['macarthur highway malolos', /MacArthur Highway/],
+  ['governors drive dasmarinas', /Governor's Drive/],
+  ['brgy salawag', /Salawag/],
+  ['tagaytay', /^Tagaytay/],
+  ['angeles city', /^Angeles/],
+  ['batangas', /Batangas/],
+  ['sm city dasmarinas', /SM City Dasmariñas/],
 ];
 for (const [q, want] of cases) {
   search.search(q, { near, limit: 10 }); // warm
@@ -128,6 +156,10 @@ console.log(`router ready in ${ms(t)} (${router.mode} thread)`);
 }
 
 const P = {
+  'Malolos': [120.8113, 14.8443],
+  'Tagaytay': [120.9600, 14.1150],
+  'Angeles': [120.5887, 15.1450],
+  'Batangas City': [121.0583, 13.7565],
   'QC Memorial Circle': [121.0509, 14.6516],
   'NAIA Terminal 3': [121.0135, 14.5196],
   'Ayala Triangle': [121.0244, 14.5567],
@@ -143,6 +175,8 @@ const pairs = [
   ['SM Mall of Asia', 'BGC High Street'],
   ['UP Diliman', 'Ayala Triangle'],
   ['Intramuros', 'SM Mall of Asia'],
+  ['Malolos', 'Tagaytay'],
+  ['Angeles', 'Batangas City'],
 ];
 const BITS = { car: [1, 2], motorcycle: [4, 8], walk: [16, 16] };
 const MOTORWAY = new Set(['motorway', 'motorway_link']);
@@ -182,7 +216,16 @@ for (const [a, b] of pairs) {
     }
   }
 }
-// timing of the benchmark route after warm-up
+// timing of the benchmark routes after warm-up
+for (const [a, b] of [['Malolos', 'Tagaytay'], ['Angeles', 'Batangas City']]) {
+  const runs = [];
+  for (let i = 0; i < 3; i++) {
+    t = performance.now();
+    await router.route({ from: P[a], to: P[b], mode: 'car' });
+    runs.push(performance.now() - t);
+  }
+  console.log(`${a} -> ${b} car, warm: ${runs.map((x) => x.toFixed(0)).join(', ')} ms`);
+}
 {
   const runs = [];
   for (let i = 0; i < 5; i++) {
@@ -192,14 +235,15 @@ for (const [a, b] of pairs) {
   }
   console.log(`QC Memorial Circle -> NAIA T3 car, warm: ${runs.map((x) => x.toFixed(0)).join(', ')} ms`);
 }
-// Robustness: random start/end points across Metro Manila must never throw
-// (e.g. starting on a roundabout), and every route must be well-formed.
+// Robustness: random start/end points across Metro Manila and Greater Manila must never
+// throw (e.g. starting on a roundabout), and every route must be well-formed.
 {
   let seed = 12345;
   const rnd = () => ((seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff);
-  const [W, S, E, N] = [120.96, 14.40, 121.12, 14.76];
   const pts = [[121.0493, 14.6515], [121.0509, 14.6516]]; // on / next to QC Memorial Circle roundabout
-  for (let i = 0; i < 120; i++) pts.push([W + rnd() * (E - W), S + rnd() * (N - S)]);
+  for (const [n, [W, S, E, N]] of [[80, [120.96, 14.40, 121.12, 14.76]], [40, [120.40, 13.80, 121.60, 15.60]]]) {
+    for (let i = 0; i < n; i++) pts.push([W + rnd() * (E - W), S + rnd() * (N - S)]);
+  }
   let ok = 0, none = 0, threw = 0;
   for (let i = 0; i + 1 < pts.length; i += 1) {
     for (const mode of ['car', 'motorcycle', 'walk']) {

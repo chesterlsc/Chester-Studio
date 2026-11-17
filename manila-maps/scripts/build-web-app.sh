@@ -13,16 +13,6 @@ rm -rf "$OUT"
 mkdir -p "$OUT/mapdata"
 cp dist-pwa/index.html "$OUT/index.html"
 cp pwa/sw.js pwa/manifest.webmanifest pwa/*.png "$OUT/"
-cp "$MMAP" "$OUT/mapdata/manila.mmap"
-python3 -I - "$MMAP" > "$OUT/mapdata/manila-latest.json" <<'PY'
-import hashlib, json, os, sys, zipfile
-p = sys.argv[1]
-m = json.loads(zipfile.ZipFile(p).read("manifest.json"))
-h = hashlib.sha256()
-with open(p, 'rb') as f:
-    for b in iter(lambda: f.read(1 << 20), b''):
-        h.update(b)
-print(json.dumps({"id": m["id"], "url": "manila.mmap", "size": os.path.getsize(p), "sha256": h.hexdigest(), "osmTimestamp": m.get("osmTimestamp")}, indent=2))
-PY
+python3 -I scripts/split_bundle.py "$MMAP" "$OUT/mapdata"
 echo "Web app ready in $(cd "$OUT" && pwd):"
 ls -la "$OUT" "$OUT/mapdata"
