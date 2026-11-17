@@ -1,0 +1,6 @@
+{
+  "appId": "studio.chester.manilamaps",
+  "appName": "Manila Maps",
+  "webDir": "dist",
+  "android": { "allowMixedContent": false }
+}
