@@ -39,5 +39,5 @@ img.ph::after {
 .ph--golden-milk::after    { background-image: url("../placeholders/photo-golden-milk.jpg"); }
 .ph--formulator::after     { background-image: url("../placeholders/photo-formulator.jpg"); }
 @media (max-width: 767px) {
-  .ph--ritual::after, .ph--closing::after { background-position: var(--pos-m, 50% 50%); }
+  img.ph--ritual::after, img.ph--closing::after { background-position: var(--pos-m, 50% 50%); }
 }
