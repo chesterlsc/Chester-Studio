@@ -98,7 +98,8 @@
         },
         "cap": {
           "preset": "plastic_softtouch",
-          "color": "#8E3F31"
+          "color": "#7E3529",
+          "sheen": 0.06
         }
       },
       "labels": [
@@ -131,7 +132,7 @@
       "materials": {
         "body": {
           "preset": "ceramic_glazed",
-          "color": "#4A2B28",
+          "color": "#3D2321",
           "speckle": 0.35,
           "speckle_color": "#C9A486"
         },

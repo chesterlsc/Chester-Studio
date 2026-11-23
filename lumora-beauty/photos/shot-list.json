@@ -1,0 +1,33 @@
+{
+  "about": "Shot list and picks file for the Lumora editorial photography (golden-hour.md 4.4 brief, section 6 slots). Fill photographer, source_url (Unsplash photo page), image_url (images.unsplash.com/photo-...) or local_file, and alt after looking at the photo, then run: python3 build_set.py shot-list.json --orig <folder outside the repo>",
+  "rules": [
+    "Free Unsplash photos only: search with ?license=free; never plus.unsplash.com or premium_photo",
+    "Low warm sun (side or back light, about 3000-3800 K), hard leaf or window shadows; indoor window light as often as outdoor",
+    "Every set of four skin images spans Fitzpatrick I to VI, ages 25 to 60, all genders; real texture kept",
+    "Anonymous editorial mood: eyes closed, profile or cropped; no smiles at camera; no face presented as a named person or a customer",
+    "Avoid: beaches, swimwear, sunbathing or tanning cues, glitter or shimmer, heavy retouching, teal-orange or cool grades, silhouettes with no skin detail, visible brands, logos, labelled products or text tattoos, anything that could pass as a before-and-after",
+    "Prefer clean negative space; crops 4:5 portraits and cards, 3:4 gallery tiles, 16:9 bands only"
+  ],
+  "picks": [
+    {"slug": "skin-tone-01-light", "slot": "Home 6 Every skin tone, card 1 (4:5)", "subject": "Fitzpatrick I-II: cheek, jaw or shoulder in low warm sun with leaf shadow, eyes closed or profile; freckles welcome", "queries": ["leaf shadow portrait", "golden hour skin"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "skin-tone-02-medium", "slot": "Home 6 Every skin tone, card 2 (4:5)", "subject": "Fitzpatrick III-IV: profile or collarbone in warm late window light", "queries": ["window light portrait warm", "sunlight on skin"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "skin-tone-03-tan", "slot": "Home 6 Every skin tone, card 3 (4:5)", "subject": "Fitzpatrick IV-V: jawline or neck in raking sun, eyes closed", "queries": ["golden hour portrait profile"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "skin-tone-04-deep", "slot": "Home 6 Every skin tone, card 4 (4:5)", "subject": "Fitzpatrick V-VI: cheekbone or shoulder catching golden light, leaf or window shadow", "queries": ["dark skin golden hour", "black woman sunlight shadow"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "skin-glow-closeup", "slot": "PDP gallery low-sun skin / Home 5 alt inset (4:5)", "subject": "Close crop of cheekbone or temple with a soft natural highlight, bare skin, pores visible", "queries": ["skin texture sunlight"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "shoulder-late-sun", "slot": "Gloaming PDP / Home 11 inset alt (4:5)", "subject": "Back of neck or bare shoulder in late sun, no swimwear", "queries": ["shoulder sunlight shadow"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "hands-oil", "slot": "Gloaming body oil, in use (4:5)", "subject": "Hands smoothing oil into skin in warm side light, no bottle or label", "queries": ["hands sunlight shadow", "hands applying oil"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "hands-balm", "slot": "Sunmelt balm / Haze cream, in use (4:5)", "subject": "Fingertips with balm or cream, no packaging", "queries": ["skincare hands cream"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "serum-drop-skin", "slot": "Home 5 inset (serum on skin) / PDP texture (4:5)", "subject": "A drop of golden serum or oil on a fingertip or the back of a hand", "queries": ["serum drop finger"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "oil-drops", "slot": "Home 7 What's in the glow, oil card (4:5)", "subject": "Golden oil drops or bubbles, macro, warm backlight", "queries": ["golden oil drops"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "cream-swirl", "slot": "Haze texture / PDP texture (4:5)", "subject": "Cream or balm swirl in warm light, product-free", "queries": ["cream texture swirl"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "apricot", "slot": "Home 7 apricot kernel oil card (4:5)", "subject": "Apricot halves with kernels, warm light, clean ground", "queries": ["apricot"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "sea-buckthorn", "slot": "Home 7 sea buckthorn card / Long Light PDP (4:5)", "subject": "Sea buckthorn berries on the branch, backlit orange", "queries": ["sea buckthorn"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "oats", "slot": "Ingredient card, Sunmelt/Haze (4:5)", "subject": "Rolled oats or oat stalks in warm light", "queries": ["oats close up"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "turmeric", "slot": "Slow Hour ingredients (4:5)", "subject": "Turmeric root and golden powder", "queries": ["turmeric root"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "cinnamon-cardamom", "slot": "Slow Hour ingredients (4:5)", "subject": "Cinnamon sticks and cardamom pods, warm light", "queries": ["cinnamon cardamom"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "golden-milk-hands", "slot": "Home 11 The slow hour, main image (4:5)", "subject": "Hands around a cup of golden milk in late light, face out of frame, unbranded cup", "queries": ["turmeric latte", "golden milk hands"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "evening-interior", "slot": "Home 11 / PDP ritual band (16:9 or 4:5)", "subject": "Evening-ritual interior: low sun on linen, plaster or a bath edge; no people or anonymous", "queries": ["golden hour interior linen"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "leaf-shadow-wall", "slot": "Band or background texture (16:9)", "subject": "Leaf shadows on a warm plaster wall, clean negative space", "queries": ["leaf shadow wall"], "photographer": "", "source_url": "", "image_url": "", "alt": ""},
+    {"slug": "formulator-hands", "slot": "Home 12 Formulator note (anonymous, 4:5)", "subject": "Hands with a glass dropper or beaker in warm window light; no face, because the note is signed by a named persona", "queries": ["laboratory hands glass dropper"], "photographer": "", "source_url": "", "image_url": "", "alt": ""}
+  ]
+}

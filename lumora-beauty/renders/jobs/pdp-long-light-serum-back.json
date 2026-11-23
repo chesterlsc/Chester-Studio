@@ -39,7 +39,8 @@
         "collar": "metal_champagne_brushed",
         "bulb": {
           "preset": "silicone",
-          "color": "#E3AD63"
+          "color": "#D99A48",
+          "sheen": 0.05
         }
       },
       "labels": [

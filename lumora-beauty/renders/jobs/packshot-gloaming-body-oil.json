@@ -39,7 +39,8 @@
         },
         "cap": {
           "preset": "plastic_softtouch",
-          "color": "#8E3F31"
+          "color": "#7E3529",
+          "sheen": 0.06
         }
       },
       "labels": [

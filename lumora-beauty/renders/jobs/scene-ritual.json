@@ -114,15 +114,17 @@
       "materials": {
         "body": {
           "preset": "plastic_softtouch",
-          "color": "#E6D2B8"
+          "color": "#D9C09F",
+          "sheen": 0.12
         },
         "shoulder": {
           "preset": "plastic_softtouch",
-          "color": "#E6D2B8"
+          "color": "#D9C09F",
+          "sheen": 0.12
         },
         "cap": {
           "preset": "plastic_gloss",
-          "color": "#E6D2B8"
+          "color": "#D6BC9A"
         }
       },
       "print": {
@@ -163,7 +165,8 @@
         "collar": "metal_champagne_brushed",
         "bulb": {
           "preset": "silicone",
-          "color": "#E3AD63"
+          "color": "#D99A48",
+          "sheen": 0.05
         }
       },
       "labels": [
@@ -193,14 +196,21 @@
         "lid": "on"
       },
       "materials": {
-        "body": "glass_amber_frosted",
+        "body": {
+          "preset": "glass_opal",
+          "color": "#B4733F",
+          "roughness": 0.4,
+          "coat": 0.12,
+          "sss_mm": 1.2
+        },
         "contents": {
           "preset": "cream",
           "color": "#F3E6D6"
         },
         "lid": {
           "preset": "plastic_softtouch",
-          "color": "#E8A07C"
+          "color": "#E0936B",
+          "sheen": 0.08
         }
       },
       "labels": [
@@ -237,7 +247,8 @@
       "materials": {
         "base": {
           "preset": "plastic_softtouch",
-          "color": "#B0533F"
+          "color": "#9E4535",
+          "sheen": 0.06
         },
         "cap": "metal_champagne_brushed"
       },
@@ -281,7 +292,8 @@
         },
         "cap": {
           "preset": "plastic_softtouch",
-          "color": "#8E3F31"
+          "color": "#7E3529",
+          "sheen": 0.06
         }
       },
       "labels": [
@@ -314,7 +326,7 @@
       "materials": {
         "body": {
           "preset": "ceramic_glazed",
-          "color": "#4A2B28",
+          "color": "#3D2321",
           "speckle": 0.35,
           "speckle_color": "#C9A486"
         },

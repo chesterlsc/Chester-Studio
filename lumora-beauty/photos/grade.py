@@ -6,14 +6,15 @@ One look for every photo and every render, applied identically:
     white balance  warm by ~+500 K (CIE daylight 6500 K -> 6000 K), tint +4 toward magenta
     highlights     tinted toward Honey #F2CB8C at 12%   (luminance-preserving)
     shadows        tinted toward Dusk plum #3A2422 at 15% (luminance-preserving)
-    black point    lifted to #2A1A18  (nothing is pure black)
-    white point    capped at #FBF3EA  (nothing is pure white)
-    contrast       gentle S-curve that keeps the lifted blacks from going milky
+    black point    lifted to #2A1A18  (nothing is pure black)   } as a toe/shoulder curve, so the ends
+    white point    capped at #FBF3EA  (nothing is pure white)   } are exact but midtones keep their color
+    contrast       gentle S-curve
+    clipped whites WB and Honey ease off above ~85% so whites land on #FBF3EA, not butter-cream
     saturation     -8% overall; the orange-red band (skin, amber glass) is protected
     orange luma    +6%
     clarity        -5 (soft focus: midtone local contrast eased toward a wide blur)
     halation       faint warm bloom on speculars only
-    grain          35 mm-style monochrome grain, 2% sigma, strongest in the midtones
+    grain          35 mm-style monochrome grain as a 2.5% layer (~0.8% sigma), strongest in midtones
 
 Black and white points are applied last, so every output pixel lies inside
 #2A1A18..#FBF3EA per channel, grain included.
@@ -52,9 +53,10 @@ SHADOW_TINT = 0.15
 SATURATION = -0.08
 ORANGE_LUMA = 0.06
 CLARITY = 0.08          # "-5": share of midtone local contrast removed
-CONTRAST = 0.12         # gentle S (midtone slope 1 + CONTRAST before the level squeeze)
+CONTRAST = 0.08         # gentle S (midtone slope 1 + CONTRAST)
+LEVELS_K = 2.5          # toe/shoulder exponent of the black/white point curve
 HALATION = 0.10
-GRAIN_SIGMA = 0.02      # 2% of full scale (brief: 2 to 3%)
+GRAIN_SIGMA = 0.008     # a full-range grain plate at ~2.5% opacity (brief: grain at 2 to 3%)
 HALATION_TINT = np.array([0xF2, 0x9E, 0x6E]) / 255.0  # warm apricot-red bloom
 
 LUMA = np.array([0.2126, 0.7152, 0.0722])
@@ -117,7 +119,9 @@ def _chroma_of(c: np.ndarray) -> np.ndarray:
 def grade_color(rgb: np.ndarray) -> np.ndarray:
     """Per-pixel part of the grade (no spatial effects, no output levels). rgb: float sRGB 0..1."""
     # 1. white balance in linear light
-    lin = _srgb_to_linear(np.clip(rgb, 0.0, 1.0)) * white_balance_gains()
+    lin = _srgb_to_linear(np.clip(rgb, 0.0, 1.0))
+    ease = _smoothstep(0.70, 1.0, lin @ LUMA)[..., None]   # clipped whites stay on the white point
+    lin = lin * (1.0 + (white_balance_gains() - 1.0) * (1.0 - ease))
     rgb = np.clip(_linear_to_srgb(lin), 0.0, 1.0)
 
     # 2. gentle S-curve (ends fixed at 0 and 1)
@@ -134,7 +138,7 @@ def grade_color(rgb: np.ndarray) -> np.ndarray:
 
     # 4. split tone, luminance-preserving: highlights to Honey, shadows to Dusk plum
     y = np.clip(rgb @ LUMA, 0.0, 1.0)
-    wh = _smoothstep(0.50, 0.95, y)[..., None]
+    wh = (_smoothstep(0.50, 0.90, y) * (1.0 - _smoothstep(0.90, 1.0, y)))[..., None]
     ws = (1.0 - _smoothstep(0.08, 0.50, y))[..., None]
     rgb = rgb * (1.0 + HIGHLIGHT_TINT * wh * (_chroma_of(HONEY) - 1.0))
     rgb = rgb * (1.0 + SHADOW_TINT * ws * (_chroma_of(DUSK_PLUM) - 1.0))
@@ -142,8 +146,10 @@ def grade_color(rgb: np.ndarray) -> np.ndarray:
 
 
 def apply_levels(rgb: np.ndarray) -> np.ndarray:
-    """Output levels: 0 -> #2A1A18, 1 -> #FBF3EA, per channel."""
-    return BLACK_POINT + (WHITE_POINT - BLACK_POINT) * np.clip(rgb, 0.0, 1.0)
+    """Black/white points per channel: 0 -> #2A1A18 and 1 -> #FBF3EA exactly, monotonic in between.
+    The lift is a toe and the cap a shoulder (exponent LEVELS_K), so midtones are not hazed or cast."""
+    x = np.clip(rgb, 0.0, 1.0)
+    return x + BLACK_POINT * (1.0 - x) ** LEVELS_K - (1.0 - WHITE_POINT) * x ** LEVELS_K
 
 
 def _blur(arr: np.ndarray, radius: float) -> np.ndarray:

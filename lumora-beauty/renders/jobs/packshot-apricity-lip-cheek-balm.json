@@ -25,7 +25,8 @@
       "materials": {
         "base": {
           "preset": "plastic_softtouch",
-          "color": "#B0533F"
+          "color": "#9E4535",
+          "sheen": 0.06
         },
         "cap": "metal_champagne_brushed"
       },

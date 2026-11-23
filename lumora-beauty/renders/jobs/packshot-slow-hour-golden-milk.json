@@ -29,7 +29,7 @@
       "materials": {
         "body": {
           "preset": "ceramic_glazed",
-          "color": "#4A2B28",
+          "color": "#3D2321",
           "speckle": 0.35,
           "speckle_color": "#C9A486"
         },

@@ -28,15 +28,17 @@
       "materials": {
         "body": {
           "preset": "plastic_softtouch",
-          "color": "#E6D2B8"
+          "color": "#D9C09F",
+          "sheen": 0.12
         },
         "shoulder": {
           "preset": "plastic_softtouch",
-          "color": "#E6D2B8"
+          "color": "#D9C09F",
+          "sheen": 0.12
         },
         "cap": {
           "preset": "plastic_gloss",
-          "color": "#E6D2B8"
+          "color": "#D6BC9A"
         }
       },
       "print": {

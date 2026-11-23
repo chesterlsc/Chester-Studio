@@ -109,7 +109,8 @@
         "collar": "metal_champagne_brushed",
         "bulb": {
           "preset": "silicone",
-          "color": "#E3AD63"
+          "color": "#D99A48",
+          "sheen": 0.05
         }
       },
       "labels": [
@@ -139,14 +140,21 @@
         "lid": "on"
       },
       "materials": {
-        "body": "glass_amber_frosted",
+        "body": {
+          "preset": "glass_opal",
+          "color": "#B4733F",
+          "roughness": 0.4,
+          "coat": 0.12,
+          "sss_mm": 1.2
+        },
         "contents": {
           "preset": "cream",
           "color": "#F3E6D6"
         },
         "lid": {
           "preset": "plastic_softtouch",
-          "color": "#E8A07C"
+          "color": "#E0936B",
+          "sheen": 0.08
         }
       },
       "labels": [
