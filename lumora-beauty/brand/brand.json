@@ -1,0 +1,1320 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "date": "2026-11-23",
+    "status": "Locked. The brand source of truth for the mockup, renders, copy and the Minimog build.",
+    "prepared_by": "Chester Studio",
+    "sources": [
+      "brand/concepts/golden-hour.md (locked direction; every hex, font, name, price, packaging spec and section comes from here)",
+      "brand/concepts/golden-hour-board.png (visual reference)",
+      "brand/concepts/halo.md (graft: the scatter-versus-return light diagram only, rewritten for Golden Hour)",
+      "research/polish-checklist.md (scorecard)",
+      "research/beauty-dtc-playbook.md (claims compliance)"
+    ],
+    "edits_from_concept": [
+      "Mobile announcement changed to 'Ships free over $65 · 30-day returns' (36 characters). The concept's line was 39 characters, over its own 38-character limit.",
+      "Heading accents normalized to one italic word, always the last word. This follows the concept's own type rule and scorecard item 33. The words of every heading are unchanged.",
+      "Section 6 H2 changed from 'Every skin tone, in its best light.' (7 words) to 'Every skin, in its best light.' (6 words, the section's own name). Tagline 5 is unchanged.",
+      "Section 11 eyebrow changed from 'After the sun goes down' (5 words) to 'After sundown' (scorecard: eyebrows of 2 to 4 words).",
+      "The golden pair displays 'save $10' rather than 'save 10%', because the true saving is 9.8% and the playbook says to round down. Prices are unchanged.",
+      "Grafted from Halo: the scatter-versus-return diagram in section 7, in Golden Hour colors, type and voice. Nothing else from Halo is used.",
+      "Derived where the concept is silent: spacing, shadows, the secondary button, hover, border and secondary-background values for the dark schemes, focus-ring construction, icon sizes and reveal motion. These come from the scorecard and Minimog defaults."
+    ],
+    "open_items": [
+      "The price of the 15 ml Long Light travel size is not set.",
+      "'One note a fortnight' (newsletter) is kept as written. 'Every two weeks' reads more naturally to US readers."
+    ]
+  },
+  "name": "Lumora Beauty",
+  "concept": "Golden Hour",
+  "big_idea": {
+    "title": "The hour of light",
+    "summary": "Everyone looks their best in golden hour. Lumora, from lumen (light) and ora (hour), turns that light into a daily ritual: skincare that leaves every skin tone looking warm-lit and soft-focus, and a slow, warm hour you get back. Six products form one shelf that sets like the sun, from late light to dusk.",
+    "the_look": "Skin that looks warm-lit, even and soft-focus. The glow comes from skincare (vitamin C, carotenoid-rich oils, barrier care, light-diffusing textures), never from mica, glitter or self-tan. The glow formulas carry no tint; Apricity's sheer color comes from iron oxides.",
+    "the_feeling": "Ten slow minutes. Golden hour comes twice a day (after sunrise and before sunset), so the ritual does too. The evening half carries on beyond the face into the body (Gloaming oil) and a warm cup (Slow Hour golden milk). That is the Health in Health & Beauty, with no health claims attached.",
+    "ownable_devices": [
+      "The logo: the 'o' in the wordmark is a sun touching the horizon.",
+      "The shelf: the six products step through a sunset, from sand to dusk, and each label's sun mark sinks one notch.",
+      "The homepage: color schemes warm as you scroll and reach dusk at the footer."
+    ]
+  },
+  "tagline": "The hour of light.",
+  "tagline_alternates": [
+    { "text": "Late light, bottled.", "use": "Hero H1 (recommended)" },
+    { "text": "Golden hour, twice a day.", "use": "Ritual section, set PDP" },
+    { "text": "Glow, the slow way.", "use": "Wellbeing, email, social" },
+    { "text": "Every skin tone, in its best light.", "use": "Inclusivity messaging and casting brief (as a line, not as an H2)" }
+  ],
+  "positioning": {
+    "audience": "People aged 25 to 45, US-first, of every skin tone and gender, who want visible glow without glitter, tint or a ten-step routine. They are tired of clinical, white-lab aesthetics and of glow products that turn ashy on deep skin or orange on fair skin. They treat skincare as a small daily act of wellbeing and buy from premium DTC brands and specialty beauty retail.",
+    "promise": "Skin that looks lit by late sun: warm, even and soft-focus, on every skin tone. Warm, never orange. Lit, never glittery.",
+    "price_tier": "Premium, not luxury: $24 to $54. The hero serum is $54 for 30 ml. Free US shipping over $65 (20% above the hero), so any second product clears it.",
+    "why_different": [
+      "A line organized by light: six numbered steps, late light to dusk, so the range explains itself.",
+      "Glow from skincare, not coatings: no mica, glitter or DHA anywhere in the line, and no tint in the glow formulas. Amber glass protects the light-sensitive vitamin C.",
+      "Inclusive by design: finishes tested on Fitzpatrick I to VI¹, the lip and cheek balm comes in three shades, and photography is cast across tones.",
+      "Beauty that bridges into wellbeing: a body ritual and an evening cup, without supplement claims."
+    ],
+    "market": "US-first"
+  },
+  "voice": {
+    "summary": "Warm, unhurried, exact. Lumora sounds like a friend who notices the light: calm, sensory and precise. It does not hype.",
+    "principles": [
+      "Second person for the reader, 'we' for the brand. Name the ingredient, the percentage and the hour.",
+      "Light and time are the shared vocabulary: late light, low sun, the last hour, twice a day, by week four. Use one light word per section at most.",
+      "Contrast pairs carry the promise: 'Warm, never orange.' 'Lit, never glittery.' Use one device per block.",
+      "Numbers beat adjectives, and every statistic carries its footnote in the same viewport.",
+      "A lexicon, used lightly. Product names are words for light, and each PDP opens with a one-line definition.",
+      "Headlines of six words or fewer, with one italic accent word that is always the last word. Eyebrows of two to four words.",
+      "No exclamation marks and no emoji. Sentence case, the Oxford comma and US spelling.",
+      "Claims are about appearance and feel only: looks, feels, helps, the look of. The brand never implies sun protection, tanning or after-sun care."
+    ],
+    "do": [
+      "Use: warm, lit, soft-focus, satin, plush, slow, late light, twice a day, looks, feels, helps.",
+      "Use cosmetic wording: brightens the look of dull skin, evens the look of tone, helps replenish the moisture barrier, comforts dry-feeling skin, absorbs in seconds.",
+      "Put a superscript marker next to every statistic, with the method directly beneath the module, labeled illustrative placeholder data.",
+      "Show 'your daily SPF' as an unbranded morning step in ritual graphics.",
+      "Write 'formulated without X' and give the reason. List and explain every ingredient on its PDP.",
+      "Use specific verb CTAs that vary by job, with risk reversal next to the main CTA.",
+      "Keep Slow Hour sensory and sold as a food: ingredients, allergens and best-before, never benefits."
+    ],
+    "dont": [
+      "Never say: sun-kissed, bronzed, tan, after-sun, flawless, miracle, treats, repairs, heals, anti-aging, detox, clean, chemical-free.",
+      "No SPF, UV, sun-protection or tanning implications, and no beaches, swimwear or bronzed skin.",
+      "No drug or structure/function claims (treat, cure, heal, collagen, anti-inflammatory, lightening or whitening).",
+      "No health, 'beauty from within', supplement or structure/function claims for Slow Hour.",
+      "No certification marks, press logos, 'clinically proven' or unsupported 'best'.",
+      "No 'up to' figures presented as typical. Report the exact figure or round down.",
+      "No fake urgency, countdowns or invented scarcity.",
+      "No hype words: elevate, unlock, indulge, luxurious, game-changer, holy grail."
+    ],
+    "sample_lines": [
+      { "context": "Brand", "line": "Golden hour happens twice a day. So does the ritual." },
+      { "context": "Hero", "line": "Late light, bottled." },
+      { "context": "PDP", "line": "The color is the ingredient: sea buckthorn's own carotenoids. No dyes." },
+      { "context": "Lexicon", "line": "gloaming (n.) the soft light after sunset. Also: your shoulders, after this oil." },
+      { "context": "Ingredients", "line": "We leave out mica and glitter. The glow should be your skin's, not a coating." },
+      { "context": "Science diagram", "line": "Scattered, skin looks flat. Returned, it looks lit." },
+      { "context": "Cart", "line": "You're $11 from free shipping. An Apricity would do it." },
+      { "context": "Newsletter", "line": "The Low Sun Letter. One note a fortnight, sent at your golden hour." },
+      { "context": "404", "line": "You've wandered past sunset. Back to the light." }
+    ],
+    "we_say": ["warm", "lit", "soft-focus", "satin", "plush", "slow", "late light", "twice a day", "looks", "feels", "helps"],
+    "we_never_say": ["sun-kissed", "bronzed", "tan", "after-sun", "flawless", "miracle", "treats", "repairs", "heals", "anti-aging", "detox", "clean", "chemical-free"],
+    "spelling": "US English"
+  },
+  "palette": [
+    { "token": "travertine", "name": "Travertine", "hex": "#F3E7DA", "kind": "core", "role": "Page background (default scheme)", "contrast": "Dusk text 12.4:1" },
+    { "token": "linen", "name": "Linen", "hex": "#FBF6EF", "kind": "core", "role": "Cards, promise strip, text on dark", "contrast": "Dusk text 14.1:1" },
+    { "token": "sand", "name": "Sand", "hex": "#E9D9C5", "kind": "core", "role": "Packshot sweep = product card tile; deeper bands", "contrast": "Dusk 10.9:1; Dusk 72% 4.96:1" },
+    { "token": "honey", "name": "Honey", "hex": "#E8B566", "kind": "core (light)", "role": "Sun dots, glows, marquee band, button glow, step-02 tone. Never text on a light ground.", "contrast": "Dusk on Honey 8.1:1" },
+    { "token": "apricot", "name": "Apricot", "hex": "#EFA27B", "kind": "core (light)", "role": "Glow gradients, washes, packaging (Haze lid). Never text on a light ground.", "contrast": "Dusk on Apricot 7.3:1" },
+    { "token": "terracotta", "name": "Terracotta", "hex": "#A8473B", "kind": "core (the one accent)", "role": "Primary buttons, links, pins, highlight words", "contrast": "Linen on it 5.4:1; as text on Travertine 4.75:1" },
+    { "token": "clay", "name": "Clay", "hex": "#8E3F31", "kind": "core (deep accent)", "role": "Hover; eyebrows and links on Sand or washes; FAQ band", "contrast": "On Sand 5.2:1; Linen on it 6.7:1" },
+    { "token": "dusk", "name": "Dusk", "hex": "#35211F", "kind": "core (ink)", "role": "Text, headings, announcement, closing band, footer", "contrast": "Linen on it 14.1:1" },
+    { "token": "dusk-72", "name": "Dusk 72%", "hex": "#6E554C", "kind": "tint", "role": "Secondary text, small print, footnotes", "contrast": "5.6:1 on Travertine; 6.4:1 on Linen; 4.96:1 on Sand" },
+    { "token": "dusk-78", "name": "Dusk 78% (washes)", "hex": "#5E463E", "kind": "tint", "role": "Secondary text on Apricot and Rose washes", "contrast": "5.9:1 on Apricot wash; 5.4:1 on Rose wash" },
+    { "token": "honey-wash", "name": "Honey wash", "hex": "#F5E1C1", "kind": "tint", "role": "Proof band; start of the ritual gradient", "contrast": "Dusk 11.8:1" },
+    { "token": "apricot-wash", "name": "Apricot wash", "hex": "#F4CDB2", "kind": "tint", "role": "Ritual and formulator bands", "contrast": "Dusk 10.2:1" },
+    { "token": "rose-wash", "name": "Rose wash", "hex": "#EDC3B1", "kind": "tint", "role": "The slow hour band", "contrast": "Dusk 9.4:1" },
+    { "token": "on-clay-secondary", "name": "Linen on Clay, secondary", "hex": "#E3D3C6", "kind": "tint", "role": "Secondary text on the Clay scheme", "contrast": "4.96:1 on Clay" },
+    { "token": "on-dusk-secondary", "name": "Linen on Dusk, secondary", "hex": "#CDB8AA", "kind": "tint", "role": "Secondary text on the Dusk scheme", "contrast": "7.9:1 on Dusk" },
+    { "token": "dusk-raised", "name": "Dusk raised", "hex": "#412E2B", "kind": "tint (Linen 6% on Dusk)", "role": "Inputs and inset panels on Dusk (newsletter field)", "contrast": "Linen text 11.8:1" },
+    { "token": "hairline", "name": "Hairline", "hex": "rgba(53, 33, 31, 0.14)", "kind": "tint (Dusk at 14%)", "role": "1 px rules, card and input borders on light schemes", "contrast": "Decorative" },
+    { "token": "hairline-on-dark", "name": "Hairline on dark", "hex": "rgba(251, 246, 239, 0.18)", "kind": "tint (Linen at 18%)", "role": "1 px rules on Terracotta, Clay and Dusk", "contrast": "Decorative" }
+  ],
+  "palette_rules": {
+    "accent": "One accent: Terracotta. Clay is its deep shade for small text on Sand and the washes. Honey and Apricot are light: they are used for glows, fills and packaging, never for text on a light ground.",
+    "derived_tints": "The tints are derived from the eight core colors and are not extra colors.",
+    "proportion": { "travertine": 44, "dusk": 18, "linen": 16, "sand": 10, "glow_and_accent": 12 },
+    "hue_note": "Terracotta's hue is 7°, rosier than the reference rust at 18°, so the brand reads as beauty rather than outdoor gear.",
+    "golden_hour_gradient": {
+      "stops": ["#E8B566", "#EFA27B", "#A8473B", "#35211F"],
+      "css": "linear-gradient(90deg, #E8B566 0%, #EFA27B 33%, #A8473B 67%, #35211F 100%)",
+      "allowed_uses": ["hero glow", "closing band", "monogram sun", "free-shipping bar"],
+      "rules": "Only these four uses. Add a 2% grain to prevent banding. Never on text (the footer sign-off wordmark is the one exception), never teal-orange, low chroma."
+    }
+  },
+  "color_schemes": [
+    {
+      "name": "travertine",
+      "label": "Travertine (default)",
+      "background": "#F3E7DA",
+      "background_secondary": "#FBF6EF",
+      "text": "#35211F",
+      "text_secondary": "#6E554C",
+      "heading": "#35211F",
+      "accent": "#A8473B",
+      "button": "#A8473B",
+      "button_text": "#FBF6EF",
+      "button_hover": "#8E3F31",
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 12.4, secondary 5.6, accent text 4.75, button text 5.4, on hover 6.7",
+      "used_by": ["header (after scroll)", "4 The sunset shelf", "6 Every skin, in its best light"]
+    },
+    {
+      "name": "linen",
+      "label": "Linen",
+      "background": "#FBF6EF",
+      "background_secondary": "#F3E7DA",
+      "text": "#35211F",
+      "text_secondary": "#6E554C",
+      "heading": "#35211F",
+      "accent": "#A8473B",
+      "button": "#A8473B",
+      "button_text": "#FBF6EF",
+      "button_hover": "#8E3F31",
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 14.1, secondary 6.4, accent text 5.4",
+      "used_by": ["3 Promise strip", "7 What's in the glow"]
+    },
+    {
+      "name": "sand",
+      "label": "Sand",
+      "background": "#E9D9C5",
+      "background_secondary": "#FBF6EF",
+      "text": "#35211F",
+      "text_secondary": "#6E554C",
+      "heading": "#35211F",
+      "accent": "#8E3F31",
+      "button": "#A8473B",
+      "button_text": "#FBF6EF",
+      "button_hover": "#8E3F31",
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 10.9, secondary 4.96, accent text (Clay) 5.2. Terracotta text fails on Sand (4.19), so accent text is Clay.",
+      "used_by": ["5 Start here: Long Light", "product card tiles"]
+    },
+    {
+      "name": "honey-wash",
+      "label": "Honey wash",
+      "background": "#F5E1C1",
+      "background_secondary": "#FBF6EF",
+      "background_gradient": "linear-gradient(180deg, #F5E1C1 0%, #F4CDB2 100%) on section 10 only",
+      "text": "#35211F",
+      "text_secondary": "#6E554C",
+      "heading": "#35211F",
+      "accent": "#8E3F31",
+      "button": "#A8473B",
+      "button_text": "#FBF6EF",
+      "button_hover": "#8E3F31",
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 11.8, secondary 5.4, accent text (Clay) 5.7",
+      "used_by": ["8 Proof, with the method"]
+    },
+    {
+      "name": "honey",
+      "label": "Honey (marquee only)",
+      "background": "#E8B566",
+      "background_secondary": null,
+      "text": "#35211F",
+      "text_secondary": null,
+      "heading": "#35211F",
+      "accent": null,
+      "button": null,
+      "button_text": null,
+      "button_hover": null,
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 8.1. No secondary text, accent or buttons on this scheme.",
+      "used_by": ["9 Sensory marquee"]
+    },
+    {
+      "name": "apricot-wash",
+      "label": "Apricot wash",
+      "background": "#F4CDB2",
+      "background_secondary": "#FBF6EF",
+      "text": "#35211F",
+      "text_secondary": "#5E463E",
+      "heading": "#35211F",
+      "accent": "#8E3F31",
+      "button": "#A8473B",
+      "button_text": "#FBF6EF",
+      "button_hover": "#8E3F31",
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 10.2, secondary 5.9, accent text (Clay) 4.9",
+      "used_by": ["10 The ritual (as a gradient from Honey wash)", "12 A note from our formulator"]
+    },
+    {
+      "name": "rose-wash",
+      "label": "Rose wash",
+      "background": "#EDC3B1",
+      "background_secondary": "#FBF6EF",
+      "text": "#35211F",
+      "text_secondary": "#5E463E",
+      "heading": "#35211F",
+      "accent": "#35211F",
+      "accent_style": "Dusk italic. Clay fails on Rose wash (4.49), so accent words are set in Dusk italic.",
+      "button": "#A8473B",
+      "button_text": "#FBF6EF",
+      "button_hover": "#8E3F31",
+      "border": "rgba(53, 33, 31, 0.14)",
+      "focus_ring": "#35211F",
+      "contrast": "text 9.4, secondary 5.4",
+      "used_by": ["11 The slow hour"]
+    },
+    {
+      "name": "terracotta",
+      "label": "Terracotta",
+      "background": "#A8473B",
+      "background_secondary": "#8E3F31",
+      "text": "#FBF6EF",
+      "text_secondary": "#FBF6EF",
+      "heading": "#FBF6EF",
+      "accent": "#E8B566",
+      "accent_min_size_px": 24,
+      "button": "#FBF6EF",
+      "button_text": "#35211F",
+      "button_hover": "#E8B566",
+      "border": "rgba(251, 246, 239, 0.18)",
+      "focus_ring": "#FBF6EF",
+      "contrast": "text 5.4. Secondary text is Linen only. Honey accent only at 24 px and up (3.1). Button text 14.1, on hover 8.1.",
+      "used_by": ["13 Early voices"]
+    },
+    {
+      "name": "clay",
+      "label": "Clay",
+      "background": "#8E3F31",
+      "background_secondary": "#35211F",
+      "text": "#FBF6EF",
+      "text_secondary": "#E3D3C6",
+      "heading": "#FBF6EF",
+      "accent": "#E8B566",
+      "accent_min_size_px": 24,
+      "button": "#E8B566",
+      "button_text": "#35211F",
+      "button_hover": "#FBF6EF",
+      "border": "rgba(251, 246, 239, 0.18)",
+      "focus_ring": "#FBF6EF",
+      "contrast": "text 6.7, secondary 4.96, Honey accent at 24 px and up only (3.9), button text 8.1",
+      "used_by": ["14 FAQ"]
+    },
+    {
+      "name": "dusk",
+      "label": "Dusk",
+      "background": "#35211F",
+      "background_secondary": "#412E2B",
+      "text": "#FBF6EF",
+      "text_secondary": "#CDB8AA",
+      "heading": "#FBF6EF",
+      "accent": "#E8B566",
+      "button": "#E8B566",
+      "button_text": "#35211F",
+      "button_hover": "#FBF6EF",
+      "border": "rgba(251, 246, 239, 0.18)",
+      "focus_ring": "#E8B566",
+      "contrast": "text 14.1, secondary 7.9, Honey accent 8.1, button text 8.1",
+      "used_by": ["1 Announcement bar", "15 Closing band and footer"]
+    }
+  ],
+  "sunset_scroll": {
+    "rule": "Each section gets one scheme and the page warms as you scroll. No two adjacent sections share a background.",
+    "order": ["dusk (announcement)", "render (hero)", "linen", "travertine", "sand", "travertine + leaf light", "linen", "honey-wash", "honey", "apricot-wash (gradient from honey-wash)", "rose-wash", "apricot-wash", "terracotta", "clay", "dusk"]
+  },
+  "typography": {
+    "display": {
+      "family": "Fraunces",
+      "instance": "Fraunces 72pt SuperSoft (static instances Fraunces_72pt_SuperSoft-Light, -Regular and -LightItalic)",
+      "axes": { "opsz": 72, "SOFT": 100, "WONK_roman": 0, "WONK_italic": 1 },
+      "weights": [300, 400],
+      "italic": {
+        "weight": 300,
+        "file": "Fraunces_72pt_SuperSoft-LightItalic",
+        "wonk": 1,
+        "kind": "True italic, declared in the skin (the references use faux italics)",
+        "use": "One accent word per heading (always the last word), product names in italic, lexicon lines"
+      },
+      "roles": "H1 to H3, product names, quotes, prices on the PDP",
+      "why": "Fraunces's SOFT axis at 100 rounds every serif and terminal: a warm, characterful serif that isn't another Didone.",
+      "source": "OFL. Custom upload in Minimog: put the WOFF2 static instances in Content > Files, then Typography > Heading font > custom, one URL per weight (url@300, url@400); they render as M-Heading-Font. Declare the italic in Custom Liquid: @font-face{font-family:M-Heading-Font;font-style:italic;font-weight:300;src:url(...) format(\"woff2\")}. Preload the Light WOFF2.",
+      "alternate_h1": "Optional: instance the variable font with fonttools at opsz 96, SOFT 100, WONK 0 for a crisper H1.",
+      "google_fonts_css": "https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..400,100,0;1,9..144,300,100,1&display=swap",
+      "mockup_css": "font-family: 'Fraunces', Georgia, serif; font-variation-settings: 'opsz' 72;",
+      "fallback": "Georgia, 'Times New Roman', serif"
+    },
+    "body": {
+      "family": "Figtree",
+      "instance": "Figtree (Shopify font library)",
+      "weights": [400, 500, 600],
+      "italic": false,
+      "roles": "Body text, UI, buttons, eyebrows, prices on cards",
+      "why": "Open, friendly and highly legible at 13 to 16 px.",
+      "source": "Shopify font library (verified served): Typography > Body font > Figtree. Nothing to upload.",
+      "google_fonts_css": "https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap",
+      "mockup_css": "font-family: 'Figtree', system-ui, sans-serif; font-variant-numeric: tabular-nums (prices);",
+      "fallback": "system-ui, -apple-system, 'Segoe UI', sans-serif"
+    },
+    "files": "Two families. Three uploaded Fraunces files (Light, Regular, Light Italic) plus Figtree from the Shopify library.",
+    "scale_desktop": {
+      "viewport_px": 1440,
+      "h1": { "size_px": 96, "line_height": 0.94, "font": "Fraunces Light 300", "tracking_em": -0.03, "notes": "Sentence case; the accent word in italic Terracotta" },
+      "h2": { "size_px": 52, "line_height": 1.02, "font": "Fraunces Light 300", "tracking_em": -0.02, "notes": "One italic accent word, always last; text-wrap: balance" },
+      "h3": { "size_px": 44, "line_height": 1.05, "font": "Fraunces Light 300", "tracking_em": -0.02, "notes": "Also the PDP product title" },
+      "card_title": { "size_px": 19, "line_height": 1.25, "font": "Fraunces Regular 400", "tracking_em": 0, "notes": "Two-line clamp with reserved height" },
+      "eyebrow": { "size_px": 12, "line_height": 1.33, "font": "Figtree 600", "tracking_em": 0.2, "case": "uppercase", "notes": "Clay or Terracotta per scheme" },
+      "body": { "size_px": 16, "line_height": 1.625, "line_height_px": 26, "font": "Figtree 400", "notes": "40 to 56 characters per line in story copy" },
+      "small": { "size_px": 13, "line_height": 1.54, "line_height_px": 20, "font": "Figtree 400", "notes": "Dusk 72%" },
+      "footnote": { "size_px": 12, "line_height": 1.5, "line_height_px": 18, "font": "Figtree 400", "notes": "Dusk 72%" },
+      "button": { "size_px": 15, "line_height": 1, "font": "Figtree 600", "tracking_em": 0.02, "case": "sentence", "notes": "Pill (999 px), 52 px tall, arrow icon nudges 3 px" },
+      "price": { "size_px": "15 to 16", "line_height": 1.4, "font": "Figtree 600", "notes": "Tabular figures" }
+    },
+    "scale_mobile": {
+      "viewport_px": 390,
+      "h1": { "size_px": 44, "line_height": 1.0, "font": "Fraunces Light 300", "tracking_em": -0.03 },
+      "h2": { "size_px": 34, "line_height": 1.06, "font": "Fraunces Light 300", "tracking_em": -0.02 },
+      "h3": { "size_px": 32, "line_height": 1.08, "font": "Fraunces Light 300", "tracking_em": -0.02 },
+      "card_title": { "size_px": 16, "line_height": 1.25, "font": "Fraunces Regular 400" },
+      "eyebrow": { "size_px": 11, "line_height": 1.36, "font": "Figtree 600", "tracking_em": 0.2, "case": "uppercase" },
+      "body": { "size_px": 15, "line_height": 1.6, "line_height_px": 24, "font": "Figtree 400" },
+      "small": { "size_px": 13, "line_height": 1.54, "line_height_px": 20, "font": "Figtree 400" },
+      "footnote": { "size_px": 12, "line_height": 1.5, "line_height_px": 18, "font": "Figtree 400" },
+      "button": { "size_px": 15, "line_height": 1, "font": "Figtree 600", "tracking_em": 0.02, "notes": "48 px tall" },
+      "price": { "size_px": "15 to 16", "line_height": 1.4, "font": "Figtree 600", "notes": "Tabular figures" }
+    },
+    "tracking": {
+      "h1": "-0.03em",
+      "h2": "-0.02em",
+      "h3": "-0.02em",
+      "card_title": "0",
+      "body": "0",
+      "eyebrow": "0.20em",
+      "button": "0.02em",
+      "wordmark": "-0.01em",
+      "descriptor_beauty": "0.28em",
+      "pack_format_caps": "0.25em"
+    },
+    "case_rules": "Sentence case for headings, buttons, navigation and body copy; never all-caps headlines. Uppercase only for eyebrows (Figtree 600, +20%), the BEAUTY descriptor (+28%) and the format line on packs (+25%). Product names in title case, set in Fraunces Light Italic on labels and in running copy where specified. Ingredient names in lowercase in running copy (vitamin C keeps its capital). The wordmark is always lowercase and is never typed as live text.",
+    "heading_accent": "One italic word per heading, always the last word, in the scheme's accent color: Terracotta on Travertine and Linen; Clay on Sand and the Honey and Apricot washes; Dusk italic on Rose wash; Honey on Terracotta, Clay and Dusk (24 px and up only)."
+  },
+  "radius": {
+    "card": 14,
+    "tile": 14,
+    "image": 14,
+    "drawer": 14,
+    "button": 999,
+    "input": 999,
+    "chip": 999,
+    "rule": "One radius token: 14 px for cards, tiles, images and drawers; 999 px for buttons, inputs and chips. Nothing else.",
+    "minimog": "--blocks-radius, --medium-blocks-radius and --pcard-radius set to 14 px; buttons and inputs at 999 px"
+  },
+  "spacing": {
+    "unit_px": 4,
+    "scale_px": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 120, 160],
+    "section_standard": "clamp(64px, 8vw, 120px)",
+    "section_feature": "clamp(80px, 11vw, 160px)",
+    "container": {
+      "minimog": "container-fluid on every section, including the header, footer and PDP, so there is one left edge",
+      "desktop_content_px": 1320,
+      "desktop_gutter_px": 60,
+      "narrow_px": 740,
+      "mobile_gutter_px": 15,
+      "note": "60 px gutters at 1440 and Minimog's native 15 px at 390, so stock and custom sections share one left edge"
+    },
+    "section_header": {
+      "eyebrow_to_heading_px": 14,
+      "heading_to_lead_px": 18,
+      "lead_to_actions_px": 30,
+      "header_to_content": "clamp(28px, 4vw, 52px)",
+      "lead_max_width": "54ch"
+    },
+    "grid_gap_px": { "desktop": 24, "mobile": 12 },
+    "card_padding_px": { "desktop": 20, "mobile": 14 },
+    "tap_target_min_px": 44,
+    "minimog_note": "Global section spacing 0; each section owns its padding. Minimog scales section padding to min(value, 40px) on mobile."
+  },
+  "buttons": {
+    "shape": "Pill, radius 999 px",
+    "height_px": { "desktop": 52, "mobile": 48 },
+    "padding_x_px": { "desktop": 28, "mobile": 24 },
+    "type": "Figtree 600, 15 px, +2% tracking, sentence case",
+    "icon": "Arrow in the 1.4 px icon line; nudges 3 px in its direction on hover",
+    "primary": {
+      "fill": "scheme button color (Terracotta on light schemes; Linen on Terracotta; Honey on Clay and Dusk)",
+      "text": "scheme button_text",
+      "hover": "Fill moves to scheme button_hover (Clay on light schemes). The pill gains a 7 px Honey halo and lifts 1 px.",
+      "halo_css": "box-shadow: 0 0 14px 7px rgba(232, 181, 102, 0.38)",
+      "transition": "background 200 ms, halo 600 ms, slow-sunset easing"
+    },
+    "secondary": {
+      "style": "1 px outline in the scheme's text color, transparent fill, same height and type as the primary",
+      "hover": "Fill with the text color at 6%; arrow nudges 3 px"
+    },
+    "text_link": {
+      "style": "Figtree 600, 15 px, accent color, 1 px underline at 3 px offset",
+      "hover": "Underline goes from 35% to solid; arrow nudges 3 px"
+    },
+    "focus": "A 2 px ring in the scheme's focus_ring color at 2 px offset, inside the same Honey halo. The ring carries the 3:1 non-text contrast, so focus passes AA on every scheme.",
+    "copy": "Specific verb phrases that vary by job (Shop the ritual, Find your first step, Add to bag · $54). Never a bare 'Shop now'.",
+    "mobile": "Full width in the hero and the closing band"
+  },
+  "shadows": {
+    "rule": "Prefer hairlines on cards. Shadows are soft, long, negative-spread and tinted with Dusk or Honey. Three recipes only.",
+    "card_hover": "0 22px 44px -26px rgba(232, 181, 102, 0.55), 0 18px 36px -28px rgba(53, 33, 31, 0.35)",
+    "button_halo": "0 0 14px 7px rgba(232, 181, 102, 0.38)",
+    "overlay": "0 24px 60px -30px rgba(53, 33, 31, 0.45)"
+  },
+  "logo": {
+    "wordmark": {
+      "text": "lumora",
+      "setting": "Lowercase, Fraunces SuperSoft at weight 380 and optical size 144, tracked -1%",
+      "master": "Outlined and redrawn by hand for the master artwork. It is never typed as live text.",
+      "color": "Dusk on light grounds and Linen on Dusk, with the setting-sun sliver in Terracotta on light grounds and Honey on Dusk"
+    },
+    "symbol": {
+      "name": "The low sun (monogram)",
+      "form": "A solid disc cut by the same horizon gap as the wordmark's 'o'",
+      "uses": ["favicon", "app tile", "map pins", "sun dots", "wax-seal box sticker", "label sun mark", "lid-top decal"],
+      "colorways": ["Honey on Dusk (primary tile)", "the golden-hour gradient on Linen", "Linen on Terracotta"]
+    },
+    "construction": {
+      "setting_sun_o": "The 'o' is cut by a horizontal gap (the horizon) at 66.5 to 71% of the glyph box, about one third up its height. The sliver below the horizon turns Terracotta on light grounds and Honey on Dusk, like a sun touching the horizon.",
+      "gap": "4.5% of the cap height, so it survives at 24 px wide. Below 80 px wide, use the one-color version with the gap widened to 7%.",
+      "one_color": "In one-color use (labels, foil, embossing) the cut stays and the color doesn't change.",
+      "descriptor_lockup": "Wordmark, a hairline, then BEAUTY in Figtree 600 at +28% tracking, with the optional line 'The hour of light' in Fraunces italic."
+    },
+    "clearspace": "One 'o' width on every side",
+    "min_size": { "wordmark": "72 px or 18 mm wide", "monogram": "16 px" },
+    "donts": [
+      "No gradient fill on the wordmark, except the giant footer sign-off",
+      "No outlines or shadows",
+      "No uppercase setting",
+      "Never re-type the logo in live text without the cut 'o'"
+    ],
+    "files": [
+      { "path": "brand/logo/lumora-wordmark.svg", "use": "Two-color wordmark on light grounds (Dusk, Terracotta sliver)" },
+      { "path": "brand/logo/lumora-wordmark-on-dusk.svg", "use": "Two-color wordmark on Dusk (Linen, Honey sliver)" },
+      { "path": "brand/logo/lumora-wordmark-mono.svg", "use": "One-color wordmark (labels, foil, embossing), 4.5% gap" },
+      { "path": "brand/logo/lumora-wordmark-mono-small.svg", "use": "One-color wordmark below 80 px wide, 7% gap" },
+      { "path": "brand/logo/lumora-lockup-beauty.svg", "use": "Descriptor lockup: wordmark, hairline, BEAUTY, optional 'The hour of light'" },
+      { "path": "brand/logo/lumora-monogram-honey-on-dusk.svg", "use": "Primary monogram tile" },
+      { "path": "brand/logo/lumora-monogram-gradient-on-linen.svg", "use": "Monogram in the golden-hour gradient" },
+      { "path": "brand/logo/lumora-monogram-linen-on-terracotta.svg", "use": "Monogram on Terracotta" },
+      { "path": "brand/logo/favicon-32.png", "use": "Favicon (monogram, Honey on Dusk)" },
+      { "path": "brand/logo/lumora-wordmark.png", "use": "Raster wordmark for the mockup and Shopify logo setting (2x)" }
+    ],
+    "files_status": "Canonical file names. The logo files are produced from this spec."
+  },
+  "iconography": {
+    "style": "A custom 1.4 px monoline set on a 32 px grid, with rounded caps and joins. Every icon sits on a short horizon hairline.",
+    "set": ["shipping", "guarantee (with a sun dot)", "every skin tone (three overlapping circles)", "amber glass", "vegan formula", "golden hour", "drop (fragrance-free)", "how-to-use steps", "arrow"],
+    "color": "Dusk on light grounds, Linen on dark",
+    "sizes_px": { "feature": 32, "benefit": 24, "inline": 20 },
+    "rule": "One family, one weight, custom SVG only, never emoji"
+  },
+  "motifs": [
+    {
+      "name": "Sun marks (the step system)",
+      "description": "An arc above a horizon line, with a sun dot that sinks from step 01 (high left) to step 06 (half set).",
+      "where": ["labels", "product cards", "PDP eyebrow (Step 02 · Treat)", "the ritual timeline", "the mega menu"]
+    },
+    {
+      "name": "Leaf light",
+      "description": "The rig's procedural leaves gobo mask, exported as a PNG and used on the web at 6% multiply, drifting 12 px over 14 seconds. The same leaves fall on the product and on the page.",
+      "where": ["6 Every skin, in its best light", "one more section at most"],
+      "rule": "Two sections at most; static under reduced motion"
+    },
+    {
+      "name": "Glow",
+      "description": "One radial Honey-to-Apricot bloom.",
+      "where": ["behind the hero products", "the closing band"]
+    },
+    {
+      "name": "The golden-hour gradient",
+      "description": "Honey, Apricot, Terracotta, Dusk with 2% grain.",
+      "where": ["hero glow", "closing band", "monogram sun", "free-shipping bar"]
+    },
+    {
+      "name": "Sun-dot footnotes",
+      "description": "Superscript markers sit in small Honey discs and link to the footnotes directly under each module.",
+      "where": ["every footnoted claim"]
+    },
+    {
+      "name": "Lexicon lines",
+      "description": "Each product name's definition in Fraunces italic, under the PDP title (metafield-driven Custom Liquid).",
+      "where": ["PDP buy box", "Gloaming label"]
+    }
+  ],
+  "divider": {
+    "name": "Horizon edge (the signature transition)",
+    "description": "A shallow convex SVG arc, like the rim of the sun or the curve of the horizon, filled with the color of the section below.",
+    "uses": ["under the hero, rising into the promise strip", "from the closing band into the footer"],
+    "rule": "Used exactly twice, at the same kind of moment, and nowhere else.",
+    "svg": { "viewBox": "0 0 1440 56", "path": "M0 56 V34 Q720 -14 1440 34 V56 Z", "height_px": { "desktop": 56, "mobile": 24 }, "preserveAspectRatio": "none" }
+  },
+  "motion": {
+    "easing": { "name": "slow sunset", "css": "cubic-bezier(.25,.8,.25,1)" },
+    "durations_ms": [200, 600],
+    "image_hover": { "scale": 1.04, "duration_ms": 900 },
+    "card_hover": "The light changes: Minimog's second image (the same pack and crop in low sun) crossfades over 600 ms, with a soft Honey under-glow on the card.",
+    "reveal": "Minimog fade in up: 24 px rise, 600 ms, 80 ms card cascade",
+    "button": "Honey halo on hover; the arrow nudges 3 px",
+    "leaf_light": "Drifts 12 px over 14 s",
+    "marquee": "Slow, pauses on hover, one marquee per page",
+    "footer_wordmark": "Sinks 8% as the page ends (scroll-linked, about 20 lines of JS in Custom Liquid)",
+    "reduced_motion": "Everything is switched off under prefers-reduced-motion: the marquee, leaf drift, wordmark sink and diagram redraw become static."
+  },
+  "products": [
+    {
+      "handle": "sunmelt-cleansing-balm",
+      "name": "Sunmelt Cleansing Balm",
+      "step": { "number": "01", "ritual": "Cleanse", "when": "AM and PM" },
+      "category": "Cleanser, balm-to-milk",
+      "label_format": "CLEANSING BALM",
+      "size": "100 ml / 3.4 fl oz",
+      "descriptor": "18% apricot kernel oil + oat lipids. Melts to milk and lifts SPF, makeup and the day, without the tight feeling.",
+      "hero_ingredients": [
+        { "name": "Apricot kernel oil", "percent": 18, "job": "Melts to a milk that lifts SPF, makeup and the day" },
+        { "name": "Oat lipids", "percent": null, "job": "Leaves skin feeling soft, without the tight feeling" }
+      ],
+      "price_usd": 32,
+      "short_benefit": "Melts to milk and lifts the day, without the tight feeling.",
+      "lexicon_line": "sunmelt (n.) a balm that melts like butter left in the sun",
+      "packaging": {
+        "sunset_tone": "Sand",
+        "height_mm": 150,
+        "rig_type": "tube",
+        "dims": { "d": 40, "length": 150, "cap_d": 34, "cap_h": 20, "shoulder_h": 5, "crimp_h": 9 },
+        "form_notes": "Stands on its cap; flat crimp about 63 mm wide with fine crimp ridges",
+        "materials": {
+          "body": { "preset": "plastic_softtouch", "color": "#E6D2B8" },
+          "shoulder": { "preset": "plastic_softtouch", "color": "#E6D2B8" },
+          "cap": { "preset": "plastic_gloss", "color": "#E6D2B8" }
+        },
+        "closure": "Screw cap, gloss, tone-on-tone Sand",
+        "print": { "mode": "print", "height_mm": 70, "position": "Centered at about 60% of the body", "ink": "#35211F", "sun_mark_ink": "#A8473B" },
+        "label_lines": ["lumora", "sun mark 01", "Sunmelt", "CLEANSING BALM", "18% APRICOT KERNEL OIL + OAT LIPIDS", "100 ml · 3.4 fl oz"]
+      }
+    },
+    {
+      "handle": "long-light-serum",
+      "name": "Long Light Serum",
+      "hero": true,
+      "step": { "number": "02", "ritual": "Treat", "when": "AM and PM" },
+      "category": "Glow serum",
+      "label_format": "SERUM",
+      "size": "30 ml / 1.0 fl oz",
+      "descriptor": "10% vitamin C (3-O-ethyl ascorbic acid, a stable form) + 2% sea buckthorn oil. Skin looks warm-lit, more even and awake; no glitter, no tint.",
+      "hero_ingredients": [
+        { "name": "Vitamin C (3-O-ethyl ascorbic acid, a stable form)", "percent": 10, "job": "Brightens the look of dull skin and evens the look of tone" },
+        { "name": "Sea buckthorn oil", "percent": 2, "job": "Carotenoid-rich, and the reason Long Light is apricot. The color is the ingredient; no dyes." }
+      ],
+      "price_usd": 54,
+      "variants": [
+        { "size": "30 ml / 1.0 fl oz", "price_usd": 54 },
+        { "size": "15 ml travel", "price_usd": null, "note": "Price not set" }
+      ],
+      "short_benefit": "Skin looks warm-lit, more even and awake.",
+      "lexicon_line": "long light (n.) the low, raking light of the last hour of sun",
+      "packaging": {
+        "sunset_tone": "Honey",
+        "height_mm": 115,
+        "rig_type": "dropper",
+        "dims": { "d": 34, "h": 74, "shoulder_r": 7.5, "neck_d": 18, "collar_d": 23.5, "collar_h": 15.5, "bulb_d": 15, "bulb_h": 22, "fill": 0.8 },
+        "materials": {
+          "body": "glass_amber",
+          "liquid": { "preset": "liquid", "color": "#E9A54E", "tint_mm": 18 },
+          "pipette": "glass_clear",
+          "collar": "metal_champagne_brushed",
+          "bulb": { "preset": "silicone", "color": "#E3AD63" }
+        },
+        "closure": "Champagne brushed collar, Honey silicone bulb",
+        "labels": [ { "mode": "ink", "ink": "#F6E8D6", "height_mm": 30, "placement": "Wrap label" } ],
+        "label_lines": ["lumora", "sun mark 02", "Long Light", "SERUM", "10% VITAMIN C + SEA BUCKTHORN", "30 ml · 1.0 fl oz"]
+      }
+    },
+    {
+      "handle": "haze-soft-focus-cream",
+      "name": "Haze Soft-Focus Cream",
+      "step": { "number": "03", "ritual": "Moisturize", "when": "AM and PM" },
+      "category": "Moisturizer",
+      "label_format": "SOFT-FOCUS CREAM",
+      "size": "50 ml / 1.7 fl oz",
+      "descriptor": "Ceramides + 5% squalane. A cushiony cream with a blurred, satin finish that comforts dry-feeling skin.",
+      "hero_ingredients": [
+        { "name": "Ceramides", "percent": null, "job": "Help replenish the moisture barrier" },
+        { "name": "Squalane", "percent": 5, "job": "A cushiony, satin finish that comforts dry-feeling skin" }
+      ],
+      "price_usd": 48,
+      "short_benefit": "A cushiony cream with a blurred, satin finish.",
+      "lexicon_line": "haze (n.) the soft blur of golden air",
+      "packaging": {
+        "sunset_tone": "Apricot",
+        "height_mm": 65,
+        "rig_type": "jar",
+        "dims": { "d": 66, "body_h": 42, "neck_h": 7, "wall": 7, "bottom": 11, "lid_h": 22, "lid": "on" },
+        "form_notes": "Use lid 'off' for the texture shot, which shows the swirl",
+        "materials": {
+          "body": "glass_amber_frosted",
+          "contents": { "preset": "cream", "color": "#F3E6D6" },
+          "lid": { "preset": "plastic_softtouch", "color": "#E8A07C" }
+        },
+        "closure": "Apricot soft-touch lid",
+        "labels": [
+          { "mode": "ink", "ink": "#F6E8D6", "height_mm": 18, "placement": "Wrap label on glass" },
+          { "anchor": "lid_top", "mode": "ink", "ink": "#35211F", "content": "The monogram" }
+        ],
+        "label_lines": ["lumora", "sun mark 03", "Haze", "SOFT-FOCUS CREAM", "CERAMIDES + 5% SQUALANE", "50 ml · 1.7 fl oz"]
+      }
+    },
+    {
+      "handle": "apricity-lip-cheek-balm",
+      "name": "Apricity Lip + Cheek Balm",
+      "step": { "number": "04", "ritual": "Flush", "when": "Day" },
+      "category": "Sheer color balm",
+      "label_format": "LIP + CHEEK",
+      "size": "6 g / 0.21 oz",
+      "descriptor": "Shea + 5% apricot kernel oil. Sheer, buildable warmth in three shades (Low Sun, Clay, Dusk), designed to read on light to deep skin¹.",
+      "hero_ingredients": [
+        { "name": "Shea butter", "percent": null, "job": "A soft, cushioned glide on lips and cheeks" },
+        { "name": "Apricot kernel oil", "percent": 5, "job": "Soft slip that sinks in fast" },
+        { "name": "Iron oxides", "percent": null, "job": "The sheer color: no mica, no glitter" }
+      ],
+      "price_usd": 24,
+      "variants": [
+        { "shade": "Low Sun", "pack_color": "#D9875F" },
+        { "shade": "Clay", "pack_color": "#B0533F", "default": true },
+        { "shade": "Dusk", "pack_color": "#7E3B36" }
+      ],
+      "short_benefit": "Sheer, buildable warmth for lips and cheeks, in three shades.",
+      "lexicon_line": "apricity (n.) the warmth of the sun in winter",
+      "footnotes": ["¹"],
+      "packaging": {
+        "sunset_tone": "Terracotta",
+        "height_mm": 82,
+        "rig_type": "stick",
+        "dims": { "d": 24, "h": 82, "cap_h": 34 },
+        "materials": {
+          "base": { "preset": "plastic_softtouch", "color": "#B0533F" },
+          "cap": "metal_champagne_brushed"
+        },
+        "shade_bases": { "Low Sun": "#D9875F", "Clay": "#B0533F", "Dusk": "#7E3B36" },
+        "closure": "Champagne brushed cap",
+        "labels": [ { "mode": "ink", "ink": "#F6E8D6", "height_mm": 30, "placement": "Wrap print on the base" } ],
+        "label_lines": ["lumora", "sun mark 04", "Apricity", "LIP + CHEEK", "shade name", "6 g"]
+      }
+    },
+    {
+      "handle": "gloaming-body-oil",
+      "name": "Gloaming Body Oil",
+      "step": { "number": "05", "ritual": "Body", "when": "Evening" },
+      "category": "Body oil",
+      "label_format": "BODY OIL",
+      "size": "100 ml / 3.4 fl oz",
+      "descriptor": "40% apricot kernel + jojoba + vitamin E. A dry-touch oil: skin looks lit and feels soft, never shimmery or greasy.",
+      "hero_ingredients": [
+        { "name": "Apricot kernel oil", "percent": 40, "job": "Soft slip that sinks in fast" },
+        { "name": "Jojoba oil", "percent": null, "job": "A dry-touch feel, never greasy" },
+        { "name": "Vitamin E (tocopherol)", "percent": null, "job": "Helps keep the oils fresh" }
+      ],
+      "price_usd": 46,
+      "short_benefit": "A dry-touch oil: skin looks lit and feels soft.",
+      "lexicon_line": "gloaming (n.) the soft light after sunset",
+      "packaging": {
+        "sunset_tone": "Clay",
+        "height_mm": 166,
+        "rig_type": "cylinder",
+        "dims": { "d": 42, "h": 130, "shoulder_r": 3.5, "neck_d": 22, "cap_d": 30, "cap_h": 30, "cap_ribs": { "count": 48, "depth": 0.4 }, "fill": 0.86 },
+        "materials": {
+          "body": "glass_amber",
+          "liquid": { "preset": "oil", "color": "#E8B25E", "tint_mm": 16 },
+          "cap": { "preset": "plastic_softtouch", "color": "#8E3F31" }
+        },
+        "closure": "Ribbed Clay screw cap",
+        "labels": [ { "mode": "ink", "ink": "#F6E8D6", "height_mm": 44, "placement": "Wrap label" } ],
+        "label_lines": ["lumora", "sun mark 05", "Gloaming", "BODY OIL", "40% APRICOT KERNEL + JOJOBA + VITAMIN E", "gloaming (n.) the soft light after sunset", "100 ml · 3.4 fl oz"]
+      }
+    },
+    {
+      "handle": "slow-hour-golden-milk",
+      "name": "Slow Hour Golden Milk",
+      "step": { "number": "06", "ritual": "Unwind", "when": "Evening" },
+      "category": "Wellbeing (food): spiced drink blend",
+      "label_format": "GOLDEN MILK",
+      "size": "120 g / 4.2 oz, about 30 cups",
+      "descriptor": "Turmeric root (38%), ginger, Ceylon cinnamon, cardamom, black pepper and coconut milk powder. A warm cup for the end of the day.",
+      "hero_ingredients": [
+        { "name": "Turmeric root", "percent": 38, "job": "The golden color and a warm, earthy base" },
+        { "name": "Ginger", "percent": null, "job": "Gentle heat" },
+        { "name": "Ceylon cinnamon", "percent": null, "job": "Sweet spice" },
+        { "name": "Cardamom", "percent": null, "job": "A soft, floral lift" },
+        { "name": "Black pepper", "percent": null, "job": "A little warmth at the finish" },
+        { "name": "Coconut milk powder", "percent": null, "job": "Makes the cup creamy" }
+      ],
+      "price_usd": 28,
+      "short_benefit": "A warm cup for the end of the day.",
+      "lexicon_line": "slow hour (n.) the hour you take back",
+      "regulatory": "Sold as a food (a spice-blend drink mix), not a supplement. No health, 'beauty from within' or structure/function claims. Food labeling applies: ingredients, allergens, best-before. Fallback if the client wants a cosmetics-only line: Afterlight Eye Balm in the stick format, keeping the Dusk shelf color.",
+      "packaging": {
+        "sunset_tone": "Dusk",
+        "height_mm": 94,
+        "rig_type": "jar (canister)",
+        "dims": { "d": 80, "body_h": 70, "neck_h": 6, "wall": 6, "bottom": 9, "lid_h": 24 },
+        "materials": {
+          "body": { "preset": "ceramic_glazed", "color": "#4A2B28", "speckle": 0.35, "speckle_color": "#C9A486" },
+          "contents": { "preset": "cream", "color": "#E0A53A" },
+          "lid": "metal_champagne_brushed"
+        },
+        "closure": "Champagne brushed lid with a lid-top foil monogram",
+        "labels": [ { "mode": "foil", "foil": "gold", "height_mm": 40, "placement": "Wrap print" } ],
+        "label_lines": ["lumora", "sun mark 06 (half set)", "Slow Hour", "GOLDEN MILK", "TURMERIC · GINGER · CINNAMON · CARDAMOM · BLACK PEPPER", "120 g · 4.2 oz · about 30 cups"]
+      }
+    }
+  ],
+  "shelf": {
+    "constants": "Amber glass, champagne brushed metal and one label system",
+    "tones_in_order": ["Sand", "Honey", "Apricot", "Terracotta", "Clay", "Dusk"],
+    "heights_mm": [150, 115, 65, 82, 166, 94],
+    "label_system": [
+      "The wordmark with the cut 'o'",
+      "The sun mark for the step",
+      "The product name in Fraunces Light Italic",
+      "The format in Figtree 600 caps (+25% tracking)",
+      "The descriptor with percentages in caps",
+      "The size in US and metric at the foot"
+    ],
+    "label_ink": "Linen #F6E8D6 on amber glass and dark grounds; Dusk #35211F on Sand and Apricot. Slow Hour uses gold hot-foil.",
+    "label_pipeline": "Label PNGs set in Fraunces and Figtree, using the same pipeline as renders/rig/examples/labels/make_labels.cjs"
+  },
+  "hero_product": {
+    "handle": "long-light-serum",
+    "why": [
+      "The most photogenic pack: an amber dropper that glows in sunlight",
+      "The most demonstrable promise: warm-lit, even-looking skin",
+      "The top price ($54), so any second item clears the $65 threshold",
+      "It anchors The golden pair bundle with Haze"
+    ],
+    "appears_in": ["Hero scene", "Start here macro", "The ritual line-up"]
+  },
+  "bundles": [
+    {
+      "id": "the-full-sunset",
+      "name": "The full sunset",
+      "items": ["sunmelt-cleansing-balm", "long-light-serum", "haze-soft-focus-cream", "apricity-lip-cheek-balm", "gloaming-body-oil", "slow-hour-golden-milk"],
+      "value_usd": 232,
+      "price_usd": 197,
+      "saving_usd": 35,
+      "saving_display": "save 15%",
+      "cta": "Add the full sunset · $197 (save 15%)"
+    },
+    {
+      "id": "the-golden-pair",
+      "name": "The golden pair",
+      "items": ["long-light-serum", "haze-soft-focus-cream"],
+      "value_usd": 102,
+      "price_usd": 92,
+      "saving_usd": 10,
+      "saving_display": "save $10",
+      "cta": "Add the golden pair · $92 (save $10)"
+    }
+  ],
+  "shipping": {
+    "free_shipping_threshold_usd": 65,
+    "guarantee": "30 days, even if opened",
+    "cart_bar": "Fills with the golden-hour gradient. Copy: 'You're $11 from free shipping. An Apricity would do it.' then 'Free shipping, unlocked.'"
+  },
+  "art_direction": {
+    "principle": "One light for renders and photographs. Product imagery comes from our Blender (Cycles) rig in renders/rig/; skin, hands and texture come from Unsplash. One grade ties them together. Every image passes the same test: honey highlights, dusk shadows, nothing pure black or white.",
+    "packshot": {
+      "use": "Product cards, PDP slot 1, cart, mega menu",
+      "backdrop": { "rig": "sweep", "color": "#E9D9C5", "note": "The rig color-locks the backdrop to the hex, so the sweep renders exactly as the card tile. No multiply-blend hack." },
+      "lighting": { "preset": "soft_studio", "kelvin_shift": -500, "key_kelvin_approx": 4800, "setup": "A soft warm key from the left (-52°), a warm rim each side, and the backdrop light making a soft halo behind glass" },
+      "camera": { "preset": "pdp_4x5", "focal_mm": 90, "elevation_deg": 6, "product_fill_height": 0.72, "framing": "Label square to camera, centered. Every product at the same camera height and scale family." },
+      "output": { "ratio": "4:5", "long_edge_px": 2048 },
+      "hover_image": "The same pack, camera and crop in low sun: the light changes on hover"
+    },
+    "low_sun": {
+      "use": "Card hover images, hero and homepage scenes",
+      "lighting": { "preset": "sunlit" },
+      "sun": { "az": -60, "el": 12, "kelvin": 3300, "angle": 1.2 },
+      "gobo": { "pattern": "leaves", "coverage": 0.7, "leaf_scale": 1.1 },
+      "look": "Hard, raking, warm light with olive leaf shadows",
+      "sets": "Travertine plinths (rig block, step and cylinder shapes in travertine), at most one glass sphere, an olive sprig, plaster for the evening scenes",
+      "signature_shot": "Amber glass throws its own color into its shadow, so every amber product has a glowing orange core inside its cast shadow. Keep the rig's glass shadow on; caustics for hero scenes only.",
+      "walls": { "shade": "#E7D2BC", "sunlit": "#F4C996" },
+      "workflow": "Preview at 48 samples first. Cards keep soft studio light; low sun is only for hover images and scenes."
+    },
+    "still_lifes": [
+      {
+        "id": "hero",
+        "name": "Late light on travertine",
+        "use": "Homepage hero",
+        "composition": "Long Light Serum on a small travertine block and Haze (lid on) on a wider low block to its right. Sun from the left at 12°, olive gobo across the wall. The bottle's shadow climbs the wall with an amber glow inside. The left 45% is calm wall for copy.",
+        "ratios": ["21:9 desktop (2560 x 1100)", "4:5 mobile with the products in the lower half"]
+      },
+      {
+        "id": "start-here-macro",
+        "name": "Start here (macro)",
+        "use": "Section 5 and PDP gallery",
+        "composition": "Long Light backlit by the sun through the amber glass, shallow depth of field, a caustic pool on travertine, the dropper resting on the bottle's shoulder",
+        "ratios": ["4:5"]
+      },
+      {
+        "id": "ritual-lineup",
+        "name": "The ritual line-up",
+        "use": "Section 10 and the mega menu set card",
+        "composition": "All six on one long travertine ledge in order 01 to 06, low sun raking from the left, long shadows to the right, numbered Honey pins",
+        "ratios": ["16:9 desktop", "4:5 mobile crop on 02 to 04"],
+        "rig_job_sketch": "brand/concepts/golden-hour.md, Appendix A"
+      },
+      {
+        "id": "slow-hour",
+        "name": "The slow hour",
+        "use": "Section 11 inset",
+        "composition": "Slow Hour (lid off, golden powder visible) and Gloaming on a plaster plinth. Low warm sun plus a cool blue-hour fill from the right.",
+        "ratios": ["4:5"]
+      },
+      {
+        "id": "closing-band",
+        "name": "Closing band",
+        "use": "Section 15",
+        "composition": "Abstract: a glass sphere on a terracotta sweep catching the last sun disc, gradient into dusk",
+        "ratios": ["21:9"]
+      },
+      {
+        "id": "hover-set",
+        "name": "Hover set",
+        "use": "Product card second images",
+        "composition": "Each of the six packs, same camera as the packshot, in low sun with leaf shadow",
+        "ratios": ["4:5"]
+      }
+    ],
+    "photography": {
+      "source": "Unsplash (free license), graded to the Lumora Golden Hour look",
+      "subjects": [
+        "Skin in late sun at close and medium crops: cheekbones, jawlines, collarbones, shoulders, backs of necks, hands and wrists",
+        "Hands holding a warm cup",
+        "Leaf or window-light shadows falling across skin",
+        "Textures: apricot halves, sea buckthorn berries, honey and oil drops, linen in sun, terracotta, travertine"
+      ],
+      "light": "Low sun (side or back light), warm (about 3,000 to 3,800 K), with hard-edged leaf shadows. Some flare is fine. Indoor window light at golden hour as often as outdoor light.",
+      "casting": "Fitzpatrick I to VI in every set of four, ages 25 to 60, all genders. Real texture is kept: pores, fine hairs, freckles, stretch marks and hyperpigmentation. Minimal makeup, eyes closed or in profile, candid rather than posed.",
+      "search_terms": ["golden hour skin", "leaf shadow portrait", "sunlight on skin", "hands sunlight shadow", "window light portrait warm", "turmeric latte", "apricot", "sea buckthorn"],
+      "avoid": [
+        "Beaches, swimwear, sunbathing, tanning or anything implying sun care",
+        "Body glitter or shimmer",
+        "Heavily retouched or filtered skin",
+        "Teal-orange or cool grades",
+        "Silhouettes with no skin detail",
+        "Visible brands, logos or tattoos with text",
+        "Glossy stock smiles at camera",
+        "Any image that could pass as a customer before-and-after"
+      ],
+      "crops": { "portraits_and_cards": "4:5", "gallery_tiles": "3:4", "bands": "16:9 only" },
+      "credits": "photos/CREDITS.md (photographer and URL for every image)",
+      "sourcing": "Shortlist 20 to get 8, grade every one, crop to 4:5, and avoid recognizable faces for a live launch (or license them)"
+    },
+    "grade": {
+      "name": "Lumora Golden Hour",
+      "applies_to": "Every photo and every render (one LUT)",
+      "white_balance": "Warm by about +500 K, tint +4 toward magenta",
+      "highlights": { "tint": "#F2CB8C", "amount": 0.12 },
+      "shadows": { "tint": "#3A2422", "amount": 0.15 },
+      "black_point": "#2A1A18",
+      "white_point": "#FBF3EA",
+      "saturation": "-8% overall, with the orange-red band (skin and amber glass) protected; orange luminance +6",
+      "clarity": "-5 for soft focus, never on product labels",
+      "grain": "35 mm grain at 2 to 3%",
+      "halation": "A faint warm halation on speculars",
+      "renders": "Rig view transform AgX 'Medium High Contrast' at exposure +0.2, then the same LUT",
+      "test": "Place a render and a portrait side by side: they must share one highlight hue, and skin must stay on the skin-tone line."
+    }
+  },
+  "homepage_plan": [
+    {
+      "id": "announcement-header",
+      "number": 1,
+      "section": "Announcement + header",
+      "minimog_section": "Announcement bar; Header (logo-left-menu-center, transparent over the hero, sticky on scroll-up, mega menu)",
+      "scheme": "dusk (bar); header transparent over the hero, then travertine",
+      "purpose": "State the offer and the guarantee, and make the six products one click away",
+      "content_notes": {
+        "announcement_desktop": "Free US shipping over $65 · 30-day guarantee, even if opened",
+        "announcement_mobile": "Ships free over $65 · 30-day returns",
+        "nav": ["Shop", "The ritual", "Ingredients", "Slow hour", "Our story"],
+        "mega_menu": "Shop opens the six as thumbnails with step marks, plus The full sunset set card",
+        "icons": "Search, account, and bag with a Terracotta count",
+        "notes": "Logo left. Sentence-case nav with an underline on hover. Solid Travertine with a hairline after scroll."
+      },
+      "imagery": "Packshot thumbnails; line-up render for the set card"
+    },
+    {
+      "id": "hero",
+      "number": 2,
+      "section": "Hero",
+      "minimog_section": "Image with text overlay (video-hero) with desktop and mobile images, hook class lu-hero; Custom Liquid block for the product pin and the golden-hour clock",
+      "scheme": "render (no scheme); the horizon arc rises into section 3",
+      "purpose": "Make the promise and show the hero product in one frame, with the first path to buy",
+      "content_notes": {
+        "eyebrow": "Golden-hour skincare",
+        "heading": "Late light, bottled.",
+        "heading_markup": "Late light, *bottled.*",
+        "lead": "Glow-giving skincare and slow evening rituals, made for every skin tone. Warm, never orange. Lit, never glittery.",
+        "ctas": [
+          { "label": "Shop the ritual", "style": "primary pill" },
+          { "label": "Find your first step", "style": "text link" }
+        ],
+        "clock": "Golden hour in New York today: 3:51 to 4:50 pm (live: NOAA solar formula, visitor's time zone mapped to a representative city, no location prompt; hides if it can't compute)",
+        "product_pin": "Start here · Step 02 · Long Light Serum · $54 (second line: 10% vitamin C + sea buckthorn)",
+        "notes": "Fills the first 900 px at 1440. Mobile: a dedicated 4:5 render with the H1 and primary CTA inside 390 x 844. The horizon arc sits at the bottom edge."
+      },
+      "imagery": "Render: Late light on travertine, 21:9 (2560 x 1100) and 4:5"
+    },
+    {
+      "id": "promise-strip",
+      "number": 3,
+      "section": "Promise strip",
+      "minimog_section": "Icon box (4 items) with custom SVG icons",
+      "scheme": "linen",
+      "purpose": "Answer the four purchase questions up front: shipping, returns, fragrance and skin tone",
+      "content_notes": {
+        "items": [
+          { "title": "Free US shipping", "sub": "on every order over $65", "icon": "shipping" },
+          { "title": "30 days to love it", "sub": "even if the bottle is open", "icon": "guarantee" },
+          { "title": "Fragrance-free", "sub": "every skincare formula, no masking scent", "icon": "drop" },
+          { "title": "Every skin tone", "sub": "finish tested on Fitzpatrick I to VI¹", "icon": "every skin tone" }
+        ],
+        "footnotes": ["¹"],
+        "notes": "Hairline dividers between items. 2 x 2 grid on mobile. Footnote ¹ directly beneath at 12 px."
+      },
+      "imagery": "Horizon-line icons"
+    },
+    {
+      "id": "sunset-shelf",
+      "number": 4,
+      "section": "The sunset shelf",
+      "minimog_section": "Featured collection (grid 3 x 2 desktop, 2 columns on mobile; second image on hover; quick add)",
+      "scheme": "travertine",
+      "purpose": "Show the whole line as one system and let people shop it straight away",
+      "content_notes": {
+        "heading": "Six steps, late light to dusk.",
+        "heading_markup": "Six steps, late light to *dusk.*",
+        "header_link": "Shop all six (right-aligned text link)",
+        "card": "Step mark and number, the name in Fraunces, a one-line descriptor (short_benefit), price and quick add. No stars and no badges.",
+        "notes": "Product rail: no eyebrow. Sand tiles, 4:5, 14 px radius, two-line title clamp with reserved height, prices on one baseline."
+      },
+      "imagery": "Sand packshots at rest; low-sun hover images (the light changes)"
+    },
+    {
+      "id": "start-here",
+      "number": 5,
+      "section": "Start here: Long Light",
+      "minimog_section": "Image with text (layered second image), or Featured product",
+      "scheme": "sand",
+      "purpose": "Give a first-time visitor one obvious first product, with proof",
+      "content_notes": {
+        "eyebrow": "Start here · Step 02",
+        "heading": "The serum that catches the light.",
+        "heading_markup": "The serum that catches the *light.*",
+        "lead": "10% stable vitamin C and 2% sea buckthorn oil in a water-light serum. Skin looks warmer, more even and quietly lit by week four².",
+        "bullets": [
+          "More even-looking tone in 4 weeks²",
+          "Absorbs in seconds, layers under SPF",
+          "Amber glass keeps the vitamin C from the light"
+        ],
+        "ctas": [
+          { "label": "Add to bag · $54", "style": "primary pill" },
+          { "label": "See the details", "style": "text link" }
+        ],
+        "footnotes": ["²"],
+        "notes": "Footnote ² directly beneath."
+      },
+      "imagery": "Render: backlit macro; inset is a graded Unsplash serum-on-skin shot"
+    },
+    {
+      "id": "every-skin",
+      "number": 6,
+      "section": "Every skin, in its best light",
+      "minimog_section": "Image cards (4 cards, mobile scroll) or Gallery",
+      "scheme": "travertine, with the leaf-light overlay",
+      "purpose": "Show, rather than claim, that the finish works on every skin tone",
+      "content_notes": {
+        "heading": "Every skin, in its best light.",
+        "heading_markup": "Every skin, in its best *light.*",
+        "lead": "Golden hour flatters everyone. We test every finish on light to deep skin¹, so the glow reads warm, never ashy, orange or glittery.",
+        "captions": "Times of day, such as 4:47 pm and 6:58 pm",
+        "footnotes": ["¹"],
+        "notes": "Mobile: a card rail with a peek of the next card."
+      },
+      "imagery": "Four graded Unsplash portraits across Fitzpatrick I to VI, leaf shadow on skin"
+    },
+    {
+      "id": "whats-in-the-glow",
+      "number": 7,
+      "section": "What's in the glow",
+      "minimog_section": "Multiple image with text (cards), or Custom Liquid ingredient cards; plus a Custom Liquid block for the diagram",
+      "scheme": "linen",
+      "purpose": "Explain where the glow comes from: the ingredients, and why skin looks lit",
+      "content_notes": {
+        "heading": "What's in the glow.",
+        "heading_markup": "What's in the *glow.*",
+        "order": "H2, then the diagram, then the four ingredient cards, then the closing line",
+        "cards": [
+          { "title": "Vitamin C, 10%", "text": "brightens the look of dull skin", "tag": "Even" },
+          { "title": "Sea buckthorn oil, 2%", "text": "carotenoid-rich, and the reason Long Light is apricot", "tag": null },
+          { "title": "Apricot kernel oil", "text": "soft slip that sinks in fast", "tag": "Smooth" },
+          { "title": "Ceramides + 5% squalane", "text": "help replenish the moisture barrier", "tag": "Hydrated" }
+        ],
+        "closing_line": "No mica, glitter or self-tan anywhere in the line, and no tint in the glow formulas, because the glow should be your skin's, not a coating. Skincare is fragrance-free. Every ingredient is listed, and explained, on its product page."
+      },
+      "diagram": {
+        "name": "Scattered and returned",
+        "origin": "Grafted from the Halo concept's 'radiance is optics' diagram, rewritten for Golden Hour. Educational only.",
+        "lead": "Skin looks lit when light leaves it evenly. A dry, uneven surface scatters it. A smooth, hydrated, even surface sends it back together.",
+        "panels": [
+          { "label": "Scattered", "caption": "Dry, uneven surface", "drawing": "Five parallel rays arrive from the left at 12° and leave in mixed directions as short broken strokes in Dusk 72%, off a fine irregular surface line" },
+          { "label": "Returned", "caption": "Smooth, hydrated, even surface", "drawing": "The same five rays leave together at the mirror angle as solid Terracotta strokes, off a level surface line" }
+        ],
+        "contrast_pair": "Scattered, skin looks flat. Returned, it looks lit.",
+        "links_to_cards": "Three of the four ingredient cards carry a small tag for the quality they help: Even (vitamin C), Smooth (apricot kernel oil) and Hydrated (ceramides + squalane). Each tag links to the matching PDP.",
+        "guardrail_line": "This shows how skin looks in light, not sun protection. Your daily SPF still goes on every morning.",
+        "visual": {
+          "format": "Inline SVG in Custom Liquid. Two panels side by side on desktop (about 300 px tall in the 1320 px container); stacked on mobile.",
+          "light_source": "A Honey sun dot (the monogram disc) at the top left of each panel",
+          "rays": "1.4 px strokes with round caps, the icon line weight. Terracotta #A8473B (5.4:1 on Linen) for incoming and returned rays; Dusk 72% #6E554C for scattered fragments.",
+          "surface": "A 1.4 px Dusk line. It is never the horizon arc, which is reserved for the two transitions.",
+          "labels": "Eyebrow style (Figtree 600, 12 px, +20%, uppercase) in Terracotta; captions in Figtree 13/20, Dusk 72%",
+          "restraint": "No gradient and no glow bloom (both are reserved). The section's one light word is 'glow', so the diagram adds no light metaphors.",
+          "motion": "On entering the viewport the returned rays draw in with stroke-dashoffset over 600 ms on the slow-sunset curve, with an 80 ms stagger. Fully drawn and static under prefers-reduced-motion.",
+          "accessibility": "role='img' with a title and description. Alt: 'Diagram: on a dry, uneven surface, light scatters in many directions; on a smooth, hydrated surface, it comes back together.'"
+        },
+        "compliance": "Appearance and feel only: looks, feels, helps, the look of. No SPF, UV, reflect-the-sun or protection language, and no claims about the skin's structure."
+      },
+      "imagery": "Graded Unsplash macros: apricot, sea buckthorn, oil drop; cream swirl (render); the scattered and returned SVG diagram"
+    },
+    {
+      "id": "proof",
+      "number": 8,
+      "section": "Proof, with the method",
+      "minimog_section": "Custom Liquid (or Rich text + Icon box)",
+      "scheme": "honey-wash",
+      "purpose": "Back the promise with footnoted numbers and a realistic timeline",
+      "content_notes": {
+        "heading": "Proof, with the method attached.",
+        "heading_markup": "Proof, with the method *attached.*",
+        "stats": [
+          "93% said skin looked more radiant after 4 weeks²",
+          "+38% skin hydration one hour after Haze³",
+          "91% said the finish looked natural on their skin tone²"
+        ],
+        "timeline": ["Day 1", "Week 2", "Week 4"],
+        "footnotes": ["²", "³"],
+        "notes": "Footnotes directly beneath at 12 px, ending 'Illustrative placeholder data.'"
+      },
+      "imagery": "None (type-led), with the gradient sun mark"
+    },
+    {
+      "id": "marquee",
+      "number": 9,
+      "section": "Sensory marquee",
+      "minimog_section": "Scrolling promotion",
+      "scheme": "honey",
+      "purpose": "A sensory pause that resets the rhythm before the ritual",
+      "content_notes": {
+        "items": ["Warm, never orange", "Lit, never glittery", "Fragrance-free", "Layers like silk", "Golden hour, twice a day"],
+        "separator": "Sun dots",
+        "notes": "Slow, pauses on hover, static under reduced motion. The only marquee on the page."
+      },
+      "imagery": "None"
+    },
+    {
+      "id": "ritual",
+      "number": 10,
+      "section": "The ritual: sunset in six",
+      "minimog_section": "Product bundles (numbered hotspots, list, running total, add all), plus a Custom Liquid sun-arc timeline above the list",
+      "scheme": "apricot-wash (gradient from honey-wash)",
+      "purpose": "Sell the routine: a shoppable line-up, a running total and the set price",
+      "content_notes": {
+        "heading": "Golden hour, twice a day.",
+        "heading_markup": "Golden hour, twice a *day.*",
+        "lead": "Morning: 01, 02, 03, 04. Evening: 01, 02, 03, 05, 06. Ten slow minutes, start to finish.",
+        "list": "Numbered 01 to 06, with step marks and prices",
+        "ctas": [
+          { "label": "Add the full sunset · $197 (save 15%)", "style": "primary pill" },
+          { "label": "Start with one step", "style": "text link" }
+        ],
+        "notes": "The sun-arc timeline shows 'Your daily SPF' as an unbranded morning step after 03 (no product, no link). Honey pins with a ring and a gentle pulse. The numbered list stays visible on mobile."
+      },
+      "imagery": "Render: the line-up on a travertine ledge in low sun with Honey pins"
+    },
+    {
+      "id": "slow-hour",
+      "number": 11,
+      "section": "The slow hour",
+      "minimog_section": "Image with text (image right, layered inset)",
+      "scheme": "rose-wash",
+      "purpose": "Carry the ritual into the evening and into wellbeing, with no health claims",
+      "content_notes": {
+        "eyebrow": "After sundown",
+        "heading": "The ritual doesn't stop at skin.",
+        "heading_markup": "The ritual doesn't stop at *skin.*",
+        "lead": "Gloaming for warm shoulders after a bath. Slow Hour for the cup you take outside to watch the light go.",
+        "ctas": [ { "label": "Shop the slow hour", "style": "primary pill" } ]
+      },
+      "imagery": "Graded Unsplash shot of hands around a golden-milk cup in late light; inset render of Slow Hour and Gloaming at dusk"
+    },
+    {
+      "id": "formulator-note",
+      "number": 12,
+      "section": "A note from our formulator",
+      "minimog_section": "Image with text (image left)",
+      "scheme": "apricot-wash",
+      "purpose": "Put a person behind the formulas and the guarantee",
+      "content_notes": {
+        "heading": "Made for every light.",
+        "heading_markup": "Made for every *light.*",
+        "note": "I wanted a glow that works on my skin and on my mother's, which are not the same color. Golden hour does that for everyone, so we built around it: actives that brighten, oils that catch the light the way skin does, no mica, no tint. If a formula doesn't earn its place on your shelf, send it back.",
+        "signature": "Mara, head of formulation (illustrative persona)"
+      },
+      "imagery": "A graded Unsplash portrait in warm window light (role-based, labeled)"
+    },
+    {
+      "id": "early-voices",
+      "number": 13,
+      "section": "Early voices",
+      "minimog_section": "Testimonials (boxed cards, mobile swipe)",
+      "scheme": "terracotta",
+      "purpose": "Social proof, honestly labeled",
+      "content_notes": {
+        "heading": "Tried in late light.",
+        "heading_markup": "Tried in late *light.*",
+        "quotes": [
+          { "quote": "Glow that isn't gray on me.", "name": "Ama", "detail": "deep, combination" },
+          { "quote": "Sinks in before my SPF does.", "name": "Priya", "detail": "medium, oily" },
+          { "quote": "The oil is the best part of my evening.", "name": "Lena", "detail": "light, dry" },
+          { "quote": "My 7 am face, looking like 7 pm.", "name": "Jo", "detail": "fair, sensitive" }
+        ],
+        "disclosure": "Testers received products free. Sample content for this concept store.",
+        "notes": "Cards in Clay with Linen text; Honey for accents at 24 px and up only."
+      },
+      "imagery": "None, or small product thumbnails"
+    },
+    {
+      "id": "faq",
+      "number": 14,
+      "section": "FAQ",
+      "minimog_section": "Collapsible tabs (one open at a time, rows 48 px or taller)",
+      "scheme": "clay",
+      "purpose": "Remove the last objections before the close",
+      "content_notes": {
+        "heading": "Before your first golden hour.",
+        "heading_markup": "Before your first golden *hour.*",
+        "questions": [
+          "Will it suit sensitive skin?",
+          "Will the glow look orange or gray on my skin tone?",
+          "Can I use Long Light with retinol or acids?",
+          "When will I notice a difference?",
+          "Is Slow Hour a supplement?",
+          "Vegan and cruelty-free?",
+          "What if it isn't right for me?"
+        ],
+        "answer_notes": "Slow Hour: no, it's a spice blend for warm drinks, with no health claims. Vegan and cruelty-free: answer in plain words with no certification marks. Sensitive skin: cosmetic wording only."
+      },
+      "imagery": "None"
+    },
+    {
+      "id": "closing-footer",
+      "number": 15,
+      "section": "Closing band and footer",
+      "minimog_section": "Custom Liquid closing band; Footer (Dusk) and a Custom Liquid setting-sun wordmark in the footer group",
+      "scheme": "dusk",
+      "purpose": "Restate the guarantee, give one last CTA, collect email and close on the setting-sun wordmark",
+      "content_notes": {
+        "heading": "Stay for golden hour.",
+        "heading_markup": "Stay for golden *hour.*",
+        "lead": "Use any Lumora formula for 30 days. If it isn't right, we'll refund you, even if it's open.",
+        "ctas": [ { "label": "Shop the ritual", "style": "primary pill" } ],
+        "footer_blurb": "Lumora makes glow-giving skincare and slow rituals for every skin tone: six steps, from late light to dusk.",
+        "newsletter": "The Low Sun Letter: one note a fortnight, sent at your golden hour.",
+        "menus": { "Shop": ["The six", "The ritual set", "Gift the light"], "Help": ["Shipping", "Returns", "Contact"] },
+        "bottom": "Monochrome payment marks, the footnotes block and the demo label",
+        "wordmark": "A giant gradient lumora set behind a Honey horizon line; it sinks 8% as the page ends (static under reduced motion)"
+      },
+      "imagery": "Render: closing band scene; the giant gradient wordmark sets behind a horizon line"
+    }
+  ],
+  "signature_details": [
+    "The sunset scroll: fourteen sections, one Minimog color scheme each, warming from Travertine through the Honey and Apricot washes to Terracotta, Clay and Dusk.",
+    "Setting-sun wordmark: a giant gradient lumora in the footer, clipped by a Honey horizon line, sinks 8% as the page ends.",
+    "The golden-hour clock: a Custom Liquid snippet prints today's golden hour for the visitor's time zone under the hero CTAs (NOAA solar formula, no location prompt). The same logic times the newsletter send.",
+    "The light changes: Minimog's second image on hover shows the same pack and crop in low sun, crossfading over 600 ms with a soft Honey under-glow.",
+    "Sun marks as the step system, on labels, cards, the PDP eyebrow, the mega menu and the ritual timeline.",
+    "The horizon arc: used exactly twice, under the hero and into the footer.",
+    "Leaf light from the rig: the gobo that shades the renders lies over two web sections at 6% multiply.",
+    "True italics: Fraunces SuperSoft Light Italic with WONK forms, so each heading's single accent word is a real italic.",
+    "Glowing buttons: the primary pill gains a 7 px Honey halo on hover; focus rings use the same halo with a contrast ring.",
+    "A lexicon on every PDP: a metafield-driven line under the title gives the name's definition in Fraunces italic.",
+    "Sunrise shipping bar: the cart's free-shipping progress fills with the golden-hour gradient.",
+    "Sun-dot footnotes: superscript markers sit in small Honey discs and link to the footnotes under each module.",
+    "Scattered and returned: a small diagram in the ingredients section shows why smooth, hydrated, even skin looks lit."
+  ],
+  "pdp_highlights": [
+    {
+      "module": "Gallery",
+      "detail": "Sand packshot, then a backlit amber macro, a texture drop on skin, a low-sun scene, the ingredients card, the results card and the ritual position"
+    },
+    {
+      "module": "Buy box: title block",
+      "detail": "Eyebrow 'Step 02 · Treat' with its sun mark; H1 'Long Light Serum' in Fraunces Light; the lexicon line 'long light (n.) the low, raking light of the last hour of sun'"
+    },
+    {
+      "module": "Buy box: benefits",
+      "detail": "Three icon benefits, one footnoted: 'More even-looking tone in 4 weeks²' · 'Absorbs in seconds, layers under SPF' · 'Amber glass keeps the vitamin C from the light'"
+    },
+    {
+      "module": "Buy box: at a glance",
+      "detail": "Rows: Suited to (dull-looking or uneven-looking skin, every skin tone) · Finish (satin; no tint, no shimmer) · Scent (fragrance-free) · Key ingredients (10% vitamin C, 2% sea buckthorn oil) · Pairs with (Haze Soft-Focus Cream)"
+    },
+    {
+      "module": "Buy box: purchase",
+      "detail": "Size pills (15 ml travel, 30 ml), then 'Add to bag · $54' as the strongest element, then the shipping and delivery lines and the trust row in horizon icons (the promise-strip wording, compact)"
+    },
+    {
+      "module": "Why amber",
+      "detail": "The amber glass protects the light-sensitive vitamin C"
+    },
+    {
+      "module": "The glow check",
+      "detail": "Finish tested on Fitzpatrick I to VI, with placeholder data and footnotes"
+    },
+    {
+      "module": "Ingredients decoded",
+      "detail": "Hero ingredients with percentages, then a full INCI accordion. Optional: the scattered and returned diagram, scoped to the Even tag."
+    },
+    {
+      "module": "Results and how to use",
+      "detail": "Results with the method (footnoted), and a how-to: morning and evening, after Sunmelt and before Haze"
+    },
+    {
+      "module": "The golden pair",
+      "detail": "Bundle with Haze: $92 (save $10)"
+    },
+    {
+      "module": "Trust and closing",
+      "detail": "The formulator note, FAQ, reviews restyled to the brand tokens and labeled as sample content, a guarantee band, and a sticky add to bag on mobile"
+    }
+  ],
+  "announcement": {
+    "desktop": "Free US shipping over $65 · 30-day guarantee, even if opened",
+    "mobile": "Ships free over $65 · 30-day returns",
+    "mobile_max_chars": 38,
+    "scheme": "dusk",
+    "style": "Figtree 600, 12 px, +20% tracking, uppercase, Linen on Dusk, with a Honey sun dot as the separator"
+  },
+  "promise_strip": [
+    { "title": "Free US shipping", "sub": "on every order over $65" },
+    { "title": "30 days to love it", "sub": "even if the bottle is open" },
+    { "title": "Fragrance-free", "sub": "every skincare formula, no masking scent" },
+    { "title": "Every skin tone", "sub": "finish tested on Fitzpatrick I to VI¹" }
+  ],
+  "footnotes": [
+    { "marker": "¹", "text": "Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Illustrative placeholder data.", "used_on": ["promise strip", "6 Every skin", "Apricity descriptor", "positioning"] },
+    { "marker": "²", "text": "Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed. Illustrative placeholder data.", "used_on": ["5 Start here", "8 Proof", "PDP benefits"] },
+    { "marker": "³", "text": "Corneometer measurement, 20 participants, one hour after a single application. Illustrative placeholder data.", "used_on": ["8 Proof"] }
+  ],
+  "footnote_rules": "Each marker sits next to its number, in a small Honey disc. The footnote text sits directly beneath the module, at 12 px or larger with AA contrast, in the same viewport on mobile, and is repeated in the footer block.",
+  "demo_label": "Lumora is a concept store built for a design trial. Product data, results and reviews are illustrative."
+}

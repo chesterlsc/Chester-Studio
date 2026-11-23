@@ -1,194 +1,194 @@
 {
-  "_comment": "Closing band: dusk mood (Clay/Dusk), last light, cool blue-hour fill from the right.",
-  "output": "../scenes/closing.jpg",
-  "resolution": [
-    2880,
-    1100
-  ],
-  "backdrop": {
-    "type": "sweep",
-    "color": "#9A5A47",
-    "radius_mm": 200,
-    "gap_mm": 90,
-    "match": false
-  },
-  "lighting": {
-    "preset": "sunlit",
-    "lights": [
-      {
-        "name": "fill",
-        "E": 0.45,
-        "kelvin": 7800,
-        "az": 40
-      },
-      {
-        "name": "bounce",
-        "E": 0.5,
-        "kelvin": 3000
-      },
-      {
-        "name": "rim_r",
-        "E": 0.8,
-        "kelvin": 8000
-      }
-    ]
-  },
-  "world": {
-    "color": "#5C4A5A",
-    "strength": 0.14
-  },
-  "sun": {
-    "az": -64,
-    "el": 7,
-    "kelvin": 2700,
-    "angle": 1.2,
-    "strength": 4.2
-  },
-  "gobo": {
-    "pattern": "leaves",
-    "seed": 21,
-    "coverage": 0.5,
-    "leaf_scale": 1.2,
-    "rotation": 0,
-    "distance": 600,
-    "size": 1400
-  },
-  "props": [
-    {
-      "id": "plinth",
-      "type": "plinth",
-      "shape": "cylinder",
-      "dims": {
-        "d": 240,
-        "h": 70,
-        "edge_r": 2.5
-      },
-      "material": {
-        "preset": "plaster",
-        "color": "#B98670"
-      },
-      "position": [
-        0,
-        0
-      ]
+ "_comment": "Closing band: dusk mood (Clay/Dusk), last light, cool blue-hour fill from the right.",
+ "output": "../scenes/closing.jpg",
+ "resolution": [
+  2880,
+  1100
+ ],
+ "backdrop": {
+  "type": "sweep",
+  "color": "#9A5A47",
+  "radius_mm": 200,
+  "gap_mm": 90,
+  "match": false
+ },
+ "lighting": {
+  "preset": "sunlit",
+  "lights": [
+   {
+    "name": "fill",
+    "E": 0.45,
+    "kelvin": 7800,
+    "az": 40
+   },
+   {
+    "name": "bounce",
+    "E": 0.5,
+    "kelvin": 3000
+   },
+   {
+    "name": "rim_r",
+    "E": 0.8,
+    "kelvin": 8000
+   }
+  ]
+ },
+ "world": {
+  "color": "#5C4A5A",
+  "strength": 0.14
+ },
+ "sun": {
+  "az": -64,
+  "el": 7,
+  "kelvin": 2700,
+  "angle": 1.2,
+  "strength": 4.2
+ },
+ "gobo": {
+  "pattern": "leaves",
+  "seed": 21,
+  "coverage": 1.4,
+  "leaf_scale": 0.95,
+  "rotation": 0,
+  "distance": 600,
+  "size": 1400
+ },
+ "props": [
+  {
+   "id": "plinth",
+   "type": "plinth",
+   "shape": "cylinder",
+   "dims": {
+    "d": 240,
+    "h": 70,
+    "edge_r": 2.5
+   },
+   "material": {
+    "preset": "plaster",
+    "color": "#B98670"
+   },
+   "position": [
+    0,
+    0
+   ]
+  }
+ ],
+ "products": [
+  {
+   "type": "cylinder",
+   "dims": {
+    "d": 42,
+    "h": 130,
+    "shoulder_r": 3.5,
+    "neck_d": 22,
+    "cap_d": 30,
+    "cap_h": 30,
+    "cap_ribs": {
+     "count": 48,
+     "depth": 0.4
+    },
+    "fill": 0.86
+   },
+   "materials": {
+    "body": "glass_amber",
+    "liquid": {
+     "preset": "oil",
+     "color": "#E8B25E",
+     "tint_mm": 16
+    },
+    "cap": {
+     "preset": "plastic_softtouch",
+     "color": "#7E3529",
+     "sheen": 0.06
     }
-  ],
-  "products": [
+   },
+   "labels": [
     {
-      "type": "cylinder",
-      "dims": {
-        "d": 42,
-        "h": 130,
-        "shoulder_r": 3.5,
-        "neck_d": 22,
-        "cap_d": 30,
-        "cap_h": 30,
-        "cap_ribs": {
-          "count": 48,
-          "depth": 0.4
-        },
-        "fill": 0.86
-      },
-      "materials": {
-        "body": "glass_amber",
-        "liquid": {
-          "preset": "oil",
-          "color": "#E8B25E",
-          "tint_mm": 16
-        },
-        "cap": {
-          "preset": "plastic_softtouch",
-          "color": "#7E3529",
-          "sheen": 0.06
-        }
-      },
-      "labels": [
-        {
-          "image": "../labels/gloaming-body-oil-front.png",
-          "mode": "ink",
-          "ink": "#F6E8D6",
-          "height_mm": 44
-        }
-      ],
-      "id": "gloaming",
-      "position": [
-        -40,
-        20
-      ],
-      "rotation": 0,
-      "on": "plinth"
+     "image": "../labels/gloaming-body-oil-front.png",
+     "mode": "ink",
+     "ink": "#F6E8D6",
+     "height_mm": 44
+    }
+   ],
+   "id": "gloaming",
+   "position": [
+    -40,
+    20
+   ],
+   "rotation": 0,
+   "on": "plinth"
+  },
+  {
+   "type": "jar",
+   "dims": {
+    "d": 80,
+    "body_h": 70,
+    "neck_h": 6,
+    "neck_inset": 2.2,
+    "neck_wall": 3.8,
+    "bottom": 9,
+    "lid_h": 24
+   },
+   "materials": {
+    "body": {
+     "preset": "ceramic_glazed",
+     "color": "#3D2321",
+     "speckle": 0.35,
+     "speckle_color": "#C9A486"
+    },
+    "contents": {
+     "preset": "cream",
+     "color": "#E0A53A"
+    },
+    "lid": "metal_champagne_brushed"
+   },
+   "labels": [
+    {
+     "image": "../labels/slow-hour-golden-milk-front.png",
+     "mode": "foil",
+     "foil": "gold",
+     "height_mm": 40
     },
     {
-      "type": "jar",
-      "dims": {
-        "d": 80,
-        "body_h": 70,
-        "neck_h": 6,
-        "neck_inset": 2.2,
-        "neck_wall": 3.8,
-        "bottom": 9,
-        "lid_h": 24
-      },
-      "materials": {
-        "body": {
-          "preset": "ceramic_glazed",
-          "color": "#3D2321",
-          "speckle": 0.35,
-          "speckle_color": "#C9A486"
-        },
-        "contents": {
-          "preset": "cream",
-          "color": "#E0A53A"
-        },
-        "lid": "metal_champagne_brushed"
-      },
-      "labels": [
-        {
-          "image": "../labels/slow-hour-golden-milk-front.png",
-          "mode": "foil",
-          "foil": "gold",
-          "height_mm": 40
-        },
-        {
-          "type": "decal",
-          "image": "../labels/monogram.png",
-          "anchor": "lid_top",
-          "mode": "foil",
-          "foil": "gold",
-          "width_mm": 20
-        }
-      ],
-      "id": "slow_hour",
-      "position": [
-        52,
-        -24
-      ],
-      "rotation": -8,
-      "on": "plinth"
+     "type": "decal",
+     "image": "../labels/monogram.png",
+     "anchor": "lid_top",
+     "mode": "foil",
+     "foil": "gold",
+     "width_mm": 20
     }
-  ],
-  "camera": {
-    "preset": "hero_21x9",
-    "subjects": "all",
-    "focal_length": 50,
-    "elevation": 7,
-    "fill": [
-      0.3,
-      0.7
-    ],
-    "offset": [
-      0.27,
-      -0.05
-    ],
-    "aspect": [
-      2880,
-      1100
-    ]
-  },
-  "render": {
-    "samples": 128,
-    "adaptive_threshold": 0.015,
-    "seed": 7,
-    "threads": 4
+   ],
+   "id": "slow_hour",
+   "position": [
+    52,
+    -24
+   ],
+   "rotation": -8,
+   "on": "plinth"
   }
+ ],
+ "camera": {
+  "preset": "hero_21x9",
+  "subjects": "all",
+  "focal_length": 50,
+  "elevation": 7,
+  "fill": [
+   0.3,
+   0.7
+  ],
+  "offset": [
+   0.27,
+   -0.05
+  ],
+  "aspect": [
+   2880,
+   1100
+  ]
+ },
+ "render": {
+  "samples": 128,
+  "adaptive_threshold": 0.015,
+  "seed": 7,
+  "threads": 4
+ }
 }

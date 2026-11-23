@@ -1,0 +1,209 @@
+{
+ "_comment": "Hero 'Late light on travertine' (4.3): Long Light on a riser, Haze on the base block; left 45% calm. v2: higher sun + denser leaf gobo so the golden-hour leaf shadows land on the wall and blocks.",
+ "output": "../scenes/hero-desktop.jpg",
+ "resolution": [
+  2880,
+  1620
+ ],
+ "backdrop": {
+  "type": "sweep",
+  "color": "#E7D2BC",
+  "radius_mm": 170,
+  "gap_mm": 80,
+  "match": false
+ },
+ "lighting": {
+  "preset": "sunlit",
+  "lights": [
+   {
+    "name": "fill",
+    "E": 0.75,
+    "kelvin": 5600
+   },
+   {
+    "name": "bounce",
+    "E": 0.8,
+    "kelvin": 3600
+   }
+  ]
+ },
+ "world": {
+  "color": "#D8C1A8",
+  "strength": 0.18
+ },
+ "sun": {
+  "az": -58,
+  "el": 22,
+  "kelvin": 3700,
+  "angle": 1.3,
+  "strength": 6.5
+ },
+ "gobo": {
+  "pattern": "leaves",
+  "seed": 5,
+  "coverage": 1.7,
+  "leaf_scale": 0.9,
+  "rotation": 0,
+  "distance": 600,
+  "size": 1500
+ },
+ "props": [
+  {
+   "id": "base",
+   "type": "plinth",
+   "shape": "block",
+   "dims": {
+    "w": 380,
+    "depth": 170,
+    "h": 62,
+    "edge_r": 2.5
+   },
+   "material": "travertine",
+   "position": [
+    70,
+    0
+   ],
+   "rotation": 0
+  },
+  {
+   "id": "riser",
+   "type": "plinth",
+   "shape": "block",
+   "dims": {
+    "w": 104,
+    "depth": 92,
+    "h": 74,
+    "edge_r": 2.5
+   },
+   "material": "travertine",
+   "position": [
+    -38,
+    6
+   ],
+   "rotation": 0,
+   "on": "base"
+  }
+ ],
+ "products": [
+  {
+   "type": "dropper",
+   "dims": {
+    "d": 34,
+    "h": 74,
+    "shoulder_r": 7.5,
+    "neck_d": 18,
+    "collar_d": 23.5,
+    "collar_h": 15.5,
+    "bulb_d": 15,
+    "bulb_h": 22,
+    "fill": 0.8
+   },
+   "materials": {
+    "body": "glass_amber",
+    "liquid": {
+     "preset": "liquid",
+     "color": "#E9A54E",
+     "tint_mm": 18
+    },
+    "pipette": "glass_clear",
+    "collar": "metal_champagne_brushed",
+    "bulb": {
+     "preset": "silicone",
+     "color": "#D99A48",
+     "sheen": 0.05
+    }
+   },
+   "labels": [
+    {
+     "image": "../labels/long-light-serum-front.png",
+     "mode": "ink",
+     "ink": "#F6E8D6",
+     "height_mm": 30
+    }
+   ],
+   "id": "long_light",
+   "position": [
+    -38,
+    4
+   ],
+   "rotation": 0,
+   "on": "riser"
+  },
+  {
+   "type": "jar",
+   "dims": {
+    "d": 66,
+    "body_h": 42,
+    "neck_h": 7,
+    "bottom": 11,
+    "lid_h": 22,
+    "lid": "on"
+   },
+   "materials": {
+    "body": {
+     "preset": "glass_opal",
+     "color": "#B4733F",
+     "roughness": 0.4,
+     "coat": 0.12,
+     "sss_mm": 1.2
+    },
+    "contents": {
+     "preset": "cream",
+     "color": "#F3E6D6"
+    },
+    "lid": {
+     "preset": "plastic_softtouch",
+     "color": "#E0936B",
+     "sheen": 0.08
+    }
+   },
+   "labels": [
+    {
+     "image": "../labels/haze-soft-focus-cream-front.png",
+     "mode": "ink",
+     "ink": "#F6E8D6",
+     "height_mm": 20
+    },
+    {
+     "type": "decal",
+     "image": "../labels/monogram.png",
+     "anchor": "lid_top",
+     "mode": "ink",
+     "ink": "#35211F",
+     "width_mm": 16
+    }
+   ],
+   "id": "haze",
+   "position": [
+    66,
+    -20
+   ],
+   "rotation": -12,
+   "on": "base"
+  }
+ ],
+ "camera": {
+  "preset": "hero_16x9",
+  "subjects": [
+   "long_light",
+   "haze",
+   "riser"
+  ],
+  "focal_length": 60,
+  "elevation": 7,
+  "fill": [
+   0.36,
+   0.6
+  ],
+  "offset": [
+   0.25,
+   -0.03
+  ]
+ },
+ "render": {
+  "samples": 128,
+  "adaptive_threshold": 0.015,
+  "seed": 7,
+  "threads": 4
+ }
+}
