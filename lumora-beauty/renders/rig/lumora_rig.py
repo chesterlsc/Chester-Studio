@@ -2587,7 +2587,7 @@ def match_backdrop(target_hex, iters=7, res=144, samples=16, regions=None, max_a
     sc.cycles.use_adaptive_sampling = False
     sc.render.image_settings.file_format = "PNG"
     sc.render.image_settings.color_mode = "RGB"
-    sc.render.image_settings.color_depth = "16"
+    sc.render.image_settings.color_depth = "8"   # 8-bit PNG pixels load as raw display values (16-bit would be linearised)
     tmp = os.path.join(bpy.app.tempdir or "/tmp", f"lumora_match_{os.getpid()}.png")
     alb = list(sock.default_value[:3])
     err = None
