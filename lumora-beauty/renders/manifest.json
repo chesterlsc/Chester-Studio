@@ -34,5 +34,14 @@
     "height": 1600,
     "status": "final",
     "updated": "2026-11-23T11:38:32"
+  },
+  {
+    "id": "hero-mobile",
+    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-mobile.jpg",
+    "use": "Homepage hero, mobile",
+    "width": 1168,
+    "height": 1460,
+    "status": "final",
+    "updated": "2026-11-23T11:41:10"
   }
 ]
