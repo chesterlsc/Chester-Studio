@@ -70,7 +70,7 @@ Shop · The ritual · Ingredients · Slow hour · Our story. Mega menu banner: T
 - Lead: Small studies, plainly described. The method sits under every number, not behind a link.
 - 93%² said their skin looked more radiant after 4 weeks of Long Light
 - +38%³ skin hydration one hour after a single use of Haze
-- 91%² said the finish looked natural on their skin tone (decision: 90%, see BUILD-GUIDE 9)
+- 90%² said the finish looked natural on their skin tone
 - Day 1: A satin, soft-focus finish from the first morning. · Week 2: Tone starts to look more even, in daylight and on camera. · Week 4: Skin looks warm-lit and awake, even on gray days².
 - ²Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed. ³Corneometer measurement, 20 participants, one hour after a single application. All figures are illustrative placeholder data.
 

@@ -34,12 +34,12 @@ type the tags if the field has no toolbar (lu-skin turns escaped tags into a rea
 6.0 and 6.1 add a heading-size setting, a separate footer font and card-title letter spacing (nothing here
 depends on them). Note the version in the Slack reply.
 
-**0.2 Apps.** Nothing in this build needs an app. Ask Dylan before installing anything. Optional, each with the
+**0.2 Apps.** Nothing in this build needs an app. Ask the client before installing anything. Optional, each with the
 fallback this kit already covers:
 
 | Need | Optional app | Fallback in this kit |
 |---|---|---|
-| Bundles (golden pair $92, full sunset $197) | Shopify Bundles (free) or FoxKit Product bundles | Cart permalinks in `lu-pdp-pair`, `lu-pdp-complete`, `lu-ritual-arc` plus two automatic discounts (2.5) |
+| Bundles (golden pair $92, full sunset $197) | Shopify Bundles (free) or FoxKit Product bundles | Cart permalinks in `lu-pdp-pair`, `lu-pdp-complete`, `lu-ritual-arc` plus two automatic discounts (2.6) |
 | Subscribe and save (PDP block 1.11) | Shopify Subscriptions (free) | Leave the block out; nothing else depends on it |
 | Reviews | Judge.me | `lu-pdp-rating` + `lu-pdp-reviews` (static, labelled sample) |
 | Complementary products | Search & Discovery (free, by Shopify) | Product recommendations' automatic related products |
@@ -56,7 +56,7 @@ upload (a `_1` suffix because the name exists), delete the old one and upload ag
 | `build/icons/` | `lu-icon-ship.svg`, `lu-icon-guarantee.svg`, `lu-icon-drop.svg`, `lu-icon-tones.svg`, `lu-sun-dot.svg` |
 
 The PDP gallery images (`long-light-serum-back-label.jpg` and the three `-0N-…-card.jpg`) go on the product, not
-in Files (section 7).
+in Files (6.4).
 
 **0.4 Decisions to settle with yourself before starting** (defaults chosen, see section 9): the Long Light step
 name (Glow), the 15 ml price ($29), the homepage "91%" (round down to 90%?), bundles by discount or by bundle
@@ -211,7 +211,7 @@ order price $65 and up. This is what the copy promises.
 **2.8 Preferences** (Online Store > Preferences): homepage title **Lumora Beauty | Golden-hour skincare for every
 skin tone**; meta description **Glow-giving skincare and slow evening rituals, made for every skin tone. Six steps
 from late light to dusk. Warm, never orange. Lit, never glittery.**; social sharing image `lu-hero-desktop.jpg`
-(or the 1200 x 630 crop of it). Password page: keep the store password and send Dylan the preview link plus
+(or the 1200 x 630 crop of it). Password page: keep the store password and send the client the preview link plus
 password.
 
 ---
@@ -444,10 +444,13 @@ horizon line, sinking 8 % as the page ends (still under reduced motion).
 
 **6.1 Templates.** Online Store > Themes > Customize > Products > *Create template* **long-light** (based on
 Default product). Build it fully (6.2 to 6.4), then assign Long Light Serum to it (Products > Long Light >
-Theme template). The **Default product** template gets: lu-pdp-skin, the Product information section with the
-same blocks (6.2), Complete the ritual (lu-pdp-complete), Pairs well with, the FAQ (homepage questions) and the
-guarantee band and footnotes (`lu_mode` `'pdp'`). It contains no Long Light copy, so the other five PDPs are
-complete and never wrong (all of their content comes from metafields).
+Theme template). The **Default product** template (the other five) gets: lu-pdp-skin, the Product information
+section with the same blocks (6.2), then **The ritual** (`lu-ritual-arc.liquid`, the generic homepage version:
+`lu-pdp-complete` names Long Light as "this product"), Pairs well with, the FAQ with the homepage questions, the
+closing band with `lu_mode` **'home'** ("Use any Lumora formula for 30 days…") and the footnotes block with
+`lu_mode` **'home'**. It contains no Long Light copy, so the other five PDPs are complete and never wrong: all of
+their buy-box content comes from metafields; the sample rating shows on Long Light only and the golden pair card on
+Long Light and Haze only.
 
 **6.2 Product information (`main-product`)** · scheme Travertine · container fluid · padding 24 / 120.
 
@@ -462,24 +465,24 @@ sprite, buy-box layout, the Add to bag price script). Then the blocks, top to bo
 
 | # | Block | Type | Settings / paste |
 |---|---|---|---|
-| 2 | Breadcrumb | `breadcrumb` | Home / The six / Long Light Serum (hidden on phones by the skin) |
-| 3 | Custom Liquid | `custom_liquid` | `lu-pdp-eyebrow.liquid` → "Step 02 · Glow" with the sun mark |
-| 4 | Custom Liquid | `custom_liquid` | `lu-pdp-rating.liquid` → ★ 4.7 · 52 reviews · SAMPLE (same row as the eyebrow). Remove if Judge.me's badge is used |
-| 5 | Title | `title` | vendor off, product type off, wishlist off |
-| 6 | Price | `price` | sits on the title's row, right-aligned (the skin); no compare-at, no installments |
-| 7 | Custom Liquid | `custom_liquid` | `lu-pdp-lexicon.liquid` → *long light* (n.) the low, raking light of the last hour of sun. |
-| 8 | Custom Liquid | `custom_liquid` | `lu-pdp-benefits.liquid` → three icon benefits + footnote 2 line |
-| 9 | Custom Liquid | `custom_liquid` | `lu-pdp-glance.liquid` → Suited to · Finish · Scent · Key ingredients · Pairs with (moves below the trust row on phones) |
-| 10 | Variant picker | `variant_picker` | picker type **Button**; option label shows the selected value; no preselection off (30 ml is the first variant) |
-| 11 | (optional) Subscription app block | `@app` | Only with Shopify Subscriptions: one-time selected by default, "Subscribe, save 15% · $45.90 · Renews every 10 weeks, about one bottle. Skip or cancel anytime." 30 ml only |
-| 12 | Buy buttons | `buy_buttons` | quantity off, dynamic checkout off; label reads **Add to bag · $54** (theme content + the skin script, which follows the size) |
-| 13 | Custom Liquid | `custom_liquid` | `lu-pdp-delivery.liquid` → "Free US shipping over $65. Any second step gets you there." / "Order today, arrives Mon, Nov 30 – Wed, Dec 2" (computed, skips weekends and carrier holidays) |
-| 14 | Custom Liquid | `custom_liquid` | `lu-pdp-trust.liquid` → the promise strip, compact, + footnote 1 |
-| 15 | Custom Liquid | `custom_liquid` | `lu-pdp-pair.liquid` → The golden pair card, outline button "Add the golden pair · $92" (Long Light and Haze only) |
-| 16 | Custom Liquid | `custom_liquid` | `lu-pdp-accordions.liquid` → What it does (open) · Key ingredients · Full ingredients (INCI) · How to use · Shipping and returns |
-| 17 | Custom Liquid | `custom_liquid` | `lu-pdp-help.liquid` → "Not sure it's right for your skin? Ask us. A person replies within one working day." (or Minimog *Add-on buttons > Ask a question*) |
+| 1 | Breadcrumb | `breadcrumb` | Home / The six / Long Light Serum (hidden on phones by the skin) |
+| 2 | Custom Liquid | `custom_liquid` | `lu-pdp-eyebrow.liquid` → "Step 02 · Glow" with the sun mark |
+| 3 | Custom Liquid | `custom_liquid` | `lu-pdp-rating.liquid` → ★ 4.7 · 52 reviews · SAMPLE (same row as the eyebrow). Remove if Judge.me's badge is used |
+| 4 | Title | `title` | vendor off, product type off, wishlist off |
+| 5 | Price | `price` | sits on the title's row, right-aligned (the skin); no compare-at, no installments |
+| 6 | Custom Liquid | `custom_liquid` | `lu-pdp-lexicon.liquid` → *long light* (n.) the low, raking light of the last hour of sun. |
+| 7 | Custom Liquid | `custom_liquid` | `lu-pdp-benefits.liquid` → three icon benefits + footnote 2 line |
+| 8 | Custom Liquid | `custom_liquid` | `lu-pdp-glance.liquid` → Suited to · Finish · Scent · Key ingredients · Pairs with (moves below the trust row on phones) |
+| 9 | Variant picker | `variant_picker` | picker type **Button**; option label shows the selected value; no preselection off (30 ml is the first variant) |
+| 10 | (optional) Subscription app block | `@app` | Only with Shopify Subscriptions: one-time selected by default, "Subscribe, save 15% · $45.90 · Renews every 10 weeks, about one bottle. Skip or cancel anytime." 30 ml only |
+| 11 | Buy buttons | `buy_buttons` | quantity off, dynamic checkout off; label reads **Add to bag · $54** (theme content + the skin script, which follows the size) |
+| 12 | Custom Liquid | `custom_liquid` | `lu-pdp-delivery.liquid` → "Free US shipping over $65. Any second step gets you there." / "Order today, arrives Mon, Nov 30 – Wed, Dec 2" (computed, skips weekends and carrier holidays) |
+| 13 | Custom Liquid | `custom_liquid` | `lu-pdp-trust.liquid` → the promise strip, compact, + footnote 1 |
+| 14 | Custom Liquid | `custom_liquid` | `lu-pdp-pair.liquid` → The golden pair card, outline button "Add the golden pair · $92" (Long Light and Haze only) |
+| 15 | Custom Liquid | `custom_liquid` | `lu-pdp-accordions.liquid` → What it does (open) · Key ingredients · Full ingredients (INCI) · How to use · Shipping and returns |
+| 16 | Custom Liquid | `custom_liquid` | `lu-pdp-help.liquid` → "Not sure it's right for your skin? Ask us. A person replies within one working day." (or Minimog *Add-on buttons > Ask a question*) |
 
-Native accordions instead of block 16: five *Collapsible tab* blocks, contents connected to the four multi-line
+Native accordions instead of block 15: five *Collapsible tab* blocks, contents connected to the four multi-line
 metafields with dynamic sources (the shipping one as static text). Use them if your version lets a rich text field
 connect to a multi-line text metafield; otherwise keep the Custom Liquid block.
 
@@ -512,7 +515,7 @@ cards rendered at 1600 x 2000). The text on the cards is also live on the page.
 safe-area padding and the Terracotta pill; the script keeps its label "Add to bag · $54". It appears once the main
 button scrolls away (`html.stick-atc-show`) and never stacks with the bottom nav (hidden in 5.3).
 
-**6.6 Apps, if Dylan says yes.** Judge.me: import the reviews you want as sample content, place its widget where
+**6.6 Apps, if the client says yes.** Judge.me: import the reviews you want as sample content, place its widget where
 section 11 is, keep "Sample" labels, restyle stars to Dusk (no yellow). FoxKit bundles: add its Product bundles
 block under the trust row instead of `lu-pdp-pair` and delete the two automatic discounts. Shopify Bundles: create
 "The golden pair" ($92) and "The full sunset" ($197) fixed bundles, point the two buttons at them, delete the
@@ -542,11 +545,14 @@ the INCI row reads "Ingredients and allergens".
 Work through `QA-checklist.md` at 1440, 1280, 390 and 360 (Chrome device toolbar), on the home page, Long Light
 and one default-template product (Haze). Then: Online Store > Themes > the duplicate > *Preview* > share preview
 link; send it with the store password and the time it took (the brief asks for both). Do not publish over the
-client's live theme unless Dylan asks.
+client's live theme unless the client asks.
 
 ---
 
 ## 9. Decisions for Chester
+
+> **Resolved:** step name is "Step 02 · Glow" everywhere; 15 ml travel is $29; the homepage proof stat is 90%; card hover images stay off; bundles use the two automatic discounts unless the client approves Shopify Bundles or FoxKit; no apps are installed without the client's OK.
+
 
 1. **Step name "Glow" or "Treat".** The PDP mockup export shows "Step 02 · Treat" (brief and brand book); the
    homepage ritual list says "Glow", and "treats" is on the never-say list. The kit uses **Glow** (metafield
@@ -558,7 +564,7 @@ client's live theme unless Dylan asks.
 4. **Bundles by discount or by bundle product** (2.6 vs 6.6). The kit uses automatic discounts: no app, six
    products only.
 5. **Card hover image** off for all six (1.6). Turn it on when every product has a same-crop low-sun render.
-6. **Apps**: none needed; ask Dylan before Judge.me, Shopify Subscriptions or FoxKit.
+6. **Apps**: none needed; ask the client before Judge.me, Shopify Subscriptions or FoxKit.
 7. **Two extra pages** (Contact, Accessibility) and the four policy pages exist only so links are not dead.
 
 ---

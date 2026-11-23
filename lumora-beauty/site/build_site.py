@@ -150,7 +150,7 @@ for rel in sorted(used):
         missing.append(rel)
 
 # link-preview image from the hero render
-hero = Image.open(os.path.join(WORK, "mockup/delivered/homepage-v2/lumora-homepage-hero.jpg")).convert("RGB")
+hero = Image.open(os.path.join(WORK, "mockup/delivered/homepage-v3/lumora-homepage-hero.jpg")).convert("RGB")
 w, h = hero.size
 ch = round(w / 1.905)
 hero.crop((0, 0, w, min(ch, h))).resize((1200, 630), Image.LANCZOS).save(os.path.join(OUT, "og.jpg"), quality=86, optimize=True)

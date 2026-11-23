@@ -16,12 +16,12 @@ B = os.path.join(HERE, "build")
 os.makedirs(B, exist_ok=True)
 SP = "/tmp/claude-0/-home-user-Chester-Studio/c51c471c-f281-5048-b5b7-f7b60a856929/scratchpad"
 
-HOME_D1 = f"{WORK}/mockup/delivered/homepage-v2/lumora-homepage-desktop-1x.jpg"
-HOME_HERO = f"{WORK}/mockup/delivered/homepage-v2/lumora-homepage-hero.jpg"
-HOME_M = f"{WORK}/mockup/delivered/homepage-v2/lumora-homepage-mobile.jpg"
-PDP_D1 = f"{WORK}/mockup/delivered/pdp-v1/lumora-pdp-desktop-1x.jpg"
-PDP_M = f"{WORK}/mockup/delivered/pdp-v1/lumora-pdp-mobile.jpg"
-PDP_STICKY = f"{WORK}/mockup/delivered/pdp-v1/lumora-pdp-mobile-sticky.jpg"
+HOME_D1 = f"{WORK}/mockup/delivered/homepage-v3/lumora-homepage-desktop-1x.jpg"
+HOME_HERO = f"{WORK}/mockup/delivered/homepage-v3/lumora-homepage-hero.jpg"
+HOME_M = f"{WORK}/mockup/delivered/homepage-v3/lumora-homepage-mobile.jpg"
+PDP_D1 = f"{WORK}/mockup/delivered/pdp-v2/lumora-pdp-desktop-1x.jpg"
+PDP_M = f"{WORK}/mockup/delivered/pdp-v2/lumora-pdp-mobile.jpg"
+PDP_STICKY = f"{WORK}/mockup/delivered/pdp-v2/lumora-pdp-mobile-sticky.jpg"
 
 
 def columns(src, n, name):
