@@ -1,0 +1,9 @@
+# This repository is public: client correspondence and the client's brief stay local.
+BRIEF.md
+slack/
+
+# Intermediate renders, caches and scratch output
+renders/rig/previews/
+**/__pycache__/
+*.blend1
+*.tmp
