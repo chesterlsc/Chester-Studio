@@ -1,101 +1,137 @@
 [
-  {
-    "id": "packshot-long-light-serum",
-    "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-packshot.jpg",
-    "use": "Packshot, long-light-serum",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:20:42"
-  },
-  {
-    "id": "packshot-sunmelt-cleansing-balm",
-    "path": "/home/user/Chester-Studio/lumora-beauty/products/sunmelt-cleansing-balm/sunmelt-cleansing-balm-packshot.jpg",
-    "use": "Packshot, sunmelt-cleansing-balm",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:24:08"
-  },
-  {
-    "id": "hero-desktop",
-    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-desktop.jpg",
-    "use": "Homepage hero, desktop",
-    "width": 2880,
-    "height": 1620,
-    "status": "final",
-    "updated": "2026-11-23T11:36:03"
-  },
-  {
-    "id": "ritual",
-    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/ritual.jpg",
-    "use": "Ritual hotspot scene",
-    "width": 2400,
-    "height": 1600,
-    "status": "final",
-    "updated": "2026-11-23T11:38:32"
-  },
-  {
-    "id": "hero-mobile",
-    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-mobile.jpg",
-    "use": "Homepage hero, mobile",
-    "width": 1168,
-    "height": 1460,
-    "status": "final",
-    "updated": "2026-11-23T11:41:10"
-  },
-  {
-    "id": "packshot-haze-soft-focus-cream",
-    "path": "/home/user/Chester-Studio/lumora-beauty/products/haze-soft-focus-cream/haze-soft-focus-cream-packshot.jpg",
-    "use": "Packshot, haze-soft-focus-cream",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:43:49"
-  },
-  {
-    "id": "packshot-apricity-lip-cheek-balm",
-    "path": "/home/user/Chester-Studio/lumora-beauty/products/apricity-lip-cheek-balm/apricity-lip-cheek-balm-packshot.jpg",
-    "use": "Packshot, apricity-lip-cheek-balm",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:45:49"
-  },
-  {
-    "id": "packshot-gloaming-body-oil",
-    "path": "/home/user/Chester-Studio/lumora-beauty/products/gloaming-body-oil/gloaming-body-oil-packshot.jpg",
-    "use": "Packshot, gloaming-body-oil",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:48:00"
-  },
-  {
-    "id": "packshot-slow-hour-golden-milk",
-    "path": "/home/user/Chester-Studio/lumora-beauty/products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg",
-    "use": "Packshot, slow-hour-golden-milk",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:50:13"
-  },
-  {
-    "id": "golden-pair",
-    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/golden-pair.jpg",
-    "use": "Golden pair bundle card",
-    "width": 1200,
-    "height": 1500,
-    "status": "final",
-    "updated": "2026-11-23T11:53:05"
-  },
-  {
-    "id": "closing",
-    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/closing.jpg",
-    "use": "Closing band",
-    "width": 2880,
-    "height": 1100,
-    "status": "final",
-    "updated": "2026-11-23T11:55:39"
-  }
+ {
+  "id": "packshot-long-light-serum",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-packshot.jpg",
+  "use": "Packshot, long-light-serum",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:20:42"
+ },
+ {
+  "id": "packshot-sunmelt-cleansing-balm",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/sunmelt-cleansing-balm/sunmelt-cleansing-balm-packshot.jpg",
+  "use": "Packshot, sunmelt-cleansing-balm",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:24:08"
+ },
+ {
+  "id": "hero-desktop",
+  "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-desktop.jpg",
+  "use": "Homepage hero, desktop",
+  "width": 2880,
+  "height": 1620,
+  "status": "final",
+  "updated": "2026-11-23T11:36:03"
+ },
+ {
+  "id": "ritual",
+  "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/ritual.jpg",
+  "use": "Ritual hotspot scene",
+  "width": 2400,
+  "height": 1600,
+  "status": "final",
+  "updated": "2026-11-23T11:38:32"
+ },
+ {
+  "id": "hero-mobile",
+  "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-mobile.jpg",
+  "use": "Homepage hero, mobile",
+  "width": 1168,
+  "height": 1460,
+  "status": "final",
+  "updated": "2026-11-23T11:41:10"
+ },
+ {
+  "id": "packshot-haze-soft-focus-cream",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/haze-soft-focus-cream/haze-soft-focus-cream-packshot.jpg",
+  "use": "Packshot, haze-soft-focus-cream",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:43:49"
+ },
+ {
+  "id": "packshot-apricity-lip-cheek-balm",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/apricity-lip-cheek-balm/apricity-lip-cheek-balm-packshot.jpg",
+  "use": "Packshot, apricity-lip-cheek-balm",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:45:49"
+ },
+ {
+  "id": "packshot-gloaming-body-oil",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/gloaming-body-oil/gloaming-body-oil-packshot.jpg",
+  "use": "Packshot, gloaming-body-oil",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:48:00"
+ },
+ {
+  "id": "packshot-slow-hour-golden-milk",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg",
+  "use": "Packshot, slow-hour-golden-milk",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:50:13"
+ },
+ {
+  "id": "golden-pair",
+  "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/golden-pair.jpg",
+  "use": "Golden pair bundle card",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:53:05"
+ },
+ {
+  "id": "closing",
+  "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/closing.jpg",
+  "use": "Closing band",
+  "width": 2880,
+  "height": 1100,
+  "status": "final",
+  "updated": "2026-11-23T11:55:39"
+ },
+ {
+  "id": "long-light-serum-in-light",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-in-light.jpg",
+  "use": "PDP gallery, in-light",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T11:58:24"
+ },
+ {
+  "id": "long-light-serum-detail",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-detail.jpg",
+  "use": "PDP gallery, detail",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T12:01:57"
+ },
+ {
+  "id": "long-light-serum-back",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-back.jpg",
+  "use": "PDP gallery, back",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T12:04:20"
+ },
+ {
+  "id": "long-light-serum-with-haze",
+  "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-with-haze.jpg",
+  "use": "PDP gallery, with-haze (same frame as golden-pair)",
+  "width": 1200,
+  "height": 1500,
+  "status": "final",
+  "updated": "2026-11-23T12:04:45"
+ }
 ]
