@@ -567,8 +567,8 @@ PRESETS = {
     "cream": {"kind": "cream", "color": "#F4EEE6"},
     "lotion": {"kind": "cream", "color": "#F1E9DF", "roughness": 0.22, "sss_mm": 1.5},
     # set materials
-    "travertine": {"kind": "travertine", "color": "#DDCDB6"},
-    "marble": {"kind": "marble", "color": "#EEEAE5"},
+    "travertine": {"kind": "travertine"},
+    "marble": {"kind": "marble"},
     "plaster": {"kind": "plaster", "color": "#E7DED2"},
     "leaf": {"kind": "leaf", "color": "#77845A"},
     "eucalyptus": {"kind": "leaf", "color": "#8FA09A", "back": "#B4C0BA", "roughness": 0.62, "sheen": 0.4},
@@ -745,14 +745,31 @@ def _volume_absorb(nt, color, tint_mm):
 
 
 def _b_glass(name, color="#F1F7F4", tint_mm=40.0, roughness=0.0, ior=1.5, shadow=True, shadow_strength=0.86,
-             dispersion=0.0, specular=0.5, base="#FFFFFF", inner_roughness=None, **kw):
+             dispersion=0.0, specular=0.5, base=None, inner_roughness=None, volume=None, **kw):
+    """Dielectric (glass / clear plastic / liquid). `color` is what the material looks like through
+    `tint_mm` of thickness. Smooth coloured glass uses true volume absorption (thick bases read darker);
+    rough (frosted) or colourless glass is tinted per interface instead, because Cycles darkens rough
+    glass with volume absorption in proportion to the distance to the lights (shadow rays leaving a
+    rough glass surface keep the glass volume), which made frosted bottles turn muddy in large sets."""
     m = _new_material(name)
     nt = _NT(m)
     p = nt.bsdf
-    _p(p, base=base, roughness=roughness, ior=ior, transmission=1.0, specular=specular)
+    T = hex_rgb(color) if color else (1.0, 1.0, 1.0)
+    colourless = min(T) > 0.85 and (max(T) - min(T)) < 0.03
+    use_volume = volume if volume is not None else (roughness <= 0.05 and not colourless)
+    if base is None:
+        if use_volume or colourless or not tint_mm:
+            base_rgba = (1.0, 1.0, 1.0, 1.0)
+        else:  # per-interface tint: two crossings of a ~2.5 mm wall reproduce the colour at tint_mm
+            e = min(1.0, 1.25 / max(tint_mm, 0.1))
+            base_rgba = (*(max(c, 1e-4) ** e for c in T), 1.0)
+    else:
+        base_rgba = rgba(base)
+    _p(p, base=base_rgba, roughness=roughness, ior=ior, transmission=1.0, specular=specular)
     if dispersion:
         _p(p, dispersion=dispersion)
-    _volume_absorb(nt, color, tint_mm)
+    if use_volume:
+        _volume_absorb(nt, color, tint_mm)
     surf = p.outputs[0]
     if shadow:
         surf = _shadow_trick(nt, surf, shadow_strength)
@@ -856,70 +873,120 @@ def _obj_coords(nt, scale=1.0, stretch=(1.0, 1.0, 1.0)):
     return mp.outputs[0]
 
 
-def _b_travertine(name, color="#DDCDB6", color2="#CDB899", pore="#A89275", roughness=0.6, scale=1.0, pores=1.0, **kw):
+def _ridge(nt, value, width):
+    """1 on the thin line where ``value`` crosses 0.5, falling to 0 at +-width (vein / strata lines)."""
+    d = _math(nt, "ABSOLUTE", _math(nt, "SUBTRACT", value, 0.5))
+    return _maprange(nt, d, 0.0, width, 1.0, 0.0, "SMOOTHSTEP")
+
+
+def _b_travertine(name, color="#DBCCB5", color2="#CDB99B", line="#BBA27D", pore="#97805F", roughness=0.56, scale=1.0,
+                  pores=1.0, banding=1.0, **kw):
+    """Honed travertine: soft tonal strata, fine wandering horizontal veins and sparse elongated pits.
+    `scale` multiplies the pattern frequency (1 = real-world size)."""
     m = _new_material(name)
     nt = _NT(m)
     p = nt.bsdf
     co = _obj_coords(nt, scale)
-    # layered banding (horizontal strata), distorted
-    wave = nt.new("ShaderNodeTexWave", wave_type="BANDS", bands_direction="Z", wave_profile="SIN")
-    nt.link(co, wave.inputs["Vector"])
-    wave.inputs["Scale"].default_value = 9.0
-    wave.inputs["Distortion"].default_value = 3.5
-    wave.inputs["Detail"].default_value = 4.0
-    wave.inputs["Detail Scale"].default_value = 1.2
-    n1 = nt.new("ShaderNodeTexNoise")
-    nt.link(co, n1.inputs["Vector"])
-    n1.inputs["Scale"].default_value = 14.0
-    n1.inputs["Detail"].default_value = 6.0
-    band = _maprange(nt, _math(nt, "ADD", _math(nt, "MULTIPLY", wave.outputs["Factor"], 0.65),
-                               _math(nt, "MULTIPLY", n1.outputs["Factor"], 0.35)), 0.25, 0.85, 0.0, 1.0, "SMOOTHSTEP")
-    base = _mix_rgb(nt, band, color, color2)
-    # elongated pores (horizontal)
-    pco = _obj_coords(nt, scale, (1.0, 1.0, 4.5))
-    pn = nt.new("ShaderNodeTexNoise")
-    nt.link(pco, pn.inputs["Vector"])
-    pn.inputs["Scale"].default_value = 120.0
-    pn.inputs["Detail"].default_value = 3.0
-    pn.inputs["Roughness"].default_value = 0.55
-    pmask = _maprange(nt, pn.outputs["Factor"], 0.66, 0.74, 0.0, pores, "SMOOTHSTEP")
-    base = _mix_rgb(nt, _math(nt, "MULTIPLY", pmask, 0.85), base, pore)
+    sep = nt.new("ShaderNodeSeparateXYZ")
+    nt.link(co, sep.inputs[0])
+    warp = nt.new("ShaderNodeTexNoise")
+    nt.link(co, warp.inputs["Vector"])
+    warp.inputs["Scale"].default_value = 5.0
+    warp.inputs["Detail"].default_value = 3.0
+    zq = _math(nt, "ADD", sep.outputs[2], _math(nt, "MULTIPLY", warp.outputs["Factor"], 0.02))
+
+    def strata(sc, det):
+        n = nt.new("ShaderNodeTexNoise", noise_dimensions="1D")
+        nt.link(zq, n.inputs["W"])
+        n.inputs["Scale"].default_value = sc
+        n.inputs["Detail"].default_value = det
+        n.inputs["Roughness"].default_value = 0.55
+        return n.outputs["Factor"]
+    tone = _maprange(nt, strata(11.0, 2.0), 0.3, 0.7, 0.0, 0.8 * banding)
+    base = _mix_rgb(nt, tone, color, color2)
+    cloud = nt.new("ShaderNodeTexNoise")
+    nt.link(co, cloud.inputs["Vector"])
+    cloud.inputs["Scale"].default_value = 7.0
+    cloud.inputs["Detail"].default_value = 5.0
+    base = _mix_rgb(nt, _maprange(nt, cloud.outputs["Factor"], 0.4, 0.75, 0.0, 0.35), base, color2)
+    # sediment lines: few, wavy and discontinuous (faded along their length), never a regular grain
+    lines = _ridge(nt, strata(24.0, 4.0), 0.022)
+    lines2 = _ridge(nt, strata(75.0, 3.0), 0.03)
+    brk = nt.new("ShaderNodeTexNoise")
+    nt.link(_obj_coords(nt, scale, (1.0, 1.0, 6.0)), brk.inputs["Vector"])
+    brk.inputs["Scale"].default_value = 9.0
+    brk.inputs["Detail"].default_value = 3.0
+    gate = _maprange(nt, brk.outputs["Factor"], 0.42, 0.62, 0.0, 1.0, "SMOOTHSTEP")
+    lm = _math(nt, "ADD", _math(nt, "MULTIPLY", lines, 0.34 * banding), _math(nt, "MULTIPLY", lines2, 0.1 * banding))
+    lm = _math(nt, "MULTIPLY", lm, gate)
+    base = _mix_rgb(nt, _math(nt, "MINIMUM", lm, 1.0), base, line)
+    # pits: a minority of Voronoi cells (random per cell) carry a small horizontal void
+    pco = _obj_coords(nt, scale, (1.0, 1.0, 3.4))
+    jit = nt.new("ShaderNodeTexNoise", noise_dimensions="3D")
+    nt.link(pco, jit.inputs["Vector"])
+    jit.inputs["Scale"].default_value = 260.0
+    jit.inputs["Detail"].default_value = 2.0
+    jv = nt.new("ShaderNodeVectorMath", operation="SCALE")
+    nt.link(jit.outputs["Color"], jv.inputs[0])
+    jv.inputs["Scale"].default_value = 0.006
+    pco2 = nt.new("ShaderNodeVectorMath", operation="ADD")
+    nt.link(pco, pco2.inputs[0])
+    nt.link(jv.outputs[0], pco2.inputs[1])
+    vor = nt.new("ShaderNodeTexVoronoi", feature="F1")
+    nt.link(pco2.outputs[0], vor.inputs["Vector"])
+    vor.inputs["Scale"].default_value = 34.0
+    vor.inputs["Randomness"].default_value = 1.0
+    cellsep = nt.new("ShaderNodeSeparateColor")
+    nt.link(vor.outputs["Color"], cellsep.inputs[0])
+    chosen = _maprange(nt, cellsep.outputs[0], 1.0 - 0.3 * pores, 1.0 - 0.28 * pores, 0.0, 1.0)
+    size = _maprange(nt, _math(nt, "POWER", cellsep.outputs[1], 2.0), 0.0, 1.0, 0.06, 0.32)
+    pit = _maprange(nt, _math(nt, "DIVIDE", vor.outputs["Distance"], size), 0.5, 1.0, 1.0, 0.0, "SMOOTHSTEP")
+    pmask = _math(nt, "MULTIPLY", pit, chosen)
+    base = _mix_rgb(nt, _math(nt, "MULTIPLY", pmask, 0.62), base, pore)
     fine = nt.new("ShaderNodeTexNoise")
     nt.link(co, fine.inputs["Vector"])
-    fine.inputs["Scale"].default_value = 900.0
-    fine.inputs["Detail"].default_value = 4.0
-    base = _mix_rgb(nt, _math(nt, "MULTIPLY", fine.outputs["Factor"], 0.12), base, "#8E7A60", "OVERLAY")
+    fine.inputs["Scale"].default_value = 1200.0
+    fine.inputs["Detail"].default_value = 3.0
+    base = _mix_rgb(nt, _math(nt, "MULTIPLY", fine.outputs["Factor"], 0.1), base, "#7D6A52", "OVERLAY")
     _p(p, base=base, specular=0.4)
-    nt.link(_maprange(nt, pmask, 0.0, 1.0, roughness, min(1.0, roughness + 0.25)), p.inputs["Roughness"])
+    nt.link(_maprange(nt, pmask, 0.0, 1.0, roughness, min(1.0, roughness + 0.3)), p.inputs["Roughness"])
     bump = nt.new("ShaderNodeBump")
     bump.inputs["Strength"].default_value = 0.6
-    bump.inputs["Distance"].default_value = 0.0008
-    h = _math(nt, "SUBTRACT", _math(nt, "MULTIPLY", fine.outputs["Factor"], 0.15), pmask)
+    bump.inputs["Distance"].default_value = 0.0007
+    h = _math(nt, "SUBTRACT", _math(nt, "MULTIPLY", fine.outputs["Factor"], 0.1), _math(nt, "MULTIPLY", pmask, 1.2))
     nt.link(h, bump.inputs["Height"])
     nt.link(bump.outputs[0], p.inputs["Normal"])
     return m
 
 
-def _b_marble(name, color="#EEEAE5", vein="#A9A199", roughness=0.12, scale=1.0, coat=0.3, **kw):
+def _b_marble(name, color="#EFECE8", vein="#8E8780", roughness=0.1, scale=1.0, coat=0.35, veins=1.0, **kw):
+    """Polished marble: thin, branching, wandering veins (ridged noise) over faint grey clouding."""
     m = _new_material(name)
     nt = _NT(m)
     p = nt.bsdf
     co = _obj_coords(nt, scale)
-    wave = nt.new("ShaderNodeTexWave", wave_type="BANDS", bands_direction="DIAGONAL", wave_profile="SIN")
-    nt.link(co, wave.inputs["Vector"])
-    wave.inputs["Scale"].default_value = 2.2
-    wave.inputs["Distortion"].default_value = 14.0
-    wave.inputs["Detail"].default_value = 9.0
-    wave.inputs["Detail Roughness"].default_value = 0.62
-    v = _maprange(nt, wave.outputs["Factor"], 0.0, 0.07, 1.0, 0.0, "SMOOTHSTEP")
-    n = nt.new("ShaderNodeTexNoise")
-    nt.link(co, n.inputs["Vector"])
-    n.inputs["Scale"].default_value = 6.0
-    n.inputs["Detail"].default_value = 8.0
-    cloud = _maprange(nt, n.outputs["Factor"], 0.3, 0.75, 0.0, 0.18)
-    base = _mix_rgb(nt, cloud, color, vein)
-    base = _mix_rgb(nt, _math(nt, "MULTIPLY", v, 0.8), base, vein)
-    _p(p, base=base, roughness=roughness, coat=coat, coat_roughness=0.03, sss=0.15, sss_radius=(1, 0.9, 0.8), sss_scale=0.003)
+    n1 = nt.new("ShaderNodeTexNoise")
+    nt.link(co, n1.inputs["Vector"])
+    n1.inputs["Scale"].default_value = 3.2
+    n1.inputs["Detail"].default_value = 9.0
+    n1.inputs["Roughness"].default_value = 0.6
+    n1.inputs["Distortion"].default_value = 0.5
+    n2 = nt.new("ShaderNodeTexNoise")
+    nt.link(co, n2.inputs["Vector"])
+    n2.inputs["Scale"].default_value = 9.0
+    n2.inputs["Detail"].default_value = 8.0
+    n2.inputs["Distortion"].default_value = 0.4
+    v1 = _ridge(nt, n1.outputs["Factor"], 0.014)
+    v2 = _ridge(nt, n2.outputs["Factor"], 0.008)
+    cloud = nt.new("ShaderNodeTexNoise")
+    nt.link(co, cloud.inputs["Vector"])
+    cloud.inputs["Scale"].default_value = 2.5
+    cloud.inputs["Detail"].default_value = 4.0
+    base = _mix_rgb(nt, _maprange(nt, cloud.outputs["Factor"], 0.35, 0.75, 0.0, 0.1), color, vein)
+    vm = _math(nt, "ADD", _math(nt, "MULTIPLY", v1, 0.75 * veins), _math(nt, "MULTIPLY", v2, 0.35 * veins))
+    base = _mix_rgb(nt, _math(nt, "MINIMUM", vm, 1.0), base, vein)
+    _p(p, base=base, roughness=roughness, coat=coat, coat_roughness=0.03, sss=0.12, sss_radius=(1, 0.9, 0.8),
+       sss_scale=0.003)
     return m
 
 
@@ -1315,10 +1382,11 @@ def make_cylinder(name="cylinder", d=40.0, h=128.0, shoulder_r=3.5, neck_d=22.0,
     return prod
 
 
-def make_jar(name="jar", d=64.0, body_h=40.0, neck_h=7.0, neck_inset=2.8, wall=7.0, bottom=11.0, neck_wall=4.5,
+def make_jar(name="jar", d=64.0, body_h=40.0, neck_h=7.0, neck_inset=2.8, bottom=11.0, neck_wall=4.5,
              base_r=4.0, shoulder_r=1.2, punt=0.6, lid_d=None, lid_h=22.0, lid_top_r=2.8, lid_bottom_r=0.8,
              lid_wall=2.2, lid_top_t=3.0, lid_ribs=None, lid="on", fill=0.9, swirl=True, segments=180, materials=None):
     """Wide cream jar: very thick glass/ceramic base, cream fill (with a swirl when open), lid.
+    Side wall = neck_inset + neck_wall (7.3 mm by default); bottom = base thickness.
     lid = "on" | "off" | "beside" (upside-down next to the jar)."""
     prod = Product("jar", name)
     mats = _mats_for("jar", materials)
@@ -1870,6 +1938,20 @@ def add_area_light_at(name, location, aim, size, size_y=None, irradiance=5.0, ke
     return ob
 
 
+def add_flag(name, target, az_deg, el_deg, dist, size, size_y, color="#0B0B0B"):
+    """Black card ('flag' / negative fill): seen only in reflections and refractions, it gives glass and
+    metal dark edges that describe their shape. Never seen by the camera, never blocks light."""
+    coll = collection("Lights")
+    w, h = size / 2, size_y / 2
+    m = material({"kind": "plastic", "color": color, "roughness": 0.9, "specular": 0.0})
+    ob = _mesh_object(name, [(-w, -h, 0), (w, -h, 0), (w, h, 0), (-w, h, 0)], [(0, 1, 2, 3)], coll, mats=[m], sharp_deg=None)
+    loc = Vector(target) + _dir(az_deg, el_deg) * dist
+    ob.location = loc
+    ob.rotation_euler = (Vector(target) - loc).to_track_quat("Z", "Y").to_euler()
+    _set_visibility(ob, camera=False, diffuse=False, glossy=True, transmission=True, shadow=False, volume=False)
+    return ob
+
+
 def add_sun(az_deg=-55.0, el_deg=32.0, strength=4.5, angle_deg=1.2, kelvin=4300.0, white=5600.0):
     coll = collection("Lights")
     ld = bpy.data.lights.new("sun", "SUN")
@@ -2049,11 +2131,16 @@ LIGHT_PRESETS = {
         "world": {"color": "#6E6863", "strength": 0.05},
         "lights": [
             {"name": "key", "az": -52, "el": 26, "dist": 5.5, "size": [3.0, 3.6], "E": 8.0, "kelvin": 5300},
-            {"name": "fill", "az": 62, "el": 14, "dist": 6.0, "size": [4.0, 4.0], "E": 1.1, "kelvin": 5800},
+            {"name": "strip", "az": -30, "el": 8, "dist": 4.5, "size": [0.32, 3.6], "E": 1.2, "kelvin": 5600},
+            {"name": "fill", "az": 62, "el": 14, "dist": 6.0, "size": [4.0, 4.0], "E": 0.9, "kelvin": 5700},
             {"name": "rim_l", "az": -126, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 3.0, "kelvin": 5600},
             {"name": "rim_r", "az": 128, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 2.6, "kelvin": 5600},
             {"name": "top", "az": 0, "el": 80, "dist": 5.0, "size": [3.0, 3.0], "E": 1.0, "kelvin": 5600},
-            {"name": "background", "aim": "backdrop", "size": [3.5, 2.2], "E": 7.0, "kelvin": 5500},
+            {"name": "background", "aim": "backdrop", "size": [4.0, 1.8], "E": 6.0, "kelvin": 5500},
+        ],
+        "flags": [
+            {"name": "flag_l", "az": -96, "el": 10, "dist": 2.4, "size": [1.1, 3.2]},
+            {"name": "flag_r", "az": 98, "el": 10, "dist": 2.4, "size": [1.1, 3.2]},
         ],
     },
     "high_key": {
@@ -2097,7 +2184,7 @@ LIGHT_PRESETS = {
 
 
 def apply_lighting(preset="soft_studio", target=(0, 0, 0.05), scale=0.25, intensity=1.0, mirror=False, kelvin_shift=0.0,
-                   lights=None, world=None, sun=None, gobo=None, cache_dir=None, white=5600.0, backdrop=None):
+                   lights=None, world=None, sun=None, gobo=None, cache_dir=None, white=5600.0, backdrop=None, flags=None):
     """Build a lighting preset around ``target`` (metres) for a subject of size ``scale`` (metres).
     ``lights``: list of dicts overriding preset lights by name (or adding new ones); ``sun``/``gobo``:
     dicts (or False) overriding the preset's sun; ``world``: dict overriding the world."""
@@ -2121,8 +2208,17 @@ def apply_lighting(preset="soft_studio", target=(0, 0, 0.05), scale=0.25, intens
             if not backdrop:
                 continue
             t = Vector(target)
-            aim = Vector((t.x + L.get("dx", 0.0) * scale, backdrop["wall_y"], backdrop["radius"] * L.get("aim_h", 0.55)))
-            loc = Vector((t.x, t.y + L.get("dy", 0.4) * scale, L.get("h", 4.2) * scale))
+            # aim at the point of the cove `phi` degrees up its quarter circle (0 = floor, 90 = wall),
+            # i.e. the band of sweep the camera sees *through* the glass, behind the products
+            # Glass shows what lies directly *behind* it - mostly the floor just behind the products - so
+            # this light pools on the sweep from just behind the products up into the cove.
+            R, wy = backdrop["radius"], backdrop["wall_y"]
+            back = backdrop.get("back_y", t.y)
+            ya = back + L.get("behind", 0.7) * scale
+            y0 = wy - R
+            za = 0.0 if ya <= y0 else R - math.sqrt(max(R * R - (ya - y0) ** 2, 0.0))
+            aim = Vector((t.x + L.get("dx", 0.0) * scale, ya, za))
+            loc = Vector((t.x, back + L.get("dy", 0.2) * scale, L.get("h", 3.0) * scale))
             made.append(add_area_light_at(L["name"], loc, aim, sx * scale, sy * scale, L.get("E", 5.0) * intensity,
                                           L.get("kelvin", 5600) + kelvin_shift, L.get("color"), L.get("spread", 180),
                                           glossy=False, white=white))
@@ -2132,6 +2228,9 @@ def apply_lighting(preset="soft_studio", target=(0, 0, 0.05), scale=0.25, intens
                                    power=L.get("power"), irradiance=L.get("E", 2.0) * intensity,
                                    kelvin=L.get("kelvin", 5600) + kelvin_shift, color=L.get("color"),
                                    spread_deg=L.get("spread", 180), shape=L.get("shape", "RECTANGLE"), white=white))
+    for F in P.get("flags", []) if flags is not False else []:
+        add_flag(F["name"], target, -F["az"] if mirror else F["az"], F.get("el", 10), F.get("dist", 2.4) * scale,
+                 F["size"][0] * scale, F["size"][1] * scale, F.get("color", "#0B0B0B"))
     sspec = P.get("sun")
     if sun is False:
         sspec = None
@@ -2145,8 +2244,8 @@ def apply_lighting(preset="soft_studio", target=(0, 0, 0.05), scale=0.25, intens
                          sspec.get("kelvin", 4300) + kelvin_shift, white)
     if gobo and sun_ob is not None:
         g = dict(gobo)
-        add_gobo(sun_ob, target, g.get("pattern", "leaves"), g.get("distance", 900.0) * (scale / 0.25) if g.get("scale_with_scene", True) else g.get("distance", 900.0),
-                 g.get("size", 2600.0) * (scale / 0.25) if g.get("scale_with_scene", True) else g.get("size", 2600.0),
+        k = (scale / 0.25) if g.get("scale_with_scene", False) else 1.0
+        add_gobo(sun_ob, target, g.get("pattern", "leaves"), g.get("distance", 650.0) * k, g.get("size", 1500.0) * k,
                  g.get("seed", 1), g.get("coverage", 1.0), g.get("leaf_scale", 1.0), g.get("res", 1536),
                  g.get("rotation", 0.0), cache_dir, other_lights=made)
     return made, sun_ob
@@ -2213,33 +2312,35 @@ def add_glass_sphere(d=60.0, x=0.0, y=0.0, z=0.0, material_spec="glass_clear", n
 
 
 def add_water(w=900.0, depth=700.0, level=3.0, x=0.0, y=0.0, z=0.0, ripple_center=(0.0, 0.0), ripple_scale=1.0,
-              ripple_strength=1.0, caustics=True, name="water"):
+              ripple_strength=1.0, caustics=True, tint="#DCD2C6", name="water"):
     """Shallow water surface (a level plane ``level`` mm above z) with rings rippling out from
     ripple_center (mm, world) and an optional fake caustic pattern cast into its shadows."""
     coll = collection("Props")
     m = _new_material("water_surface")
     nt = _NT(m)
     p = nt.bsdf
-    _p(p, base="#FFFFFF", roughness=0.0, ior=1.333, transmission=1.0, specular=0.5)
+    # `tint` darkens what is seen through the water a little: the wet-floor cue that makes water read
+    _p(p, base=tint or "#FFFFFF", roughness=0.0, ior=1.333, transmission=1.0, specular=0.5)
     tc = nt.new("ShaderNodeTexCoord")
     sub = nt.new("ShaderNodeVectorMath", operation="SUBTRACT")
     nt.link(tc.outputs["Object"], sub.inputs[0])
     sub.inputs[1].default_value = ((ripple_center[0] - x) * MM, (ripple_center[1] - y) * MM, 0.0)
     rings = nt.new("ShaderNodeTexWave", wave_type="RINGS", rings_direction="SPHERICAL", wave_profile="SIN")
     nt.link(sub.outputs[0], rings.inputs["Vector"])
-    rings.inputs["Scale"].default_value = 60.0 / ripple_scale
-    rings.inputs["Distortion"].default_value = 1.5
-    rings.inputs["Detail"].default_value = 1.0
+    rings.inputs["Scale"].default_value = 34.0 / ripple_scale
+    rings.inputs["Distortion"].default_value = 2.5
+    rings.inputs["Detail"].default_value = 1.5
     dist = nt.new("ShaderNodeVectorMath", operation="LENGTH")
     nt.link(sub.outputs[0], dist.inputs[0])
-    fall = _maprange(nt, dist.outputs["Value"], 0.0, 0.35 * ripple_scale, 1.0, 0.15, "SMOOTHSTEP")
+    # a few rings that die out quickly away from the source (a drop's ripple), not a record groove
+    fall = _maprange(nt, dist.outputs["Value"], 0.015 * ripple_scale, 0.2 * ripple_scale, 1.0, 0.0, "SMOOTHSTEP")
     micro = nt.new("ShaderNodeTexNoise")
     nt.link(tc.outputs["Object"], micro.inputs["Vector"])
     micro.inputs["Scale"].default_value = 40.0
     micro.inputs["Detail"].default_value = 6.0
-    h = _math(nt, "ADD", _math(nt, "MULTIPLY", rings.outputs["Factor"], fall), _math(nt, "MULTIPLY", micro.outputs["Factor"], 0.35))
+    h = _math(nt, "ADD", _math(nt, "MULTIPLY", rings.outputs["Factor"], fall), _math(nt, "MULTIPLY", micro.outputs["Factor"], 0.25))
     b = nt.new("ShaderNodeBump")
-    b.inputs["Strength"].default_value = 0.25 * ripple_strength
+    b.inputs["Strength"].default_value = 0.45 * ripple_strength
     b.inputs["Distance"].default_value = 0.0006
     nt.link(h, b.inputs["Height"])
     nt.link(b.outputs[0], p.inputs["Normal"])
@@ -2247,12 +2348,24 @@ def add_water(w=900.0, depth=700.0, level=3.0, x=0.0, y=0.0, z=0.0, ripple_cente
     lp = nt.new("ShaderNodeLightPath")
     tr = nt.new("ShaderNodeBsdfTransparent")
     if caustics:
+        # pool-caustic stand-in: a noise-warped Voronoi edge network, fine and soft, cast into the
+        # water's own (transparent) shadows so the floor below shimmers
+        wn = nt.new("ShaderNodeTexNoise")
+        nt.link(tc.outputs["Object"], wn.inputs["Vector"])
+        wn.inputs["Scale"].default_value = 18.0
+        wn.inputs["Detail"].default_value = 3.0
+        wv = nt.new("ShaderNodeVectorMath", operation="SCALE")
+        nt.link(wn.outputs["Color"], wv.inputs[0])
+        wv.inputs["Scale"].default_value = 0.012
+        wco = nt.new("ShaderNodeVectorMath", operation="ADD")
+        nt.link(tc.outputs["Object"], wco.inputs[0])
+        nt.link(wv.outputs[0], wco.inputs[1])
         vor = nt.new("ShaderNodeTexVoronoi", feature="DISTANCE_TO_EDGE")
-        nt.link(tc.outputs["Object"], vor.inputs["Vector"])
-        vor.inputs["Scale"].default_value = 45.0
-        vor.inputs["Randomness"].default_value = 0.9
-        net = _maprange(nt, vor.outputs["Distance"], 0.0, 0.08, 1.0, 0.0, "SMOOTHSTEP")
-        tval = _math(nt, "ADD", 0.72, _math(nt, "MULTIPLY", net, 0.75))
+        nt.link(wco.outputs[0], vor.inputs["Vector"])
+        vor.inputs["Scale"].default_value = 70.0 / ripple_scale
+        vor.inputs["Randomness"].default_value = 1.0
+        net = _maprange(nt, vor.outputs["Distance"], 0.0, 0.06, 1.0, 0.0, "SMOOTHSTEP")
+        tval = _math(nt, "ADD", 0.82, _math(nt, "MULTIPLY", net, 0.4))
         nt.link(_mix_rgb(nt, tval, (0, 0, 0, 1), (1, 1, 1, 1)), tr.inputs["Color"])
     mix = nt.new("ShaderNodeMixShader")
     nt.link(lp.outputs["Is Shadow Ray"], mix.inputs["Fac"])
@@ -2645,10 +2758,6 @@ QUALITY = {
 }
 
 
-def _num(v, default=0.0):
-    return float(v) if v is not None else default
-
-
 def build_scene(job, base_dir="."):
     """Build a complete scene from a job dict (see README). Returns a context dict."""
     reset()
@@ -2675,7 +2784,7 @@ def build_scene(job, base_dir="."):
         elif t == "water":
             pr = add_water(ps.get("w", 900.0), ps.get("depth", 700.0), ps.get("level", 3.0), pos[0], pos[1], z,
                            ps.get("ripple_center", [0, 0]), ps.get("ripple_scale", 1.0), ps.get("ripple_strength", 1.0),
-                           ps.get("caustics", True), name=pid)
+                           ps.get("caustics", True), ps.get("tint", "#DCD2C6"), name=pid)
         elif t == "sprig":
             pr = add_sprig(ps.get("kind", "olive"), ps.get("length", 220.0), pos[0], pos[1], z, ps.get("rotation", 0.0),
                            ps.get("seed", 3), ps.get("leaves"), name=pid, leaf_material=ps.get("material"))
@@ -2687,6 +2796,8 @@ def build_scene(job, base_dir="."):
     for i, ps in enumerate(job.get("products", [])):
         pid = ps.get("id", f"product{i}")
         kind = ps["type"]
+        if kind not in GENERATORS:
+            raise KeyError(f"product '{pid}': unknown type '{kind}' (known: {', '.join(GENERATORS)})")
         gen = GENERATORS[kind]
         kw = dict(ps.get("dims", {}))
         if kind == "tube" and ps.get("print"):
@@ -2728,27 +2839,36 @@ def build_scene(job, base_dir="."):
     P = subject_points(allobjs or objs)
     lo, hi = P.min(0), P.max(0)
     size = float(max(hi - lo))
-    S = min(max(size, 0.12), 3.0)
+    S = min(max(size, 0.12), 3.0) if not job.get("scale_mm") else job["scale_mm"] * MM
     target = Vector(((lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, lo[2] + (hi[2] - lo[2]) * 0.45))
     ctx.update(scale=S, target=target, lo=lo, hi=hi)
     # ---- backdrop
     bd = dict(job.get("backdrop", {"type": "sweep"}))
     btype = bd.pop("type", "sweep")
     if btype == "sweep":
-        auto = {"width_mm": 30 * S / MM, "floor_mm": 14 * S / MM, "height_mm": 12 * S / MM, "radius_mm": 3.2 * S / MM,
-                "wall_y_mm": hi[1] / MM + 3.0 * S / MM}
+        # the cove always starts behind the products (never under them): wall = back of set + gap + radius
+        auto = {"width_mm": 30 * S / MM, "floor_mm": 14 * S / MM, "height_mm": 12 * S / MM, "radius_mm": 2.6 * S / MM}
+        auto.update({k: v for k, v in bd.items() if k in ("width_mm", "floor_mm", "height_mm", "radius_mm")})
+        auto["wall_y_mm"] = bd.get("wall_y_mm", hi[1] / MM + bd.get("gap_mm", 0.45 * S / MM) + auto["radius_mm"])
         auto.update({k: v for k, v in bd.items() if k in ("width_mm", "floor_mm", "height_mm", "radius_mm", "wall_y_mm")})
         add_sweep(bd.get("color", "#EAE2D8"), bd.get("wall_color"), auto["width_mm"], auto["floor_mm"], auto["height_mm"],
                   auto["radius_mm"], auto["wall_y_mm"], bd.get("roughness", 0.92), bd.get("grain", 0.0), target[0] / MM)
-        ctx["backdrop"] = {"wall_y": auto["wall_y_mm"] * MM, "radius": auto["radius_mm"] * MM}
+        ctx["backdrop"] = {"wall_y": auto["wall_y_mm"] * MM, "radius": auto["radius_mm"] * MM, "back_y": float(hi[1])}
     elif btype in ("floor", "shadow_catcher"):
         add_floor(bd.get("color", "#EAE2D8"), bd.get("size_mm", 40 * S / MM), bd.get("roughness", 0.92), btype == "shadow_catcher")
     # ---- lighting
     lt = dict(job.get("lighting", {}))
     cache = rel(job.get("cache_dir", "cache"))
-    apply_lighting(lt.get("preset", "soft_studio"), target, lt.get("scale", S), lt.get("intensity", 1.0),
+    apply_lighting(lt.get("preset", "soft_studio"), target, lt["scale_mm"] * MM if lt.get("scale_mm") else S, lt.get("intensity", 1.0),
                    lt.get("mirror", False), lt.get("kelvin_shift", 0.0), lt.get("lights"), job.get("world"),
-                   job.get("sun"), job.get("gobo"), cache, lt.get("white_balance", 5600.0), ctx.get("backdrop"))
+                   job.get("sun"), job.get("gobo"), cache, lt.get("white_balance", 5600.0), ctx.get("backdrop"),
+                   lt.get("flags"))
+    if btype == "shadow_catcher":
+        # cut-outs keep one soft grounding shadow: rims/strips/background lights cast none
+        for lname in bd.get("shadowless_lights", ["rim_l", "rim_r", "strip", "background", "fill"]):
+            lo = bpy.data.objects.get(lname)
+            if lo is not None and lo.type == "LIGHT":
+                lo.data.use_shadow = False
     # ---- camera
     rnd = dict(job.get("render", {}))
     cam, info = setup_camera(objs, cam_spec.get("preset", "packshot_1x1"), job.get("resolution", 900),

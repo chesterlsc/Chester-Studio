@@ -1,0 +1,279 @@
+{
+  "_comment": "Extra example (e): material library swatches. Row 1 glass (clear, frosted, amber, tinted, opal, smoke); row 2 metals and plastics (gold polished, champagne brushed, rose polished, silver brushed, soft-touch, gloss); row 3 set and contents (travertine, marble, plaster, glazed ceramic, silicone, cream).",
+  "output": "../previews/e_material_library.png",
+  "resolution": 1500,
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E9E1D6"
+  },
+  "lighting": {
+    "preset": "soft_studio"
+  },
+  "props": [
+    {
+      "id": "sw_00",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "glass_clear",
+      "position": [
+        -205.0,
+        -95
+      ]
+    },
+    {
+      "id": "sw_01",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "glass_frosted",
+      "position": [
+        -123.0,
+        -95
+      ]
+    },
+    {
+      "id": "sw_02",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "glass_amber",
+      "position": [
+        -41.0,
+        -95
+      ]
+    },
+    {
+      "id": "sw_03",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": {
+        "preset": "glass_tinted",
+        "color": "#E7BBAE"
+      },
+      "position": [
+        41.0,
+        -95
+      ]
+    },
+    {
+      "id": "sw_04",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "glass_opal",
+      "position": [
+        123.0,
+        -95
+      ]
+    },
+    {
+      "id": "sw_05",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "glass_smoke",
+      "position": [
+        205.0,
+        -95
+      ]
+    },
+    {
+      "id": "sw_10",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "metal_gold_polished",
+      "position": [
+        -205.0,
+        0
+      ]
+    },
+    {
+      "id": "sw_11",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "metal_champagne_brushed",
+      "position": [
+        -123.0,
+        0
+      ]
+    },
+    {
+      "id": "sw_12",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "metal_rose_polished",
+      "position": [
+        -41.0,
+        0
+      ]
+    },
+    {
+      "id": "sw_13",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "metal_silver_brushed",
+      "position": [
+        41.0,
+        0
+      ]
+    },
+    {
+      "id": "sw_14",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": {
+        "preset": "plastic_softtouch",
+        "color": "#D9B8A6"
+      },
+      "position": [
+        123.0,
+        0
+      ]
+    },
+    {
+      "id": "sw_15",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": {
+        "preset": "plastic_gloss",
+        "color": "#2E2A27"
+      },
+      "position": [
+        205.0,
+        0
+      ]
+    },
+    {
+      "id": "sw_20",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "travertine",
+      "position": [
+        -205.0,
+        95
+      ]
+    },
+    {
+      "id": "sw_21",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "marble",
+      "position": [
+        -123.0,
+        95
+      ]
+    },
+    {
+      "id": "sw_22",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "plaster",
+      "position": [
+        -41.0,
+        95
+      ]
+    },
+    {
+      "id": "sw_23",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "ceramic_glazed",
+      "position": [
+        41.0,
+        95
+      ]
+    },
+    {
+      "id": "sw_24",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": {
+        "preset": "silicone",
+        "color": "#EFE6DC"
+      },
+      "position": [
+        123.0,
+        95
+      ]
+    },
+    {
+      "id": "sw_25",
+      "type": "plinth",
+      "shape": "sphere",
+      "dims": {
+        "d": 62
+      },
+      "material": "cream",
+      "position": [
+        205.0,
+        95
+      ]
+    }
+  ],
+  "camera": {
+    "preset": "lineup_3x2",
+    "subjects": "all",
+    "elevation": 24,
+    "focal_length": 85,
+    "fill": [
+      0.9,
+      0.84
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "render": {
+    "samples": 64,
+    "adaptive_threshold": 0.02,
+    "seed": 7
+  }
+}

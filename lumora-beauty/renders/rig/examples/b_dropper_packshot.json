@@ -2,26 +2,62 @@
   "_comment": "Example (b): single frosted-glass dropper, 1:1 e-commerce packshot with a screen-printed placeholder label.",
   "output": "../previews/b_dropper_packshot.png",
   "resolution": 900,
-  "backdrop": {"type": "sweep", "color": "#ECE4DA"},
-  "lighting": {"preset": "soft_studio"},
+  "backdrop": {
+    "type": "sweep",
+    "color": "#ECE4DA"
+  },
+  "lighting": {
+    "preset": "soft_studio"
+  },
   "products": [
     {
       "id": "dew_serum",
       "type": "dropper",
-      "dims": {"d": 32, "h": 72, "shoulder_r": 7.5, "neck_d": 18, "collar_d": 22.5, "collar_h": 15, "bulb_d": 14, "bulb_h": 21, "fill": 0.8},
+      "dims": {
+        "d": 32,
+        "h": 72,
+        "shoulder_r": 7.5,
+        "neck_d": 18,
+        "collar_d": 22.5,
+        "collar_h": 15,
+        "bulb_d": 14,
+        "bulb_h": 21,
+        "fill": 0.8
+      },
       "materials": {
         "body": "glass_frosted",
-        "liquid": {"preset": "liquid", "color": "#EFC9A0", "tint_mm": 30},
+        "liquid": {
+          "preset": "liquid",
+          "color": "#EFC9A0",
+          "tint_mm": 30
+        },
         "collar": "metal_champagne_brushed",
-        "bulb": {"preset": "silicone", "color": "#EFE6DC"}
+        "bulb": {
+          "preset": "silicone",
+          "color": "#EFE6DC"
+        }
       },
       "labels": [
-        {"image": "labels/dropper_ink.png", "mode": "ink", "ink": "#2C2521", "height_mm": 25}
+        {
+          "image": "labels/dropper_ink.png",
+          "mode": "ink",
+          "ink": "#2C2521",
+          "height_mm": 25
+        }
       ],
-      "position": [0, 0],
+      "position": [
+        0,
+        0
+      ],
       "rotation": 0
     }
   ],
-  "camera": {"preset": "packshot_1x1"},
-  "render": {"samples": 64, "adaptive_threshold": 0.02, "seed": 7}
+  "camera": {
+    "preset": "packshot_1x1"
+  },
+  "render": {
+    "samples": 64,
+    "adaptive_threshold": 0.02,
+    "seed": 7
+  }
 }

@@ -1,0 +1,179 @@
+{
+  "_comment": "Extra example (d): 4:5 mobile hero - frosted serum standing in a shallow pool with ripples, plaster arch, glass sphere, window-light gobo, shallow depth of field. Copy space at the top.",
+  "output": "../previews/d_mobile_hero_water.png",
+  "resolution": 1350,
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E8DCCE",
+    "radius_mm": 180,
+    "gap_mm": 60,
+    "match": false
+  },
+  "lighting": {
+    "preset": "sunlit",
+    "lights": [
+      {
+        "name": "fill",
+        "E": 0.9
+      }
+    ]
+  },
+  "world": {
+    "color": "#D6CCC0",
+    "strength": 0.22
+  },
+  "sun": {
+    "az": -48,
+    "el": 30,
+    "strength": 5.5,
+    "angle": 1.4,
+    "kelvin": 4600
+  },
+  "gobo": {
+    "pattern": "window",
+    "seed": 1,
+    "distance": 700,
+    "size": 1500,
+    "rotation": 8
+  },
+  "props": [
+    {
+      "id": "arch",
+      "type": "plinth",
+      "shape": "arch",
+      "dims": {
+        "w": 150,
+        "h": 250,
+        "depth": 26,
+        "edge_r": 3
+      },
+      "material": {
+        "preset": "plaster",
+        "color": "#DCC8B6"
+      },
+      "position": [
+        25,
+        80
+      ]
+    },
+    {
+      "id": "block",
+      "type": "plinth",
+      "shape": "block",
+      "dims": {
+        "w": 120,
+        "depth": 95,
+        "h": 38,
+        "edge_r": 3
+      },
+      "material": "travertine",
+      "position": [
+        78,
+        10
+      ],
+      "rotation": -6
+    },
+    {
+      "id": "pool",
+      "type": "water",
+      "w": 700,
+      "depth": 420,
+      "level": 5,
+      "position": [
+        0,
+        -150
+      ],
+      "ripple_center": [
+        -30,
+        -30
+      ],
+      "ripple_scale": 0.7,
+      "ripple_strength": 1.6
+    },
+    {
+      "id": "sphere",
+      "type": "glass_sphere",
+      "d": 44,
+      "position": [
+        -105,
+        -55
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "dew_serum",
+      "type": "dropper",
+      "materials": {
+        "body": "glass_frosted",
+        "liquid": {
+          "preset": "liquid",
+          "color": "#EFC9A0",
+          "tint_mm": 30
+        },
+        "collar": "metal_champagne_brushed",
+        "bulb": {
+          "preset": "silicone",
+          "color": "#EFE6DC"
+        }
+      },
+      "labels": [
+        {
+          "image": "labels/dropper_ink.png",
+          "mode": "ink",
+          "ink": "#2C2521",
+          "height_mm": 25
+        }
+      ],
+      "position": [
+        -30,
+        -30
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "velvet_cream",
+      "type": "jar",
+      "on": "block",
+      "materials": {
+        "body": "glass_opal",
+        "lid": "metal_champagne_brushed"
+      },
+      "labels": [
+        {
+          "image": "labels/jar_ink.png",
+          "mode": "ink",
+          "ink": "#3A2E28",
+          "height_mm": 20
+        }
+      ],
+      "position": [
+        80,
+        8
+      ],
+      "rotation": -6
+    }
+  ],
+  "camera": {
+    "preset": "mobile_hero_4x5",
+    "subjects": "all",
+    "focal_length": 85,
+    "elevation": 11,
+    "fill": [
+      0.9,
+      0.6
+    ],
+    "offset": [
+      0.0,
+      -0.12
+    ],
+    "dof": {
+      "f_stop": 5.6
+    }
+  },
+  "render": {
+    "samples": 64,
+    "adaptive_threshold": 0.02,
+    "seed": 7
+  }
+}

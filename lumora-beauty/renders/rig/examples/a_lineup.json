@@ -2,54 +2,199 @@
   "_comment": "Example (a): six package types as one product line on a warm neutral sweep (3:2).",
   "output": "../previews/a_lineup.png",
   "resolution": 1200,
-  "backdrop": {"type": "sweep", "color": "#E8DED2"},
-  "lighting": {"preset": "soft_studio"},
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E8DED2"
+  },
+  "lighting": {
+    "preset": "soft_studio"
+  },
   "products": [
     {
-      "id": "glow_mask", "type": "tube",
-      "dims": {"d": 36, "length": 150, "cap_h": 18},
-      "materials": {"body": {"preset": "plastic_softtouch", "color": "#D9B8A6"}, "cap": {"preset": "plastic_gloss", "color": "#F1EBE3"}},
-      "print": {"image": "labels/tube_print.png", "mode": "ink", "ink": "#3A2C26", "height_mm": 40, "z_mm": 82},
-      "position": [-178, 8]
+      "id": "glow_mask",
+      "type": "tube",
+      "dims": {
+        "d": 36,
+        "length": 150,
+        "cap_h": 18
+      },
+      "materials": {
+        "body": {
+          "preset": "plastic_softtouch",
+          "color": "#D9B8A6"
+        },
+        "cap": {
+          "preset": "plastic_gloss",
+          "color": "#F1EBE3"
+        }
+      },
+      "print": {
+        "image": "labels/tube_print.png",
+        "mode": "ink",
+        "ink": "#3A2C26",
+        "height_mm": 40,
+        "z_mm": 82
+      },
+      "position": [
+        -178,
+        8
+      ]
     },
     {
-      "id": "cloud_cleanser", "type": "pump",
-      "dims": {"d": 44, "h": 112, "nozzle_angle": -35},
-      "materials": {"body": "glass_amber", "liquid": {"preset": "lotion", "color": "#EFE6DA"},
-                    "collar": {"preset": "plastic_matte", "color": "#F1EBE3"}, "head": {"preset": "plastic_matte", "color": "#F1EBE3"}},
-      "labels": [{"image": "labels/pump_paper.png", "mode": "paper", "height_mm": 40}],
-      "position": [-112, -4]
+      "id": "cloud_cleanser",
+      "type": "pump",
+      "dims": {
+        "d": 44,
+        "h": 112,
+        "nozzle_angle": -35
+      },
+      "materials": {
+        "body": "glass_amber",
+        "liquid": {
+          "preset": "lotion",
+          "color": "#EFE6DA"
+        },
+        "collar": {
+          "preset": "plastic_matte",
+          "color": "#F1EBE3"
+        },
+        "head": {
+          "preset": "plastic_matte",
+          "color": "#F1EBE3"
+        }
+      },
+      "labels": [
+        {
+          "image": "labels/pump_paper.png",
+          "mode": "paper",
+          "height_mm": 40
+        }
+      ],
+      "position": [
+        -112,
+        -4
+      ]
     },
     {
-      "id": "dew_serum", "type": "dropper",
-      "materials": {"body": "glass_frosted", "liquid": {"preset": "liquid", "color": "#EFC9A0", "tint_mm": 30},
-                    "collar": "metal_champagne_brushed", "bulb": {"preset": "silicone", "color": "#EFE6DC"}},
-      "labels": [{"image": "labels/dropper_ink.png", "mode": "ink", "ink": "#2C2521", "height_mm": 25}],
-      "position": [-55, -16]
+      "id": "dew_serum",
+      "type": "dropper",
+      "materials": {
+        "body": "glass_frosted",
+        "liquid": {
+          "preset": "liquid",
+          "color": "#EFC9A0",
+          "tint_mm": 30
+        },
+        "collar": "metal_champagne_brushed",
+        "bulb": {
+          "preset": "silicone",
+          "color": "#EFE6DC"
+        }
+      },
+      "labels": [
+        {
+          "image": "labels/dropper_ink.png",
+          "mode": "ink",
+          "ink": "#2C2521",
+          "height_mm": 25
+        }
+      ],
+      "position": [
+        -55,
+        -16
+      ]
     },
     {
-      "id": "velvet_cream", "type": "jar",
-      "materials": {"body": "glass_opal", "lid": "metal_champagne_brushed"},
-      "labels": [{"image": "labels/jar_ink.png", "mode": "foil", "foil": "champagne", "height_mm": 20}],
-      "position": [6, -20]
+      "id": "velvet_cream",
+      "type": "jar",
+      "materials": {
+        "body": "glass_opal",
+        "lid": "metal_champagne_brushed"
+      },
+      "labels": [
+        {
+          "image": "labels/jar_ink.png",
+          "mode": "ink",
+          "ink": "#3A2E28",
+          "height_mm": 20
+        }
+      ],
+      "position": [
+        6,
+        -20
+      ]
     },
     {
-      "id": "toning_essence", "type": "cylinder",
-      "dims": {"d": 40, "h": 128, "cap_d": 30, "cap_h": 32},
-      "materials": {"body": "glass_clear", "liquid": {"preset": "liquid", "color": "#F2D6C8", "tint_mm": 60},
-                    "cap": "metal_champagne_brushed"},
-      "labels": [{"image": "labels/cylinder_ink.png", "mode": "ink", "ink": "#2C2521", "height_mm": 31}],
-      "position": [70, 0]
+      "id": "toning_essence",
+      "type": "cylinder",
+      "dims": {
+        "d": 40,
+        "h": 128,
+        "cap_d": 30,
+        "cap_h": 32
+      },
+      "materials": {
+        "body": "glass_clear",
+        "liquid": {
+          "preset": "liquid",
+          "color": "#F2D6C8",
+          "tint_mm": 60
+        },
+        "cap": "metal_champagne_brushed"
+      },
+      "labels": [
+        {
+          "image": "labels/cylinder_ink.png",
+          "mode": "ink",
+          "ink": "#2C2521",
+          "height_mm": 31
+        }
+      ],
+      "position": [
+        70,
+        0
+      ]
     },
     {
-      "id": "rose_mist", "type": "mist",
-      "materials": {"body": {"preset": "glass_tinted", "color": "#E9BFB2", "tint_mm": 5}, "liquid": "water",
-                    "ferrule": "metal_champagne_polished", "actuator": {"preset": "plastic_matte", "color": "#F1EBE3"},
-                    "overcap": {"preset": "plastic_matte", "color": "#F1EBE3"}},
-      "labels": [{"image": "labels/mist_ink.png", "mode": "ink", "ink": "#2C2521", "height_mm": 28}],
-      "position": [128, 10]
+      "id": "rose_mist",
+      "type": "mist",
+      "materials": {
+        "body": {
+          "preset": "glass_tinted",
+          "color": "#EDC9BD",
+          "tint_mm": 7
+        },
+        "liquid": "water",
+        "ferrule": "metal_champagne_polished",
+        "actuator": {
+          "preset": "plastic_matte",
+          "color": "#F1EBE3"
+        },
+        "overcap": {
+          "preset": "plastic_matte",
+          "color": "#F1EBE3"
+        }
+      },
+      "labels": [
+        {
+          "image": "labels/mist_ink.png",
+          "mode": "ink",
+          "ink": "#2C2521",
+          "height_mm": 28
+        }
+      ],
+      "position": [
+        128,
+        10
+      ]
     }
   ],
-  "camera": {"preset": "lineup_3x2"},
-  "render": {"samples": 64, "adaptive_threshold": 0.02, "seed": 7}
+  "camera": {
+    "preset": "lineup_3x2"
+  },
+  "render": {
+    "samples": 64,
+    "adaptive_threshold": 0.02,
+    "seed": 7
+  }
 }
