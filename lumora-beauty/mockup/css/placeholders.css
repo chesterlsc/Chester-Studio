@@ -1,0 +1,43 @@
+/* =============================================================================
+   Placeholder fallbacks (integration pass: delete this file and its <link>).
+   Every <img class="ph"> points at its FINAL asset path. While that file is
+   missing, the browser renders the broken image's ::after, which paints the
+   on-brand stand-in below. As soon as a final render or photo lands at its
+   path, it shows instead: no markup change needed.
+   ========================================================================== */
+img.ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--sand);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: var(--pos, 50% 50%);
+  border-radius: inherit;
+}
+.ph--hero-desktop::after   { background-image: url("../placeholders/hero-desktop.jpg"); }
+.ph--hero-mobile::after    { background-image: url("../placeholders/hero-mobile.jpg"); }
+.ph--ritual::after         { background-image: url("../placeholders/ritual.jpg"); }
+.ph--golden-pair::after    { background-image: url("../placeholders/golden-pair.jpg"); }
+.ph--closing::after        { background-image: url("../placeholders/closing.jpg"); }
+.ph--pk-sunmelt::after     { background-image: url("../placeholders/packshot-sunmelt-cleansing-balm.jpg"); }
+.ph--pk-long-light::after  { background-image: url("../placeholders/packshot-long-light-serum.jpg"); }
+.ph--pk-haze::after        { background-image: url("../placeholders/packshot-haze-soft-focus-cream.jpg"); }
+.ph--pk-apricity::after    { background-image: url("../placeholders/packshot-apricity-lip-cheek-balm.jpg"); }
+.ph--pk-gloaming::after    { background-image: url("../placeholders/packshot-gloaming-body-oil.jpg"); }
+.ph--pk-slow-hour::after   { background-image: url("../placeholders/packshot-slow-hour-golden-milk.jpg"); }
+.ph--hover-long-light::after { background-image: url("../placeholders/hover-long-light-serum.jpg"); }
+.ph--skin-1::after         { background-image: url("../placeholders/photo-skin-1.jpg"); }
+.ph--skin-2::after         { background-image: url("../placeholders/photo-skin-2.jpg"); }
+.ph--skin-3::after         { background-image: url("../placeholders/photo-skin-3.jpg"); }
+.ph--skin-4::after         { background-image: url("../placeholders/photo-skin-4.jpg"); }
+.ph--serum-skin::after     { background-image: url("../placeholders/photo-serum-skin.jpg"); }
+.ph--oil-drop::after       { background-image: url("../placeholders/photo-oil-drop.jpg"); }
+.ph--buckthorn::after      { background-image: url("../placeholders/photo-sea-buckthorn.jpg"); }
+.ph--apricot::after        { background-image: url("../placeholders/photo-apricot.jpg"); }
+.ph--cream::after          { background-image: url("../placeholders/photo-cream.jpg"); }
+.ph--golden-milk::after    { background-image: url("../placeholders/photo-golden-milk.jpg"); }
+.ph--formulator::after     { background-image: url("../placeholders/photo-formulator.jpg"); }
+@media (max-width: 767px) {
+  .ph--ritual::after, .ph--closing::after { background-position: var(--pos-m, 50% 50%); }
+}
