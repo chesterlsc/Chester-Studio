@@ -43,5 +43,59 @@
     "height": 1460,
     "status": "final",
     "updated": "2026-11-23T11:41:10"
+  },
+  {
+    "id": "packshot-haze-soft-focus-cream",
+    "path": "/home/user/Chester-Studio/lumora-beauty/products/haze-soft-focus-cream/haze-soft-focus-cream-packshot.jpg",
+    "use": "Packshot, haze-soft-focus-cream",
+    "width": 1200,
+    "height": 1500,
+    "status": "final",
+    "updated": "2026-11-23T11:43:49"
+  },
+  {
+    "id": "packshot-apricity-lip-cheek-balm",
+    "path": "/home/user/Chester-Studio/lumora-beauty/products/apricity-lip-cheek-balm/apricity-lip-cheek-balm-packshot.jpg",
+    "use": "Packshot, apricity-lip-cheek-balm",
+    "width": 1200,
+    "height": 1500,
+    "status": "final",
+    "updated": "2026-11-23T11:45:49"
+  },
+  {
+    "id": "packshot-gloaming-body-oil",
+    "path": "/home/user/Chester-Studio/lumora-beauty/products/gloaming-body-oil/gloaming-body-oil-packshot.jpg",
+    "use": "Packshot, gloaming-body-oil",
+    "width": 1200,
+    "height": 1500,
+    "status": "final",
+    "updated": "2026-11-23T11:48:00"
+  },
+  {
+    "id": "packshot-slow-hour-golden-milk",
+    "path": "/home/user/Chester-Studio/lumora-beauty/products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg",
+    "use": "Packshot, slow-hour-golden-milk",
+    "width": 1200,
+    "height": 1500,
+    "status": "final",
+    "updated": "2026-11-23T11:50:13"
+  },
+  {
+    "id": "golden-pair",
+    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/golden-pair.jpg",
+    "use": "Golden pair bundle card",
+    "width": 1200,
+    "height": 1500,
+    "status": "final",
+    "updated": "2026-11-23T11:53:05"
+  },
+  {
+    "id": "closing",
+    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/closing.jpg",
+    "use": "Closing band",
+    "width": 2880,
+    "height": 1100,
+    "status": "final",
+    "updated": "2026-11-23T11:55:39"
   }
 ]
