@@ -529,7 +529,7 @@ METALS = {
 PRESETS = {
     # glass (real thickness; colour = what the glass looks like through `tint_mm` of material)
     "glass_clear": {"kind": "glass", "color": "#F3F3F2", "tint_mm": 80.0, "roughness": 0.0},
-    "glass_frosted": {"kind": "glass", "color": "#F3F3F2", "tint_mm": 80.0, "roughness": 0.3, "inner_roughness": 0.0},
+    "glass_frosted": {"kind": "glass", "color": "#F3F3F2", "tint_mm": 80.0, "roughness": 0.24, "inner_roughness": 0.0},
     "glass_amber": {"kind": "glass", "color": "#B26A20", "tint_mm": 3.0, "roughness": 0.0},
     "glass_amber_frosted": {"kind": "glass", "color": "#B26A20", "tint_mm": 3.0, "roughness": 0.28, "inner_roughness": 0.0},
     "glass_tinted": {"kind": "glass", "color": "#E7BBAE", "tint_mm": 4.0, "roughness": 0.0},
@@ -783,7 +783,7 @@ def _b_plastic(name, color="#EDE6DC", roughness=0.5, coat=0.0, coat_roughness=0.
     return m
 
 
-def _b_metal(name, metal="gold", color=None, roughness=0.24, brushed=False, anisotropy=0.65, brush_scale=2500.0,
+def _b_metal(name, metal="gold", color=None, roughness=0.24, brushed=False, anisotropy=0.65, brush_scale=9000.0,
              edge="#FFFFFF", **kw):
     m = _new_material(name)
     nt = _NT(m)
@@ -807,8 +807,8 @@ def _b_metal(name, metal="gold", color=None, roughness=0.24, brushed=False, anis
         nt.link(tan.outputs[0], p.inputs["Tangent"])
         p.inputs["Anisotropic"].default_value = anisotropy
         bump = nt.new("ShaderNodeBump")
-        bump.inputs["Strength"].default_value = 0.08
-        bump.inputs["Distance"].default_value = 0.00002
+        bump.inputs["Strength"].default_value = 0.03
+        bump.inputs["Distance"].default_value = 0.00001
         nt.link(noise.outputs["Factor"], bump.inputs["Height"])
         nt.link(bump.outputs[0], p.inputs["Normal"])
     else:
@@ -1858,6 +1858,18 @@ def add_area_light(name, target, az_deg, el_deg, dist, size, size_y=None, power=
     return ob
 
 
+def add_area_light_at(name, location, aim, size, size_y=None, irradiance=5.0, kelvin=5600.0, color=None,
+                      spread_deg=180.0, glossy=False, white=5600.0):
+    """Area light at an explicit location (metres) aimed at ``aim``; irradiance is measured at the aim."""
+    loc, aim = Vector(location), Vector(aim)
+    dist = (aim - loc).length
+    ob = add_area_light(name, aim, 0, 0, dist, size, size_y, power=irradiance * math.pi * dist * dist, kelvin=kelvin,
+                        color=color, spread_deg=spread_deg, glossy=glossy, white=white)
+    ob.location = loc
+    ob.rotation_euler = (aim - loc).to_track_quat("-Z", "Y").to_euler()
+    return ob
+
+
 def add_sun(az_deg=-55.0, el_deg=32.0, strength=4.5, angle_deg=1.2, kelvin=4300.0, white=5600.0):
     coll = collection("Lights")
     ld = bpy.data.lights.new("sun", "SUN")
@@ -2030,25 +2042,29 @@ def add_gobo(sun, target, pattern="leaves", distance_mm=900.0, size_mm=2600.0, s
 
 
 LIGHT_PRESETS = {
-    # distances/sizes are multiples of the subject scale S (metres); E = irradiance at the subject
+    # distances/sizes are multiples of the subject scale S (metres); E = irradiance at the subject.
+    # "aim": "backdrop" lights sit above the set and light the sweep behind the subject (the glow
+    # behind frosted glass and the soft hot-spot that separates product from background).
     "soft_studio": {
-        "world": {"color": "#6E6863", "strength": 0.06},
+        "world": {"color": "#6E6863", "strength": 0.05},
         "lights": [
-            {"name": "key", "az": -42, "el": 30, "dist": 5.5, "size": [3.0, 3.6], "E": 6.5, "kelvin": 5300},
-            {"name": "fill", "az": 62, "el": 12, "dist": 6.0, "size": [4.0, 4.0], "E": 1.6, "kelvin": 5800},
-            {"name": "rim_l", "az": -128, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 2.2, "kelvin": 5600},
-            {"name": "rim_r", "az": 130, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 1.8, "kelvin": 5600},
-            {"name": "top", "az": 0, "el": 80, "dist": 5.0, "size": [3.0, 3.0], "E": 1.3, "kelvin": 5600},
+            {"name": "key", "az": -52, "el": 26, "dist": 5.5, "size": [3.0, 3.6], "E": 8.0, "kelvin": 5300},
+            {"name": "fill", "az": 62, "el": 14, "dist": 6.0, "size": [4.0, 4.0], "E": 1.1, "kelvin": 5800},
+            {"name": "rim_l", "az": -126, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 3.0, "kelvin": 5600},
+            {"name": "rim_r", "az": 128, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 2.6, "kelvin": 5600},
+            {"name": "top", "az": 0, "el": 80, "dist": 5.0, "size": [3.0, 3.0], "E": 1.0, "kelvin": 5600},
+            {"name": "background", "aim": "backdrop", "size": [3.5, 2.2], "E": 7.0, "kelvin": 5500},
         ],
     },
     "high_key": {
         "world": {"color": "#9A9590", "strength": 0.12},
         "lights": [
-            {"name": "key", "az": -38, "el": 32, "dist": 5.5, "size": [4.0, 4.5], "E": 6.0, "kelvin": 5600},
-            {"name": "fill", "az": 50, "el": 18, "dist": 5.5, "size": [4.5, 4.5], "E": 3.0, "kelvin": 5600},
-            {"name": "rim_l", "az": -125, "el": 14, "dist": 4.0, "size": [0.6, 4.5], "E": 2.0, "kelvin": 5600},
-            {"name": "rim_r", "az": 125, "el": 14, "dist": 4.0, "size": [0.6, 4.5], "E": 2.0, "kelvin": 5600},
+            {"name": "key", "az": -38, "el": 32, "dist": 5.5, "size": [4.0, 4.5], "E": 7.0, "kelvin": 5600},
+            {"name": "fill", "az": 50, "el": 18, "dist": 5.5, "size": [4.5, 4.5], "E": 3.2, "kelvin": 5600},
+            {"name": "rim_l", "az": -125, "el": 14, "dist": 4.0, "size": [0.6, 4.5], "E": 2.4, "kelvin": 5600},
+            {"name": "rim_r", "az": 125, "el": 14, "dist": 4.0, "size": [0.6, 4.5], "E": 2.4, "kelvin": 5600},
             {"name": "top", "az": 0, "el": 82, "dist": 5.0, "size": [4.0, 4.0], "E": 2.0, "kelvin": 5600},
+            {"name": "background", "aim": "backdrop", "size": [4.5, 2.5], "E": 11.0, "kelvin": 5600},
         ],
     },
     "sunlit": {   # soft ambient + fill; pair with "sun" (+ "gobo") for hard warm sunlight
@@ -2066,6 +2082,7 @@ LIGHT_PRESETS = {
             {"name": "window", "az": -78, "el": 22, "dist": 5.0, "size": [3.5, 5.0], "E": 7.5, "kelvin": 6000},
             {"name": "fill", "az": 70, "el": 12, "dist": 6.0, "size": [4.0, 4.0], "E": 1.0, "kelvin": 5200},
             {"name": "rim_r", "az": 130, "el": 14, "dist": 4.0, "size": [0.5, 4.5], "E": 1.4, "kelvin": 5600},
+            {"name": "background", "aim": "backdrop", "size": [3.5, 2.2], "E": 3.0, "kelvin": 5600},
         ],
     },
     "dramatic": {
@@ -2080,7 +2097,7 @@ LIGHT_PRESETS = {
 
 
 def apply_lighting(preset="soft_studio", target=(0, 0, 0.05), scale=0.25, intensity=1.0, mirror=False, kelvin_shift=0.0,
-                   lights=None, world=None, sun=None, gobo=None, cache_dir=None, white=5600.0):
+                   lights=None, world=None, sun=None, gobo=None, cache_dir=None, white=5600.0, backdrop=None):
     """Build a lighting preset around ``target`` (metres) for a subject of size ``scale`` (metres).
     ``lights``: list of dicts overriding preset lights by name (or adding new ones); ``sun``/``gobo``:
     dicts (or False) overriding the preset's sun; ``world``: dict overriding the world."""
@@ -2099,8 +2116,18 @@ def apply_lighting(preset="soft_studio", target=(0, 0, 0.05), scale=0.25, intens
     set_world(**{k: v for k, v in wspec.items() if k in ("color", "strength", "hdri", "hdri_strength", "hdri_rotation_deg", "camera_color")})
     made = []
     for L in P["lights"]:
-        az = -L["az"] if mirror else L["az"]
         sx, sy = L.get("size", [1.0, 1.0])
+        if L.get("aim") == "backdrop":
+            if not backdrop:
+                continue
+            t = Vector(target)
+            aim = Vector((t.x + L.get("dx", 0.0) * scale, backdrop["wall_y"], backdrop["radius"] * L.get("aim_h", 0.55)))
+            loc = Vector((t.x, t.y + L.get("dy", 0.4) * scale, L.get("h", 4.2) * scale))
+            made.append(add_area_light_at(L["name"], loc, aim, sx * scale, sy * scale, L.get("E", 5.0) * intensity,
+                                          L.get("kelvin", 5600) + kelvin_shift, L.get("color"), L.get("spread", 180),
+                                          glossy=False, white=white))
+            continue
+        az = -L["az"] if mirror else L["az"]
         made.append(add_area_light(L["name"], target, az, L.get("el", 20), L.get("dist", 5.0) * scale, sx * scale, sy * scale,
                                    power=L.get("power"), irradiance=L.get("E", 2.0) * intensity,
                                    kelvin=L.get("kelvin", 5600) + kelvin_shift, color=L.get("color"),
@@ -2526,6 +2553,87 @@ def render_still(path, transparent=False, color_depth="8"):
     return dt
 
 
+def _lin(c):
+    return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+
+def match_backdrop(target_hex, iters=7, res=144, samples=16, regions=None, max_albedo=0.95, tolerance=1.6):
+    """Colour-lock the sweep: iteratively adjust its albedo (and, if it runs out of headroom, the
+    'background' light) until the *rendered* backdrop around the frame edges equals ``target_hex``
+    under the current lighting and view transform. Products are hidden from camera rays while
+    measuring (they still cast light and shadow). Returns the final albedo hex."""
+    sc = bpy.context.scene
+    sweep = bpy.data.objects.get("sweep")
+    if sweep is None:
+        return None
+    mat = sweep.active_material
+    bsdf = next(n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED")
+    sock = bsdf.inputs["Base Color"]
+    if sock.is_linked:
+        _log("backdrop match skipped (two-tone sweep)")
+        return None
+    regions = regions or [(0.0, 0.0, 1.0, 0.12), (0.0, 0.0, 0.07, 0.6), (0.93, 0.0, 1.0, 0.6)]
+    target = hex_rgb(target_hex, linear=False)
+    saved = dict(rx=sc.render.resolution_x, ry=sc.render.resolution_y, samples=sc.cycles.samples,
+                 adapt=sc.cycles.use_adaptive_sampling, path=sc.render.filepath, fmt=sc.render.image_settings.file_format,
+                 mode=sc.render.image_settings.color_mode, depth=sc.render.image_settings.color_depth)
+    hidden = [o for o in sc.objects if o.type == "MESH" and o.name != "sweep" and o.visible_camera]
+    for o in hidden:
+        o.visible_camera = False
+    bg_light = bpy.data.objects.get("background")
+    aspect = saved["ry"] / saved["rx"]
+    sc.render.resolution_x, sc.render.resolution_y = res, max(16, int(res * aspect))
+    sc.cycles.samples = samples
+    sc.cycles.use_adaptive_sampling = False
+    sc.render.image_settings.file_format = "PNG"
+    sc.render.image_settings.color_mode = "RGB"
+    sc.render.image_settings.color_depth = "16"
+    tmp = os.path.join(bpy.app.tempdir or "/tmp", f"lumora_match_{os.getpid()}.png")
+    alb = list(sock.default_value[:3])
+    err = None
+    try:
+        for it in range(iters):
+            sc.render.filepath = tmp
+            bpy.ops.render.render(write_still=True)
+            img = bpy.data.images.load(tmp)
+            w, h = img.size
+            px = np.array(img.pixels[:], np.float32).reshape(h, w, 4)[::-1, :, :3]
+            bpy.data.images.remove(img)
+            vals = []
+            for (x0, y0, x1, y1) in regions:
+                sub = px[int(y0 * h):max(int(y1 * h), int(y0 * h) + 1), int(x0 * w):max(int(x1 * w), int(x0 * w) + 1)]
+                vals.append(sub.reshape(-1, 3))
+            meas = np.median(np.concatenate(vals, 0), axis=0)
+            err = float(np.abs(meas - np.array(target)).max() * 255)
+            _log(f"backdrop match {it}: rendered #{''.join(f'{int(round(c * 255)):02X}' for c in meas)} "
+                 f"target {target_hex} (max err {err:.1f}/255)")
+            if err <= tolerance:
+                break
+            gain = [(_lin(t) / max(_lin(m), 1e-4)) ** 1.7 for t, m in zip(target, meas)]
+            new = [a * g for a, g in zip(alb, gain)]
+            over = max(new) / max_albedo
+            if over > 1.0:
+                new = [v / over for v in new]
+                for lo in ([bg_light] if bg_light is not None else [o for o in sc.objects if o.type == "LIGHT"]):
+                    lo.data.energy *= over ** 1.3
+            alb = [min(max(v, 0.005), max_albedo) for v in new]
+            sock.default_value = (*alb, 1.0)
+    finally:
+        for o in hidden:
+            o.visible_camera = True
+        sc.render.resolution_x, sc.render.resolution_y = saved["rx"], saved["ry"]
+        sc.cycles.samples = saved["samples"]
+        sc.cycles.use_adaptive_sampling = saved["adapt"]
+        sc.render.filepath = saved["path"]
+        sc.render.image_settings.file_format = saved["fmt"]
+        sc.render.image_settings.color_mode = saved["mode"]
+        sc.render.image_settings.color_depth = saved["depth"]
+        if os.path.exists(tmp):
+            os.remove(tmp)
+    srgb = [(c * 12.92 if c <= 0.0031308 else 1.055 * c ** (1 / 2.4) - 0.055) for c in alb]
+    return "#" + "".join(f"{int(round(min(max(c, 0), 1) * 255)):02X}" for c in srgb), err
+
+
 # =============================================================================================
 # job runner (JSON -> scene)
 # =============================================================================================
@@ -2632,6 +2740,7 @@ def build_scene(job, base_dir="."):
         auto.update({k: v for k, v in bd.items() if k in ("width_mm", "floor_mm", "height_mm", "radius_mm", "wall_y_mm")})
         add_sweep(bd.get("color", "#EAE2D8"), bd.get("wall_color"), auto["width_mm"], auto["floor_mm"], auto["height_mm"],
                   auto["radius_mm"], auto["wall_y_mm"], bd.get("roughness", 0.92), bd.get("grain", 0.0), target[0] / MM)
+        ctx["backdrop"] = {"wall_y": auto["wall_y_mm"] * MM, "radius": auto["radius_mm"] * MM}
     elif btype in ("floor", "shadow_catcher"):
         add_floor(bd.get("color", "#EAE2D8"), bd.get("size_mm", 40 * S / MM), bd.get("roughness", 0.92), btype == "shadow_catcher")
     # ---- lighting
@@ -2639,7 +2748,7 @@ def build_scene(job, base_dir="."):
     cache = rel(job.get("cache_dir", "cache"))
     apply_lighting(lt.get("preset", "soft_studio"), target, lt.get("scale", S), lt.get("intensity", 1.0),
                    lt.get("mirror", False), lt.get("kelvin_shift", 0.0), lt.get("lights"), job.get("world"),
-                   job.get("sun"), job.get("gobo"), cache, lt.get("white_balance", 5600.0))
+                   job.get("sun"), job.get("gobo"), cache, lt.get("white_balance", 5600.0), ctx.get("backdrop"))
     # ---- camera
     rnd = dict(job.get("render", {}))
     cam, info = setup_camera(objs, cam_spec.get("preset", "packshot_1x1"), job.get("resolution", 900),
@@ -2653,6 +2762,13 @@ def build_scene(job, base_dir="."):
                      rnd.get("look", "AgX - Medium High Contrast"), rnd.get("denoise", True), rnd.get("threads", 3),
                      rnd.get("clamp_indirect", 10.0), rnd.get("caustics", False), rnd.get("filter_glossy", 0.6),
                      rnd.get("guiding", False), rnd.get("bounces"), rnd.get("time_limit", 0.0))
+    # ---- colour-lock the backdrop (default on for sweeps without hard sun, where edges must match the page)
+    if btype == "sweep" and not bd.get("wall_color") and bd.get("match", not job.get("sun")) and not rnd.get("transparent"):
+        mt = bd.get("match_color", bd.get("color", "#EAE2D8"))
+        res = match_backdrop(mt, regions=bd.get("match_regions"))
+        if res:
+            ctx["backdrop_albedo"] = res[0]
+            _log(f"backdrop albedo set to {res[0]} to render as {mt}")
     return ctx
 
 
