@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumora Beauty | Golden-hour skincare for every skin tone</title>
+<meta name="description" content="Glow-giving skincare and slow evening rituals, made for every skin tone. Six steps from late light to dusk. Warm, never orange. Lit, never glittery.">
+<link rel="icon" href="/brand/logo/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Lumora Beauty | Late light, bottled.">
+<meta property="og:description" content="Glow-giving skincare and slow evening rituals, made for every skin tone.">
+<meta property="og:image" content="../renders/scenes/hero-desktop.jpg">
+<link rel="preload" href="/fonts/fraunces-roman-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/lumora.css">
+<!-- Placeholder fallbacks: each <img> points at its final asset path; while that file is missing,
+     placeholders.css paints the stand-in. Delete the link once every final asset is in. -->
+<link rel="stylesheet" href="/css/placeholders.css">
+
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lumora Beauty: homepage mockup">
+<meta property="og:description" content="Golden-hour skincare: homepage mockup for Lumora Beauty, designed for the Minimog Shopify theme.">
+<meta property="og:image" content="/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="/">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<!-- Icon set: 1.5 px monoline, rounded caps and joins; feature icons sit on a horizon hairline -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-account" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.5c1.3-3.8 4.2-5.6 7.5-5.6s6.2 1.8 7.5 5.6"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8.5h14l-1.1 11.2a1.4 1.4 0 0 1-1.4 1.3H7.5a1.4 1.4 0 0 1-1.4-1.3z"/><path d="M8.8 8.5V7a3.2 3.2 0 0 1 6.4 0v1.5"/></symbol>
+  <symbol id="i-bag-plus" viewBox="0 0 24 24"><path d="M5 8.5h14l-1.1 11.2a1.4 1.4 0 0 1-1.4 1.3H7.5a1.4 1.4 0 0 1-1.4-1.3z"/><path d="M8.8 8.5V7a3.2 3.2 0 0 1 6.4 0v1.5"/><path d="M12 12.2v5.2M9.4 14.8h5.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3.5 8.5h17M3.5 15.5h17"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></symbol>
+  <symbol id="i-ship" viewBox="0 0 32 32"><path d="M6 12.5h20v12H6z"/><path d="M6 12.5l2.4-4.5h15.2l2.4 4.5M16 8v4.5"/><path d="M3 28.5h26"/></symbol>
+  <symbol id="i-guarantee" viewBox="0 0 32 32"><path d="M25.5 16a9.5 9.5 0 1 1-3.1-7"/><path d="M23.2 4.4l-.6 4.6-4.5-.8"/><circle class="sun-fill" cx="16" cy="16" r="2.6"/><path d="M3 28.5h26"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 32 32"><path d="M16 4.5c4.8 6 7.6 10.2 7.6 13.6a7.6 7.6 0 0 1-15.2 0c0-3.4 2.8-7.6 7.6-13.6z"/><path d="M11.8 19.5h8.4"/><path d="M3 28.5h26"/></symbol>
+  <symbol id="i-tones" viewBox="0 0 32 32"><circle cx="11" cy="16" r="6.2"/><circle cx="16" cy="16" r="6.2"/><circle cx="21" cy="16" r="6.2"/><path d="M3 28.5h26"/></symbol>
+  <symbol id="i-amber" viewBox="0 0 32 32"><path d="M13 3.5h6v3.2h-6zM12 6.7h8l.6 2.6a5 5 0 0 1 3.2 4.7V24a1.6 1.6 0 0 1-1.6 1.6H9.8A1.6 1.6 0 0 1 8.2 24V14a5 5 0 0 1 3.2-4.7z"/><path d="M8.2 16.5h15.6"/><path d="M3 28.5h26"/></symbol>
+  <symbol id="i-even" viewBox="0 0 32 32"><path d="M8 22.5a8 8 0 0 1 16 0"/><path d="M16 8.5v2.4M8.6 12l1.6 1.6M23.4 12l-1.6 1.6"/><path d="M3 22.5h26"/><path d="M9 27h14"/></symbol>
+  <symbol id="i-absorb" viewBox="0 0 32 32"><path d="M16 4.5c3.6 4.6 5.7 7.8 5.7 10.4a5.7 5.7 0 0 1-11.4 0c0-2.6 2.1-5.8 5.7-10.4z"/><path d="M6 24.5c3.3-1.6 6.7-1.6 10 0s6.7 1.6 10 0"/><path d="M3 28.5h26"/></symbol>
+  <!-- Sun marks: arc, horizon, a sun that sinks one notch per step -->
+  <symbol id="m1" viewBox="0 0 40 24"><path class="sm-arc" d="M8 20a12 12 0 0 1 24 0"/><path class="sm-hz" d="M3 20h34"/><circle class="sm-sun" cx="8.6" cy="16.3" r="3"/></symbol>
+  <symbol id="m2" viewBox="0 0 40 24"><path class="sm-arc" d="M8 20a12 12 0 0 1 24 0"/><path class="sm-hz" d="M3 20h34"/><circle class="sm-sun" cx="12.9" cy="10.3" r="3"/></symbol>
+  <symbol id="m3" viewBox="0 0 40 24"><path class="sm-arc" d="M8 20a12 12 0 0 1 24 0"/><path class="sm-hz" d="M3 20h34"/><circle class="sm-sun" cx="20" cy="8" r="3"/></symbol>
+  <symbol id="m4" viewBox="0 0 40 24"><path class="sm-arc" d="M8 20a12 12 0 0 1 24 0"/><path class="sm-hz" d="M3 20h34"/><circle class="sm-sun" cx="27.1" cy="10.3" r="3"/></symbol>
+  <symbol id="m5" viewBox="0 0 40 24"><path class="sm-arc" d="M8 20a12 12 0 0 1 24 0"/><path class="sm-hz" d="M3 20h34"/><circle class="sm-sun" cx="31.1" cy="15.5" r="3"/></symbol>
+  <symbol id="m6" viewBox="0 0 40 24"><path class="sm-arc" d="M8 20a12 12 0 0 1 24 0"/><path class="sm-hz" d="M3 20h34"/><path class="sm-sun" d="M29 20a3 3 0 0 1 6 0z"/></symbol>
+  <!-- The low sun: a disc cut by the horizon (one-colour monogram) -->
+  <symbol id="sundot" viewBox="0 0 18 18"><path d="M1.31 11.2A8 8 0 1 1 16.69 11.2Z"/><path d="M1.96 12.8A8 8 0 0 0 16.04 12.8Z"/></symbol>
+</svg>
+
+<!-- ============ 1. Announcement bar + header ============ -->
+<div class="announcement scheme-dusk" data-minimog="announcement-bar" role="region" aria-label="Store announcement">
+  <span class="d">Free US shipping over $65</span><span class="m">Free shipping over $65</span>
+  <i class="dot" aria-hidden="true"></i>
+  <span class="d">30-day guarantee, even if opened</span><span class="m">30-day returns</span>
+</div>
+
+<header class="site-header" data-minimog="header" data-settings="logo-left-menu-center, transparent-on-home, sticky-on-scroll-up, mega-menu">
+  <div class="container site-header__bar">
+    <a class="logo" href="#top" aria-label="Lumora Beauty, home"><img src="/brand/logo/lumora-wordmark.svg" alt="Lumora" width="138" height="38"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#shelf">Shop <svg class="icon"><use href="#i-chevron"/></svg></a>
+      <a href="#ritual">The ritual</a>
+      <a href="#glow">Ingredients</a>
+      <a href="#slow-hour">Slow hour</a>
+      <a href="#formulator">Our story</a>
+    </nav>
+    <div class="header-icons">
+      <a href="#search" aria-label="Search"><svg class="icon"><use href="#i-search"/></svg></a>
+      <a class="hide-m" href="#account" aria-label="Account"><svg class="icon"><use href="#i-account"/></svg></a>
+      <a href="#bag" aria-label="Bag, 2 items"><svg class="icon"><use href="#i-bag"/></svg><span class="count">2</span></a>
+      <a class="menu-btn" href="#menu" aria-label="Menu"><svg class="icon"><use href="#i-menu"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ 2. Hero ============ -->
+<section class="lu-hero" data-minimog="video-hero" aria-label="Late light, bottled">
+  <div class="lu-hero__media lu-hero__media--desktop">
+    <img class="ph ph--hero-desktop" src="/renders/scenes/hero-desktop.jpg" alt="Long Light Serum on a travertine riser beside a jar of Haze Soft-Focus Cream, low sun from the left and olive-leaf shadows on a warm wall" style="--pos: 50% 50%">
+  </div>
+  <div class="lu-hero__scrim"></div>
+  <div class="lu-hero__glow"></div>
+  <div class="container lu-hero__content">
+    <div class="lu-hero__copy">
+      <p class="eyebrow">Golden-hour skincare</p>
+      <h1 class="h1">Late light, <em>bottled.</em></h1>
+      <p class="lu-hero__sub">Glow-giving skincare and slow evening rituals, made for every skin tone. Warm, never orange. Lit, never glittery.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="#shelf">Shop the ritual <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="text-link" href="#ritual">Find your first step</a>
+      </div>
+      <p class="clock" data-liquid="golden-hour-clock">
+        <svg viewBox="0 0 30 18" aria-hidden="true"><path class="clock-hz" d="M3 14.5h24"/><path class="clock-sun" d="M8.5 14.5a6.5 6.5 0 0 1 13 0"/><path class="clock-rays" d="M15 4.2v1.8M8.3 7l1.2 1.2M21.7 7l-1.2 1.2"/></svg>
+        <span>Golden hour in New York today: <strong>3:51 to 4:50 pm</strong></span>
+      </p>
+    </div>
+  </div>
+  <a class="hotspot" href="/products/long-light-serum" style="--x: 67.5%; --y: 56%" aria-label="Start here: Long Light Serum, $54">
+    <span class="hotspot__dot" aria-hidden="true"></span>
+    <span class="hotspot__card">
+      <span class="hotspot__thumb media"><img class="ph ph--pk-long-light" src="/products/long-light-serum/long-light-serum-packshot.jpg" alt="" style="--pos: 50% 40%"></span>
+      <span><small>Start here · Step 02</small><strong>Long Light Serum</strong><span>10% vitamin C + sea buckthorn</span></span>
+      <span class="hotspot__price tnum">$54 <svg class="icon icon--sm"><use href="#i-arrow"/></svg></span>
+    </span>
+  </a>
+  <div class="lu-hero__media lu-hero__media--mobile">
+    <img class="ph ph--hero-mobile" src="/renders/scenes/hero-mobile.jpg" alt="Long Light Serum and Haze Soft-Focus Cream on travertine in low warm sun" style="--pos: 50% 50%">
+  </div>
+</section>
+
+<!-- ============ 3. Promise strip ============ -->
+<section class="promise scheme-linen" data-minimog="icon-box" aria-label="Our promise">
+  <div class="horizon" aria-hidden="true"><svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path class="horizon-fill" d="M0 44V32Q720 -12 1440 32V44Z"/><path class="horizon-line" d="M0 32Q720 -12 1440 32" vector-effect="non-scaling-stroke"/></svg></div>
+  <div class="container promise__grid">
+    <div class="promise__item"><svg class="icon icon--lg"><use href="#i-ship"/></svg><div><h3>Free US shipping</h3><p>on every order over $65</p></div></div>
+    <div class="promise__item"><svg class="icon icon--lg"><use href="#i-guarantee"/></svg><div><h3>30 days to love it</h3><p>even if the bottle is open</p></div></div>
+    <div class="promise__item"><svg class="icon icon--lg"><use href="#i-drop"/></svg><div><h3>Fragrance-free</h3><p>every skincare formula, no masking scent</p></div></div>
+    <div class="promise__item"><svg class="icon icon--lg"><use href="#i-tones"/></svg><div><h3>Every skin tone</h3><p>finish tested on Fitzpatrick&nbsp;I&nbsp;to&nbsp;VI<sup class="fn">1</sup></p></div></div>
+  </div>
+</section>
+
+<!-- ============ 4. The sunset shelf ============ -->
+<section id="shelf" class="section scheme-travertine" data-minimog="featured-collection" aria-labelledby="shelf-title">
+  <div class="container">
+    <header class="section-head">
+      <div class="section-head__text"><h2 id="shelf-title" class="h2">Six steps, late light to <em>dusk.</em></h2></div>
+      <a class="view-all" href="#collection">Shop all six <svg class="icon icon--sm"><use href="#i-arrow"/></svg></a>
+    </header>
+    <div class="grid-products rail">
+      <article class="pcard">
+        <a class="pcard__media" href="#sunmelt">
+          <img class="ph ph--pk-sunmelt" src="/products/sunmelt-cleansing-balm/sunmelt-cleansing-balm-packshot.jpg" alt="Sunmelt Cleansing Balm, a sand-colored tube standing on its cap, on a sand backdrop">
+          <span class="pcard__step"><svg class="sunmark"><use href="#m1"/></svg>01</span>
+          <span class="pcard__plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <div class="pcard__row"><h3 class="pcard__title">Sunmelt Cleansing Balm</h3><span class="pcard__price tnum">$32</span></div>
+          <p class="pcard__desc">Balm-to-milk cleanser · 100 ml</p>
+        </div>
+      </article>
+      <article class="pcard is-hover">
+        <a class="pcard__media" href="/products/long-light-serum">
+          <img class="ph ph--pk-long-light" src="/products/long-light-serum/long-light-serum-packshot.jpg" alt="Long Light Serum, an amber glass dropper with a champagne collar and honey bulb, on a sand backdrop">
+          <img class="pcard__hover ph ph--hover-long-light" src="/products/long-light-serum/long-light-serum-in-light.jpg" alt="" aria-hidden="true">
+          <span class="pcard__step"><svg class="sunmark"><use href="#m2"/></svg>02</span>
+          <span class="pcard__quick"><svg class="icon"><use href="#i-bag-plus"/></svg>Quick add · $54</span>
+          <span class="pcard__plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <div class="pcard__row"><h3 class="pcard__title">Long Light Serum</h3><span class="pcard__price tnum">$54</span></div>
+          <p class="pcard__desc">10% vitamin C glow serum · 30 ml</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard__media" href="#haze">
+          <img class="ph ph--pk-haze" src="/products/haze-soft-focus-cream/haze-soft-focus-cream-packshot.jpg" alt="Haze Soft-Focus Cream, a frosted amber jar with an apricot lid, on a sand backdrop">
+          <span class="pcard__step"><svg class="sunmark"><use href="#m3"/></svg>03</span>
+          <span class="pcard__plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <div class="pcard__row"><h3 class="pcard__title">Haze Soft-Focus Cream</h3><span class="pcard__price tnum">$48</span></div>
+          <p class="pcard__desc">Cushiony satin moisturizer · 50 ml</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard__media" href="#apricity">
+          <img class="ph ph--pk-apricity" src="/products/apricity-lip-cheek-balm/apricity-lip-cheek-balm-packshot.jpg" alt="Apricity Lip + Cheek Balm in the shade Clay, a terracotta stick with a champagne cap, on a sand backdrop">
+          <span class="pcard__step"><svg class="sunmark"><use href="#m4"/></svg>04</span>
+          <span class="pcard__plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <div class="pcard__row"><h3 class="pcard__title">Apricity Lip + Cheek Balm</h3><span class="pcard__price tnum">$24</span></div>
+          <p class="pcard__desc"><span class="swatches" aria-label="Shades: Low Sun, Clay, Dusk"><i class="sw-low-sun"></i><i class="sw-clay"></i><i class="sw-dusk"></i></span>3 shades · 6 g</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard__media" href="#gloaming">
+          <img class="ph ph--pk-gloaming" src="/products/gloaming-body-oil/gloaming-body-oil-packshot.jpg" alt="Gloaming Body Oil, a tall amber glass bottle with a ribbed clay cap, on a sand backdrop">
+          <span class="pcard__step"><svg class="sunmark"><use href="#m5"/></svg>05</span>
+          <span class="pcard__plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <div class="pcard__row"><h3 class="pcard__title">Gloaming Body Oil</h3><span class="pcard__price tnum">$46</span></div>
+          <p class="pcard__desc">Dry-touch body oil · 100 ml</p>
+        </div>
+      </article>
+      <article class="pcard">
+        <a class="pcard__media" href="#slow-hour-pdp">
+          <img class="ph ph--pk-slow-hour" src="/products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg" alt="Slow Hour Golden Milk, a speckled dusk stoneware canister with a champagne lid, on a sand backdrop">
+          <span class="pcard__step"><svg class="sunmark"><use href="#m6"/></svg>06</span>
+          <span class="pcard__plus" aria-hidden="true"><svg class="icon"><use href="#i-plus"/></svg></span>
+        </a>
+        <div class="pcard__body">
+          <div class="pcard__row"><h3 class="pcard__title">Slow Hour Golden Milk</h3><span class="pcard__price tnum">$28</span></div>
+          <p class="pcard__desc">Spiced drink blend · about 30 cups</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. Start here: Long Light ============ -->
+<section id="start-here" class="section scheme-sand" data-minimog="image-with-text" aria-labelledby="start-title">
+  <div class="container feature">
+    <div class="feature__media">
+      <div class="media media--main ratio-4x5"><img class="ph ph--golden-pair" src="/renders/scenes/golden-pair.jpg" alt="Long Light Serum on a travertine block beside Haze Soft-Focus Cream, lit from behind so the amber glass glows" style="--pos: 50% 50%"></div>
+      <div class="media media--inset ratio-4x5"><img class="ph ph--serum-skin" src="/placeholders/photo-serum-skin.jpg" alt="A drop of apricot-colored serum on the back of a hand in warm light" style="--pos: 50% 50%"></div>
+    </div>
+    <div class="feature__text">
+      <p class="eyebrow"><svg class="sunmark"><use href="#m2"/></svg>Start here · Step 02</p>
+      <h2 id="start-title" class="h2">The serum that catches the <em>light.</em></h2>
+      <p class="body-copy">10% stable vitamin C and 2% sea buckthorn oil in a water-light serum. Skin looks warmer, more even and quietly lit by week four<sup class="fn">2</sup>.</p>
+      <ul class="ticks">
+        <li><svg class="icon"><use href="#i-even"/></svg><span>More even-looking tone in 4 weeks<sup class="fn">2</sup></span></li>
+        <li><svg class="icon"><use href="#i-absorb"/></svg>Absorbs in seconds, layers under SPF</li>
+        <li><svg class="icon"><use href="#i-amber"/></svg>Amber glass keeps the vitamin C from the light</li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn--primary" href="#add-long-light">Add to bag · $54 <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <a class="text-link" href="/products/long-light-serum">See the details</a>
+      </div>
+      <p class="reassure"><svg class="icon"><use href="#i-guarantee"/></svg>Opened is fine: you have 30 days to decide.</p>
+      <p class="footnotes"><span><sup class="fn">2</sup>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed. Illustrative placeholder data.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. Every skin, in its best light ============ -->
+<section class="section scheme-travertine" data-minimog="image-cards" aria-labelledby="skin-title">
+  <div class="leaf-light" aria-hidden="true"></div>
+  <div class="container" style="position:relative">
+    <header class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">Inclusive by design</p>
+        <h2 id="skin-title" class="h2">Every skin, in its best <em>light.</em></h2>
+        <p class="lead">Golden hour flatters everyone. We test every finish on light to deep skin<sup class="fn">1</sup>, so the glow reads warm, never ashy, orange or glittery.</p>
+      </div>
+    </header>
+    <div class="cards-4 rail">
+      <figure class="icard"><div class="media ratio-4x5"><img class="ph ph--skin-1" src="/placeholders/photo-skin-1.jpg" alt="Fair skin along a cheekbone in low morning sun with a soft leaf shadow"></div><figcaption><time>7:12 am</time><span>Window light</span></figcaption></figure>
+      <figure class="icard"><div class="media ratio-4x5"><img class="ph ph--skin-2" src="/placeholders/photo-skin-2.jpg" alt="Medium skin at the collarbone in warm late-afternoon window light"></div><figcaption><time>4:47 pm</time><span>Low sun</span></figcaption></figure>
+      <figure class="icard"><div class="media ratio-4x5"><img class="ph ph--skin-3" src="/placeholders/photo-skin-3.jpg" alt="Tan skin along a jawline in raking golden light, eyes closed"></div><figcaption><time>5:31 pm</time><span>Leaf shadow</span></figcaption></figure>
+      <figure class="icard"><div class="media ratio-4x5"><img class="ph ph--skin-4" src="/placeholders/photo-skin-4.jpg" alt="Deep skin on a bare shoulder catching the last golden light"></div><figcaption><time>6:58 pm</time><span>Last light</span></figcaption></figure>
+    </div>
+    <p class="footnotes"><span><sup class="fn">1</sup>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Illustrative placeholder claim.</span></p>
+  </div>
+</section>
+
+<!-- ============ 7. What's in the glow ============ -->
+<section id="glow" class="section scheme-linen" data-minimog="custom-content" aria-labelledby="glow-title">
+  <div class="container">
+    <header class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">Ingredients, explained</p>
+        <h2 id="glow-title" class="h2">What’s in the <em>glow.</em></h2>
+      </div>
+      <a class="view-all" href="#ingredients">Read every ingredient <svg class="icon icon--sm"><use href="#i-arrow"/></svg></a>
+    </header>
+    <div class="ingr rail">
+      <article class="ingr__card"><div class="media"><img class="ph ph--oil-drop" src="/placeholders/photo-oil-drop.jpg" alt="Golden drops of serum backlit by warm light"></div><h3>Vitamin C <span>10%</span></h3><p>Brightens the look of dull skin. A stable form, kept potent by amber glass.</p></article>
+      <article class="ingr__card"><div class="media"><img class="ph ph--buckthorn" src="/placeholders/photo-sea-buckthorn.jpg" alt="Orange sea buckthorn berries on the branch, backlit"></div><h3>Sea buckthorn oil <span>2%</span></h3><p>Carotenoid-rich, and the reason Long Light is apricot. The color is the ingredient.</p></article>
+      <article class="ingr__card"><div class="media"><img class="ph ph--apricot" src="/placeholders/photo-apricot.jpg" alt="Apricot halves with their kernels in warm light"></div><h3>Apricot kernel oil</h3><p>Soft slip that sinks in fast: 18% in Sunmelt, 40% in Gloaming.</p></article>
+      <article class="ingr__card"><div class="media"><img class="ph ph--cream" src="/placeholders/photo-cream.jpg" alt="A swirl of soft cream texture in warm light"></div><h3>Ceramides + squalane <span>5%</span></h3><p>Help replenish the moisture barrier, so dry&#8209;feeling skin feels comfortable again.</p></article>
+    </div>
+    <div class="statement">
+      <p>No mica, glitter or self-tan anywhere in the line, and no tint in the glow formulas. The glow should be your skin’s, <em>not a coating.</em></p>
+      <p>Every skincare formula is fragrance-free. Each ingredient is listed, and explained, on its product page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. Proof, with the method ============ -->
+<section class="section section--feature scheme-honey-wash proof" data-minimog="custom-liquid" aria-labelledby="proof-title">
+  <div class="container">
+    <header class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">What testers saw</p>
+        <h2 id="proof-title" class="h2">Proof, with the method <em>attached.</em></h2>
+        <p class="lead">Small studies, plainly described. The method sits under every number, not behind a link.</p>
+      </div>
+      <img class="proof__sun" src="/brand/logo/lumora-sun-mark.svg" alt="" aria-hidden="true">
+    </header>
+    <div class="stats">
+      <div class="stat"><p class="stat__num tnum">93%<sup class="fn">2</sup></p><p class="stat__label">said their skin looked more radiant after 4&nbsp;weeks of Long Light</p></div>
+      <div class="stat"><p class="stat__num tnum">+38%<sup class="fn">3</sup></p><p class="stat__label">skin hydration one hour after a single use of Haze</p></div>
+      <div class="stat"><p class="stat__num tnum">91%<sup class="fn">2</sup></p><p class="stat__label">said the finish looked natural on their skin tone</p></div>
+    </div>
+    <ol class="timeline">
+      <li><span class="node" aria-hidden="true"></span><b>Day 1</b><p>A satin, soft-focus finish from the first morning.</p></li>
+      <li><span class="node" aria-hidden="true"></span><b>Week 2</b><p>Tone starts to look more even, in daylight and on camera.</p></li>
+      <li><span class="node" aria-hidden="true"></span><b>Week 4</b><p>Skin looks warm-lit and awake, even on gray days<sup class="fn">2</sup>.</p></li>
+    </ol>
+    <div class="footnotes">
+      <span><sup class="fn">2</sup>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed.</span>
+      <span><sup class="fn">3</sup>Corneometer measurement, 20 participants, one hour after a single application. All figures are illustrative placeholder data.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. Sensory marquee ============ -->
+<section class="scheme-honey" data-minimog="scrolling-promotion" aria-label="Warm, never orange. Lit, never glittery.">
+  <div class="marquee">
+    <div class="marquee__track" aria-hidden="true">
+      <span>Layers like silk</span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Golden hour, twice a day</span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Warm, <em>never orange</em></span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Lit, <em>never glittery</em></span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Fragrance-free</span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Layers like silk</span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Golden hour, twice a day</span><svg class="sundot" fill="currentColor"><use href="#sundot"/></svg>
+      <span>Warm, <em>never orange</em></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. The ritual: sunset in six ============ -->
+<section id="ritual" class="section scheme-apricot-wash scheme-ritual" data-minimog="product-bundles" aria-labelledby="ritual-title">
+  <div class="container">
+    <header class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">Sunset in six</p>
+        <h2 id="ritual-title" class="h2">Golden hour, twice a <em>day.</em></h2>
+        <p class="lead">Morning: 01, 02, 03, your daily SPF, then 04. Evening: 01, 02, 03, 05 and 06. Ten slow minutes, start to finish.</p>
+      </div>
+    </header>
+    <div class="ritual__scene">
+      <img class="ph ph--ritual" src="/renders/scenes/ritual.jpg" alt="All six Lumora products in order on a long travertine ledge, low sun raking from the left and long shadows to the right" style="--pos: 50% 54%; --pos-m: 33.9% 50%">
+      <span class="pin pin--d" style="--x: 16.9%; --y: 21.8%">01</span>
+      <span class="pin pin--d" style="--x: 29.1%; --y: 33%">02</span>
+      <span class="pin pin--d" style="--x: 43.9%; --y: 47.7%">03</span>
+      <span class="pin pin--d" style="--x: 56.6%; --y: 44.2%">04</span>
+      <span class="pin pin--d" style="--x: 70.6%; --y: 34.8%">05</span>
+      <span class="pin pin--d" style="--x: 84%; --y: 47.1%">06</span>
+      <span class="pin pin--m" style="--x: 14.9%; --y: 31%">02</span>
+      <span class="pin pin--m" style="--x: 53.7%; --y: 46.2%">03</span>
+      <span class="pin pin--m" style="--x: 87%; --y: 42.6%">04</span>
+      <a class="popover" href="/products/long-light-serum" style="--x: 29.1%; --y: 33%">
+        <span class="hotspot__thumb media"><img class="ph ph--pk-long-light" src="/products/long-light-serum/long-light-serum-packshot.jpg" alt="" style="--pos: 50% 40%"></span>
+        <span><strong>Long Light Serum</strong><span class="tnum">$54</span></span>
+        <svg class="icon"><use href="#i-arrow"/></svg>
+      </a>
+    </div>
+    <div class="bundle" data-liquid="sun-arc-timeline">
+      <div class="bundle__arc" aria-hidden="true">
+        <svg viewBox="0 0 1216 70" preserveAspectRatio="none">
+          <path class="arc-path" d="M101.3 66Q608 -30 1114.7 66" vector-effect="non-scaling-stroke"/>
+          <path class="arc-hz" d="M0 66H1216" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <span class="arc-dot arc-dot--set" style="--x: 8.33%; --y: 94.3%"></span>
+        <span class="arc-dot" style="--x: 25%; --y: 50.4%"></span>
+        <span class="arc-dot" style="--x: 41.67%; --y: 28.4%"></span>
+        <span class="arc-dot" style="--x: 58.33%; --y: 28.4%"></span>
+        <span class="arc-dot" style="--x: 75%; --y: 50.4%"></span>
+        <span class="arc-dot arc-dot--set" style="--x: 91.67%; --y: 94.3%"></span>
+      </div>
+      <ol class="steps">
+        <li><span class="no"><svg class="sunmark"><use href="#m1"/></svg>01</span><h3>Sunmelt</h3><p class="role">Cleanse · AM + PM</p><p class="pr tnum">$32</p></li>
+        <li><span class="no"><svg class="sunmark"><use href="#m2"/></svg>02</span><h3>Long Light</h3><p class="role">Glow · AM + PM</p><p class="pr tnum">$54</p></li>
+        <li><span class="no"><svg class="sunmark"><use href="#m3"/></svg>03</span><h3>Haze</h3><p class="role">Moisturize · AM + PM</p><p class="pr tnum">$48</p></li>
+        <li><span class="no"><svg class="sunmark"><use href="#m4"/></svg>04</span><h3>Apricity</h3><p class="role">Flush · day</p><p class="pr tnum">$24</p></li>
+        <li><span class="no"><svg class="sunmark"><use href="#m5"/></svg>05</span><h3>Gloaming</h3><p class="role">Body · evening</p><p class="pr tnum">$46</p></li>
+        <li><span class="no"><svg class="sunmark"><use href="#m6"/></svg>06</span><h3>Slow Hour</h3><p class="role">Unwind · evening</p><p class="pr tnum">$28</p></li>
+      </ol>
+      <div class="bundle__foot">
+        <div class="bundle__total"><strong class="tnum">$197</strong><span class="was tnum">for all six, $232 bought separately</span><span class="save">Save 15%</span></div>
+        <div class="actions">
+          <a class="text-link" href="#shelf">Start with one step</a>
+          <a class="btn btn--primary" href="#add-full-sunset">Add the full sunset · $197 <svg class="icon"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+      <p class="reassure bundle__reassure"><svg class="icon"><use href="#i-ship"/></svg>Ships free in the US, and every step is covered by the 30-day guarantee.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. The slow hour ============ -->
+<section id="slow-hour" class="section scheme-rose-wash" data-minimog="image-with-text" aria-labelledby="slow-title">
+  <div class="container feature feature--reverse">
+    <div class="feature__media">
+      <div class="media media--main ratio-4x5"><img class="ph ph--golden-milk" src="/placeholders/photo-golden-milk.jpg" alt="Hands around a cup of golden milk in late light, face out of frame"></div>
+      <div class="media media--inset ratio-4x5"><img class="ph ph--pk-slow-hour" src="/products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg" alt="Slow Hour Golden Milk canister"></div>
+    </div>
+    <div class="feature__text">
+      <p class="eyebrow">After sundown</p>
+      <h2 id="slow-title" class="h2">The ritual doesn’t stop at <em>skin.</em></h2>
+      <p class="body-copy">Gloaming for warm shoulders after a bath. Slow Hour for the cup you take outside to watch the light go.</p>
+      <p class="lexicon"><em>gloaming</em> (n.) the soft light after sunset. Also: your shoulders, after this oil.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="#slow-hour-collection">Shop the slow hour <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+      <p class="reassure"><svg class="icon"><use href="#i-drop"/></svg>Slow Hour is a spice blend for warm drinks, sold as food, never as a supplement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. A note from our formulator ============ -->
+<section id="formulator" class="section scheme-apricot-wash" data-minimog="image-with-text" aria-labelledby="note-title">
+  <div class="leaf-light" aria-hidden="true"></div>
+  <div class="container feature" style="position:relative">
+    <div class="feature__media">
+      <div class="media media--main ratio-4x5 media--solo"><img class="ph ph--formulator" src="/placeholders/photo-formulator.jpg" alt="Hands holding a glass dropper in warm window light"></div>
+    </div>
+    <div class="feature__text">
+      <p class="eyebrow">From our formulator</p>
+      <h2 id="note-title" class="h2">Made for my mother’s skin, <em>too.</em></h2>
+      <p class="note">“I wanted a glow that works on my skin and on my mother’s, which are not the same color. Golden hour does that for everyone, so we built around it: actives that brighten, oils that catch the light the way skin does, no mica, no tint. If a formula doesn’t earn its place on your shelf, send it back.”</p>
+      <div class="signature"><span class="name">Mara</span><span>Head of formulation<br>Illustrative persona for this concept store</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. Early voices ============ -->
+<section class="section scheme-terracotta" data-minimog="testimonials" aria-labelledby="voices-title">
+  <div class="container">
+    <header class="section-head">
+      <div class="section-head__text">
+        <p class="eyebrow">Sample tester notes</p>
+        <h2 id="voices-title" class="h2">First impressions, <em>unhurried.</em></h2>
+      </div>
+    </header>
+    <div class="quotes rail">
+      <figure class="quote"><span class="quote__mark" aria-hidden="true">“</span><blockquote>Glow that isn’t gray on me.</blockquote><figcaption><b>Ama</b>Deep skin, combination</figcaption></figure>
+      <figure class="quote"><span class="quote__mark" aria-hidden="true">“</span><blockquote>Sinks in before my SPF does.</blockquote><figcaption><b>Priya</b>Medium skin, oily</figcaption></figure>
+      <figure class="quote"><span class="quote__mark" aria-hidden="true">“</span><blockquote>The oil is the best part of my evening.</blockquote><figcaption><b>Lena</b>Light skin, dry</figcaption></figure>
+      <figure class="quote"><span class="quote__mark" aria-hidden="true">“</span><blockquote>My 7 am face, looking like 7 pm.</blockquote><figcaption><b>Jo</b>Fair skin, sensitive</figcaption></figure>
+    </div>
+    <p class="disclosure">Testers received products free. Sample content for this concept store, not customer reviews.</p>
+  </div>
+</section>
+
+<!-- ============ 14. FAQ ============ -->
+<section class="section scheme-clay" data-minimog="collapsible-tabs" aria-labelledby="faq-title">
+  <div class="container faq">
+    <div class="faq__head">
+      <p class="eyebrow">Good questions</p>
+      <h2 id="faq-title" class="h2">Before your first golden <em>hour.</em></h2>
+      <p class="lead">Short answers to what people ask before they buy. Anything else, write to us and a person replies within one working day.</p>
+      <a class="text-link" href="#contact">Write to us <svg class="icon icon--sm"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="faq__list">
+      <div class="faq__item is-open">
+        <p class="faq__q">Will it suit sensitive skin?<span class="toggle"><svg class="icon"><use href="#i-minus"/></svg></span></p>
+        <p class="faq__a">Every skincare formula is fragrance-free and built on barrier-friendly lipids. If your skin is reactive, patch-test on your inner arm for two evenings, then start Long Light every other day.</p>
+      </div>
+      <div class="faq__item"><p class="faq__q">Will the glow look orange or gray on my skin tone?<span class="toggle"><svg class="icon"><use href="#i-plus"/></svg></span></p></div>
+      <div class="faq__item"><p class="faq__q">Can I use Long Light with retinol or acids?<span class="toggle"><svg class="icon"><use href="#i-plus"/></svg></span></p></div>
+      <div class="faq__item"><p class="faq__q">When will I notice a difference?<span class="toggle"><svg class="icon"><use href="#i-plus"/></svg></span></p></div>
+      <div class="faq__item"><p class="faq__q">Is Slow Hour a supplement?<span class="toggle"><svg class="icon"><use href="#i-plus"/></svg></span></p></div>
+      <div class="faq__item"><p class="faq__q">Is it vegan and cruelty-free?<span class="toggle"><svg class="icon"><use href="#i-plus"/></svg></span></p></div>
+      <div class="faq__item"><p class="faq__q">What if it isn’t right for me?<span class="toggle"><svg class="icon"><use href="#i-plus"/></svg></span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. Closing band ============ -->
+<section class="closing scheme-dusk" data-minimog="custom-liquid" aria-labelledby="closing-title">
+  <div class="closing__media"><img class="ph ph--closing" src="/renders/scenes/closing.jpg" alt="A glass sphere on a terracotta sweep catching the last disc of sun" style="--pos: 62% 50%; --pos-m: 74% 50%"></div>
+  <div class="closing__scrim"></div>
+  <div class="container">
+    <p class="eyebrow">The 30-day promise</p>
+    <h2 id="closing-title" class="h2">Stay for golden <em>hour.</em></h2>
+    <p class="lead">Use any Lumora formula for 30 days. If it isn’t right, we’ll refund you, even if it’s open.</p>
+    <div class="actions">
+      <a class="btn btn--primary" href="#add-long-light">Start with Long Light · $54 <svg class="icon"><use href="#i-arrow"/></svg></a>
+      <a class="text-link" href="#shelf">Shop all six</a>
+    </div>
+  </div>
+  <div class="horizon" aria-hidden="true"><svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path class="horizon-fill horizon-fill--dusk" d="M0 44V32Q720 -12 1440 32V44Z"/><path class="horizon-line" d="M0 32Q720 -12 1440 32" vector-effect="non-scaling-stroke"/></svg></div>
+</section>
+
+</main>
+
+<!-- ============ Footer group: footnotes block, footer, setting-sun wordmark ============ -->
+<footer class="footer scheme-dusk" data-minimog="footer">
+  <div class="container">
+    <section class="footnote-block" data-minimog="custom-liquid" aria-label="Footnotes">
+      <p class="eyebrow">Footnotes</p>
+      <ol>
+        <li><span class="fn">1</span>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI.</li>
+        <li><span class="fn">2</span>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed.</li>
+        <li><span class="fn">3</span>Corneometer measurement, 20 participants, one hour after a single application.</li>
+        <li class="demo">All three are illustrative placeholder data. Lumora is a concept store built for a design trial: product data, results and reviews are illustrative.</li>
+      </ol>
+    </section>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="/brand/logo/lumora-wordmark-linen.svg" alt="Lumora" width="150" height="41">
+        <p>Lumora makes glow-giving skincare and slow rituals for every skin tone: six steps, from late light to dusk.</p>
+      </div>
+      <nav class="footer__menus" aria-label="Footer">
+        <div class="is-open"><h3>Shop <svg class="icon icon--sm toggle"><use href="#i-minus"/></svg></h3><ul><li>The six</li><li>The full sunset</li><li>The golden pair</li><li>Gift the light</li></ul></div>
+        <div><h3>Help <svg class="icon icon--sm toggle"><use href="#i-plus"/></svg></h3><ul><li>Shipping</li><li>Returns</li><li>The 30-day promise</li><li>FAQ</li><li>Contact us</li></ul></div>
+        <div><h3>About <svg class="icon icon--sm toggle"><use href="#i-plus"/></svg></h3><ul><li>Our story</li><li>Ingredients</li><li>How we cast</li><li>Accessibility</li></ul></div>
+      </nav>
+      <div class="newsletter">
+        <h3>The Low Sun Letter</h3>
+        <h4>One note a fortnight, sent at your golden <em>hour.</em></h4>
+        <p>Ritual notes and first looks at new steps. Nothing louder than that.</p>
+        <div class="field"><span class="field__ph">Email address</span><span class="btn btn--primary">Subscribe</span></div>
+        <small>One click to unsubscribe. We never share your address.</small>
+      </div>
+    </div>
+  </div>
+  <div class="signoff" data-minimog="custom-liquid" aria-hidden="true">
+    <div class="signoff__glow"></div>
+    <svg class="signoff__word" viewBox="0 0 548.1 149.1" preserveAspectRatio="xMidYMax meet"><defs><linearGradient id="signoff-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sg-honey"/><stop offset=".48" class="sg-apricot"/><stop offset="1" class="sg-terracotta"/></linearGradient></defs><path fill="url(#signoff-grad)" d="M29.8 5.3L29.8 130.7Q29.8 133.9 30.7 135.35Q31.6 136.8 34 137.5L37.7 138.3Q39.4 139 40.25 140.1Q41.1 141.2 41.1 142.8Q41.1 144.8 39.85 145.85Q38.6 146.9 36.3 146.9L6.3 146.9Q4 146.9 2.75 145.85Q1.5 144.8 1.5 142.8Q1.5 141.2 2.35 140.1Q3.2 139 4.9 138.3L8.6 137.5Q10.9 136.8 11.8 135.35Q12.7 133.9 12.7 130.7L12.7 20.9Q12.7 18 11.9 16.8Q11.1 15.6 9.2 15.2L3.4 15Q1.5 14.4 0.75 13.45Q0 12.5 0 11.1Q0 9.5 0.95 8.4Q1.9 7.3 4.5 6.4L17 1.9Q20.2 0.8 21.95 0.4Q23.7 0 25.1 0Q27.4 0 28.6 1.45Q29.8 2.9 29.8 5.3ZM110.6 137.1L110.6 130.3L110.2 129.4L110.2 79.9Q110.2 77.1 109.4 75.9Q108.6 74.7 106.7 74.3L100.9 74.1Q99 73.5 98.2 72.55Q97.4 71.6 97.4 70.2Q97.4 68.6 98.4 67.45Q99.4 66.3 102 65.4L114.5 61Q117.7 59.9 119.4 59.5Q121.1 59.1 122.6 59.1Q124.9 59.1 126.1 60.5Q127.3 61.9 127.3 64.4L127.3 130.7Q127.3 133.8 128.3 135.35Q129.3 136.9 131.5 137.5L135.2 138.3Q136.9 139 137.7 140.1Q138.5 141.2 138.5 142.8Q138.5 144.8 137.3 145.85Q136.1 146.9 133.8 146.9L120.2 146.9Q115.3 146.9 112.95 144.4Q110.6 141.9 110.6 137.1ZM55.1 122.5L55.1 79.9Q55.1 77.1 54.3 75.9Q53.5 74.7 51.5 74.3L45.8 74.1Q43.9 73.5 43.1 72.55Q42.3 71.6 42.3 70.2Q42.3 68.6 43.3 67.45Q44.3 66.3 46.9 65.4L59.4 61Q62.6 59.9 64.3 59.5Q66 59.1 67.4 59.1Q69.7 59.1 70.95 60.5Q72.2 61.9 72.2 64.4L72.2 118Q72.2 127 76.35 131.65Q80.5 136.3 87.1 136.3Q92.1 136.3 97.55 133.7Q103 131.1 109.1 125.2L112.5 122L116.8 127.1L112.7 131.2Q103.5 140.4 95.1 144.75Q86.7 149.1 78.6 149.1Q68.2 149.1 61.65 142.1Q55.1 135.1 55.1 122.5ZM172.1 64.4L172.1 130.7Q172.1 134 172.95 135.55Q173.8 137.1 176.1 137.8L180 138.7Q182.9 140 182.9 142.8Q182.9 146.9 178.5 146.9L148.6 146.9Q146.2 146.9 145 145.85Q143.8 144.8 143.8 142.8Q143.8 141.2 144.65 140.1Q145.5 139 147.1 138.3L150.9 137.5Q153.2 136.8 154.1 135.35Q155 133.9 155 130.7L155 79.9Q155 77.1 154.2 75.9Q153.4 74.7 151.4 74.3L145.6 74.1Q143.8 73.5 143 72.55Q142.2 71.6 142.2 70.2Q142.2 68.6 143.2 67.45Q144.2 66.3 146.8 65.4L159.3 61Q162.5 59.9 164.2 59.5Q165.9 59.1 167.3 59.1Q169.6 59.1 170.85 60.5Q172.1 61.9 172.1 64.4ZM173.2 82.1L169.8 85.3L165.6 80.5L169.6 76.4Q178.9 67 187.35 62.6Q195.8 58.2 203.9 58.2Q214.5 58.2 221.05 65.2Q227.6 72.2 227.6 84.9L227.6 130.7Q227.6 134 228.45 135.55Q229.3 137.1 231.6 137.8L235.5 138.7Q238.4 140 238.4 142.8Q238.4 146.9 233.9 146.9L204.1 146.9Q199.7 146.9 199.7 142.8Q199.7 140 202.6 138.7L206.4 137.8Q208.8 137.1 209.65 135.55Q210.5 134 210.5 130.7L210.5 89.3Q210.5 80.4 206.3 75.75Q202.1 71.1 195.4 71.1Q190.5 71.1 184.9 73.7Q179.3 76.3 173.2 82.1ZM228.7 80.8L225.3 84L221 79.2L225.1 75.2Q234.1 66.3 241.35 62.25Q248.6 58.2 255.6 58.2Q266.3 58.2 271.75 64.65Q277.2 71.1 278.8 82.8L285.4 130.7Q285.9 133.9 286.6 135.35Q287.3 136.8 289.5 137.5L293.3 138.3Q294.9 139.1 295.8 140.15Q296.7 141.2 296.7 142.8Q296.7 144.8 295.45 145.85Q294.2 146.9 291.9 146.9L261.9 146.9Q257.4 146.9 257.4 142.8Q257.4 140.1 260.4 138.7L264.2 137.8Q266.6 137.1 267.65 135.65Q268.7 134.2 268.3 131L262.1 89.4Q260.7 80.4 257.15 75.75Q253.6 71.1 246.8 71.1Q243 71.1 238.65 73.3Q234.3 75.5 228.7 80.8ZM423.1 98.1L419.8 98Q419.8 84.6 423.4 75.8Q427 67 432.9 62.6Q438.8 58.2 445.9 58.2Q453.5 58.2 457.6 62.65Q461.7 67.1 461.7 75.6Q461.7 81.7 459.3 84.75Q456.9 87.8 453.2 87.8Q449.2 87.8 447.15 85.6Q445.1 83.4 445.1 79.3L445.1 76.4Q445.1 73.3 443.6 71.8Q442.1 70.3 439.1 70.3Q434.9 70.3 431.25 73.45Q427.6 76.6 425.35 82.8Q423.1 89 423.1 98.1ZM422.3 64.8L423.1 85.6L423.1 130.7Q423.1 133.7 424.2 135.4Q425.3 137.1 428.1 137.5L435.2 138.3Q437.4 138.6 438.4 139.85Q439.4 141.1 439.4 142.8Q439.4 144.7 438.2 145.8Q437 146.9 434.6 146.9L399.6 146.9Q397.2 146.9 396 145.85Q394.8 144.8 394.8 142.8Q394.8 141.2 395.65 140.1Q396.5 139 398.1 138.3L401.9 137.5Q404.2 136.8 405.1 135.35Q406 133.9 406 130.7L406 79.9Q406 77.1 405.2 75.9Q404.4 74.7 402.4 74.3L396.6 74.1Q394.8 73.5 394 72.55Q393.2 71.6 393.2 70.2Q393.2 68.6 394.2 67.45Q395.2 66.3 397.8 65.4L410.6 60.9Q413.4 59.9 415.1 59.5Q416.8 59.1 418 59.1Q419.9 59.1 420.95 60.4Q422 61.7 422.3 64.8ZM519.1 135.6L519.1 133.1L517.9 132.4L517.9 82.8Q517.9 74.7 513.7 70.4Q509.5 66.1 502.4 66.1Q495.7 66.1 492.1 68.95Q488.5 71.8 488.5 76.3L488.5 80.6Q488.5 85.4 486.1 87.9Q483.7 90.4 479.1 90.4Q474.6 90.4 472.55 87.9Q470.5 85.4 470.5 81.5Q470.5 75.4 474.5 70.1Q478.5 64.8 486.35 61.5Q494.2 58.2 505.6 58.2Q519.7 58.2 527.35 64.95Q535 71.7 535 83.8L535 131.8Q535 134.2 536 135.75Q537 137.3 539.5 137.3Q540.9 137.3 541.8 136.75Q542.7 136.2 543.4 135.2Q543.8 134.6 544.3 134.2Q544.8 133.8 545.5 133.8Q546.8 133.8 547.45 134.8Q548.1 135.8 548.1 137.4Q548.1 140.4 546.4 143Q544.7 145.6 541.5 147.25Q538.3 148.9 533.8 148.9Q527.1 148.9 523.1 145.3Q519.1 141.7 519.1 135.6ZM466.6 127.2Q466.6 115.3 476.3 108.4Q486 101.5 502.4 101.5Q507.3 101.5 512.4 102.35Q517.5 103.2 521.2 104.6L519.7 111.7Q516 110.2 512 109.35Q508 108.5 503.4 108.5Q494.4 108.5 489.15 112.65Q483.9 116.8 483.9 124.2Q483.9 131.3 488.25 134.85Q492.6 138.4 499.4 138.4Q505.9 138.4 511.55 135.3Q517.2 132.2 521.1 126.8L523.3 133Q518.4 140.4 510.15 144.65Q501.9 148.9 492 148.9Q480.2 148.9 473.4 143Q466.6 137.1 466.6 127.2ZM300.95 117.28Q299.2 110.77 299.2 103.3Q299.2 90.3 304.85 80.1Q310.5 69.9 320.5 63.95Q330.5 58 343.6 58Q356.5 58 366.35 63.85Q376.2 69.7 381.7 79.9Q387.2 90.1 387.2 103.5Q387.2 110.81 385.4 117.28ZM367.26 117.28Q368.69 108.95 366.7 98.8Q364.6 87.7 360.05 80.6Q355.5 73.5 349.25 70.5Q343 67.5 335.9 68.9Q329.2 70.2 324.95 75.65Q320.7 81.1 319.3 89.45Q317.9 97.8 319.8 108Q320.76 113.04 322.24 117.28ZM383.13 123.58Q382.42 125.14 381.6 126.65Q376 136.9 366 142.85Q356 148.8 342.9 148.8Q330 148.8 320.15 142.95Q310.3 137.1 304.75 126.85Q303.88 125.25 303.15 123.58ZM324.96 123.58Q325.67 124.92 326.45 126.15Q331 133.3 337.25 136.3Q343.5 139.3 350.6 137.9Q357.2 136.6 361.5 131.15Q364.08 127.88 365.63 123.58Z"/></svg>
+    <div class="signoff__line"></div>
+  </div>
+  <div class="footer__bottom-wrap scheme-dusk">
+    <div class="container footer__bottom">
+      <span>© 2026 Lumora Beauty. The hour of light.</span>
+      <nav aria-label="Policies"><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#refunds">Refunds</a><a href="#accessibility">Accessibility</a></nav>
+      <div class="pay" aria-label="Accepted payments: Visa, Mastercard, American Express, PayPal, Apple Pay, Shop Pay">
+        <svg viewBox="0 0 44 28"><rect x=".5" y=".5" width="43" height="27" rx="6" class="pay-box"/><text x="22" y="18" class="pay-t">VISA</text></svg>
+        <svg viewBox="0 0 44 28"><rect x=".5" y=".5" width="43" height="27" rx="6" class="pay-box"/><circle cx="18.5" cy="14" r="6" class="pay-o"/><circle cx="25.5" cy="14" r="6" class="pay-o"/></svg>
+        <svg viewBox="0 0 44 28"><rect x=".5" y=".5" width="43" height="27" rx="6" class="pay-box"/><text x="22" y="17.5" class="pay-t pay-t--sm">AMEX</text></svg>
+        <svg viewBox="0 0 44 28"><rect x=".5" y=".5" width="43" height="27" rx="6" class="pay-box"/><text x="22" y="17.5" class="pay-t pay-t--sm">PayPal</text></svg>
+        <svg viewBox="0 0 44 28"><rect x=".5" y=".5" width="43" height="27" rx="6" class="pay-box"/><text x="22" y="17.5" class="pay-t pay-t--sm">Pay</text></svg>
+        <svg viewBox="0 0 44 28"><rect x=".5" y=".5" width="43" height="27" rx="6" class="pay-box"/><text x="22" y="17.5" class="pay-t pay-t--sm">shop</text></svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<nav class="lu-mock-switch" aria-label="Mockup pages">
+  <span>Lumora · design mockup</span>
+  <a href="/" aria-current="page">Homepage</a>
+  <a href="/products/long-light-serum">Product page</a>
+</nav>
+<style>
+.lu-mock-switch{position:fixed;left:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:4px;padding:5px 5px 5px 14px;
+  background:rgba(53,33,31,.92);color:#FBF6EF;border-radius:999px;font:500 12px/1 Figtree,system-ui,sans-serif;letter-spacing:.02em;
+  box-shadow:0 12px 30px -12px rgba(53,33,31,.5);backdrop-filter:blur(6px)}
+.lu-mock-switch span{opacity:.7;margin-right:6px}
+.lu-mock-switch a{color:#FBF6EF;text-decoration:none;padding:7px 11px;border-radius:999px}
+.lu-mock-switch a[aria-current]{background:#E8B566;color:#35211F}
+@media (max-width:600px){.lu-mock-switch span{display:none}.lu-mock-switch{left:50%;transform:translateX(-50%);bottom:84px}}
+</style>
+</body>
+</html>

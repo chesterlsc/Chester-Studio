@@ -1,0 +1,20 @@
+{%- comment -%}
+  LUMORA PDP ACCORDIONS  ·  lu-pdp-accordions.liquid
+  Paste into: Product information > Add block > Custom Liquid, BELOW the golden pair card.
+  Five rows, one open at a time (the first open), honey toggle when open, as in the mockup and the FAQ:
+  What it does (custom.what_it_does, else the product description), Key ingredients
+  (custom.key_ingredients_detail), Full ingredients (custom.inci), How to use (custom.how_to_use) and
+  Shipping and returns (shared text). Rows with an empty metafield are skipped, so it works on all six.
+  Native alternative: five Minimog Collapsible tab blocks with dynamic sources (BUILD-GUIDE 6.2).
+{%- endcomment -%}
+{%- liquid
+  assign m = product.metafields.custom
+  assign lu_what = m.what_it_does.value | default: product.description
+-%}
+<div class="lu-pdp-acc">
+  {%- if lu_what != blank -%}<details name="lu-acc" open><summary>What it does<span class="lu-toggle" aria-hidden="true"></span></summary><div class="lu-pdp-acc__body">{% if m.what_it_does.value != blank %}<p>{{ m.what_it_does.value | newline_to_br }}</p>{% else %}{{ product.description }}{% endif %}</div></details>{%- endif -%}
+  {%- if m.key_ingredients_detail.value != blank -%}<details name="lu-acc"><summary>Key ingredients<span class="lu-toggle" aria-hidden="true"></span></summary><div class="lu-pdp-acc__body"><p>{{ m.key_ingredients_detail.value | newline_to_br }}</p></div></details>{%- endif -%}
+  {%- if m.inci.value != blank -%}<details name="lu-acc"><summary>{% if product.tags contains 'food' %}Ingredients and allergens{% else %}Full ingredients (INCI){% endif %}<span class="lu-toggle" aria-hidden="true"></span></summary><div class="lu-pdp-acc__body"><p>{{ m.inci.value | newline_to_br }}</p></div></details>{%- endif -%}
+  {%- if m.how_to_use.value != blank -%}<details name="lu-acc"><summary>How to use<span class="lu-toggle" aria-hidden="true"></span></summary><div class="lu-pdp-acc__body"><p>{{ m.how_to_use.value | newline_to_br }}</p></div></details>{%- endif -%}
+  <details name="lu-acc"><summary>Shipping and returns<span class="lu-toggle" aria-hidden="true"></span></summary><div class="lu-pdp-acc__body"><p>Free US shipping on orders over $65, and a flat $6 below that. Orders leave us within one working day and arrive in 3 to 5 working days. Not right for your skin? Send it back within 30 days of delivery, opened or not, for a full refund. Return shipping in the US is on us.</p></div></details>
+</div>

@@ -1,19 +1,18 @@
 {%- comment -%}
-  LUMORA PDP AT A GLANCE  ·  lu-pdp-glance.liquid  ·  v1.0
-  Paste into: Product information > Add block > Custom Liquid, directly BELOW the benefits block.
-  Rows from metafields: custom.suited_to, custom.finish, custom.scent, custom.key_ingredients and
-  custom.pairs_with (a product handle, e.g. haze-soft-focus-cream: printed as a link with its price).
-  Empty rows are skipped, so the same block works for all six products.
+  LUMORA PDP AT A GLANCE  ·  lu-pdp-glance.liquid
+  Paste into: Product information > Add block > Custom Liquid, directly BELOW the benefits.
+  Rows from custom.suited_to, custom.finish, custom.scent, custom.key_ingredients and custom.pairs_with (a
+  product handle). On Long Light, "Pairs with" jumps to the golden pair card (#pair). Empty rows are skipped.
+  On phones lu-pdp-skin moves this block below the trust row, as in the mockup.
 {%- endcomment -%}
 {%- liquid
   assign m = product.metafields.custom
   assign lu_pair = all_products[m.pairs_with.value]
 -%}
-<p class="lu-eyebrow" style="margin:0 0 6px">At a glance</p>
-<dl class="lu-glance">
-  {%- if m.suited_to.value != blank -%}<dt>Suited to</dt><dd>{{ m.suited_to.value }}</dd>{%- endif -%}
-  {%- if m.finish.value != blank -%}<dt>Finish</dt><dd>{{ m.finish.value }}</dd>{%- endif -%}
-  {%- if m.scent.value != blank -%}<dt>Scent</dt><dd>{{ m.scent.value }}</dd>{%- endif -%}
-  {%- if m.key_ingredients.value != blank -%}<dt>Key ingredients</dt><dd>{{ m.key_ingredients.value }}</dd>{%- endif -%}
-  {%- if lu_pair.id -%}<dt>Pairs with</dt><dd><a href="{{ lu_pair.url }}">{{ lu_pair.title | escape }}</a> · {{ lu_pair.price | money_without_trailing_zeros }}</dd>{%- endif -%}
+<dl class="lu-pdp-glance">
+  {%- if m.suited_to.value != blank -%}<div><dt>Suited to</dt><dd>{{ m.suited_to.value }}</dd></div>{%- endif -%}
+  {%- if m.finish.value != blank -%}<div><dt>Finish</dt><dd>{{ m.finish.value }}</dd></div>{%- endif -%}
+  {%- if m.scent.value != blank -%}<div><dt>Scent</dt><dd>{{ m.scent.value }}</dd></div>{%- endif -%}
+  {%- if m.key_ingredients.value != blank -%}<div><dt>Key ingredients</dt><dd>{{ m.key_ingredients.value }}</dd></div>{%- endif -%}
+  {%- if lu_pair.id -%}<div><dt>Pairs with</dt><dd><a href="{% if product.handle == 'long-light-serum' and lu_pair.handle == 'haze-soft-focus-cream' %}#pair{% else %}{{ lu_pair.url }}{% endif %}">{{ lu_pair.title | escape }}</a></dd></div>{%- endif -%}
 </dl>

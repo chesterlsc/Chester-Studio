@@ -1,39 +1,40 @@
 {%- comment -%}
-  LUMORA PDP SHIPPING + DELIVERY LINES  ·  lu-pdp-delivery.liquid  ·  v1.0
+  LUMORA PDP SHIPPING + DELIVERY LINES  ·  lu-pdp-delivery.liquid
   Paste into: Product information > Add block > Custom Liquid, directly BELOW Buy buttons.
-  Line 1: the free-shipping gap for the selected size, with the cheapest other step that closes it
-  ("You're $11 from free US shipping. An Apricity would do it."). Line 2: a calculated delivery window
-  (cut-off 2 pm Eastern on business days, 3 to 5 business days in transit, US federal holidays skipped).
-  No countdown and no invented urgency. Edit the numbers below if fulfilment differs.
+  "Free US shipping over $65. Any second step gets you there." (it names the step that closes the gap when
+  the travel size is selected) and "Order today, arrives Mon, Nov 30 – Wed, Dec 2": one working day to
+  dispatch, then 3 to 5 working days, skipping weekends and US carrier holidays (the mockup's script).
+  No countdown. Replaces Minimog's Shipping information block, which cannot skip holidays.
 {%- endcomment -%}
 {%- liquid
   assign lu_threshold = 6500
   assign lu_handles = 'sunmelt-cleansing-balm,long-light-serum,haze-soft-focus-cream,apricity-lip-cheek-balm,gloaming-body-oil,slow-hour-golden-milk' | split: ','
   assign lu_names = 'Sunmelt,Long Light,Haze,Apricity,Gloaming,Slow Hour' | split: ','
   assign lu_price = product.selected_or_first_available_variant.price
-  assign lu_gap = lu_threshold | minus: lu_price
 -%}
-<div class="lu-ship">
-  <p><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 12.5h20v12H6z"/><path d="M6 12.5l2.4-4.5h15.2l2.4 4.5M16 8v4.5"/><path d="M3 28.5h26"/></svg><span data-lu-free>{%- if lu_gap > 0 -%}You’re <strong>{{ lu_gap | money_without_trailing_zeros }}</strong> from free US shipping.{%- else -%}This ships free in the US.{%- endif -%}</span></p>
-  <p data-lu-eta hidden><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="8" width="20" height="17" rx="2.5"/><path d="M6 13.5h20M11.5 5.5v4.5M20.5 5.5v4.5"/><circle cx="16" cy="19.5" r="2" fill="#E8B566" stroke="none"/></svg><span></span></p>
-</div>
-<script type="application/json" data-lu-ship-data>{"t":{{ lu_threshold }},"p":{{ lu_price }},"v":{{ product.variants | map: 'id' | json }},"o":[{%- assign lu_first = true -%}{%- for h in lu_handles -%}{%- assign op = all_products[h] -%}{%- if op.id and op.id != product.id -%}{%- unless lu_first -%},{%- endunless -%}{"n":{{ lu_names[forloop.index0] | json }},"p":{{ op.price }}}{%- assign lu_first = false -%}{%- endif -%}{%- endfor -%}],"cut":14,"min":3,"max":5,"hol":["2026-11-26","2026-12-25","2027-01-01","2027-01-18","2027-02-15","2027-05-31","2027-06-18","2027-07-05","2027-09-06","2027-10-11","2027-11-11","2027-11-25","2027-12-24"]}</script>
+<ul class="lu-pdp-ship">
+  <li><svg class="lu-ico" aria-hidden="true"><use href="#lu-i-ship"/></svg><span data-lu-free>Free US shipping over $65.{% if lu_price < lu_threshold %} Any second step gets you there.{% endif %}</span></li>
+  <li><svg class="lu-ico" aria-hidden="true"><use href="#lu-i-cal"/></svg><span>Order today, arrives <strong data-lu-delivery>in 4 to 6 working days</strong></span></li>
+</ul>
+<script type="application/json" data-lu-ship-data>{"t":{{ lu_threshold }},"p":{{ lu_price }},"v":{{ product.variants | map: 'id' | json }},"o":[{%- assign lu_first = true -%}{%- for h in lu_handles -%}{%- assign op = all_products[h] -%}{%- if op.id and op.id != product.id -%}{%- unless lu_first -%},{%- endunless -%}{"n":{{ lu_names[forloop.index0] | json }},"p":{{ op.price }}}{%- assign lu_first = false -%}{%- endif -%}{%- endfor -%}],"hol":["2026-11-26","2026-12-25","2027-01-01","2027-01-18","2027-02-15","2027-05-31","2027-07-05","2027-09-06","2027-11-25","2027-12-24"]}</script>
 <script>
 (function(){
   "use strict";
   var box=document.querySelector("[data-lu-ship-data]");if(!box)return;var D={};try{D=JSON.parse(box.textContent)}catch(e){return}
+  /* Free-shipping line: "Any second step gets you there" when the cheapest other step clears $65, else name the step that does */
   function usd(c){return"$"+(c%100?(c/100).toFixed(2):String(c/100))}
-  function free(price){var el=document.querySelector("[data-lu-free]");if(!el)return;var gap=D.t-price;if(gap<=0){el.textContent="This ships free in the US.";return}
-    var pick=(D.o||[]).filter(function(x){return x.p>=gap}).sort(function(a,b){return a.p-b.p})[0];
-    el.innerHTML="You’re <strong>"+usd(gap)+"</strong> from free US shipping."+(pick?" "+(/^[AEIOU]/.test(pick.n)?"An ":"A ")+pick.n+" would do it.":"")}
-  function eta(){var el=document.querySelector("[data-lu-eta]");if(!el)return;
-    var f=new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",hour12:false}).formatToParts(new Date()),g={};f.forEach(function(x){g[x.type]=x.value});
-    var d=new Date(Date.UTC(+g.year,+g.month-1,+g.day,12)),hol=D.hol||[];
-    function biz(x){var w=x.getUTCDay(),k=x.toISOString().slice(0,10);return w!==0&&w!==6&&hol.indexOf(k)<0}
-    function add(x,n){var y=new Date(x.getTime());while(n>0){y.setUTCDate(y.getUTCDate()+1);if(biz(y))n--}return y}
-    var ship=new Date(d.getTime());if(!(biz(ship)&&(+g.hour%24)<D.cut)){ship=add(ship,1)}
-    var a=add(ship,D.min),b=add(ship,D.max),fmt=new Intl.DateTimeFormat("en-US",{timeZone:"UTC",weekday:"short",month:"short",day:"numeric"});
-    el.querySelector("span").innerHTML="Order today, arrives <strong>"+fmt.format(a)+" to "+fmt.format(b)+"</strong>.";el.hidden=false}
+  function free(price){var el=document.querySelector("[data-lu-free]");if(!el)return;var gap=D.t-price;if(gap<=0){el.textContent="Free US shipping over $65: this ships free.";return}
+    var others=(D.o||[]).slice().sort(function(a,b){return a.p-b.p});
+    if(others.length&&others[0].p>=gap){el.textContent="Free US shipping over $65. Any second step gets you there.";return}
+    var pick=others.filter(function(x){return x.p>=gap})[0];
+    el.textContent="You’re "+usd(gap)+" from free US shipping."+(pick?" "+(/^[AEIOU]/.test(pick.n)?"An ":"A ")+pick.n+" would do it.":"")}
+  /* Delivery estimate, as in the mockup: one working day to dispatch, then 3 to 5 working days, skipping weekends and US carrier holidays */
+  function eta(){var el=document.querySelector("[data-lu-delivery]");if(!el)return;var hol=D.hol||[];
+    function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+    function work(d){var w=d.getDay();return w!==0&&w!==6&&hol.indexOf(iso(d))===-1}
+    function add(d,n){var r=new Date(d);while(n>0){r.setDate(r.getDate()+1);if(work(r))n--}return r}
+    var fmt=new Intl.DateTimeFormat("en-US",{weekday:"short",month:"short",day:"numeric"}),ship=add(new Date(),1);
+    el.textContent=fmt.format(add(ship,3))+" – "+fmt.format(add(ship,5))}
   free(D.p);try{eta()}catch(e){}
   document.addEventListener("variant:changed",function(e){var v=e.detail&&e.detail.variant;if(v&&(D.v||[]).indexOf(v.id)>-1)free(v.price)});
 })();

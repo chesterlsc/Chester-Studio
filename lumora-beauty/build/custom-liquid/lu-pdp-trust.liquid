@@ -1,23 +1,15 @@
 {%- comment -%}
-  LUMORA PDP TRUST ROW  ·  lu-pdp-trust.liquid  ·  v1.0
+  LUMORA PDP TRUST ROW  ·  lu-pdp-trust.liquid
   Paste into: Product information > Add block > Custom Liquid, directly BELOW the shipping lines.
-  The homepage promise strip, compact: same four icons, same wording. Footnotes for the buy box sit
-  directly beneath (1 for the skin-tone claim; 2 only when a benefit on this product uses it).
-  Products tagged food (Slow Hour) show only the shipping and guarantee items.
+  The homepage promise strip, compact: same four icons and wording, footnote 1 directly beneath.
+  Products tagged food (Slow Hour) keep only the shipping and guarantee items.
 {%- endcomment -%}
-{%- liquid
-  assign m = product.metafields.custom
-  assign lu_b = m.benefit_1.value | append: m.benefit_2.value | append: m.benefit_3.value
--%}
-<ul class="lu-trust">
-  <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 12.5h20v12H6z"/><path d="M6 12.5l2.4-4.5h15.2l2.4 4.5M16 8v4.5"/><path d="M3 28.5h26"/></svg><div><b>Free US shipping</b><span>on every order over $65</span></div></li>
-  <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M25.5 16a9.5 9.5 0 1 1-3.1-7"/><path d="M23.2 4.4l-.6 4.6-4.5-.8"/><circle class="lu-sundot" cx="16" cy="16" r="2.6"/><path d="M3 28.5h26"/></svg><div><b>30 days to love it</b><span>even if the bottle is open</span></div></li>
-  {%- unless product.tags contains 'food' -%}
-  <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5c4.8 6 7.6 10.2 7.6 13.6a7.6 7.6 0 0 1-15.2 0c0-3.4 2.8-7.6 7.6-13.6z"/><path d="M11.8 19.5h8.4"/><path d="M3 28.5h26"/></svg><div><b>Fragrance-free</b><span>no masking scent</span></div></li>
-  <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="16" r="6.2"/><circle cx="16" cy="16" r="6.2"/><circle cx="21" cy="16" r="6.2"/><path d="M3 28.5h26"/></svg><div><b>Every skin tone</b><span>finish tested on Fitzpatrick I&nbsp;to&nbsp;VI<sup class="lu-fn" data-fn="1">1</sup></span></div></li>
-  {%- endunless -%}
+<ul class="lu-pdp-trust">
+        <li><svg class="lu-ico"><use href="#lu-i-ship"/></svg><span><b>Free US shipping</b>on every order over $65</span></li>
+        <li><svg class="lu-ico"><use href="#lu-i-guarantee"/></svg><span><b>30 days to love it</b>even if the bottle is open</span></li>
+        {%- unless product.tags contains 'food' -%}
+<li><svg class="lu-ico"><use href="#lu-i-drop"/></svg><span><b>Fragrance-free</b>every skincare formula, no masking scent</span></li>
+        <li><svg class="lu-ico"><use href="#lu-i-tones"/></svg><span><b>Every skin tone</b>finish tested on Fitzpatrick I&nbsp;to&nbsp;VI<sup class="lu-fn" data-fn="1">1</sup></span></li>
+      {%- endunless -%}
 </ul>
-<p class="lu-footnotes lu-buybox-notes">
-  {%- unless product.tags contains 'food' -%}<span data-fn-note="1"><sup class="lu-fn">1</sup>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Illustrative placeholder data.</span>{%- endunless -%}
-  {%- if lu_b contains '²' -%}<span data-fn-note="2"><sup class="lu-fn">2</sup>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed. Illustrative placeholder data.</span>{%- endif -%}
-</p>
+{%- unless product.tags contains 'food' -%}<p class="lu-pdp-fn lu-footnotes" data-fn-note="1"><sup class="lu-fn">1</sup>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Illustrative placeholder data.</p>{%- endunless -%}

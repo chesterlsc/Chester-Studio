@@ -1,35 +1,61 @@
 {%- comment -%}
-  LUMORA THE GLOW CHECK  ·  lu-glow-check.liquid  ·  v1.0
-  Paste into: Product template (Long Light) > Add section > Custom Liquid (padding 0), after "Why amber".
-  Six Fitzpatrick tiles drawn in CSS (no photography): each tile is a skin-tone field with the satin
-  sheen the serum leaves, and the panel's verdict for that type. Footnote 1 sits directly beneath.
-  Scheme: Linen. The per-type figures are illustrative placeholder data and are labelled as such.
+  LUMORA THE GLOW CHECK  ·  lu-glow-check.liquid  (mockup PDP section 6)
+  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after Results.
+  Linen. Six CSS skin-tone swatches (illustrations of Fitzpatrick I to VI, labelled as such), the panel
+  score per type, the "58 of 60" summary with the three checks, and footnote 1 directly beneath.
 {%- endcomment -%}
-<section class="lu-sec lu-s-linen lu-glow-check" id="glow-check" aria-labelledby="lu-gc-title">
+<section id="glow-check" class="lu-sec lu-s-linen lu-pdp-glow" aria-labelledby="glow-title">
   <div class="container-fluid">
-    <header class="lu-head">
-      <p class="lu-eyebrow">The glow check</p>
-      <h2 id="lu-gc-title" class="lu-h2">Warm on every skin, never <em>orange.</em></h2>
-      <p class="lu-lead">An expert panel judged the finish on 60 people, ten for each Fitzpatrick type, in daylight and in warm indoor light. One question: does the glow read as skin, or as a coating?<sup class="lu-fn" data-fn="1">1</sup></p>
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">The glow check</p>
+        <h2 id="glow-title" class="lu-h2">Warm on every skin <em>tone.</em></h2>
+        <p class="lu-lead">A glow serum can go wrong three ways: an orange cast, a gray cast or visible shimmer. An expert panel looked for all three on ten people of each Fitzpatrick type<sup class="lu-fn" data-fn="1">1</sup>.</p>
+      </div>
     </header>
-    <ol class="lu-tones">
-      <li style="--a:#F5DDCB;--b:#E9C4AB"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type I</b><em>9 of 10</em></span><span class="lu-tone__sub">Fair · read as skin</span></li>
-      <li style="--a:#EFCFB2;--b:#DFB08F"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type II</b><em>10 of 10</em></span><span class="lu-tone__sub">Light · read as skin</span></li>
-      <li style="--a:#E2B18B;--b:#CC9268"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type III</b><em>9 of 10</em></span><span class="lu-tone__sub">Medium · read as skin</span></li>
-      <li style="--a:#CB956B;--b:#AF7A50"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type IV</b><em>10 of 10</em></span><span class="lu-tone__sub">Olive · read as skin</span></li>
-      <li style="--a:#9E6B48;--b:#835536"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type V</b><em>9 of 10</em></span><span class="lu-tone__sub">Deep · read as skin</span></li>
-      <li style="--a:#6D4531;--b:#4F3122"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type VI</b><em>9 of 10</em></span><span class="lu-tone__sub">Very deep · read as skin</span></li>
+    <ol class="lu-pdp-tones">
+      <li><span class="lu-pdp-swatch" style="--skin: var(--skin-1)" aria-hidden="true"></span><p class="lu-pdp-tones__type">Type I <span>Fair</span></p><p class="lu-pdp-tones__score lu-tnum">10 of 10</p><p class="lu-pdp-tones__note">No orange cast</p></li>
+      <li><span class="lu-pdp-swatch" style="--skin: var(--skin-2)" aria-hidden="true"></span><p class="lu-pdp-tones__type">Type II <span>Light</span></p><p class="lu-pdp-tones__score lu-tnum">10 of 10</p><p class="lu-pdp-tones__note">No orange cast</p></li>
+      <li><span class="lu-pdp-swatch" style="--skin: var(--skin-3)" aria-hidden="true"></span><p class="lu-pdp-tones__type">Type III <span>Medium</span></p><p class="lu-pdp-tones__score lu-tnum">9 of 10</p><p class="lu-pdp-tones__note">One saw warmth for a minute</p></li>
+      <li><span class="lu-pdp-swatch" style="--skin: var(--skin-4)" aria-hidden="true"></span><p class="lu-pdp-tones__type">Type IV <span>Olive</span></p><p class="lu-pdp-tones__score lu-tnum">10 of 10</p><p class="lu-pdp-tones__note">No gray cast</p></li>
+      <li><span class="lu-pdp-swatch" style="--skin: var(--skin-5)" aria-hidden="true"></span><p class="lu-pdp-tones__type">Type V <span>Brown</span></p><p class="lu-pdp-tones__score lu-tnum">9 of 10</p><p class="lu-pdp-tones__note">One saw warmth for a minute</p></li>
+      <li><span class="lu-pdp-swatch" style="--skin: var(--skin-6)" aria-hidden="true"></span><p class="lu-pdp-tones__type">Type VI <span>Deep</span></p><p class="lu-pdp-tones__score lu-tnum">10 of 10</p><p class="lu-pdp-tones__note">No gray cast</p></li>
     </ol>
-    <p class="lu-footnotes"><span data-fn-note="1"><sup class="lu-fn">1</sup>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Figures per type are illustrative placeholder data.</span></p>
+    <div class="lu-pdp-glow__sum">
+      <p class="lu-pdp-glow__big"><span class="lu-tnum">58</span> of 60</p>
+      <p>finishes rated natural, with no orange cast, gray cast or shimmer<sup class="lu-fn" data-fn="1">1</sup>. The two exceptions noticed a faint warmth in the first minute, gone once the serum sank in.</p>
+      <ul class="lu-pdp-glow__checks">
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Warm, never orange</li>
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>No gray or ashy cast</li>
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Lit, never glittery</li>
+      </ul>
+    </div>
+    <p class="lu-footnotes"><span data-fn-note="1"><sup class="lu-fn">1</sup>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI, ten per type, 10 minutes after application. Swatches are illustrations of the six types, not results. Illustrative placeholder data.</span></p>
   </div>
 </section>
 <style>
-.lu-tones{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;margin:0;padding:0;list-style:none}
-.lu-tone{display:block;aspect-ratio:4/5;border-radius:14px;background:radial-gradient(58% 26% at 64% 40%,rgba(232,181,102,.42),rgba(232,181,102,0) 72%),radial-gradient(120% 90% at 28% 22%,rgba(255,241,224,.5),rgba(255,241,224,0) 46%),linear-gradient(160deg,var(--a),var(--b));box-shadow:inset 0 0 0 1px rgba(53,33,31,.06)}
-.lu-tone__row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:16px}
-.lu-tone__row b{font:600 12px/16px var(--lu-body);letter-spacing:.16em;text-transform:uppercase;color:rgb(var(--color-foreground))}
-.lu-tone__row em{font:300 22px/1 var(--lu-display);font-style:italic;letter-spacing:-.01em;color:rgb(var(--color-heading));white-space:nowrap}
-.lu-tone__sub{display:block;margin-top:6px;font-size:13px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
-@media (max-width:1023px){.lu-tones{grid-template-columns:repeat(3,1fr);gap:28px 16px}}
-@media (max-width:767px){.lu-tones{gap:22px 12px}.lu-tone__row{display:block;margin-top:10px}.lu-tone__row em{display:block;margin-top:4px;font-size:18px}.lu-tone__sub{font-size:12px;line-height:17px}}
+.lu-pdp-glow{--skin-1:#F0D3BE;--skin-2:#E0B596;--skin-3:#C58F69;--skin-4:#A67650;--skin-5:#7A4F34;--skin-6:#4B2F22;--swatch-lit:rgba(251,246,239,.30)}
+.lu-pdp-tones,.lu-pdp-glow__checks{list-style:none;margin:0;padding:0}
+.lu-pdp-tones{display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px;}
+.lu-pdp-swatch{display: block; width: 100%; max-width: 176px; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 34% 30%, var(--swatch-lit) 0, transparent 52%), var(--skin); box-shadow: inset 0 0 0 1px rgba(53,33,31,.18), 0 20px 32px -24px var(--lu-ink-shadow);}
+.lu-pdp-tones__type{margin-top: 20px; font: 400 20px/1.2 var(--lu-display);}
+.lu-pdp-tones__type span{display: block; margin-top: 2px; font: 400 13px/18px var(--lu-body); color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-tones__score{margin-top: 12px; padding-top: 12px; border-top: 1px solid rgb(var(--color-border)); font: 600 15px/20px var(--lu-body);}
+.lu-pdp-tones__note{margin-top: 4px; font-size: 13px; line-height: 18px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-glow__sum{display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 36px; margin-top: 48px; padding: 28px 34px; border-radius: var(--lu-radius); background: var(--lu-travertine);}
+.lu-pdp-glow__big{font: 300 64px/1 var(--lu-display); letter-spacing: -.03em; white-space: nowrap;}
+.lu-pdp-glow__sum > p:not([class]){max-width: 56ch; font-size: 15px; line-height: 23px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-glow__checks{display: grid; gap: 8px;}
+.lu-pdp-glow__checks li{display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; white-space: nowrap;}
+.lu-pdp-glow__checks .lu-ico{width: 18px; height: 18px; color: rgb(var(--color-price-sale));}
+@media (max-width: 767px){
+.lu-pdp-tones{grid-template-columns: repeat(3, 1fr); gap: 28px 14px;}
+.lu-pdp-tones__type{margin-top: 12px; font-size: 17px;}
+.lu-pdp-tones__type span{font-size: 12px;}
+.lu-pdp-tones__score{margin-top: 8px; padding-top: 8px; font-size: 14px;}
+.lu-pdp-tones__note{font-size: 12px; line-height: 16px;}
+.lu-pdp-glow__sum{grid-template-columns: 1fr; gap: 14px; margin-top: 36px; padding: 22px 20px;}
+.lu-pdp-glow__big{font-size: 48px;}
+.lu-pdp-glow__sum > p:not([class]){font-size: 14px; line-height: 21px;}
+}
 </style>

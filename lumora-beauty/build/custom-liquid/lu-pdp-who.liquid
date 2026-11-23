@@ -1,0 +1,74 @@
+{%- comment -%}
+  LUMORA PDP WHO IT'S FOR  ·  lu-pdp-who.liquid  (mockup section 7)
+  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after The glow check.
+  Sand. Skin-type chips, then Made for · Maybe not for you if · Good to know (pregnancy guidance points to
+  a doctor; "it doesn't protect you from the sun: keep your SPF" is a deliberate disclaimer).
+{%- endcomment -%}
+<section id="who" class="lu-sec lu-s-sand lu-pdp-who" aria-labelledby="who-title">
+  <div class="container-fluid">
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">Before you buy</p>
+        <h2 id="who-title" class="lu-h2">Who it’s for, <em>honestly.</em></h2>
+      </div>
+      <ul class="lu-pdp-chips" aria-label="Skin types">
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Dry</li>
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Normal</li>
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Oily</li>
+        <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Combination</li>
+        <li class="is-soft"><svg class="lu-ico"><use href="#lu-i-info"/></svg>Sensitive: patch-test first</li>
+      </ul>
+    </header>
+    <div class="lu-pdp-who__grid">
+      <div class="lu-pdp-who__col">
+        <h3>Made for</h3>
+        <ul class="lu-pdp-list lu-pdp-list--yes">
+          <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Skin that looks dull or tired, especially by the afternoon</li>
+          <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>Tone that looks uneven, in daylight or on camera</li>
+          <li><svg class="lu-ico"><use href="#lu-i-check"/></svg><span>Every skin tone, from Fitzpatrick I to VI<sup class="lu-fn" data-fn="1">1</sup></span></li>
+          <li><svg class="lu-ico"><use href="#lu-i-check"/></svg>A first vitamin C: start every other evening</li>
+        </ul>
+      </div>
+      <div class="lu-pdp-who__col">
+        <h3>Maybe not for you if</h3>
+        <ul class="lu-pdp-list lu-pdp-list--no">
+          <li><svg class="lu-ico"><use href="#lu-i-minus"/></svg>You want a tint or a shimmer. It leaves neither.</li>
+          <li><svg class="lu-ico"><use href="#lu-i-minus"/></svg>Your skin has reacted to vitamin C before, even stable forms.</li>
+          <li><svg class="lu-ico"><use href="#lu-i-minus"/></svg>You want your serum to protect you from the sun. It doesn’t: keep your SPF.</li>
+        </ul>
+      </div>
+      <div class="lu-pdp-who__col">
+        <h3>Good to know</h3>
+        <ul class="lu-pdp-list lu-pdp-list--info">
+          <li><svg class="lu-ico"><use href="#lu-i-drop"/></svg>Fragrance-free and free of essential oils</li>
+          <li><svg class="lu-ico"><use href="#lu-i-vegan"/></svg>Vegan formula, with squalane from olives</li>
+          <li><svg class="lu-ico"><use href="#lu-i-info"/></svg>Formulated without retinoids. Pregnant or breastfeeding? Check with your doctor first.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.lu-pdp-chips{display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; max-width: 660px;}
+.lu-pdp-chips li{display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px 0 10px; border-radius: var(--lu-pill); background: var(--lu-linen); font-size: 13.5px; font-weight: 500;}
+.lu-pdp-chips .lu-ico{width: 16px; height: 16px; color: rgb(var(--color-price-sale));}
+.lu-pdp-chips .is-soft{background: transparent; box-shadow: inset 0 0 0 1px rgb(var(--color-border));}
+.lu-pdp-who__grid{display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;}
+.lu-pdp-who__col{padding: 26px 28px 20px; border-radius: var(--lu-radius); background: var(--lu-linen);}
+.lu-pdp-who__col h3{font: 400 22px/1.2 var(--lu-display); letter-spacing: -.01em;}
+.lu-pdp-list{margin-top: 16px;}
+.lu-pdp-list li{display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid var(--lu-hairline); font-size: 14.5px; line-height: 22px;}
+.lu-pdp-list .lu-ico{width: 18px; height: 18px; margin-top: 2px;}
+.lu-pdp-list--yes .lu-ico{color: rgb(var(--color-price-sale));}
+.lu-pdp-list--no .lu-ico{color: var(--lu-dusk-72);}
+.lu-pdp-list--info .lu-ico{width: 20px; height: 20px; margin-top: 1px;}
+@media (max-width: 767px){
+.lu-pdp-chips{justify-content: flex-start; margin-top: 22px;}
+.lu-pdp-chips li{height: 34px; font-size: 13px;}
+.lu-pdp-who__grid{grid-template-columns: 1fr; gap: 12px;}
+.lu-pdp-who__col{padding: 20px 20px 14px;}
+.lu-pdp-list li{font-size: 14px; line-height: 21px; padding: 10px 0;}
+}
+.lu-pdp-chips,.lu-pdp-list{list-style:none;margin:0;padding:0}
+.lu-pdp-who__col h3{margin:0}
+</style>

@@ -1,0 +1,13 @@
+{%- comment -%}
+  LUMORA PDP RATING SNIPPET (sample)  ·  lu-pdp-rating.liquid
+  Paste into: Product information > Add block > Custom Liquid, directly AFTER the eyebrow block (it sits
+  on the eyebrow's row, right-aligned). Trial only: a static 4.7 from 52 sample reviews with a Sample chip,
+  linking to #reviews. Remove this block if a reviews app shows its own star badge, and for a live store
+  hide the rating until there are five real reviews. Shown on Long Light only.
+{%- endcomment -%}
+{%- if product.handle == 'long-light-serum' -%}
+<a class="lu-pdp-rating" href="#reviews" aria-label="Rated 4.7 out of 5 from 52 sample reviews">
+          <span class="lu-stars" aria-hidden="true"><span class="lu-stars__fill" style="--r: 94%"><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span>
+          <span class="lu-tnum">4.7</span><span class="lu-pdp-rating__n">52 reviews</span><span class="lu-tag-sample">Sample</span>
+        </a>
+{%- endif -%}

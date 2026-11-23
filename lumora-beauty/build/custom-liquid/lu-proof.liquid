@@ -1,36 +1,27 @@
 {%- comment -%}
   LUMORA PROOF, WITH THE METHOD  ·  lu-proof.liquid  ·  v1.0
-  Paste into: Add section > Custom Liquid (padding 0). Home: after "What's in the glow". PDP: after
-  "Ingredients decoded" with lu_mode set to 'pdp'. Scheme: Honey wash (set here, not in the editor).
+  Paste into: Home page > Add section > Custom Liquid (padding 0), after "What's in the glow".
+  Scheme: Honey wash (set here, not in the editor). The PDP has its own version (lu-pdp-results).
   Every number carries a sun-dot marker; the method sits directly beneath. All data is illustrative.
 {%- endcomment -%}
-{%- assign lu_mode = 'home' -%}
-<section class="lu-sec lu-sec--feature lu-s-honey-wash lu-proof" id="{% if lu_mode == 'pdp' %}results{% else %}proof{% endif %}" aria-labelledby="lu-proof-title">
+<section class="lu-sec lu-sec--feature lu-s-honey-wash lu-proof" id="proof" aria-labelledby="lu-proof-title">
   <div class="container-fluid">
     <header class="lu-head lu-head--row">
       <div class="lu-head__text">
-        {%- if lu_mode == 'pdp' -%}
-        <p class="lu-eyebrow">Results, with the method</p>
-        <h2 id="lu-proof-title" class="lu-h2">What four weeks looks <em>like.</em></h2>
-        <p class="lu-lead">Thirty-two people used Long Light twice a day for four weeks and told us what they saw. The method sits under every number.</p>
-        {%- else -%}
+        
         <p class="lu-eyebrow">What testers saw</p>
         <h2 id="lu-proof-title" class="lu-h2">Proof, with the method <em>attached.</em></h2>
         <p class="lu-lead">Small studies, plainly described. The method sits under every number, not behind a link.</p>
-        {%- endif -%}
+        
       </div>
       <svg class="lu-proof__sun" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lu-proof-sun" x1="0" y1="0" x2="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#E8B566"/><stop offset=".55" stop-color="#EFA27B"/><stop offset="1" stop-color="#A8473B"/></linearGradient></defs><path fill="url(#lu-proof-sun)" d="M2.38 65.25Q0 57.86 0 50Q0 40.05 3.81 30.87Q7.61 21.68 14.64 14.64Q21.68 7.61 30.87 3.81Q40.05 0 50 0Q59.95 0 69.13 3.81Q78.32 7.61 85.36 14.64Q92.39 21.68 96.19 30.87Q100 40.05 100 50Q100 57.86 97.62 65.25ZM94.78 72.25Q91.17 79.54 85.36 85.36Q78.32 92.39 69.13 96.19Q59.95 100 50 100Q40.05 100 30.87 96.19Q21.68 92.39 14.64 85.36Q8.83 79.54 5.22 72.25Z"/></svg>
     </header>
     <div class="lu-stats">
-      {%- if lu_mode == 'pdp' -%}
-      <div class="lu-stat"><p class="lu-stat__num">93%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said their skin looked more radiant after 4&nbsp;weeks</p></div>
-      <div class="lu-stat"><p class="lu-stat__num">87%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said their tone looked more even by week&nbsp;4</p></div>
-      <div class="lu-stat"><p class="lu-stat__num">91%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said the finish looked natural on their skin tone</p></div>
-      {%- else -%}
+      
       <div class="lu-stat"><p class="lu-stat__num">93%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said their skin looked more radiant after 4&nbsp;weeks of Long Light</p></div>
       <div class="lu-stat"><p class="lu-stat__num">+38%<sup class="lu-fn" data-fn="3">3</sup></p><p class="lu-stat__label">skin hydration one hour after a single use of Haze</p></div>
       <div class="lu-stat"><p class="lu-stat__num">91%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said the finish looked natural on their skin tone</p></div>
-      {%- endif -%}
+      
     </div>
     <ol class="lu-timeline">
       <li><span class="lu-node" aria-hidden="true"></span><b>Day 1</b><p>A satin, soft-focus finish from the first morning.</p></li>
@@ -39,37 +30,9 @@
     </ol>
     <div class="lu-footnotes">
       <span data-fn-note="2"><sup class="lu-fn">2</sup>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed.</span>
-      {%- if lu_mode != 'pdp' -%}<span data-fn-note="3"><sup class="lu-fn">3</sup>Corneometer measurement, 20 participants, one hour after a single application.</span>{%- endif -%}
+      <span data-fn-note="3"><sup class="lu-fn">3</sup>Corneometer measurement, 20 participants, one hour after a single application.</span>
       <span>All figures are illustrative placeholder data.</span>
     </div>
   </div>
 </section>
-<style>
-.lu-proof .lu-proof__sun{width:112px;height:112px;flex:none}
-.lu-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgb(var(--color-border))}
-.lu-stat{padding:36px 32px 8px;border-left:1px solid rgb(var(--color-border))}
-.lu-stat:first-child{padding-left:0;border-left:0}
-.lu-stat__num{margin:0;font:300 96px/.9 var(--lu-display);letter-spacing:-.035em;font-variant-numeric:tabular-nums lining-nums;color:rgb(var(--color-heading))}
-.lu-stat__num .lu-fn{vertical-align:58px;margin-left:6px}
-.lu-stat__label{margin:18px 0 0;max-width:30ch;font-size:16px;line-height:24px;color:rgb(var(--color-foreground-secondary))}
-.lu-timeline{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin:64px 0 0;padding:0;list-style:none}
-.lu-timeline::before{content:"";position:absolute;left:0;right:0;top:13px;height:1px;background:rgb(var(--color-border))}
-.lu-timeline li{position:relative;padding-right:32px}
-.lu-node{position:relative;display:block;width:28px;height:28px;border-radius:50%;background:rgb(var(--color-background))}
-.lu-node::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--lu-terracotta)}
-.lu-timeline li:nth-child(2) .lu-node::after{background:linear-gradient(180deg,var(--lu-terracotta) 50%,var(--lu-clay) 50%)}
-.lu-timeline li:nth-child(3) .lu-node::after{background:var(--lu-clay)}
-.lu-timeline b{display:block;margin-top:18px;font:600 12px/16px var(--lu-body);letter-spacing:.18em;text-transform:uppercase;color:rgb(var(--color-price-sale))}
-.lu-timeline p{margin:8px 0 0;max-width:34ch;font-size:15px;line-height:23px;color:rgb(var(--color-foreground))}
-@media (max-width:767px){
-  .lu-proof .lu-head--row{display:flex;align-items:flex-start;gap:16px}.lu-proof .lu-proof__sun{width:56px;height:56px}
-  .lu-stats{grid-template-columns:1fr}
-  .lu-stat{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center;padding:24px 0;border-left:0;border-bottom:1px solid rgb(var(--color-border))}
-  .lu-stat__num{font-size:52px}.lu-stat__num .lu-fn{vertical-align:30px;margin-left:3px}
-  .lu-stat__label{margin:0;font-size:14px;line-height:21px}
-  .lu-timeline{grid-template-columns:1fr;gap:22px;margin-top:36px}
-  .lu-timeline::before{left:13px;right:auto;top:14px;bottom:14px;width:1px;height:auto}
-  .lu-timeline li{display:grid;grid-template-columns:28px 1fr;column-gap:16px;padding:0}
-  .lu-timeline .lu-node{grid-row:1/span 2}.lu-timeline b{margin-top:6px}.lu-timeline p{grid-column:2;margin-top:6px;font-size:14px;line-height:21px}
-}
-</style>
+

@@ -1,51 +1,116 @@
 {%- comment -%}
-  LUMORA PDP HOW TO USE (ritual position)  ·  lu-pdp-how-to.liquid  ·  v1.0
-  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after Results.
-  Where Long Light sits in the ritual: 01 Sunmelt, 02 Long Light (you are here), 03 Haze, then your
-  daily SPF in the morning. Names link to their pages; prices are live. Scheme: Apricot wash.
+  LUMORA PDP HOW TO USE  ·  lu-pdp-how-to.liquid  (mockup section 4)
+  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after Ingredients.
+  Travertine with leaf light (texture 1 of 2 on this page): Warm · Press · Layer, the morning and evening
+  rows (02 highlighted, "your daily SPF" as an unbranded step), then the layering notes.
 {%- endcomment -%}
-{%- liquid
-  assign lu_a = all_products['sunmelt-cleansing-balm']
-  assign lu_b = all_products['long-light-serum']
-  assign lu_c = all_products['haze-soft-focus-cream']
--%}
-<section class="lu-sec lu-s-apricot-wash lu-howto" id="how-to-use" aria-labelledby="lu-howto-title">
-  <div class="container-fluid">
-    <header class="lu-head">
-      <p class="lu-eyebrow">How to use</p>
-      <h2 id="lu-howto-title" class="lu-h2">After Sunmelt, before <em>Haze.</em></h2>
-      <p class="lu-lead">Morning and evening, about a minute. Step 02 is the one that catches the light.</p>
+<section id="how-to-use" class="lu-sec lu-s-travertine lu-pdp-howto" aria-labelledby="howto-title">
+  <div class="lu-leaf" aria-hidden="true"></div>
+  <div class="container-fluid" style="position:relative">
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">How to use</p>
+        <h2 id="howto-title" class="lu-h2">Three steps, under a <em>minute.</em></h2>
+        <p class="lu-lead">Morning and evening, after Sunmelt and before Haze. The whole ritual takes ten slow minutes; this part takes one.</p>
+      </div>
     </header>
-    <ol class="lu-howto__steps">
+    <ol class="lu-pdp-steps">
       <li>
-        <span class="lu-howto__no"><svg class="lu-sunmark" viewBox="0 0 40 24" aria-hidden="true"><path class="a" d="M8 20a12 12 0 0 1 24 0"/><path class="h" d="M3 20h34"/><circle class="s" cx="8.6" cy="16.3" r="3"/></svg>01 · Cleanse</span>
-        <h3><a href="{{ lu_a.url }}">Sunmelt</a></h3>
-        <p>Massage the balm into dry skin, add a little water and it turns to milk. Rinse with warm water.</p>
-      </li>
-      <li class="is-here">
-        <span class="lu-howto__no"><svg class="lu-sunmark" viewBox="0 0 40 24" aria-hidden="true"><path class="a" d="M8 20a12 12 0 0 1 24 0"/><path class="h" d="M3 20h34"/><circle class="s" cx="12.9" cy="10.3" r="3"/></svg>02 · Glow</span>
-        <h3>Long Light <small>You are here</small></h3>
-        <p>Two to three drops, pressed into face and neck while skin is still a little damp. It absorbs in seconds.</p>
+        <span class="lu-pdp-steps__no lu-tnum">01</span>
+        <svg class="lu-ico lu-ico--lg"><use href="#lu-i-drops3"/></svg>
+        <h3>Warm</h3>
+        <p>Shake 3 to 4 drops into your palm and warm them between your hands for a few seconds.</p>
       </li>
       <li>
-        <span class="lu-howto__no"><svg class="lu-sunmark" viewBox="0 0 40 24" aria-hidden="true"><path class="a" d="M8 20a12 12 0 0 1 24 0"/><path class="h" d="M3 20h34"/><circle class="s" cx="20" cy="8" r="3"/></svg>03 · Moisturize</span>
-        <h3><a href="{{ lu_c.url }}">Haze</a></h3>
-        <p>A pea-sized amount to seal it in, with a satin, soft-focus finish. Then, in the morning, your daily SPF.</p>
+        <span class="lu-pdp-steps__no lu-tnum">02</span>
+        <svg class="lu-ico lu-ico--lg"><use href="#lu-i-press"/></svg>
+        <h3>Press</h3>
+        <p>Press into clean, slightly damp skin: face, neck and the backs of your hands. Pressing spreads it evenly, without pulling.</p>
+      </li>
+      <li>
+        <span class="lu-pdp-steps__no lu-tnum">03</span>
+        <svg class="lu-ico lu-ico--lg"><use href="#lu-i-layers"/></svg>
+        <h3>Layer</h3>
+        <p>Give it 30 seconds, then follow with Haze. In the morning, finish with your daily SPF.</p>
       </li>
     </ol>
-    <p class="lu-howto__note">New to vitamin C? Patch-test on your inner arm for two evenings, then use Long Light every other day for the first week.</p>
+    <div class="lu-pdp-rituals">
+      <div class="lu-pdp-ritual">
+        <p class="lu-pdp-ritual__when"><svg class="lu-sunmark"><use href="#lu-m2"/></svg>Morning</p>
+        <ol>
+          <li><span class="lu-tnum">01</span>Sunmelt</li>
+          <li class="is-here"><span class="lu-tnum">02</span>Long Light</li>
+          <li><span class="lu-tnum">03</span>Haze</li>
+          <li class="is-spf">Your daily SPF</li>
+          <li><span class="lu-tnum">04</span>Apricity</li>
+        </ol>
+      </div>
+      <div class="lu-pdp-ritual">
+        <p class="lu-pdp-ritual__when"><svg class="lu-sunmark"><use href="#lu-m6"/></svg>Evening</p>
+        <ol>
+          <li><span class="lu-tnum">01</span>Sunmelt</li>
+          <li class="is-here"><span class="lu-tnum">02</span>Long Light</li>
+          <li><span class="lu-tnum">03</span>Haze</li>
+          <li><span class="lu-tnum">05</span>Gloaming</li>
+          <li><span class="lu-tnum">06</span>Slow Hour</li>
+        </ol>
+      </div>
+    </div>
+    <div class="lu-pdp-layering">
+      <p class="lu-pdp-layering__title">Layering notes</p>
+      <dl>
+        <div><dt>Retinol</dt><dd>Long Light in the morning, retinol at night.</dd></div>
+        <div><dt>Acids (AHA, BHA)</dt><dd>Alternate evenings, or keep acids to the evening.</dd></div>
+        <div><dt>Niacinamide, hyaluronic serums</dt><dd>Layer freely, thinnest texture first.</dd></div>
+        <div><dt>SPF and makeup</dt><dd>Wait a minute. It sits flat, with no pilling.</dd></div>
+        <div><dt>New to vitamin C</dt><dd>Start every other evening for the first week.</dd></div>
+        <div><dt>Sensitive skin</dt><dd>Patch-test on your inner arm for two evenings first.</dd></div>
+      </dl>
+    </div>
   </div>
 </section>
 <style>
-.lu-howto__steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:0;padding:0;list-style:none}
-.lu-howto__steps li{padding:28px 28px 30px;border-radius:14px;background:rgba(251,246,239,.55);box-shadow:inset 0 0 0 1px var(--lu-hairline-strong)}
-.lu-howto__steps li.is-here{background:var(--lu-linen);box-shadow:inset 0 0 0 1px var(--lu-hairline),var(--lu-shadow-lift)}
-.lu-howto__no{display:flex;align-items:center;gap:10px;font:600 12px/16px var(--lu-body);letter-spacing:.16em;text-transform:uppercase;color:rgb(var(--color-price-sale))}
-.lu-howto__no .lu-sunmark{color:var(--lu-dusk)}
-.lu-howto__steps h3{margin:16px 0 0;font:400 26px/1.15 var(--lu-display);letter-spacing:-.01em;color:rgb(var(--color-heading))}
-.lu-howto__steps h3 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--lu-hairline-strong)}
-.lu-howto__steps h3 small{display:inline-block;margin-left:8px;padding:5px 10px;border-radius:999px;background:var(--lu-honey);font:600 10px/1 var(--lu-body);letter-spacing:.14em;text-transform:uppercase;vertical-align:.35em;color:var(--lu-dusk)}
-.lu-howto__steps p{margin:12px 0 0;font-size:15px;line-height:23px;color:rgb(var(--color-foreground-secondary))}
-.lu-howto__note{display:flex;gap:10px;align-items:center;margin:28px 0 0;font-size:14px;line-height:21px;color:rgb(var(--color-foreground-secondary))}
-@media (max-width:767px){.lu-howto__steps{grid-template-columns:1fr;gap:12px}.lu-howto__steps li{padding:22px}}
+.lu-pdp-inci-list__title, .lu-pdp-without__title, .lu-pdp-layering__title{font: 300 30px/1.2 var(--lu-display); letter-spacing: -.015em;}
+.lu-pdp-without, .lu-pdp-layering{display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; margin-top: 56px; padding-top: 30px; border-top: 1px solid rgb(var(--color-border));}
+.lu-pdp-without__title, .lu-pdp-layering__title{grid-column: 1 / span 3;}
+.lu-pdp-without ul, .lu-pdp-layering dl{grid-column: 4 / span 9; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 24px;}
+.lu-pdp-steps{display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;}
+.lu-pdp-steps li{position: relative; padding: 30px 30px 32px; border-radius: var(--lu-radius); background: var(--lu-linen); box-shadow: 0 1px 0 var(--lu-hairline);}
+.lu-pdp-steps__no{position: absolute; right: 28px; top: 24px; font: 300 40px/1 var(--lu-display); font-style: italic; color: var(--lu-terracotta);}
+.lu-pdp-steps .lu-ico--lg{width: 40px; height: 40px;}
+.lu-pdp-steps h3{margin-top: 26px; font: 400 24px/1.2 var(--lu-display); letter-spacing: -.01em;}
+.lu-pdp-steps p{margin-top: 8px; max-width: 34ch; font-size: 15px; line-height: 23px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-rituals{display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px;}
+.lu-pdp-ritual{padding: 22px 24px 24px; border-radius: var(--lu-radius); box-shadow: inset 0 0 0 1px rgb(var(--color-border));}
+.lu-pdp-ritual__when{display: flex; align-items: center; gap: 10px; font: 600 12px/16px var(--lu-body); letter-spacing: .18em; text-transform: uppercase; color: rgb(var(--color-price-sale));}
+.lu-pdp-ritual__when .lu-sunmark{width: 30px; height: 18px;}
+.lu-pdp-ritual ol{display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 16px;}
+.lu-pdp-ritual li{position: relative; display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px 0 11px; border-radius: var(--lu-pill); background: var(--lu-linen); font-size: 13.5px; font-weight: 500; white-space: nowrap;}
+.lu-pdp-ritual li + li::before{content: ""; position: absolute; left: -14px; top: 50%; width: 10px; height: 1px; background: var(--lu-dusk-72);}
+.lu-pdp-ritual li span{font-size: 11px; font-weight: 600; letter-spacing: .1em; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-ritual li.is-here{background: var(--lu-terracotta); color: var(--lu-linen);}
+.lu-pdp-ritual li.is-here span{color: var(--lu-linen);}
+.lu-pdp-ritual li.is-spf{background: transparent; box-shadow: inset 0 0 0 1px var(--lu-dusk-72); color: rgb(var(--color-foreground-secondary)); font-style: italic;}
+.lu-pdp-layering dt{font-size: 14px; font-weight: 600; line-height: 20px;}
+.lu-pdp-layering dd{margin-top: 4px; font-size: 14px; line-height: 21px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-layering dl{grid-template-columns: repeat(3, 1fr);}
+@media (max-width: 767px){
+.lu-pdp-inci-list__title, .lu-pdp-without__title, .lu-pdp-layering__title{font-size: 24px;}
+.lu-pdp-without, .lu-pdp-layering{display: block; margin-top: 40px; padding-top: 24px;}
+.lu-pdp-without ul, .lu-pdp-layering dl{grid-template-columns: 1fr 1fr; gap: 18px 16px; margin-top: 18px;}
+.lu-pdp-steps{grid-template-columns: 1fr; gap: 12px;}
+.lu-pdp-steps li{display: grid; grid-template-columns: 40px 1fr; column-gap: 16px; padding: 20px 20px 22px;}
+.lu-pdp-steps .lu-ico--lg{grid-row: 1 / span 2; width: 36px; height: 36px;}
+.lu-pdp-steps h3{margin-top: 0; font-size: 21px;}
+.lu-pdp-steps p{margin-top: 4px; font-size: 14px; line-height: 21px;}
+.lu-pdp-steps__no{right: 20px; top: 18px; font-size: 30px;}
+.lu-pdp-rituals{grid-template-columns: 1fr; gap: 12px; margin-top: 12px;}
+.lu-pdp-ritual{padding: 18px 16px 20px;}
+.lu-pdp-ritual li{height: 32px; padding: 0 12px 0 10px; font-size: 13px;}
+.lu-pdp-ritual ol{gap: 8px;}
+.lu-pdp-ritual li + li::before{display: none;}
+}
+.lu-pdp-howto{position:relative;overflow:hidden}
+.lu-pdp-howto ol,.lu-pdp-howto dl{list-style:none;margin:0;padding:0}
+.lu-pdp-steps .lu-ico--lg{width:40px;height:40px;color:rgb(var(--color-foreground))}
 </style>

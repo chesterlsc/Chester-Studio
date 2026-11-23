@@ -1,17 +1,19 @@
 {%- comment -%}
   LUMORA FOOTNOTES BLOCK  ·  lu-footnotes.liquid  ·  v1.0
-  Paste into: Footer group > Add section > Custom Liquid, ABOVE the Footer section (padding 0).
-  Repeats every footnote used on the site, plus the concept-store label. Sun-dot markers on the page
-  link here when a module has no footnote of its own.
+  Paste into: the LAST section of each template (Add section > Custom Liquid, padding 0), after the closing
+  band, so each page lists its own markers (PDP-SECTIONS 14). Home: lu_mode 'home'. Product templates:
+  lu_mode 'pdp' (footnote 3 is the amber-glass stability test there). Sun-dot markers on the page link
+  here when a module has no footnote of its own.
 {%- endcomment -%}
+{%- assign lu_mode = 'home' -%}
 <section class="lu-footnote-block lu-s-dusk" aria-label="Footnotes">
   <div class="container-fluid">
     <div class="lu-footnote-block__inner">
       <p class="lu-eyebrow">Footnotes</p>
       <ol>
-        <li data-fn-note="1"><span class="lu-fn">1</span>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI.</li>
+        <li data-fn-note="1"><span class="lu-fn">1</span>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI{% if lu_mode == 'pdp' %}, ten per type{% endif %}.</li>
         <li data-fn-note="2"><span class="lu-fn">2</span>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed.</li>
-        <li data-fn-note="3"><span class="lu-fn">3</span>Corneometer measurement, 20 participants, one hour after a single application.</li>
+        <li data-fn-note="3"><span class="lu-fn">3</span>{% if lu_mode == 'pdp' %}Stability test: vitamin C content by HPLC after 12 weeks under daylight-equivalent light at 25&nbsp;°C, amber against clear glass.{% else %}Corneometer measurement, 20 participants, one hour after a single application.{% endif %}</li>
         <li class="lu-demo">All three are illustrative placeholder data. Lumora is a concept store built for a design trial: product data, results and reviews are illustrative.</li>
       </ol>
     </div>

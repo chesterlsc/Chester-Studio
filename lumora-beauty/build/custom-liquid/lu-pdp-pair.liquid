@@ -1,0 +1,24 @@
+{%- comment -%}
+  LUMORA PDP THE GOLDEN PAIR (buy-box card)  ·  lu-pdp-pair.liquid
+  Paste into: Product information > Add block > Custom Liquid, BELOW the trust row. Shows on Long Light and
+  on Haze only. The outline button is a cart permalink for both products: lu-skin adds them in place and
+  opens the cart drawer; the $10 comes off through the automatic discount "The golden pair" (BUILD-GUIDE).
+  If Shopify Bundles is installed instead, point the button at the bundle product.
+{%- endcomment -%}
+{%- if product.handle == 'long-light-serum' or product.handle == 'haze-soft-focus-cream' -%}
+<div class="lu-pdp-pair" id="pair">
+        <div class="lu-pdp-pair__head">
+          <p class="lu-pdp-pair__title">The golden pair</p>
+          <span class="lu-pdp-pair__save">Save $10</span>
+        </div>
+        <div class="lu-pdp-pair__body">
+          <span class="lu-pdp-pair__thumbs" aria-hidden="true">
+            <span class="lu-media"><img class="" src="{{ all_products['long-light-serum'].featured_image | image_url: width: 160 }}" alt="" style="--pos: 50% 42%"></span>
+            <i><svg class="lu-ico"><use href="#lu-i-plus"/></svg></i>
+            <span class="lu-media"><img class="" src="{{ all_products['haze-soft-focus-cream'].featured_image | image_url: width: 160 }}" alt="" style="--pos: 50% 55%"></span>
+          </span>
+          <p>Long Light, then Haze Soft-Focus Cream: the serum, and the cushiony cream that seals it in. <span class="lu-tnum">$92 together, $102 bought separately.</span></p>
+        </div>
+        <a class="m-button lu-btn m-button--secondary lu-pdp-pair__btn" href="{{ routes.cart_url }}/{{ all_products['long-light-serum'].selected_or_first_available_variant.id }}:1,{{ all_products['haze-soft-focus-cream'].selected_or_first_available_variant.id }}:1"><span>Add the golden pair · <span class="lu-tnum">$92</span></span> <svg class="lu-ico"><use href="#lu-i-arrow"/></svg></a>
+      </div>
+{%- endif -%}

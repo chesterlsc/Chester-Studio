@@ -1,0 +1,81 @@
+{%- comment -%}
+  LUMORA PDP COMPLETE THE RITUAL  ·  lu-pdp-complete.liquid  (mockup section 8)
+  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after Who it's for.
+  Apricot wash rising from Honey wash. The line-up scene (lu-ritual.jpg) at 3:2 with six pins (02 in
+  Terracotta; three pins on the 4:5 phone crop), the checklist of the six, $197 for all six ($232 apart),
+  "Add the full sunset · $197" (cart permalink for the six; the $35 comes off through the automatic
+  discount "The full sunset") and the link to the golden pair card.
+{%- endcomment -%}
+<section id="complete-the-ritual" class="lu-sec lu-s-apricot-wash lu-ritual-bg lu-pdp-complete" aria-labelledby="complete-title">
+  <div class="container-fluid">
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">Complete the ritual</p>
+        <h2 id="complete-title" class="lu-h2">Make it the full <em>sunset.</em></h2>
+        <p class="lu-lead">Long Light does its best work in company: cleansed skin before it, a cushiony cream after. All six together are $197, which is $35 less than one by one.</p>
+      </div>
+    </header>
+    <div class="lu-pdp-complete__grid">
+      <div class="lu-rscene lu-pdp-complete__scene">
+        <img src="{{ 'lu-ritual.jpg' | file_img_url: '1600x' }}" srcset="{{ 'lu-ritual.jpg' | file_img_url: '800x' }} 800w, {{ 'lu-ritual.jpg' | file_img_url: '1600x' }} 1600w" sizes="(min-width: 1024px) 760px, 100vw" width="2400" height="1600" loading="lazy" alt="All six Lumora products in order on a long travertine ledge, low sun raking from the left" style="--pos: 50% 54%; --pos-m: 33.9% 50%">
+        <a class="lu-rpin lu-rpin--d" href="{{ all_products['sunmelt-cleansing-balm'].url }}" style="--x: 16.9%; --y: 30.1%">01</a>
+        <a class="lu-rpin lu-rpin--d lu-pdp-pin-here" href="{{ all_products['long-light-serum'].url }}" style="--x: 29.1%; --y: 38.4%">02</a>
+        <a class="lu-rpin lu-rpin--d" href="{{ all_products['haze-soft-focus-cream'].url }}" style="--x: 43.9%; --y: 49.3%">03</a>
+        <a class="lu-rpin lu-rpin--d" href="{{ all_products['apricity-lip-cheek-balm'].url }}" style="--x: 56.6%; --y: 46.75%">04</a>
+        <a class="lu-rpin lu-rpin--d" href="{{ all_products['gloaming-body-oil'].url }}" style="--x: 70.6%; --y: 39.75%">05</a>
+        <a class="lu-rpin lu-rpin--d" href="{{ all_products['slow-hour-golden-milk'].url }}" style="--x: 84%; --y: 48.9%">06</a>
+        <a class="lu-rpin lu-rpin--m lu-pdp-pin-here" href="{{ all_products['long-light-serum'].url }}" style="--x: 14.9%; --y: 31%">02</a>
+        <a class="lu-rpin lu-rpin--m" href="{{ all_products['haze-soft-focus-cream'].url }}" style="--x: 53.7%; --y: 46.2%">03</a>
+        <a class="lu-rpin lu-rpin--m" href="{{ all_products['apricity-lip-cheek-balm'].url }}" style="--x: 87%; --y: 42.6%">04</a>
+      </div>
+      <div class="lu-pdp-complete__list">
+        <ol class="lu-pdp-checklist">
+          <li><i class="lu-pdp-check" aria-hidden="true"><svg class="lu-ico"><use href="#lu-i-check"/></svg></i><span class="lu-pdp-checklist__no"><svg class="lu-sunmark"><use href="#lu-m1"/></svg>01</span><span class="lu-pdp-checklist__name">Sunmelt Cleansing Balm<small>Cleanse · AM + PM</small></span><b class="lu-tnum">$32</b></li>
+          <li class="is-here"><i class="lu-pdp-check" aria-hidden="true"><svg class="lu-ico"><use href="#lu-i-check"/></svg></i><span class="lu-pdp-checklist__no"><svg class="lu-sunmark"><use href="#lu-m2"/></svg>02</span><span class="lu-pdp-checklist__name">Long Light Serum<small>This product · AM + PM</small></span><b class="lu-tnum">$54</b></li>
+          <li><i class="lu-pdp-check" aria-hidden="true"><svg class="lu-ico"><use href="#lu-i-check"/></svg></i><span class="lu-pdp-checklist__no"><svg class="lu-sunmark"><use href="#lu-m3"/></svg>03</span><span class="lu-pdp-checklist__name">Haze Soft-Focus Cream<small>Moisturize · AM + PM</small></span><b class="lu-tnum">$48</b></li>
+          <li><i class="lu-pdp-check" aria-hidden="true"><svg class="lu-ico"><use href="#lu-i-check"/></svg></i><span class="lu-pdp-checklist__no"><svg class="lu-sunmark"><use href="#lu-m4"/></svg>04</span><span class="lu-pdp-checklist__name">Apricity Lip + Cheek Balm<small>Flush · day · shade Clay</small></span><b class="lu-tnum">$24</b></li>
+          <li><i class="lu-pdp-check" aria-hidden="true"><svg class="lu-ico"><use href="#lu-i-check"/></svg></i><span class="lu-pdp-checklist__no"><svg class="lu-sunmark"><use href="#lu-m5"/></svg>05</span><span class="lu-pdp-checklist__name">Gloaming Body Oil<small>Body · evening</small></span><b class="lu-tnum">$46</b></li>
+          <li><i class="lu-pdp-check" aria-hidden="true"><svg class="lu-ico"><use href="#lu-i-check"/></svg></i><span class="lu-pdp-checklist__no"><svg class="lu-sunmark"><use href="#lu-m6"/></svg>06</span><span class="lu-pdp-checklist__name">Slow Hour Golden Milk<small>Unwind · evening</small></span><b class="lu-tnum">$28</b></li>
+        </ol>
+        <div class="lu-total lu-pdp-complete__total"><strong class="lu-tnum">$197</strong><span class="lu-save">Save 15%</span><span class="lu-was lu-tnum">for all six, $232 bought separately</span></div>
+        <a class="m-button lu-btn m-button--primary lu-pdp-complete__btn" href="{{ routes.cart_url }}/{{ all_products['sunmelt-cleansing-balm'].selected_or_first_available_variant.id }}:1,{{ all_products['long-light-serum'].selected_or_first_available_variant.id }}:1,{{ all_products['haze-soft-focus-cream'].selected_or_first_available_variant.id }}:1,{{ all_products['apricity-lip-cheek-balm'].selected_or_first_available_variant.id }}:1,{{ all_products['gloaming-body-oil'].selected_or_first_available_variant.id }}:1,{{ all_products['slow-hour-golden-milk'].selected_or_first_available_variant.id }}:1"><span>Add the full sunset · <span class="lu-tnum">$197</span></span> <svg class="lu-ico"><use href="#lu-i-arrow"/></svg></a>
+        <p class="lu-pdp-complete__alt"><a class="lu-link" href="#pair">Or start with the golden pair · $92</a></p>
+        <p class="lu-reassure"><svg class="lu-ico"><use href="#lu-i-ship"/></svg>Ships free in the US, and every step is covered by the 30-day promise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.lu-pdp-complete__grid{display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: center;}
+.lu-pdp-complete__scene{aspect-ratio: 3 / 2;}
+.lu-pdp-pin-here{width: 40px; height: 40px; margin: -20px 0 0 -20px; background: var(--lu-terracotta); color: var(--lu-linen);}
+.lu-pdp-complete__list{padding: 24px 28px 26px; border-radius: var(--lu-radius); background: var(--lu-linen); box-shadow: 0 1px 0 var(--lu-hairline);}
+.lu-pdp-checklist li{display: grid; grid-template-columns: 22px 50px 1fr auto; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--lu-hairline);}
+.lu-pdp-checklist li:first-child{padding-top: 0;}
+.lu-pdp-check{display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--lu-dusk); color: var(--lu-linen);}
+.lu-pdp-check .lu-ico{width: 14px; height: 14px; stroke-width: 2;}
+.lu-pdp-checklist__no{display: flex; align-items: center; gap: 6px; font: 600 11px/1 var(--lu-body); letter-spacing: .12em; color: var(--lu-terracotta);}
+.lu-pdp-checklist__no .lu-sunmark{width: 24px; height: 15px;}
+.lu-pdp-checklist__name{font: 400 17px/1.2 var(--lu-display);}
+.lu-pdp-checklist__name small{display: block; margin-top: 3px; font: 400 12.5px/1.3 var(--lu-body); color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-checklist li.is-here .lu-pdp-checklist__name small{font-weight: 600; color: var(--lu-terracotta);}
+.lu-pdp-checklist b{font-size: 15px; font-weight: 600;}
+.lu-pdp-complete__total{flex-wrap: wrap; gap: 6px 14px; margin-top: 18px;}
+.lu-pdp-complete__total .lu-was{flex-basis: 100%;}
+.lu-pdp-complete__btn{width: 100%; margin-top: 18px;}
+.lu-pdp-complete__alt{margin-top: 16px; text-align: center;}
+.lu-pdp-complete__list .lu-reassure{justify-content: center; margin-top: 16px;}
+@media (max-width: 767px){
+.lu-pdp-complete__grid{display: block;}
+.lu-pdp-complete__scene{aspect-ratio: 4 / 5;}
+.lu-pdp-complete__list{margin-top: 12px; padding: 20px 16px 22px;}
+.lu-pdp-checklist li{grid-template-columns: 22px 40px 1fr auto; gap: 10px;}
+.lu-pdp-checklist__no{flex-direction: column; align-items: flex-start; gap: 3px;}
+.lu-pdp-checklist__name{font-size: 16px;}
+.lu-pdp-complete__total strong{font-size: 32px;}
+.lu-pdp-complete__list .lu-reassure{justify-content: flex-start;}
+}
+.lu-pdp-checklist{list-style:none;margin:0;padding:0}
+.lu-pdp-complete__btn{display:flex}
+.lu-pdp-pin-here{background:var(--lu-terracotta)!important;color:var(--lu-linen)!important}
+</style>

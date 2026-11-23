@@ -1,70 +1,141 @@
 {%- comment -%}
-  LUMORA PDP SAMPLE REVIEWS  ·  lu-pdp-reviews.liquid  ·  v1.0
-  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after the formulator
-  note. Use this when no reviews app is installed. If Judge.me (or another app) is installed, use its app
-  section instead, restyled by lu-skin, and keep the "sample" label. Every review here is written for the
-  concept store and labelled as sample content; the summary figures match lu-pdp-lexicon.liquid.
-  Scheme: Linen. Anchor: #reviews (the rating link under the title jumps here).
+  LUMORA PDP SAMPLE REVIEWS  ·  lu-pdp-reviews.liquid  (mockup section 11)
+  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after the FAQ.
+  Use when no reviews app is installed. Labelled sample content in four places (eyebrow, the note beside
+  the H2, a chip on each review, the disclosure). The skin and tone chips filter the four sample reviews.
+  "Write a review" and "Show more reviews" are left out on purpose: there is nothing behind them in a trial.
+  With Judge.me installed, use its section instead and keep the sample labels.
 {%- endcomment -%}
-{%- capture lu_star -%}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7z"/></svg>{%- endcapture -%}
-<section class="lu-sec lu-s-linen lu-reviews" id="reviews" aria-labelledby="lu-rev-title">
+<section id="reviews" class="lu-sec lu-s-linen lu-pdp-reviews" aria-labelledby="reviews-title">
   <div class="container-fluid">
-    <header class="lu-head">
-      <p class="lu-eyebrow">Sample reviews</p>
-      <h2 id="lu-rev-title" class="lu-h2">Tried in late <em>light.</em></h2>
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">Sample reviews</p>
+        <h2 id="reviews-title" class="lu-h2">Notes from week <em>four.</em></h2>
+      </div>
+      <p class="lu-pdp-sample-note"><svg class="lu-ico"><use href="#lu-i-info"/></svg>Sample content written for this concept store to show the layout. Not real customers.</p>
     </header>
-    <div class="lu-rev__grid">
-      <aside class="lu-rev__summary">
-        <p class="lu-rev__avg">4.7<span>out of 5</span></p>
-        <p class="lu-rev__stars" aria-label="4.7 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}</p>
-        <p class="lu-rev__count">28 sample reviews</p>
-        <ul class="lu-rev__bars" aria-label="Rating distribution">
-          <li><span>5</span><i style="--w:75%"></i><b>21</b></li>
-          <li><span>4</span><i style="--w:18%"></i><b>5</b></li>
-          <li><span>3</span><i style="--w:7%"></i><b>2</b></li>
-          <li><span>2</span><i style="--w:0%"></i><b>0</b></li>
-          <li><span>1</span><i style="--w:0%"></i><b>0</b></li>
+    <div class="lu-pdp-reviews__grid">
+      <aside class="lu-pdp-summary">
+        <p class="lu-pdp-summary__avg lu-tnum">4.7</p>
+        <span class="lu-stars lu-stars--lg" aria-hidden="true"><span class="lu-stars__fill" style="--r: 94%"><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span>
+        <p class="lu-pdp-summary__n">Based on 52 sample reviews</p>
+        <ul class="lu-pdp-dist" aria-label="Rating distribution">
+          <li><span>5</span><svg class="lu-ico"><use href="#lu-i-star"/></svg><i><b style="--v: 77%"></b></i><em class="lu-tnum">40</em></li>
+          <li><span>4</span><svg class="lu-ico"><use href="#lu-i-star"/></svg><i><b style="--v: 15%"></b></i><em class="lu-tnum">8</em></li>
+          <li><span>3</span><svg class="lu-ico"><use href="#lu-i-star"/></svg><i><b style="--v: 6%"></b></i><em class="lu-tnum">3</em></li>
+          <li><span>2</span><svg class="lu-ico"><use href="#lu-i-star"/></svg><i><b style="--v: 2%"></b></i><em class="lu-tnum">1</em></li>
+          <li><span>1</span><svg class="lu-ico"><use href="#lu-i-star"/></svg><i><b style="--v: 0%"></b></i><em class="lu-tnum">0</em></li>
         </ul>
-        <p class="lu-eyebrow" style="margin-top:28px">What people mention</p>
-        <ul class="lu-rev__chips"><li>Absorbs fast · 14</li><li>Warm, not orange · 11</li><li>Layers under SPF · 9</li><li>Took a few weeks · 4</li></ul>
+        <p class="lu-pdp-summary__label">What people mention</p>
+        <ul class="lu-pdp-mentions">
+          <li>Sinks in fast <span class="lu-tnum">31</span></li>
+          <li>No orange cast <span class="lu-tnum">24</span></li>
+          <li>Layers under SPF <span class="lu-tnum">22</span></li>
+          <li>Satin finish <span class="lu-tnum">19</span></li>
+          <li>Warmth at first <span class="lu-tnum">6</span></li>
+        </ul>
       </aside>
-      <ol class="lu-rev__list">
-        <li><p class="lu-rev__s" aria-label="5 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}</p><h3>Warm, not orange</h3><p>Most glow serums turn gray on my skin. This just looks like my skin on a good day. Two drops and it has sunk in before my coffee is ready.</p><p class="lu-rev__who"><b>Ama</b>Deep skin, combination<span>Received product free</span></p></li>
-        <li><p class="lu-rev__s" aria-label="5 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}</p><h3>No pilling under sunscreen</h3><p>That is my whole test, and it passes. A month in, my cheeks look more even, especially in photos.</p><p class="lu-rev__who"><b>Priya</b>Medium skin, oily<span>Received product free</span></p></li>
-        <li><p class="lu-rev__s" aria-label="4 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}<i>{{ lu_star }}</i></p><h3>Lovely, wish it had a pump</h3><p>The dropper is pretty but fiddly on a rushed morning. The serum itself is great: no scent, nothing sticky, and my skin looked less dull by week three.</p><p class="lu-rev__who"><b>Lena</b>Light skin, dry<span>Received product free</span></p></li>
-        <li><p class="lu-rev__s" aria-label="5 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}</p><h3>The color is the oil</h3><p>I was nervous about an apricot serum on fair skin. The color disappears as it absorbs, and my face just looks awake.</p><p class="lu-rev__who"><b>Jo</b>Fair skin, sensitive<span>Received product free</span></p></li>
-        <li><p class="lu-rev__s" aria-label="3 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}<i>{{ lu_star }}{{ lu_star }}</i></p><h3>Give it a few weeks</h3><p>Nothing dramatic in week one, so be patient. By week three my tone looked more even. I would start with the travel size.</p><p class="lu-rev__who"><b>Sam</b>Medium-deep skin, normal<span>Received product free</span></p></li>
-        <li><p class="lu-rev__s" aria-label="5 out of 5 stars">{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}{{ lu_star }}</p><h3>My evening ten minutes</h3><p>Sunmelt, Long Light, Haze. I look forward to it now, and my skin looks warmer without looking shiny.</p><p class="lu-rev__who"><b>Marisol</b>Olive skin, combination<span>Received product free</span></p></li>
-      </ol>
+      <div class="lu-pdp-revlist">
+        <div class="lu-pdp-filters" aria-label="Filter reviews">
+          <button type="button" class="lu-pdp-filter is-on" data-f="All skin">All skin</button><button type="button" class="lu-pdp-filter" data-f="Dry">Dry</button><button type="button" class="lu-pdp-filter" data-f="Oily">Oily</button><button type="button" class="lu-pdp-filter" data-f="Combination">Combination</button><button type="button" class="lu-pdp-filter" data-f="Sensitive">Sensitive</button><button type="button" class="lu-pdp-filter lu-pdp-filter--gap" data-f="Light">Light</button><button type="button" class="lu-pdp-filter" data-f="Medium">Medium</button><button type="button" class="lu-pdp-filter" data-f="Deep">Deep</button>
+        </div>
+        <article class="lu-pdp-review">
+          <header><span class="lu-stars" aria-label="5 out of 5"><span class="lu-stars__fill" style="--r: 100%"><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><time>6 weeks of use</time></header>
+          <h3>No gray cast, finally.</h3>
+          <p>Every vitamin C I’ve tried left me a little ashy by lunch. This sinks in clear, and by week three my cheeks looked warmer in photos. Three drops, both ends of the day.</p>
+          <footer><b>Nia</b><span>Deep skin · combination</span><span class="lu-tag-sample">Sample</span></footer>
+        </article>
+        <article class="lu-pdp-review">
+          <header><span class="lu-stars" aria-label="4 out of 5"><span class="lu-stars__fill" style="--r: 80%"><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><time>5 weeks of use</time></header>
+          <h3>Lovely, but give it a minute.</h3>
+          <p>Slightly tacky for about thirty seconds, then gone. Under SPF it sits flat. Four stars only because I’d like a pump: the dropper is slower when I’m rushing.</p>
+          <footer><b>Sophie</b><span>Light skin · dry</span><span class="lu-tag-sample">Sample</span></footer>
+        </article>
+        <article class="lu-pdp-review">
+          <header><span class="lu-stars" aria-label="5 out of 5"><span class="lu-stars__fill" style="--r: 100%"><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><time>8 weeks of use</time></header>
+          <h3>My first step before makeup.</h3>
+          <p>Water-light, no smell at all, and foundation goes on smoother over it. The color in the bottle made me nervous. It doesn’t tint, not even on a white towel.</p>
+          <footer><b>Marcus</b><span>Medium skin · oily</span><span class="lu-tag-sample">Sample</span></footer>
+        </article>
+        <article class="lu-pdp-review">
+          <header><span class="lu-stars" aria-label="3 out of 5"><span class="lu-stars__fill" style="--r: 60%"><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg><svg><use href="#lu-i-star"/></svg></span><time>7 weeks of use</time></header>
+          <h3>Slow, but it got there.</h3>
+          <p>I didn’t see much until week three, and I felt some warmth the first few evenings, so I went every other night. By week five my tone looks more even.</p>
+          <footer><b>Hana</b><span>Light skin · sensitive</span><span class="lu-tag-sample">Sample</span></footer>
+        </article>
+        <div class="lu-pdp-revlist__more">
+          <p class="lu-disclosure">Sample reviews for this concept store, not from customers. In the live store, every review comes from the review app, and any from a free sample is tagged “Received product free”.</p>
+        </div>
+      </div>
     </div>
-    <p class="lu-rev__note">Sample reviews written for this concept store, shown 6 of 28. In a live store every review would come from a verified buyer or a disclosed tester.</p>
   </div>
 </section>
 <style>
-.lu-rev__grid{display:grid;grid-template-columns:4fr 8fr;gap:24px 64px;align-items:start}
-.lu-rev__summary{position:sticky;top:120px}
-.lu-rev__avg{margin:0;font:300 96px/.9 var(--lu-display);letter-spacing:-.035em;color:rgb(var(--color-heading))}
-.lu-rev__avg span{display:block;margin-top:10px;font:400 14px/1 var(--lu-body);letter-spacing:0;color:rgb(var(--color-foreground-secondary))}
-.lu-rev__stars,.lu-rev__s{display:flex;gap:3px;margin:16px 0 0}
-.lu-rev__stars svg{width:18px;height:18px;fill:var(--lu-clay)}
-.lu-rev__s svg{width:14px;height:14px;fill:var(--lu-clay)}
-.lu-rev__s i svg,.lu-rev__s i{fill:var(--lu-hairline-strong);display:inline-flex;gap:3px}
-.lu-rev__count{margin:8px 0 0;font-size:14px;color:rgb(var(--color-foreground-secondary))}
-.lu-rev__bars{display:grid;gap:8px;margin:24px 0 0;padding:0;list-style:none;font-size:13px}
-.lu-rev__bars li{display:grid;grid-template-columns:14px 1fr 24px;align-items:center;gap:10px;color:rgb(var(--color-foreground-secondary))}
-.lu-rev__bars i{position:relative;height:6px;border-radius:999px;background:var(--lu-hairline)}
-.lu-rev__bars i::after{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);border-radius:inherit;background:var(--lu-gradient-sun)}
-.lu-rev__chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}
-.lu-rev__chips li{padding:8px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px rgb(var(--color-border));font-size:13px;line-height:1;color:rgb(var(--color-foreground))}
-.lu-rev__list{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0;padding:0;list-style:none}
-.lu-rev__list li{display:flex;flex-direction:column;padding:28px;border-radius:14px;background:var(--lu-travertine)}
-.lu-rev__list h3{margin:14px 0 0;font:400 22px/1.2 var(--lu-display);letter-spacing:-.01em;color:rgb(var(--color-heading))}
-.lu-rev__list p{margin:10px 0 0;font-size:15px;line-height:24px;color:rgb(var(--color-foreground))}
-.lu-rev__list .lu-rev__s{margin:0}
-.lu-rev__who{margin-top:auto!important;padding-top:18px;font-size:13px!important;line-height:20px!important;color:rgb(var(--color-foreground-secondary))!important}
-.lu-rev__who b{margin-right:8px;font-weight:600;color:rgb(var(--color-foreground))}
-.lu-rev__who span{display:block;margin-top:2px;font-size:12px}
-.lu-rev__note{margin:28px 0 0;font-size:13px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
-@media (max-width:1023px){.lu-rev__grid{grid-template-columns:1fr}.lu-rev__summary{position:static}}
-@media (max-width:767px){.lu-rev__avg{font-size:64px}.lu-rev__list{grid-template-columns:1fr;gap:12px}.lu-rev__list li{padding:22px}}
+.lu-pdp-sample-note{display: flex; align-items: center; gap: 10px; max-width: 380px; padding: 12px 16px; border-radius: var(--lu-radius); box-shadow: inset 0 0 0 1px rgb(var(--color-border)); font-size: 13px; line-height: 19px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-sample-note .lu-ico{width: 20px; height: 20px; color: rgb(var(--color-foreground));}
+.lu-pdp-reviews__grid{display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 24px 56px; align-items: start;}
+.lu-pdp-summary{padding: 30px 30px 32px; border-radius: var(--lu-radius); background: var(--lu-travertine);}
+.lu-pdp-summary__avg{font: 300 88px/.9 var(--lu-display); letter-spacing: -.04em;}
+.lu-pdp-summary .lu-stars--lg{margin-top: 14px;}
+.lu-pdp-summary__n{margin-top: 10px; font-size: 13.5px; line-height: 20px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-dist{display: grid; gap: 8px; margin-top: 22px;}
+.lu-pdp-dist li{display: grid; grid-template-columns: 10px 13px 1fr 26px; align-items: center; gap: 8px; font-size: 13px; line-height: 16px;}
+.lu-pdp-dist .lu-ico{width: 13px; height: 13px; fill: var(--lu-dusk); stroke: none;}
+.lu-pdp-dist i{position: relative; height: 8px; border-radius: 0 4px 4px 0; background: var(--lu-sand);}
+.lu-pdp-dist i b{position: absolute; left: 0; top: 0; bottom: 0; width: var(--v); border-radius: 0 4px 4px 0; background: var(--lu-dusk);}
+.lu-pdp-dist em{font-style: normal; text-align: right; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-summary__label{margin-top: 26px; font: 600 11px/16px var(--lu-body); letter-spacing: .16em; text-transform: uppercase; color: rgb(var(--color-price-sale));}
+.lu-pdp-mentions{display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;}
+.lu-pdp-mentions li{display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: var(--lu-pill); background: var(--lu-linen); font-size: 13px; font-weight: 500;}
+.lu-pdp-mentions span{font-size: 12px; font-weight: 600; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-summary__btn{width: 100%; height: 48px; margin-top: 24px;}
+.lu-pdp-revlist{display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; align-content: start;}
+.lu-pdp-filters{grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 20px; border-bottom: 1px solid rgb(var(--color-border));}
+.lu-pdp-filter{display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: var(--lu-pill); box-shadow: inset 0 0 0 1px var(--lu-hairline-strong); font-size: 13.5px; font-weight: 500;}
+.lu-pdp-filter.is-on{background: var(--lu-dusk); color: var(--lu-linen); box-shadow: none;}
+.lu-pdp-filter--gap{margin-left: 14px;}
+.lu-pdp-review{padding: 26px 0 24px; border-bottom: 1px solid rgb(var(--color-border));}
+.lu-pdp-review header{display: flex; align-items: center; justify-content: space-between; gap: 12px;}
+.lu-pdp-review time{font-size: 12.5px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-review h3{margin-top: 14px; font: 400 21px/1.25 var(--lu-display); letter-spacing: -.01em;}
+.lu-pdp-review p{margin-top: 8px; font-size: 15px; line-height: 24px; color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-review footer{display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-top: 16px; font-size: 13px; line-height: 18px;}
+.lu-pdp-review footer b{font-weight: 600;}
+.lu-pdp-review footer span:not(.lu-tag-sample){color: rgb(var(--color-foreground-secondary));}
+.lu-pdp-revlist__more{grid-column: 1 / -1; display: flex; align-items: center; gap: 28px; padding-top: 28px;}
+.lu-pdp-revlist__more .m-button{flex: none; height: 48px;}
+.lu-pdp-revlist__more .lu-disclosure{margin-top: 0; max-width: 64ch;}
+@media (max-width: 767px){
+.lu-pdp-sample-note{margin-top: 18px; max-width: none;}
+.lu-pdp-reviews__grid{grid-template-columns: 1fr; gap: 20px;}
+.lu-pdp-summary{display: grid; grid-template-columns: auto 1fr; column-gap: 18px; padding: 22px 20px 22px;}
+.lu-pdp-summary__avg{grid-row: 1 / span 2; font-size: 64px;}
+.lu-pdp-summary .lu-stars--lg{margin-top: 6px;}
+.lu-pdp-summary__n{margin-top: 4px;}
+.lu-pdp-dist, .lu-pdp-summary__label, .lu-pdp-mentions, .lu-pdp-summary__btn{grid-column: 1 / -1;}
+.lu-pdp-revlist{grid-template-columns: 1fr;}
+.lu-pdp-filters{flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * 20px); padding-inline: 20px; scrollbar-width: none;}
+.lu-pdp-filters::-webkit-scrollbar{display: none;}
+.lu-pdp-filter{flex: none;}
+.lu-pdp-review{padding: 20px 0 18px;}
+.lu-pdp-review h3{font-size: 19px;}
+.lu-pdp-review p{font-size: 14px; line-height: 22px;}
+.lu-pdp-revlist__more{flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 22px;}
+}
+.lu-pdp-dist,.lu-pdp-mentions{list-style:none;margin:0;padding:0}
+.lu-pdp-filter{border:0;background:transparent;cursor:pointer;color:inherit;font-family:var(--lu-body)}
+.lu-pdp-filter.is-on{background:var(--lu-dusk);color:var(--lu-linen)}
+.lu-pdp-review header{display:flex}
+.lu-pdp-review h3{margin:14px 0 0}
 </style>
+<script>
+(function(){
+  var root=document.querySelector(".lu-pdp-reviews");if(!root)return;
+  var reviews=[].slice.call(root.querySelectorAll(".lu-pdp-review"));
+  root.querySelectorAll(".lu-pdp-filter").forEach(function(b){b.setAttribute("aria-pressed",b.classList.contains("is-on"));b.addEventListener("click",function(){
+    root.querySelectorAll(".lu-pdp-filter").forEach(function(x){x.classList.remove("is-on");x.setAttribute("aria-pressed","false")});
+    b.classList.add("is-on");b.setAttribute("aria-pressed","true");var f=(b.getAttribute("data-f")||"").toLowerCase();
+    reviews.forEach(function(r){var who=(r.querySelector("footer")||r).textContent.toLowerCase();r.hidden=!(f==="all skin"||who.indexOf(f)>-1)})})});
+})();
+</script>

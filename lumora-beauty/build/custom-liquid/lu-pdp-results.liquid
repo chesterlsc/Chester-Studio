@@ -1,0 +1,57 @@
+{%- comment -%}
+  LUMORA PDP RESULTS, WITH THE METHOD  ·  lu-pdp-results.liquid  (mockup section 5)
+  Paste into: Long Light product template > Add section > Custom Liquid (padding 0), after How to use.
+  Honey wash. Three stats with exact counts (30, 28 and 31 of 32; rounded down), footnote 2 directly under
+  the stats, the method panel (who, how often, how measured, rounding) and the Day 1 / Week 2 / Week 4 line.
+{%- endcomment -%}
+<section id="results" class="lu-sec lu-sec--feature lu-s-honey-wash lu-proof lu-pdp-results" aria-labelledby="results-title">
+  <div class="container-fluid">
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">Results, with the method</p>
+        <h2 id="results-title" class="lu-h2">Week four, in plain <em>numbers.</em></h2>
+        <p class="lu-lead">Thirty-two people used Long Light twice a day for four weeks and told us what they saw. The numbers are theirs, and so is the method, right underneath.</p>
+      </div>
+      <img class="lu-proof__sun" src="{{ 'lumora-sun-mark.svg' | file_url }}" alt="" aria-hidden="true">
+    </header>
+    <div class="lu-stats">
+      <div class="lu-stat"><p class="lu-stat__num lu-tnum">93%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said their skin looked more radiant after 4&nbsp;weeks <span class="lu-pdp-n">30 of 32</span></p></div>
+      <div class="lu-stat"><p class="lu-stat__num lu-tnum">87%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said their tone looked more even after 4&nbsp;weeks <span class="lu-pdp-n">28 of 32</span></p></div>
+      <div class="lu-stat"><p class="lu-stat__num lu-tnum">96%<sup class="lu-fn" data-fn="2">2</sup></p><p class="lu-stat__label">said it layered under SPF and makeup without pilling <span class="lu-pdp-n">31 of 32</span></p></div>
+    </div>
+    <div class="lu-footnotes lu-pdp-results__fn">
+      <span data-fn-note="2"><sup class="lu-fn">2</sup>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed. Individual results vary. Illustrative placeholder data.</span>
+    </div>
+    <dl class="lu-pdp-method" aria-label="How we tested">
+      <div><dt>Who</dt><dd>32 people aged 24 to 58, light to deep skin</dd></div>
+      <div><dt>How often</dt><dd>Twice a day for 4 weeks, with their usual cleanser and SPF</dd></div>
+      <div><dt>How measured</dt><dd>Self-assessed questionnaire on day 14 and day 28</dd></div>
+      <div><dt>Rounding</dt><dd>Rounded down, never up</dd></div>
+    </dl>
+    <ol class="lu-timeline">
+      <li><span class="lu-node" aria-hidden="true"></span><b>Day 1</b><p>Sinks in within a minute and leaves a satin finish. No tint, no shimmer.</p></li>
+      <li><span class="lu-node" aria-hidden="true"></span><b>Week 2</b><p>Skin starts to look less tired, often first in morning light.</p></li>
+      <li><span class="lu-node" aria-hidden="true"></span><b>Week 4</b><p>Tone looks more even and skin looks warm-lit and awake<sup class="lu-fn" data-fn="2">2</sup>.</p></li>
+    </ol>
+  </div>
+</section>
+<style>
+.lu-pdp-n{display: block; margin-top: 10px; font: 600 11px/16px var(--lu-body); letter-spacing: .16em; text-transform: uppercase; color: rgb(var(--color-price-sale));}
+.lu-pdp-results__fn{margin-top: 20px;}
+.lu-pdp-method{display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 36px; padding: 22px 0; border-radius: var(--lu-radius); background: var(--lu-linen);}
+.lu-pdp-method > div{padding: 0 26px; border-left: 1px solid var(--lu-hairline);}
+.lu-pdp-method > div:first-child{border-left: 0;}
+.lu-pdp-method dt{font: 600 11px/16px var(--lu-body); letter-spacing: .16em; text-transform: uppercase; color: var(--lu-clay);}
+.lu-pdp-method dd{margin-top: 6px; font-size: 14px; line-height: 21px;}
+.lu-pdp-results .lu-timeline{margin-top: 52px;}
+@media (max-width: 767px){
+.lu-pdp-n{margin-top: 6px;}
+.lu-pdp-method{grid-template-columns: 1fr 1fr; gap: 18px 0; margin-top: 28px; padding: 18px 0;}
+.lu-pdp-method > div{padding: 0 16px;}
+.lu-pdp-method > div:nth-child(3){border-left: 0;}
+.lu-pdp-method dd{font-size: 13px; line-height: 19px;}
+.lu-pdp-results .lu-timeline{margin-top: 36px;}
+}
+.lu-pdp-method{margin:36px 0 0}
+.lu-pdp-method dd{margin:6px 0 0}
+</style>

@@ -1,27 +1,13 @@
 {%- comment -%}
-  LUMORA PDP EYEBROW  ·  lu-pdp-eyebrow.liquid  ·  v1.0
-  Paste into: Product information (main product) > Add block > Custom Liquid, placed directly ABOVE Title.
-  Prints "Step 02 · Glow" with the step's sun mark from the metafields custom.step and custom.step_name.
-  Renders nothing when the product has no step.
+  LUMORA PDP EYEBROW  ·  lu-pdp-eyebrow.liquid
+  Paste into: Product information > Add block > Custom Liquid, directly ABOVE Title (below Breadcrumb).
+  "Step 02 · Glow" with the step's sun mark, from custom.step ("02") and custom.ritual ("Glow").
+  The PDP mockup export shows "Treat"; the build uses "Glow" to match the homepage ritual list and to keep
+  "treats" off the page. Changing it back is one metafield.
 {%- endcomment -%}
-{%- liquid
-  assign lu_step = product.metafields.custom.step.value | default: ''
-  assign lu_name = product.metafields.custom.step_name.value | default: ''
-  case lu_step
-    when '01'
-      assign lu_sun = '<circle class="s" cx="8.6" cy="16.3" r="3"/>'
-    when '02'
-      assign lu_sun = '<circle class="s" cx="12.9" cy="10.3" r="3"/>'
-    when '03'
-      assign lu_sun = '<circle class="s" cx="20" cy="8" r="3"/>'
-    when '04'
-      assign lu_sun = '<circle class="s" cx="27.1" cy="10.3" r="3"/>'
-    when '05'
-      assign lu_sun = '<circle class="s" cx="31.1" cy="15.5" r="3"/>'
-    else
-      assign lu_sun = '<path class="s" d="M29 20a3 3 0 0 1 6 0z"/>'
-  endcase
--%}
+{%- assign lu_step = product.metafields.custom.step.value | default: '' -%}
+{%- assign lu_ritual = product.metafields.custom.ritual.value | default: '' -%}
 {%- if lu_step != '' -%}
-<p class="lu-eyebrow lu-pdp-eyebrow"><svg class="lu-sunmark" viewBox="0 0 40 24" aria-hidden="true"><path class="a" d="M8 20a12 12 0 0 1 24 0"/><path class="h" d="M3 20h34"/>{{ lu_sun }}</svg>Step {{ lu_step }}{% if lu_name != '' %} · {{ lu_name }}{% endif %}</p>
+{%- assign lu_n = lu_step | plus: 0 -%}{%- if lu_n < 1 or lu_n > 6 -%}{%- assign lu_n = 2 -%}{%- endif -%}
+<p class="lu-eyebrow lu-pdp-eyebrow"><svg class="lu-sunmark" aria-hidden="true"><use href="#lu-m{{ lu_n }}"/></svg>Step {{ lu_step }}{% if lu_ritual != '' %} · {{ lu_ritual }}{% endif %}</p>
 {%- endif -%}

@@ -1,7 +1,8 @@
 {%- comment -%}
   LUMORA CLOSING BAND  ·  lu-closing.liquid  ·  v1.0
   Paste into: Add section > Custom Liquid (padding 0), the LAST section of the template, directly above
-  the footer group. Home: lu_mode 'home'. PDP: set lu_mode to 'pdp' (guarantee band).
+  the footer group. Home: lu_mode 'home'. PDP: set lu_mode to 'pdp' (the guarantee band: the same render
+  zoomed 1.6x from the left so only the leaf-shadowed wall shows; the evening products stay on the homepage).
   Dusk scheme; the render sits right, a Dusk scrim keeps the copy at AA; the horizon arc (signature
   transition 2 of 2) curves into the footer. Upload the render to Content > Files as lu-closing.jpg
   (2880 x 1100). The button is a cart permalink for Long Light (first available size): lu-skin adds it
@@ -13,17 +14,17 @@
   assign lu_p = all_products['long-light-serum']
   assign lu_v = lu_p.selected_or_first_available_variant
 -%}
-<section class="lu-closing lu-s-dusk" id="promise" aria-labelledby="lu-closing-title">
-  <div class="lu-closing__media"><img src="{{ lu_img | file_img_url: '1920x' }}" srcset="{{ lu_img | file_img_url: '960x' }} 960w, {{ lu_img | file_img_url: '1920x' }} 1920w, {{ lu_img | file_img_url: '2880x' }} 2880w" sizes="100vw" width="2880" height="1100" loading="lazy" alt="A glass sphere on a terracotta sweep catching the last disc of sun"></div>
+<section class="lu-closing lu-s-dusk{% if lu_mode == 'pdp' %} lu-closing--pdp{% endif %}" id="promise" aria-labelledby="lu-closing-title">
+  <div class="lu-closing__media"><img src="{{ lu_img | file_img_url: '1920x' }}" srcset="{{ lu_img | file_img_url: '960x' }} 960w, {{ lu_img | file_img_url: '1920x' }} 1920w, {{ lu_img | file_img_url: '2880x' }} 2880w" sizes="100vw" width="2880" height="1100" loading="lazy" alt="{% if lu_mode == 'pdp' %}{% else %}Gloaming Body Oil and Slow Hour Golden Milk on a terracotta plinth in the last low light, leaf shadows on a deep clay wall{% endif %}"></div>
   <div class="lu-closing__scrim" aria-hidden="true"></div>
   <div class="container-fluid lu-closing__inner">
     <p class="lu-eyebrow">The 30-day promise</p>
     {%- if lu_mode == 'pdp' -%}
-    <h2 id="lu-closing-title" class="lu-h2">Thirty days to love <em>it.</em></h2>
-    <p class="lu-lead">Use Long Light for 30 days. If it isn’t right for your skin, we’ll refund you, even if the bottle is open.</p>
+    <h2 id="lu-closing-title" class="lu-h2">Thirty days, even if <em>opened.</em></h2>
+    <p class="lu-lead">Use Long Light twice a day for 30 days. If it isn’t right for your skin, send it back, open or not, and we’ll refund you in full.</p>
     <div class="lu-actions">
-      {%- if lu_v -%}<a class="m-button m-button--primary lu-btn" href="{{ routes.cart_url }}/{{ lu_v.id }}:1">Add to bag · {{ lu_v.price | money_without_trailing_zeros }}<svg class="lu-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>{%- endif -%}
-      <a class="lu-link" href="{{ routes.collections_url }}/the-six">See the whole shelf</a>
+      {%- if lu_v -%}<a class="m-button m-button--primary lu-btn" href="{{ routes.cart_url }}/{{ lu_v.id }}:1">Try it for 30 days · {{ lu_v.price | money_without_trailing_zeros }}<svg class="lu-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>{%- endif -%}
+      <a class="lu-link" href="{{ routes.root_url }}policies/refund-policy">How returns work</a>
     </div>
     {%- else -%}
     <h2 id="lu-closing-title" class="lu-h2">Stay for golden <em>hour.</em></h2>
@@ -48,12 +49,14 @@
 .lu-closing .m-button--primary{background:var(--lu-honey);color:var(--lu-dusk)}
 .lu-closing .m-button--primary:hover{background:var(--lu-linen)}
 .lu-closing .lu-link{color:var(--lu-linen)}
+.lu-closing--pdp .lu-closing__media img{transform:scale(1.6);transform-origin:0% 50%}
 .lu-horizon{position:absolute;left:0;right:0;bottom:-1px;z-index:3;height:44px;pointer-events:none}
 .lu-horizon svg{display:block;width:100%;height:100%}
 @media (max-width:767px){
   .lu-closing{display:block;min-height:0}
   .lu-closing__media{position:relative;height:300px}
   .lu-closing__media img{object-position:74% 50%}
+  .lu-closing--pdp .lu-closing__media img{transform:none}
   .lu-closing__scrim{background:linear-gradient(180deg,rgba(53,33,31,0) 50%,var(--lu-dusk) 100%);height:300px;bottom:auto}
   .lu-closing__inner{padding-top:8px;padding-bottom:76px}
   .lu-closing .lu-actions{flex-direction:column;align-items:flex-start;gap:18px}
