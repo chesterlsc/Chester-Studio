@@ -13,3 +13,4 @@ mockup/exports/*.png
 mockup/exports/slices/
 mockup/exports/*.zip
 mockup/delivered/**/*.zip
+mockup/presentation/build/
