@@ -1,0 +1,8 @@
+/* Product page v2 (shortened, visual-first). Loaded after lumora.css and pdp.css. */
+.ingr--three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.ingr--three .ingr__card .media { aspect-ratio: 4 / 5; }
+.pdp-results .stats { margin-bottom: 0; }
+@media (max-width: 767px) {
+  .ingr--three { grid-template-columns: repeat(3, 78%); overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding-bottom: 6px; }
+  .ingr--three .ingr__card { scroll-snap-align: start; }
+}

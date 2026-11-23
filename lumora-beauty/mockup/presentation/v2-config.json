@@ -1,14 +1,63 @@
 {
-  "home_dir": "homepage-short",
-  "pdp_dir": "pdp-short",
-  "home_prefix": "lumora-homepage-short",
-  "pdp_prefix": "lumora-pdp-short",
-  "out_subdir": "v2",
-  "columns": 2,
-  "cap02": ["Homepage, <em>shortened.</em>", "A shorter, image-led scroll: products first, then the serum, two moments, the ingredients and the ritual, each in a few words."],
-  "cap03": ["Long Light Serum, <em>at a glance.</em>", "The gallery and buy box do the selling. The detail sits in accordions, and visuals carry the rest of the page."],
-  "home_tops": [0, 1000, 2400, 4000],
-  "pdp_tops": [0, 540, 3000],
-  "home_labels": [["First screen", "Hero, headline and CTA"], ["The sunset shelf", "Swipe rail with peeking cards"], ["Shop by moment", "Morning and evening, in pictures"], ["The ritual", "Shop all six, save 15%"]],
-  "pdp_labels": [["Gallery", "Swipe, with dots"], ["Buy box", "Benefits, sizes, add to bag"], ["At a glance", "Results and every skin tone"], ["Sticky add to bag", "Always one tap away"]]
+ "home_dir": "homepage-short",
+ "pdp_dir": "pdp-short",
+ "home_prefix": "lumora-homepage-short",
+ "pdp_prefix": "lumora-pdp-short",
+ "out_subdir": "v2",
+ "columns": 2,
+ "cap02": [
+  "Homepage, <em>shortened.</em>",
+  "A shorter, image-led scroll: products first, then the serum, two moments, the ingredients and the ritual, each in a few words."
+ ],
+ "cap03": [
+  "Long Light Serum, <em>at a glance.</em>",
+  "The gallery and buy box do the selling. The detail sits in accordions, and visuals carry the rest of the page."
+ ],
+ "home_tops": [
+  0,
+  1000,
+  2600,
+  5100
+ ],
+ "pdp_tops": [
+  0,
+  540,
+  2930
+ ],
+ "home_labels": [
+  [
+   "First screen",
+   "Hero, headline and CTA"
+  ],
+  [
+   "The sunset shelf",
+   "Swipe rail with peeking cards"
+  ],
+  [
+   "Shop by moment",
+   "Morning and evening, in pictures"
+  ],
+  [
+   "The ritual",
+   "Shop all six, save 15%"
+  ]
+ ],
+ "pdp_labels": [
+  [
+   "Gallery",
+   "Swipe, with dots"
+  ],
+  [
+   "Buy box",
+   "Benefits, sizes, add to bag"
+  ],
+  [
+   "At a glance",
+   "Results and every skin tone"
+  ],
+  [
+   "Sticky add to bag",
+   "Always one tap away"
+  ]
+ ]
 }

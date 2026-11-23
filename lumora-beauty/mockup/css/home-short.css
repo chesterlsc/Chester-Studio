@@ -1,0 +1,45 @@
+/* Homepage v2 (shortened, visual-first). Loaded after lumora.css. */
+
+/* Shop by moment: two big image cards with text on the image (Minimog image cards). */
+.moments { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.moment {
+  position: relative; display: block; overflow: hidden; border-radius: var(--radius);
+  aspect-ratio: 1 / 1; color: var(--linen); text-decoration: none; background: var(--sand);
+}
+.moment > img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  object-position: var(--pos, 50% 50%); transition: transform .9s var(--ease);
+}
+.moment:hover > img { transform: scale(1.04); }
+.moment::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(53, 33, 31, 0) 42%, rgba(53, 33, 31, .74) 100%);
+}
+.moment__text { position: absolute; left: 40px; right: 40px; bottom: 36px; z-index: 1; }
+.moment__text .eyebrow { color: var(--honey); margin-bottom: 12px; }
+.moment__text h3 {
+  font-family: var(--font-display); font-variation-settings: var(--fv-roman); font-weight: 300;
+  font-size: 44px; line-height: 1.04; letter-spacing: -.02em; margin: 0 0 18px;
+}
+.moment__text h3 em { font-style: italic; font-variation-settings: var(--fv-italic); color: var(--honey); }
+.moment__text .text-link { color: var(--linen); border-color: currentColor; }
+.moment__steps { display: flex; gap: 8px; margin-bottom: 16px; }
+.moment__steps span {
+  font: 600 12px/1 var(--font-body); letter-spacing: .08em; padding: 7px 10px; border-radius: var(--pill);
+  background: rgba(251, 246, 239, .16); border: 1px solid rgba(251, 246, 239, .3);
+}
+
+/* Slimmer proof band: numbers only. */
+.proof--slim { padding-block: clamp(56px, 6vw, 88px); }
+.proof--slim .section-head { margin-bottom: 36px; }
+
+/* Ingredient tiles: one line each. */
+.ingr--short .ingr__card p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+@media (max-width: 767px) {
+  .moments { grid-template-columns: 1fr; gap: 16px; }
+  .moment { aspect-ratio: 4 / 5; }
+  .moment__text { left: 24px; right: 24px; bottom: 24px; }
+  .moment__text h3 { font-size: 34px; }
+  .proof--slim .stats { gap: 20px; }
+}
