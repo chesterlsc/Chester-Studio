@@ -4,7 +4,7 @@ Golden Hour direction (`brand/concepts/golden-hour.md`). Static HTML/CSS that mi
 section at a time. Open `index.html` in a browser, or see `exports/homepage-desktop.png` (1440 at 2x) and
 `exports/homepage-mobile.png` (390 at 2x).
 
-Asset status below was computed on 23 Nov 2026, 11:38: **3 final, 20 placeholder.**
+Asset status below was computed on 23 Nov 2026, 11:40: **4 final, 19 placeholder.**
 
 ## Files
 
@@ -58,7 +58,7 @@ Schemes follow the sunset ladder (golden-hour.md 2.2). No two neighbours share a
 | 7 | What's in the glow | Custom content (`custom-content`): 4 image + text blocks and a rich-text row | linen | View all "Read every ingredient"; mobile rail (70% cards). | Percentage tag after each name; statement row in Fraunces 30 px with the "not a coating" accent. | `photos/graded/oil-drops.jpg`, `sea-buckthorn.jpg`, `apricot.jpg`, `cream-swirl.jpg`, 4:5 |
 | 8 | Proof, with the method | Custom Liquid (`custom-liquid`) | honey-wash | Three stats (Fraunces 96 px), Day 1 / Week 2 / Week 4 timeline, footnotes 2 and 3 directly beneath, labelled illustrative placeholder data. | Whole section is Custom Liquid (about 3 KB). Sun-dot footnote markers. | `brand/logo/lumora-sun-mark.svg` |
 | 9 | Sensory marquee | Scrolling promotion (`scrolling-promotion`) | honey | Announcement blocks, sun-dot icon separators, slow speed, pause on hover, static under reduced motion. | Fraunces 300 at 44 px (28 px mobile), italic "never" phrases. | Sun dot SVG (one-colour monogram, gap widened to 10% for small sizes) |
-| 10 | The ritual: sunset in six | Product bundles (`product-bundles`) | apricot-wash (scheme gradient from honey wash) | Image with 6 numbered hotspots (pins float above each product), product list, running total ($197 for all six, $232 separately, save 15%), add-all button "Add the full sunset · $197", link "Start with one step". One popover open (02). Mobile: 4:5 crop on 02 to 04 with three pins, list stays visible. | CSS (about 400 characters): image above, list as 6 centred columns. Custom Liquid block: the sun-arc timeline (dashed arc, sun dots rising from 01 and setting at 06). **Pin x/y must be re-tuned to the final render.** | `renders/scenes/ritual.jpg` 2400 x 1350 |
+| 10 | The ritual: sunset in six | Product bundles (`product-bundles`) | apricot-wash (scheme gradient from honey wash) | Image with 6 numbered hotspots (pins float above each product), product list, running total ($197 for all six, $232 separately, save 15%), add-all button "Add the full sunset · $197", link "Start with one step". One popover open (02). Mobile: 4:5 crop on 02 to 04 with three pins, list stays visible. | CSS (about 400 characters): image above, list as 6 centred columns. Custom Liquid block: the sun-arc timeline (dashed arc, sun dots rising from 01 and setting at 06). Pins tuned to the final render (they float above each product, so labels stay readable). | `renders/scenes/ritual.jpg` 2400 x 1350 |
 | 11 | The slow hour | Image with text (`image-with-text`), image right, layered second image | rose-wash | Eyebrow, H2 (Dusk italic accent: Clay fails on rose), text, lexicon line, button "Shop the slow hour", food-not-supplement note. | Lexicon line in Fraunces 20 px. | `photos/graded/golden-milk-hands.jpg`; inset `products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg` |
 | 12 | A note from our formulator | Image with text (`image-with-text`), image left | apricot-wash + leaf light | Eyebrow, H2, note in Fraunces 24 px, signature "Mara, head of formulation", labelled illustrative persona. | Leaf-light overlay (texture 2 of 2); note and signature styles. | `photos/graded/formulator-hands.jpg` (anonymous hands, no face) |
 | 13 | Early voices | Testimonials (`testimonials`), boxed cards | terracotta | 4 per row, mobile swipe (82% cards), no star ratings. Disclosure under the cards: testers received products free, sample content. | Card glass fill (Linen 7%) and hairline; honey quote mark. | None |
@@ -91,7 +91,7 @@ Schemes follow the sunset ladder (golden-hour.md 2.2). No two neighbours share a
 | PLACEHOLDER | `../photos/graded/sea-buckthorn.jpg` | `placeholders/photo-sea-buckthorn.jpg` | 7 Sea buckthorn card | 4:5 |
 | PLACEHOLDER | `../photos/graded/apricot.jpg` | `placeholders/photo-apricot.jpg` | 7 Apricot kernel card | 4:5 |
 | PLACEHOLDER | `../photos/graded/cream-swirl.jpg` | `placeholders/photo-cream.jpg` | 7 Ceramides + squalane card | 4:5 |
-| PLACEHOLDER | `../renders/scenes/ritual.jpg` | `placeholders/ritual.jpg` | 10 Ritual hotspot scene | 2400 x 1350, 16:9; desktop box 1296 x 640; mobile 4:5 crop at object-position 36% (steps 02 to 04) |
+| final | `../renders/scenes/ritual.jpg` | none | 10 Ritual hotspot scene | 2400 x 1600 (3:2 as rendered); desktop box 1296 x 640 at object-position 50% 54%; mobile 4:5 at 33.9% plus scale 1.4 (steps 02 to 04) |
 | PLACEHOLDER | `../photos/graded/golden-milk-hands.jpg` | `placeholders/photo-golden-milk.jpg` | 11 Slow hour, main image | 4:5 |
 | PLACEHOLDER | `../photos/graded/formulator-hands.jpg` | `placeholders/photo-formulator.jpg` | 12 Formulator note | 4:5 |
 | PLACEHOLDER | `../renders/scenes/closing.jpg` | `placeholders/closing.jpg` | 15 Closing band | 2880 x 1100; cover-cropped to 1440 x 560 at 62% (mobile 390 x 300 at 74%) |
@@ -99,7 +99,7 @@ Schemes follow the sunset ladder (golden-hour.md 2.2). No two neighbours share a
 ## Integration checklist
 
 1. Land the remaining files at the paths above (status PLACEHOLDER), re-run the two exports and look at every slice.
-2. Re-tune the pins to the final renders: hero hotspot (`style="--x: 67.5%; --y: 56%"` on `.hotspot`), the six desktop ritual pins and the three mobile pins (`.pin--d`, `.pin--m`), and the open popover (on pin 02).
+2. Pins are tuned to the final hero and ritual renders that landed during this pass (hero hotspot `--x: 67.5%; --y: 56%`; ritual pins float just above each product). Re-check them only if those renders are re-rendered with a different camera.
 3. Check the crops: hero desktop `--pos`, ritual mobile `--pos-m` (36% keeps steps 02 to 04), closing `--pos` / `--pos-m`.
 4. Hover image: only Long Light has a low-sun render queued (`long-light-serum-in-light.jpg`). The other five cards need theirs before the build, or the hover setting stays off for them.
 5. Delete `css/placeholders.css` and its `<link>` once nothing above reads PLACEHOLDER.

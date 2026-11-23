@@ -607,7 +607,7 @@ p, li, figcaption { text-wrap: pretty; }
   .marquee__track .sundot { width: 14px; height: 14px; }
 
   .ritual__scene { aspect-ratio: 4 / 5; }
-  .ritual__scene > img { object-position: var(--pos-m, 36% 50%); }
+  .ritual__scene > img { object-position: var(--pos-m, 34% 50%); transform: scale(1.4); transform-origin: 50% 53.5%; }
   .pin--d, .popover { display: none; }
   .pin--m { display: grid; }
   .bundle { margin-top: 16px; padding: 24px 20px 24px; }
