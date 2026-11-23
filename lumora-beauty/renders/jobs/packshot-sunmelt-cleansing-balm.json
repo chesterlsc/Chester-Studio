@@ -1,0 +1,73 @@
+{
+  "_comment": "Packshot recipe (golden-hour.md 4.1): sunmelt-cleansing-balm. Sand sweep colour-locked to #E9D9C5.",
+  "output": "../../products/sunmelt-cleansing-balm/sunmelt-cleansing-balm-packshot.jpg",
+  "resolution": [
+    1600,
+    2000
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E9D9C5",
+    "match": true
+  },
+  "lighting": {
+    "preset": "soft_studio",
+    "kelvin_shift": -500
+  },
+  "products": [
+    {
+      "type": "tube",
+      "dims": {
+        "d": 40,
+        "length": 150,
+        "cap_d": 34,
+        "cap_h": 20,
+        "shoulder_h": 5,
+        "crimp_h": 9
+      },
+      "materials": {
+        "body": {
+          "preset": "plastic_softtouch",
+          "color": "#E6D2B8"
+        },
+        "shoulder": {
+          "preset": "plastic_softtouch",
+          "color": "#E6D2B8"
+        },
+        "cap": {
+          "preset": "plastic_gloss",
+          "color": "#E6D2B8"
+        }
+      },
+      "print": {
+        "image": "../labels/sunmelt-cleansing-balm-front.png",
+        "mode": "print",
+        "height_mm": 70,
+        "z_mm": 88
+      },
+      "id": "sunmelt",
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 0
+    }
+  ],
+  "camera": {
+    "preset": "pdp_4x5",
+    "fill": [
+      0.6,
+      0.72
+    ],
+    "offset": [
+      0.0,
+      -0.02
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}

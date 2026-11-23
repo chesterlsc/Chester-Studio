@@ -1,0 +1,65 @@
+{
+  "_comment": "Packshot recipe (golden-hour.md 4.1): apricity-lip-cheek-balm. Sand sweep colour-locked to #E9D9C5.",
+  "output": "../../products/apricity-lip-cheek-balm/apricity-lip-cheek-balm-packshot.jpg",
+  "resolution": [
+    1600,
+    2000
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E9D9C5",
+    "match": true
+  },
+  "lighting": {
+    "preset": "soft_studio",
+    "kelvin_shift": -500
+  },
+  "products": [
+    {
+      "type": "stick",
+      "dims": {
+        "d": 24,
+        "h": 82,
+        "cap_h": 34
+      },
+      "materials": {
+        "base": {
+          "preset": "plastic_softtouch",
+          "color": "#B0533F"
+        },
+        "cap": "metal_champagne_brushed"
+      },
+      "labels": [
+        {
+          "image": "../labels/apricity-lip-cheek-balm-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 30
+        }
+      ],
+      "id": "apricity",
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 0
+    }
+  ],
+  "camera": {
+    "preset": "pdp_4x5",
+    "fill": [
+      0.6,
+      0.72
+    ],
+    "offset": [
+      0.0,
+      -0.02
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}

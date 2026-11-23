@@ -1,0 +1,80 @@
+{
+  "_comment": "Packshot recipe (golden-hour.md 4.1): haze-soft-focus-cream. Sand sweep colour-locked to #E9D9C5.",
+  "output": "../../products/haze-soft-focus-cream/haze-soft-focus-cream-packshot.jpg",
+  "resolution": [
+    1600,
+    2000
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E9D9C5",
+    "match": true
+  },
+  "lighting": {
+    "preset": "soft_studio",
+    "kelvin_shift": -500
+  },
+  "products": [
+    {
+      "type": "jar",
+      "dims": {
+        "d": 66,
+        "body_h": 42,
+        "neck_h": 7,
+        "bottom": 11,
+        "lid_h": 22,
+        "lid": "on"
+      },
+      "materials": {
+        "body": "glass_amber_frosted",
+        "contents": {
+          "preset": "cream",
+          "color": "#F3E6D6"
+        },
+        "lid": {
+          "preset": "plastic_softtouch",
+          "color": "#E8A07C"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/haze-soft-focus-cream-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 20
+        },
+        {
+          "type": "decal",
+          "image": "../labels/monogram.png",
+          "anchor": "lid_top",
+          "mode": "ink",
+          "ink": "#35211F",
+          "width_mm": 16
+        }
+      ],
+      "id": "haze",
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 0
+    }
+  ],
+  "camera": {
+    "preset": "pdp_4x5",
+    "fill": [
+      0.6,
+      0.72
+    ],
+    "offset": [
+      0.0,
+      -0.02
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}

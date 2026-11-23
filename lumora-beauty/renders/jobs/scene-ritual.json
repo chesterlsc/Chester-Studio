@@ -1,0 +1,372 @@
+{
+  "_comment": "Ritual: 01-06 on a travertine shelf stepping down left to right (late light to dusk).",
+  "output": "../scenes/ritual.jpg",
+  "resolution": [
+    2400,
+    1350
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E7D2BC",
+    "radius_mm": 170,
+    "gap_mm": 80,
+    "match": false
+  },
+  "lighting": {
+    "preset": "sunlit",
+    "lights": [
+      {
+        "name": "fill",
+        "E": 0.75,
+        "kelvin": 5600
+      },
+      {
+        "name": "bounce",
+        "E": 0.8,
+        "kelvin": 3600
+      }
+    ]
+  },
+  "world": {
+    "color": "#D8C1A8",
+    "strength": 0.18
+  },
+  "sun": {
+    "az": -60,
+    "el": 13,
+    "kelvin": 3300,
+    "angle": 1.2,
+    "strength": 5.5
+  },
+  "gobo": {
+    "pattern": "leaves",
+    "seed": 11,
+    "coverage": 0.55,
+    "leaf_scale": 1.1,
+    "rotation": 0,
+    "distance": 600,
+    "size": 1400
+  },
+  "props": [
+    {
+      "id": "tier1",
+      "type": "plinth",
+      "shape": "block",
+      "dims": {
+        "w": 236,
+        "depth": 150,
+        "h": 84,
+        "edge_r": 2.5
+      },
+      "material": "travertine",
+      "position": [
+        -236,
+        10
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "tier2",
+      "type": "plinth",
+      "shape": "block",
+      "dims": {
+        "w": 236,
+        "depth": 150,
+        "h": 56,
+        "edge_r": 2.5
+      },
+      "material": "travertine",
+      "position": [
+        0,
+        10
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "tier3",
+      "type": "plinth",
+      "shape": "block",
+      "dims": {
+        "w": 236,
+        "depth": 150,
+        "h": 28,
+        "edge_r": 2.5
+      },
+      "material": "travertine",
+      "position": [
+        236,
+        10
+      ],
+      "rotation": 0
+    }
+  ],
+  "products": [
+    {
+      "type": "tube",
+      "dims": {
+        "d": 40,
+        "length": 150,
+        "cap_d": 34,
+        "cap_h": 20,
+        "shoulder_h": 5,
+        "crimp_h": 9
+      },
+      "materials": {
+        "body": {
+          "preset": "plastic_softtouch",
+          "color": "#E6D2B8"
+        },
+        "shoulder": {
+          "preset": "plastic_softtouch",
+          "color": "#E6D2B8"
+        },
+        "cap": {
+          "preset": "plastic_gloss",
+          "color": "#E6D2B8"
+        }
+      },
+      "print": {
+        "image": "../labels/sunmelt-cleansing-balm-front.png",
+        "mode": "print",
+        "height_mm": 70,
+        "z_mm": 88
+      },
+      "id": "sunmelt",
+      "position": [
+        -290,
+        14
+      ],
+      "rotation": 0,
+      "on": "tier1"
+    },
+    {
+      "type": "dropper",
+      "dims": {
+        "d": 34,
+        "h": 74,
+        "shoulder_r": 7.5,
+        "neck_d": 18,
+        "collar_d": 23.5,
+        "collar_h": 15.5,
+        "bulb_d": 15,
+        "bulb_h": 22,
+        "fill": 0.8
+      },
+      "materials": {
+        "body": "glass_amber",
+        "liquid": {
+          "preset": "liquid",
+          "color": "#E9A54E",
+          "tint_mm": 18
+        },
+        "pipette": "glass_clear",
+        "collar": "metal_champagne_brushed",
+        "bulb": {
+          "preset": "silicone",
+          "color": "#E3AD63"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/long-light-serum-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 30
+        }
+      ],
+      "id": "long_light",
+      "position": [
+        -182,
+        4
+      ],
+      "rotation": 0,
+      "on": "tier1"
+    },
+    {
+      "type": "jar",
+      "dims": {
+        "d": 66,
+        "body_h": 42,
+        "neck_h": 7,
+        "bottom": 11,
+        "lid_h": 22,
+        "lid": "on"
+      },
+      "materials": {
+        "body": "glass_amber_frosted",
+        "contents": {
+          "preset": "cream",
+          "color": "#F3E6D6"
+        },
+        "lid": {
+          "preset": "plastic_softtouch",
+          "color": "#E8A07C"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/haze-soft-focus-cream-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 20
+        },
+        {
+          "type": "decal",
+          "image": "../labels/monogram.png",
+          "anchor": "lid_top",
+          "mode": "ink",
+          "ink": "#35211F",
+          "width_mm": 16
+        }
+      ],
+      "id": "haze",
+      "position": [
+        -54,
+        6
+      ],
+      "rotation": -8,
+      "on": "tier2"
+    },
+    {
+      "type": "stick",
+      "dims": {
+        "d": 24,
+        "h": 82,
+        "cap_h": 34
+      },
+      "materials": {
+        "base": {
+          "preset": "plastic_softtouch",
+          "color": "#B0533F"
+        },
+        "cap": "metal_champagne_brushed"
+      },
+      "labels": [
+        {
+          "image": "../labels/apricity-lip-cheek-balm-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 30
+        }
+      ],
+      "id": "apricity",
+      "position": [
+        58,
+        0
+      ],
+      "rotation": 0,
+      "on": "tier2"
+    },
+    {
+      "type": "cylinder",
+      "dims": {
+        "d": 42,
+        "h": 130,
+        "shoulder_r": 3.5,
+        "neck_d": 22,
+        "cap_d": 30,
+        "cap_h": 30,
+        "cap_ribs": {
+          "count": 48,
+          "depth": 0.4
+        },
+        "fill": 0.86
+      },
+      "materials": {
+        "body": "glass_amber",
+        "liquid": {
+          "preset": "oil",
+          "color": "#E8B25E",
+          "tint_mm": 16
+        },
+        "cap": {
+          "preset": "plastic_softtouch",
+          "color": "#8E3F31"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/gloaming-body-oil-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 44
+        }
+      ],
+      "id": "gloaming",
+      "position": [
+        180,
+        8
+      ],
+      "rotation": 0,
+      "on": "tier3"
+    },
+    {
+      "type": "jar",
+      "dims": {
+        "d": 80,
+        "body_h": 70,
+        "neck_h": 6,
+        "neck_inset": 2.2,
+        "neck_wall": 3.8,
+        "bottom": 9,
+        "lid_h": 24
+      },
+      "materials": {
+        "body": {
+          "preset": "ceramic_glazed",
+          "color": "#4A2B28",
+          "speckle": 0.35,
+          "speckle_color": "#C9A486"
+        },
+        "contents": {
+          "preset": "cream",
+          "color": "#E0A53A"
+        },
+        "lid": "metal_champagne_brushed"
+      },
+      "labels": [
+        {
+          "image": "../labels/slow-hour-golden-milk-front.png",
+          "mode": "foil",
+          "foil": "gold",
+          "height_mm": 40
+        },
+        {
+          "type": "decal",
+          "image": "../labels/monogram.png",
+          "anchor": "lid_top",
+          "mode": "foil",
+          "foil": "gold",
+          "width_mm": 20
+        }
+      ],
+      "id": "slow_hour",
+      "position": [
+        296,
+        6
+      ],
+      "rotation": -6,
+      "on": "tier3"
+    }
+  ],
+  "camera": {
+    "preset": "lineup_3x2",
+    "subjects": "all",
+    "focal_length": 85,
+    "elevation": 7,
+    "fill": [
+      0.84,
+      0.66
+    ],
+    "offset": [
+      0.0,
+      -0.04
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}

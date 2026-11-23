@@ -1,0 +1,78 @@
+{
+  "_comment": "Packshot recipe (golden-hour.md 4.1): gloaming-body-oil. Sand sweep colour-locked to #E9D9C5.",
+  "output": "../../products/gloaming-body-oil/gloaming-body-oil-packshot.jpg",
+  "resolution": [
+    1600,
+    2000
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E9D9C5",
+    "match": true
+  },
+  "lighting": {
+    "preset": "soft_studio",
+    "kelvin_shift": -500
+  },
+  "products": [
+    {
+      "type": "cylinder",
+      "dims": {
+        "d": 42,
+        "h": 130,
+        "shoulder_r": 3.5,
+        "neck_d": 22,
+        "cap_d": 30,
+        "cap_h": 30,
+        "cap_ribs": {
+          "count": 48,
+          "depth": 0.4
+        },
+        "fill": 0.86
+      },
+      "materials": {
+        "body": "glass_amber",
+        "liquid": {
+          "preset": "oil",
+          "color": "#E8B25E",
+          "tint_mm": 16
+        },
+        "cap": {
+          "preset": "plastic_softtouch",
+          "color": "#8E3F31"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/gloaming-body-oil-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 44
+        }
+      ],
+      "id": "gloaming",
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 0
+    }
+  ],
+  "camera": {
+    "preset": "pdp_4x5",
+    "fill": [
+      0.6,
+      0.72
+    ],
+    "offset": [
+      0.0,
+      -0.02
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}

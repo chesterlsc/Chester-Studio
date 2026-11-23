@@ -1,0 +1,177 @@
+{
+  "_comment": "The golden pair bundle card: Long Light + Haze.",
+  "output": "../scenes/golden-pair.jpg",
+  "resolution": [
+    1600,
+    2000
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E7D2BC",
+    "radius_mm": 170,
+    "gap_mm": 80,
+    "match": false
+  },
+  "lighting": {
+    "preset": "sunlit",
+    "lights": [
+      {
+        "name": "fill",
+        "E": 0.75,
+        "kelvin": 5600
+      },
+      {
+        "name": "bounce",
+        "E": 0.8,
+        "kelvin": 3600
+      }
+    ]
+  },
+  "world": {
+    "color": "#D8C1A8",
+    "strength": 0.18
+  },
+  "sun": {
+    "az": -60,
+    "el": 13,
+    "kelvin": 3300,
+    "angle": 1.2,
+    "strength": 5.5
+  },
+  "gobo": {
+    "pattern": "leaves",
+    "seed": 7,
+    "coverage": 0.6,
+    "leaf_scale": 1.15,
+    "rotation": 0,
+    "distance": 600,
+    "size": 1400
+  },
+  "props": [
+    {
+      "id": "plinth",
+      "type": "plinth",
+      "shape": "cylinder",
+      "dims": {
+        "d": 210,
+        "h": 56,
+        "edge_r": 2.5
+      },
+      "material": "travertine",
+      "position": [
+        0,
+        0
+      ]
+    }
+  ],
+  "products": [
+    {
+      "type": "dropper",
+      "dims": {
+        "d": 34,
+        "h": 74,
+        "shoulder_r": 7.5,
+        "neck_d": 18,
+        "collar_d": 23.5,
+        "collar_h": 15.5,
+        "bulb_d": 15,
+        "bulb_h": 22,
+        "fill": 0.8
+      },
+      "materials": {
+        "body": "glass_amber",
+        "liquid": {
+          "preset": "liquid",
+          "color": "#E9A54E",
+          "tint_mm": 18
+        },
+        "pipette": "glass_clear",
+        "collar": "metal_champagne_brushed",
+        "bulb": {
+          "preset": "silicone",
+          "color": "#E3AD63"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/long-light-serum-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 30
+        }
+      ],
+      "id": "long_light",
+      "position": [
+        -34,
+        18
+      ],
+      "rotation": 0,
+      "on": "plinth"
+    },
+    {
+      "type": "jar",
+      "dims": {
+        "d": 66,
+        "body_h": 42,
+        "neck_h": 7,
+        "bottom": 11,
+        "lid_h": 22,
+        "lid": "on"
+      },
+      "materials": {
+        "body": "glass_amber_frosted",
+        "contents": {
+          "preset": "cream",
+          "color": "#F3E6D6"
+        },
+        "lid": {
+          "preset": "plastic_softtouch",
+          "color": "#E8A07C"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/haze-soft-focus-cream-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 20
+        },
+        {
+          "type": "decal",
+          "image": "../labels/monogram.png",
+          "anchor": "lid_top",
+          "mode": "ink",
+          "ink": "#35211F",
+          "width_mm": 16
+        }
+      ],
+      "id": "haze",
+      "position": [
+        40,
+        -30
+      ],
+      "rotation": -10,
+      "on": "plinth"
+    }
+  ],
+  "camera": {
+    "preset": "pdp_4x5",
+    "subjects": "all",
+    "focal_length": 85,
+    "elevation": 8,
+    "fill": [
+      0.74,
+      0.6
+    ],
+    "offset": [
+      0.0,
+      -0.1
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}

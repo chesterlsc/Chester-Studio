@@ -1,0 +1,85 @@
+{
+  "_comment": "Packshot recipe (golden-hour.md 4.1): long-light-serum. Sand sweep colour-locked to #E9D9C5.",
+  "output": "../../products/long-light-serum/long-light-serum-back.jpg",
+  "resolution": [
+    1600,
+    2000
+  ],
+  "backdrop": {
+    "type": "sweep",
+    "color": "#E9D9C5",
+    "match": true
+  },
+  "lighting": {
+    "preset": "soft_studio",
+    "kelvin_shift": -500
+  },
+  "products": [
+    {
+      "type": "dropper",
+      "dims": {
+        "d": 34,
+        "h": 74,
+        "shoulder_r": 7.5,
+        "neck_d": 18,
+        "collar_d": 23.5,
+        "collar_h": 15.5,
+        "bulb_d": 15,
+        "bulb_h": 22,
+        "fill": 0.8
+      },
+      "materials": {
+        "body": "glass_amber",
+        "liquid": {
+          "preset": "liquid",
+          "color": "#E9A54E",
+          "tint_mm": 18
+        },
+        "pipette": "glass_clear",
+        "collar": "metal_champagne_brushed",
+        "bulb": {
+          "preset": "silicone",
+          "color": "#E3AD63"
+        }
+      },
+      "labels": [
+        {
+          "image": "../labels/long-light-serum-back.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 34,
+          "angle_deg": 180
+        },
+        {
+          "image": "../labels/long-light-serum-front.png",
+          "mode": "ink",
+          "ink": "#F6E8D6",
+          "height_mm": 30
+        }
+      ],
+      "id": "long_light",
+      "position": [
+        0,
+        0
+      ],
+      "rotation": 180
+    }
+  ],
+  "camera": {
+    "preset": "pdp_4x5",
+    "fill": [
+      0.6,
+      0.72
+    ],
+    "offset": [
+      0.0,
+      -0.02
+    ]
+  },
+  "render": {
+    "samples": 128,
+    "adaptive_threshold": 0.015,
+    "seed": 7,
+    "threads": 4
+  }
+}
