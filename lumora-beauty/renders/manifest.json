@@ -1,14 +1,5 @@
 [
   {
-    "id": "hero-desktop",
-    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-desktop.jpg",
-    "use": "Homepage hero, desktop",
-    "width": 2880,
-    "height": 1620,
-    "status": "final",
-    "updated": "2026-11-23T11:18:23"
-  },
-  {
     "id": "packshot-long-light-serum",
     "path": "/home/user/Chester-Studio/lumora-beauty/products/long-light-serum/long-light-serum-packshot.jpg",
     "use": "Packshot, long-light-serum",
@@ -25,5 +16,23 @@
     "height": 1500,
     "status": "final",
     "updated": "2026-11-23T11:24:08"
+  },
+  {
+    "id": "hero-desktop",
+    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/hero-desktop.jpg",
+    "use": "Homepage hero, desktop",
+    "width": 2880,
+    "height": 1620,
+    "status": "final",
+    "updated": "2026-11-23T11:36:03"
+  },
+  {
+    "id": "ritual",
+    "path": "/home/user/Chester-Studio/lumora-beauty/renders/scenes/ritual.jpg",
+    "use": "Ritual hotspot scene",
+    "width": 2400,
+    "height": 1600,
+    "status": "final",
+    "updated": "2026-11-23T11:38:32"
   }
 ]

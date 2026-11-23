@@ -26,7 +26,8 @@ img.ph::after {
 .ph--pk-apricity::after    { background-image: url("../placeholders/packshot-apricity-lip-cheek-balm.jpg"); }
 .ph--pk-gloaming::after    { background-image: url("../placeholders/packshot-gloaming-body-oil.jpg"); }
 .ph--pk-slow-hour::after   { background-image: url("../placeholders/packshot-slow-hour-golden-milk.jpg"); }
-.ph--hover-long-light::after { background-image: url("../placeholders/hover-long-light-serum.jpg"); }
+/* Until the low-sun render lands, the hover keeps the (final) packshot so card 02 does not switch to an illustration. */
+.ph--hover-long-light::after { background-image: url("../../products/long-light-serum/long-light-serum-packshot.jpg"), url("../placeholders/packshot-long-light-serum.jpg"); }
 .ph--skin-1::after         { background-image: url("../placeholders/photo-skin-1.jpg"); }
 .ph--skin-2::after         { background-image: url("../placeholders/photo-skin-2.jpg"); }
 .ph--skin-3::after         { background-image: url("../placeholders/photo-skin-3.jpg"); }

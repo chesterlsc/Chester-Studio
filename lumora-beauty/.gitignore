@@ -7,3 +7,8 @@ renders/rig/previews/
 **/__pycache__/
 *.blend1
 *.tmp
+
+# Large intermediate exports (the JPG exports are kept)
+mockup/exports/*.png
+mockup/exports/slices/
+mockup/exports/*.zip
