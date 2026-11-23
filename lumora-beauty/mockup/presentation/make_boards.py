@@ -16,12 +16,24 @@ B = os.path.join(HERE, "build")
 os.makedirs(B, exist_ok=True)
 SP = "/tmp/claude-0/-home-user-Chester-Studio/c51c471c-f281-5048-b5b7-f7b60a856929/scratchpad"
 
-HOME_D1 = f"{WORK}/mockup/delivered/homepage-v3/lumora-homepage-desktop-1x.jpg"
-HOME_HERO = f"{WORK}/mockup/delivered/homepage-v3/lumora-homepage-hero.jpg"
-HOME_M = f"{WORK}/mockup/delivered/homepage-v3/lumora-homepage-mobile.jpg"
-PDP_D1 = f"{WORK}/mockup/delivered/pdp-v2/lumora-pdp-desktop-1x.jpg"
-PDP_M = f"{WORK}/mockup/delivered/pdp-v2/lumora-pdp-mobile.jpg"
-PDP_STICKY = f"{WORK}/mockup/delivered/pdp-v2/lumora-pdp-mobile-sticky.jpg"
+import json
+import sys
+
+# Optional config JSON (see v2-config.json); without it the v1 boards are rebuilt.
+CFG = json.load(open(sys.argv[1])) if len(sys.argv) > 1 else {}
+HOME_DIR = f"{WORK}/mockup/delivered/" + CFG.get("home_dir", "homepage-v3")
+PDP_DIR = f"{WORK}/mockup/delivered/" + CFG.get("pdp_dir", "pdp-v2")
+HP = CFG.get("home_prefix", "lumora-homepage")
+PP = CFG.get("pdp_prefix", "lumora-pdp")
+HOME_D1 = f"{HOME_DIR}/{HP}-desktop-1x.jpg"
+HOME_HERO = f"{HOME_DIR}/{HP}-hero.jpg"
+HOME_M = f"{HOME_DIR}/{HP}-mobile.jpg"
+PDP_D1 = f"{PDP_DIR}/{PP}-desktop-1x.jpg"
+PDP_M = f"{PDP_DIR}/{PP}-mobile.jpg"
+PDP_STICKY = f"{PDP_DIR}/{PP}-mobile-sticky.jpg"
+OUTDIR = os.path.join(HERE, CFG.get("out_subdir", ""))
+os.makedirs(OUTDIR, exist_ok=True)
+NCOLS = CFG.get("columns", 3)
 
 
 def columns(src, n, name):
@@ -106,7 +118,7 @@ def board(name, w, h, body, pad=110, scale=2, size=None):
     html = (HEAD % s) + body + "</body></html>"
     p = f"{B}/{name}.html"
     open(p, "w", encoding="utf-8").write(html)
-    out = f"{HERE}/{name}.jpg"
+    out = f"{OUTDIR}/{name}.jpg"
     subprocess.run(["node", f"{HERE}/board_shot.cjs", f"file://{p}", out, str(w), str(h), str(scale)], check=True)
     return out
 
@@ -125,29 +137,29 @@ outs.append(board("01-homepage-desktop-hero", w, 110 + 250 + 44 + 900 + 110, bod
 
 # 02 + 03 full pages in 3 columns at 1x
 for idx, (src, name, eyebrow, title, sub) in enumerate([
-    (HOME_D1, "02-homepage-desktop-full", "Lumora Beauty · homepage mockup", "Homepage, <em>full scroll.</em>",
-     "Fifteen sections, each mapped to a Minimog section or a small Custom Liquid block. The page warms from travertine to dusk as you scroll."),
-    (PDP_D1, "03-product-page-desktop", "Lumora Beauty · product page mockup", "Long Light Serum, <em>built to convert.</em>",
-     "Buy box above the fold, the golden pair bundle, every ingredient decoded, results with the method, a glow check on every skin tone, FAQ and reviews."),
+    (HOME_D1, "02-homepage-desktop-full", "Lumora Beauty · homepage mockup", *CFG.get("cap02", ["Homepage, <em>full scroll.</em>",
+     "Fifteen sections, each mapped to a Minimog section or a small Custom Liquid block. The page warms from travertine to dusk as you scroll."])),
+    (PDP_D1, "03-product-page-desktop", "Lumora Beauty · product page mockup", *CFG.get("cap03", ["Long Light Serum, <em>built to convert.</em>",
+     "Buy box above the fold, the golden pair bundle, every ingredient decoded, results with the method, a glow check on every skin tone, FAQ and reviews."])),
 ]):
-    cols, colh = columns(src, 3, name)
+    cols, colh = columns(src, NCOLS, name)
     pad = 120
-    W = 3 * 1440 + 2 * 70 + 2 * pad
+    W = NCOLS * 1440 + (NCOLS - 1) * 70 + 2 * pad
     body = cap(eyebrow, title, sub)
     body += '<div class="cols">' + "".join(f'<div class="col"><img src="file://{p}" width="{cw}" height="{ch}"></div>' for p, cw, ch in cols) + "</div>"
     size = dict(h1=110, eb=24, ebgap=24, sub=30, subgap=22, sig=24, capgap=80, colgap=70)
     outs.append(board(name, W, pad + 390 + colh + pad, body, pad=pad, scale=1, size=size))
 
 # 04 + 05 mobile phones
-home_s = screens(HOME_M, [0, 1000, 5640, 10571], "home-m")
-pdp_s = screens(PDP_M, [0, 540, 9530], "pdp-m") + [sticky_screen(PDP_STICKY, "pdp-m-s4")]
+home_s = screens(HOME_M, CFG.get("home_tops", [0, 1000, 5640, 10571]), "home-m")
+pdp_s = screens(PDP_M, CFG.get("pdp_tops", [0, 540, 9530]), "pdp-m") + [sticky_screen(PDP_STICKY, "pdp-m-s4")]
 for name, shots, eyebrow, title, sub, labels in [
     ("04-homepage-mobile", home_s, "Lumora Beauty · homepage mockup", "Homepage, <em>on mobile.</em>",
      "Designed for 390 px, not shrunk: its own hero crop, headline and button in the first screen, swipeable product rail, the ritual bundle and the closing promise.",
-     [("First screen", "Hero, headline and CTA"), ("The sunset shelf", "Swipe rail with peeking cards"), ("The ritual", "Numbered bundle, save 15%"), ("Closing band", "30-day promise into the footer")]),
+     CFG.get("home_labels", [("First screen", "Hero, headline and CTA"), ("The sunset shelf", "Swipe rail with peeking cards"), ("The ritual", "Numbered bundle, save 15%"), ("Closing band", "30-day promise into the footer")])),
     ("05-product-page-mobile", pdp_s, "Lumora Beauty · product page mockup", "Product page, <em>on mobile.</em>",
      "The buy box stacks under a swipe gallery, the glow check shows the finish on every skin tone, and add to bag stays one tap away.",
-     [("Gallery", "Swipe, with dots"), ("Buy box", "Benefits, sizes, add to bag"), ("Glow check", "Fitzpatrick I to VI"), ("Sticky add to bag", "Always one tap away")]),
+     CFG.get("pdp_labels", [("Gallery", "Swipe, with dots"), ("Buy box", "Benefits, sizes, add to bag"), ("Glow check", "Fitzpatrick I to VI"), ("Sticky add to bag", "Always one tap away")])),
 ]:
     W = 4 * 418 + 3 * 56 + 2 * 110
     body = cap(eyebrow, title, sub)
