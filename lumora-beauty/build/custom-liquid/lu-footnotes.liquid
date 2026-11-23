@@ -1,0 +1,29 @@
+{%- comment -%}
+  LUMORA FOOTNOTES BLOCK  ·  lu-footnotes.liquid  ·  v1.0
+  Paste into: Footer group > Add section > Custom Liquid, ABOVE the Footer section (padding 0).
+  Repeats every footnote used on the site, plus the concept-store label. Sun-dot markers on the page
+  link here when a module has no footnote of its own.
+{%- endcomment -%}
+<section class="lu-footnote-block lu-s-dusk" aria-label="Footnotes">
+  <div class="container-fluid">
+    <div class="lu-footnote-block__inner">
+      <p class="lu-eyebrow">Footnotes</p>
+      <ol>
+        <li data-fn-note="1"><span class="lu-fn">1</span>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI.</li>
+        <li data-fn-note="2"><span class="lu-fn">2</span>Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed.</li>
+        <li data-fn-note="3"><span class="lu-fn">3</span>Corneometer measurement, 20 participants, one hour after a single application.</li>
+        <li class="lu-demo">All three are illustrative placeholder data. Lumora is a concept store built for a design trial: product data, results and reviews are illustrative.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+<style>
+.lu-footnote-block{background:var(--lu-dusk);color:var(--lu-linen)}
+.lu-footnote-block__inner{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;padding:64px 0 44px;border-bottom:1px solid var(--lu-hairline-light)}
+.lu-footnote-block .lu-eyebrow{grid-column:1/span 3;margin:1px 0 0;color:var(--lu-honey)}
+.lu-footnote-block ol{grid-column:4/span 9;display:grid;gap:8px;margin:0;padding:0;list-style:none;font-size:12px;line-height:18px;color:var(--lu-dusk-muted)}
+.lu-footnote-block li{display:flex;gap:10px}
+.lu-footnote-block .lu-fn{flex:none;margin:1px 0 0;vertical-align:0}
+.lu-footnote-block .lu-demo{margin-top:6px;color:var(--lu-linen)}
+@media (max-width:767px){.lu-footnote-block__inner{display:block;padding:28px 0 30px}.lu-footnote-block ol{margin-top:16px}}
+</style>

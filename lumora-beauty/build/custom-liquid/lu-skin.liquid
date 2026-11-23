@@ -1,0 +1,316 @@
+{%- comment -%}
+  LUMORA SKIN (site-wide)  ·  lu-skin.liquid  ·  v1.0  ·  Golden Hour
+  Paste: Theme editor > Header group > Add section > Custom Liquid, drag to the TOP of the header group.
+  Then add lu-skin-sections.liquid as a second Custom Liquid directly below it. (If the header group
+  refuses Custom Liquid, put both as the first two sections of every template instead.)
+  Holds: brand tokens; type through Minimog's --font-stack-header / --font-stack-body (theme settings)
+  plus the true Fraunces italic Minimog cannot declare; Figtree 500/600; one section-header anatomy;
+  pill buttons with the Honey halo; the product-card system; the horizon arc on the promise strip;
+  sun-dot footnotes; header, footer, cart drawer; Custom Liquid scaffolding and schemes; reduced motion.
+  Needs in Content > Files: Fraunces_72pt_SuperSoft-Light.woff2, -Regular.woff2, -LightItalic.woff2,
+  leaf-light.png. Collection "the-six"; metafields custom.step and custom.card_line (product cards).
+{%- endcomment -%}
+{%- liquid
+  assign lu_body = settings.type_body_font
+  unless lu_body.family
+    assign lu_body = settings.body_font
+  endunless
+  unless lu_body.family
+    assign lu_body = settings.font_body
+  endunless
+  assign lu_six = collections['the-six'].products
+-%}
+<link rel="preload" href="{{ 'Fraunces_72pt_SuperSoft-Light.woff2' | file_url }}" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"M-Heading-Font";font-style:normal;font-weight:300;font-display:swap;src:url("{{ 'Fraunces_72pt_SuperSoft-Light.woff2' | file_url }}") format("woff2")}
+@font-face{font-family:"M-Heading-Font";font-style:normal;font-weight:400;font-display:swap;src:url("{{ 'Fraunces_72pt_SuperSoft-Regular.woff2' | file_url }}") format("woff2")}
+@font-face{font-family:"M-Heading-Font";font-style:italic;font-weight:300 400;font-display:swap;src:url("{{ 'Fraunces_72pt_SuperSoft-LightItalic.woff2' | file_url }}") format("woff2")}
+{%- if lu_body.family -%}
+  {%- assign lu_b5 = lu_body | font_modify: 'weight', '500' -%}{%- if lu_b5 -%}{{ lu_b5 | font_face: font_display: 'swap' }}{%- endif -%}
+  {%- assign lu_b6 = lu_body | font_modify: 'weight', '600' -%}{%- if lu_b6 -%}{{ lu_b6 | font_face: font_display: 'swap' }}{%- endif -%}
+{%- endif %}
+
+/* ---------- 1. Tokens: eight colours, derived tints, type, shape, motion ---------- */
+:root{
+  --lu-travertine:#F3E7DA;--lu-linen:#FBF6EF;--lu-sand:#E9D9C5;--lu-honey:#E8B566;--lu-apricot:#EFA27B;--lu-terracotta:#A8473B;--lu-clay:#8E3F31;--lu-dusk:#35211F;
+  --lu-dusk-72:#6E554C;--lu-dusk-wash:#5E463E;--lu-honey-wash:#F5E1C1;--lu-apricot-wash:#F4CDB2;--lu-rose-wash:#EDC3B1;--lu-clay-muted:#E3D3C6;--lu-dusk-muted:#CDB8AA;--lu-dusk-raised:#412E2B;
+  --lu-shade-low-sun:#D9875F;--lu-shade-clay:#B0533F;--lu-shade-dusk:#7E3B36;
+  --lu-hairline:rgba(53,33,31,.14);--lu-hairline-strong:rgba(53,33,31,.24);--lu-hairline-light:rgba(251,246,239,.2);
+  --lu-ink-shadow:rgba(53,33,31,.42);--lu-glass:rgba(251,246,239,.86);--lu-glass-dark:rgba(251,246,239,.07);
+  --lu-ring-honey:rgba(232,181,102,.3);--lu-ring-honey-soft:rgba(232,181,102,.22);
+  --lu-gradient-golden:linear-gradient(90deg,#E8B566 0%,#EFA27B 33%,#A8473B 67%,#35211F 100%);
+  --lu-gradient-sun:linear-gradient(180deg,#E8B566 0%,#EFA27B 55%,#A8473B 100%);
+  --lu-scrim-hero:linear-gradient(90deg,rgba(243,231,218,.9) 0%,rgba(243,231,218,.68) 30%,rgba(243,231,218,0) 56%);
+  --lu-glow-hero:radial-gradient(closest-side,rgba(232,181,102,.34),rgba(239,162,123,.14) 55%,rgba(239,162,123,0));
+  --lu-display:var(--font-stack-header,"M-Heading-Font"),"M-Heading-Font",Georgia,"Times New Roman",serif;
+  --lu-body:var(--font-stack-body,"Figtree"),"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --lu-radius:14px;--lu-pill:999px;
+  --lu-shadow-lift:0 22px 44px -26px rgba(232,181,102,.55),0 18px 36px -28px rgba(53,33,31,.35);
+  --lu-shadow-float:0 24px 60px -30px rgba(53,33,31,.45);
+  --lu-shadow-btn:0 12px 24px -16px var(--lu-ink-shadow);
+  --lu-halo:0 0 14px 7px rgba(232,181,102,.38);
+  --lu-ease:cubic-bezier(.25,.8,.25,1);--lu-fast:200ms;--lu-slow:600ms;
+  --lu-space:clamp(64px,8vw,120px);--lu-space-feature:clamp(80px,11vw,160px);--lu-head-gap:56px;
+  --lu-h1:96px;--lu-h2:52px;--lu-h3:44px;
+  --lu-arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h13M13 6.5l5.5 5.5-5.5 5.5'/%3E%3C/svg%3E");--lu-plus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");--lu-bag-plus:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 8.5h14l-1.1 11.2a1.4 1.4 0 0 1-1.4 1.3H7.5a1.4 1.4 0 0 1-1.4-1.3z'/%3E%3Cpath d='M8.8 8.5V7a3.2 3.2 0 0 1 6.4 0v1.5'/%3E%3Cpath d='M12 12.2v5.2M9.4 14.8h5.2'/%3E%3C/svg%3E");
+  --lu-i-even:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 22.5a8 8 0 0 1 16 0'/%3E%3Cpath d='M16 8.5v2.4M8.6 12l1.6 1.6M23.4 12l-1.6 1.6'/%3E%3Cpath d='M3 22.5h26'/%3E%3Cpath d='M9 27h14'/%3E%3C/svg%3E");--lu-i-absorb:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4.5c3.6 4.6 5.7 7.8 5.7 10.4a5.7 5.7 0 0 1-11.4 0c0-2.6 2.1-5.8 5.7-10.4z'/%3E%3Cpath d='M6 24.5c3.3-1.6 6.7-1.6 10 0s6.7 1.6 10 0'/%3E%3Cpath d='M3 28.5h26'/%3E%3C/svg%3E");--lu-i-amber:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 3.5h6v3.2h-6zM12 6.7h8l.6 2.6a5 5 0 0 1 3.2 4.7V24a1.6 1.6 0 0 1-1.6 1.6H9.8A1.6 1.6 0 0 1 8.2 24V14a5 5 0 0 1 3.2-4.7z'/%3E%3Cpath d='M8.2 16.5h15.6'/%3E%3Cpath d='M3 28.5h26'/%3E%3C/svg%3E");--lu-i-guarantee:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M25.5 16a9.5 9.5 0 1 1-3.1-7'/%3E%3Cpath d='M23.2 4.4l-.6 4.6-4.5-.8'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='black' stroke='none'/%3E%3Cpath d='M3 28.5h26'/%3E%3C/svg%3E");--lu-i-drop:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 4.5c4.8 6 7.6 10.2 7.6 13.6a7.6 7.6 0 0 1-15.2 0c0-3.4 2.8-7.6 7.6-13.6z'/%3E%3Cpath d='M11.8 19.5h8.4'/%3E%3Cpath d='M3 28.5h26'/%3E%3C/svg%3E");--lu-i-ship:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5h20v12H6z'/%3E%3Cpath d='M6 12.5l2.4-4.5h15.2l2.4 4.5M16 8v4.5'/%3E%3Cpath d='M3 28.5h26'/%3E%3C/svg%3E");
+  /* Minimog layout and shape tokens, pinned to the mockup (one left edge at 72 px on a 1440 screen) */
+  --blocks-radius:14px;--medium-blocks-radius:14px;--pcard-radius:14px;--btn-border-radius:999px;--inputs-radius:999px;
+}
+@media (min-width:1280px){:root{--fluid-container-offset:72px;--fluid-container-width:1296px;--container-width:1326px}}
+@media (max-width:767px){:root{--lu-h1:44px;--lu-h2:34px;--lu-h3:32px;--lu-head-gap:32px}.container,.container-fluid{padding-left:20px;padding-right:20px}}
+@media (min-width:768px) and (max-width:1279px){:root{--lu-h1:64px;--lu-h2:42px;--lu-h3:36px;--lu-head-gap:44px}}
+:root{--m-section-header-spacing-bottom:var(--lu-head-gap)}
+
+/* ---------- 2. Base and type ---------- */
+html,body{overflow-x:clip}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(232,181,102,.45);color:var(--lu-dusk)}
+h1,h2,h3,.h1,.h2,.h3,.m-section__heading,.m-richtext__title,.m-hero__title{font-family:var(--lu-display);font-weight:300;text-wrap:balance}
+h1 em,h2 em,h3 em,.h1 em,.h2 em,.h3 em,.m-section__heading em,.m-richtext__title em,.m-hero__title em,.lu-it{font-family:var(--lu-display);font-style:italic;font-weight:300;color:rgb(var(--color-price-sale,168,71,59))}
+p,li,figcaption{text-wrap:pretty}
+.lu-tnum,.m-price,.m-price-item{font-variant-numeric:tabular-nums lining-nums}
+.template-index #MainContent,.template-product #MainContent{padding-bottom:0!important}
+
+/* ---------- 3. One section-header anatomy (eyebrow, H2 with one italic last word, lead, view-all) ---------- */
+.m-section__header{margin-bottom:var(--lu-head-gap)}
+.m-section__subheading,.m-richtext__subtitle,.m-hero__subtitle,.lu-eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 14px;font:600 12px/16px var(--lu-body);letter-spacing:.18em;text-transform:uppercase;color:rgb(var(--color-price-sale,168,71,59))}
+.m-section__heading,.m-richtext__title,.lu-h2{margin:0;font-family:var(--lu-display);font-weight:300;font-size:var(--lu-h2);line-height:1.02;letter-spacing:-.02em;color:rgb(var(--color-heading))}
+.m-section__description,.lu-lead{margin-top:18px;max-width:54ch;font-size:17px;line-height:1.6;color:rgb(var(--color-foreground-secondary))}
+.m-section__header-with-button{display:flex;align-items:flex-end;justify-content:space-between;gap:48px}
+.m-section__header .m-button--link,.lu-view-all{flex:none}
+@media (max-width:767px){.m-section__description,.lu-lead{font-size:15.5px}.m-section__header-with-button{display:block}.m-section__header-with-button .m-button--link{margin-top:22px}}
+
+/* ---------- 4. One button anatomy: pill, Figtree 600, Honey halo on hover, arrow nudges 3 px ---------- */
+.m-button{border-radius:var(--lu-pill);font-family:var(--lu-body);font-weight:600;font-size:15px;letter-spacing:.02em;text-transform:none;transition:transform var(--lu-fast) var(--lu-ease),box-shadow var(--lu-slow) var(--lu-ease),background-color var(--lu-fast) var(--lu-ease),color var(--lu-fast) var(--lu-ease),border-color var(--lu-fast) var(--lu-ease)}
+.m-button--primary,.m-button--secondary,.m-button--white,.m-add-to-cart{min-height:52px;padding-left:28px;padding-right:28px;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.m-button--primary,.m-add-to-cart.m-button--primary{box-shadow:var(--lu-shadow-btn)}
+.m-button--primary:hover{transform:translateY(-1px);box-shadow:var(--lu-shadow-btn),var(--lu-halo)}
+.m-button--secondary{background:transparent;border:1px solid currentColor}
+.m-button--secondary:hover{background:rgba(var(--color-foreground),.06)}
+.m-button--link,.lu-link{display:inline-flex;align-items:center;gap:8px;min-height:0;padding:0 0 6px;border:0;border-bottom:1px solid currentColor;border-radius:0;background:none;box-shadow:none;font:600 15px/1 var(--lu-body);letter-spacing:.02em;text-transform:none;text-decoration:none;color:rgb(var(--color-foreground))}
+.m-button--link:hover,.lu-link:hover{transform:none;box-shadow:none}
+.m-hero__btn .m-button--primary::after,.m-richtext__button .m-button--primary::after,.m-add-to-cart--text::after,.m-section__header .m-button--link::after,.lu-link--arrow::after{content:"";display:inline-block;flex:none;width:18px;height:18px;margin-left:10px;vertical-align:-4px;background:currentColor;-webkit-mask:var(--lu-arrow) center/contain no-repeat;mask:var(--lu-arrow) center/contain no-repeat;transition:transform var(--lu-fast) var(--lu-ease)}
+.m-section__header .m-button--link::after,.lu-link--arrow::after{width:16px;height:16px;margin-left:0}
+.m-button:hover::after,.m-add-to-cart:hover .m-add-to-cart--text::after,.lu-link--arrow:hover::after,.lu-btn:hover .lu-ico{transform:translateX(3px)}
+.lu-ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:transform var(--lu-fast) var(--lu-ease)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid rgb(var(--color-heading));outline-offset:2px}
+.m-button:focus-visible{box-shadow:var(--lu-halo)}
+@media (max-width:767px){.m-button--primary,.m-button--secondary,.m-add-to-cart{min-height:48px;padding-left:24px;padding-right:24px}}
+
+/* ---------- 5. Sun-dot footnotes and small type helpers ---------- */
+.lu-fn{display:inline-grid;place-items:center;width:15px;height:15px;margin-left:2px;border-radius:50%;background:var(--lu-honey);color:var(--lu-dusk)!important;font:600 9.5px/1 var(--lu-body);letter-spacing:0;font-style:normal;text-decoration:none!important;vertical-align:.62em}
+.lu-footnotes{margin-top:28px;display:grid;gap:4px;max-width:88ch;font-size:12px;line-height:18px;color:rgb(var(--color-foreground-secondary))}
+.lu-footnotes .lu-fn{vertical-align:.1em;margin:0 6px 0 0}
+.lu-reassure{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:13px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
+.lu-reassure::before{content:"";flex:none;width:18px;height:18px;background:currentColor;-webkit-mask:var(--lu-i-guarantee) center/contain no-repeat;mask:var(--lu-i-guarantee) center/contain no-repeat}
+.lu-sunmark{display:block;width:30px;height:18px;overflow:visible;color:currentColor}
+.lu-sunmark .a{fill:none;stroke:currentColor;stroke-width:1.3;opacity:.5}.lu-sunmark .h{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}.lu-sunmark .s{fill:var(--lu-terracotta)}
+.lu-anchor{display:block;height:0;scroll-margin-top:96px}
+.lu-dot{display:inline-block;width:6px;height:6px;margin:0 12px;border-radius:50%;background:var(--lu-honey);vertical-align:2px}
+
+/* ---------- 6. Announcement bar and header ---------- */
+.m-announcement-bar__content,.m-announcement-bar__content p,.m-announcement-bar__content a{font:600 12px/1 var(--lu-body);letter-spacing:.16em;text-transform:uppercase}
+.m-announcement-bar{border-bottom:0}
+.m-header .m-menu__link--main,.m-header .m-menu__link--main>span{font:600 12.5px/1 var(--lu-body);letter-spacing:.14em;text-transform:uppercase}
+.m-header .m-menu__item--main>.m-menu__link--main{position:relative}
+.m-header .m-menu__item--main>.m-menu__link--main::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--lu-terracotta);transform:scaleX(0);transform-origin:left;transition:transform var(--lu-slow) var(--lu-ease)}
+.m-header .m-menu__item--main:hover>.m-menu__link--main::after{transform:scaleX(1)}
+.m-header.stuck .m-header__wrapper{box-shadow:0 1px 0 var(--lu-hairline)}
+.m-cart-count-bubble,.m-header__icon .m-cart-count-bubble{background:var(--lu-terracotta)!important;color:var(--lu-linen)!important;font:600 10px/17px var(--lu-body);min-width:17px;height:17px}
+.m-mega-menu{background:var(--lu-travertine)}
+.m-mega-menu .m-menu__link{font-family:var(--lu-body)}
+@media (max-width:767px){.m-announcement-bar__content,.m-announcement-bar__content p{font-size:11px;letter-spacing:.12em}.lu-dot{margin:0 9px}}
+
+/* ---------- 7. Promise strip: Icon box + class lu-promise (horizon arc 1 of 2) ---------- */
+.shopify-section:has(>.lu-promise),.shopify-section:has(.lu-promise){position:relative;z-index:4}
+.lu-promise{position:relative;overflow:visible!important}
+.lu-promise::before{content:"";position:absolute;left:0;right:0;top:-43px;height:44px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 44' preserveAspectRatio='none'%3E%3Cpath d='M0 44V32Q720 -12 1440 32V44Z' fill='%23FBF6EF'/%3E%3Cpath d='M0 32Q720 -12 1440 32' fill='none' stroke='%23E8B566' stroke-width='1.5' stroke-opacity='.75' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center/100% 100% no-repeat;pointer-events:none}
+.lu-promise .m-section-py{padding-top:6px!important;padding-bottom:40px!important}
+.lu-promise .m-section__header{display:none}
+.lu-promise .m-mixed-layout__inner{display:grid!important;grid-template-columns:repeat(4,1fr);gap:0!important}
+.lu-promise .m-mixed-layout__inner>*{width:auto!important;padding:2px 28px;border-left:1px solid rgb(var(--color-border))}
+.lu-promise .m-mixed-layout__inner>*:first-child{padding-left:0;border-left:0}
+.lu-promise .m-icon-box__inner{display:flex;flex-direction:row;align-items:flex-start;gap:16px;text-align:left}
+.lu-promise .m-icon-box__icon{width:32px!important;max-width:32px;margin:2px 0 0!important;justify-content:flex-start}
+.lu-promise .m-icon-box__icon img,.lu-promise .m-icon-box__icon svg{width:32px;height:32px}
+.lu-promise .m-icon-box__heading{margin:0;font:400 19px/1.25 var(--lu-display);letter-spacing:-.01em;color:rgb(var(--color-heading))}
+.lu-promise .m-icon-box__description,.lu-promise .m-icon-box__description p{margin-top:4px;font-size:13px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
+@media (max-width:767px){
+  .lu-promise::before{top:-23px;height:24px}
+  .lu-promise .m-section-py{padding-bottom:36px!important;padding-top:4px!important}
+  .lu-promise .m-mixed-layout__inner{grid-template-columns:1fr 1fr!important;grid-auto-flow:row!important;grid-auto-columns:auto!important;gap:26px 16px!important;overflow:visible!important;margin:0!important;padding:0!important}
+  .lu-promise .m-mixed-layout__inner>*{padding:0;border:0}
+  .lu-promise .m-icon-box__inner{flex-direction:column;gap:10px}
+  .lu-promise .m-icon-box__heading{font-size:17px}
+  .lu-promise .m-icon-box__description,.lu-promise .m-icon-box__description p{font-size:12.5px;line-height:18px}
+}
+
+/* ---------- 8. One product-card system (every template) ---------- */
+.m-product-card{position:relative}
+.m-product-card__media{position:relative;border-radius:var(--lu-radius);overflow:hidden;background:var(--lu-sand);transition:transform var(--lu-slow) var(--lu-ease),box-shadow var(--lu-slow) var(--lu-ease)}
+.m-product-card .m-image{--aspect-ratio:4/5!important;background:var(--lu-sand)}
+.m-product-card__main-image img,.m-product-card__hover-image img{transition:transform 900ms var(--lu-ease),opacity var(--lu-slow) var(--lu-ease)!important}
+.m-product-card__hover-image{transition:opacity var(--lu-slow) var(--lu-ease)!important}
+.m-product-card__action--top,.m-product-card__tags .m-product-tag--sale,.m-product-card .m-product-card__badges{display:none!important}
+.lu-step{position:absolute;z-index:2;left:16px;top:16px;display:flex;align-items:center;gap:8px;height:30px;padding:0 12px 0 8px;border-radius:var(--lu-pill);background:var(--lu-glass);font:600 11px/1 var(--lu-body);letter-spacing:.14em;color:var(--lu-dusk);pointer-events:none}
+.lu-step .lu-sunmark{width:26px;height:16px;color:var(--lu-dusk)}
+.m-product-card__content{padding-top:18px;text-align:left}
+.m-product-card__info{display:grid;grid-template-columns:1fr auto;column-gap:16px;align-items:baseline}
+.m-product-card__info>*{grid-column:1/-1}
+.m-product-card__title{grid-column:1;grid-row:1;margin:0;font:400 19px/1.25 var(--lu-display)!important;letter-spacing:-.005em;text-transform:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.m-product-card__title a,.m-product-card__name{font:inherit!important;color:rgb(var(--color-heading))}
+.m-product-card__price{grid-column:2;grid-row:1;margin:0;font:600 15px/1.25 var(--lu-body)}
+.m-product-card__price .m-price-item{font:600 15px/1.25 var(--lu-body);color:rgb(var(--color-foreground))}
+.lu-card-line{grid-column:1/-1;grid-row:2;display:flex;align-items:center;gap:8px;margin:6px 0 0;font-size:14px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
+.lu-sw{display:inline-flex;gap:5px}.lu-sw i{width:12px;height:12px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(53,33,31,.18)}
+@media (min-width:1024px){
+  .m-product-card:hover .m-product-card__media{transform:translateY(-2px);box-shadow:var(--lu-shadow-lift)}
+  .m-product-card:hover .m-product-card__main-image img,.m-product-card:hover .m-product-card__hover-image img{transform:scale(1.04)}
+  .m-product-card__action:not(.m-product-card__action--top){position:absolute;z-index:3;left:16px;right:16px;bottom:16px;opacity:0;transform:translateY(8px);transition:opacity var(--lu-fast) var(--lu-ease),transform var(--lu-fast) var(--lu-ease)}
+  .m-product-card:hover .m-product-card__action:not(.m-product-card__action--top),.m-product-card:focus-within .m-product-card__action:not(.m-product-card__action--top){opacity:1;transform:none}
+  .m-product-card__action:not(.m-product-card__action--top) .m-button{width:100%;min-height:48px;gap:10px;border:0;background:var(--lu-terracotta);color:var(--lu-linen);font-size:14px;box-shadow:none}
+  .m-product-card__action:not(.m-product-card__action--top) .m-button::before{content:"";width:18px;height:18px;background:currentColor;-webkit-mask:var(--lu-bag-plus) center/contain no-repeat;mask:var(--lu-bag-plus) center/contain no-repeat}
+  .m-product-card__action:not(.m-product-card__action--top) .m-button:hover{background:var(--lu-clay)}
+}
+@media (max-width:1023px){
+  .m-product-card__action:not(.m-product-card__action--top){display:block!important;position:absolute;z-index:3;right:12px;bottom:12px;left:auto;width:40px}
+  .m-product-card__action:not(.m-product-card__action--top) .m-button{width:40px;height:40px;min-height:40px;padding:0;border:0;border-radius:50%;background:var(--lu-linen);color:var(--lu-dusk);font-size:0;box-shadow:0 6px 14px -8px var(--lu-ink-shadow)}
+  .m-product-card__action:not(.m-product-card__action--top) .m-button::before{content:"";width:18px;height:18px;background:currentColor;-webkit-mask:var(--lu-plus) center/contain no-repeat;mask:var(--lu-plus) center/contain no-repeat}
+}
+@media (max-width:767px){
+  .lu-step{left:10px;top:10px;height:26px;padding:0 10px 0 6px;font-size:10px}.lu-step .lu-sunmark{width:22px;height:14px}
+  .m-product-card__content{padding-top:14px}
+  .m-product-card__info{grid-template-columns:1fr}
+  .m-product-card__title{font-size:16px!important;min-height:40px}
+  .lu-card-line{display:block;margin-top:4px;font-size:13px;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lu-card-line .lu-sw{vertical-align:-1px;margin-right:6px}
+  .m-product-card__price{grid-column:1;grid-row:3;margin-top:10px}
+}
+.lu-shelf{--mobile-column-width:64%}
+
+/* ---------- 9. Custom Liquid sections: scaffolding and colour schemes (mirror the Minimog schemes) ---------- */
+.m-custom-liquid{padding:0}
+.lu-sec{position:relative;padding-top:var(--lu-space);padding-bottom:var(--lu-space);background-color:rgb(var(--color-background));color:rgb(var(--color-foreground))}
+.lu-sec--feature{padding-top:var(--lu-space-feature);padding-bottom:var(--lu-space-feature)}
+.lu-sec p,.lu-sec h2,.lu-sec h3,.lu-sec ol,.lu-sec ul,.lu-sec figure{margin-top:0;margin-bottom:0}
+.lu-head{margin-bottom:var(--lu-head-gap)}
+.lu-head--row{display:flex;align-items:flex-end;justify-content:space-between;gap:48px}
+.lu-head__text{max-width:760px}
+.lu-head .lu-eyebrow{margin-bottom:14px}
+.lu-actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px 28px}
+.lu-btn{text-decoration:none}
+.lu-s-travertine{--color-background:243,231,218;--color-foreground:53,33,31;--color-foreground-secondary:110,85,76;--color-heading:53,33,31;--color-price-sale:168,71,59;--color-border:216,203,192;--color-button:168,71,59;--color-button-text:251,246,239;--color-button-hover:142,63,49;--color-button-text-hover:251,246,239;--color-outline-button:53,33,31;background-color:#F3E7DA;color:#35211F}
+.lu-s-linen{--color-background:251,246,239;--color-foreground:53,33,31;--color-foreground-secondary:110,85,76;--color-heading:53,33,31;--color-price-sale:168,71,59;--color-border:223,216,210;--color-button:168,71,59;--color-button-text:251,246,239;--color-button-hover:142,63,49;--color-button-text-hover:251,246,239;--color-outline-button:53,33,31;background-color:#FBF6EF;color:#35211F}
+.lu-s-sand{--color-background:233,217,197;--color-foreground:53,33,31;--color-foreground-secondary:110,85,76;--color-heading:53,33,31;--color-price-sale:142,63,49;--color-border:190,173,157;--color-button:168,71,59;--color-button-text:251,246,239;--color-button-hover:142,63,49;--color-button-text-hover:251,246,239;--color-outline-button:53,33,31;background-color:#E9D9C5;color:#35211F}
+.lu-s-honey-wash{--color-background:245,225,193;--color-foreground:53,33,31;--color-foreground-secondary:110,85,76;--color-heading:53,33,31;--color-price-sale:142,63,49;--color-border:199,179,154;--color-button:168,71,59;--color-button-text:251,246,239;--color-button-hover:142,63,49;--color-button-text-hover:251,246,239;--color-outline-button:53,33,31;background-color:#F5E1C1;color:#35211F}
+.lu-s-apricot-wash{--color-background:244,205,178;--color-foreground:53,33,31;--color-foreground-secondary:94,70,62;--color-heading:53,33,31;--color-price-sale:142,63,49;--color-border:198,164,143;--color-button:168,71,59;--color-button-text:251,246,239;--color-button-hover:142,63,49;--color-button-text-hover:251,246,239;--color-outline-button:53,33,31;background-color:#F4CDB2;color:#35211F}
+.lu-s-dusk{--color-background:53,33,31;--color-foreground:251,246,239;--color-foreground-secondary:205,184,170;--color-heading:251,246,239;--color-price-sale:232,181,102;--color-border:93,76,73;--color-button:232,181,102;--color-button-text:53,33,31;--color-button-hover:251,246,239;--color-button-text-hover:53,33,31;--color-outline-button:251,246,239;background-color:#35211F;color:#FBF6EF}
+@media (max-width:767px){.lu-head--row{display:block}.lu-head--row .lu-link{margin-top:22px}}
+
+/* ---------- 10. Footer, newsletter, payment marks, cart drawer ---------- */
+.m-footer{border-top:0}
+.m-footer .m-footer--block-title,.m-footer .m-footer__block-title{font:600 12px/16px var(--lu-body)!important;letter-spacing:.18em;text-transform:uppercase;color:var(--lu-honey)}
+.m-footer .m-footer--block-content a,.m-footer .m-footer--block-menu li{font-size:15px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
+.m-footer a:hover{color:rgb(var(--color-foreground))!important}
+.m-footer .m-footer--block-newsletter-desc p:first-child{margin-top:16px;font:300 30px/1.1 var(--lu-display);letter-spacing:-.015em;color:rgb(var(--color-foreground))}
+.m-footer .m-footer--block-newsletter-desc p:first-child em{font-style:italic;color:var(--lu-honey)}
+.m-footer .m-footer--block-newsletter-desc p+p{margin-top:12px;font-size:15px;line-height:23px;color:rgb(var(--color-foreground-secondary))}
+.m-footer .m-newsletter-form__input{height:52px;border-radius:var(--lu-pill)!important;background:var(--lu-dusk-raised);border:1px solid var(--lu-dusk-muted);color:var(--lu-linen);padding-left:22px}
+.m-footer .m-newsletter-form__input::placeholder{color:var(--lu-dusk-muted)}
+.m-footer .m-newsletter-form__button{border-radius:var(--lu-pill)!important;background:var(--lu-honey)!important;color:var(--lu-dusk)!important;font-weight:600}
+.m-footer .lu-smallprint{display:block;margin-top:12px;font-size:12px;line-height:18px;color:rgb(var(--color-foreground-secondary))}
+.m-footer__payment svg,.m-footer .m-payment-icons svg{filter:grayscale(1) contrast(.7) brightness(1.7);opacity:.7}
+.m-footer__copyright,.m-footer--bottom-menu a{font-size:12px;line-height:18px;color:rgb(var(--color-foreground-secondary))}
+.m-footer--bottom,.m-footer__bottom{border-top:1px solid rgb(var(--color-border))}
+.m-footer a[href*="shopify.com"][rel~="nofollow"]{display:none}
+.m-cart-drawer__inner,.m-cart-drawer__content{background:var(--lu-linen)}
+.m-cart-drawer__title{font:300 30px/1.1 var(--lu-display)}
+.m-cart-drawer .m-free-shipping-bar__percent,.m-cart-drawer .m-progress-bar__percent,.m-free-shipping-bar__percent{background:var(--lu-gradient-golden)!important}
+.m-cart-item__image{border-radius:var(--lu-radius);overflow:hidden;background:var(--lu-sand)}
+@media (max-width:767px){.m-footer .m-footer--block-newsletter{order:-1}.m-footer .m-footer--block-newsletter-desc p:first-child{font-size:26px}}
+
+/* ---------- 11. Reduced motion: the marquee, leaf drift, wordmark sink and reveals all go static ---------- */
+@media (prefers-reduced-motion:reduce){
+  .m-promotion--animated{animation:none!important;transform:none!important}
+  :is(.lu-skin-tones,.lu-note)::before{animation:none}
+  *,*::before,*::after{transition-duration:0ms!important;animation-duration:0ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
+  .m-button--primary:hover,.m-product-card:hover .m-product-card__media{transform:none}
+}
+</style>
+<script type="application/json" id="lu-data">{
+  "cards":{ {%- for p in lu_six -%}"{{ p.id }}":{"step":{{ p.metafields.custom.step.value | default: '' | json }},"line":{{ p.metafields.custom.card_line.value | default: '' | json }},"price":{{ p.price | money_without_trailing_zeros | json }},"sw":{% if p.options contains 'Shade' %}["#D9875F","#B0533F","#7E3B36"]{% else %}null{% endif %}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%} },
+  "fn":{"1":"Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Illustrative placeholder data.","2":"Consumer perception study, 32 participants aged 24 to 58, 4 weeks of twice-daily use, self-assessed. Illustrative placeholder data.","3":"Corneometer measurement, 20 participants, one hour after a single application. Illustrative placeholder data."},
+  "mobileAnnouncement":"Ships free over $65 · 30-day returns"
+}</script>
+<script>
+(function(){
+  "use strict";
+  var LU={};try{LU=JSON.parse(document.getElementById("lu-data").textContent)}catch(e){}
+  var SUP={"¹":"1","²":"2","³":"3"};
+  var SUNX=[0,8.6,12.9,20,27.1,31.1,32],SUNY=[0,16.3,10.3,8,10.3,15.5,20];
+  function mark(n){n=Math.max(1,Math.min(6,parseInt(n,10)||1));var sun=n===6?'<path class="s" d="M29 20a3 3 0 0 1 6 0z"/>':'<circle class="s" cx="'+SUNX[n]+'" cy="'+SUNY[n]+'" r="3"/>';return '<svg class="lu-sunmark" viewBox="0 0 40 24" aria-hidden="true"><path class="a" d="M8 20a12 12 0 0 1 24 0"/><path class="h" d="M3 20h34"/>'+sun+'</svg>'}
+  window.LuMark=mark;
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function closestSec(el){return el.closest("section,.shopify-section")||document.body}
+
+  /* 1. Escaped <em> in heading fields becomes a real italic accent */
+  function fixEm(root){(root||document).querySelectorAll(".m-section__heading,.m-richtext__title,.m-hero__title,.m-promotion__text,.m-image-card__heading,.m-testimonial__description,.m-footer--block-newsletter-desc,.m-collapsible--button").forEach(function(h){if(h.innerHTML.indexOf("&lt;em&gt;")>-1){h.innerHTML=h.innerHTML.replace(/&lt;(\/?)em&gt;/g,"<$1em>")}})}
+
+  /* 2. Superscript 1, 2, 3 become sun-dot markers linked to the nearest footnote */
+  function footMarkers(root){
+    var w=document.createTreeWalker(root||document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){if(!/[¹²³]/.test(n.nodeValue))return 2;var p=n.parentNode;if(!p||/^(SCRIPT|STYLE|TEXTAREA|OPTION|TITLE)$/.test(p.nodeName)||p.closest(".lu-fn,[contenteditable]"))return 2;return 1}});
+    var list=[],n;while((n=w.nextNode()))list.push(n);
+    list.forEach(function(t){var f=document.createDocumentFragment();t.nodeValue.split(/([¹²³])/).forEach(function(part){if(SUP[part]){var s=document.createElement("sup");s.className="lu-fn";s.textContent=SUP[part];s.setAttribute("data-fn",SUP[part]);f.appendChild(s)}else if(part){f.appendChild(document.createTextNode(part))}});t.parentNode.replaceChild(f,t)});
+  }
+  function linkMarkers(){var k=0;document.querySelectorAll("sup.lu-fn[data-fn]").forEach(function(s){if(s.closest(".lu-footnotes,.lu-footnote-block"))return;var sec=closestSec(s),num=s.getAttribute("data-fn"),tgt=sec.querySelector('.lu-footnotes[data-fn-note="'+num+'"],.lu-footnotes [data-fn-note="'+num+'"]')||document.querySelector('.lu-footnote-block [data-fn-note="'+num+'"]');if(!tgt)return;if(!tgt.id)tgt.id="lu-fn-"+num+"-"+(++k);var a=document.createElement("a");a.className="lu-fn";a.href="#"+tgt.id;a.textContent=num;a.setAttribute("aria-label","Footnote "+num);s.replaceWith(a)})}
+  function footNote(num){return '<span data-fn-note="'+num+'"><sup class="lu-fn">'+num+'</sup>'+esc((LU.fn||{})[num]||"")+'</span>'}
+
+  /* 3. Product cards: step chip, one-line descriptor, quick-add label */
+  function cards(root){
+    var map=LU.cards||{};
+    (root||document).querySelectorAll(".m-product-card[data-product-id]:not([data-lu])").forEach(function(c){
+      c.setAttribute("data-lu","1");var d=map[c.getAttribute("data-product-id")];if(!d)return;
+      var media=c.querySelector(".m-product-card__media");
+      if(media&&d.step){var s=document.createElement("span");s.className="lu-step";s.innerHTML=mark(d.step)+esc(d.step);media.appendChild(s)}
+      var title=c.querySelector(".m-product-card__title");
+      if(title&&d.line){var p=document.createElement("p");p.className="lu-card-line";var sw="";if(d.sw){sw='<span class="lu-sw" aria-label="Shades: Low Sun, Clay, Dusk">'+d.sw.map(function(h){return'<i style="background:'+h+'"></i>'}).join("")+"</span>"}p.innerHTML=sw+esc(d.line);title.insertAdjacentElement("afterend",p)}
+      var q=c.querySelector(".m-product-card__action:not(.m-product-card__action--top) .m-button");
+      if(q&&d.price){var lab=q.querySelector("span:not(.m-spinner-icon)")||q;lab.textContent="Quick add · "+d.price;q.setAttribute("aria-label","Quick add, "+d.price)}
+    });
+  }
+
+  /* 4. Cart permalinks (/cart/ID:1,ID:1) add to bag in place and open the cart drawer */
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest('a[href*="/cart/"]');if(!a)return;
+    var m=(a.getAttribute("href")||"").match(/\/cart\/(\d+:\d+(?:,\d+:\d+)*)/);if(!m)return;
+    e.preventDefault();var items=m[1].split(",").map(function(x){var p=x.split(":");return{id:+p[0],quantity:+p[1]}});
+    var root=(window.Shopify&&Shopify.routes&&Shopify.routes.root)||"/";a.setAttribute("aria-busy","true");
+    fetch(root+"cart/add.js",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({items:items})})
+      .then(function(r){if(!r.ok)throw new Error("add");return r.json()})
+      .then(function(res){var d=document.querySelector("m-cart-drawer");try{if(window.MinimogEvents&&window.MinimogTheme)MinimogEvents.emit(MinimogTheme.pubSubEvents.cartUpdate,{cart:res})}catch(x){}if(d&&typeof d.open==="function"){d.open()}else{location.href=root+"cart"}})
+      .catch(function(){location.href=a.href}).finally(function(){a.removeAttribute("aria-busy")});
+  });
+
+  /* 6. Section helpers: anchors, footnotes and notes under native sections, moved reassurance lines */
+  var ANCHORS={"lu-shelf":"shop","lu-start":"start-here","lu-skin-tones":"every-skin","lu-slow":"slow-hour","lu-note":"our-story","lu-voices":"voices","lu-faq":"faq"};
+  function sections(){
+    Object.keys(ANCHORS).forEach(function(c){var s=document.querySelector("."+c);if(s&&!document.getElementById(ANCHORS[c])){var a=document.createElement("span");a.className="lu-anchor";a.id=ANCHORS[c];s.insertAdjacentElement("afterbegin",a)}});
+    var st=document.querySelector(".lu-skin-tones");if(st&&!st.querySelector(".lu-footnotes")){var box=st.querySelector(".container,.container-fluid")||st;var p=document.createElement("p");p.className="lu-footnotes";p.innerHTML=footNote("1");box.appendChild(p)}
+    var vo=document.querySelector(".lu-voices");if(vo&&!vo.querySelector(".lu-disclosure")){var b2=vo.querySelector(".container,.container-fluid")||vo;var d=document.createElement("p");d.className="lu-disclosure";d.textContent="Testers received products free. Sample content for this concept store, not customer reviews.";b2.appendChild(d)}
+    document.querySelectorAll(".lu-voices .m-testimonial__name").forEach(function(n){if(n.querySelector("b"))return;var t=n.textContent.trim(),i=t.indexOf(" · ");if(i>0)n.innerHTML="<b>"+esc(t.slice(0,i))+"</b>"+esc(t.slice(i+3))});
+    [".lu-start",".lu-slow"].forEach(function(sel){var s=document.querySelector(sel);if(!s||s.hasAttribute("data-lu-moved"))return;s.setAttribute("data-lu-moved","1");var desc=s.querySelector(".m-richtext__description"),btn=s.querySelector(".m-richtext__button");if(!desc||!btn)return;var ps=[].slice.call(desc.querySelectorAll(":scope > p"));var keep=sel===".lu-start"?1:2;var mv=ps.slice(keep);var at=btn;mv.forEach(function(p){var f=p.querySelector("sup.lu-fn:first-child");if(f&&p.textContent.trim().indexOf(f.textContent)===0){p.classList.add("lu-footnotes");p.setAttribute("data-fn-note",f.getAttribute("data-fn")||f.textContent)}else{p.classList.add("lu-reassure")}at.insertAdjacentElement("afterend",p);at=p})});
+    var sp=[].slice.call(document.querySelectorAll(".m-footer .m-footer--block-newsletter p")).filter(function(p){return/^One click to unsubscribe/.test(p.textContent.trim())})[0];var form=document.querySelector(".m-footer .m-newsletter-form");if(sp&&form&&!sp.classList.contains("lu-smallprint")){sp.classList.add("lu-smallprint");form.insertAdjacentElement("afterend",sp)}
+  }
+
+  /* 7. Announcement: Honey sun dot between the two promises; the 36-character line on phones */
+  function announce(){document.querySelectorAll(".m-announcement-bar__content").forEach(function(el){var tgt=el.querySelector("p")||el;if(tgt.querySelector(".lu-dot"))return;if(window.matchMedia("(max-width:767px)").matches&&LU.mobileAnnouncement&&/·/.test(tgt.textContent)){tgt.textContent=LU.mobileAnnouncement}tgt.innerHTML=tgt.innerHTML.replace(/\s*·\s*/g,'<i class="lu-dot" aria-hidden="true"></i><span class="lu-sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">, </span>')})}
+
+  /* 8. One H1 per page: the hero title is the H1 on the home page, the logo is not */
+  function oneH1(){var ht=document.querySelector(".lu-hero .m-hero__title");if(!ht||ht.tagName==="H1")return;document.querySelectorAll("h1").forEach(function(h){var d=document.createElement("div");for(var i=0;i<h.attributes.length;i++)d.setAttribute(h.attributes[i].name,h.attributes[i].value);while(h.firstChild)d.appendChild(h.firstChild);h.replaceWith(d)});var h1=document.createElement("h1");for(var j=0;j<ht.attributes.length;j++)h1.setAttribute(ht.attributes[j].name,ht.attributes[j].value);while(ht.firstChild)h1.appendChild(ht.firstChild);ht.replaceWith(h1)}
+
+  function nbsp(){document.querySelectorAll(".m-icon-box__description,.m-section__description,.m-richtext__description").forEach(function(el){if(el.innerHTML.indexOf("Fitzpatrick I to VI")>-1)el.innerHTML=el.innerHTML.replace(/Fitzpatrick I to VI/g,"Fitzpatrick&nbsp;I&nbsp;to&nbsp;VI")})}
+  function run(){try{fixEm();nbsp();footMarkers(document.body);cards();sections();announce();oneH1();linkMarkers()}catch(e){if(window.console)console.warn("lu-skin",e)}}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",run);else run();
+  var queued=false;new MutationObserver(function(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;try{cards();fixEm()}catch(e){}})}).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>

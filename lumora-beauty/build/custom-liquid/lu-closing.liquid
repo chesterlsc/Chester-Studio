@@ -1,0 +1,63 @@
+{%- comment -%}
+  LUMORA CLOSING BAND  ·  lu-closing.liquid  ·  v1.0
+  Paste into: Add section > Custom Liquid (padding 0), the LAST section of the template, directly above
+  the footer group. Home: lu_mode 'home'. PDP: set lu_mode to 'pdp' (guarantee band).
+  Dusk scheme; the render sits right, a Dusk scrim keeps the copy at AA; the horizon arc (signature
+  transition 2 of 2) curves into the footer. Upload the render to Content > Files as lu-closing.jpg
+  (2880 x 1100). The button is a cart permalink for Long Light (first available size): lu-skin adds it
+  to the bag in place and opens the drawer.
+{%- endcomment -%}
+{%- liquid
+  assign lu_mode = 'home'
+  assign lu_img = 'lu-closing.jpg'
+  assign lu_p = all_products['long-light-serum']
+  assign lu_v = lu_p.selected_or_first_available_variant
+-%}
+<section class="lu-closing lu-s-dusk" id="promise" aria-labelledby="lu-closing-title">
+  <div class="lu-closing__media"><img src="{{ lu_img | file_img_url: '1920x' }}" srcset="{{ lu_img | file_img_url: '960x' }} 960w, {{ lu_img | file_img_url: '1920x' }} 1920w, {{ lu_img | file_img_url: '2880x' }} 2880w" sizes="100vw" width="2880" height="1100" loading="lazy" alt="A glass sphere on a terracotta sweep catching the last disc of sun"></div>
+  <div class="lu-closing__scrim" aria-hidden="true"></div>
+  <div class="container-fluid lu-closing__inner">
+    <p class="lu-eyebrow">The 30-day promise</p>
+    {%- if lu_mode == 'pdp' -%}
+    <h2 id="lu-closing-title" class="lu-h2">Thirty days to love <em>it.</em></h2>
+    <p class="lu-lead">Use Long Light for 30 days. If it isn’t right for your skin, we’ll refund you, even if the bottle is open.</p>
+    <div class="lu-actions">
+      {%- if lu_v -%}<a class="m-button m-button--primary lu-btn" href="{{ routes.cart_url }}/{{ lu_v.id }}:1">Add to bag · {{ lu_v.price | money_without_trailing_zeros }}<svg class="lu-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>{%- endif -%}
+      <a class="lu-link" href="{{ routes.collections_url }}/the-six">See the whole shelf</a>
+    </div>
+    {%- else -%}
+    <h2 id="lu-closing-title" class="lu-h2">Stay for golden <em>hour.</em></h2>
+    <p class="lu-lead">Use any Lumora formula for 30 days. If it isn’t right, we’ll refund you, even if it’s open.</p>
+    <div class="lu-actions">
+      {%- if lu_v -%}<a class="m-button m-button--primary lu-btn" href="{{ routes.cart_url }}/{{ lu_v.id }}:1">Start with Long Light · {{ lu_v.price | money_without_trailing_zeros }}<svg class="lu-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>{%- endif -%}
+      <a class="lu-link" href="{{ routes.collections_url }}/the-six">Shop all six</a>
+    </div>
+    {%- endif -%}
+  </div>
+  <div class="lu-horizon" aria-hidden="true"><svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path d="M0 44V32Q720 -12 1440 32V44Z" fill="#35211F"/><path d="M0 32Q720 -12 1440 32" fill="none" stroke="#E8B566" stroke-width="1.5" stroke-opacity=".75" vector-effect="non-scaling-stroke"/></svg></div>
+</section>
+<style>
+.lu-closing{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;background:var(--lu-dusk);color:var(--lu-linen)}
+.lu-closing__media{position:absolute;inset:0}
+.lu-closing__media img{width:100%;height:100%;object-fit:cover;object-position:62% 50%}
+.lu-closing__scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(53,33,31,.62) 0%,rgba(53,33,31,.3) 42%,rgba(53,33,31,0) 64%),linear-gradient(180deg,rgba(53,33,31,0) 64%,var(--lu-dusk) 100%)}
+.lu-closing__inner{position:relative;z-index:2;padding-top:112px;padding-bottom:136px}
+.lu-closing .lu-h2{margin-top:0}
+.lu-closing .lu-lead{margin-top:22px;max-width:42ch;color:var(--lu-linen)}
+.lu-closing .lu-actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px 28px;margin-top:34px}
+.lu-closing .m-button--primary{background:var(--lu-honey);color:var(--lu-dusk)}
+.lu-closing .m-button--primary:hover{background:var(--lu-linen)}
+.lu-closing .lu-link{color:var(--lu-linen)}
+.lu-horizon{position:absolute;left:0;right:0;bottom:-1px;z-index:3;height:44px;pointer-events:none}
+.lu-horizon svg{display:block;width:100%;height:100%}
+@media (max-width:767px){
+  .lu-closing{display:block;min-height:0}
+  .lu-closing__media{position:relative;height:300px}
+  .lu-closing__media img{object-position:74% 50%}
+  .lu-closing__scrim{background:linear-gradient(180deg,rgba(53,33,31,0) 50%,var(--lu-dusk) 100%);height:300px;bottom:auto}
+  .lu-closing__inner{padding-top:8px;padding-bottom:76px}
+  .lu-closing .lu-actions{flex-direction:column;align-items:flex-start;gap:18px}
+  .lu-closing .lu-actions .m-button{width:100%}
+  .lu-horizon{height:24px}
+}
+</style>

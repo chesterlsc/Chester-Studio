@@ -1,0 +1,93 @@
+{%- comment -%}
+  LUMORA HERO PIN + GOLDEN-HOUR CLOCK  ·  lu-hero-pin.liquid  ·  v1.0
+  Paste into: Home page > Add section > Custom Liquid, placed DIRECTLY BELOW the hero (Image with text
+  overlay, Custom attributes: lu-hero). Set this section's padding to 0. On load it moves itself into the
+  hero: the product pin onto the bottle, the clock under the hero buttons. Hidden until it has moved, so
+  nothing shows if the hero is missing.
+  Pin position: --x / --y below are percentages of the hero box (desktop only). Re-tune them if the hero
+  render or its crop changes. The clock uses the visitor's time zone only (no location prompt, no cookies,
+  no network call). It hides itself if it cannot compute (polar day or night).
+{%- endcomment -%}
+{%- liquid
+  assign lu_handle = 'long-light-serum'
+  assign lu_p = all_products[lu_handle]
+  assign lu_pin_x = '67.5%'
+  assign lu_pin_y = '56%'
+-%}
+<div class="lu-hero-kit" hidden>
+  {%- if lu_p != empty and lu_p.id -%}
+  <a class="lu-pin" href="{{ lu_p.url }}" style="--x:{{ lu_pin_x }};--y:{{ lu_pin_y }}" aria-label="Start here, step 02: {{ lu_p.title | escape }}, {{ lu_p.price | money_without_trailing_zeros }}">
+    <span class="lu-pin__dot" aria-hidden="true"></span>
+    <span class="lu-pin__card">
+      <span class="lu-pin__thumb">{%- if lu_p.featured_image -%}<img src="{{ lu_p.featured_image | image_url: width: 160 }}" alt="" width="52" height="64" loading="eager">{%- endif -%}</span>
+      <span class="lu-pin__txt"><small>Start here · Step 02</small><strong>{{ lu_p.title | escape }}</strong><span>10% vitamin C + sea buckthorn</span></span>
+      <span class="lu-pin__price">{{ lu_p.price | money_without_trailing_zeros }}<svg class="lu-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg></span>
+    </span>
+  </a>
+  {%- endif -%}
+  <p class="lu-clock" hidden>
+    <svg viewBox="0 0 30 18" aria-hidden="true"><path d="M3 14.5h24" fill="none" stroke="#35211F" stroke-width="1.2" stroke-linecap="round"/><path d="M8.5 14.5a6.5 6.5 0 0 1 13 0" fill="#E8B566"/><path d="M15 4.2v1.8M8.3 7l1.2 1.2M21.7 7l-1.2 1.2" fill="none" stroke="#A8473B" stroke-width="1.2" stroke-linecap="round"/></svg>
+    <span class="lu-clock__txt"></span>
+  </p>
+</div>
+<style>
+.lu-pin{position:absolute;z-index:3;left:var(--x);top:var(--y);text-decoration:none;color:var(--lu-dusk,#35211F)}
+.lu-pin__dot{position:absolute;left:-11px;top:-11px;width:22px;height:22px;border-radius:50%;background:var(--lu-honey,#E8B566);box-shadow:0 0 0 4px var(--lu-glass,rgba(251,246,239,.86)),0 0 0 12px var(--lu-ring-honey,rgba(232,181,102,.3)),0 8px 18px -6px rgba(53,33,31,.42)}
+.lu-pin__dot::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid var(--lu-glass,rgba(251,246,239,.86));animation:lu-pulse 2.8s var(--lu-ease,ease) infinite}
+@keyframes lu-pulse{0%{transform:scale(.9);opacity:.9}70%{transform:scale(1.25);opacity:0}100%{opacity:0}}
+.lu-pin__card{position:absolute;right:34px;top:-40px;display:flex;align-items:center;gap:14px;width:max-content;padding:10px 16px 10px 10px;border-radius:14px;background:var(--lu-glass,rgba(251,246,239,.86));box-shadow:0 24px 60px -30px rgba(53,33,31,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .2s var(--lu-ease,ease)}
+.lu-pin:hover .lu-pin__card{transform:translateY(-2px)}
+.lu-pin__thumb{display:block;width:52px;height:64px;overflow:hidden;border-radius:10px;background:var(--lu-sand,#E9D9C5)}
+.lu-pin__thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.lu-pin__txt small{display:block;font:600 10px/1 var(--lu-body);letter-spacing:.16em;text-transform:uppercase;color:var(--lu-clay,#8E3F31)}
+.lu-pin__txt strong{display:block;margin-top:6px;font:400 19px/1.1 var(--lu-display);letter-spacing:-.01em;color:var(--lu-dusk,#35211F)}
+.lu-pin__txt span{display:block;margin-top:4px;font:400 12.5px/1.3 var(--lu-body);color:var(--lu-dusk-72,#6E554C)}
+.lu-pin__price{display:flex;align-items:center;gap:8px;margin-left:10px;padding-left:14px;border-left:1px solid var(--lu-hairline,rgba(53,33,31,.14));font:600 15px/1 var(--lu-body);font-variant-numeric:tabular-nums}
+.lu-pin__price .lu-ico{width:16px;height:16px}
+.lu-pin:hover .lu-pin__price .lu-ico{transform:translateX(3px)}
+.lu-clock,.m-hero__content .lu-clock{display:flex;align-items:center;gap:12px;margin:30px 0 0;font:400 13px/20px var(--lu-body);color:var(--lu-dusk-wash,#5E463E)}
+.lu-clock svg{width:30px;height:18px;flex:none}
+.lu-clock strong{font-weight:600;color:var(--lu-dusk,#35211F)}
+@media (max-width:767px){.lu-pin{display:none}.lu-clock,.m-hero__content .lu-clock{margin-top:20px;gap:10px;font-size:12.5px}}
+@media (prefers-reduced-motion:reduce){.lu-pin__dot::after{animation:none}}
+</style>
+<script>
+/* Golden-hour clock: NOAA solar position, visitor time zone mapped to a representative city, no location prompt. */
+(function(){
+  var Z={"America/New_York":["New York",40.71,-74.01],"America/Detroit":["Detroit",42.33,-83.05],"America/Toronto":["Toronto",43.65,-79.38],"America/Montreal":["Montreal",45.5,-73.57],"America/Halifax":["Halifax",44.65,-63.57],"America/St_Johns":["St. John's",47.56,-52.71],"America/Chicago":["Chicago",41.88,-87.63],"America/Winnipeg":["Winnipeg",49.9,-97.14],"America/Mexico_City":["Mexico City",19.43,-99.13],"America/Denver":["Denver",39.74,-104.99],"America/Edmonton":["Edmonton",53.55,-113.49],"America/Phoenix":["Phoenix",33.45,-112.07],"America/Boise":["Boise",43.62,-116.2],"America/Los_Angeles":["Los Angeles",34.05,-118.24],"America/Vancouver":["Vancouver",49.28,-123.12],"America/Anchorage":["Anchorage",61.22,-149.9],"Pacific/Honolulu":["Honolulu",21.31,-157.86],"America/Indiana/Indianapolis":["Indianapolis",39.77,-86.16],"America/Kentucky/Louisville":["Louisville",38.25,-85.76],"America/Puerto_Rico":["San Juan",18.47,-66.11],"America/Bogota":["Bogotá",4.71,-74.07],"America/Lima":["Lima",-12.05,-77.04],"America/Santiago":["Santiago",-33.45,-70.67],"America/Sao_Paulo":["São Paulo",-23.55,-46.63],"America/Argentina/Buenos_Aires":["Buenos Aires",-34.6,-58.38],"Europe/London":["London",51.51,-0.13],"Europe/Dublin":["Dublin",53.35,-6.26],"Europe/Lisbon":["Lisbon",38.72,-9.14],"Europe/Madrid":["Madrid",40.42,-3.7],"Europe/Paris":["Paris",48.86,2.35],"Europe/Brussels":["Brussels",50.85,4.35],"Europe/Amsterdam":["Amsterdam",52.37,4.9],"Europe/Berlin":["Berlin",52.52,13.4],"Europe/Zurich":["Zurich",47.38,8.54],"Europe/Rome":["Rome",41.9,12.5],"Europe/Vienna":["Vienna",48.21,16.37],"Europe/Copenhagen":["Copenhagen",55.68,12.57],"Europe/Stockholm":["Stockholm",59.33,18.07],"Europe/Oslo":["Oslo",59.91,10.75],"Europe/Helsinki":["Helsinki",60.17,24.94],"Europe/Warsaw":["Warsaw",52.23,21.01],"Europe/Prague":["Prague",50.08,14.44],"Europe/Athens":["Athens",37.98,23.73],"Europe/Istanbul":["Istanbul",41.01,28.98],"Africa/Cairo":["Cairo",30.04,31.24],"Africa/Lagos":["Lagos",6.52,3.38],"Africa/Nairobi":["Nairobi",-1.29,36.82],"Africa/Johannesburg":["Johannesburg",-26.2,28.05],"Asia/Dubai":["Dubai",25.2,55.27],"Asia/Kolkata":["Mumbai",19.08,72.88],"Asia/Calcutta":["Mumbai",19.08,72.88],"Asia/Bangkok":["Bangkok",13.76,100.5],"Asia/Jakarta":["Jakarta",-6.21,106.85],"Asia/Singapore":["Singapore",1.35,103.82],"Asia/Manila":["Manila",14.6,120.98],"Asia/Hong_Kong":["Hong Kong",22.32,114.17],"Asia/Shanghai":["Shanghai",31.23,121.47],"Asia/Seoul":["Seoul",37.57,126.98],"Asia/Tokyo":["Tokyo",35.68,139.69],"Australia/Perth":["Perth",-31.95,115.86],"Australia/Adelaide":["Adelaide",-34.93,138.6],"Australia/Brisbane":["Brisbane",-27.47,153.03],"Australia/Sydney":["Sydney",-33.87,151.21],"Australia/Melbourne":["Melbourne",-37.81,144.96],"Pacific/Auckland":["Auckland",-36.85,174.76]};
+  var R=Math.PI/180;
+  function elev(ms,lat,lon){var jd=ms/864e5+2440587.5,T=(jd-2451545)/36525,L0=(280.46646+T*(36000.76983+T*3.032e-4))%360,M=357.52911+T*(35999.05029-1.537e-4*T),e=0.016708634-T*(4.2037e-5+1.267e-7*T),C=Math.sin(M*R)*(1.914602-T*(4.817e-3+1.4e-5*T))+Math.sin(2*M*R)*(0.019993-1.01e-4*T)+Math.sin(3*M*R)*2.89e-4,om=125.04-1934.136*T,lam=L0+C-0.00569-0.00478*Math.sin(om*R),eps=23+(26+(21.448-T*(46.815+T*(5.9e-4-T*1.813e-3)))/60)/60+0.00256*Math.cos(om*R),dec=Math.asin(Math.sin(eps*R)*Math.sin(lam*R)),y=Math.pow(Math.tan(eps*R/2),2),eot=4/R*(y*Math.sin(2*L0*R)-2*e*Math.sin(M*R)+4*e*y*Math.sin(M*R)*Math.cos(2*L0*R)-0.5*y*y*Math.sin(4*L0*R)-1.25*e*e*Math.sin(2*M*R)),mins=((ms/6e4)%1440+1440)%1440,ha=((mins+eot+4*lon)/4-180)*R;return 90-Math.acos(Math.max(-1,Math.min(1,Math.sin(lat*R)*Math.sin(dec)+Math.cos(lat*R)*Math.cos(dec)*Math.cos(ha))))/R}
+  /* Golden hour = the minutes when the sun stands between -4 and +6 degrees. Scan 72 hours minute by minute. */
+  function windows(now,lat,lon){var t0=Math.floor(now/6e4)*6e4-36*36e5,out=[],prev=elev(t0,lat,lon),open=null;for(var t=t0+6e4;t<=t0+72*36e5;t+=6e4){var el=elev(t,lat,lon),inW=el<6&&el>=-4,wasIn=prev<6&&prev>=-4;if(inW&&!wasIn){open={start:t,evening:prev>=6}}if(!inW&&wasIn&&open){open.end=t-6e4;out.push(open);open=null}prev=el}return out}
+  function ymd(ms,tz){return new Intl.DateTimeFormat("en-CA",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit"}).format(ms)}
+  function hm(ms,tz){return new Intl.DateTimeFormat("en-US",{timeZone:tz,hour:"numeric",minute:"2-digit",hour12:true}).format(ms).replace(/ |\s/g," ").toLowerCase()}
+  function span(a,b,tz){var x=hm(a,tz),y=hm(b,tz),px=x.slice(-2),py=y.slice(-2);return(px===py?x.slice(0,-3):x)+" to "+y}
+  function compute(now,tz){
+    var c=Z[tz],zone=tz;if(!c){c=Z["America/New_York"];zone="America/New_York"}
+    var w=windows(now,c[1],c[2]);if(!w.length)return null;
+    var today=ymd(now,zone),tomorrow=ymd(now+864e5,zone);
+    var eve=w.filter(function(x){return x.evening&&ymd(x.start,zone)===today})[0];
+    if(eve&&now<=eve.end)return{lead:"Golden hour in "+c[0]+" today: ",time:span(eve.start,eve.end,zone)};
+    var next=w.filter(function(x){return!x.evening&&x.start>now})[0];
+    if(next)return{lead:"Next golden hour in "+c[0]+": "+(ymd(next.start,zone)===tomorrow?"tomorrow, ":""),time:span(next.start,next.end,zone)};
+    return null;
+  }
+  window.LuGoldenHour=compute;
+})();
+(function(){
+  "use strict";
+  function place(){
+    var kit=document.querySelector(".lu-hero-kit"),hero=document.querySelector(".lu-hero .m-hero")||document.querySelector(".lu-hero");
+    if(!kit||!hero)return;
+    var pin=kit.querySelector(".lu-pin");if(pin)hero.appendChild(pin);
+    var clock=kit.querySelector(".lu-clock"),slot=hero.querySelector(".m-hero__btn")||hero.querySelector(".m-hero__content");
+    if(clock&&slot){
+      var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}
+      var r=null;try{r=window.LuGoldenHour(Date.now(),tz)}catch(e){}
+      if(r){clock.querySelector(".lu-clock__txt").innerHTML=r.lead.replace(/[&<>]/g,"")+"<strong>"+r.time+"</strong>";clock.hidden=false;slot.insertAdjacentElement(slot.classList.contains("m-hero__btn")?"afterend":"beforeend",clock)}
+    }
+    kit.remove();
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",place);else place();
+})();
+</script>

@@ -1,0 +1,78 @@
+{%- comment -%}
+  LUMORA PDP SKIN  ·  lu-pdp-skin.liquid  ·  v1.0
+  Paste into: every product template > Add section > Custom Liquid (padding 0), placed FIRST, above
+  "Product information". Buy-box styles (title, price, size pills, quantity, Add to bag, dynamic checkout,
+  accordions, gallery corners, sticky add to bag) plus the "Add to bag · $54" label, which follows the
+  selected size. Needs lu-skin on the page (tokens). Also styles the PDP Custom Liquid blocks.
+{%- endcomment -%}
+<style>
+.main-product__block .m-product-title{margin:0;font:300 var(--lu-h3)/1.05 var(--lu-display)!important;letter-spacing:-.02em;color:rgb(var(--color-heading))}
+.main-product__block+.main-product__block{margin-top:20px}
+.main-product__block-custom_liquid+.main-product__block-title{margin-top:10px}
+.main-product__block-price .m-price-item{font:400 26px/1.2 var(--lu-display)!important;letter-spacing:-.01em;color:rgb(var(--color-heading))}
+.m-product-option--label{font:600 12px/16px var(--lu-body);letter-spacing:.16em;text-transform:uppercase;color:rgb(var(--color-foreground))}
+.m-product-option--label .option-label--selected{letter-spacing:.02em;text-transform:none;font-weight:400;color:rgb(var(--color-foreground-secondary))}
+.m-product-option--button .m-product-option--node__label{min-height:44px;min-width:0;margin:4px 8px 4px 0;padding:0 20px;border:1px solid var(--lu-hairline-strong);border-radius:var(--lu-pill);background:transparent;font:500 15px/1 var(--lu-body);color:rgb(var(--color-foreground));text-transform:none}
+.m-product-option--button .m-product-option--node input:checked+label,.m-product-option--button .m-product-option--node__label[data-selected=true]{border-color:rgb(var(--color-foreground));background:var(--lu-linen);color:rgb(var(--color-foreground));box-shadow:inset 0 0 0 1px rgb(var(--color-foreground))}
+.m-product-option--swatch .m-product-option--node__label{width:32px;height:32px}
+.main-product__block-buy_buttons .m-quantity{flex:0 0 auto;min-height:52px;border-radius:var(--lu-pill);border:1px solid var(--lu-hairline-strong)}
+.m-product-form .m-add-to-cart{min-height:56px;width:100%;font-size:16px;background:var(--lu-terracotta);color:var(--lu-linen);border-color:transparent;box-shadow:var(--lu-shadow-btn)}
+.m-product-form .m-add-to-cart:hover{background:var(--lu-clay);box-shadow:var(--lu-shadow-btn),var(--lu-halo)}
+.m-product-dynamic-checkout .shopify-payment-button__button{border-radius:var(--lu-pill)!important;min-height:48px;opacity:.92}
+.m-product-dynamic-checkout .shopify-payment-button__more-options{font-size:13px;color:rgb(var(--color-foreground-secondary))}
+.m-product-collapsible .m-collapsible,.main-product__block-collapsible_tab .m-collapsible{border:0;border-bottom:1px solid rgb(var(--color-border));border-radius:0}
+.m-product-collapsible .m-collapsible--button,.main-product__block-collapsible_tab .m-collapsible--button{min-height:56px;font:400 18px/1.3 var(--lu-display)!important;color:rgb(var(--color-heading))}
+.m-product-media .m-image,.m-product-media--item,.m-product-media--slider__thumbnails .swiper-slide{border-radius:var(--lu-radius);overflow:hidden;background:var(--lu-sand)}
+.m-breadcrumb,.m-breadcrumb a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgb(var(--color-foreground-secondary))}
+.m-sticky-addtocart{background:var(--lu-linen);box-shadow:0 -1px 0 var(--lu-hairline),0 -18px 40px -30px var(--lu-ink-shadow);padding-bottom:env(safe-area-inset-bottom)}
+.m-sticky-addtocart--title h3{font:400 18px/1.2 var(--lu-display)}
+.m-sticky-addtocart .m-add-to-cart{width:auto;min-height:48px;background:var(--lu-terracotta);color:var(--lu-linen);border-color:transparent}
+@media (max-width:767px){.m-sticky-addtocart .m-add-to-cart{width:100%}}
+.m-sticky-addtocart .m-product-option--dropdown-select{border-radius:var(--lu-pill)}
+html.stick-atc-show .m-button--scroll-top{bottom:96px}
+@media (max-width:767px){.main-product__block-price .m-price-item{font-size:24px!important}}
+.lu-pdp-eyebrow{margin:0 0 4px}
+.lu-pdp-eyebrow .lu-sunmark{width:30px;height:18px;color:rgb(var(--color-foreground))}
+.lu-lexicon{margin:10px 0 0;font:300 20px/1.45 var(--lu-display);color:rgb(var(--color-foreground))}
+.lu-lexicon em{font-style:italic;color:rgb(var(--color-heading))}
+.lu-rating{display:inline-flex;align-items:center;gap:8px;margin-top:12px;min-height:44px;font-size:14px;color:rgb(var(--color-foreground-secondary));text-decoration:none}
+.lu-rating svg{width:15px;height:15px;fill:var(--lu-clay)}
+.lu-rating b{font-weight:600;color:rgb(var(--color-foreground))}
+.lu-rating span{border-bottom:1px solid currentColor}
+.lu-benefits{display:grid;margin:0;padding:0;list-style:none;border-top:1px solid rgb(var(--color-border))}
+.lu-benefits li{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid rgb(var(--color-border));font-size:15px;line-height:22px;color:rgb(var(--color-foreground))}
+.lu-benefits svg{width:24px;height:24px;flex:none;fill:none;stroke:rgb(var(--color-price-sale));stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.lu-glance{display:grid;grid-template-columns:auto 1fr;margin:0;font-size:14px;line-height:21px}
+.lu-glance dt,.lu-glance dd{margin:0;padding:10px 0;border-bottom:1px solid rgb(var(--color-border))}
+.lu-glance dt{padding-right:24px;font:600 11px/21px var(--lu-body);letter-spacing:.16em;text-transform:uppercase;color:rgb(var(--color-foreground-secondary));white-space:nowrap}
+.lu-glance dd{color:rgb(var(--color-foreground))}
+.lu-glance dd a{color:inherit;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.lu-ship{display:grid;gap:6px;margin:0;font-size:14px;line-height:21px;color:rgb(var(--color-foreground))}
+.lu-ship p{display:flex;align-items:flex-start;gap:10px;margin:0}
+.lu-ship svg{width:20px;height:20px;flex:none;margin-top:1px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.lu-ship strong{font-weight:600}
+.lu-trust{display:grid;grid-template-columns:1fr 1fr;margin:0;padding:0;list-style:none;border-top:1px solid rgb(var(--color-border))}
+.lu-trust li{display:flex;gap:12px;align-items:flex-start;padding:14px 12px 14px 0;border-bottom:1px solid rgb(var(--color-border))}
+.lu-trust li:nth-child(even){padding-left:16px;border-left:1px solid rgb(var(--color-border))}
+.lu-trust svg{width:24px;height:24px;flex:none;fill:none;stroke:rgb(var(--color-foreground));stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.lu-trust .lu-sundot{fill:var(--lu-honey);stroke:none}
+.lu-trust b{display:block;font:400 16px/1.25 var(--lu-display);color:rgb(var(--color-heading))}
+.lu-trust span{display:block;margin-top:2px;font-size:12.5px;line-height:18px;color:rgb(var(--color-foreground-secondary))}
+.lu-buybox-notes{margin-top:12px}
+@media (max-width:767px){.lu-trust li{padding-right:8px}.lu-trust li:nth-child(even){padding-left:12px}.lu-lexicon{font-size:18px}}
+</style>
+<script type="application/json" id="lu-pdp-data">{"price":{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros | json }},"variants":{{ product.variants | map: 'id' | json }}}</script>
+<script>
+(function(){
+  "use strict";
+  var LU={};try{LU=JSON.parse(document.getElementById("lu-pdp-data").textContent)}catch(e){}
+  /* "Add to bag · $54": the price follows the selected size */
+  function money(cents){var c=(window.Shopify&&Shopify.currency&&Shopify.currency.active)||"USD";try{return new Intl.NumberFormat("en-US",{style:"currency",currency:c,minimumFractionDigits:cents%100?2:0,maximumFractionDigits:2}).format(cents/100)}catch(x){return"$"+Math.round(cents/100)}}
+  function atc(price){if(!price)return;document.querySelectorAll(".m-main-product .m-add-to-cart,.m-sticky-addtocart .m-add-to-cart").forEach(function(b){if(b.disabled)return;var t=b.querySelector(".m-add-to-cart--text");if(!t)return;var base=(t.textContent||"").split(" · ")[0].trim();if(!base||/sold|unavailable/i.test(base))return;var want=base+" · "+price;if(t.textContent.trim()!==want)t.textContent=want})}
+  document.addEventListener("variant:changed",function(e){var v=e.detail&&e.detail.variant;if(v&&v.available!==false&&(LU.variants||[]).indexOf(v.id)>-1){var p=money(v.price);LU.price=p;setTimeout(function(){atc(p)},30)}});
+
+  function start(){atc(LU.price)}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+  window.addEventListener("load",function(){atc(LU.price)});
+})();
+</script>

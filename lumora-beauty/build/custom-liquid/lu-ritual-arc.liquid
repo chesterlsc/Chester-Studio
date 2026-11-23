@@ -1,0 +1,153 @@
+{%- comment -%}
+  LUMORA RITUAL: SUNSET IN SIX  ·  lu-ritual-arc.liquid  ·  v1.0
+  Paste into: Home page > Add section > Custom Liquid (padding 0), after the sensory marquee.
+  The whole bundle section: the line-up scene with six numbered pins (live product links and prices),
+  the sun-arc timeline (01 rises, 06 sets), the six steps, the set price and one "add all" button.
+  Prices are read live from the products; the set price is the constant below. The button is a cart
+  permalink built from each product's first available variant: lu-skin adds it to the bag in place
+  and opens the cart drawer (without JavaScript it goes straight to checkout with the six items).
+  The $35 saving is applied at checkout by the automatic discount "The full sunset" (BUILD-GUIDE 5.4).
+  Upload the scene to Content > Files as lu-ritual.jpg (2400 x 1600). Re-tune pins if the render changes.
+{%- endcomment -%}
+{%- liquid
+  assign lu_set_price = 19700
+  assign lu_img = 'lu-ritual.jpg'
+  assign lu_handles = 'sunmelt-cleansing-balm,long-light-serum,haze-soft-focus-cream,apricity-lip-cheek-balm,gloaming-body-oil,slow-hour-golden-milk' | split: ','
+  assign lu_names = 'Sunmelt,Long Light,Haze,Apricity,Gloaming,Slow Hour' | split: ','
+  assign lu_roles = 'Cleanse · AM + PM,Glow · AM + PM,Moisturize · AM + PM,Flush · day,Body · evening,Unwind · evening' | split: ','
+  assign lu_px = '16.9,29.1,43.9,56.6,70.6,84' | split: ','
+  assign lu_py = '21.8,33,47.7,44.2,34.8,47.1' | split: ','
+  assign lu_sum = 0
+  assign lu_cart = ''
+  for h in lu_handles
+    assign p = all_products[h]
+    if p.id
+      assign lu_sum = lu_sum | plus: p.price
+      assign lu_v = p.selected_or_first_available_variant.id | append: ':1'
+      if lu_cart == ''
+        assign lu_cart = lu_v
+      else
+        assign lu_cart = lu_cart | append: ',' | append: lu_v
+      endif
+    endif
+  endfor
+  assign lu_save = lu_sum | minus: lu_set_price
+  assign lu_pct = lu_save | times: 100 | divided_by: lu_sum
+-%}
+<section class="lu-sec lu-s-apricot-wash lu-ritual" id="ritual" aria-labelledby="lu-ritual-title">
+  <div class="container-fluid">
+    <header class="lu-head">
+      <p class="lu-eyebrow">Sunset in six</p>
+      <h2 id="lu-ritual-title" class="lu-h2">Golden hour, twice a <em>day.</em></h2>
+      <p class="lu-lead">Morning: 01, 02, 03, your daily SPF, then 04. Evening: 01, 02, 03, 05 and 06. Ten slow minutes, start to finish.</p>
+    </header>
+    <div class="lu-ritual__scene">
+      <img src="{{ lu_img | file_img_url: '1600x' }}" srcset="{{ lu_img | file_img_url: '800x' }} 800w, {{ lu_img | file_img_url: '1600x' }} 1600w, {{ lu_img | file_img_url: '2400x' }} 2400w" sizes="(min-width: 1440px) 1296px, 100vw" width="2400" height="1600" loading="lazy" alt="All six Lumora products in order on a long travertine ledge, low sun raking from the left and long shadows to the right">
+      {%- for h in lu_handles -%}
+        {%- assign p = all_products[h] -%}{%- assign i = forloop.index0 -%}
+        {%- if p.id -%}
+        <a class="lu-ritual__pin{% if forloop.index == 2 %} is-open{% endif %}{% if forloop.index >= 2 and forloop.index <= 4 %} on-m{% endif %}" href="{{ p.url }}" style="--x:{{ lu_px[i] }}%;--y:{{ lu_py[i] }}%" aria-label="Step 0{{ forloop.index }}: {{ p.title | escape }}, {{ p.price | money_without_trailing_zeros }}">
+          <span class="lu-ritual__no" aria-hidden="true">0{{ forloop.index }}</span>
+          <span class="lu-ritual__pop" aria-hidden="true">
+            <span class="lu-ritual__thumb">{%- if p.featured_image -%}<img src="{{ p.featured_image | image_url: width: 120 }}" alt="" width="48" height="60" loading="lazy">{%- endif -%}</span>
+            <span><strong>{{ p.title | escape }}</strong><span class="lu-tnum">{{ p.price | money_without_trailing_zeros }}</span></span>
+            <svg class="lu-ico" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg>
+          </span>
+        </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="lu-bundle">
+      <div class="lu-bundle__arc" aria-hidden="true">
+        <svg viewBox="0 0 1216 70" preserveAspectRatio="none"><path class="lu-arc" d="M101.3 66Q608 -30 1114.7 66" vector-effect="non-scaling-stroke"/><path class="lu-arc-hz" d="M0 66H1216" vector-effect="non-scaling-stroke"/></svg>
+        <span class="lu-arc-dot is-set" style="--x:8.33%;--y:94.3%"></span><span class="lu-arc-dot" style="--x:25%;--y:50.4%"></span><span class="lu-arc-dot" style="--x:41.67%;--y:28.4%"></span><span class="lu-arc-dot" style="--x:58.33%;--y:28.4%"></span><span class="lu-arc-dot" style="--x:75%;--y:50.4%"></span><span class="lu-arc-dot is-set" style="--x:91.67%;--y:94.3%"></span>
+      </div>
+      <ol class="lu-steps">
+        {%- for h in lu_handles -%}
+          {%- assign p = all_products[h] -%}{%- assign i = forloop.index0 -%}
+          <li>
+            <span class="lu-steps__no" data-mark="{{ forloop.index }}">0{{ forloop.index }}</span>
+            <h3><a href="{{ p.url | default: '#' }}">{{ lu_names[i] }}</a></h3>
+            <p class="lu-steps__role">{{ lu_roles[i] }}</p>
+            <p class="lu-steps__pr lu-tnum">{{ p.price | money_without_trailing_zeros }}</p>
+          </li>
+        {%- endfor -%}
+      </ol>
+      <div class="lu-bundle__foot">
+        <div class="lu-bundle__total"><strong class="lu-tnum">{{ lu_set_price | money_without_trailing_zeros }}</strong><span class="lu-was lu-tnum">for all six, {{ lu_sum | money_without_trailing_zeros }} bought separately</span><span class="lu-save">Save {{ lu_pct }}%</span></div>
+        <div class="lu-actions">
+          <a class="lu-link" href="{{ routes.root_url }}#shop">Start with one step</a>
+          <a class="m-button m-button--primary lu-btn" href="{{ routes.cart_url }}/{{ lu_cart }}">Add the full sunset · {{ lu_set_price | money_without_trailing_zeros }}<svg class="lu-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></svg></a>
+        </div>
+      </div>
+      <p class="lu-reassure lu-reassure--ship">Ships free in the US, and every step is covered by the 30-day guarantee.</p>
+    </div>
+  </div>
+</section>
+<style>
+.lu-ritual{background:linear-gradient(180deg,var(--lu-honey-wash) 0%,var(--lu-apricot-wash) 100%)!important}
+.lu-ritual__scene{position:relative;aspect-ratio:1296/640;border-radius:14px;overflow:hidden;background:var(--lu-sand)}
+.lu-ritual__scene>img{width:100%;height:100%;object-fit:cover;object-position:50% 54%}
+.lu-ritual__pin{position:absolute;z-index:2;left:var(--x);top:var(--y);width:34px;height:34px;margin:-17px 0 0 -17px;text-decoration:none;color:var(--lu-dusk)}
+.lu-ritual__no{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--lu-honey);font:600 12px/1 var(--lu-body);letter-spacing:.02em;box-shadow:0 0 0 4px var(--lu-glass),0 0 0 12px var(--lu-ring-honey),0 8px 18px -8px var(--lu-ink-shadow);transition:transform .2s var(--lu-ease)}
+.lu-ritual__pin:hover .lu-ritual__no,.lu-ritual__pin:focus-visible .lu-ritual__no{transform:scale(1.12)}
+.lu-ritual__pop{position:absolute;left:47px;top:50%;transform:translate(0,-50%);display:flex;align-items:center;gap:14px;padding:10px 16px 10px 10px;border-radius:14px;background:var(--lu-glass);box-shadow:var(--lu-shadow-float);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s var(--lu-ease)}
+.lu-ritual__pin:hover .lu-ritual__pop,.lu-ritual__pin:focus-visible .lu-ritual__pop,.lu-ritual__scene:not(:hover):not(:focus-within) .lu-ritual__pin.is-open .lu-ritual__pop{opacity:1}
+.lu-ritual__pin:nth-of-type(n+5) .lu-ritual__pop{left:auto;right:47px}
+.lu-ritual__thumb{display:block;width:48px;height:60px;border-radius:10px;overflow:hidden;background:var(--lu-sand)}
+.lu-ritual__thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.lu-ritual__pop strong{display:block;font:400 18px/1.15 var(--lu-display);color:var(--lu-dusk)}
+.lu-ritual__pop span span{display:block;margin-top:4px;font:600 14px/1 var(--lu-body)}
+.lu-bundle{margin-top:24px;padding:36px 40px 32px;border-radius:14px;background:var(--lu-linen);box-shadow:0 1px 0 var(--lu-hairline)}
+.lu-bundle__arc{position:relative;height:70px;margin:0 4px 6px}
+.lu-bundle__arc svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.lu-arc{fill:none;stroke:var(--lu-dusk-72);stroke-width:1.2;stroke-dasharray:2 5;stroke-linecap:round;opacity:.8}
+.lu-arc-hz{fill:none;stroke:var(--lu-hairline-strong);stroke-width:1}
+.lu-arc-dot{position:absolute;left:var(--x);top:var(--y);width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--lu-gradient-sun);box-shadow:0 0 0 5px var(--lu-ring-honey-soft)}
+.lu-arc-dot.is-set{clip-path:inset(-6px -6px 50% -6px)}
+.lu-steps{display:grid;grid-template-columns:repeat(6,1fr);margin:0;padding:0;list-style:none}
+.lu-steps li{padding:18px 12px 4px;border-left:1px solid var(--lu-hairline);text-align:center}
+.lu-steps li:first-child{border-left:0}
+.lu-steps__no{display:flex;align-items:center;justify-content:center;gap:8px;font:600 12px/1 var(--lu-body);letter-spacing:.14em;color:var(--lu-terracotta)}
+.lu-steps__no .lu-sunmark{width:30px;height:18px;color:var(--lu-dusk)}
+.lu-steps h3{margin:12px 0 0;font:400 18px/1.2 var(--lu-display);letter-spacing:-.005em}
+.lu-steps h3 a{color:var(--lu-dusk);text-decoration:none}
+.lu-steps__role{margin:4px 0 0;font-size:13px;line-height:18px;color:var(--lu-dusk-72)}
+.lu-steps__pr{margin:10px 0 0;font:600 15px/1 var(--lu-body);color:var(--lu-dusk)}
+.lu-bundle__foot{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:28px;padding-top:24px;border-top:1px solid var(--lu-hairline)}
+.lu-bundle__total{display:flex;align-items:baseline;gap:14px;color:var(--lu-dusk)}
+.lu-bundle__total strong{font:300 40px/1 var(--lu-display);letter-spacing:-.02em}
+.lu-was{font-size:15px;color:var(--lu-dusk-72)}
+.lu-save{font:600 12px/1 var(--lu-body);letter-spacing:.12em;text-transform:uppercase;color:var(--lu-clay)}
+.lu-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px 28px}
+.lu-bundle .lu-reassure{justify-content:flex-end;margin-top:14px}
+.lu-reassure--ship::before{-webkit-mask-image:var(--lu-i-ship);mask-image:var(--lu-i-ship)}
+.lu-ritual .lu-link{color:var(--lu-dusk)}
+@media (max-width:767px){
+  .lu-ritual__scene{aspect-ratio:4/5}
+  .lu-ritual__scene>img{object-position:33.9% 50%;transform:scale(1.4);transform-origin:50% 53.5%}
+  .lu-ritual__pin{display:none}.lu-ritual__pin.on-m{display:block}
+  .lu-ritual__pin.on-m:nth-of-type(2){--x:14.9%!important;--y:31%!important}
+  .lu-ritual__pin.on-m:nth-of-type(3){--x:53.7%!important;--y:46.2%!important}
+  .lu-ritual__pin.on-m:nth-of-type(4){--x:87%!important;--y:42.6%!important}
+  .lu-ritual__pop{display:none}
+  .lu-bundle{margin-top:16px;padding:24px 20px}
+  .lu-bundle__arc{display:none}
+  .lu-steps{grid-template-columns:1fr}
+  .lu-steps li{display:grid;grid-template-columns:44px 1fr auto;align-items:center;column-gap:8px;padding:14px 0;border-left:0;border-top:1px solid var(--lu-hairline);text-align:left}
+  .lu-steps li:first-child{border-top:0;padding-top:0}
+  .lu-steps__no{grid-row:1/span 2;flex-direction:column;align-items:flex-start;gap:4px}
+  .lu-steps__no .lu-sunmark{width:26px;height:16px}
+  .lu-steps h3{margin:0;font-size:16px}
+  .lu-steps__role{grid-column:2;margin-top:2px;font-size:12.5px}
+  .lu-steps__pr{grid-column:3;grid-row:1/span 2;margin:0}
+  .lu-bundle__foot{display:block;margin-top:18px;padding-top:18px}
+  .lu-bundle__total{flex-wrap:wrap;gap:6px 12px}.lu-bundle__total strong{font-size:32px}.lu-was{order:3;flex-basis:100%;font-size:14px}
+  .lu-actions{margin-top:18px;flex-direction:column;align-items:center;gap:18px}
+  .lu-actions .m-button{width:100%;order:-1}
+  .lu-bundle .lu-reassure{justify-content:flex-start}
+}
+</style>
+<script>
+(function(){document.querySelectorAll(".lu-steps__no[data-mark]").forEach(function(n){if(window.LuMark&&!n.querySelector("svg"))n.insertAdjacentHTML("afterbegin",window.LuMark(n.getAttribute("data-mark")))})})();
+</script>

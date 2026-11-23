@@ -1,0 +1,50 @@
+{%- comment -%}
+  LUMORA WHAT'S IN THE GLOW  ·  lu-glow.liquid  ·  v1.0
+  Paste into: Home page > Add section > Custom Liquid (padding 0), after "Every skin, in its best light".
+  Four ingredient cards (illustration, name, percentage tag, one line) and the statement row.
+  Upload the four illustrations to Content > Files with exactly these names (800 x 1000, 4:5):
+  lu-ingredient-vitamin-c.jpg, lu-ingredient-sea-buckthorn.jpg, lu-ingredient-apricot.jpg, lu-ingredient-ceramides.jpg
+  (Native alternative: Minimog "Custom content" with four image blocks and text blocks, see BUILD-GUIDE 4.8.)
+{%- endcomment -%}
+{%- assign lu_ll = all_products['long-light-serum'] -%}
+<section class="lu-sec lu-s-linen lu-glow" id="ingredients" aria-labelledby="lu-glow-title">
+  <div class="container-fluid">
+    <header class="lu-head lu-head--row">
+      <div class="lu-head__text">
+        <p class="lu-eyebrow">Ingredients, explained</p>
+        <h2 id="lu-glow-title" class="lu-h2">What’s in the <em>glow.</em></h2>
+      </div>
+      <a class="lu-link lu-link--arrow" href="{{ lu_ll.url | default: routes.all_products_collection_url }}#ingredients-decoded">Read every ingredient</a>
+    </header>
+    <div class="lu-ingr">
+      <article class="lu-ingr__card"><div class="lu-media"><img src="{{ 'lu-ingredient-vitamin-c.jpg' | file_img_url: '800x' }}" width="800" height="1000" loading="lazy" alt="Golden drops of serum backlit by warm light"></div><h3>Vitamin C <span>10%</span></h3><p>Brightens the look of dull skin. A stable form, kept potent by amber glass.</p></article>
+      <article class="lu-ingr__card"><div class="lu-media"><img src="{{ 'lu-ingredient-sea-buckthorn.jpg' | file_img_url: '800x' }}" width="800" height="1000" loading="lazy" alt="Orange sea buckthorn berries on the branch, backlit"></div><h3>Sea buckthorn oil <span>2%</span></h3><p>Carotenoid-rich, and the reason Long Light is apricot. The color is the ingredient.</p></article>
+      <article class="lu-ingr__card"><div class="lu-media"><img src="{{ 'lu-ingredient-apricot.jpg' | file_img_url: '800x' }}" width="800" height="1000" loading="lazy" alt="Apricot halves with their kernels in warm light"></div><h3>Apricot kernel oil</h3><p>Soft slip that sinks in fast: 18% in Sunmelt, 40% in Gloaming.</p></article>
+      <article class="lu-ingr__card"><div class="lu-media"><img src="{{ 'lu-ingredient-ceramides.jpg' | file_img_url: '800x' }}" width="800" height="1000" loading="lazy" alt="A swirl of soft cream texture in warm light"></div><h3>Ceramides + squalane <span>5%</span></h3><p>Help replenish the moisture barrier, so dry&#8209;feeling skin feels comfortable again.</p></article>
+    </div>
+    <div class="lu-statement">
+      <p>No mica, glitter or self-tan anywhere in the line, and no tint in the glow formulas. The glow should be your skin’s, <em>not a coating.</em></p>
+      <p>Every skincare formula is fragrance-free. Each ingredient is listed, and explained, on its product page.</p>
+    </div>
+  </div>
+</section>
+<style>
+.lu-ingr{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.lu-media{position:relative;overflow:hidden;border-radius:14px;background:var(--lu-sand)}
+.lu-media img{display:block;width:100%;height:100%;object-fit:cover}
+.lu-ingr__card .lu-media{aspect-ratio:4/5}
+.lu-ingr__card h3{margin:20px 0 0;font:400 21px/1.2 var(--lu-display);letter-spacing:-.01em;color:rgb(var(--color-heading))}
+.lu-ingr__card h3 span{margin-left:6px;font:600 13px/1 var(--lu-body);letter-spacing:.08em;vertical-align:.18em;color:rgb(var(--color-price-sale))}
+.lu-ingr__card p{margin:8px 0 0;font-size:15px;line-height:23px;color:rgb(var(--color-foreground-secondary))}
+.lu-statement{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;margin-top:72px;padding-top:40px;border-top:1px solid rgb(var(--color-border))}
+.lu-statement p:first-child{grid-column:1/span 8;margin:0;font:300 30px/1.28 var(--lu-display);letter-spacing:-.012em;color:rgb(var(--color-heading))}
+.lu-statement p:first-child em{font-style:italic;color:rgb(var(--color-price-sale))}
+.lu-statement p:last-child{grid-column:9/span 4;align-self:end;margin:0;font-size:15px;line-height:24px;color:rgb(var(--color-foreground-secondary))}
+@media (max-width:767px){
+  .lu-ingr{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:70%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px;scrollbar-width:none}
+  .lu-ingr::-webkit-scrollbar{display:none}.lu-ingr>*{scroll-snap-align:start}
+  .lu-ingr__card h3{font-size:19px;margin-top:16px}
+  .lu-statement{display:block;margin-top:40px;padding-top:28px}
+  .lu-statement p:first-child{font-size:22px}.lu-statement p:last-child{margin-top:16px;font-size:14px;line-height:22px}
+}
+</style>

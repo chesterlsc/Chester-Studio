@@ -1,0 +1,25 @@
+{%- comment -%}
+  LUMORA PDP LEXICON LINE (+ sample rating)  ·  lu-pdp-lexicon.liquid  ·  v1.0
+  Paste into: Product information > Add block > Custom Liquid, directly BELOW Title.
+  The lexicon line comes from the metafield custom.lexicon ("long light (n.) the low, raking light of the
+  last hour of sun"): the word before "(n.)" is set in Fraunces italic. The rating link jumps to the sample
+  reviews section (#reviews). Set lu_show_rating to false if a reviews app shows its own star badge, and
+  keep the figures in step with lu-pdp-reviews.liquid.
+{%- endcomment -%}
+{%- liquid
+  assign lu_show_rating = true
+  assign lu_rating = '4.7'
+  assign lu_count = 28
+  assign lu_lex = product.metafields.custom.lexicon.value | default: ''
+-%}
+{%- if lu_lex != '' -%}
+  {%- assign lu_word = lu_lex | split: ' (' | first -%}
+  {%- assign lu_rest = lu_lex | remove_first: lu_word -%}
+  <p class="lu-lexicon"><em>{{ lu_word }}</em>{{ lu_rest }}</p>
+{%- endif -%}
+{%- if lu_show_rating and product.handle == 'long-light-serum' -%}
+<a class="lu-rating" href="#reviews" aria-label="Rated {{ lu_rating }} out of 5 in {{ lu_count }} sample reviews. Go to reviews">
+  <span aria-hidden="true" style="border:0;display:inline-flex;gap:2px">{%- for i in (1..5) -%}<svg viewBox="0 0 24 24"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7z"/></svg>{%- endfor -%}</span>
+  <b>{{ lu_rating }}</b><span>{{ lu_count }} sample reviews</span>
+</a>
+{%- endif -%}

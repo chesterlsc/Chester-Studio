@@ -1,0 +1,35 @@
+{%- comment -%}
+  LUMORA THE GLOW CHECK  ·  lu-glow-check.liquid  ·  v1.0
+  Paste into: Product template (Long Light) > Add section > Custom Liquid (padding 0), after "Why amber".
+  Six Fitzpatrick tiles drawn in CSS (no photography): each tile is a skin-tone field with the satin
+  sheen the serum leaves, and the panel's verdict for that type. Footnote 1 sits directly beneath.
+  Scheme: Linen. The per-type figures are illustrative placeholder data and are labelled as such.
+{%- endcomment -%}
+<section class="lu-sec lu-s-linen lu-glow-check" id="glow-check" aria-labelledby="lu-gc-title">
+  <div class="container-fluid">
+    <header class="lu-head">
+      <p class="lu-eyebrow">The glow check</p>
+      <h2 id="lu-gc-title" class="lu-h2">Warm on every skin, never <em>orange.</em></h2>
+      <p class="lu-lead">An expert panel judged the finish on 60 people, ten for each Fitzpatrick type, in daylight and in warm indoor light. One question: does the glow read as skin, or as a coating?<sup class="lu-fn" data-fn="1">1</sup></p>
+    </header>
+    <ol class="lu-tones">
+      <li style="--a:#F5DDCB;--b:#E9C4AB"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type I</b><em>9 of 10</em></span><span class="lu-tone__sub">Fair · read as skin</span></li>
+      <li style="--a:#EFCFB2;--b:#DFB08F"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type II</b><em>10 of 10</em></span><span class="lu-tone__sub">Light · read as skin</span></li>
+      <li style="--a:#E2B18B;--b:#CC9268"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type III</b><em>9 of 10</em></span><span class="lu-tone__sub">Medium · read as skin</span></li>
+      <li style="--a:#CB956B;--b:#AF7A50"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type IV</b><em>10 of 10</em></span><span class="lu-tone__sub">Olive · read as skin</span></li>
+      <li style="--a:#9E6B48;--b:#835536"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type V</b><em>9 of 10</em></span><span class="lu-tone__sub">Deep · read as skin</span></li>
+      <li style="--a:#6D4531;--b:#4F3122"><span class="lu-tone" aria-hidden="true"></span><span class="lu-tone__row"><b>Type VI</b><em>9 of 10</em></span><span class="lu-tone__sub">Very deep · read as skin</span></li>
+    </ol>
+    <p class="lu-footnotes"><span data-fn-note="1"><sup class="lu-fn">1</sup>Finish assessment by an expert panel on 60 participants, Fitzpatrick I to VI. Figures per type are illustrative placeholder data.</span></p>
+  </div>
+</section>
+<style>
+.lu-tones{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;margin:0;padding:0;list-style:none}
+.lu-tone{display:block;aspect-ratio:4/5;border-radius:14px;background:radial-gradient(58% 26% at 64% 40%,rgba(232,181,102,.42),rgba(232,181,102,0) 72%),radial-gradient(120% 90% at 28% 22%,rgba(255,241,224,.5),rgba(255,241,224,0) 46%),linear-gradient(160deg,var(--a),var(--b));box-shadow:inset 0 0 0 1px rgba(53,33,31,.06)}
+.lu-tone__row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:16px}
+.lu-tone__row b{font:600 12px/16px var(--lu-body);letter-spacing:.16em;text-transform:uppercase;color:rgb(var(--color-foreground))}
+.lu-tone__row em{font:300 22px/1 var(--lu-display);font-style:italic;letter-spacing:-.01em;color:rgb(var(--color-heading));white-space:nowrap}
+.lu-tone__sub{display:block;margin-top:6px;font-size:13px;line-height:20px;color:rgb(var(--color-foreground-secondary))}
+@media (max-width:1023px){.lu-tones{grid-template-columns:repeat(3,1fr);gap:28px 16px}}
+@media (max-width:767px){.lu-tones{gap:22px 12px}.lu-tone__row{display:block;margin-top:10px}.lu-tone__row em{display:block;margin-top:4px;font-size:18px}.lu-tone__sub{font-size:12px;line-height:17px}}
+</style>

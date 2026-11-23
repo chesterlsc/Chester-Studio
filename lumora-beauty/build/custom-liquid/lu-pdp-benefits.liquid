@@ -1,0 +1,33 @@
+{%- comment -%}
+  LUMORA PDP BENEFITS  ·  lu-pdp-benefits.liquid  ·  v1.0
+  Paste into: Product information > Add block > Custom Liquid, directly BELOW Price.
+  Three icon benefits from the metafields custom.benefit_1, custom.benefit_2, custom.benefit_3.
+  Format of each value: "icon|text", for example "even|More even-looking tone in 4 weeks²".
+  Icons: even, absorb, amber, drop, tones, leaf, sun, cup. A superscript ¹ ² ³ becomes a sun-dot marker.
+{%- endcomment -%}
+<ul class="lu-benefits">
+{%- for n in (1..3) -%}
+  {%- assign lu_key = 'benefit_' | append: n -%}
+  {%- assign lu_raw = product.metafields.custom[lu_key].value | default: '' -%}
+  {%- if lu_raw != '' -%}
+    {%- if lu_raw contains '|' -%}
+      {%- assign lu_ic = lu_raw | split: '|' | first | strip -%}
+      {%- assign lu_tx = lu_raw | split: '|' | last | strip -%}
+    {%- else -%}
+      {%- assign lu_ic = 'sun' -%}{%- assign lu_tx = lu_raw -%}
+    {%- endif -%}
+    <li><svg viewBox="0 0 32 32" aria-hidden="true">
+      {%- case lu_ic -%}
+        {%- when 'even' -%}<path d="M8 22.5a8 8 0 0 1 16 0"/><path d="M16 8.5v2.4M8.6 12l1.6 1.6M23.4 12l-1.6 1.6"/><path d="M3 22.5h26"/><path d="M9 27h14"/>
+        {%- when 'absorb' -%}<path d="M16 4.5c3.6 4.6 5.7 7.8 5.7 10.4a5.7 5.7 0 0 1-11.4 0c0-2.6 2.1-5.8 5.7-10.4z"/><path d="M6 24.5c3.3-1.6 6.7-1.6 10 0s6.7 1.6 10 0"/><path d="M3 28.5h26"/>
+        {%- when 'amber' -%}<path d="M13 3.5h6v3.2h-6zM12 6.7h8l.6 2.6a5 5 0 0 1 3.2 4.7V24a1.6 1.6 0 0 1-1.6 1.6H9.8A1.6 1.6 0 0 1 8.2 24V14a5 5 0 0 1 3.2-4.7z"/><path d="M8.2 16.5h15.6"/><path d="M3 28.5h26"/>
+        {%- when 'drop' -%}<path d="M16 4.5c4.8 6 7.6 10.2 7.6 13.6a7.6 7.6 0 0 1-15.2 0c0-3.4 2.8-7.6 7.6-13.6z"/><path d="M11.8 19.5h8.4"/><path d="M3 28.5h26"/>
+        {%- when 'tones' -%}<circle cx="11" cy="16" r="6.2"/><circle cx="16" cy="16" r="6.2"/><circle cx="21" cy="16" r="6.2"/><path d="M3 28.5h26"/>
+        {%- when 'leaf' -%}<path d="M7 24c0-9.5 6.5-16 18-16 0 11.5-6.5 18-16 18z"/><path d="M7 24l9-9"/><path d="M3 28.5h26"/>
+        {%- when 'cup' -%}<path d="M7 13h15v6.5a6 6 0 0 1-6 6h-3a6 6 0 0 1-6-6z"/><path d="M22 15h2.2a2.8 2.8 0 0 1 0 5.6H22"/><path d="M12 4.5c-1.2 1.6 1.2 3.2 0 4.8M16.5 4.5c-1.2 1.6 1.2 3.2 0 4.8"/><path d="M3 28.5h26"/>
+        {%- else -%}<path d="M8 22.5a8 8 0 0 1 16 0"/><circle cx="16" cy="22.5" r="2.6"/><path d="M3 22.5h26"/>
+      {%- endcase -%}
+    </svg><span>{{ lu_tx }}</span></li>
+  {%- endif -%}
+{%- endfor -%}
+</ul>
