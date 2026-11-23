@@ -80,7 +80,7 @@ Schemes follow the sunset ladder (golden-hour.md 2.2). No two neighbours share a
 | PLACEHOLDER | `../products/apricity-lip-cheek-balm/apricity-lip-cheek-balm-packshot.jpg` | `placeholders/packshot-apricity-lip-cheek-balm.jpg` | 4 card 04 | 1600 x 2000, 4:5 |
 | PLACEHOLDER | `../products/gloaming-body-oil/gloaming-body-oil-packshot.jpg` | `placeholders/packshot-gloaming-body-oil.jpg` | 4 card 05 | 1600 x 2000, 4:5 |
 | PLACEHOLDER | `../products/slow-hour-golden-milk/slow-hour-golden-milk-packshot.jpg` | `placeholders/packshot-slow-hour-golden-milk.jpg` | 4 card 06, 11 inset | 1600 x 2000, 4:5 |
-| PLACEHOLDER | `../products/long-light-serum/long-light-serum-in-light.jpg` | `placeholders/hover-long-light-serum.jpg` | 4 card 02 hover image ("the light changes") | 1600 x 2000, 4:5, same crop as the packshot in low sun |
+| PLACEHOLDER | `../products/long-light-serum/long-light-serum-in-light.jpg` | the final Long Light packshot (so the hovered card stays photographic until the low-sun render lands) | 4 card 02 hover image ("the light changes") | 1600 x 2000, 4:5, same crop as the packshot in low sun |
 | PLACEHOLDER | `../renders/scenes/golden-pair.jpg` | `placeholders/golden-pair.jpg` | 5 Start here, main image | 1600 x 2000, 4:5 |
 | PLACEHOLDER | `../photos/graded/serum-drop-skin.jpg` | `placeholders/photo-serum-skin.jpg` | 5 Start here, layered inset | 4:5, min 800 x 1000 |
 | PLACEHOLDER | `../photos/graded/skin-tone-01-light.jpg` | `placeholders/photo-skin-1.jpg` | 6 card 1 (7:12 am) | 4:5, min 800 x 1000 |
