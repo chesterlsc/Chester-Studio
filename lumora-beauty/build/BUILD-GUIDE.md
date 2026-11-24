@@ -1,5 +1,39 @@
 # Lumora Beauty × Minimog: build guide
 
+> ## Read first: build the approved v2 (shortened, visual-first)
+>
+> After review, the client asked for shorter pages that let visuals lead. The approved targets are
+> `mockup/index-short.html` and `mockup/product-long-light-serum-short.html` (images in
+> `mockup/presentation/v2/`). This guide still describes v1 in full; build it with these changes:
+>
+> **Homepage**
+> - **Keep:** hero, promise strip, the sunset shelf, the closing band, the footer and footnotes.
+> - **Trim:**
+>   - "Start here" becomes one sentence, the 3 ticks and the CTAs. The reassurance line and footnote go into the footer block.
+>   - "What's in the glow" shows the 4 image tiles only, with no statement paragraph.
+>   - The proof band shows the 3 numbers only, with the heading "Four weeks, in numbers.", standard padding and no timeline.
+> - **Add** "Shop by moment" (Minimog image cards) after "Start here". Heading: "Two moments, one ritual."
+>   - Morning card: `products/long-light-serum/long-light-serum-in-light.jpg`, title "First light, bottled.", step chips 01 02 03 04, link "Shop the morning ritual".
+>   - Evening card: `renders/scenes/evening-4x5.jpg`, title "The slow hour.", step chips 01 02 03 05 06, link "Shop the evening ritual".
+>   - Styles are in `mockup/css/home-short.css`.
+> - **Skip:** the every-skin tiles, the slow-hour section, the formulator note, testimonials, the homepage FAQ and the proof timeline.
+>
+> **Product page (Long Light)**
+> - **Keep:** the gallery and the buy box, without the "At a glance" rows. The 4 accordions hold the depth.
+> - **Add** a row of 3 benefit tiles after the main product section: Amber glass (detail render), Vitamin C 10%, Sea buckthorn 2%. Styles are in `mockup/css/pdp-short.css`.
+> - **Then keep:**
+>   - results (the 3 numbers only);
+>   - the glow-check swatches;
+>   - the ritual bundle;
+>   - the FAQ, cut to 5 questions;
+>   - reviews: the summary plus 3, labelled as samples;
+>   - "pairs well with";
+>   - the footer.
+> - **Skip:** why amber, ingredients decoded, who it's for, the formulator note, the guarantee band, the how-to section and the review filters.
+>
+> **Decided:** the step label is "Step 02 · Glow"; the 15 ml travel size is $29; the homepage stat is 90%; no apps are installed without the client's OK.
+
+
 Build the homepage and the Long Light Serum product page in the client's Minimog test store, in this order, in
 about five hours. Everything you paste is in this folder. The look to match is the approved mockups:
 `mockup/delivered/homepage-v1/` (homepage) and `mockup/exports/lumora-pdp-*.jpg` (PDP). Section maps:
